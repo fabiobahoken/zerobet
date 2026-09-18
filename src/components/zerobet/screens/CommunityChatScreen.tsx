@@ -569,68 +569,6 @@ function NicknameSetup({ onJoin }: NicknameSetupProps) {
   );
 }
 
-interface PaywallOverlayProps {
-  onGoPremium: () => void;
-  onBack: () => void;
-}
-
-function PaywallOverlay({ onGoPremium, onBack }: PaywallOverlayProps) {
-  const t = useT();
-  return (
-    <div className="min-h-screen px-5 pt-12 pb-4 flex flex-col items-center justify-center">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.92 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ type: "spring", stiffness: 240, damping: 22 }}
-        className="glass-card-strong rounded-3xl p-8 max-w-sm w-full text-center"
-      >
-        <div className="w-20 h-20 rounded-3xl gradient-primary glow-red flex items-center justify-center mx-auto mb-5">
-          <Lock size={34} className="text-white" strokeWidth={2} />
-        </div>
-        <h2 className="text-2xl font-extrabold text-white font-[family-name:var(--font-poppins)] mb-2">
-          {t("chatPaywallTitle")}
-        </h2>
-        <p className="text-white/60 text-sm leading-relaxed mb-6">
-          {t("chatPaywallDesc")}
-        </p>
-        <ul className="text-left text-sm text-white/70 space-y-2 mb-6">
-          {[
-            t("chatPaywallFeature1"),
-            t("chatPaywallFeature2"),
-            t("chatPaywallFeature3"),
-            t("chatPaywallFeature4"),
-          ].map((line) => (
-            <li key={line} className="flex items-start gap-2">
-              <span className="text-[#FF9500] mt-0.5">✦</span>
-              <span>{line}</span>
-            </li>
-          ))}
-        </ul>
-        <button
-          onClick={() => {
-            sound.playClick();
-            haptics.medium();
-            onGoPremium();
-          }}
-          className="w-full py-3.5 rounded-2xl gradient-primary glow-red text-white font-semibold btn-press mb-2"
-        >
-          {t("chatGoPremium")}
-        </button>
-        <button
-          onClick={() => {
-            sound.playClick();
-            haptics.light();
-            onBack();
-          }}
-          className="w-full py-2.5 rounded-2xl text-white/60 hover:text-white/80 text-sm"
-        >
-          {t("back")}
-        </button>
-      </motion.div>
-    </div>
-  );
-}
-
 /* ========================================================================
    Main screen
    ======================================================================== */

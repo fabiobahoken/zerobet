@@ -4,7 +4,7 @@ import { useState, useMemo, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
 import {
-  ChevronLeft, Heart, MessageCircle, Flame, BadgeCheck, Plus, X,
+  ChevronLeft, ChevronDown, Heart, MessageCircle, Flame, BadgeCheck, Plus, X,
   MessageSquare, Users, GraduationCap, ShieldCheck, Star, Clock,
   Trophy, Lock, Send, Globe, Sparkles, Stethoscope, Crown,
   TrendingUp, Zap,
@@ -1019,12 +1019,19 @@ function TestimonialsTab({
   const language = useLanguage();
   const currency = useStore((s) => s.currency);
   const FREE_LIMIT = 5;
+  const PAGE_SIZE = 6;
   const [filter, setFilter] = useState<TestimonialFilterKey>("all");
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 550);
     return () => clearTimeout(timer);
   }, []);
+  // Reset pagination whenever the filter changes (handler-based, no effect)
+  const handleFilterChange = (f: TestimonialFilterKey) => {
+    setFilter(f);
+    setVisibleCount(PAGE_SIZE);
+  };
 
   const filtered = useMemo(() => {
     return testimonials.filter((tm) => {
@@ -1034,6 +1041,12 @@ function TestimonialsTab({
       return true;
     });
   }, [testimonials, filter]);
+
+  const visible = useMemo(
+    () => filtered.slice(0, visibleCount),
+    [filtered, visibleCount]
+  );
+  const remaining = filtered.length - visible.length;
 
   return (
     <div>
@@ -1051,7 +1064,7 @@ function TestimonialsTab({
           return (
             <button
               key={f.key}
-              onClick={() => setFilter(f.key)}
+              onClick={() => handleFilterChange(f.key)}
               className={`px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all active:scale-95 ${
                 active ? "gradient-primary text-white" : "glass-card text-white/60"
               }`}
@@ -1073,7 +1086,7 @@ function TestimonialsTab({
         animate="visible"
         className="space-y-3"
       >
-        {filtered.map((testimonial, idx) => {
+        {visible.map((testimonial, idx) => {
           const isLocked = !isPremium && idx >= FREE_LIMIT;
           // Seed testimonials store translation keys in `title` / `content`.
           // User-submitted testimonials store the raw text directly.
@@ -1214,7 +1227,7 @@ function TestimonialsTab({
                           value={replyText}
                           onChange={(e) => setReplyText(e.target.value)}
                           placeholder={t("communityReplyPlaceholder")}
-                          className="flex-1 p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#FF3B30]"
+                          className="flex-1 p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#10B981]"
                           onKeyDown={(e) => {
                             if (e.key === "Enter") onSubmitReply(testimonial.id);
                           }}
@@ -1260,6 +1273,21 @@ function TestimonialsTab({
           );
         })}
       </motion.div>
+      )}
+
+      {/* Load more (pagination) — shown when more items exist beyond the
+          current page, regardless of plan; free-gating still applies above. */}
+      {remaining > 0 && (
+        <div className="text-center mt-5">
+          <motion.button
+            whileTap={{ scale: 0.97 }}
+            onClick={() => setVisibleCount((c) => c + PAGE_SIZE)}
+            className="px-5 py-2.5 rounded-full glass-card text-white/80 hover:text-white text-xs font-semibold inline-flex items-center gap-1.5 border border-white/10 hover:border-[#10B981]/40 transition-colors"
+          >
+            <ChevronDown size={14} />
+            {t("communityLoadMore", { n: remaining })}
+          </motion.button>
+        </div>
       )}
 
       {!isPremium && filtered.length > FREE_LIMIT && (

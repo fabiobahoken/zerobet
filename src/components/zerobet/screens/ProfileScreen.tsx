@@ -63,8 +63,8 @@ const PLAN_BADGES: Record<string, { labelKey: string; color: string; gradient: s
   },
   premium: {
     labelKey: "settingsPlanPremium",
-    color: "#FF3B30",
-    gradient: "linear-gradient(135deg, #FF3B30 0%, #FF9500 100%)",
+    color: "#10B981",
+    gradient: "linear-gradient(135deg, #10B981 0%, #F59E0B 100%)",
     icon: "⭐",
   },
   mentor: {
@@ -82,11 +82,11 @@ const PLAN_BADGES: Record<string, { labelKey: string; color: string; gradient: s
 };
 
 const AVATAR_COLOR_OPTIONS = [
-  "#FF3B30",
-  "#FF9500",
+  "#10B981",
+  "#2DD4BF",
   "#FBBF24",
   "#4ADE80",
-  "#64D2FF",
+  "#F59E0B",
   "#BF5AF2",
 ];
 
@@ -436,8 +436,8 @@ export function ProfileScreen() {
       value: `${effectiveStreak}`,
       suffix: "j",
       icon: Flame,
-      color: "#FF3B30",
-      gradient: "linear-gradient(135deg, #FF3B30 0%, #FF9500 100%)",
+      color: "#F59E0B",
+      gradient: "linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%)",
     },
     {
       label: t("profileStatSaved"),
@@ -471,7 +471,7 @@ export function ProfileScreen() {
       label: t("profileLongestStreak"),
       value: t("profileDaysCount", { n: longestStreak }),
       icon: Flame,
-      color: "#FF3B30",
+      color: "#F59E0B",
     },
     {
       label: t("profileMonthlySavings"),
@@ -783,7 +783,7 @@ export function ProfileScreen() {
         {/* ====== SECTION 4: Goals & Commitments ====== */}
         <motion.div variants={itemVariants} className="glass-card p-5">
           <div className="flex items-center gap-2 mb-4">
-            <Target size={14} className="text-[#FF3B30]" />
+            <Target size={14} className="text-[#10B981]" />
             <h2 className="text-xs font-bold text-white/80 uppercase tracking-[0.12em]">
               {t("profileMyGoals")}
             </h2>
@@ -993,7 +993,7 @@ export function ProfileScreen() {
                     onChange={(e) => setEditingName(e.target.value)}
                     placeholder={t("settingsNamePlaceholder")}
                     maxLength={30}
-                    className="w-full bg-white/5 border border-white/10 text-white placeholder:text-white/30 rounded-xl h-11 px-4 text-sm focus:outline-none focus:border-[#FF3B30]/60 focus:ring-2 focus:ring-[#FF3B30]/20"
+                    className="w-full bg-white/5 border border-white/10 text-white placeholder:text-white/30 rounded-xl h-11 px-4 text-sm focus:outline-none focus:border-[#10B981]/60 focus:ring-2 focus:ring-[#10B981]/20"
                   />
                 </div>
 

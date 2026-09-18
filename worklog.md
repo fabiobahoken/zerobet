@@ -5415,3 +5415,37 @@ Stage Summary:
 - **Fichiers clés** : `public/sw.js` (v3 + navigation cache durci), `src/components/zerobet/components/BottomNav.tsx` (z-40), `PWARegister.tsx` (v3), `DashboardScreen.tsx` (gating), `CommunityChatScreen.tsx` (sanitize client + rate-limited toast + plural), `mini-services/chat-service/index.ts` (sanitize sans escape + limiter + socket.to), `tests/rate-limit-probe.ts` (sonde QA), dictionary.ts (+5 clés ×3 langues).
 - **Risques/notes** : deux instances `bun --hot index.ts` du chat-service coexistaient (une seule tient le port) — après mes éditions, hot-reload NON fiable : j'ai tué et relancé proprement (`nohup bun --hot index.ts > /tmp/chat-service.log` depuis mini-services/chat-service) ; les anciens messages doublons déjà stockés en localStorage restent visibles dans l'historique des testeurs (le fix empêche les nouveaux doublons ; un nettoyage/migration des doublons existants est possible en follow-up).
 - **Prochaines étapes recommandées** : traduction des 90 citations du Programme 90 jours (FR hardcoded), pagination/virtualisation témoignages + chat (cleanup doublons historiques), notifications push PWA réelles (VAPID), Nettoyer les clés `journalLocked*`/`PaywallOverlay` morts, mettre à jour le champ `avatarColor` default `#FF3B30` → palette émeraude.
+
+---
+Task ID: 4 (cron webDevReview #3)
+Agent: Z.ai Code (session cron)
+Task: QA continue agent-browser — fin de palette sur le Profil, cleanup code mort, pagination témoignages, Défi du jour complétible (+XP, série), seeds communautaires enrichis.
+
+Work Log:
+- **Diagnostic services** : next dev OK (200), chat-service OK :3003 via Caddy, 0 erreur console en session fraîche.
+- **QA agent-browser** : parcours Accueil → Programme → Journal → Profil → Communauté → Quêtes. Une vraie régression visuelle trouvée : le **Profil gardait l'ancienne palette rouge** (avatar par défaut `#FF3B30` + halo rouge, badge Premium rouge/orange, icône flame rouge, focus rings rouges du formulaire d'édition).
+- **Fin de palette « Aube Émeraude » sur le Profil** :
+  - Store : `avatarColor` par défaut `#FF3B30` → `#10B981` (2 endroits : initial state + reset all), options d'avatar réordonnées émeraude d'abord (`#10B981, #2DD4BF, #FBBF24, #4ADE80, #F59E0B, #BF5AF2`).
+  - ProfileScreen : badge plan Premium → gradient `#10B981→#F59E0B` ; stats « Jours sans pari » → ambre/or (fin du rouge alarme) ; « Plus longue série » → ambre ; icône Objectifs → émeraude ; focus ring du formulaire → `#10B981` ; le rouge ne reste que sur la suppression de photo + données de crise (sémantique urgence conservée).
+  - DashboardScreen : badge plan premium local → `#10B981`.
+- **Cleanup code mort** (reco Tasks 1-3) :
+  - `PaywallOverlay` (composant + interface) supprimé de CommunityChatScreen (inutilisé depuis Zerobet 2.0) ; 7 clés `chatPaywall*`/`chatGoPremium` ×3 langues supprimées du dictionnaire.
+  - 6 clés `journalLocked`/`journalLockedDesc` ×3 langues supprimées (`journalUpgradeToPremium` conservée — toujours utilisée).
+  - Clé `dashboardAcceptChallenge` ×3 supprimée (remplacée par les nouvelles clés du défi).
+- **Feature — Défi du jour complétible** (le card existant n'était qu'une suggestion de navigation) :
+  - Store : `challengeCompletedDate`, `challengeStreak`, `completeDailyChallenge()` (idempotent jour, série = consécutif, +15 XP via `addXP` → multiplicateur de série appliqué) + `DAILY_CHALLENGE_XP=15` exporté. Persisté (partialize), restauré depuis le cloud (`challengeStreak` ajouté à la BACKUP_KEYS de restoreFromSnapshot).
+  - Nouveau composant `DailyChallengeCard.tsx` : état en attente (pillé +15 XP, boutons « J'ai réussi ce défi » + « Faire maintenant → »), état réussi (check émeraude animé spring, « Défi réussi ! +15 XP », pill or « Série : n jour(s) » avec flamme, « Nouveau défi demain ! »), **burst de 12 particules** (or/émeraude/teal) à la complétion. Gating freemium conservé via onNavigate (panic/finance/community libres).
+  - 5 clés i18n ×3 langues (dashboardChallengeMarkDone/DoneTitle/Streak/ComeBack/Go).
+  - Vérifié en navigateur : complétion → +15 XP réel (150→165 en store), série=1 persistée, état réussi après reload.
+- **Feature — Pagination témoignages** :
+  - CommunityScreen/TestimonialsTab : `PAGE_SIZE=6`, `visibleCount`, bouton « Voir plus de témoignages ({n}) » (glass, chevron, hover émeraude), reset via handler au changement de filtre (pas d'effet — conformité react-hooks/set-state-in-effect). Le teaser freemium (items ≥ 5 floutés en gratuit) fonctionne par-dessus la pagination.
+  - **Seeds enrichis : 6 → 12 témoignages** (Bénin, RD Congo, Togo, Sénégal, Côte d'Ivoire, Gabon — âges 19-41, séries 7→500 jours, montants {amount} convertis par devise). 4 nouvelles clés pays (`countryBJ/CD/TG/GA`) ×3 langues ; 6 témoignages × (titre+corps) ×3 langues = 36 clés.
+  - Vérifié en navigateur : « Voir plus de témoignages (6) » → clic → 12/12 affichés, montants FCFA substitués, bouton disparaît.
+- **Divers** : focus border rouge → émeraude sur l'input de réponse témoignage.
+
+Stage Summary:
+- **Vérifié en navigateur** : Profil 100 % émeraude (avatar, halo, stats) ; Défi du jour complété avec +15 XP et série persistée ; pagination témoignages 6→12 ; 0 erreur console ; GET/POST /api/progress 200 continus.
+- **Qualité** : `bunx tsc --noEmit` 0 erreur ; `bun run lint` 0 erreur/0 warning ; dev.log propre.
+- **Fichiers clés** : `DailyChallengeCard.tsx` (nouveau), `DashboardScreen.tsx`, `zerobet-store.ts` (challenge ×3 actions/état + defaults + partialize + backup), `CommunityScreen.tsx` (pagination + focus), `community-data.ts` (+6 seeds), `dictionary.ts` (−14 clés mortes, +41 nouvelles ×3), `ProfileScreen.tsx` (palette), `useCloudSync.ts` inchangé (challengeStreak passe par restoreFromSnapshot whitelist).
+- **Risques/notes** : l'utilisateur test existant garde son avatar rouge persisté (préférence utilisateur — by design) ; la série de défis utilise `toDateString()` local (cohérent avec `lastQuestReset`) ; si l'utilisateur change de fuseau, la série peut sembler réinitialisée (acceptable, même comportement que les quêtes).
+- **Prochaines étapes recommandées** : notifications push PWA réelles (VAPID), paiement Mobile Money (paywall simulé), virtualisation du chat si volumineux, traduction des textes restants hors UI chrome (aucun champ utilisateur-visible identifié lors de cette passe), server-side rate limit sur /api/chat (actuellement client-only sur Atlas).

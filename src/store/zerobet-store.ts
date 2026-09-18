@@ -128,6 +128,9 @@ export const QUEST_LABELS: Record<keyof DailyQuest, string> = {
   article: "Article",
 };
 
+/** XP granted when the user marks the dashboard Daily Challenge as done. */
+export const DAILY_CHALLENGE_XP = 15;
+
 export function getStreakMultiplier(streakDays: number): number {
   if (streakDays >= 90) return 3.0;
   if (streakDays >= 30) return 2.0;
@@ -636,6 +639,11 @@ interface AppState {
   resetDailyQuests: () => void;
   lastQuestReset: string | null;
 
+  // Gamification — Daily Challenge (dashboard)
+  challengeCompletedDate: string | null; // toDateString() of last completion
+  challengeStreak: number; // consecutive days with a completed challenge
+  completeDailyChallenge: () => void;
+
   // Gamification — XP History
   xpHistory: XPHistoryEntry[];
 
@@ -826,7 +834,7 @@ export const useStore = create<AppState>()(
       setName: (n) => set({ name: n }),
 
       // Avatar color
-      avatarColor: "#FF3B30",
+      avatarColor: "#10B981",
       setAvatarColor: (color) => set({ avatarColor: color }),
 
       // Profile photo (base64 data URL or null)
@@ -1039,6 +1047,7 @@ export const useStore = create<AppState>()(
           "streakDays", "lastStreakDate", "streakHistory",
           "lastCheckInDate", "todayMood", "todayCraving",
           "xp", "level", "dailyQuests",
+          "challengeStreak",
           "savingsGoals", "weeklyIncome", "weeklyExpenses",
           "savingsGoal", "weeklyBetAmount", "currency",
           "unlockedRanks", "celebratedMilestones", "meditationStreak",
@@ -1329,6 +1338,21 @@ export const useStore = create<AppState>()(
           lastQuestReset: new Date().toDateString(),
         }),
       lastQuestReset: null,
+
+      // Gamification — Daily Challenge (dashboard card)
+      challengeCompletedDate: null,
+      challengeStreak: 0,
+      completeDailyChallenge: () => {
+        const today = new Date().toDateString();
+        if (get().challengeCompletedDate === today) return;
+        const yesterday = new Date(Date.now() - 86_400_000).toDateString();
+        const streak =
+          get().challengeCompletedDate === yesterday
+            ? get().challengeStreak + 1
+            : 1;
+        set({ challengeCompletedDate: today, challengeStreak: streak });
+        get().addXP(DAILY_CHALLENGE_XP, "dailyChallenge");
+      },
 
       // Gamification — XP History
       xpHistory: [],
@@ -1673,7 +1697,7 @@ export const useStore = create<AppState>()(
           adminStreakOverride: null,
           meditationStreak: 0,
           lastMeditationDate: null,
-          avatarColor: "#FF3B30",
+          avatarColor: "#10B981",
           profilePhoto: null,
           articlesRead: 0,
           xp: 0,
@@ -1686,6 +1710,8 @@ export const useStore = create<AppState>()(
             article: false,
           },
           lastQuestReset: null,
+          challengeCompletedDate: null,
+          challengeStreak: 0,
           xpHistory: [],
           hasSeenTutorial: false,
           programTasksCompleted: [],
@@ -1851,6 +1877,8 @@ export const useStore = create<AppState>()(
         level: state.level,
         dailyQuests: state.dailyQuests,
         lastQuestReset: state.lastQuestReset,
+        challengeCompletedDate: state.challengeCompletedDate,
+        challengeStreak: state.challengeStreak,
         xpHistory: state.xpHistory,
         hasSeenTutorial: state.hasSeenTutorial,
         programTasksCompleted: state.programTasksCompleted,

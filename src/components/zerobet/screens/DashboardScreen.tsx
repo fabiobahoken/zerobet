@@ -7,7 +7,7 @@ import {
   Crown, ChevronRight, Quote, Award, Settings as SettingsIcon, Bell,
   Target, Sparkles, Phone, BarChart3, Wind, Search, Trophy, User, Gamepad2,
   Calendar, HelpCircle, Activity, ScanSearch, HeartPulse,
-  MessageCircle, Lock,
+  MessageCircle, Lock, CheckCircle2, ArrowRight,
 } from "lucide-react";
 import { useStore } from "@/store/zerobet-store";
 import { ZerobetLogo } from "@/components/zerobet/components/ZerobetLogo";
@@ -21,6 +21,7 @@ import { PullToRefresh } from "@/components/zerobet/components/PullToRefresh";
 import { TutorialTooltips } from "@/components/zerobet/components/TutorialTooltips";
 import { DailyInsights } from "@/components/zerobet/components/DailyInsights";
 import { MoodTracker } from "@/components/zerobet/components/MoodTracker";
+import { DailyChallengeCard } from "@/components/zerobet/components/DailyChallengeCard";
 import { AnimatedNumber } from "@/components/zerobet/components/AnimatedNumber";
 import { StreakFlame } from "@/components/zerobet/components/StreakFlame";
 import { HeatmapCalendar } from "@/components/zerobet/components/HeatmapCalendar";
@@ -39,7 +40,7 @@ import { ArtifactIcon } from "@/components/zerobet/components/ArtifactIcon";
 
 const PLAN_BADGES: Record<string, { labelKey: string; color: string; icon: string }> = {
   free: { labelKey: "planFree", color: "#9CA3AF", icon: "🌱" },
-  premium: { labelKey: "planPremium", color: "#FF3B30", icon: "⭐" },
+  premium: { labelKey: "planPremium", color: "#10B981", icon: "⭐" },
   mentor: { labelKey: "planMentor", color: "#4ADE80", icon: "🛡️" },
   psychologist: { labelKey: "planPsychologist", color: "#BF5AF2", icon: "🎓" },
 };
@@ -82,6 +83,7 @@ export function DashboardScreen() {
     navigate, setStreak, resetStreak, adminStreakOverride, isAdmin, setIsAdmin,
     unlockedRanks, unlockRank, setPlan, notifications,
     lastCheckInDate, currency,
+    completeDailyChallenge, challengeCompletedDate, challengeStreak,
   } = useStore();
   const t = useT();
   const currencyInfo = getCurrency(currency);
@@ -89,6 +91,7 @@ export function DashboardScreen() {
   const [relapseOpen, setRelapseOpen] = useState(false);
   const [relapsePrevStreak, setRelapsePrevStreak] = useState(0);
   const [refreshing, setRefreshing] = useState(false);
+  const [challengeJustDone, setChallengeJustDone] = useState(false);
 
   // Track when the daily check-in modal is dismissed so the onboarding
   // tutorial can start afterwards (avoids overlapping with the modal).
@@ -445,42 +448,27 @@ export function DashboardScreen() {
       {/* Quick mood tracker */}
       <MoodTracker />
 
-      {/* Daily Challenge Card */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="glass-card card-hover p-4 mb-4 relative overflow-hidden border border-[#FBBF24]/20"
-      >
-        {/* Decorative accent */}
-        <div className="absolute -top-6 -right-6 w-24 h-24 rounded-full bg-[#FBBF24]/10 blur-2xl" />
-
-        <div className="relative flex items-start gap-3">
-          <div className="w-10 h-10 rounded-xl bg-[#FBBF24]/20 flex items-center justify-center flex-shrink-0">
-            <Target size={20} className="text-[#FBBF24]" />
-          </div>
-          <div className="flex-1">
-            <div className="flex items-center gap-1.5 mb-1">
-              <span className="text-[#FBBF24] text-xs font-semibold uppercase tracking-wider">
-                {t("dashboardDailyChallenge")}
-              </span>
-            </div>
-            <p className="text-white text-sm leading-relaxed mb-3">
-              {t(dailyChallenge.textKey)}
-            </p>
-            <motion.button
-              whileTap={{ scale: 0.97 }}
-              onClick={() => {
-                const isLocked = dailyChallenge.screen !== "panic" && dailyChallenge.screen !== "finance" && dailyChallenge.screen !== "community" && plan === "free";
-                navigate(isLocked ? "paywall" : dailyChallenge.screen);
-              }}
-              className="px-4 py-2 rounded-xl gradient-primary btn-press text-white text-xs font-bold flex items-center gap-1.5"
-            >
-              <Sparkles size={12} />
-              {t("dashboardAcceptChallenge")}
-            </motion.button>
-          </div>
-        </div>
-      </motion.div>
+      {/* Daily Challenge Card — completable, +15 XP, streak tracking */}
+      <DailyChallengeCard
+        challenge={dailyChallenge}
+        completedToday={challengeCompletedDate === new Date().toDateString()}
+        justDone={challengeJustDone}
+        streak={challengeStreak}
+        t={t}
+        onComplete={() => {
+          completeDailyChallenge();
+          setChallengeJustDone(true);
+          haptics.success();
+        }}
+        onNavigate={(screen) => {
+          const isLocked =
+            screen !== "panic" &&
+            screen !== "finance" &&
+            screen !== "community" &&
+            plan === "free";
+          navigate(isLocked ? "paywall" : screen);
+        }}
+      />
 
       {/* Quick actions */}
       <div className="mb-4" data-tutorial="quickActions">
