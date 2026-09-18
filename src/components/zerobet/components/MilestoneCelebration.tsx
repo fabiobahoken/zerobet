@@ -63,7 +63,7 @@ const MILESTONE_META: Record<
     titleKey: "milestoneTitle90",
     messageKey: "milestoneMessage90",
     emoji: "🔥",
-    color: "#BF5AF2",
+    color: "#C084FC",
     gradient: "from-purple-500/40 via-pink-500/20 to-transparent",
   },
   180: {
@@ -89,7 +89,7 @@ const CONFETTI_COLORS = [
   "#4ADE80",
   "#2DD4BF",
   "#FBBF24",
-  "#BF5AF2",
+  "#C084FC",
   "#FFD700",
 ];
 

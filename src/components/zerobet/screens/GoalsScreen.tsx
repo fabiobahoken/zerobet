@@ -57,7 +57,7 @@ const CATEGORY_META: Record<
   finance: {
     labelKey: "goalCategoryFinance",
     icon: Wallet,
-    color: "#FF9500",
+    color: "#F59E0B",
     gradient: "from-orange-500/20 to-orange-700/10",
   },
   relationship: {
@@ -69,13 +69,13 @@ const CATEGORY_META: Record<
   career: {
     labelKey: "goalCategoryCareer",
     icon: Briefcase,
-    color: "#64D2FF",
+    color: "#2DD4BF",
     gradient: "from-cyan-500/20 to-cyan-700/10",
   },
   personal: {
     labelKey: "goalCategoryPersonal",
     icon: Sparkles,
-    color: "#BF5AF2",
+    color: "#C084FC",
     gradient: "from-purple-500/20 to-purple-700/10",
   },
   spiritual: {
@@ -232,7 +232,7 @@ function ProgressRing({
   progress,
   size = 120,
   stroke = 10,
-  color = "#FF9500",
+  color = "#F59E0B",
   children,
 }: {
   progress: number;
@@ -596,7 +596,7 @@ export function GoalsScreen() {
         </button>
         <div className="flex-1 min-w-0">
           <h1 className="text-xl font-bold text-white font-[family-name:var(--font-poppins)] flex items-center gap-2">
-            <Target size={20} className="text-[#FF9500]" />
+            <Target size={20} className="text-[#F59E0B]" />
             {t("goalsTitle")}
           </h1>
           <p className="text-white/50 text-xs">
@@ -617,18 +617,18 @@ export function GoalsScreen() {
           className="absolute -top-12 -right-12 w-40 h-40 rounded-full blur-3xl opacity-30"
           style={{
             background:
-              "radial-gradient(circle, #FF9500 0%, transparent 70%)",
+              "radial-gradient(circle, #F59E0B 0%, transparent 70%)",
           }}
         />
         <div className="flex items-center gap-2 mb-4">
-          <Sparkles size={16} className="text-[#FF9500]" />
+          <Sparkles size={16} className="text-[#F59E0B]" />
           <h2 className="text-white font-bold font-[family-name:var(--font-poppins)] text-sm tracking-wide">
             {t("goalsTransformation")}
           </h2>
         </div>
 
         <div className="flex flex-col items-center">
-          <ProgressRing progress={stats.avg} size={120} stroke={10} color="#FF9500">
+          <ProgressRing progress={stats.avg} size={120} stroke={10} color="#F59E0B">
             <span className="text-2xl font-extrabold text-white font-[family-name:var(--font-poppins)]">
               {stats.avg}
               <span className="text-sm text-white/60">%</span>
@@ -648,7 +648,7 @@ export function GoalsScreen() {
               </div>
             </div>
             <div className="text-center">
-              <div className="text-xl font-bold text-[#FF9500] font-[family-name:var(--font-poppins)]">
+              <div className="text-xl font-bold text-[#F59E0B] font-[family-name:var(--font-poppins)]">
                 <AnimatedNumber value={stats.inProgress} />
               </div>
               <div className="text-[10px] text-white/50 uppercase tracking-wide">
@@ -679,7 +679,7 @@ export function GoalsScreen() {
             sound.playClick();
             haptics.light();
           }}
-          color="#FF9500"
+          color="#F59E0B"
         />
         {CATEGORY_ORDER.map((cat) => {
           const meta = CATEGORY_META[cat];
@@ -757,7 +757,7 @@ export function GoalsScreen() {
       <div className="relative mb-5">
         <div className="glass-card-strong p-5">
           <div className="flex items-center gap-2 mb-1">
-            <Sparkles size={16} className="text-[#BF5AF2]" />
+            <Sparkles size={16} className="text-[#C084FC]" />
             <h3 className="text-white font-bold font-[family-name:var(--font-poppins)] text-sm">
               {t("goalsSuggested")}
             </h3>
@@ -769,8 +769,8 @@ export function GoalsScreen() {
           {!isPremium ? (
             <div className="relative rounded-2xl border border-white/10 bg-white/5 p-4 overflow-hidden">
               <div className="absolute inset-0 backdrop-blur-sm bg-[#070B0E]/60 flex flex-col items-center justify-center gap-3 z-10">
-                <div className="w-12 h-12 rounded-full bg-[#FF9500]/15 flex items-center justify-center">
-                  <Lock size={20} className="text-[#FF9500]" />
+                <div className="w-12 h-12 rounded-full bg-[#F59E0B]/15 flex items-center justify-center">
+                  <Lock size={20} className="text-[#F59E0B]" />
                 </div>
                 <p className="text-white/70 text-xs text-center max-w-[220px]">
                   {t("goalsPremiumLocked")}
@@ -838,7 +838,7 @@ export function GoalsScreen() {
                         {t(s.descriptionKey)}
                       </div>
                     </div>
-                    <span className="text-[10px] px-2 py-1 rounded-md bg-[#FF9500]/15 text-[#FF9500] font-semibold shrink-0">
+                    <span className="text-[10px] px-2 py-1 rounded-md bg-[#F59E0B]/15 text-[#F59E0B] font-semibold shrink-0">
                       {t("goalsUse")}
                     </span>
                   </motion.button>
@@ -852,7 +852,7 @@ export function GoalsScreen() {
       {/* ---------- Footer motivation ---------- */}
       <div className="glass-card p-4 mb-2">
         <div className="flex items-start gap-3">
-          <Quote size={20} className="text-[#FF9500] shrink-0 mt-0.5" />
+          <Quote size={20} className="text-[#F59E0B] shrink-0 mt-0.5" />
           <p className="text-white/70 text-sm italic leading-relaxed">
             {t("goalsFooterQuote")}
           </p>
@@ -910,7 +910,7 @@ export function GoalsScreen() {
                     onChange={(e) => setTitle(e.target.value)}
                     placeholder={t("goalsTitlePlaceholder2")}
                     maxLength={60}
-                    className="w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#FF9500]"
+                    className="w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#F59E0B]"
                   />
                 </div>
 
@@ -931,7 +931,7 @@ export function GoalsScreen() {
                     }
                     placeholder={t("goalsDescPlaceholder")}
                     rows={3}
-                    className="w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#FF9500] resize-none"
+                    className="w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#F59E0B] resize-none"
                   />
                 </div>
 
@@ -992,7 +992,7 @@ export function GoalsScreen() {
                     value={targetDate}
                     min={todayISO()}
                     onChange={(e) => setTargetDate(e.target.value)}
-                    className="w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#FF9500] [color-scheme:dark]"
+                    className="w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#F59E0B] [color-scheme:dark]"
                   />
                 </div>
 
@@ -1014,12 +1014,12 @@ export function GoalsScreen() {
                       }}
                       placeholder={t("goalsMilestonePlaceholder")}
                       maxLength={50}
-                      className="flex-1 p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#FF9500]"
+                      className="flex-1 p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#F59E0B]"
                     />
                     <button
                       onClick={handleAddMilestone}
                       disabled={!milestoneInput.trim()}
-                      className="px-3 rounded-xl bg-[#FF9500]/20 border border-[#FF9500]/40 text-[#FF9500] text-xs font-semibold disabled:opacity-40 btn-press"
+                      className="px-3 rounded-xl bg-[#F59E0B]/20 border border-[#F59E0B]/40 text-[#F59E0B] text-xs font-semibold disabled:opacity-40 btn-press"
                     >
                       {t("goalsMilestoneAdd")}
                     </button>
@@ -1145,18 +1145,18 @@ export function GoalsScreen() {
                             background: dr.past
                               ? "rgba(255,59,48,0.15)"
                               : dr.urgent
-                              ? "rgba(255,149,0,0.15)"
+                              ? "rgba(245, 158, 11,0.15)"
                               : "rgba(255,255,255,0.05)",
                             color: dr.past
                               ? "#FF3B30"
                               : dr.urgent
-                              ? "#FF9500"
+                              ? "#F59E0B"
                               : "rgba(255,255,255,0.7)",
                             border: `1px solid ${
                               dr.past
                                 ? "rgba(255,59,48,0.3)"
                                 : dr.urgent
-                                ? "rgba(255,149,0,0.3)"
+                                ? "rgba(245, 158, 11,0.3)"
                                 : "rgba(255,255,255,0.1)"
                             }`,
                           }}
@@ -1278,7 +1278,7 @@ export function GoalsScreen() {
                         value={editTitle}
                         onChange={(e) => setEditTitle(e.target.value)}
                         maxLength={60}
-                        className="w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#FF9500]"
+                        className="w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#F59E0B]"
                       />
                     </div>
                     <div>
@@ -1296,7 +1296,7 @@ export function GoalsScreen() {
                           setEditDescription(e.target.value.slice(0, 280))
                         }
                         rows={3}
-                        className="w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#FF9500] resize-none"
+                        className="w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#F59E0B] resize-none"
                       />
                     </div>
                     <div>
@@ -1307,7 +1307,7 @@ export function GoalsScreen() {
                         type="date"
                         value={editDate}
                         onChange={(e) => setEditDate(e.target.value)}
-                        className="w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#FF9500] [color-scheme:dark]"
+                        className="w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#F59E0B] [color-scheme:dark]"
                       />
                     </div>
                     <div>
@@ -1329,12 +1329,12 @@ export function GoalsScreen() {
                           }}
                           placeholder={t("goalsMilestonePlaceholder")}
                           maxLength={50}
-                          className="flex-1 p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#FF9500]"
+                          className="flex-1 p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#F59E0B]"
                         />
                         <button
                           onClick={handleEditAddMilestone}
                           disabled={!editMilestoneInput.trim()}
-                          className="px-3 rounded-xl bg-[#FF9500]/20 border border-[#FF9500]/40 text-[#FF9500] text-xs font-semibold disabled:opacity-40 btn-press"
+                          className="px-3 rounded-xl bg-[#F59E0B]/20 border border-[#F59E0B]/40 text-[#F59E0B] text-xs font-semibold disabled:opacity-40 btn-press"
                         >
                           {t("goalsMilestoneAdd")}
                         </button>
@@ -1557,12 +1557,12 @@ function GoalCard({
             background: dr.past
               ? "rgba(255,59,48,0.15)"
               : dr.urgent
-              ? "rgba(255,149,0,0.15)"
+              ? "rgba(245, 158, 11,0.15)"
               : "rgba(255,255,255,0.05)",
             color: dr.past
               ? "#FF3B30"
               : dr.urgent
-              ? "#FF9500"
+              ? "#F59E0B"
               : "rgba(255,255,255,0.6)",
           }}
         >

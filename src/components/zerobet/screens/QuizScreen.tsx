@@ -13,8 +13,8 @@ import { useT } from "@/lib/i18n/useT";
 const CATEGORY_KEYS: Record<string, { labelKey: string; color: string }> = {
   behavior: { labelKey: "quizCategoryBehavior", color: "#FF3B30" },
   finance: { labelKey: "quizCategoryFinance", color: "#FBBF24" },
-  emotions: { labelKey: "quizCategoryEmotions", color: "#BF5AF2" },
-  social: { labelKey: "quizCategorySocial", color: "#64D2FF" },
+  emotions: { labelKey: "quizCategoryEmotions", color: "#C084FC" },
+  social: { labelKey: "quizCategorySocial", color: "#2DD4BF" },
 };
 
 /**

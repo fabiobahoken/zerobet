@@ -54,12 +54,12 @@ const CATEGORY_META: Record<
   { labelKey: string; icon: LucideIcon; color: string }
 > = {
   stress: { labelKey: "triggersCatStress", icon: Brain, color: "#FF3B30" },
-  solitude: { labelKey: "triggersCatSolitude", icon: UserX, color: "#64D2FF" },
+  solitude: { labelKey: "triggersCatSolitude", icon: UserX, color: "#2DD4BF" },
   payday: { labelKey: "triggersCatPayday", icon: Banknote, color: "#4ADE80" },
-  alcohol: { labelKey: "triggersCatAlcohol", icon: Wine, color: "#BF5AF2" },
-  boredom: { labelKey: "triggersCatBoredom", icon: Coffee, color: "#FF9500" },
+  alcohol: { labelKey: "triggersCatAlcohol", icon: Wine, color: "#C084FC" },
+  boredom: { labelKey: "triggersCatBoredom", icon: Coffee, color: "#F59E0B" },
   social: { labelKey: "triggersCatSocial", icon: Users, color: "#FBBF24" },
-  insomnia: { labelKey: "triggersCatInsomnia", icon: Moon, color: "#5E5CE6" },
+  insomnia: { labelKey: "triggersCatInsomnia", icon: Moon, color: "#2DD4BF" },
   anger: { labelKey: "triggersCatAnger", icon: Flame, color: "#FF453A" },
   ads: { labelKey: "triggersCatAds", icon: Megaphone, color: "#FF2D55" },
   other: { labelKey: "triggersCatOther", icon: MoreHorizontal, color: "#8E8E93" },
@@ -113,7 +113,7 @@ function getTimeOfDay(hour: number): { key: string; labelKey: string } {
 
 function intensityColor(i: number): string {
   if (i <= 2) return "#4ADE80";
-  if (i === 3) return "#FF9500";
+  if (i === 3) return "#F59E0B";
   return "#FF3B30";
 }
 
@@ -480,7 +480,7 @@ export function TriggersScreen() {
             />
             <StatBlock
               icon={TrendingUp}
-              color="#FF9500"
+              color="#F59E0B"
               label={topCategory ? t(CATEGORY_META[topCategory.category].labelKey) : t("triggersTopCat")}
               value={
                 topCategory ? (
@@ -698,9 +698,9 @@ export function TriggersScreen() {
           <div className="flex items-center gap-2 mb-3">
             <div
               className="w-8 h-8 rounded-xl flex items-center justify-center"
-              style={{ background: "rgba(191,90,242,0.15)" }}
+              style={{ background: "rgba(192, 132, 252,0.15)" }}
             >
-              <Sparkles size={16} className="text-[#BF5AF2]" />
+              <Sparkles size={16} className="text-[#C084FC]" />
             </div>
             <h3 className="text-white font-semibold text-sm font-[family-name:var(--font-poppins)]">
               {t("triggersInsightsTitle")}
@@ -718,7 +718,7 @@ export function TriggersScreen() {
               {insights.topTod && (
                 <InsightRow
                   icon={Clock}
-                  color="#FF9500"
+                  color="#F59E0B"
                   text={t("triggersInsightTopTod", { time: t(insights.topTod.labelKey) })}
                 />
               )}
@@ -754,7 +754,7 @@ export function TriggersScreen() {
                   : count <= 2
                     ? "rgba(255,59,48,0.3)"
                     : count <= 4
-                      ? "rgba(255,149,0,0.6)"
+                      ? "rgba(245, 158, 11,0.6)"
                       : "rgba(255,59,48,0.95)";
               return (
                 <div
@@ -784,7 +784,7 @@ export function TriggersScreen() {
             />
             <div
               className="w-3 h-3 rounded"
-              style={{ background: "rgba(255,149,0,0.6)" }}
+              style={{ background: "rgba(245, 158, 11,0.6)" }}
             />
             <div
               className="w-3 h-3 rounded"
@@ -800,16 +800,16 @@ export function TriggersScreen() {
           className="relative overflow-hidden rounded-3xl p-5"
           style={{
             background:
-              "linear-gradient(135deg, rgba(191,90,242,0.18) 0%, rgba(255,45,85,0.18) 100%)",
-            border: "1px solid rgba(191,90,242,0.3)",
+              "linear-gradient(135deg, rgba(192, 132, 252,0.18) 0%, rgba(255,45,85,0.18) 100%)",
+            border: "1px solid rgba(192, 132, 252,0.3)",
           }}
         >
           <div className="flex items-center gap-2 mb-3">
             <div
               className="w-8 h-8 rounded-xl flex items-center justify-center"
-              style={{ background: "rgba(191,90,242,0.25)" }}
+              style={{ background: "rgba(192, 132, 252,0.25)" }}
             >
-              <Bot size={16} className="text-[#BF5AF2]" />
+              <Bot size={16} className="text-[#C084FC]" />
             </div>
             <h3 className="text-white font-semibold text-sm font-[family-name:var(--font-poppins)]">
               {t("triggersAtlasTitle")}
@@ -817,7 +817,7 @@ export function TriggersScreen() {
             {!isPremium && (
               <span
                 className="ml-auto flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold"
-                style={{ background: "rgba(255,149,0,0.2)", color: "#FF9500" }}
+                style={{ background: "rgba(245, 158, 11,0.2)", color: "#F59E0B" }}
               >
                 <Lock size={10} /> {t("premium")}
               </span>
@@ -833,7 +833,7 @@ export function TriggersScreen() {
                 onClick={handleAskAtlas}
                 className="w-full py-3 rounded-2xl text-white font-medium text-sm flex items-center justify-center gap-2 btn-press"
                 style={{
-                  background: "linear-gradient(135deg, #BF5AF2 0%, #FF2D55 100%)",
+                  background: "linear-gradient(135deg, #C084FC 0%, #FF2D55 100%)",
                 }}
               >
                 <Bot size={16} />
@@ -857,7 +857,7 @@ export function TriggersScreen() {
                 onClick={handlePremiumCta}
                 className="w-full mt-4 py-3 rounded-2xl text-white font-medium text-sm flex items-center justify-center gap-2 btn-press"
                 style={{
-                  background: "linear-gradient(135deg, #FF9500 0%, #FF3B30 100%)",
+                  background: "linear-gradient(135deg, #F59E0B 0%, #FF3B30 100%)",
                 }}
               >
                 <Lock size={14} />
@@ -872,7 +872,7 @@ export function TriggersScreen() {
           variants={itemVariants}
           className="glass-card p-5 flex items-start gap-3"
         >
-          <Quote size={20} className="text-[#FF9500] flex-shrink-0 mt-0.5" />
+          <Quote size={20} className="text-[#F59E0B] flex-shrink-0 mt-0.5" />
           <p className="text-white/70 text-sm italic font-[family-name:var(--font-poppins)] leading-relaxed">
             {t("triggersFooterQuote")}
           </p>
@@ -982,7 +982,7 @@ export function TriggersScreen() {
               <div className="flex items-center justify-between mb-4">
                 <span
                   className={`text-[11px] ${
-                    situationValid ? "text-white/40" : "text-[#FF9500]"
+                    situationValid ? "text-white/40" : "text-[#F59E0B]"
                   }`}
                 >
                   {situationValid

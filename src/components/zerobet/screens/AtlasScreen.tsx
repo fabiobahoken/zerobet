@@ -30,8 +30,8 @@ import { MessageSkeleton } from "@/components/zerobet/components/Skeletons";
 type Section = "journal" | "motivation" | "progress" | "crisis";
 
 const SECTIONS: { id: Section; labelKey: string; icon: LucideIcon; color: string }[] = [
-  { id: "journal", labelKey: "atlasJournal", icon: BookOpen, color: "#64D2FF" },
-  { id: "motivation", labelKey: "atlasMotivation", icon: Sparkles, color: "#FF9500" },
+  { id: "journal", labelKey: "atlasJournal", icon: BookOpen, color: "#2DD4BF" },
+  { id: "motivation", labelKey: "atlasMotivation", icon: Sparkles, color: "#F59E0B" },
   { id: "progress", labelKey: "atlasProgress", icon: Trophy, color: "#4ADE80" },
   { id: "crisis", labelKey: "atlasCrisis", icon: AlertTriangle, color: "#FF3B30" },
 ];
@@ -43,10 +43,10 @@ interface SuggestedPrompt {
 }
 
 const SUGGESTED_PROMPTS: SuggestedPrompt[] = [
-  { labelKey: "atlasSuggested1", icon: Wind, color: "#64D2FF" },
+  { labelKey: "atlasSuggested1", icon: Wind, color: "#2DD4BF" },
   { labelKey: "atlasSuggested2", icon: BookOpen, color: "#4ADE80" },
-  { labelKey: "atlasSuggested3", icon: Sparkles, color: "#FF9500" },
-  { labelKey: "atlasSuggested4", icon: Brain, color: "#BF5AF2" },
+  { labelKey: "atlasSuggested3", icon: Sparkles, color: "#F59E0B" },
+  { labelKey: "atlasSuggested4", icon: Brain, color: "#C084FC" },
   { labelKey: "atlasSuggested5", icon: Users, color: "#4ADE80" },
   { labelKey: "atlasSuggested6", icon: Heart, color: "#FF3B30" },
 ];
@@ -59,8 +59,8 @@ interface QuickAction {
 }
 
 const QUICK_ACTIONS: QuickAction[] = [
-  { id: "journal", labelKey: "atlasAnalyzeJournal", icon: ClipboardList, color: "#64D2FF" },
-  { id: "motivation", labelKey: "atlasAskMotivation", icon: Dumbbell, color: "#FF9500" },
+  { id: "journal", labelKey: "atlasAnalyzeJournal", icon: ClipboardList, color: "#2DD4BF" },
+  { id: "motivation", labelKey: "atlasAskMotivation", icon: Dumbbell, color: "#F59E0B" },
   { id: "progress", labelKey: "atlasSeeProgress", icon: Trophy, color: "#4ADE80" },
   { id: "crisis", labelKey: "atlasCrisis", icon: LifeBuoy, color: "#FF3B30" },
 ];
@@ -322,7 +322,7 @@ export function AtlasScreen() {
       {/* Context badge */}
       <div className="mb-3">
         <div className="glass-pill rounded-full px-3 py-1.5 inline-flex items-center gap-1.5">
-          <Sparkles size={11} className="text-[#FF9500]" />
+          <Sparkles size={11} className="text-[#F59E0B]" />
           <span className="text-[10px] text-white/70">
             {t("atlasContextPrefix")}{" "}
             <span className="text-white font-medium">{contextLabel}</span>
@@ -382,7 +382,7 @@ export function AtlasScreen() {
                     "journal",
                   )
                 }
-                className="w-full py-2.5 rounded-xl glass-card text-[#64D2FF] text-xs font-medium flex items-center justify-center gap-2"
+                className="w-full py-2.5 rounded-xl glass-card text-[#2DD4BF] text-xs font-medium flex items-center justify-center gap-2"
               >
                 <Sparkles size={14} />
                 {t("atlasAnalyzeJournal")}
@@ -399,7 +399,7 @@ export function AtlasScreen() {
               </div>
               <button
                 onClick={() => sendMessage(t("atlasAskMotivationPrompt"), "motivation")}
-                className="w-full py-2.5 rounded-xl glass-card text-[#FF9500] text-xs font-medium flex items-center justify-center gap-2"
+                className="w-full py-2.5 rounded-xl glass-card text-[#F59E0B] text-xs font-medium flex items-center justify-center gap-2"
               >
                 <Zap size={14} />
                 {t("atlasAskMotivation")}

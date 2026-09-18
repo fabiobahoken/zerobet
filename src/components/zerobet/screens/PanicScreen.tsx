@@ -13,7 +13,7 @@ type BreathingPhaseKey = "inhale" | "hold" | "exhale";
 
 const BREATHING_CYCLES = 3;
 const PHASES: { key: BreathingPhaseKey; tKey: string; duration: number; color: string; action: string }[] = [
-  { key: "inhale", tKey: "panicInhale", duration: 4, color: "#64D2FF", action: "scale-up" },
+  { key: "inhale", tKey: "panicInhale", duration: 4, color: "#2DD4BF", action: "scale-up" },
   { key: "hold", tKey: "panicHold", duration: 7, color: "#FBBF24", action: "hold" },
   { key: "exhale", tKey: "panicExhale", duration: 8, color: "#FF3B30", action: "scale-down" },
 ];
@@ -178,7 +178,7 @@ export function PanicScreen() {
             <p className="text-white/60 text-sm mb-2 max-w-xs">
               {t("panicWaveDesc")}
             </p>
-            <p className="text-[#FF9500] text-sm font-semibold mb-8">
+            <p className="text-[#F59E0B] text-sm font-semibold mb-8">
               {t("panicMessage2")}
             </p>
             <button
@@ -386,8 +386,8 @@ export function PanicScreen() {
               <h3 className="text-lg font-bold text-white mb-4 text-center">{t("panicWhatDoYouWant")}</h3>
               <div className="space-y-2">
                 <button className="w-full p-4 rounded-2xl glass-card flex items-center gap-3 text-left active:scale-[0.98] transition-transform">
-                  <div className="w-10 h-10 rounded-full bg-[#64D2FF]/20 flex items-center justify-center">
-                    <Phone size={18} className="text-[#64D2FF]" />
+                  <div className="w-10 h-10 rounded-full bg-[#2DD4BF]/20 flex items-center justify-center">
+                    <Phone size={18} className="text-[#2DD4BF]" />
                   </div>
                   <div>
                     <p className="text-white font-semibold text-sm">{t("panicCallFriend")}</p>
@@ -398,8 +398,8 @@ export function PanicScreen() {
                   onClick={() => { setShowOptions(false); navigate("community"); }}
                   className="w-full p-4 rounded-2xl glass-card flex items-center gap-3 text-left active:scale-[0.98] transition-transform"
                 >
-                  <div className="w-10 h-10 rounded-full bg-[#FF9500]/20 flex items-center justify-center">
-                    <BookHeart size={18} className="text-[#FF9500]" />
+                  <div className="w-10 h-10 rounded-full bg-[#F59E0B]/20 flex items-center justify-center">
+                    <BookHeart size={18} className="text-[#F59E0B]" />
                   </div>
                   <div>
                     <p className="text-white font-semibold text-sm">{t("panicReadTestimony")}</p>
@@ -410,8 +410,8 @@ export function PanicScreen() {
                   onClick={() => { setShowOptions(false); navigate("journal"); }}
                   className="w-full p-4 rounded-2xl glass-card flex items-center gap-3 text-left active:scale-[0.98] transition-transform"
                 >
-                  <div className="w-10 h-10 rounded-full bg-[#BF5AF2]/20 flex items-center justify-center">
-                    <PenLine size={18} className="text-[#BF5AF2]" />
+                  <div className="w-10 h-10 rounded-full bg-[#C084FC]/20 flex items-center justify-center">
+                    <PenLine size={18} className="text-[#C084FC]" />
                   </div>
                   <div>
                     <p className="text-white font-semibold text-sm">{t("panicJournal")}</p>

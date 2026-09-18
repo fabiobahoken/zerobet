@@ -129,25 +129,25 @@ function classifyCell(cell: DayCell): CellClassification {
   switch (cell.intensity) {
     case 1:
       return {
-        bg: "rgba(255,149,0,0.30)",
+        bg: "rgba(245, 158, 11,0.30)",
         glow: "none",
         labelKey: "heatmapCellDifficult",
       };
     case 2:
       return {
-        bg: "rgba(255,149,0,0.60)",
-        glow: "0 0 4px rgba(255,149,0,0.30)",
+        bg: "rgba(245, 158, 11,0.60)",
+        glow: "0 0 4px rgba(245, 158, 11,0.30)",
         labelKey: "heatmapCellCorrect",
       };
     case 3:
       return {
-        bg: "rgba(255,149,0,0.95)",
-        glow: "0 0 8px rgba(255,149,0,0.55)",
+        bg: "rgba(245, 158, 11,0.95)",
+        glow: "0 0 8px rgba(245, 158, 11,0.55)",
         labelKey: "heatmapCellExcellent",
       };
     default:
       return {
-        bg: "rgba(255,149,0,0.45)",
+        bg: "rgba(245, 158, 11,0.45)",
         glow: "none",
         labelKey: "heatmapCellClean",
       };
@@ -216,11 +216,11 @@ function DayRatingModal({
             <div className="grid grid-cols-1 gap-2.5">
               <button
                 onClick={() => onSelectClean(1)}
-                className="w-full py-3 px-4 rounded-2xl flex items-center gap-3 bg-[rgba(255,149,0,0.12)] hover:bg-[rgba(255,149,0,0.22)] border border-[rgba(255,149,0,0.25)] transition-colors text-left btn-press"
+                className="w-full py-3 px-4 rounded-2xl flex items-center gap-3 bg-[rgba(245, 158, 11,0.12)] hover:bg-[rgba(245, 158, 11,0.22)] border border-[rgba(245, 158, 11,0.25)] transition-colors text-left btn-press"
               >
                 <span
                   className="w-4 h-4 rounded-sm flex-shrink-0"
-                  style={{ background: "rgba(255,149,0,0.30)" }}
+                  style={{ background: "rgba(245, 158, 11,0.30)" }}
                 />
                 <div>
                   <div className="text-white text-sm font-medium">
@@ -234,11 +234,11 @@ function DayRatingModal({
 
               <button
                 onClick={() => onSelectClean(2)}
-                className="w-full py-3 px-4 rounded-2xl flex items-center gap-3 bg-[rgba(255,149,0,0.18)] hover:bg-[rgba(255,149,0,0.28)] border border-[rgba(255,149,0,0.35)] transition-colors text-left btn-press"
+                className="w-full py-3 px-4 rounded-2xl flex items-center gap-3 bg-[rgba(245, 158, 11,0.18)] hover:bg-[rgba(245, 158, 11,0.28)] border border-[rgba(245, 158, 11,0.35)] transition-colors text-left btn-press"
               >
                 <span
                   className="w-4 h-4 rounded-sm flex-shrink-0"
-                  style={{ background: "rgba(255,149,0,0.60)" }}
+                  style={{ background: "rgba(245, 158, 11,0.60)" }}
                 />
                 <div>
                   <div className="text-white text-sm font-medium">
@@ -252,11 +252,11 @@ function DayRatingModal({
 
               <button
                 onClick={() => onSelectClean(3)}
-                className="w-full py-3 px-4 rounded-2xl flex items-center gap-3 bg-[rgba(255,149,0,0.28)] hover:bg-[rgba(255,149,0,0.40)] border border-[rgba(255,149,0,0.55)] transition-colors text-left btn-press"
+                className="w-full py-3 px-4 rounded-2xl flex items-center gap-3 bg-[rgba(245, 158, 11,0.28)] hover:bg-[rgba(245, 158, 11,0.40)] border border-[rgba(245, 158, 11,0.55)] transition-colors text-left btn-press"
               >
                 <span
                   className="w-4 h-4 rounded-sm flex-shrink-0"
-                  style={{ background: "rgba(255,149,0,0.95)" }}
+                  style={{ background: "rgba(245, 158, 11,0.95)" }}
                 />
                 <div>
                   <div className="text-white text-sm font-medium">
@@ -456,7 +456,7 @@ export function HeatmapCalendar({
       className={`glass-card premium-shimmer p-4 mb-4 relative overflow-hidden ${className ?? ""}`}
     >
       {/* Decorative glow */}
-      <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-[#FF9500]/10 blur-3xl pointer-events-none" />
+      <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-[#F59E0B]/10 blur-3xl pointer-events-none" />
 
       <div className="relative">
         {showHeader && (
@@ -549,7 +549,7 @@ export function HeatmapCalendar({
                   };
                   const baseClass = `rounded-[3px] transition-transform ${
                     isToday
-                      ? "ring-2 ring-[#FF9500] ring-offset-1 ring-offset-[#070B0E] cursor-pointer hover:scale-125 hover:z-10"
+                      ? "ring-2 ring-[#F59E0B] ring-offset-1 ring-offset-[#070B0E] cursor-pointer hover:scale-125 hover:z-10"
                       : cell.future
                       ? "cursor-default"
                       : "hover:scale-125 hover:z-10"
@@ -633,15 +633,15 @@ export function HeatmapCalendar({
                 />
                 <span
                   className="w-3 h-3 rounded-sm"
-                  style={{ background: "rgba(255,149,0,0.30)" }}
+                  style={{ background: "rgba(245, 158, 11,0.30)" }}
                 />
                 <span
                   className="w-3 h-3 rounded-sm"
-                  style={{ background: "rgba(255,149,0,0.60)" }}
+                  style={{ background: "rgba(245, 158, 11,0.60)" }}
                 />
                 <span
                   className="w-3 h-3 rounded-sm"
-                  style={{ background: "rgba(255,149,0,0.95)" }}
+                  style={{ background: "rgba(245, 158, 11,0.95)" }}
                 />
               </div>
               <span>{t("heatmapMore")}</span>
@@ -661,8 +661,8 @@ export function HeatmapCalendar({
             {/* Stats summary */}
             <div className="grid grid-cols-2 gap-2 mt-3">
               <div className="glass-depth-1 rounded-xl p-3 flex items-center gap-3">
-                <div className="w-9 h-9 rounded-lg bg-[#FF9500]/15 flex items-center justify-center flex-shrink-0">
-                  <Flame size={16} className="text-[#FF9500]" />
+                <div className="w-9 h-9 rounded-lg bg-[#F59E0B]/15 flex items-center justify-center flex-shrink-0">
+                  <Flame size={16} className="text-[#F59E0B]" />
                 </div>
                 <div className="min-w-0">
                   <div className="text-white/50 text-[10px] uppercase tracking-wide">
@@ -678,8 +678,8 @@ export function HeatmapCalendar({
               </div>
 
               <div className="glass-depth-1 rounded-xl p-3 flex items-center gap-3">
-                <div className="w-9 h-9 rounded-lg bg-[#BF5AF2]/15 flex items-center justify-center flex-shrink-0">
-                  <Award size={16} className="text-[#BF5AF2]" />
+                <div className="w-9 h-9 rounded-lg bg-[#C084FC]/15 flex items-center justify-center flex-shrink-0">
+                  <Award size={16} className="text-[#C084FC]" />
                 </div>
                 <div className="min-w-0">
                   <div className="text-white/50 text-[10px] uppercase tracking-wide">

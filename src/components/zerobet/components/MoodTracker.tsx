@@ -76,7 +76,7 @@ export function MoodTracker() {
       className="glass-card p-4 mb-4 relative overflow-hidden"
     >
       {/* Decorative accent */}
-      <div className="absolute -top-8 -right-8 w-24 h-24 rounded-full bg-[#BF5AF2]/10 blur-2xl" />
+      <div className="absolute -top-8 -right-8 w-24 h-24 rounded-full bg-[#C084FC]/10 blur-2xl" />
 
       <div className="relative">
         {/* Header */}

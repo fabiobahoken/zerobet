@@ -100,7 +100,7 @@ const ROOMS: {
     key: "general",
     labelKey: "chatRoomGeneralLabel",
     emoji: "💬",
-    color: "#64D2FF",
+    color: "#2DD4BF",
     descKey: "chatRoomGeneralDesc",
   },
   {
@@ -127,13 +127,13 @@ const ROOM_BY_KEY: Record<RoomKey, (typeof ROOMS)[number]> = Object.fromEntries(
 /** Nickname palette — deterministic per nickname hash. */
 const NICKNAME_COLORS = [
   "#FF3B30",
-  "#FF9500",
+  "#F59E0B",
   "#FBBF24",
   "#4ADE80",
-  "#64D2FF",
-  "#BF5AF2",
+  "#2DD4BF",
+  "#C084FC",
   "#FF2D55",
-  "#5E5CE6",
+  "#2DD4BF",
   "#30D158",
   "#FF6B6B",
 ];
@@ -457,7 +457,7 @@ function MessageBubble({ msg, isMine, isPremium, onReact }: MessageBubbleProps) 
                   ))
                 ) : (
                   <div className="flex items-center gap-1.5 px-2 py-1 text-[11px] text-white/70">
-                    <Lock size={12} className="text-[#FF9500]" />
+                    <Lock size={12} className="text-[#F59E0B]" />
                     <span>{t("chatPremiumReactions")}</span>
                   </div>
                 )}
@@ -528,7 +528,7 @@ function NicknameSetup({ onJoin }: NicknameSetupProps) {
             if (e.key === "Enter" && isValid) handleSubmit();
           }}
           placeholder={t("chatNicknamePlaceholder")}
-          className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 pr-14 text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-[#FF9500]/50 transition-all"
+          className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 pr-14 text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-[#F59E0B]/50 transition-all"
           maxLength={MAX_NICKNAME_LENGTH}
           aria-label={t("chatNickname")}
           autoComplete="off"
@@ -542,7 +542,7 @@ function NicknameSetup({ onJoin }: NicknameSetupProps) {
           aria-label={t("chatRandomNickname")}
           title={t("chatRandomNickname")}
         >
-          <Shuffle size={16} className="text-[#FF9500]" />
+          <Shuffle size={16} className="text-[#F59E0B]" />
         </button>
       </div>
 
@@ -981,7 +981,7 @@ export function CommunityChatScreen() {
               className="rounded-2xl p-3 flex items-start gap-3"
               style={{
                 background:
-                  "linear-gradient(135deg, rgba(255,59,48,0.18), rgba(255,149,0,0.10))",
+                  "linear-gradient(135deg, rgba(255,59,48,0.18), rgba(245, 158, 11,0.10))",
                 boxShadow: "inset 0 0 0 1px rgba(255,59,48,0.30)",
               }}
             >
@@ -1026,7 +1026,7 @@ export function CommunityChatScreen() {
               </p>
               <button
                 onClick={handleRetry}
-                className="px-3 py-1.5 rounded-xl bg-[#FF9500] text-white text-xs font-semibold btn-press"
+                className="px-3 py-1.5 rounded-xl bg-[#F59E0B] text-white text-xs font-semibold btn-press"
               >
                 {t("chatRetry")}
               </button>
@@ -1109,7 +1109,7 @@ export function CommunityChatScreen() {
           aria-expanded={showRules}
         >
           <span className="flex items-center gap-2">
-            <Info size={13} className="text-[#64D2FF]" />
+            <Info size={13} className="text-[#2DD4BF]" />
             {t("chatRulesTitle")}
           </span>
           {showRules ? (
@@ -1132,7 +1132,7 @@ export function CommunityChatScreen() {
                     key={i}
                     className="flex items-start gap-2 text-[12px] text-white/70"
                   >
-                    <span className="text-[#FF9500] font-bold mt-0.5">
+                    <span className="text-[#F59E0B] font-bold mt-0.5">
                       {i + 1}.
                     </span>
                     <span>{t(ruleKey)}</span>
@@ -1225,7 +1225,7 @@ export function CommunityChatScreen() {
               </span>
             )}
           </span>
-          <span className={input.length > MAX_MESSAGE_LENGTH - 50 ? "text-[#FF9500]" : ""}>
+          <span className={input.length > MAX_MESSAGE_LENGTH - 50 ? "text-[#F59E0B]" : ""}>
             {input.length}/{MAX_MESSAGE_LENGTH}
           </span>
         </div>

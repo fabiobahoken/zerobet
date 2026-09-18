@@ -67,27 +67,27 @@ const TYPE_STYLE: Record<InsightType, { emoji: string; accent: string; gradient:
   early: {
     emoji: "🌱",
     accent: "#4ADE80",
-    gradient: "linear-gradient(135deg, rgba(74,222,128,0.18) 0%, rgba(255,149,0,0.12) 100%)",
+    gradient: "linear-gradient(135deg, rgba(74,222,128,0.18) 0%, rgba(245, 158, 11,0.12) 100%)",
   },
   repair: {
     emoji: "🧠",
-    accent: "#64D2FF",
-    gradient: "linear-gradient(135deg, rgba(100,210,255,0.18) 0%, rgba(74,222,128,0.12) 100%)",
+    accent: "#2DD4BF",
+    gradient: "linear-gradient(135deg, rgba(45, 212, 191,0.18) 0%, rgba(74,222,128,0.12) 100%)",
   },
   control: {
     emoji: "💪",
-    accent: "#FF9500",
-    gradient: "linear-gradient(135deg, rgba(255,149,0,0.20) 0%, rgba(255,59,48,0.14) 100%)",
+    accent: "#F59E0B",
+    gradient: "linear-gradient(135deg, rgba(245, 158, 11,0.20) 0%, rgba(255,59,48,0.14) 100%)",
   },
   inspiration: {
     emoji: "🌟",
     accent: "#FBBF24",
-    gradient: "linear-gradient(135deg, rgba(251,191,36,0.20) 0%, rgba(191,90,242,0.14) 100%)",
+    gradient: "linear-gradient(135deg, rgba(251,191,36,0.20) 0%, rgba(192, 132, 252,0.14) 100%)",
   },
   journal: {
     emoji: "📓",
-    accent: "#BF5AF2",
-    gradient: "linear-gradient(135deg, rgba(191,90,242,0.18) 0%, rgba(100,210,255,0.12) 100%)",
+    accent: "#C084FC",
+    gradient: "linear-gradient(135deg, rgba(192, 132, 252,0.18) 0%, rgba(45, 212, 191,0.12) 100%)",
   },
   panic: {
     emoji: "🛡️",
@@ -96,8 +96,8 @@ const TYPE_STYLE: Record<InsightType, { emoji: string; accent: string; gradient:
   },
   default: {
     emoji: "💡",
-    accent: "#FF9500",
-    gradient: "linear-gradient(135deg, rgba(255,149,0,0.18) 0%, rgba(251,191,36,0.10) 100%)",
+    accent: "#F59E0B",
+    gradient: "linear-gradient(135deg, rgba(245, 158, 11,0.18) 0%, rgba(251,191,36,0.10) 100%)",
   },
 };
 

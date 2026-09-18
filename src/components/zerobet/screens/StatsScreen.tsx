@@ -76,10 +76,10 @@ const EMOTION_LABELS: Record<Emotion, string> = {
 
 const EMOTION_COLORS: Record<Emotion, string> = {
   frustrated: "#FF3B30",
-  anxious: "#FF9500",
+  anxious: "#F59E0B",
   tempted: "#FBBF24",
-  calm: "#64D2FF",
-  proud: "#BF5AF2",
+  calm: "#2DD4BF",
+  proud: "#C084FC",
   strong: "#4ADE80",
 };
 
@@ -683,7 +683,7 @@ export function StatsScreen() {
       label: t("financeTotalSaved"),
       value: formatFCFA(totalSaved),
       suffix: "FCFA",
-      gradient: "linear-gradient(135deg, #4ADE80 0%, #22D3EE 100%)",
+      gradient: "linear-gradient(135deg, #4ADE80 0%, #2DD4BF 100%)",
       iconBg: "rgba(74,222,128,0.18)",
       iconColor: "#4ADE80",
       glow: "glow-green",
@@ -693,9 +693,9 @@ export function StatsScreen() {
       label: t("statsJournalEntries"),
       value: journalCount.toString(),
       suffix: journalCount > 1 ? t("statsEntries") : t("statsEntry"),
-      gradient: "linear-gradient(135deg, #64D2FF 0%, #5E5CE6 100%)",
-      iconBg: "rgba(100,210,255,0.18)",
-      iconColor: "#64D2FF",
+      gradient: "linear-gradient(135deg, #2DD4BF 0%, #2DD4BF 100%)",
+      iconBg: "rgba(45, 212, 191,0.18)",
+      iconColor: "#2DD4BF",
       glow: "glow-blue",
     },
     {
@@ -703,9 +703,9 @@ export function StatsScreen() {
       label: t("statsCrisesAvoided"),
       value: panicCount.toString(),
       suffix: panicCount > 1 ? t("statsCrises") : t("statsCrisis"),
-      gradient: "linear-gradient(135deg, #BF5AF2 0%, #7C3AED 100%)",
-      iconBg: "rgba(191,90,242,0.18)",
-      iconColor: "#BF5AF2",
+      gradient: "linear-gradient(135deg, #C084FC 0%, #7C3AED 100%)",
+      iconBg: "rgba(192, 132, 252,0.18)",
+      iconColor: "#C084FC",
       glow: "glow-purple",
     },
   ];
@@ -734,7 +734,7 @@ export function StatsScreen() {
         </div>
         {addictionScore > 0 && (
           <div className="glass-card px-3 py-1.5 rounded-full flex items-center gap-1.5">
-            <Sparkles size={12} className="text-[#FF9500]" />
+            <Sparkles size={12} className="text-[#F59E0B]" />
             <span className="text-white/80 text-xs font-semibold">
               {t("statsScoreLabel")} {addictionScore}
             </span>
@@ -814,7 +814,7 @@ export function StatsScreen() {
         <motion.div variants={itemVariants} className="glass-card p-4">
           <SectionTitle
             icon={Calendar}
-            iconColor="#64D2FF"
+            iconColor="#2DD4BF"
             title={t("statsMoodTrend")}
             right={
               <span className="text-[10px] text-white/40">{t("statsLast14Days")}</span>
@@ -872,7 +872,9 @@ export function StatsScreen() {
                       index?: number;
                     }) => {
                       const { cx, cy, payload } = props;
-                      if (!payload || payload.mood === null) return <g key="empty" />;
+                      if (!payload || payload.mood === null)
+                        // Unique key per index — two "empty" dots must not share a key
+                        return <g key={`empty-${props.index}`} />;
                       const color = payload.emotion
                         ? EMOTION_COLORS[payload.emotion]
                         : "#FBBF24";
@@ -888,7 +890,7 @@ export function StatsScreen() {
                         />
                       );
                     }}
-                    activeDot={{ r: 5, fill: "#FF9500", stroke: "#070B0E", strokeWidth: 2 }}
+                    activeDot={{ r: 5, fill: "#F59E0B", stroke: "#070B0E", strokeWidth: 2 }}
                   />
                 </AreaChart>
               </ResponsiveContainer>
@@ -930,7 +932,7 @@ export function StatsScreen() {
           >
             <SectionTitle
               icon={BarChart3}
-              iconColor="#FF9500"
+              iconColor="#F59E0B"
               title={t("statsMoodDistribution")}
               right={
                 <span className="text-[10px] text-white/40">
@@ -1007,7 +1009,7 @@ export function StatsScreen() {
           >
             <SectionTitle
               icon={Clock}
-              iconColor="#64D2FF"
+              iconColor="#2DD4BF"
               title={t("statsRecentMoods")}
               right={
                 <span className="text-[10px] text-white/40">
@@ -1078,10 +1080,10 @@ export function StatsScreen() {
             variants={itemVariants}
             className="glass-card-strong p-4 relative overflow-hidden glow-orange card-hover"
           >
-            <div className="absolute -top-8 -right-8 w-24 h-24 rounded-full bg-[#FF9500]/20 blur-2xl" />
+            <div className="absolute -top-8 -right-8 w-24 h-24 rounded-full bg-[#F59E0B]/20 blur-2xl" />
             <SectionTitle
               icon={Flame}
-              iconColor="#FF9500"
+              iconColor="#F59E0B"
               title={t("statsConsistency")}
               right={
                 moodStreak.activeDays === 7 ? (
@@ -1092,7 +1094,7 @@ export function StatsScreen() {
                     className="text-[10px] font-bold px-2 py-0.5 rounded-full"
                     style={{
                       background:
-                        "linear-gradient(135deg, #FBBF24 0%, #FF9500 100%)",
+                        "linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%)",
                       color: "#070B0E",
                       boxShadow: "0 0 14px rgba(251,191,36,0.65)",
                     }}
@@ -1177,12 +1179,12 @@ export function StatsScreen() {
                 style={{
                   background:
                     moodStreak.activeDays === 7
-                      ? "linear-gradient(90deg, #FBBF24 0%, #FF9500 100%)"
-                      : "linear-gradient(90deg, #FF9500 0%, #FF3B30 100%)",
+                      ? "linear-gradient(90deg, #FBBF24 0%, #F59E0B 100%)"
+                      : "linear-gradient(90deg, #F59E0B 0%, #FF3B30 100%)",
                   boxShadow:
                     moodStreak.activeDays === 7
                       ? "0 0 12px rgba(251,191,36,0.55)"
-                      : "0 0 8px rgba(255,149,0,0.4)",
+                      : "0 0 8px rgba(245, 158, 11,0.4)",
                 }}
               >
                 <div className="absolute inset-0 shimmer rounded-full" />
@@ -1205,17 +1207,17 @@ export function StatsScreen() {
             className="relative rounded-3xl p-4 overflow-hidden card-hover"
             style={{
               background:
-                "linear-gradient(135deg, rgba(191,90,242,0.18) 0%, rgba(255,59,130,0.18) 100%)",
-              border: "1px solid rgba(191,90,242,0.35)",
-              boxShadow: "0 0 24px rgba(191,90,242,0.2)",
+                "linear-gradient(135deg, rgba(192, 132, 252,0.18) 0%, rgba(255,59,130,0.18) 100%)",
+              border: "1px solid rgba(192, 132, 252,0.35)",
+              boxShadow: "0 0 24px rgba(192, 132, 252,0.2)",
             }}
           >
-            <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-[#BF5AF2]/25 blur-3xl" />
+            <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-[#C084FC]/25 blur-3xl" />
             <div className="absolute -bottom-12 -left-8 w-32 h-32 rounded-full bg-[#FF3B83]/15 blur-3xl" />
 
             <div className="relative">
               <div className="flex items-center gap-2 mb-2">
-                <Sparkles size={14} className="text-[#BF5AF2]" />
+                <Sparkles size={14} className="text-[#C084FC]" />
                 <h2 className="text-white text-sm font-semibold font-[family-name:var(--font-poppins)]">
                   {t("statsDominantMood")}
                 </h2>
@@ -1335,10 +1337,10 @@ export function StatsScreen() {
                 <defs>
                   <linearGradient id="barGreen" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0%" stopColor="#4ADE80" stopOpacity={1} />
-                    <stop offset="100%" stopColor="#22D3EE" stopOpacity={0.6} />
+                    <stop offset="100%" stopColor="#2DD4BF" stopOpacity={0.6} />
                   </linearGradient>
                   <linearGradient id="barOrange" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#FF9500" stopOpacity={1} />
+                    <stop offset="0%" stopColor="#F59E0B" stopOpacity={1} />
                     <stop offset="100%" stopColor="#FF3B30" stopOpacity={0.7} />
                   </linearGradient>
                 </defs>
@@ -1380,11 +1382,11 @@ export function StatsScreen() {
           </div>
           <div className="mt-3 pt-3 border-t border-white/5 flex items-center justify-between text-[10px]">
             <div className="flex items-center gap-1.5 text-white/50">
-              <span className="w-2.5 h-2.5 rounded-sm bg-gradient-to-b from-[#4ADE80] to-[#22D3EE]" />
+              <span className="w-2.5 h-2.5 rounded-sm bg-gradient-to-b from-[#4ADE80] to-[#2DD4BF]" />
               {t("financeSaved")}
             </div>
             <div className="flex items-center gap-1.5 text-white/50">
-              <span className="w-2.5 h-2.5 rounded-sm bg-gradient-to-b from-[#FF9500] to-[#FF3B30]" />
+              <span className="w-2.5 h-2.5 rounded-sm bg-gradient-to-b from-[#F59E0B] to-[#FF3B30]" />
               {t("today")}
             </div>
           </div>
@@ -1394,7 +1396,7 @@ export function StatsScreen() {
         <motion.div variants={itemVariants} className="glass-card p-4">
           <SectionTitle
             icon={Grid3x3}
-            iconColor="#FF9500"
+            iconColor="#F59E0B"
             title={t("statsHeatmap")}
             right={
               <span className="text-[10px] text-white/40">{t("statsWeeks5")}</span>
@@ -1416,14 +1418,14 @@ export function StatsScreen() {
             {heatmapCells.map((cell, idx) => {
               const bg =
                 cell.status === "green"
-                  ? "linear-gradient(135deg, #4ADE80 0%, #22D3EE 100%)"
+                  ? "linear-gradient(135deg, #4ADE80 0%, #2DD4BF 100%)"
                   : cell.status === "red"
-                  ? "linear-gradient(135deg, #FF3B30 0%, #FF9500 100%)"
+                  ? "linear-gradient(135deg, #FF3B30 0%, #F59E0B 100%)"
                   : cell.status === "future"
                   ? "rgba(255,255,255,0.02)"
                   : "rgba(255,255,255,0.06)";
               const border = cell.isToday
-                ? "2px solid #FF9500"
+                ? "2px solid #F59E0B"
                 : "1px solid rgba(255,255,255,0.04)";
               return (
                 <motion.div
@@ -1442,7 +1444,7 @@ export function StatsScreen() {
                     background: bg,
                     border,
                     boxShadow: cell.isToday
-                      ? "0 0 12px rgba(255,149,0,0.5)"
+                      ? "0 0 12px rgba(245, 158, 11,0.5)"
                       : cell.status === "green"
                       ? "0 0 8px rgba(74,222,128,0.25)"
                       : cell.status === "red"
@@ -1470,7 +1472,7 @@ export function StatsScreen() {
               <span
                 className="w-2.5 h-2.5 rounded-sm"
                 style={{
-                  background: "linear-gradient(135deg, #4ADE80, #22D3EE)",
+                  background: "linear-gradient(135deg, #4ADE80, #2DD4BF)",
                 }}
               />
               {t("statsNoBet")}
@@ -1480,7 +1482,7 @@ export function StatsScreen() {
               <span
                 className="w-2.5 h-2.5 rounded-sm"
                 style={{
-                  background: "linear-gradient(135deg, #FF3B30, #FF9500)",
+                  background: "linear-gradient(135deg, #FF3B30, #F59E0B)",
                 }}
               />
               {t("panicTitle")}
@@ -1501,7 +1503,7 @@ export function StatsScreen() {
         <motion.div variants={itemVariants} className="glass-card p-4">
           <SectionTitle
             icon={PieChartIcon}
-            iconColor="#BF5AF2"
+            iconColor="#C084FC"
             title={t("statsEmotionDistribution")}
             right={
               hasEmotionData ? (
@@ -1657,8 +1659,8 @@ export function StatsScreen() {
                 className="h-full rounded-full relative"
                 style={{
                   background:
-                    "linear-gradient(90deg, #FF3B30 0%, #FF9500 35%, #FBBF24 70%, #4ADE80 100%)",
-                  boxShadow: "0 0 12px rgba(255,149,0,0.5)",
+                    "linear-gradient(90deg, #FF3B30 0%, #F59E0B 35%, #FBBF24 70%, #4ADE80 100%)",
+                  boxShadow: "0 0 12px rgba(245, 158, 11,0.5)",
                 }}
               >
                 <div className="absolute inset-0 shimmer rounded-full" />
@@ -1686,7 +1688,7 @@ export function StatsScreen() {
         <motion.div variants={itemVariants} className="glass-card p-4">
           <SectionTitle
             icon={BarChart3}
-            iconColor="#22D3EE"
+            iconColor="#2DD4BF"
             title={t("statsWeeklySummary")}
             right={
               <span className="text-[10px] text-white/40">{t("statsLast7Days")}</span>
@@ -1697,10 +1699,10 @@ export function StatsScreen() {
               whileTap={{ scale: 0.96 }}
               className="glass-card-strong p-3 text-center relative overflow-hidden"
             >
-              <div className="absolute -top-6 -right-6 w-16 h-16 rounded-full bg-[#FF9500]/15 blur-2xl" />
+              <div className="absolute -top-6 -right-6 w-16 h-16 rounded-full bg-[#F59E0B]/15 blur-2xl" />
               <div className="relative">
-                <div className="w-8 h-8 rounded-lg bg-[#FF9500]/15 flex items-center justify-center mx-auto mb-1.5">
-                  <Flame size={15} className="text-[#FF9500]" />
+                <div className="w-8 h-8 rounded-lg bg-[#F59E0B]/15 flex items-center justify-center mx-auto mb-1.5">
+                  <Flame size={15} className="text-[#F59E0B]" />
                 </div>
                 <div className="text-xl font-extrabold text-white font-[family-name:var(--font-poppins)]">
                   {weekDaysClean}
@@ -1735,10 +1737,10 @@ export function StatsScreen() {
               whileTap={{ scale: 0.96 }}
               className="glass-card-strong p-3 text-center relative overflow-hidden"
             >
-              <div className="absolute -top-6 -right-6 w-16 h-16 rounded-full bg-[#BF5AF2]/15 blur-2xl" />
+              <div className="absolute -top-6 -right-6 w-16 h-16 rounded-full bg-[#C084FC]/15 blur-2xl" />
               <div className="relative">
-                <div className="w-8 h-8 rounded-lg bg-[#BF5AF2]/15 flex items-center justify-center mx-auto mb-1.5">
-                  <Shield size={15} className="text-[#BF5AF2]" />
+                <div className="w-8 h-8 rounded-lg bg-[#C084FC]/15 flex items-center justify-center mx-auto mb-1.5">
+                  <Shield size={15} className="text-[#C084FC]" />
                 </div>
                 <div className="text-xl font-extrabold text-white font-[family-name:var(--font-poppins)]">
                   {weekCrisesAvoided}

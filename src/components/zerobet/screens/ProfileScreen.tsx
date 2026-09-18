@@ -70,13 +70,13 @@ const PLAN_BADGES: Record<string, { labelKey: string; color: string; gradient: s
   mentor: {
     labelKey: "settingsPlanMentor",
     color: "#4ADE80",
-    gradient: "linear-gradient(135deg, #4ADE80 0%, #22D3EE 100%)",
+    gradient: "linear-gradient(135deg, #4ADE80 0%, #2DD4BF 100%)",
     icon: "🛡️",
   },
   psychologist: {
     labelKey: "settingsPlanPsychologist",
-    color: "#BF5AF2",
-    gradient: "linear-gradient(135deg, #BF5AF2 0%, #5E5CE6 100%)",
+    color: "#C084FC",
+    gradient: "linear-gradient(135deg, #C084FC 0%, #2DD4BF 100%)",
     icon: "🎓",
   },
 };
@@ -87,7 +87,7 @@ const AVATAR_COLOR_OPTIONS = [
   "#FBBF24",
   "#4ADE80",
   "#F59E0B",
-  "#BF5AF2",
+  "#C084FC",
 ];
 
 function getInitials(name: string): string {
@@ -453,15 +453,15 @@ export function ProfileScreen() {
       suffix: "",
       icon: Trophy,
       color: "#FBBF24",
-      gradient: "linear-gradient(135deg, #FBBF24 0%, #FF9500 100%)",
+      gradient: "linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%)",
     },
     {
       label: t("profileStatCrises"),
       value: `${panicEvents.filter((p) => p.resolved).length}`,
       suffix: "",
       icon: Shield,
-      color: "#64D2FF",
-      gradient: "linear-gradient(135deg, #64D2FF 0%, #5E5CE6 100%)",
+      color: "#2DD4BF",
+      gradient: "linear-gradient(135deg, #2DD4BF 0%, #2DD4BF 100%)",
     },
   ];
 
@@ -676,9 +676,9 @@ export function ProfileScreen() {
               <div className="flex items-center gap-3 mt-2 text-[11px] text-white/60">
                 <span className="flex items-center gap-1">
                   {gender === "female" ? (
-                    <Venus size={12} className="text-[#FF9500]" />
+                    <Venus size={12} className="text-[#F59E0B]" />
                   ) : gender === "male" ? (
-                    <Mars size={12} className="text-[#64D2FF]" />
+                    <Mars size={12} className="text-[#2DD4BF]" />
                   ) : (
                     <UserIcon size={12} className="text-white/40" />
                   )}
@@ -706,7 +706,7 @@ export function ProfileScreen() {
         {/* ====== SECTION 2: Recovery Stats (2x2) ====== */}
         <motion.div variants={itemVariants}>
           <div className="flex items-center gap-2 mb-3 px-1">
-            <BarChart3 size={14} className="text-[#FF9500]" />
+            <BarChart3 size={14} className="text-[#F59E0B]" />
             <h2 className="text-xs font-bold text-white/80 uppercase tracking-[0.12em]">
               {t("profileRecoveryStats")}
             </h2>
@@ -907,7 +907,7 @@ export function ProfileScreen() {
           </p>
           <button
             onClick={() => navigate("settings")}
-            className="text-[#FF9500] text-xs font-semibold inline-flex items-center gap-1 active:opacity-70"
+            className="text-[#F59E0B] text-xs font-semibold inline-flex items-center gap-1 active:opacity-70"
           >
             {t("profileAccessSettings")}
             <ChevronRight size={14} />

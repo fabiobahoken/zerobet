@@ -35,7 +35,7 @@ export function ScreenLoader() {
           className="absolute inset-0 rounded-full pointer-events-none"
           style={{
             background:
-              "radial-gradient(circle, rgba(255,59,48,0.55) 0%, rgba(255,149,0,0.30) 38%, transparent 70%)",
+              "radial-gradient(circle, rgba(255,59,48,0.55) 0%, rgba(245, 158, 11,0.30) 38%, transparent 70%)",
           }}
           animate={{ opacity: [0, 0.6, 0], scale: [0.85, 1.5, 0.85] }}
           transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
@@ -45,7 +45,7 @@ export function ScreenLoader() {
           className="absolute inset-0 rounded-full pointer-events-none"
           style={{
             background:
-              "radial-gradient(circle, rgba(255,149,0,0.40) 0%, transparent 70%)",
+              "radial-gradient(circle, rgba(245, 158, 11,0.40) 0%, transparent 70%)",
           }}
           animate={{ opacity: [0, 0.4, 0], scale: [1, 1.9, 1] }}
           transition={{
@@ -59,7 +59,7 @@ export function ScreenLoader() {
           className="animate-glow-pulse"
           style={{
             filter:
-              "drop-shadow(0 0 18px rgba(255,59,48,0.45)) drop-shadow(0 0 36px rgba(255,149,0,0.25))",
+              "drop-shadow(0 0 18px rgba(255,59,48,0.45)) drop-shadow(0 0 36px rgba(245, 158, 11,0.25))",
           }}
         >
           <ZerobetLogo size={96} animated />
@@ -78,7 +78,7 @@ export function ScreenLoader() {
           className="absolute inset-y-0 left-0 rounded-full"
           style={{
             background:
-              "linear-gradient(90deg, #FF3B30 0%, #FF6B35 45%, #FF9500 75%, #FFD700 100%)",
+              "linear-gradient(90deg, #FF3B30 0%, #FF6B35 45%, #F59E0B 75%, #FFD700 100%)",
             boxShadow: "0 0 12px rgba(255,107,53,0.6)",
           }}
           animate={{ width: ["0%", "100%"] }}

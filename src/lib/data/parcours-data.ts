@@ -69,9 +69,9 @@ export const PARCOURS_RANKS: ParcoursRank[] = [
     nameKey: "artifact2Name",
     subtitleKey: "artifact2Subtitle",
     requiredDays: 3,
-    color: "#22D3EE",
-    glow: "rgba(34, 211, 238, 0.6)",
-    gradient: "linear-gradient(135deg, #22D3EE 0%, #0EA5E9 100%)",
+    color: "#2DD4BF",
+    glow: "rgba(45, 212, 191, 0.6)",
+    gradient: "linear-gradient(135deg, #2DD4BF 0%, #0EA5E9 100%)",
     icon: "jour-3",
     description:
       "Forgée dans les brumes du réveil, elle protège ton esprit des illusions du jeu et dissipe le brouillard mental du sevrage précoce.",
@@ -79,9 +79,9 @@ export const PARCOURS_RANKS: ParcoursRank[] = [
     powerName: "Vision Claire",
     powerDescription:
       "Dissipe le brouillard mental des premiers jours de sevrage et clarifie la pensée.",
-    auraColor: "#22D3EE",
+    auraColor: "#2DD4BF",
     auraGradient:
-      "radial-gradient(circle at center, rgba(34,211,238,0.35) 0%, rgba(34,211,238,0.10) 40%, transparent 70%)",
+      "radial-gradient(circle at center, rgba(45, 212, 191,0.35) 0%, rgba(45, 212, 191,0.10) 40%, transparent 70%)",
     story:
       "Forgée dans les brumes du réveil, elle protège ton esprit des illusions du jeu.",
     descKey: "artifact2Desc",
@@ -199,9 +199,9 @@ export const PARCOURS_RANKS: ParcoursRank[] = [
     nameKey: "artifact7Name",
     subtitleKey: "artifact7Subtitle",
     requiredDays: 60,
-    color: "#64D2FF",
-    glow: "rgba(100, 210, 255, 0.8)",
-    gradient: "linear-gradient(135deg, #64D2FF 0%, #5AC8FA 100%)",
+    color: "#2DD4BF",
+    glow: "rgba(45, 212, 191, 0.8)",
+    gradient: "linear-gradient(135deg, #2DD4BF 0%, #5AC8FA 100%)",
     icon: "jour-60",
     description:
       "Deux mois de pression l'ont cristallisé. Rien ne peut le briser. Ta volonté est devenue un cristal indestructible au cœur de ta poitrine.",
@@ -209,9 +209,9 @@ export const PARCOURS_RANKS: ParcoursRank[] = [
     powerName: "Incassable",
     powerDescription:
       "Rend ta volonté incassable. Aucune tentation ne peut fissurer ta détermination.",
-    auraColor: "#64D2FF",
+    auraColor: "#2DD4BF",
     auraGradient:
-      "radial-gradient(circle at center, rgba(100,210,255,0.45) 0%, rgba(90,200,250,0.15) 40%, transparent 70%)",
+      "radial-gradient(circle at center, rgba(45, 212, 191,0.45) 0%, rgba(90,200,250,0.15) 40%, transparent 70%)",
     story:
       "Deux mois de pression l'ont cristallisé. Rien ne peut le briser.",
     descKey: "artifact7Desc",
@@ -251,9 +251,9 @@ export const PARCOURS_RANKS: ParcoursRank[] = [
     nameKey: "artifact9Name",
     subtitleKey: "artifact9Subtitle",
     requiredDays: 120,
-    color: "#5E5CE6",
-    glow: "rgba(94, 92, 230, 0.8)",
-    gradient: "linear-gradient(135deg, #5E5CE6 0%, #5856D6 100%)",
+    color: "#2DD4BF",
+    glow: "rgba(45, 212, 191, 0.8)",
+    gradient: "linear-gradient(135deg, #2DD4BF 0%, #2DD4BF 100%)",
     icon: "jour-120",
     description:
       "Quatre mois de méditation ont poli cette pierre. Elle révèle les vérités cachées et te fait voir les déclencheurs avant qu'ils n'apparaissent.",
@@ -261,9 +261,9 @@ export const PARCOURS_RANKS: ParcoursRank[] = [
     powerName: "Vision Profonde",
     powerDescription:
       "Voit les déclencheurs avant qu'ils n'apparaissent et comprend les motifs profonds de tes envies.",
-    auraColor: "#5E5CE6",
+    auraColor: "#2DD4BF",
     auraGradient:
-      "radial-gradient(circle at center, rgba(94,92,230,0.50) 0%, rgba(88,86,214,0.15) 40%, transparent 70%)",
+      "radial-gradient(circle at center, rgba(45, 212, 191,0.50) 0%, rgba(88,86,214,0.15) 40%, transparent 70%)",
     story:
       "Quatre mois de méditation ont poli cette pierre. Elle révèle les vérités cachées.",
     descKey: "artifact9Desc",
@@ -303,9 +303,9 @@ export const PARCOURS_RANKS: ParcoursRank[] = [
     nameKey: "artifact11Name",
     subtitleKey: "artifact11Subtitle",
     requiredDays: 270,
-    color: "#BF5AF2",
-    glow: "rgba(191, 90, 242, 0.9)",
-    gradient: "linear-gradient(135deg, #BF5AF2 0%, #9B30FF 100%)",
+    color: "#C084FC",
+    glow: "rgba(192, 132, 252, 0.9)",
+    gradient: "linear-gradient(135deg, #C084FC 0%, #9B30FF 100%)",
     icon: "jour-270",
     description:
       "Neuf mois. Tu danses avec tes envies sans plus jamais trembler. La maîtrise totale de tes impulsions est enfin tienne.",
@@ -313,9 +313,9 @@ export const PARCOURS_RANKS: ParcoursRank[] = [
     powerName: "Contrôle Total",
     powerDescription:
       "Maîtrise complète des impulsions. Tu danses avec tes envies sans plus jamais trembler.",
-    auraColor: "#BF5AF2",
+    auraColor: "#C084FC",
     auraGradient:
-      "radial-gradient(circle at center, rgba(191,90,242,0.55) 0%, rgba(155,48,255,0.15) 40%, transparent 70%)",
+      "radial-gradient(circle at center, rgba(192, 132, 252,0.55) 0%, rgba(155,48,255,0.15) 40%, transparent 70%)",
     story:
       "Neuf mois. Tu danses avec tes envies sans plus jamais trembler.",
     descKey: "artifact11Desc",
@@ -331,7 +331,7 @@ export const PARCOURS_RANKS: ParcoursRank[] = [
     requiredDays: 365,
     color: "#FFD700",
     glow: "rgba(255, 215, 0, 1)",
-    gradient: "linear-gradient(135deg, #FFD700 0%, #FF3B30 50%, #FF9500 100%)",
+    gradient: "linear-gradient(135deg, #FFD700 0%, #FF3B30 50%, #F59E0B 100%)",
     icon: "jour-365",
     description:
       "UN AN. Tu as conquis ta liberté. Les générations futures chanteront ton nom. Tu es désormais une légende vivante de la guérison.",
@@ -341,7 +341,7 @@ export const PARCOURS_RANKS: ParcoursRank[] = [
       "Tu es libre pour toujours. Ton histoire inspire les autres et traverse les générations.",
     auraColor: "#FFD700",
     auraGradient:
-      "radial-gradient(circle at center, rgba(255,215,0,0.55) 0%, rgba(255,59,48,0.18) 35%, rgba(255,149,0,0.10) 55%, transparent 75%)",
+      "radial-gradient(circle at center, rgba(255,215,0,0.55) 0%, rgba(255,59,48,0.18) 35%, rgba(245, 158, 11,0.10) 55%, transparent 75%)",
     story:
       "UN AN. Tu as conquis ta liberté. Les générations futures chanteront ton nom.",
     descKey: "artifact12Desc",
@@ -357,7 +357,7 @@ export const PARCOURS_RANKS: ParcoursRank[] = [
     requiredDays: 730,
     color: "#FFFFFF",
     glow: "rgba(255, 255, 255, 1)",
-    gradient: "linear-gradient(135deg, #FFFFFF 0%, #64D2FF 50%, #BF5AF2 100%)",
+    gradient: "linear-gradient(135deg, #FFFFFF 0%, #2DD4BF 50%, #C084FC 100%)",
     icon: "jour-730",
     description:
       "Deux ans. Tu ne te rétablis plus. Tu ES la lumière qui guide les autres. Au-delà de la guérison, tu deviens le phare des chercheurs à venir.",
@@ -367,7 +367,7 @@ export const PARCOURS_RANKS: ParcoursRank[] = [
       "Au-delà de la guérison. Tu deviens le phare qui guide tous les autres chercheurs.",
     auraColor: "#FFFFFF",
     auraGradient:
-      "radial-gradient(circle at center, rgba(255,255,255,0.55) 0%, rgba(100,210,255,0.18) 35%, rgba(191,90,242,0.10) 55%, transparent 75%)",
+      "radial-gradient(circle at center, rgba(255,255,255,0.55) 0%, rgba(45, 212, 191,0.18) 35%, rgba(192, 132, 252,0.10) 55%, transparent 75%)",
     story:
       "Deux ans. Tu ne te rétablis plus. Tu ES la lumière qui guide les autres.",
     descKey: "artifact13Desc",

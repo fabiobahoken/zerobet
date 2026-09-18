@@ -16,12 +16,12 @@ export async function sendWelcomeEmail(email: string, name?: string) {
       subject: "Bienvenue sur Zerobet 🎉",
       html: `
         <div style="font-family: sans-serif; max-width: 480px; margin: auto; background: #0A0A0F; color: #fff; padding: 32px; border-radius: 16px;">
-          <h1 style="color: #FF9500; font-size: 24px;">Bienvenue ${name || ""} !</h1>
+          <h1 style="color: #F59E0B; font-size: 24px;">Bienvenue ${name || ""} !</h1>
           <p style="color: rgba(255,255,255,0.7); line-height: 1.6;">
             Tu as fait le premier pas. Zerobet est là pour t'accompagner à chaque étape
             de ta récupération. Ouvre l'app, fais ton premier check-in, et commence ta série.
           </p>
-          <a href="${process.env.APP_URL}" style="display: inline-block; background: linear-gradient(135deg, #FF3B30, #FF9500); color: white; padding: 12px 24px; border-radius: 12px; text-decoration: none; font-weight: bold; margin-top: 16px;">
+          <a href="${process.env.APP_URL}" style="display: inline-block; background: linear-gradient(135deg, #FF3B30, #F59E0B); color: white; padding: 12px 24px; border-radius: 12px; text-decoration: none; font-weight: bold; margin-top: 16px;">
             Ouvrir Zerobet
           </a>
           <p style="color: rgba(255,255,255,0.3); font-size: 12px; margin-top: 24px;">
@@ -56,12 +56,12 @@ export async function sendPasswordResetEmail(email: string, resetToken: string) 
       subject: "Réinitialise ton mot de passe",
       html: `
         <div style="font-family: sans-serif; max-width: 480px; margin: auto; background: #0A0A0F; color: #fff; padding: 32px; border-radius: 16px;">
-          <h1 style="color: #FF9500; font-size: 24px;">Réinitialisation</h1>
+          <h1 style="color: #F59E0B; font-size: 24px;">Réinitialisation</h1>
           <p style="color: rgba(255,255,255,0.7); line-height: 1.6;">
             Clique sur le bouton ci-dessous pour réinitialiser ton mot de passe.
             Ce lien expire dans 1 heure.
           </p>
-          <a href="${resetUrl}" style="display: inline-block; background: linear-gradient(135deg, #FF3B30, #FF9500); color: white; padding: 12px 24px; border-radius: 12px; text-decoration: none; font-weight: bold; margin-top: 16px;">
+          <a href="${resetUrl}" style="display: inline-block; background: linear-gradient(135deg, #FF3B30, #F59E0B); color: white; padding: 12px 24px; border-radius: 12px; text-decoration: none; font-weight: bold; margin-top: 16px;">
             Réinitialiser
           </a>
           <p style="color: rgba(255,255,255,0.3); font-size: 12px; margin-top: 24px;">
@@ -99,7 +99,7 @@ export async function sendStreakReminderEmail(email: string, name: string, strea
             ${name}, ta série de ${streakDays} jours est en jeu ! Ouvre l'app maintenant
             pour maintenir ta série et continuer ton parcours de récupération.
           </p>
-          <a href="${process.env.APP_URL}" style="display: inline-block; background: linear-gradient(135deg, #FF3B30, #FF9500); color: white; padding: 12px 24px; border-radius: 12px; text-decoration: none; font-weight: bold; margin-top: 16px;">
+          <a href="${process.env.APP_URL}" style="display: inline-block; background: linear-gradient(135deg, #FF3B30, #F59E0B); color: white; padding: 12px 24px; border-radius: 12px; text-decoration: none; font-weight: bold; margin-top: 16px;">
             Maintenir ma série
           </a>
         </div>

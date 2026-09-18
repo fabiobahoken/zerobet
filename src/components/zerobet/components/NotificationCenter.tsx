@@ -28,8 +28,8 @@ const TYPE_CONFIG: Record<
   },
   weekly: {
     icon: <BarChart3 size={18} />,
-    color: "#64D2FF",
-    borderColor: "#64D2FF",
+    color: "#2DD4BF",
+    borderColor: "#2DD4BF",
   },
   checkin: {
     icon: <Heart size={18} />,
@@ -164,7 +164,7 @@ export function NotificationCenter({ isOpen, onClose }: NotificationCenterProps)
             {/* Header */}
             <div className="flex items-center justify-between p-5 border-b border-white/10">
               <div className="flex items-center gap-2.5">
-                <Bell size={20} className="text-[#FF9500]" />
+                <Bell size={20} className="text-[#F59E0B]" />
                 <h2 className="text-lg font-bold text-white font-[family-name:var(--font-poppins)]">
                   {t("notifTitle")}
                 </h2>
@@ -178,7 +178,7 @@ export function NotificationCenter({ isOpen, onClose }: NotificationCenterProps)
                 {unreadCount > 0 && (
                   <button
                     onClick={markAllRead}
-                    className="text-[#64D2FF] text-xs font-medium hover:underline"
+                    className="text-[#2DD4BF] text-xs font-medium hover:underline"
                   >
                     {t("notifMarkAllRead")}
                   </button>

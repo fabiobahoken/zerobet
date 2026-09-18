@@ -37,9 +37,9 @@ interface CategoryMeta {
 
 const CATEGORIES: CategoryMeta[] = [
   { key: "all", labelKey: "blockerCategoryAll", icon: Globe, color: "#9CA3AF" },
-  { key: "international", labelKey: "blockerCategoryIntl", icon: Globe, color: "#64D2FF" },
-  { key: "africa", labelKey: "blockerCategoryAfrica", icon: Globe, color: "#FF9500" },
-  { key: "crypto", labelKey: "blockerCategoryCrypto", icon: Globe, color: "#BF5AF2" },
+  { key: "international", labelKey: "blockerCategoryIntl", icon: Globe, color: "#2DD4BF" },
+  { key: "africa", labelKey: "blockerCategoryAfrica", icon: Globe, color: "#F59E0B" },
+  { key: "crypto", labelKey: "blockerCategoryCrypto", icon: Globe, color: "#C084FC" },
   { key: "france", labelKey: "blockerCategoryFrance", icon: Globe, color: "#4ADE80" },
   { key: "other", labelKey: "blockerCategoryOther", icon: Globe, color: "#FBBF24" },
 ];
@@ -48,8 +48,8 @@ const DANGEROUS_SITES = [
   { id: "s1", name: "1xBet", emoji: "🔴", color: "#FF3B30" },
   { id: "s2", name: "Bet365", emoji: "🟡", color: "#FBBF24" },
   { id: "s11", name: "Betika", emoji: "🟢", color: "#4ADE80" },
-  { id: "s13", name: "Melbet", emoji: "🟣", color: "#BF5AF2" },
-  { id: "s27", name: "PMU", emoji: "🔵", color: "#64D2FF" },
+  { id: "s13", name: "Melbet", emoji: "🟣", color: "#C084FC" },
+  { id: "s27", name: "PMU", emoji: "🔵", color: "#2DD4BF" },
 ];
 
 function pad(n: number): string {
@@ -384,10 +384,10 @@ export function BlockerScreen() {
 
         {/* Bypass attempts stats card */}
         <motion.div variants={itemVariants} className="glass-card p-4 relative overflow-hidden">
-          <div className="absolute -top-6 -left-6 w-24 h-24 rounded-full bg-[#BF5AF2]/15 blur-2xl" />
+          <div className="absolute -top-6 -left-6 w-24 h-24 rounded-full bg-[#C084FC]/15 blur-2xl" />
           <div className="relative flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-[#BF5AF2]/20 flex items-center justify-center flex-shrink-0">
-              <BarChart3 size={18} className="text-[#BF5AF2]" />
+            <div className="w-10 h-10 rounded-xl bg-[#C084FC]/20 flex items-center justify-center flex-shrink-0">
+              <BarChart3 size={18} className="text-[#C084FC]" />
             </div>
             <div className="flex-1">
               <p className="text-white font-semibold text-sm">{t("blockerBypassAttempts")}</p>
@@ -397,7 +397,7 @@ export function BlockerScreen() {
               key={bypassAttempts}
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              className="text-2xl font-extrabold text-[#BF5AF2] font-[family-name:var(--font-poppins)]"
+              className="text-2xl font-extrabold text-[#C084FC] font-[family-name:var(--font-poppins)]"
             >
               {bypassAttempts}
             </motion.p>

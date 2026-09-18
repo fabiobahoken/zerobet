@@ -52,7 +52,7 @@ const HOTLINES: Hotline[] = [
     name: "Gambling Therapy International",
     description: "Support en ligne mondial",
     phone: "+441472544300",
-    color: "#64D2FF",
+    color: "#2DD4BF",
   },
   {
     id: "h3",
@@ -85,7 +85,7 @@ const SAFETY_STEPS: SafetyStep[] = [
     description:
       "Quelles situations, émotions ou personnes déclenchent ton envie de parier ? Le stress, l'ennui, la solitude, un match à la TV, une dette à rembourser ? Note-les dans ton journal.",
     icon: Zap,
-    color: "#FF9500",
+    color: "#F59E0B",
   },
   {
     id: 3,
@@ -93,7 +93,7 @@ const SAFETY_STEPS: SafetyStep[] = [
     description:
       "Prépare une liste d'activités de substitution : respiration 4-7-8, appel à un proche, marche de 10 minutes, sport, musique, lecture. Agis dans les 90 premières secondes de l'envie.",
     icon: Shield,
-    color: "#64D2FF",
+    color: "#2DD4BF",
   },
   {
     id: 4,
@@ -101,7 +101,7 @@ const SAFETY_STEPS: SafetyStep[] = [
     description:
       "Identifie 2-3 personnes que tu peux appeler sans jugement quand l'envie monte. Ajoute-les dans tes contacts de confiance ci-dessus. Tu n'as pas à traverser ça seul.",
     icon: Phone,
-    color: "#BF5AF2",
+    color: "#C084FC",
   },
   {
     id: 5,
@@ -246,7 +246,7 @@ export function SOSScreen() {
       {/* Section 3: Professional Help */}
       <section className="mb-6">
         <div className="flex items-center gap-2 mb-3">
-          <Shield size={14} className="text-[#64D2FF]" />
+          <Shield size={14} className="text-[#2DD4BF]" />
           <h2 className="text-white font-semibold text-sm">Aide professionnelle</h2>
         </div>
         <div className="space-y-2.5">
@@ -289,7 +289,7 @@ export function SOSScreen() {
           animate={{ opacity: 1, y: 0 }}
           className="relative overflow-hidden rounded-3xl p-5"
           style={{
-            background: "linear-gradient(135deg, rgba(255,59,48,0.35) 0%, rgba(255,149,0,0.2) 100%)",
+            background: "linear-gradient(135deg, rgba(255,59,48,0.35) 0%, rgba(245, 158, 11,0.2) 100%)",
             border: "1px solid rgba(255,59,48,0.4)",
           }}
         >
@@ -611,7 +611,7 @@ function OptionsSheet({
           onClick={onPanic}
           className="w-full p-4 mb-3 rounded-2xl flex items-center gap-3 text-left"
           style={{
-            background: "linear-gradient(135deg, rgba(255,59,48,0.25) 0%, rgba(255,149,0,0.15) 100%)",
+            background: "linear-gradient(135deg, rgba(255,59,48,0.25) 0%, rgba(245, 158, 11,0.15) 100%)",
             border: "1px solid rgba(255,59,48,0.4)",
           }}
         >
@@ -656,7 +656,7 @@ function OptionsSheet({
 
         {/* Hotlines */}
         <div className="flex items-center gap-2 mb-2 mt-4">
-          <Shield size={12} className="text-[#64D2FF]" />
+          <Shield size={12} className="text-[#2DD4BF]" />
           <p className="text-white/50 text-xs uppercase tracking-wider font-medium">
             Lignes d&apos;urgence
           </p>

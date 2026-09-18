@@ -79,11 +79,11 @@ interface BookApp {
 }
 
 const CATEGORIES: Category[] = [
-  { key: "addiction", labelKey: "resourcesCategoryAddiction", emoji: "🧠", color: "#BF5AF2" },
+  { key: "addiction", labelKey: "resourcesCategoryAddiction", emoji: "🧠", color: "#C084FC" },
   { key: "techniques", labelKey: "resourcesCategoryTechniques", emoji: "💪", color: "#4ADE80" },
-  { key: "finance", labelKey: "resourcesCategoryFinance", emoji: "💰", color: "#FF9500" },
+  { key: "finance", labelKey: "resourcesCategoryFinance", emoji: "💰", color: "#F59E0B" },
   { key: "testimonials", labelKey: "resourcesCategoryTestimonials", emoji: "👥", color: "#FF3B30" },
-  { key: "meditation", labelKey: "resourcesCategoryMeditation", emoji: "🧘", color: "#64D2FF" },
+  { key: "meditation", labelKey: "resourcesCategoryMeditation", emoji: "🧘", color: "#2DD4BF" },
   { key: "stories", labelKey: "resourcesCategoryStories", emoji: "📚", color: "#FBBF24" },
 ];
 
@@ -219,28 +219,28 @@ const VIDEOS: VideoResource[] = [
     titleKey: "resourcesVideo1Title",
     duration: "10:00",
     categoryKey: "resourcesVideoCatMeditation",
-    gradient: "linear-gradient(135deg, #64D2FF 0%, #5E5CE6 100%)",
+    gradient: "linear-gradient(135deg, #2DD4BF 0%, #2DD4BF 100%)",
   },
   {
     id: "v2",
     titleKey: "resourcesVideo2Title",
     duration: "06:42",
     categoryKey: "resourcesVideoCatTestimony",
-    gradient: "linear-gradient(135deg, #FF3B30 0%, #FF9500 100%)",
+    gradient: "linear-gradient(135deg, #FF3B30 0%, #F59E0B 100%)",
   },
   {
     id: "v3",
     titleKey: "resourcesVideo3Title",
     duration: "08:15",
     categoryKey: "resourcesVideoCatScience",
-    gradient: "linear-gradient(135deg, #BF5AF2 0%, #FF3B30 100%)",
+    gradient: "linear-gradient(135deg, #C084FC 0%, #FF3B30 100%)",
   },
   {
     id: "v4",
     titleKey: "resourcesVideo4Title",
     duration: "12:30",
     categoryKey: "resourcesVideoCatMeditation",
-    gradient: "linear-gradient(135deg, #4ADE80 0%, #64D2FF 100%)",
+    gradient: "linear-gradient(135deg, #4ADE80 0%, #2DD4BF 100%)",
   },
 ];
 
@@ -257,7 +257,7 @@ const HOTLINES: Hotline[] = [
     nameKey: "resourcesHotline2Name",
     descKey: "resourcesHotline2Desc",
     phone: "+441472544300",
-    color: "#64D2FF",
+    color: "#2DD4BF",
   },
   {
     id: "h3",
@@ -283,7 +283,7 @@ const BOOKS_APPS: BookApp[] = [
     type: "book",
     descKey: "resourcesBook2Desc",
     emoji: "📖",
-    color: "#64D2FF",
+    color: "#2DD4BF",
   },
   {
     id: "b3",
@@ -374,7 +374,7 @@ export function ResourcesScreen() {
           <p className="text-white/50 text-xs">{t("resourcesSubtitle")}</p>
         </div>
         <div className="w-10 h-10 rounded-full glass-card flex items-center justify-center">
-          <BookOpen size={18} className="text-[#BF5AF2]" />
+          <BookOpen size={18} className="text-[#C084FC]" />
         </div>
       </div>
 

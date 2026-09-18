@@ -50,14 +50,14 @@ export const MOOD_OPTIONS: MoodOption[] = [
     key: "calm",
     emoji: "😌",
     label: "Calme",
-    color: "#64D2FF",
+    color: "#2DD4BF",
     description: "Sérénité, équilibre, paix",
   },
   {
     key: "proud",
     emoji: "🦸",
     label: "Fier",
-    color: "#BF5AF2",
+    color: "#C084FC",
     description: "Fierté, accomplissement, confiance",
   },
   {

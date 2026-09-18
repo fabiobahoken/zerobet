@@ -118,7 +118,7 @@ export default function SignUpPage() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder={t("authName")}
-              className="w-full pl-10 pr-4 py-3 rounded-2xl glass-card text-white text-sm placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-[#FF9500]"
+              className="w-full pl-10 pr-4 py-3 rounded-2xl glass-card text-white text-sm placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-[#F59E0B]"
             />
           </div>
           <div className="relative">
@@ -128,7 +128,7 @@ export default function SignUpPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder={t("authEmail")}
-              className="w-full pl-10 pr-4 py-3 rounded-2xl glass-card text-white text-sm placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-[#FF9500]"
+              className="w-full pl-10 pr-4 py-3 rounded-2xl glass-card text-white text-sm placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-[#F59E0B]"
               required
             />
           </div>
@@ -139,7 +139,7 @@ export default function SignUpPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder={t("authPassword")}
-              className="w-full pl-10 pr-4 py-3 rounded-2xl glass-card text-white text-sm placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-[#FF9500]"
+              className="w-full pl-10 pr-4 py-3 rounded-2xl glass-card text-white text-sm placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-[#F59E0B]"
               required
             />
           </div>
@@ -159,7 +159,7 @@ export default function SignUpPage() {
 
         <p className="text-center text-white/40 text-xs mt-6">
           {t("authHaveAccount")}{" "}
-          <button onClick={() => router.push("/auth/signin")} className="text-[#FF9500] font-medium hover:underline">
+          <button onClick={() => router.push("/auth/signin")} className="text-[#F59E0B] font-medium hover:underline">
             {t("authSignIn")}
           </button>
         </p>

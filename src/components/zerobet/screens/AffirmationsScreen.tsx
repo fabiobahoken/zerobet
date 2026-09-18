@@ -184,7 +184,7 @@ function FilterPill({
               boxShadow: `0 0 24px ${color}66, 0 0 48px ${color}33`,
             }
           : active
-          ? { background: "linear-gradient(135deg, #FF3B30 0%, #FF9500 100%)" }
+          ? { background: "linear-gradient(135deg, #FF3B30 0%, #F59E0B 100%)" }
           : undefined
       }
       aria-pressed={active}
@@ -288,7 +288,7 @@ function AffirmationCard({
       {/* Bottom row: badge */}
       <div className="mt-3 flex items-center gap-2">
         {affirmation.isCustom ? (
-          <span className="px-2 py-0.5 rounded-full bg-[#BF5AF2]/15 text-[#BF5AF2] text-[10px] font-semibold border border-[#BF5AF2]/30">
+          <span className="px-2 py-0.5 rounded-full bg-[#C084FC]/15 text-[#C084FC] text-[10px] font-semibold border border-[#C084FC]/30">
             {t("affirmationsCustom")}
           </span>
         ) : (
@@ -596,7 +596,7 @@ export function AffirmationsScreen() {
             <div className="flex-1">
               <h1 className="text-white font-bold text-xl font-[family-name:var(--font-poppins)] leading-tight flex items-center gap-2">
                 {t("affirmationsTitle")}
-                <Sparkles size={18} className="text-[#BF5AF2]" />
+                <Sparkles size={18} className="text-[#C084FC]" />
               </h1>
               <p className="text-white/50 text-xs">{t("affirmationsSubtitle")}</p>
             </div>
@@ -835,11 +835,11 @@ export function AffirmationsScreen() {
           <div
             aria-hidden
             className="absolute -top-16 -right-16 w-40 h-40 rounded-full blur-3xl opacity-25"
-            style={{ background: "#FF9500" }}
+            style={{ background: "#F59E0B" }}
           />
           <div className="relative z-10">
             <div className="flex items-center gap-2 mb-2">
-              <Bell size={16} className="text-[#FF9500]" />
+              <Bell size={16} className="text-[#F59E0B]" />
               <h3 className="text-white font-bold font-[family-name:var(--font-poppins)] text-sm">
                 {t("affirmationsDailyReminder")}
               </h3>
@@ -851,8 +851,8 @@ export function AffirmationsScreen() {
                   className="absolute inset-0 backdrop-blur-md bg-[#070B0E]/70 flex flex-col items-center justify-center gap-3 z-10 rounded-2xl py-6"
                   aria-hidden={false}
                 >
-                  <div className="w-12 h-12 rounded-full bg-[#FF9500]/15 flex items-center justify-center">
-                    <Lock size={20} className="text-[#FF9500]" />
+                  <div className="w-12 h-12 rounded-full bg-[#F59E0B]/15 flex items-center justify-center">
+                    <Lock size={20} className="text-[#F59E0B]" />
                   </div>
                   <p className="text-white/70 text-xs text-center max-w-[240px] px-4">
                     {t("affirmationsPremiumLock")}
@@ -871,7 +871,7 @@ export function AffirmationsScreen() {
                     <span className="text-white/80 text-xs">
                       {t("affirmationsReminderToggle")}
                     </span>
-                    <div className="w-9 h-5 rounded-full bg-[#FF9500]/40 relative">
+                    <div className="w-9 h-5 rounded-full bg-[#F59E0B]/40 relative">
                       <div className="absolute right-0.5 top-0.5 w-4 h-4 rounded-full bg-white" />
                     </div>
                   </div>
@@ -905,7 +905,7 @@ export function AffirmationsScreen() {
                         description: t("affirmationsReminderSoon"),
                       });
                     }}
-                    className="w-11 h-6 rounded-full bg-[#FF9500] relative shrink-0"
+                    className="w-11 h-6 rounded-full bg-[#F59E0B] relative shrink-0"
                     aria-label={t("affirmationsDailyReminder")}
                     aria-pressed={true}
                   >
@@ -964,7 +964,7 @@ export function AffirmationsScreen() {
         >
           <Quote
             size={20}
-            className="text-[#BF5AF2] mx-auto mb-2"
+            className="text-[#C084FC] mx-auto mb-2"
             aria-hidden
           />
           <p className="text-white/70 text-xs italic font-[family-name:var(--font-poppins)] leading-relaxed">
@@ -1032,10 +1032,10 @@ export function AffirmationsScreen() {
                     }
                     placeholder={t("affirmationsPlaceholder")}
                     rows={4}
-                    className="w-full p-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#FF9500] resize-none italic font-[family-name:var(--font-poppins)]"
+                    className="w-full p-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#F59E0B] resize-none italic font-[family-name:var(--font-poppins)]"
                   />
                   {newText.trim().length > 0 && newText.trim().length < 10 && (
-                    <p className="text-[#FF9500] text-[10px] mt-1">
+                    <p className="text-[#F59E0B] text-[10px] mt-1">
                       {t("affirmationsCharMin", { n: newText.trim().length })}
                     </p>
                   )}

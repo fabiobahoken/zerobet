@@ -7,7 +7,7 @@ import {
   Crown, ChevronRight, Quote, Award, Settings as SettingsIcon, Bell,
   Target, Sparkles, Phone, BarChart3, Wind, Search, Trophy, User, Gamepad2,
   Calendar, HelpCircle, Activity, ScanSearch, HeartPulse,
-  MessageCircle, Lock, CheckCircle2, ArrowRight,
+  MessageCircle, Lock, CheckCircle2, ArrowRight, Share2,
 } from "lucide-react";
 import { useStore } from "@/store/zerobet-store";
 import { ZerobetLogo } from "@/components/zerobet/components/ZerobetLogo";
@@ -35,14 +35,22 @@ import {
   containerVariants,
   itemVariants,
 } from "@/lib/animations";
-import { useT } from "@/lib/i18n/useT";
+import { useT, useLanguage } from "@/lib/i18n/useT";
 import { ArtifactIcon } from "@/components/zerobet/components/ArtifactIcon";
+import JourneyShareModal from "@/components/zerobet/components/JourneyShareModal";
+import type { JourneyCardData } from "@/lib/share-card";
 
 const PLAN_BADGES: Record<string, { labelKey: string; color: string; icon: string }> = {
   free: { labelKey: "planFree", color: "#9CA3AF", icon: "🌱" },
   premium: { labelKey: "planPremium", color: "#10B981", icon: "⭐" },
   mentor: { labelKey: "planMentor", color: "#4ADE80", icon: "🛡️" },
-  psychologist: { labelKey: "planPsychologist", color: "#BF5AF2", icon: "🎓" },
+  psychologist: { labelKey: "planPsychologist", color: "#C084FC", icon: "🎓" },
+};
+
+const INTL_LOCALES: Record<string, string> = {
+  fr: "fr-FR",
+  en: "en-US",
+  es: "es-ES",
 };
 
 function getMotivationalMessage(t: (k: string) => string, streak: number): string {
@@ -84,8 +92,10 @@ export function DashboardScreen() {
     unlockedRanks, unlockRank, setPlan, notifications,
     lastCheckInDate, currency,
     completeDailyChallenge, challengeCompletedDate, challengeStreak,
+    journalEntries, xp, level,
   } = useStore();
   const t = useT();
+  const lang = useLanguage();
   const currencyInfo = getCurrency(currency);
 
   const [relapseOpen, setRelapseOpen] = useState(false);
@@ -115,6 +125,8 @@ export function DashboardScreen() {
   const [notifOpen, setNotifOpen] = useState(false);
   // Global search modal state
   const [searchOpen, setSearchOpen] = useState(false);
+  // Zerobet 2.0.8 — journey card share modal state
+  const [journeyOpen, setJourneyOpen] = useState(false);
 
   // Admin mode detection (4 taps on logo)
   const tapCountRef = useRef(0);
@@ -151,6 +163,33 @@ export function DashboardScreen() {
   const motivationalMessage = getMotivationalMessage(t, effectiveStreak);
   const displayName = name || "champion";
 
+  // Zerobet 2.0.8 — data for the shareable journey card
+  const journeyData = useMemo<JourneyCardData>(() => {
+    const fmt = new Intl.NumberFormat(INTL_LOCALES[lang] ?? "fr-FR");
+    const saved = Math.round(totalSaved * currencyInfo.rateFromFCFA);
+    const savedValue =
+      currencyInfo.position === "before"
+        ? `${currencyInfo.symbol} ${fmt.format(saved)}`
+        : `${fmt.format(saved)} ${currencyInfo.symbol}`;
+    return {
+      days: effectiveStreak,
+      headerLabel: t("journeyCardHeader"),
+      daysLabel: t("journeyCardDaysLabel"),
+      savedLine: t("journeyCardSavedLine", { n: savedValue }),
+      accent: currentRank.color,
+      stats: [
+        { emoji: "🏅", label: t("journeyStatRank"), value: t(currentRank.nameKey) },
+        {
+          emoji: "⚡",
+          label: t("journeyStatLevel"),
+          value: t("journeyStatLevelValue", { level: String(level), xp: fmt.format(xp) }),
+        },
+        { emoji: "📖", label: t("journeyStatJournal"), value: t("journeyStatJournalValue", { n: journalEntries.length }) },
+      ],
+      tagline: t("journeyCardTagline"),
+    };
+  }, [effectiveStreak, totalSaved, currencyInfo, currentRank, level, xp, journalEntries.length, t, lang]);
+
   const handleRefresh = async () => {
     setRefreshing(true);
     // Simulate a brief data refresh (no remote source). The component
@@ -162,25 +201,25 @@ export function DashboardScreen() {
   const quickActions = [
     { icon: Zap, labelKey: "qaPanic", color: "#FF3B30", screen: "panic" as const, premium: false },
     { icon: Gamepad2, labelKey: "qaQuests", color: "#FBBF24", screen: "gamification" as const, premium: false },
-    { icon: BookOpen, labelKey: "qaJournal", color: "#64D2FF", screen: "journal" as const, premium: false },
+    { icon: BookOpen, labelKey: "qaJournal", color: "#2DD4BF", screen: "journal" as const, premium: false },
     { icon: Wallet, labelKey: "qaSavings", color: "#4ADE80", screen: "finance" as const, premium: false },
-    { icon: BarChart3, labelKey: "qaStats", color: "#64D2FF", screen: "stats" as const, premium: false },
-    { icon: Wind, labelKey: "qaMeditation", color: "#64D2FF", screen: "meditation" as const, premium: false },
-    { icon: Bot, labelKey: "qaAtlas", color: "#BF5AF2", screen: "atlas" as const, premium: false },
+    { icon: BarChart3, labelKey: "qaStats", color: "#2DD4BF", screen: "stats" as const, premium: false },
+    { icon: Wind, labelKey: "qaMeditation", color: "#2DD4BF", screen: "meditation" as const, premium: false },
+    { icon: Bot, labelKey: "qaAtlas", color: "#C084FC", screen: "atlas" as const, premium: false },
     { icon: Shield, labelKey: "qaBlocker", color: "#FBBF24", screen: "blocker" as const, premium: true },
-    { icon: Users, labelKey: "qaCommunity", color: "#FF9500", screen: "community" as const, premium: false },
+    { icon: Users, labelKey: "qaCommunity", color: "#F59E0B", screen: "community" as const, premium: false },
     { icon: MessageCircle, labelKey: "qaChat", color: "#4ADE80", screen: "community-chat" as const, premium: false },
     { icon: Trophy, labelKey: "qaTrophies", color: "#FBBF24", screen: "achievements" as const, premium: false },
-    { icon: BookOpen, labelKey: "qaResources", color: "#BF5AF2", screen: "resources" as const, premium: false },
-    { icon: User, labelKey: "qaProfile", color: "#BF5AF2", screen: "profile" as const, premium: false },
+    { icon: BookOpen, labelKey: "qaResources", color: "#C084FC", screen: "resources" as const, premium: false },
+    { icon: User, labelKey: "qaProfile", color: "#C084FC", screen: "profile" as const, premium: false },
     { icon: Phone, labelKey: "qaSOS", color: "#FF3B30", screen: "sos" as const, premium: false },
-    { icon: Calendar, labelKey: "qaCalendar", color: "#FF9500", screen: "calendar" as const, premium: false },
-    { icon: HelpCircle, labelKey: "qaHelp", color: "#64D2FF", screen: "support" as const, premium: false },
+    { icon: Calendar, labelKey: "qaCalendar", color: "#F59E0B", screen: "calendar" as const, premium: false },
+    { icon: HelpCircle, labelKey: "qaHelp", color: "#2DD4BF", screen: "support" as const, premium: false },
     { icon: Target, labelKey: "qaProgram", color: "#4ADE80", screen: "program" as const, premium: false },
     { icon: Users, labelKey: "qaMentor", color: "#4ADE80", screen: "mentorship" as const, premium: false },
-    { icon: Target, labelKey: "qaGoals", color: "#FF9500", screen: "goals" as const, premium: false },
-    { icon: Sparkles, labelKey: "qaAffirmations", color: "#BF5AF2", screen: "affirmations" as const, premium: false },
-    { icon: Activity, labelKey: "qaWithdrawal", color: "#BF5AF2", screen: "withdrawal" as const, premium: false },
+    { icon: Target, labelKey: "qaGoals", color: "#F59E0B", screen: "goals" as const, premium: false },
+    { icon: Sparkles, labelKey: "qaAffirmations", color: "#C084FC", screen: "affirmations" as const, premium: false },
+    { icon: Activity, labelKey: "qaWithdrawal", color: "#C084FC", screen: "withdrawal" as const, premium: false },
     { icon: ScanSearch, labelKey: "qaTriggers", color: "#FF6B6B", screen: "triggers" as const, premium: false },
     { icon: HeartPulse, labelKey: "qaRelapse", color: "#FF3B30", screen: "relapse-recovery" as const, premium: false },
     { icon: Bell, labelKey: "qaNotifications", color: "#FBBF24", screen: "notifications" as const, premium: false },
@@ -197,6 +236,7 @@ export function DashboardScreen() {
       {/* Achievement Unlock Popup */}
       <AchievementPopup />
       <MilestoneCelebration />
+      <JourneyShareModal open={journeyOpen} onClose={() => setJourneyOpen(false)} data={journeyData} />
 
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
@@ -257,13 +297,13 @@ export function DashboardScreen() {
       </div>
 
       <PullToRefresh onRefresh={handleRefresh} isRefreshing={refreshing}>
-      {/* Motivational Hero Section */}
+      {/* Motivational Hero Section — "Aube Émeraude" aurora */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="relative overflow-hidden rounded-3xl mb-4 p-5"
         style={{
-          background: "linear-gradient(135deg, rgba(255,59,48,0.25) 0%, rgba(255,149,0,0.2) 50%, rgba(191,90,242,0.15) 100%)",
+          background: "linear-gradient(135deg, rgba(16,185,129,0.22) 0%, rgba(245,158,11,0.16) 50%, rgba(45,212,191,0.14) 100%)",
         }}
       >
         {/* Animated gradient background */}
@@ -271,9 +311,9 @@ export function DashboardScreen() {
           <motion.div
             animate={{
               background: [
-                "linear-gradient(135deg, rgba(255,59,48,0.3) 0%, rgba(255,149,0,0.15) 50%, rgba(74,222,128,0.1) 100%)",
-                "linear-gradient(135deg, rgba(74,222,128,0.2) 0%, rgba(255,149,0,0.25) 50%, rgba(255,59,48,0.15) 100%)",
-                "linear-gradient(135deg, rgba(255,59,48,0.3) 0%, rgba(255,149,0,0.15) 50%, rgba(74,222,128,0.1) 100%)",
+                "linear-gradient(135deg, rgba(16,185,129,0.28) 0%, rgba(245,158,11,0.12) 50%, rgba(45,212,191,0.10) 100%)",
+                "linear-gradient(135deg, rgba(45,212,191,0.22) 0%, rgba(16,185,129,0.16) 50%, rgba(245,158,11,0.12) 100%)",
+                "linear-gradient(135deg, rgba(16,185,129,0.28) 0%, rgba(245,158,11,0.12) 50%, rgba(45,212,191,0.10) 100%)",
               ],
             }}
             transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
@@ -282,8 +322,8 @@ export function DashboardScreen() {
         </div>
 
         {/* Decorative blurs */}
-        <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full bg-[#FF3B30]/20 blur-3xl" />
-        <div className="absolute -bottom-8 -left-8 w-32 h-32 rounded-full bg-[#FF9500]/15 blur-3xl" />
+        <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full bg-[#10B981]/25 blur-3xl" />
+        <div className="absolute -bottom-8 -left-8 w-32 h-32 rounded-full bg-[#F59E0B]/15 blur-3xl" />
 
         <div className="relative flex items-center justify-between">
           <div className="flex-1 pr-3">
@@ -331,8 +371,22 @@ export function DashboardScreen() {
         data-tutorial="streak"
       >
         {/* Decorative glow */}
-        <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-[#FF3B30]/20 blur-3xl" />
-        <div className="absolute -bottom-10 -left-10 w-40 h-40 rounded-full bg-[#FF9500]/15 blur-3xl" />
+        <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-[#10B981]/20 blur-3xl" />
+        <div className="absolute -bottom-10 -left-10 w-40 h-40 rounded-full bg-[#F59E0B]/15 blur-3xl" />
+
+        {/* Zerobet 2.0.8 — share journey card button */}
+        <button
+          onClick={() => {
+            sound.playClick();
+            haptics.light();
+            setJourneyOpen(true);
+          }}
+          className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-white/8 border border-white/10 flex items-center justify-center text-[#2DD4BF] hover:bg-white/15 hover:scale-105 transition-all active:scale-90"
+          aria-label={t("journeyCardBtn")}
+          title={t("journeyCardBtn")}
+        >
+          <Share2 size={15} />
+        </button>
 
         <div className="relative flex items-center justify-between">
           <div>
@@ -432,9 +486,9 @@ export function DashboardScreen() {
         animate={{ opacity: 1, y: 0 }}
         className="glass-card card-hover p-4 mb-4 relative overflow-hidden"
       >
-        <div className="absolute -top-4 -left-2 text-6xl text-[#FF9500]/20 font-serif">"</div>
+        <div className="absolute -top-4 -left-2 text-6xl text-[#F59E0B]/20 font-serif">"</div>
         <div className="relative flex items-start gap-3">
-          <Quote size={16} className="text-[#FF9500] mt-1 flex-shrink-0" />
+          <Quote size={16} className="text-[#F59E0B] mt-1 flex-shrink-0" />
           <div>
             <p className="text-white text-sm leading-relaxed italic">{t(quote.textKey)}</p>
             <p className="text-white/40 text-xs mt-1.5">— {t(quote.authorKey)}</p>
@@ -702,7 +756,7 @@ function AdminPanel({
       >
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
-            <SettingsIcon size={18} className="text-[#FF9500]" />
+            <SettingsIcon size={18} className="text-[#F59E0B]" />
             <h3 className="text-lg font-bold text-white">Panneau Admin</h3>
           </div>
           <button onClick={onClose} className="text-white/50 text-sm">Fermer</button>

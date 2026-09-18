@@ -32,7 +32,7 @@ export const SYMPTOM_CATEGORIES: SymptomCategory[] = [
     key: "mental",
     labelKey: "symptomCatMentalLabel",
     icon: "🧠",
-    color: "#BF5AF2",
+    color: "#C084FC",
     symptomKeys: [
       "symptomMental1",
       "symptomMental2",
@@ -46,7 +46,7 @@ export const SYMPTOM_CATEGORIES: SymptomCategory[] = [
     key: "social",
     labelKey: "symptomCatSocialLabel",
     icon: "👥",
-    color: "#64D2FF",
+    color: "#2DD4BF",
     symptomKeys: [
       "symptomSocial1",
       "symptomSocial2",
@@ -174,7 +174,7 @@ export const PLAN_OPTIONS: PlanOption[] = [
     monthlyPrice: 12000,
     annualPrice: 120000,
     color: "#FF3B30",
-    gradient: "linear-gradient(135deg, #FF3B30 0%, #FF9500 100%)",
+    gradient: "linear-gradient(135deg, #FF3B30 0%, #F59E0B 100%)",
     icon: "⭐",
     popular: true,
     features: [
@@ -215,7 +215,7 @@ export const PLAN_OPTIONS: PlanOption[] = [
     monthlyPrice: 20000,
     annualPrice: 200000,
     color: "#4ADE80",
-    gradient: "linear-gradient(135deg, #4ADE80 0%, #22D3EE 100%)",
+    gradient: "linear-gradient(135deg, #4ADE80 0%, #2DD4BF 100%)",
     icon: "🛡️",
     features: [
       "Tout le plan Premium",
@@ -247,8 +247,8 @@ export const PLAN_OPTIONS: PlanOption[] = [
     // and customization — designed for certified therapists.
     monthlyPrice: 40000,
     annualPrice: 400000,
-    color: "#BF5AF2",
-    gradient: "linear-gradient(135deg, #BF5AF2 0%, #5E5CE6 100%)",
+    color: "#C084FC",
+    gradient: "linear-gradient(135deg, #C084FC 0%, #2DD4BF 100%)",
     icon: "🎓",
     features: [
       "Tout le plan Premium",

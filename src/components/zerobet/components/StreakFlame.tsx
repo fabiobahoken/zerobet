@@ -31,7 +31,7 @@ function getFlameColor(days: number): {
   strong: boolean;
 } {
   if (days <= 0) return { flame: "#6B7280", glow: "rgba(107,114,128,0)", strong: false };
-  if (days < 7) return { flame: "#FF9500", glow: "rgba(255,149,0,0.55)", strong: false };
+  if (days < 7) return { flame: "#F59E0B", glow: "rgba(245, 158, 11,0.55)", strong: false };
   if (days < 30) return { flame: "#FF3B30", glow: "rgba(255,59,48,0.65)", strong: true };
   // 30+ days — gold with extra-strong glow
   return { flame: "#FFD700", glow: "rgba(255,215,0,0.8)", strong: true };

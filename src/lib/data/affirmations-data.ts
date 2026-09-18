@@ -27,9 +27,9 @@ export const CATEGORY_META: Record<
   morning: {
     label: "Matin",
     emoji: "🌅",
-    color: "#FF9500",
+    color: "#F59E0B",
     description: "Pour démarrer la journée du bon pied",
-    gradient: "linear-gradient(135deg, #FF9500 0%, #FBBF24 100%)",
+    gradient: "linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%)",
   },
   crisis: {
     label: "Crise",
@@ -41,30 +41,30 @@ export const CATEGORY_META: Record<
   "self-worth": {
     label: "Valeur personnelle",
     emoji: "💎",
-    color: "#BF5AF2",
+    color: "#C084FC",
     description: "Te rappeler qui tu es",
-    gradient: "linear-gradient(135deg, #BF5AF2 0%, #FF2D55 100%)",
+    gradient: "linear-gradient(135deg, #C084FC 0%, #FF2D55 100%)",
   },
   future: {
     label: "Avenir",
     emoji: "🚀",
-    color: "#64D2FF",
+    color: "#2DD4BF",
     description: "Visualiser la vie que tu construis",
-    gradient: "linear-gradient(135deg, #64D2FF 0%, #5E5CE6 100%)",
+    gradient: "linear-gradient(135deg, #2DD4BF 0%, #2DD4BF 100%)",
   },
   gratitude: {
     label: "Gratitude",
     emoji: "🙏",
     color: "#4ADE80",
     description: "Reconnaître le positif",
-    gradient: "linear-gradient(135deg, #4ADE80 0%, #22D3EE 100%)",
+    gradient: "linear-gradient(135deg, #4ADE80 0%, #2DD4BF 100%)",
   },
   strength: {
     label: "Force",
     emoji: "💪",
     color: "#FBBF24",
     description: "Puiser dans ta puissance",
-    gradient: "linear-gradient(135deg, #FBBF24 0%, #FF9500 100%)",
+    gradient: "linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%)",
   },
 };
 

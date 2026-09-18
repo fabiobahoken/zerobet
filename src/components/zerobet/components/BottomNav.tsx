@@ -62,7 +62,7 @@ export function BottomNav() {
                     className="absolute -top-1 left-1/2 -translate-x-1/2 h-1 w-8 rounded-full gradient-primary glow-orange"
                     style={{
                       boxShadow:
-                        "0 0 8px rgba(255,149,0,0.8), 0 0 16px rgba(255,59,48,0.5)",
+                        "0 0 8px rgba(245, 158, 11,0.8), 0 0 16px rgba(255,59,48,0.5)",
                     }}
                     transition={{ type: "spring", stiffness: 400, damping: 30 }}
                   />
@@ -94,27 +94,27 @@ export function BottomNav() {
                     isActive
                       ? {
                           filter:
-                            "drop-shadow(0 0 8px rgba(255,149,0,0.6))",
+                            "drop-shadow(0 0 8px rgba(245, 158, 11,0.6))",
                         }
                       : undefined
                   }
                 >
                   <Icon
                     size={22}
-                    className={isActive ? "text-[#FF9500]" : "text-white/50"}
+                    className={isActive ? "text-[#F59E0B]" : "text-white/50"}
                     strokeWidth={isActive ? 2.5 : 2}
                   />
                 </motion.div>
                 <span
                   className={`text-[10px] mt-0.5 relative z-10 font-medium transition-colors ${
                     isActive
-                      ? "text-[#FF9500]"
+                      ? "text-[#F59E0B]"
                       : "text-white/40"
                   }`}
                   style={
                     isActive
                       ? {
-                          textShadow: "0 0 8px rgba(255,149,0,0.5)",
+                          textShadow: "0 0 8px rgba(245, 158, 11,0.5)",
                         }
                       : undefined
                   }

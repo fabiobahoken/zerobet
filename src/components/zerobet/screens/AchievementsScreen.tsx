@@ -67,7 +67,7 @@ export const SPECIAL_ACHIEVEMENTS: SpecialAchievement[] = [
     name: "Respirateur",
     description: "Utilise le bouton d'urgence 5 fois",
     icon: "🫁",
-    color: "#64D2FF",
+    color: "#2DD4BF",
     target: 5,
     getCurrent: (c) => c.panicEventsCount,
   },
@@ -76,7 +76,7 @@ export const SPECIAL_ACHIEVEMENTS: SpecialAchievement[] = [
     name: "Écrivain",
     description: "Écris 10 entrées dans ton journal",
     icon: "✍️",
-    color: "#BF5AF2",
+    color: "#C084FC",
     target: 10,
     getCurrent: (c) => c.journalCount,
   },
@@ -94,7 +94,7 @@ export const SPECIAL_ACHIEVEMENTS: SpecialAchievement[] = [
     name: "Méditant",
     description: "7 jours de méditation d'affilée",
     icon: "🧘",
-    color: "#FF9500",
+    color: "#F59E0B",
     target: 7,
     getCurrent: (c) => c.meditationStreak,
   },
@@ -112,7 +112,7 @@ export const SPECIAL_ACHIEVEMENTS: SpecialAchievement[] = [
     name: "Sociable",
     description: "Partage 5 témoignages",
     icon: "💬",
-    color: "#22D3EE",
+    color: "#2DD4BF",
     target: 5,
     getCurrent: (c) => c.testimonialsCount,
   },
@@ -148,7 +148,7 @@ export const SPECIAL_ACHIEVEMENTS: SpecialAchievement[] = [
     name: "Érudit",
     description: "Lis 20 articles",
     icon: "📚",
-    color: "#5E5CE6",
+    color: "#2DD4BF",
     target: 20,
     getCurrent: (c) => c.articlesRead,
   },
@@ -157,7 +157,7 @@ export const SPECIAL_ACHIEVEMENTS: SpecialAchievement[] = [
     name: "Zen Master",
     description: "30 jours de méditation d'affilée",
     icon: "🧘‍♂️",
-    color: "#BF5AF2",
+    color: "#C084FC",
     target: 30,
     getCurrent: (c) => c.meditationStreak,
   },
@@ -221,8 +221,8 @@ const TIER_META: Record<ExcludedTierKey, { label: string; color: string }> = {
   bronze: { label: "Bronze", color: "#CD7F32" },
   silver: { label: "Argent", color: "#C0C0C0" },
   gold: { label: "Or", color: "#FFD700" },
-  diamond: { label: "Diamant", color: "#64D2FF" },
-  legendary: { label: "Légende", color: "#BF5AF2" },
+  diamond: { label: "Diamant", color: "#2DD4BF" },
+  legendary: { label: "Légende", color: "#C084FC" },
 };
 
 function getTierForTarget(target: number): ExcludedTierKey {
@@ -650,7 +650,7 @@ export function AchievementsScreen() {
       value: `${unlockedRanksCount}`,
       suffix: "/13",
       icon: Trophy,
-      gradient: "linear-gradient(135deg, #FBBF24 0%, #FF9500 100%)",
+      gradient: "linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%)",
       glow: "rgba(251, 191, 36, 0.5)",
     },
     {
@@ -658,7 +658,7 @@ export function AchievementsScreen() {
       value: `${effectiveStreak}`,
       suffix: "",
       icon: Flame,
-      gradient: "linear-gradient(135deg, #FF3B30 0%, #FF9500 100%)",
+      gradient: "linear-gradient(135deg, #FF3B30 0%, #F59E0B 100%)",
       glow: "rgba(255, 59, 48, 0.5)",
     },
     {
@@ -666,8 +666,8 @@ export function AchievementsScreen() {
       value: `${meditationStreak}`,
       suffix: "j",
       icon: Wind,
-      gradient: "linear-gradient(135deg, #64D2FF 0%, #5E5CE6 100%)",
-      glow: "rgba(100, 210, 255, 0.5)",
+      gradient: "linear-gradient(135deg, #2DD4BF 0%, #2DD4BF 100%)",
+      glow: "rgba(45, 212, 191, 0.5)",
     },
   ];
 
@@ -724,14 +724,14 @@ export function AchievementsScreen() {
               style={{ opacity: 0.15 }}
             />
             <Star
-              className="absolute bottom-8 left-3 text-[#FF9500] float-slow pointer-events-none"
+              className="absolute bottom-8 left-3 text-[#F59E0B] float-slow pointer-events-none"
               size={20}
               strokeWidth={1.5}
               aria-hidden
               style={{ opacity: 0.15 }}
             />
             <Award
-              className="absolute top-1/2 right-10 text-[#BF5AF2] float pointer-events-none"
+              className="absolute top-1/2 right-10 text-[#C084FC] float pointer-events-none"
               size={22}
               strokeWidth={1.5}
               aria-hidden
@@ -848,7 +848,7 @@ export function AchievementsScreen() {
         <motion.div variants={itemVariants}>
           <div className="flex items-center justify-between mb-3 px-1">
             <div className="flex items-center gap-2">
-              <Sparkles size={14} className="text-[#BF5AF2]" />
+              <Sparkles size={14} className="text-[#C084FC]" />
               <h2 className="text-xs font-bold text-white/80 uppercase tracking-[0.12em]">
                 Exploits spéciaux
               </h2>
@@ -864,7 +864,7 @@ export function AchievementsScreen() {
               <TierTab
                 active={activeTier === "all"}
                 label="Tous"
-                color="#FF9500"
+                color="#F59E0B"
                 count={computedAchievements.length}
                 onClick={() => setActiveTier("all")}
               />
@@ -959,7 +959,7 @@ export function AchievementsScreen() {
         {nextGoals.length > 0 && (
           <motion.div variants={itemVariants} className="glass-card p-4">
             <div className="flex items-center gap-2 mb-3">
-              <TrendingUp size={14} className="text-[#FF9500]" />
+              <TrendingUp size={14} className="text-[#F59E0B]" />
               <h2 className="text-xs font-bold text-white/80 uppercase tracking-[0.12em]">
                 Tes prochains défis
               </h2>
@@ -1108,7 +1108,7 @@ function RankTimelineNode({
             style={{
               background:
                 isUnlocked && nextUnlocked
-                  ? "linear-gradient(90deg, #FF3B30, #FF9500, #FBBF24)"
+                  ? "linear-gradient(90deg, #FF3B30, #F59E0B, #FBBF24)"
                   : "rgba(255,255,255,0.1)",
             }}
             initial={{ width: isUnlocked && nextUnlocked ? "0%" : "100%" }}

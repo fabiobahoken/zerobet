@@ -8,9 +8,9 @@ import { OnboardingProgress } from "@/components/zerobet/components/OnboardingPr
 import { useT } from "@/lib/i18n/useT";
 
 const LEVEL_CONFIG = {
-  faible: { labelKey: "resultsLevelLow", messageKey: "resultsMessageLow", color: "#4ADE80", gradient: "linear-gradient(135deg, #4ADE80 0%, #22D3EE 100%)", glow: "glow-green" },
+  faible: { labelKey: "resultsLevelLow", messageKey: "resultsMessageLow", color: "#4ADE80", gradient: "linear-gradient(135deg, #4ADE80 0%, #2DD4BF 100%)", glow: "glow-green" },
   modere: { labelKey: "resultsLevelModerate", messageKey: "resultsMessageModerate", color: "#FBBF24", gradient: "linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%)", glow: "glow-yellow" },
-  severe: { labelKey: "resultsLevelSevere", messageKey: "resultsMessageSevere", color: "#FF9500", gradient: "linear-gradient(135deg, #FF9500 0%, #FF3B30 100%)", glow: "glow-orange" },
+  severe: { labelKey: "resultsLevelSevere", messageKey: "resultsMessageSevere", color: "#F59E0B", gradient: "linear-gradient(135deg, #F59E0B 0%, #FF3B30 100%)", glow: "glow-orange" },
   critique: { labelKey: "resultsLevelCritical", messageKey: "resultsMessageCritical", color: "#FF3B30", gradient: "linear-gradient(135deg, #FF3B30 0%, #8B0000 100%)", glow: "glow-red" },
 };
 
@@ -69,7 +69,7 @@ export function ResultsScreen() {
             <defs>
               <linearGradient id="score-grad" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stopColor={config.color} />
-                <stop offset="100%" stopColor="#FF9500" />
+                <stop offset="100%" stopColor="#F59E0B" />
               </linearGradient>
             </defs>
             {/* Background circle */}
@@ -125,7 +125,7 @@ export function ResultsScreen() {
         className="glass-card p-4 mb-4 flex items-center gap-3"
       >
         <div className="w-10 h-10 rounded-full glass-pill flex items-center justify-center">
-          <TrendingUp size={18} className="text-[#FF9500]" />
+          <TrendingUp size={18} className="text-[#F59E0B]" />
         </div>
         <div className="flex-1">
           {(() => {
@@ -134,7 +134,7 @@ export function ResultsScreen() {
             return (
               <p className="text-white text-sm font-medium">
                 {before}
-                <span className="text-[#FF9500] font-bold">{animatedPercentile}</span>
+                <span className="text-[#F59E0B] font-bold">{animatedPercentile}</span>
                 {after}
               </p>
             );

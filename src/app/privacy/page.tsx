@@ -7,7 +7,7 @@ import { useT } from "@/lib/i18n/useT";
 
 export default function PrivacyPage() {
   const t = useT();
-  const accent = "#FF9500";
+  const accent = "#F59E0B";
 
   return (
     <LegalLayout
@@ -18,7 +18,7 @@ export default function PrivacyPage() {
     >
       <LegalSection titleKey="privacySection1Title">
         <p className="flex items-start gap-2">
-          <Lock size={14} className="text-[#FF9500] mt-1 flex-shrink-0" />
+          <Lock size={14} className="text-[#F59E0B] mt-1 flex-shrink-0" />
           <span>{t("privacySection1Body1")}</span>
         </p>
         <p>{t("privacySection1Body2")}</p>
@@ -32,7 +32,7 @@ export default function PrivacyPage() {
 
       <LegalSection titleKey="privacySection2Title">
         <p className="flex items-start gap-2">
-          <Database size={14} className="text-[#64D2FF] mt-1 flex-shrink-0" />
+          <Database size={14} className="text-[#2DD4BF] mt-1 flex-shrink-0" />
           <span>{t("privacySection2Body1")}</span>
         </p>
         <p>{t("privacySection2Body2")}</p>
@@ -40,7 +40,7 @@ export default function PrivacyPage() {
 
       <LegalSection titleKey="privacySection3Title">
         <p className="flex items-start gap-2">
-          <Share2 size={14} className="text-[#BF5AF2] mt-1 flex-shrink-0" />
+          <Share2 size={14} className="text-[#C084FC] mt-1 flex-shrink-0" />
           <span>{t("privacySection3Body1")}</span>
         </p>
         <p>{t("privacySection3Body2")}</p>
@@ -77,7 +77,7 @@ export default function PrivacyPage() {
           whileTap={{ scale: 0.98 }}
           className="inline-flex items-center gap-2 mt-3 px-4 py-2.5 rounded-xl glass-card text-white text-sm font-semibold hover:bg-white/10 transition-colors"
         >
-          <Mail size={14} className="text-[#FF9500]" />
+          <Mail size={14} className="text-[#F59E0B]" />
           support@zerobet.app
         </motion.a>
       </LegalSection>

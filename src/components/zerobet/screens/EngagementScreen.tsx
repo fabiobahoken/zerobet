@@ -29,7 +29,7 @@ export function EngagementScreen() {
     // Set up canvas
     ctx.fillStyle = "rgba(255, 255, 255, 0.02)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.strokeStyle = "#FF9500";
+    ctx.strokeStyle = "#F59E0B";
     ctx.lineWidth = 3;
     ctx.lineCap = "round";
     ctx.lineJoin = "round";

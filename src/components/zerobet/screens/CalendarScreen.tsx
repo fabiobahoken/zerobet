@@ -54,13 +54,13 @@ function localeFor(lang: string): string {
 // milestones; milestones without a key (90 = 🔥, 365 = 🏆) keep their emoji.
 const MILESTONES = [
   { day: 1, labelKey: "calendarMilestone1Label", icon: "🌱", artifactKey: "jour-1", color: "#4ADE80", descKey: "calendarMilestone1Desc" },
-  { day: 3, labelKey: "calendarMilestone3Label", icon: "💧", artifactKey: "jour-3", color: "#22D3EE", descKey: "calendarMilestone3Desc" },
+  { day: 3, labelKey: "calendarMilestone3Label", icon: "💧", artifactKey: "jour-3", color: "#2DD4BF", descKey: "calendarMilestone3Desc" },
   { day: 7, labelKey: "calendarMilestone7Label", icon: "🥉", artifactKey: "jour-7", color: "#CD7F32", descKey: "calendarMilestone7Desc" },
   { day: 14, labelKey: "calendarMilestone14Label", icon: "🥈", artifactKey: "jour-14", color: "#C0C0C0", descKey: "calendarMilestone14Desc" },
   { day: 30, labelKey: "calendarMilestone30Label", icon: "🥇", artifactKey: "jour-30", color: "#FFD700", descKey: "calendarMilestone30Desc" },
-  { day: 60, labelKey: "calendarMilestone60Label", icon: "💎", artifactKey: "jour-60", color: "#64D2FF", descKey: "calendarMilestone60Desc" },
-  { day: 90, labelKey: "calendarMilestone90Label", icon: "🔥", color: "#BF5AF2", descKey: "calendarMilestone90Desc" },
-  { day: 180, labelKey: "calendarMilestone180Label", icon: "👑", artifactKey: "jour-365", color: "#FF9500", descKey: "calendarMilestone180Desc" },
+  { day: 60, labelKey: "calendarMilestone60Label", icon: "💎", artifactKey: "jour-60", color: "#2DD4BF", descKey: "calendarMilestone60Desc" },
+  { day: 90, labelKey: "calendarMilestone90Label", icon: "🔥", color: "#C084FC", descKey: "calendarMilestone90Desc" },
+  { day: 180, labelKey: "calendarMilestone180Label", icon: "👑", artifactKey: "jour-365", color: "#F59E0B", descKey: "calendarMilestone180Desc" },
   { day: 365, labelKey: "calendarMilestone365Label", icon: "🏆", color: "#FF3B30", descKey: "calendarMilestone365Desc" },
 ];
 
@@ -411,7 +411,7 @@ export function CalendarScreen() {
           </div>
         </div>
         <div className="w-10 h-10 rounded-full glass-card flex items-center justify-center" aria-hidden>
-          <CalendarIcon size={18} className="text-[#FF9500]" />
+          <CalendarIcon size={18} className="text-[#F59E0B]" />
         </div>
       </motion.div>
 
@@ -425,7 +425,7 @@ export function CalendarScreen() {
         {/* SECTION 1: Month Overview                                    */}
         {/* ============================================================ */}
         <motion.section variants={itemVariants} className="glass-card-strong p-5 relative overflow-hidden">
-          <div className="absolute -top-16 -right-16 w-44 h-44 rounded-full blur-3xl pointer-events-none bg-[#FF9500]/20" />
+          <div className="absolute -top-16 -right-16 w-44 h-44 rounded-full blur-3xl pointer-events-none bg-[#F59E0B]/20" />
           <div className="absolute -bottom-12 -left-12 w-32 h-32 rounded-full blur-3xl pointer-events-none bg-[#FF3B30]/15" />
 
           {/* Month nav */}
@@ -461,8 +461,8 @@ export function CalendarScreen() {
               transition={{ type: "spring", stiffness: 300, damping: 22 }}
               className="relative"
             >
-              <div className="absolute inset-0 blur-2xl bg-[#FF9500]/40 rounded-full" aria-hidden />
-              <Flame size={56} className="relative text-[#FF9500]" fill="currentColor" />
+              <div className="absolute inset-0 blur-2xl bg-[#F59E0B]/40 rounded-full" aria-hidden />
+              <Flame size={56} className="relative text-[#F59E0B]" fill="currentColor" />
             </motion.div>
             <p className="mt-1 text-4xl font-extrabold text-white font-[family-name:var(--font-poppins)] leading-none">
               {monthStats.noBetDays}
@@ -477,7 +477,7 @@ export function CalendarScreen() {
           </div>
 
           {/* Monthly savings */}
-          <div className="relative mt-4 flex items-center justify-center gap-2 px-4 py-2.5 rounded-2xl bg-gradient-to-r from-[#4ADE80]/15 to-[#22D3EE]/10 border border-[#4ADE80]/20">
+          <div className="relative mt-4 flex items-center justify-center gap-2 px-4 py-2.5 rounded-2xl bg-gradient-to-r from-[#4ADE80]/15 to-[#2DD4BF]/10 border border-[#4ADE80]/20">
             <Wallet size={14} className="text-[#4ADE80]" />
             <span className="text-white text-sm font-semibold">
               {monthStats.savings.toLocaleString(localeFor(language))} FCFA
@@ -544,14 +544,14 @@ export function CalendarScreen() {
         {/* SECTION 4: Streak Statistics                                 */}
         {/* ============================================================ */}
         <motion.section variants={itemVariants}>
-          <SectionTitle icon={<TrendingUp size={16} className="text-[#64D2FF]" />} label={t("calendarStatsTitle")} />
+          <SectionTitle icon={<TrendingUp size={16} className="text-[#2DD4BF]" />} label={t("calendarStatsTitle")} />
           <div className="grid grid-cols-2 gap-3">
             <StatCard
               label={t("calendarBestStreak")}
               value={`${allTimeStats.bestStreak}`}
               unit={t("calendarUnitDays")}
               icon={<Award size={18} className="text-[#FFD700]" />}
-              gradient="linear-gradient(135deg, #FFD700 0%, #FF9500 100%)"
+              gradient="linear-gradient(135deg, #FFD700 0%, #F59E0B 100%)"
               glow="rgba(255, 215, 0, 0.25)"
             />
             <StatCard
@@ -559,7 +559,7 @@ export function CalendarScreen() {
               value={`${allTimeStats.currentStreak}`}
               unit={t("calendarUnitDays")}
               icon={<Flame size={18} className="text-[#FF3B30]" />}
-              gradient="linear-gradient(135deg, #FF3B30 0%, #FF9500 100%)"
+              gradient="linear-gradient(135deg, #FF3B30 0%, #F59E0B 100%)"
               glow="rgba(255, 59, 48, 0.25)"
             />
             <StatCard
@@ -567,16 +567,16 @@ export function CalendarScreen() {
               value={`${allTimeStats.totalNoBetDays}`}
               unit={t("calendarUnitDays")}
               icon={<Target size={18} className="text-[#4ADE80]" />}
-              gradient="linear-gradient(135deg, #4ADE80 0%, #22D3EE 100%)"
+              gradient="linear-gradient(135deg, #4ADE80 0%, #2DD4BF 100%)"
               glow="rgba(74, 222, 128, 0.25)"
             />
             <StatCard
               label={t("calendarMonthlyAverage")}
               value={`${allTimeStats.monthlyAverage}`}
               unit={t("calendarUnitDaysPerMonth")}
-              icon={<BarChart3 size={18} className="text-[#BF5AF2]" />}
-              gradient="linear-gradient(135deg, #BF5AF2 0%, #5E5CE6 100%)"
-              glow="rgba(191, 90, 242, 0.25)"
+              icon={<BarChart3 size={18} className="text-[#C084FC]" />}
+              gradient="linear-gradient(135deg, #C084FC 0%, #2DD4BF 100%)"
+              glow="rgba(192, 132, 252, 0.25)"
             />
           </div>
         </motion.section>
@@ -593,7 +593,7 @@ export function CalendarScreen() {
             <div className="relative">
               {/* vertical line */}
               <div
-                className="absolute left-[19px] top-2 bottom-2 w-px bg-gradient-to-b from-[#FF9500]/40 via-white/10 to-transparent"
+                className="absolute left-[19px] top-2 bottom-2 w-px bg-gradient-to-b from-[#F59E0B]/40 via-white/10 to-transparent"
                 aria-hidden
               />
               <div className="space-y-3">
@@ -667,7 +667,7 @@ export function CalendarScreen() {
         {/* ============================================================ */}
         <motion.section variants={itemVariants}>
           <SectionTitle
-            icon={<BarChart3 size={16} className="text-[#FF9500]" />}
+            icon={<BarChart3 size={16} className="text-[#F59E0B]" />}
             label={`${t("calendarInsightsTitle")} — ${MONTH_NAMES[language]?.[viewMonth.getMonth()] ?? MONTH_NAMES.fr[viewMonth.getMonth()]}`}
           />
           <div className="glass-card p-4">
@@ -687,13 +687,13 @@ export function CalendarScreen() {
               <InsightChip
                 label={t("calendarInsightJournalEntries")}
                 value={`${monthStats.journalDays}`}
-                color="#BF5AF2"
+                color="#C084FC"
                 icon={<BookOpen size={14} />}
               />
               <InsightChip
                 label={t("calendarInsightFcfASaved")}
                 value={monthStats.savings.toLocaleString(localeFor(language))}
-                color="#FF9500"
+                color="#F59E0B"
                 icon={<Wallet size={14} />}
               />
             </div>
@@ -723,7 +723,7 @@ export function CalendarScreen() {
                             ? "bg-[#FF3B30]/60"
                             : bar.value === 0
                               ? "bg-white/5"
-                              : "bg-gradient-to-t from-[#FF9500]/60 to-[#4ADE80]/60"
+                              : "bg-gradient-to-t from-[#F59E0B]/60 to-[#4ADE80]/60"
                         }`}
                         style={{ minHeight: bar.value > 0 ? 4 : 2 }}
                       />
@@ -830,14 +830,14 @@ function DayCell({ info, inViewMonth, onClick }: DayCellProps) {
       disabled={isFuture}
       className={`relative aspect-square flex flex-col items-center justify-center rounded-xl transition-all ${
         dimmed ? "opacity-30" : "active:scale-95 hover:bg-white/5"
-      } ${isToday ? "ring-2 ring-[#FF9500]/60 bg-[#FF9500]/10" : ""}`}
+      } ${isToday ? "ring-2 ring-[#F59E0B]/60 bg-[#F59E0B]/10" : ""}`}
       aria-label={`${date.getDate()} ${date.toLocaleDateString(localeFor(language), { month: "long" })}`}
     >
       {/* Pulsing aura for today */}
       {isToday && (
         <motion.span
           className="absolute inset-0 rounded-xl"
-          style={{ boxShadow: "0 0 16px rgba(255, 149, 0, 0.6)" }}
+          style={{ boxShadow: "0 0 16px rgba(245, 158, 11, 0.6)" }}
           animate={{ opacity: [0.4, 0.9, 0.4] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           aria-hidden
@@ -846,7 +846,7 @@ function DayCell({ info, inViewMonth, onClick }: DayCellProps) {
 
       <span
         className={`text-xs font-semibold leading-none ${
-          isToday ? "text-[#FF9500]" : inViewMonth ? "text-white/90" : "text-white/30"
+          isToday ? "text-[#F59E0B]" : inViewMonth ? "text-white/90" : "text-white/30"
         }`}
       >
         {date.getDate()}
@@ -1045,7 +1045,7 @@ function DayDetailModal({
         {/* Detail rows */}
         <div className="space-y-2.5 relative">
           <DetailRow
-            icon={<Flame size={14} className="text-[#FF9500]" />}
+            icon={<Flame size={14} className="text-[#F59E0B]" />}
             label={t("calendarStreakThatDay")}
             value={info.streakDay > 0 ? t("calendarDaysCount", { n: info.streakDay }) : "—"}
           />
@@ -1054,7 +1054,7 @@ function DayDetailModal({
             <div className="rounded-2xl bg-white/5 border border-white/5 p-3">
               <div className="flex items-center justify-between mb-1.5">
                 <span className="flex items-center gap-1.5 text-xs text-white/60">
-                  <BookOpen size={12} className="text-[#BF5AF2]" /> {t("calendarEmotion")}
+                  <BookOpen size={12} className="text-[#C084FC]" /> {t("calendarEmotion")}
                 </span>
                 <span className="text-xs text-white/80">
                   {EMOTION_EMOJI[info.journalEntry.emotion]} {t(EMOTION_LABEL_KEYS[info.journalEntry.emotion])}
@@ -1074,7 +1074,7 @@ function DayDetailModal({
           )}
 
           <DetailRow
-            icon={<Wind size={14} className={info.meditationDone ? "text-[#64D2FF]" : "text-white/40"} />}
+            icon={<Wind size={14} className={info.meditationDone ? "text-[#2DD4BF]" : "text-white/40"} />}
             label={t("calendarMeditation")}
             value={info.meditationDone ? t("calendarCompleted") : t("calendarNotDone")}
             muted={!info.meditationDone}
@@ -1103,7 +1103,7 @@ function DayDetailModal({
             onChange={(e) => setNoteText(e.target.value)}
             placeholder={t("calendarNotePlaceholder")}
             maxLength={500}
-            className="bg-white/5 border-white/10 text-white placeholder:text-white/30 rounded-xl text-sm min-h-[72px] resize-none focus-visible:border-[#FF9500]/60 focus-visible:ring-[#FF9500]/20"
+            className="bg-white/5 border-white/10 text-white placeholder:text-white/30 rounded-xl text-sm min-h-[72px] resize-none focus-visible:border-[#F59E0B]/60 focus-visible:ring-[#F59E0B]/20"
           />
           <motion.button
             whileTap={{ scale: 0.98 }}

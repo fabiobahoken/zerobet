@@ -79,7 +79,7 @@ const SAVING_CATEGORIES: SavingCategory[] = [
     key: "epargne",
     nameKey: "financeCategorySavings",
     percent: 30,
-    color: "#64D2FF",
+    color: "#2DD4BF",
     descKey: "financeSavingCatSavingsDesc",
     icon: "🏦",
   },
@@ -87,7 +87,7 @@ const SAVING_CATEGORIES: SavingCategory[] = [
     key: "investissement",
     nameKey: "financeCategoryInvestment",
     percent: 15,
-    color: "#BF5AF2",
+    color: "#C084FC",
     descKey: "financeSavingCatInvestmentDesc",
     icon: "📈",
   },
@@ -95,7 +95,7 @@ const SAVING_CATEGORIES: SavingCategory[] = [
     key: "plaisirs",
     nameKey: "financeCategoryPleasures",
     percent: 5,
-    color: "#FF9500",
+    color: "#F59E0B",
     descKey: "financeSavingCatPleasuresDesc",
     icon: "🎨",
   },
@@ -122,7 +122,7 @@ const EDUCATION_TIPS: EducationTip[] = [
   {
     id: "emergency-fund",
     icon: "🛟",
-    color: "#64D2FF",
+    color: "#2DD4BF",
     titleKey: "financeTip2Title",
     shortKey: "financeTip2Short",
     detailsKey: "financeTip2Details",
@@ -130,7 +130,7 @@ const EDUCATION_TIPS: EducationTip[] = [
   {
     id: "small-amounts",
     icon: "💧",
-    color: "#BF5AF2",
+    color: "#C084FC",
     titleKey: "financeTip3Title",
     shortKey: "financeTip3Short",
     detailsKey: "financeTip3Details",
@@ -138,7 +138,7 @@ const EDUCATION_TIPS: EducationTip[] = [
   {
     id: "mobile-money",
     icon: "📲",
-    color: "#FF9500",
+    color: "#F59E0B",
     titleKey: "financeTip4Title",
     shortKey: "financeTip4Short",
     detailsKey: "financeTip4Details",
@@ -472,7 +472,7 @@ export function FinanceScreen() {
               </div>
               <span className="text-white/60 text-sm">{t("financeTotalSaved")}</span>
             </div>
-            <Flame size={16} className="text-[#FF9500]" />
+            <Flame size={16} className="text-[#F59E0B]" />
           </div>
           <motion.div
             key={totalSaved}
@@ -480,7 +480,7 @@ export function FinanceScreen() {
             animate={{ scale: 1, opacity: 1 }}
             className="text-4xl font-extrabold bg-clip-text text-transparent font-[family-name:var(--font-poppins)]"
             style={{
-              background: "linear-gradient(135deg, #4ADE80 0%, #22D3EE 100%)",
+              background: "linear-gradient(135deg, #4ADE80 0%, #2DD4BF 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
             }}
@@ -498,10 +498,10 @@ export function FinanceScreen() {
       <div className="glass-card card-hover p-4 mb-4">
         <div className="flex items-center justify-between mb-2">
           <label className="text-white/60 text-sm flex items-center gap-2">
-            <TrendingUp size={14} className="text-[#FF9500]" />
+            <TrendingUp size={14} className="text-[#F59E0B]" />
             {t("financeWeeklyBet")}
           </label>
-          <button onClick={() => (editBet ? setEditBet(false) : startEditBet())} className="text-[#FF9500] text-xs">
+          <button onClick={() => (editBet ? setEditBet(false) : startEditBet())} className="text-[#F59E0B] text-xs">
             {editBet ? t("cancel") : t("edit")}
           </button>
         </div>
@@ -540,7 +540,7 @@ export function FinanceScreen() {
       >
         <SectionTitle
           icon={Calendar}
-          iconColor="#64D2FF"
+          iconColor="#2DD4BF"
           title={t("financeProgress30Days")}
         />
         <div className="overflow-x-auto custom-scroll -mx-1 px-1">
@@ -568,7 +568,7 @@ export function FinanceScreen() {
                 </div>
                 <span
                   className={`text-[9px] ${
-                    d.isToday ? "text-[#FF9500] font-bold" : "text-white/40"
+                    d.isToday ? "text-[#F59E0B] font-bold" : "text-white/40"
                   }`}
                 >
                   J{d.day}
@@ -581,7 +581,7 @@ export function FinanceScreen() {
           <div className="mt-2 pt-2 border-t border-white/5 flex justify-between text-xs">
             <span className="text-white/40">
               {t("today")}:{" "}
-              <span className="text-[#FF9500] font-bold">
+              <span className="text-[#F59E0B] font-bold">
                 +{formatFCFA(dailySaved, language)}
               </span>{" "}
               FCFA
@@ -623,7 +623,7 @@ export function FinanceScreen() {
       >
         <SectionTitle
           icon={PieChartIcon}
-          iconColor="#BF5AF2"
+          iconColor="#C084FC"
           title={t("financeSavingsDistribution")}
           right={
             <span className="text-[10px] text-white/40">
@@ -732,7 +732,7 @@ export function FinanceScreen() {
           right={
             <button
               onClick={() => (editBudget ? setEditBudget(false) : startEditBudget())}
-              className="text-[#FF9500] text-xs"
+              className="text-[#F59E0B] text-xs"
             >
               {editBudget ? t("cancel") : t("edit")}
             </button>
@@ -753,19 +753,19 @@ export function FinanceScreen() {
               </div>
               <div className="flex justify-between text-xs">
                 <span className="text-white/60 flex items-center gap-1">
-                  <Home size={12} className="text-[#64D2FF]" /> {t("financeCategoryRent")}
+                  <Home size={12} className="text-[#2DD4BF]" /> {t("financeCategoryRent")}
                 </span>
                 <span className="text-white/70">{formatFCFA(weeklyExpenses.rent, language)}</span>
               </div>
               <div className="flex justify-between text-xs">
                 <span className="text-white/60 flex items-center gap-1">
-                  <Utensils size={12} className="text-[#FF9500]" /> {t("financeCategoryFood")}
+                  <Utensils size={12} className="text-[#F59E0B]" /> {t("financeCategoryFood")}
                 </span>
                 <span className="text-white/70">{formatFCFA(weeklyExpenses.food, language)}</span>
               </div>
               <div className="flex justify-between text-xs">
                 <span className="text-white/60 flex items-center gap-1">
-                  <Car size={12} className="text-[#BF5AF2]" /> {t("financeCategoryTransport")}
+                  <Car size={12} className="text-[#C084FC]" /> {t("financeCategoryTransport")}
                 </span>
                 <span className="text-white/70">{formatFCFA(weeklyExpenses.transport, language)}</span>
               </div>
@@ -782,21 +782,21 @@ export function FinanceScreen() {
               <div className="mb-3">
                 <div className="h-3 bg-white/10 rounded-full overflow-hidden flex">
                   <div
-                    className="bg-[#64D2FF]"
+                    className="bg-[#2DD4BF]"
                     style={{
                       width: `${Math.min(100, (weeklyExpenses.rent / weeklyIncome) * 100)}%`,
                     }}
                     title={t("financeCategoryRent")}
                   />
                   <div
-                    className="bg-[#FF9500]"
+                    className="bg-[#F59E0B]"
                     style={{
                       width: `${Math.min(100, (weeklyExpenses.food / weeklyIncome) * 100)}%`,
                     }}
                     title={t("financeCategoryFood")}
                   />
                   <div
-                    className="bg-[#BF5AF2]"
+                    className="bg-[#C084FC]"
                     style={{
                       width: `${Math.min(100, (weeklyExpenses.transport / weeklyIncome) * 100)}%`,
                     }}
@@ -862,37 +862,37 @@ export function FinanceScreen() {
             <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="text-white/60 text-xs flex items-center gap-1 mb-1">
-                  <Home size={12} className="text-[#64D2FF]" /> {t("financeCategoryRent")}
+                  <Home size={12} className="text-[#2DD4BF]" /> {t("financeCategoryRent")}
                 </label>
                 <input
                   type="number"
                   value={rentInput}
                   onChange={(e) => setRentInput(e.target.value)}
-                  className="w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#64D2FF]"
+                  className="w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#2DD4BF]"
                   placeholder="0"
                 />
               </div>
               <div>
                 <label className="text-white/60 text-xs flex items-center gap-1 mb-1">
-                  <Utensils size={12} className="text-[#FF9500]" /> {t("financeCategoryFood")}
+                  <Utensils size={12} className="text-[#F59E0B]" /> {t("financeCategoryFood")}
                 </label>
                 <input
                   type="number"
                   value={foodInput}
                   onChange={(e) => setFoodInput(e.target.value)}
-                  className="w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#FF9500]"
+                  className="w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#F59E0B]"
                   placeholder="0"
                 />
               </div>
               <div>
                 <label className="text-white/60 text-xs flex items-center gap-1 mb-1">
-                  <Car size={12} className="text-[#BF5AF2]" /> {t("financeCategoryTransport")}
+                  <Car size={12} className="text-[#C084FC]" /> {t("financeCategoryTransport")}
                 </label>
                 <input
                   type="number"
                   value={transportInput}
                   onChange={(e) => setTransportInput(e.target.value)}
-                  className="w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#BF5AF2]"
+                  className="w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#C084FC]"
                   placeholder="0"
                 />
               </div>
@@ -935,12 +935,12 @@ export function FinanceScreen() {
       >
         <SectionTitle
           icon={Target}
-          iconColor="#FF9500"
+          iconColor="#F59E0B"
           title={t("financeMyGoals")}
           right={
             <button
               onClick={() => setShowAddGoal(true)}
-              className="flex items-center gap-1 text-[#FF9500] text-xs"
+              className="flex items-center gap-1 text-[#F59E0B] text-xs"
             >
               <Plus size={14} /> {t("add")}
             </button>
@@ -1071,10 +1071,10 @@ export function FinanceScreen() {
         animate={{ opacity: 1, y: 0 }}
         className="glass-card p-4 mb-4 relative overflow-hidden"
       >
-        <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full bg-[#FF9500]/15 blur-3xl pointer-events-none" />
+        <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full bg-[#F59E0B]/15 blur-3xl pointer-events-none" />
         <SectionTitle
           icon={Flame}
-          iconColor="#FF9500"
+          iconColor="#F59E0B"
           title={t("financeSavingsStreak")}
           right={
             <span className="text-[10px] text-[#4ADE80] font-semibold flex items-center gap-1">
@@ -1121,7 +1121,7 @@ export function FinanceScreen() {
         {savedWeeks > 0 && (
           <div className="mt-3 pt-3 border-t border-white/5 flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Sparkles size={14} className="text-[#FF9500]" />
+              <Sparkles size={14} className="text-[#F59E0B]" />
               <span className="text-white/70 text-xs">
                 {t("financeSavingStreakMsg", { n: savedWeeks })}
               </span>
@@ -1300,7 +1300,7 @@ export function FinanceScreen() {
       >
         <SectionTitle
           icon={GraduationCap}
-          iconColor="#64D2FF"
+          iconColor="#2DD4BF"
           title={t("financeEducation")}
         />
 
@@ -1425,7 +1425,7 @@ export function FinanceScreen() {
                     value={newGoalName}
                     onChange={(e) => setNewGoalName(e.target.value)}
                     placeholder={t("financeGoalNamePlaceholder")}
-                    className="w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#FF9500]"
+                    className="w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#F59E0B]"
                   />
                 </div>
                 <div>
@@ -1437,7 +1437,7 @@ export function FinanceScreen() {
                     value={newGoalTarget}
                     onChange={(e) => setNewGoalTarget(e.target.value)}
                     placeholder={t("financeAmountPlaceholder")}
-                    className="w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#FF9500]"
+                    className="w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#F59E0B]"
                   />
                 </div>
                 <div>
@@ -1449,7 +1449,7 @@ export function FinanceScreen() {
                         onClick={() => setNewGoalIcon(ic)}
                         className={`w-9 h-9 rounded-lg text-lg flex items-center justify-center transition-all ${
                           newGoalIcon === ic
-                            ? "bg-[#FF9500]/30 border border-[#FF9500]"
+                            ? "bg-[#F59E0B]/30 border border-[#F59E0B]"
                             : "bg-white/5 border border-white/10"
                         }`}
                       >
@@ -1589,7 +1589,7 @@ export function FinanceScreen() {
               </h3>
               <p className="text-white/70 text-sm leading-relaxed mb-4">{t(openTip.detailsKey)}</p>
               <div className="flex items-center gap-2 p-3 rounded-xl bg-white/5 border border-white/10">
-                <Lightbulb size={16} className="text-[#FF9500] flex-shrink-0" />
+                <Lightbulb size={16} className="text-[#F59E0B] flex-shrink-0" />
                 <span className="text-white/60 text-xs">
                   {t("financeTipApplyRule")}
                 </span>

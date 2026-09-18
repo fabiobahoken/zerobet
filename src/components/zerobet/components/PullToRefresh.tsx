@@ -172,11 +172,11 @@ export function PullToRefresh({
             className="w-8 h-8 rounded-full flex items-center justify-center"
             style={{
               background: shouldRelease || refreshing
-                ? "linear-gradient(135deg, #FF3B30 0%, #FF9500 100%)"
+                ? "linear-gradient(135deg, #FF3B30 0%, #F59E0B 100%)"
                 : "rgba(255,255,255,0.08)",
               boxShadow:
                 shouldRelease || refreshing
-                  ? "0 0 24px rgba(255,149,0,0.5)"
+                  ? "0 0 24px rgba(245, 158, 11,0.5)"
                   : "none",
             }}
           >
@@ -226,7 +226,7 @@ export function PullToRefresh({
                 animate={{ rotate: 360 }}
                 transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
               >
-                <RefreshCw size={14} className="text-[#FF9500]" />
+                <RefreshCw size={14} className="text-[#F59E0B]" />
               </motion.span>
               <span className="text-white/60 text-xs font-medium">
                 {t("refreshingData")}

@@ -102,21 +102,21 @@ const RESOURCES = [
     icon: FileText,
     titleKey: "mentorshipRes1Title",
     typeKey: "mentorshipResTypePdf",
-    color: "#FF9500",
+    color: "#F59E0B",
     descKey: "mentorshipRes1Desc",
   },
   {
     icon: MessageSquare,
     titleKey: "mentorshipRes2Title",
     typeKey: "mentorshipResTypeArticle",
-    color: "#64D2FF",
+    color: "#2DD4BF",
     descKey: "mentorshipRes2Desc",
   },
   {
     icon: Video,
     titleKey: "mentorshipRes3Title",
     typeKey: "mentorshipResTypeVideo",
-    color: "#BF5AF2",
+    color: "#C084FC",
     descKey: "mentorshipRes3Desc",
   },
 ];
@@ -379,11 +379,11 @@ export function MentorshipScreen() {
           <div className="flex items-center gap-3">
             <div
               className="w-9 h-9 rounded-xl flex items-center justify-center"
-              style={{ background: `${psyMode ? "#BF5AF2" : "#9CA3AF"}22` }}
+              style={{ background: `${psyMode ? "#C084FC" : "#9CA3AF"}22` }}
             >
               <Stethoscope
                 size={18}
-                style={{ color: psyMode ? "#BF5AF2" : "#9CA3AF" }}
+                style={{ color: psyMode ? "#C084FC" : "#9CA3AF" }}
               />
             </div>
             <div className="text-left">
@@ -397,7 +397,7 @@ export function MentorshipScreen() {
           </div>
           <div
             className={`w-11 h-6 rounded-full p-0.5 transition-colors ${
-              psyMode ? "bg-[#BF5AF2]" : "bg-white/15"
+              psyMode ? "bg-[#C084FC]" : "bg-white/15"
             }`}
           >
             <motion.div
@@ -423,7 +423,7 @@ export function MentorshipScreen() {
           className="glass-card-strong p-5 relative overflow-hidden"
         >
           <div className="absolute -top-16 -right-16 w-44 h-44 rounded-full blur-3xl pointer-events-none bg-[#4ADE80]/20" />
-          <div className="absolute -bottom-12 -left-12 w-32 h-32 rounded-full blur-3xl pointer-events-none bg-[#22D3EE]/15" />
+          <div className="absolute -bottom-12 -left-12 w-32 h-32 rounded-full blur-3xl pointer-events-none bg-[#2DD4BF]/15" />
 
           <div className="relative">
             <div className="flex items-center gap-2 mb-2">
@@ -466,10 +466,10 @@ export function MentorshipScreen() {
               exit={{ opacity: 0, y: -10 }}
               className="glass-card p-5 relative overflow-hidden"
             >
-              <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full blur-3xl pointer-events-none bg-[#BF5AF2]/20" />
+              <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full blur-3xl pointer-events-none bg-[#C084FC]/20" />
               <div className="relative">
                 <div className="flex items-center gap-2 mb-3">
-                  <Stethoscope size={18} className="text-[#BF5AF2]" />
+                  <Stethoscope size={18} className="text-[#C084FC]" />
                   <h2 className="text-base font-bold text-white font-[family-name:var(--font-poppins)]">
                     {t("mentorshipPsyTitle")}
                   </h2>
@@ -573,10 +573,10 @@ export function MentorshipScreen() {
                   />
                 </Field>
 
-                <div className="flex items-start gap-2 p-3 rounded-xl bg-[#BF5AF2]/10 border border-[#BF5AF2]/25 mb-4">
+                <div className="flex items-start gap-2 p-3 rounded-xl bg-[#C084FC]/10 border border-[#C084FC]/25 mb-4">
                   <AlertTriangle
                     size={16}
-                    className="text-[#BF5AF2] mt-0.5 flex-shrink-0"
+                    className="text-[#C084FC] mt-0.5 flex-shrink-0"
                   />
                   <p className="text-white/70 text-xs leading-relaxed">
                     {t("mentorshipPsyAlert")}
@@ -708,7 +708,7 @@ export function MentorshipScreen() {
                         <span className="px-2 py-1 rounded-full text-[10px] font-bold bg-[#4ADE80]/20 text-[#4ADE80]">
                           {t("mentorshipMenteesActive", { n: activeMentees.length })}
                         </span>
-                        <span className="px-2 py-1 rounded-full text-[10px] font-bold bg-[#64D2FF]/20 text-[#64D2FF]">
+                        <span className="px-2 py-1 rounded-full text-[10px] font-bold bg-[#2DD4BF]/20 text-[#2DD4BF]">
                           {t("mentorshipMenteesSessions")}
                         </span>
                       </div>
@@ -723,7 +723,7 @@ export function MentorshipScreen() {
                           transition={{ delay: idx * 0.06 }}
                           className="glass-pill rounded-xl p-3 flex items-center gap-3"
                         >
-                          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#FF9500] to-[#FF3B30] flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
+                          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#F59E0B] to-[#FF3B30] flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
                             {m.name.charAt(0)}
                           </div>
                           <div className="flex-1 min-w-0">
@@ -990,7 +990,7 @@ export function MentorshipScreen() {
               {/* ============================================================ */}
               <motion.section variants={itemVariants} className="glass-card p-5">
                 <div className="flex items-center gap-2 mb-3">
-                  <Wrench size={16} className="text-[#FF9500]" />
+                  <Wrench size={16} className="text-[#F59E0B]" />
                   <h2 className="text-sm font-bold text-white font-[family-name:var(--font-poppins)]">
                     {t("mentorshipResourcesTitle")}
                   </h2>
@@ -1066,7 +1066,7 @@ export function MentorshipScreen() {
               className="glass-card-strong p-7 w-full max-w-sm text-center relative overflow-hidden"
             >
               <div className="absolute -top-16 -right-16 w-40 h-40 rounded-full blur-3xl bg-[#4ADE80]/30 pointer-events-none" />
-              <div className="absolute -bottom-12 -left-12 w-32 h-32 rounded-full blur-3xl bg-[#22D3EE]/20 pointer-events-none" />
+              <div className="absolute -bottom-12 -left-12 w-32 h-32 rounded-full blur-3xl bg-[#2DD4BF]/20 pointer-events-none" />
 
               <button
                 onClick={closeSuccess}

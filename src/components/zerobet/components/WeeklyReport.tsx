@@ -77,7 +77,7 @@ export function WeeklyReport({ streakHistory, journalEntries, panicEvents, xpHis
 
   const verdictStyle: Record<Verdict, { pill: string; icon: string }> = {
     empty: { pill: "bg-white/10 text-white/60", icon: "🌱" },
-    start: { pill: "bg-[#64D2FF]/15 text-[#64D2FF]", icon: "🌱" },
+    start: { pill: "bg-[#2DD4BF]/15 text-[#2DD4BF]", icon: "🌱" },
     great: { pill: "bg-[#4ADE80]/15 text-[#4ADE80]", icon: "🏆" },
     good: { pill: "bg-[#10B981]/15 text-[#10B981]", icon: "💪" },
     tough: { pill: "bg-[#FBBF24]/15 text-[#FBBF24]", icon: "🌤️" },
@@ -92,13 +92,13 @@ export function WeeklyReport({ streakHistory, journalEntries, panicEvents, xpHis
     },
     {
       icon: BookOpen,
-      color: "#64D2FF",
+      color: "#2DD4BF",
       value: String(report.journalCount),
       labelKey: "weeklyReportJournal",
     },
     {
       icon: LifeBuoy,
-      color: "#FF9500",
+      color: "#F59E0B",
       value: String(report.panicCount),
       labelKey: "weeklyReportPanic",
     },

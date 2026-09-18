@@ -13,9 +13,9 @@ import type { Language } from "@/lib/i18n/dictionary";
 
 const MOOD_OPTIONS = [
   { key: "super", emoji: "😀", labelKey: "checkinMoodSuper", color: "#4ADE80", bg: "rgba(74,222,128,0.15)" },
-  { key: "bien", emoji: "😊", labelKey: "checkinMoodBien", color: "#64D2FF", bg: "rgba(100,210,255,0.15)" },
+  { key: "bien", emoji: "😊", labelKey: "checkinMoodBien", color: "#2DD4BF", bg: "rgba(45, 212, 191,0.15)" },
   { key: "neutre", emoji: "😐", labelKey: "checkinMoodNeutre", color: "#FBBF24", bg: "rgba(251,191,36,0.15)" },
-  { key: "difficile", emoji: "😟", labelKey: "checkinMoodDifficile", color: "#FF9500", bg: "rgba(255,149,0,0.15)" },
+  { key: "difficile", emoji: "😟", labelKey: "checkinMoodDifficile", color: "#F59E0B", bg: "rgba(245, 158, 11,0.15)" },
   { key: "critique", emoji: "😢", labelKey: "checkinMoodCritique", color: "#FF3B30", bg: "rgba(255,59,48,0.15)" },
 ];
 
@@ -160,13 +160,13 @@ export function DailyCheckIn({ onDismiss }: { onDismiss?: () => void } = {}) {
             <div className="glass-card-strong p-6 max-w-[390px] w-full pointer-events-auto relative overflow-hidden">
               {/* Decorative glow */}
               <div className="absolute -top-16 -right-16 w-48 h-48 rounded-full bg-[#FF3B30]/15 blur-3xl" />
-              <div className="absolute -bottom-16 -left-16 w-48 h-48 rounded-full bg-[#FF9500]/10 blur-3xl" />
+              <div className="absolute -bottom-16 -left-16 w-48 h-48 rounded-full bg-[#F59E0B]/10 blur-3xl" />
 
               <div className="relative">
                 {/* Header */}
                 <div className="flex items-center justify-between mb-5">
                   <div className="flex items-center gap-2">
-                    <Calendar size={20} className="text-[#FF9500]" />
+                    <Calendar size={20} className="text-[#F59E0B]" />
                     <h2 className="text-lg font-bold text-white font-[family-name:var(--font-poppins)]">
                       {t("checkinTitle")}
                     </h2>
@@ -268,7 +268,7 @@ export function DailyCheckIn({ onDismiss }: { onDismiss?: () => void } = {}) {
                             onClick={() => setResistanceMethod(opt.key)}
                             className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-medium transition-all duration-200 ${
                               resistanceMethod === opt.key
-                                ? "bg-[#FF9500]/20 text-[#FF9500] ring-1 ring-[#FF9500]/40"
+                                ? "bg-[#F59E0B]/20 text-[#F59E0B] ring-1 ring-[#F59E0B]/40"
                                 : "glass-pill text-white/50"
                             }`}
                           >
@@ -318,7 +318,7 @@ export function DailyCheckIn({ onDismiss }: { onDismiss?: () => void } = {}) {
                 {showConfetti && (
                   <div className="absolute inset-0 pointer-events-none overflow-hidden">
                     {Array.from({ length: 20 }).map((_, i) => {
-                      const colors = ["#FF3B30", "#FF9500", "#4ADE80", "#64D2FF", "#FBBF24", "#BF5AF2"];
+                      const colors = ["#FF3B30", "#F59E0B", "#4ADE80", "#2DD4BF", "#FBBF24", "#C084FC"];
                       const color = colors[i % colors.length];
                       const leftPos = `${5 + (i * 4.5) % 90}%`;
                       const delay = `${(i * 0.05).toFixed(2)}s`;

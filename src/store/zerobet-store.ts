@@ -148,9 +148,9 @@ export function getMultiplierTier(streakDays: number): {
   color: string;
 } {
   if (streakDays >= 90)
-    return { multiplier: 3.0, label: "Triple XP", min: 90, max: Infinity, color: "#BF5AF2" };
+    return { multiplier: 3.0, label: "Triple XP", min: 90, max: Infinity, color: "#C084FC" };
   if (streakDays >= 30)
-    return { multiplier: 2.0, label: "Double XP", min: 30, max: 90, color: "#FF9500" };
+    return { multiplier: 2.0, label: "Double XP", min: 30, max: 90, color: "#F59E0B" };
   if (streakDays >= 14)
     return { multiplier: 1.5, label: "+50% XP", min: 14, max: 30, color: "#FBBF24" };
   if (streakDays >= 7)

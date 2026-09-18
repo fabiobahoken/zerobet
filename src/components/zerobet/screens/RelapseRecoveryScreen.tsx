@@ -40,17 +40,17 @@ import {
 const EMOTION_OPTIONS: { key: Emotion; emoji: string; label: string; color: string }[] = [
   { key: "frustrated", emoji: "😤", label: "Frustré", color: "#FF3B30" },
   { key: "anxious", emoji: "😰", label: "Anxieux", color: "#FBBF24" },
-  { key: "tempted", emoji: "😈", label: "Tenté", color: "#FF9500" },
-  { key: "calm", emoji: "😌", label: "Calme", color: "#64D2FF" },
-  { key: "proud", emoji: "🦸", label: "Fier", color: "#BF5AF2" },
+  { key: "tempted", emoji: "😈", label: "Tenté", color: "#F59E0B" },
+  { key: "calm", emoji: "😌", label: "Calme", color: "#2DD4BF" },
+  { key: "proud", emoji: "🦸", label: "Fier", color: "#C084FC" },
 ];
 
 const EMOTION_META: Record<Emotion, { emoji: string; label: string; color: string }> = {
   frustrated: { emoji: "😤", label: "Frustré", color: "#FF3B30" },
   anxious: { emoji: "😰", label: "Anxieux", color: "#FBBF24" },
-  tempted: { emoji: "😈", label: "Tenté", color: "#FF9500" },
-  calm: { emoji: "😌", label: "Calme", color: "#64D2FF" },
-  proud: { emoji: "🦸", label: "Fier", color: "#BF5AF2" },
+  tempted: { emoji: "😈", label: "Tenté", color: "#F59E0B" },
+  calm: { emoji: "😌", label: "Calme", color: "#2DD4BF" },
+  proud: { emoji: "🦸", label: "Fier", color: "#C084FC" },
   strong: { emoji: "💪", label: "Fort", color: "#4ADE80" },
 };
 
@@ -294,11 +294,11 @@ function LandingMode({ relapseHistory, onStart, navigate, t }: LandingModeProps)
         className="glass-card-strong animate-glow-pulse p-6 rounded-3xl mt-4 relative overflow-hidden"
         style={{
           background:
-            "linear-gradient(135deg, rgba(255,59,48,0.18) 0%, rgba(255,149,0,0.12) 100%)",
+            "linear-gradient(135deg, rgba(255,59,48,0.18) 0%, rgba(245, 158, 11,0.12) 100%)",
         }}
       >
         <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full bg-[#FF3B30]/20 blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-8 -left-8 w-32 h-32 rounded-full bg-[#FF9500]/20 blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-8 -left-8 w-32 h-32 rounded-full bg-[#F59E0B]/20 blur-3xl pointer-events-none" />
         <div className="relative flex flex-col items-center text-center">
           <motion.div
             initial={{ scale: 0.8 }}
@@ -317,8 +317,8 @@ function LandingMode({ relapseHistory, onStart, navigate, t }: LandingModeProps)
             rechutent au moins une fois. Ce qui compte, c'est ce que tu fais
             maintenant.
           </p>
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/8 border border-[#FF9500]/30">
-            <TrendingUp size={14} className="text-[#FF9500]" />
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/8 border border-[#F59E0B]/30">
+            <TrendingUp size={14} className="text-[#F59E0B]" />
             <span className="text-xs text-white/80 font-medium">
               80% rechutent — et 60% finissent par réussir
             </span>
@@ -350,7 +350,7 @@ function LandingMode({ relapseHistory, onStart, navigate, t }: LandingModeProps)
           placeholder="Ex : solitude, stress, publicité vue sur Instagram…"
           rows={3}
           maxLength={500}
-          className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-[#FF9500]/50 focus:bg-white/8 resize-none custom-scroll mb-1"
+          className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-[#F59E0B]/50 focus:bg-white/8 resize-none custom-scroll mb-1"
         />
         <div className="text-right text-white/30 text-[10px] mb-4">
           {trigger.length}/500
@@ -369,7 +369,7 @@ function LandingMode({ relapseHistory, onStart, navigate, t }: LandingModeProps)
             value={amountLost}
             onChange={(e) => setAmountLost(e.target.value)}
             placeholder="0"
-            className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 pr-16 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-[#FF9500]/50 focus:bg-white/8"
+            className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 pr-16 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-[#F59E0B]/50 focus:bg-white/8"
           />
           <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-white/40 font-medium">
             FCFA
@@ -437,7 +437,7 @@ function LandingMode({ relapseHistory, onStart, navigate, t }: LandingModeProps)
           className="glass-card p-5 rounded-3xl mt-4"
         >
           <div className="flex items-center gap-2 mb-3">
-            <History size={16} className="text-[#FF9500]" />
+            <History size={16} className="text-[#F59E0B]" />
             <h3 className="text-base font-semibold text-white font-[family-name:var(--font-poppins)]">
               Ton historique de rechutes
             </h3>
@@ -502,7 +502,7 @@ function LandingMode({ relapseHistory, onStart, navigate, t }: LandingModeProps)
         className="glass-card-strong p-5 rounded-3xl mt-4"
       >
         <div className="flex items-center gap-2 mb-3">
-          <Flame size={16} className="text-[#FF9500]" />
+          <Flame size={16} className="text-[#F59E0B]" />
           <h3 className="text-base font-semibold text-white font-[family-name:var(--font-poppins)]">
             Ta résilience
           </h3>
@@ -523,7 +523,7 @@ function LandingMode({ relapseHistory, onStart, navigate, t }: LandingModeProps)
                 ? "Aujourd'hui"
                 : `J-${daysSinceLast}`
             }
-            color="#FF9500"
+            color="#F59E0B"
             emoji="📅"
           />
           <StatBlock
@@ -541,7 +541,7 @@ function LandingMode({ relapseHistory, onStart, navigate, t }: LandingModeProps)
       {/* 6. Quotes Section */}
       <motion.div variants={itemVariants} className="mt-4">
         <div className="flex items-center gap-2 mb-2 px-1">
-          <Quote size={14} className="text-[#BF5AF2]" />
+          <Quote size={14} className="text-[#C084FC]" />
           <span className="text-xs text-white/60 font-medium">Pour t'inspirer</span>
         </div>
         <div className="flex gap-3 overflow-x-auto no-scrollbar pb-2">
@@ -551,7 +551,7 @@ function LandingMode({ relapseHistory, onStart, navigate, t }: LandingModeProps)
               whileHover={{ scale: 1.02 }}
               className="card-hover glass-card p-4 rounded-2xl flex-shrink-0 w-64"
             >
-              <Quote size={16} className="text-[#BF5AF2] mb-2" />
+              <Quote size={16} className="text-[#C084FC] mb-2" />
               <p className="text-sm text-white/80 italic leading-relaxed mb-2">
                 {t(q.textKey)}
               </p>
@@ -686,9 +686,9 @@ function ProtocolMode({
         variants={itemVariants}
         className="glass-card-strong animate-glow-pulse p-6 rounded-3xl mt-4 relative overflow-hidden"
       >
-        <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full bg-[#FF9500]/15 blur-3xl pointer-events-none" />
+        <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full bg-[#F59E0B]/15 blur-3xl pointer-events-none" />
         <div className="relative flex flex-col items-center text-center">
-          <span className="text-[10px] tracking-widest font-bold text-[#FF9500] mb-3">
+          <span className="text-[10px] tracking-widest font-bold text-[#F59E0B] mb-3">
             PROTOCOLE 24H
           </span>
           <ProgressRing percent={percent} size={120} />
@@ -863,7 +863,7 @@ function ProtocolMode({
         className="glass-card-strong p-5 rounded-3xl mt-4 relative overflow-hidden"
         style={{
           background:
-            "linear-gradient(135deg, rgba(255,59,48,0.18) 0%, rgba(255,149,0,0.10) 100%)",
+            "linear-gradient(135deg, rgba(255,59,48,0.18) 0%, rgba(245, 158, 11,0.10) 100%)",
         }}
       >
         <div className="relative">
@@ -1056,7 +1056,7 @@ function ProgressRing({ percent, size = 120 }: { percent: number; size?: number 
         <defs>
           <linearGradient id="progress-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="#FF3B30" />
-            <stop offset="100%" stopColor="#FF9500" />
+            <stop offset="100%" stopColor="#F59E0B" />
           </linearGradient>
         </defs>
         <circle
@@ -1080,7 +1080,7 @@ function ProgressRing({ percent, size = 120 }: { percent: number; size?: number 
           animate={{ strokeDashoffset: offset }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           style={{
-            filter: "drop-shadow(0 0 6px rgba(255,149,0,0.6))",
+            filter: "drop-shadow(0 0 6px rgba(245, 158, 11,0.6))",
           }}
         />
       </svg>
@@ -1105,7 +1105,7 @@ function CompletionModal({ onReturn }: { onReturn: () => void }) {
         x: (Math.random() - 0.5) * 240,
         delay: Math.random() * 0.4,
         duration: 1.8 + Math.random() * 0.8,
-        color: ["#FF3B30", "#FF9500", "#FBBF24", "#4ADE80", "#BF5AF2"][i % 5],
+        color: ["#FF3B30", "#F59E0B", "#FBBF24", "#4ADE80", "#C084FC"][i % 5],
         shape: i % 3 === 0 ? "circle" : i % 3 === 1 ? "square" : "diamond",
       })),
     []
@@ -1163,7 +1163,7 @@ function CompletionModal({ onReturn }: { onReturn: () => void }) {
           initial={{ scale: 0 }}
           animate={{ scale: 1, rotate: [0, -10, 10, 0] }}
           transition={{ delay: 0.2, type: "spring", stiffness: 200, damping: 12 }}
-          className="w-20 h-20 rounded-full bg-gradient-to-br from-[#FBBF24]/30 to-[#FF9500]/20 flex items-center justify-center mx-auto mb-4 glow-orange border border-[#FBBF24]/40"
+          className="w-20 h-20 rounded-full bg-gradient-to-br from-[#FBBF24]/30 to-[#F59E0B]/20 flex items-center justify-center mx-auto mb-4 glow-orange border border-[#FBBF24]/40"
         >
           <Trophy size={36} className="text-[#FBBF24]" fill="#FBBF24" />
         </motion.div>

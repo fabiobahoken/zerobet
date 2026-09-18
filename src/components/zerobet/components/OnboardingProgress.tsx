@@ -99,12 +99,12 @@ export function OnboardingProgress({ currentStep }: OnboardingProgressProps) {
                 className="w-1 h-1 rounded-full"
                 style={{
                   background: isDone
-                    ? "linear-gradient(135deg, #FF3B30 0%, #FF9500 100%)"
+                    ? "linear-gradient(135deg, #FF3B30 0%, #F59E0B 100%)"
                     : isCurrent
-                      ? "#FF9500"
+                      ? "#F59E0B"
                       : "rgba(255,255,255,0.4)",
                   boxShadow: isCurrent
-                    ? "0 0 8px rgba(255,149,0,0.6)"
+                    ? "0 0 8px rgba(245, 158, 11,0.6)"
                     : isDone
                       ? "0 0 6px rgba(255,59,48,0.4)"
                       : "none",
@@ -139,11 +139,11 @@ export function OnboardingProgress({ currentStep }: OnboardingProgressProps) {
                 transition={{ type: "spring", stiffness: 200, damping: 14, delay: 0.05 }}
                 className="w-16 h-16 rounded-2xl mx-auto mb-4 flex items-center justify-center"
                 style={{
-                  background: "linear-gradient(135deg, rgba(255,59,48,0.2) 0%, rgba(255,149,0,0.15) 100%)",
-                  border: "1px solid rgba(255,149,0,0.3)",
+                  background: "linear-gradient(135deg, rgba(255,59,48,0.2) 0%, rgba(245, 158, 11,0.15) 100%)",
+                  border: "1px solid rgba(245, 158, 11,0.3)",
                 }}
               >
-                <AlertTriangle size={28} className="text-[#FF9500]" />
+                <AlertTriangle size={28} className="text-[#F59E0B]" />
               </motion.div>
 
               <h3 className="text-lg font-bold text-white font-[family-name:var(--font-poppins)] mb-2">

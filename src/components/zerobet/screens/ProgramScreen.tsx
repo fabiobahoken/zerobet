@@ -89,7 +89,7 @@ const PHASES: Phase[] = [
     name: "Phase 1: Fondations",
     subtitle: "Reprendre le contrôle",
     dayRange: [1, 30],
-    gradient: "linear-gradient(135deg, #4ADE80 0%, #22D3EE 100%)",
+    gradient: "linear-gradient(135deg, #4ADE80 0%, #2DD4BF 100%)",
     color: "#4ADE80",
     description:
       "Les 30 premiers jours sont les plus importants. Tu apprends à connaître tes déclencheurs, à utiliser tes outils et à construire les fondations de ta récupération.",
@@ -110,8 +110,8 @@ const PHASES: Phase[] = [
     name: "Phase 2: Consolidation",
     subtitle: "Renforcer tes défenses",
     dayRange: [31, 60],
-    gradient: "linear-gradient(135deg, #FBBF24 0%, #FF9500 100%)",
-    color: "#FF9500",
+    gradient: "linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%)",
+    color: "#F59E0B",
     description:
       "Maintenant que les fondations sont posées, tu vas renforcer tes défenses. Tu apprends à gérer tes finances, à réparer tes relations et à fixer de nouveaux objectifs.",
     goalKeys: [
@@ -131,8 +131,8 @@ const PHASES: Phase[] = [
     name: "Phase 3: Transformation",
     subtitle: "Devenir une nouvelle personne",
     dayRange: [61, 90],
-    gradient: "linear-gradient(135deg, #BF5AF2 0%, #FF3B30 100%)",
-    color: "#BF5AF2",
+    gradient: "linear-gradient(135deg, #C084FC 0%, #FF3B30 100%)",
+    color: "#C084FC",
     description:
       "La dernière phase est celle de la transformation. Tu deviens une inspiration pour les autres, tu partages ton témoignage et tu construis la version de toi que tu veux être.",
     goalKeys: [
@@ -166,7 +166,7 @@ const TASKS_BY_PHASE: Record<1 | 2 | 3, DailyTask[]> = {
       descKey: "programTaskJournalDesc",
       xp: 30,
       icon: BookOpen,
-      color: "#64D2FF",
+      color: "#2DD4BF",
       autoDone: (ctx) => ctx.hasJournalToday,
     },
     {
@@ -175,7 +175,7 @@ const TASKS_BY_PHASE: Record<1 | 2 | 3, DailyTask[]> = {
       descKey: "programTaskBreathingDesc",
       xp: 40,
       icon: Wind,
-      color: "#22D3EE",
+      color: "#2DD4BF",
       autoDone: (ctx) => ctx.meditationStreak >= 1,
     },
     {
@@ -184,7 +184,7 @@ const TASKS_BY_PHASE: Record<1 | 2 | 3, DailyTask[]> = {
       descKey: "programTaskArticleDesc",
       xp: 20,
       icon: BookOpen,
-      color: "#BF5AF2",
+      color: "#C084FC",
     },
   ],
   2: [
@@ -203,7 +203,7 @@ const TASKS_BY_PHASE: Record<1 | 2 | 3, DailyTask[]> = {
       descKey: "programTaskJournalDesc",
       xp: 30,
       icon: BookOpen,
-      color: "#64D2FF",
+      color: "#2DD4BF",
       autoDone: (ctx) => ctx.hasJournalToday,
     },
     {
@@ -212,7 +212,7 @@ const TASKS_BY_PHASE: Record<1 | 2 | 3, DailyTask[]> = {
       descKey: "programTaskBreathingDesc",
       xp: 40,
       icon: Wind,
-      color: "#22D3EE",
+      color: "#2DD4BF",
       autoDone: (ctx) => ctx.meditationStreak >= 1,
     },
     {
@@ -221,7 +221,7 @@ const TASKS_BY_PHASE: Record<1 | 2 | 3, DailyTask[]> = {
       descKey: "programTaskArticleDesc",
       xp: 20,
       icon: BookOpen,
-      color: "#BF5AF2",
+      color: "#C084FC",
     },
     {
       id: "task-meditate",
@@ -238,7 +238,7 @@ const TASKS_BY_PHASE: Record<1 | 2 | 3, DailyTask[]> = {
       descKey: "programTaskSavingsDesc",
       xp: 25,
       icon: Coins,
-      color: "#FF9500",
+      color: "#F59E0B",
       autoDone: (ctx) => ctx.hasSavingsGoal,
     },
   ],
@@ -258,7 +258,7 @@ const TASKS_BY_PHASE: Record<1 | 2 | 3, DailyTask[]> = {
       descKey: "programTaskJournalDesc",
       xp: 30,
       icon: BookOpen,
-      color: "#64D2FF",
+      color: "#2DD4BF",
       autoDone: (ctx) => ctx.hasJournalToday,
     },
     {
@@ -267,7 +267,7 @@ const TASKS_BY_PHASE: Record<1 | 2 | 3, DailyTask[]> = {
       descKey: "programTaskBreathingDesc",
       xp: 40,
       icon: Wind,
-      color: "#22D3EE",
+      color: "#2DD4BF",
       autoDone: (ctx) => ctx.meditationStreak >= 1,
     },
     {
@@ -285,7 +285,7 @@ const TASKS_BY_PHASE: Record<1 | 2 | 3, DailyTask[]> = {
       descKey: "programTaskShareDesc",
       xp: 60,
       icon: Users,
-      color: "#FF9500",
+      color: "#F59E0B",
       autoDone: (ctx) => ctx.hasCommunityActivity,
     },
     {
@@ -303,7 +303,7 @@ const TASKS_BY_PHASE: Record<1 | 2 | 3, DailyTask[]> = {
       descKey: "programTaskMentorDesc",
       xp: 100,
       icon: Crown,
-      color: "#BF5AF2",
+      color: "#C084FC",
     },
     {
       id: "task-testimony",
@@ -335,11 +335,11 @@ const WEEK_THEMES: WeekTheme[] = [
 
 const MILESTONES: Milestone[] = [
   { day: 1, labelKey: "programMilestone1Label", descKey: "programMilestone1Desc", badge: "🌱", color: "#4ADE80" },
-  { day: 7, labelKey: "programMilestone7Label", descKey: "programMilestone7Desc", badge: "🔥", color: "#FF9500" },
+  { day: 7, labelKey: "programMilestone7Label", descKey: "programMilestone7Desc", badge: "🔥", color: "#F59E0B" },
   { day: 14, labelKey: "programMilestone14Label", descKey: "programMilestone14Desc", badge: "💪", color: "#FBBF24" },
   { day: 30, labelKey: "programMilestone30Label", descKey: "programMilestone30Desc", badge: "🥇", color: "#FFD700" },
-  { day: 45, labelKey: "programMilestone45Label", descKey: "programMilestone45Desc", badge: "💎", color: "#64D2FF" },
-  { day: 60, labelKey: "programMilestone60Label", descKey: "programMilestone60Desc", badge: "🏆", color: "#BF5AF2" },
+  { day: 45, labelKey: "programMilestone45Label", descKey: "programMilestone45Desc", badge: "💎", color: "#2DD4BF" },
+  { day: 60, labelKey: "programMilestone60Label", descKey: "programMilestone60Desc", badge: "🏆", color: "#C084FC" },
   { day: 90, labelKey: "programMilestone90Label", descKey: "programMilestone90Desc", badge: "👑", color: "#FF3B30" },
 ];
 
@@ -536,7 +536,7 @@ export function ProgramScreen() {
         transition={{ duration: 0.4 }}
         className="relative overflow-hidden rounded-3xl mb-6 p-5 border border-white/10"
         style={{
-          background: "linear-gradient(135deg, rgba(74,222,128,0.18) 0%, rgba(34,211,238,0.10) 50%, rgba(191,90,242,0.10) 100%)",
+          background: "linear-gradient(135deg, rgba(74,222,128,0.18) 0%, rgba(45, 212, 191,0.10) 50%, rgba(192, 132, 252,0.10) 100%)",
         }}
       >
         <div className="absolute -top-16 -right-16 w-48 h-48 rounded-full blur-3xl pointer-events-none" style={{ background: "rgba(74,222,128,0.25)" }} />
@@ -576,7 +576,7 @@ export function ProgramScreen() {
               animate={{ width: `${progressPercent}%` }}
               transition={{ duration: 1, ease: "easeOut" }}
               className="absolute inset-y-0 left-0 rounded-full"
-              style={{ background: "linear-gradient(90deg, #4ADE80 0%, #FBBF24 50%, #BF5AF2 100%)" }}
+              style={{ background: "linear-gradient(90deg, #4ADE80 0%, #FBBF24 50%, #C084FC 100%)" }}
             />
             {/* Phase markers */}
             {[33.33, 66.66].map((pos) => (
@@ -719,7 +719,7 @@ export function ProgramScreen() {
       <section className="mb-6">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
-            <Target size={14} className="text-[#FF9500]" />
+            <Target size={14} className="text-[#F59E0B]" />
             <h2 className="text-white font-semibold text-sm">{t("programTasksTitle")}</h2>
           </div>
           <span className="text-white/50 text-xs">
@@ -794,7 +794,7 @@ export function ProgramScreen() {
       {/* Section 4: Weekly Themes */}
       <section className="mb-6">
         <div className="flex items-center gap-2 mb-3">
-          <TrendingUp size={14} className="text-[#64D2FF]" />
+          <TrendingUp size={14} className="text-[#2DD4BF]" />
           <h2 className="text-white font-semibold text-sm">{t("programWeeklyTitle")}</h2>
         </div>
 
@@ -818,7 +818,7 @@ export function ProgramScreen() {
                   <div
                     className={`absolute -left-[10px] top-3 w-3 h-3 rounded-full border-2 ${
                       isCurrent
-                        ? "bg-[#FF9500] border-[#FF9500]"
+                        ? "bg-[#F59E0B] border-[#F59E0B]"
                         : isPassed
                           ? "bg-[#4ADE80] border-[#4ADE80]"
                           : "bg-[#070B0E] border-white/20"
@@ -828,7 +828,7 @@ export function ProgramScreen() {
                   <div
                     className={`p-3 rounded-xl transition-colors ${
                       isCurrent
-                        ? "glass-card-strong border border-[#FF9500]/30"
+                        ? "glass-card-strong border border-[#F59E0B]/30"
                         : isPassed
                           ? "glass-card"
                           : "glass-card opacity-50"
@@ -838,7 +838,7 @@ export function ProgramScreen() {
                       <div className="flex items-center gap-2">
                         <span className="text-white/40 text-[10px] font-bold">{t("programWeekLabel", { n: week.week })}</span>
                         {isCurrent && (
-                          <span className="px-1.5 py-0.5 rounded-full bg-[#FF9500]/20 text-[#FF9500] text-[9px] font-bold uppercase">
+                          <span className="px-1.5 py-0.5 rounded-full bg-[#F59E0B]/20 text-[#F59E0B] text-[9px] font-bold uppercase">
                             {t("programWeekCurrent")}
                           </span>
                         )}
@@ -952,15 +952,15 @@ export function ProgramScreen() {
         transition={{ duration: 0.4 }}
         className="relative overflow-hidden rounded-3xl mb-4 p-6 border border-white/10"
         style={{
-          background: "linear-gradient(135deg, rgba(191,90,242,0.18) 0%, rgba(255,149,0,0.10) 100%)",
+          background: "linear-gradient(135deg, rgba(192, 132, 252,0.18) 0%, rgba(245, 158, 11,0.10) 100%)",
         }}
       >
-        <div className="absolute -top-12 -left-12 w-40 h-40 rounded-full blur-3xl pointer-events-none" style={{ background: "rgba(191,90,242,0.3)" }} />
+        <div className="absolute -top-12 -left-12 w-40 h-40 rounded-full blur-3xl pointer-events-none" style={{ background: "rgba(192, 132, 252,0.3)" }} />
 
         <div className="relative">
           <div className="flex items-center gap-2 mb-3">
-            <Quote size={16} className="text-[#BF5AF2]" />
-            <span className="text-[#BF5AF2] text-[11px] font-bold uppercase tracking-wider">
+            <Quote size={16} className="text-[#C084FC]" />
+            <span className="text-[#C084FC] text-[11px] font-bold uppercase tracking-wider">
               {t("programInspirationLabel", { n: currentDay })}
             </span>
           </div>

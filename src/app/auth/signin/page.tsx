@@ -103,7 +103,7 @@ export default function SignInPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder={t("authEmail")}
-                className="w-full pl-10 pr-4 py-3 rounded-2xl glass-card text-white text-sm placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-[#FF9500]"
+                className="w-full pl-10 pr-4 py-3 rounded-2xl glass-card text-white text-sm placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-[#F59E0B]"
                 required
               />
             </div>
@@ -116,7 +116,7 @@ export default function SignInPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder={t("authPassword")}
-                className="w-full pl-10 pr-4 py-3 rounded-2xl glass-card text-white text-sm placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-[#FF9500]"
+                className="w-full pl-10 pr-4 py-3 rounded-2xl glass-card text-white text-sm placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-[#F59E0B]"
                 required
               />
             </div>
@@ -142,7 +142,7 @@ export default function SignInPage() {
           {t("authNoAccount")}{" "}
           <button
             onClick={() => router.push("/auth/signup")}
-            className="text-[#FF9500] font-medium hover:underline"
+            className="text-[#F59E0B] font-medium hover:underline"
           >
             {t("authSignUp")}
           </button>

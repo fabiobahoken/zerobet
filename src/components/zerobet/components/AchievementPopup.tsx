@@ -11,7 +11,7 @@ import { haptics } from "@/lib/haptics";
 import { useT } from "@/lib/i18n/useT";
 import { ArtifactIcon } from "@/components/zerobet/components/ArtifactIcon";
 
-const CONFETTI_COLORS = ["#FF3B30", "#FF9500", "#4ADE80", "#64D2FF", "#FBBF24", "#BF5AF2", "#FFD700"];
+const CONFETTI_COLORS = ["#FF3B30", "#F59E0B", "#4ADE80", "#2DD4BF", "#FBBF24", "#C084FC", "#FFD700"];
 
 function generateConfettiParticles(count: number) {
   return Array.from({ length: count }).map((_, i) => ({
@@ -188,7 +188,7 @@ export function AchievementPopup() {
                 transition={{ delay: 0.4 }}
                 className="text-2xl font-extrabold mb-2 font-[family-name:var(--font-poppins)]"
                 style={{
-                  background: "linear-gradient(135deg, #FF3B30 0%, #FF9500 50%, #FFD700 100%)",
+                  background: "linear-gradient(135deg, #FF3B30 0%, #F59E0B 50%, #FFD700 100%)",
                   WebkitBackgroundClip: "text",
                   backgroundClip: "text",
                   WebkitTextFillColor: "transparent",

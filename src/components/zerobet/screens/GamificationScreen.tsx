@@ -85,8 +85,8 @@ const WEEKLY_CHALLENGES: WeeklyChallenge[] = [
     description: "Publie un témoignage ou réponds à un post",
     reward: 200,
     icon: Users,
-    color: "#FF9500",
-    bg: "rgba(255,149,0,0.15)",
+    color: "#F59E0B",
+    bg: "rgba(245, 158, 11,0.15)",
     current: 1,
     target: 3,
     unit: "actions",
@@ -120,11 +120,11 @@ const LEADERBOARD_SEED: LeaderUser[] = [
    ======================================================================== */
 
 const TIER_GRADIENTS: Record<LevelTier, string> = {
-  Novice: "linear-gradient(135deg, #9CA3AF 0%, #64D2FF 100%)",
-  Apprenti: "linear-gradient(135deg, #64D2FF 0%, #4ADE80 100%)",
-  Guerrier: "linear-gradient(135deg, #FF9500 0%, #FF3B30 100%)",
-  Champion: "linear-gradient(135deg, #FF3B30 0%, #BF5AF2 100%)",
-  Légende: "linear-gradient(135deg, #FBBF24 0%, #FF3B30 50%, #BF5AF2 100%)",
+  Novice: "linear-gradient(135deg, #9CA3AF 0%, #2DD4BF 100%)",
+  Apprenti: "linear-gradient(135deg, #2DD4BF 0%, #4ADE80 100%)",
+  Guerrier: "linear-gradient(135deg, #F59E0B 0%, #FF3B30 100%)",
+  Champion: "linear-gradient(135deg, #FF3B30 0%, #C084FC 100%)",
+  Légende: "linear-gradient(135deg, #FBBF24 0%, #FF3B30 50%, #C084FC 100%)",
 };
 
 const TIER_EMOJIS: Record<LevelTier, string> = {
@@ -154,15 +154,15 @@ function formatRelativeTime(iso: string): string {
 function getSourceIcon(source: string) {
   switch (source.toLowerCase()) {
     case "check-in":
-      return { icon: Calendar, color: "#FF9500" };
+      return { icon: Calendar, color: "#F59E0B" };
     case "journal":
-      return { icon: BookOpen, color: "#64D2FF" };
+      return { icon: BookOpen, color: "#2DD4BF" };
     case "méditation":
       return { icon: Zap, color: "#4ADE80" };
     case "sans pari":
       return { icon: Flame, color: "#FF3B30" };
     case "article":
-      return { icon: BookOpen, color: "#BF5AF2" };
+      return { icon: BookOpen, color: "#C084FC" };
     default:
       return { icon: Sparkles, color: "#FBBF24" };
   }
@@ -174,7 +174,7 @@ function getSourceIcon(source: string) {
 
 function ConfettiBurst({ show }: { show: boolean }) {
   if (!show) return null;
-  const colors = ["#FF3B30", "#FF9500", "#4ADE80", "#64D2FF", "#FBBF24", "#BF5AF2"];
+  const colors = ["#FF3B30", "#F59E0B", "#4ADE80", "#2DD4BF", "#FBBF24", "#C084FC"];
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden">
       {Array.from({ length: 30 }).map((_, i) => {
@@ -270,7 +270,7 @@ function LevelXPCard() {
         className="absolute -top-12 -right-12 w-44 h-44 rounded-full blur-3xl opacity-60"
         style={{ background: tierGradient }}
       />
-      <div className="absolute -bottom-12 -left-12 w-32 h-32 rounded-full bg-[#FF9500]/15 blur-3xl" />
+      <div className="absolute -bottom-12 -left-12 w-32 h-32 rounded-full bg-[#F59E0B]/15 blur-3xl" />
 
       <div className="relative">
         {/* Top row: tier + level badge */}
@@ -443,7 +443,7 @@ function WeeklyChallenges() {
                     className="h-full rounded-full"
                     style={{
                       background: isComplete
-                        ? "linear-gradient(90deg, #4ADE80 0%, #22D3EE 100%)"
+                        ? "linear-gradient(90deg, #4ADE80 0%, #2DD4BF 100%)"
                         : `linear-gradient(90deg, ${challenge.color} 0%, ${challenge.color}99 100%)`,
                     }}
                     initial={{ width: 0 }}
@@ -468,8 +468,8 @@ const MULTIPLIER_TIERS = [
   { range: "1 - 6 jours", multiplier: "1.0x", label: "Normal", min: 0, max: 6, color: "#9CA3AF" },
   { range: "7 - 13 jours", multiplier: "1.2x", label: "+20% XP", min: 7, max: 13, color: "#4ADE80" },
   { range: "14 - 29 jours", multiplier: "1.5x", label: "+50% XP", min: 14, max: 29, color: "#FBBF24" },
-  { range: "30 - 89 jours", multiplier: "2.0x", label: "Double XP", min: 30, max: 89, color: "#FF9500" },
-  { range: "90+ jours", multiplier: "3.0x", label: "Triple XP", min: 90, max: Infinity, color: "#BF5AF2" },
+  { range: "30 - 89 jours", multiplier: "2.0x", label: "Double XP", min: 30, max: 89, color: "#F59E0B" },
+  { range: "90+ jours", multiplier: "3.0x", label: "Triple XP", min: 90, max: Infinity, color: "#C084FC" },
 ];
 
 function StreakMultipliers() {
@@ -480,7 +480,7 @@ function StreakMultipliers() {
     <section className="mb-6">
       <div className="flex items-center justify-between mb-3 px-1">
         <div className="flex items-center gap-2">
-          <Flame size={14} className="text-[#FF9500]" />
+          <Flame size={14} className="text-[#F59E0B]" />
           <h2 className="text-white font-semibold text-sm font-[family-name:var(--font-poppins)]">
             Multiplicateurs de série
           </h2>
@@ -606,7 +606,7 @@ function XPHistory() {
     <section className="mb-6">
       <div className="flex items-center justify-between mb-3 px-1">
         <div className="flex items-center gap-2">
-          <History size={14} className="text-[#64D2FF]" />
+          <History size={14} className="text-[#2DD4BF]" />
           <h2 className="text-white font-semibold text-sm font-[family-name:var(--font-poppins)]">
             Historique XP
           </h2>
@@ -694,7 +694,7 @@ function Leaderboard() {
   const rankColor = (rank: number): string => {
     if (rank === 1) return "#FBBF24";
     if (rank === 2) return "#9CA3AF";
-    if (rank === 3) return "#FF9500";
+    if (rank === 3) return "#F59E0B";
     return "rgba(255,255,255,0.4)";
   };
 
@@ -717,9 +717,9 @@ function Leaderboard() {
 
       <div className="glass-card p-3 space-y-1.5">
         {/* My rank banner */}
-        <div className="mb-2 px-3 py-2.5 rounded-2xl bg-gradient-to-r from-[#FF3B30]/15 to-[#FF9500]/15 border border-[#FF3B30]/25 flex items-center justify-between">
+        <div className="mb-2 px-3 py-2.5 rounded-2xl bg-gradient-to-r from-[#FF3B30]/15 to-[#F59E0B]/15 border border-[#FF3B30]/25 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Medal size={16} className="text-[#FF9500]" />
+            <Medal size={16} className="text-[#F59E0B]" />
             <span className="text-white/80 text-xs font-medium">Ton rang</span>
           </div>
           <span className="text-white font-bold text-sm">#{myRank}</span>

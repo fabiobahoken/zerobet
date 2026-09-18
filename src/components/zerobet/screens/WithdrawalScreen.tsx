@@ -104,7 +104,7 @@ const PHASES: PhaseDef[] = [
     descriptionKey: "withdrawalPhaseStabDesc",
     symptomsKey: "withdrawalPhaseStabSymptoms",
     tipKey: "withdrawalPhaseStabTip",
-    color: "#FF9500",
+    color: "#F59E0B",
     startDay: 8,
     endDay: 30,
   },
@@ -151,21 +151,21 @@ const COPING: CopingCategory[] = [
   {
     titleKey: "withdrawalCopingInsomnia",
     emoji: "😴",
-    color: "#64D2FF",
+    color: "#2DD4BF",
     strategies: [
-      { icon: Moon, labelKey: "affirmationsTipA", color: "#64D2FF", screen: "meditation", screenLabelKey: "withdrawalCopingScreenMeditation" },
-      { icon: Wind, labelKey: "affirmationsTipB", color: "#64D2FF", screen: "panic", screenLabelKey: "withdrawalCopingScreenBreathing" },
-      { icon: Coffee, labelKey: "triggersTip1", color: "#FF9500", screen: "journal", screenLabelKey: "withdrawalCopingScreenJournal" },
+      { icon: Moon, labelKey: "affirmationsTipA", color: "#2DD4BF", screen: "meditation", screenLabelKey: "withdrawalCopingScreenMeditation" },
+      { icon: Wind, labelKey: "affirmationsTipB", color: "#2DD4BF", screen: "panic", screenLabelKey: "withdrawalCopingScreenBreathing" },
+      { icon: Coffee, labelKey: "triggersTip1", color: "#F59E0B", screen: "journal", screenLabelKey: "withdrawalCopingScreenJournal" },
     ],
   },
   {
     titleKey: "withdrawalCopingAnxiety",
     emoji: "😰",
-    color: "#BF5AF2",
+    color: "#C084FC",
     strategies: [
-      { icon: Wind, labelKey: "triggersCopingMeditation", color: "#BF5AF2", screen: "meditation", screenLabelKey: "withdrawalCopingScreenMeditate" },
+      { icon: Wind, labelKey: "triggersCopingMeditation", color: "#C084FC", screen: "meditation", screenLabelKey: "withdrawalCopingScreenMeditate" },
       { icon: Dumbbell, labelKey: "triggersCopingExercise", color: "#4ADE80", screen: "panic", screenLabelKey: "withdrawalCopingScreenBouger" },
-      { icon: Users, labelKey: "triggersCopingCall", color: "#FF9500", screen: "sos", screenLabelKey: "withdrawalCopingScreenSos" },
+      { icon: Users, labelKey: "triggersCopingCall", color: "#F59E0B", screen: "sos", screenLabelKey: "withdrawalCopingScreenSos" },
     ],
   },
   {
@@ -174,7 +174,7 @@ const COPING: CopingCategory[] = [
     color: "#FF3B30",
     strategies: [
       { icon: Zap, labelKey: "panicTitle", color: "#FF3B30", screen: "panic", screenLabelKey: "withdrawalCopingScreenPanic" },
-      { icon: Activity, labelKey: "blockerTitle", color: "#FF9500", screen: "blocker", screenLabelKey: "withdrawalCopingScreenBlocker" },
+      { icon: Activity, labelKey: "blockerTitle", color: "#F59E0B", screen: "blocker", screenLabelKey: "withdrawalCopingScreenBlocker" },
       { icon: Users, labelKey: "mentorshipTitle", color: "#4ADE80", screen: "mentorship", screenLabelKey: "withdrawalCopingScreenMentor" },
     ],
   },
@@ -184,7 +184,7 @@ const COPING: CopingCategory[] = [
     color: "#FBBF24",
     strategies: [
       { icon: Clock, labelKey: "triggersCopingDistraction", color: "#FBBF24", screen: "meditation", screenLabelKey: "withdrawalCopingScreenMeditate" },
-      { icon: PenLine, labelKey: "triggersCopingJournal", color: "#64D2FF", screen: "journal", screenLabelKey: "withdrawalCopingScreenJournal" },
+      { icon: PenLine, labelKey: "triggersCopingJournal", color: "#2DD4BF", screen: "journal", screenLabelKey: "withdrawalCopingScreenJournal" },
       { icon: Dumbbell, labelKey: "triggersCopingExercise", color: "#4ADE80", screen: "panic", screenLabelKey: "withdrawalCopingScreenBouger" },
     ],
   },
@@ -406,7 +406,7 @@ export function WithdrawalScreen() {
           className="w-10 h-10 rounded-full glass-card flex items-center justify-center"
           aria-hidden
         >
-          <Activity size={18} className="text-[#BF5AF2]" />
+          <Activity size={18} className="text-[#C084FC]" />
         </div>
       </motion.div>
 
@@ -423,12 +423,12 @@ export function WithdrawalScreen() {
           variants={itemVariants}
           className="glass-card-strong p-5 relative overflow-hidden"
         >
-          <div className="absolute -top-16 -right-16 w-44 h-44 rounded-full blur-3xl pointer-events-none bg-[#BF5AF2]/20" />
+          <div className="absolute -top-16 -right-16 w-44 h-44 rounded-full blur-3xl pointer-events-none bg-[#C084FC]/20" />
           <div className="absolute -bottom-12 -left-12 w-32 h-32 rounded-full blur-3xl pointer-events-none bg-[#FF3B30]/15" />
 
           <div className="relative">
             <div className="flex items-center gap-2 mb-2">
-              <Sparkles size={16} className="text-[#BF5AF2]" />
+              <Sparkles size={16} className="text-[#C084FC]" />
               <h2 className="text-base font-bold text-white font-[family-name:var(--font-poppins)]">
                 {t("withdrawalBannerTitle")}
               </h2>
@@ -466,7 +466,7 @@ export function WithdrawalScreen() {
               const count = cat === "physique" ? physicalActive : mentalActive;
               const label = cat === "physique" ? t("withdrawalPhysical") : t("withdrawalMental");
               const emoji = cat === "physique" ? "💪" : "🧠";
-              const color = cat === "physique" ? "#FF9500" : "#BF5AF2";
+              const color = cat === "physique" ? "#F59E0B" : "#C084FC";
               return (
                 <button
                   key={cat}
@@ -527,7 +527,7 @@ export function WithdrawalScreen() {
                           <div
                             className={`w-5 h-5 rounded-md border flex items-center justify-center flex-shrink-0 transition-all ${
                               checked
-                                ? "bg-[#BF5AF2] border-[#BF5AF2]"
+                                ? "bg-[#C084FC] border-[#C084FC]"
                                 : "border-white/25"
                             }`}
                           >
@@ -561,7 +561,7 @@ export function WithdrawalScreen() {
                                         key={lvl}
                                         className={`w-1.5 h-1.5 rounded-full ${
                                           lvl <= intensity
-                                            ? "bg-[#BF5AF2]"
+                                            ? "bg-[#C084FC]"
                                             : "bg-white/15"
                                         }`}
                                       />
@@ -577,7 +577,7 @@ export function WithdrawalScreen() {
                                   step={1}
                                   value={[intensity]}
                                   onValueChange={(v) => setIntensity(s.key, v[0])}
-                                  className="[&_[data-slot=slider-range]]:bg-[#BF5AF2] [&_[data-slot=slider-thumb]]:border-[#BF5AF2]"
+                                  className="[&_[data-slot=slider-range]]:bg-[#C084FC] [&_[data-slot=slider-thumb]]:border-[#C084FC]"
                                 />
                               </div>
                             </motion.div>
@@ -611,7 +611,7 @@ export function WithdrawalScreen() {
         {/* ============================================================ */}
         <motion.section variants={itemVariants} className="glass-card p-5">
           <div className="flex items-center gap-2 mb-3">
-            <CalendarIcon size={16} className="text-[#FF9500]" />
+            <CalendarIcon size={16} className="text-[#F59E0B]" />
             <h2 className="text-sm font-bold text-white font-[family-name:var(--font-poppins)]">
               {t("withdrawalTimelineTitle")}
             </h2>
@@ -623,7 +623,7 @@ export function WithdrawalScreen() {
               className="absolute inset-y-0 left-0"
               style={{
                 width: `${Math.min(100, (streakDays / 90) * 100)}%`,
-                background: `linear-gradient(90deg, #FF3B30 0%, #FF9500 35%, #FBBF24 65%, #4ADE80 100%)`,
+                background: `linear-gradient(90deg, #FF3B30 0%, #F59E0B 35%, #FBBF24 65%, #4ADE80 100%)`,
               }}
             />
             <div
@@ -702,7 +702,7 @@ export function WithdrawalScreen() {
         {/* ============================================================ */}
         <motion.section variants={itemVariants} className="glass-card p-5">
           <div className="flex items-center gap-2 mb-1">
-            <Activity size={16} className="text-[#BF5AF2]" />
+            <Activity size={16} className="text-[#C084FC]" />
             <h2 className="text-sm font-bold text-white font-[family-name:var(--font-poppins)]">
               {t("withdrawalCurveTitle")}
             </h2>
@@ -721,7 +721,7 @@ export function WithdrawalScreen() {
                 <defs>
                   <linearGradient id="lineStroke" x1="0" y1="0" x2="1" y2="0">
                     <stop offset="0%" stopColor="#FF3B30" />
-                    <stop offset="40%" stopColor="#FF9500" />
+                    <stop offset="40%" stopColor="#F59E0B" />
                     <stop offset="70%" stopColor="#FBBF24" />
                     <stop offset="100%" stopColor="#4ADE80" />
                   </linearGradient>
@@ -737,7 +737,7 @@ export function WithdrawalScreen() {
                 <ReferenceArea
                   x1={7}
                   x2={30}
-                  fill="#FF9500"
+                  fill="#F59E0B"
                   fillOpacity={0.08}
                   stroke="none"
                 />
@@ -788,7 +788,7 @@ export function WithdrawalScreen() {
                   dot={false}
                   activeDot={{
                     r: 5,
-                    fill: "#FF9500",
+                    fill: "#F59E0B",
                     stroke: "#070B0E",
                     strokeWidth: 2,
                   }}
@@ -796,12 +796,12 @@ export function WithdrawalScreen() {
                 {streakDays >= 1 && streakDays <= 90 && (
                   <ReferenceLine
                     x={streakDays}
-                    stroke="#BF5AF2"
+                    stroke="#C084FC"
                     strokeWidth={1.5}
                     strokeDasharray="4 4"
                     label={{
                       value: t("today"),
-                      fill: "#BF5AF2",
+                      fill: "#C084FC",
                       fontSize: 9,
                       position: "top",
                     }}
@@ -818,7 +818,7 @@ export function WithdrawalScreen() {
               <span className="text-white/50">1-7j ({t("withdrawalPhaseAcuteTitle").toLowerCase()})</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="w-2.5 h-2.5 rounded-sm bg-[#FF9500]/30" />
+              <span className="w-2.5 h-2.5 rounded-sm bg-[#F59E0B]/30" />
               <span className="text-white/50">8-30j</span>
             </div>
             <div className="flex items-center gap-1.5">
@@ -833,7 +833,7 @@ export function WithdrawalScreen() {
         {/* ============================================================ */}
         <motion.section variants={itemVariants} className="glass-card p-5">
           <div className="flex items-center gap-2 mb-3">
-            <Wind size={16} className="text-[#64D2FF]" />
+            <Wind size={16} className="text-[#2DD4BF]" />
             <h2 className="text-sm font-bold text-white font-[family-name:var(--font-poppins)]">
               {t("withdrawalCopingTitle")}
             </h2>
@@ -1027,7 +1027,7 @@ export function WithdrawalScreen() {
                   haptics.medium();
                   navigate("community");
                 }}
-                className="h-11 rounded-xl bg-[#BF5AF2] text-white text-xs font-bold flex items-center justify-center gap-1.5"
+                className="h-11 rounded-xl bg-[#C084FC] text-white text-xs font-bold flex items-center justify-center gap-1.5"
               >
                 <Users size={14} />
                 {t("withdrawalWarningContact")}

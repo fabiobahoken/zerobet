@@ -160,7 +160,7 @@ const VIDEO_TUTORIALS: VideoTutorial[] = [
     titleKey: "supportVideo1Title",
     duration: "3 min",
     thumbnail: "🚀",
-    gradient: "linear-gradient(135deg, #FF3B30 0%, #FF9500 100%)",
+    gradient: "linear-gradient(135deg, #FF3B30 0%, #F59E0B 100%)",
     icon: "🚀",
   },
   {
@@ -168,7 +168,7 @@ const VIDEO_TUTORIALS: VideoTutorial[] = [
     titleKey: "supportVideo2Title",
     duration: "2 min",
     thumbnail: "⚡",
-    gradient: "linear-gradient(135deg, #FF9500 0%, #FBBF24 100%)",
+    gradient: "linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%)",
     icon: "⚡",
   },
   {
@@ -176,7 +176,7 @@ const VIDEO_TUTORIALS: VideoTutorial[] = [
     titleKey: "supportVideo3Title",
     duration: "5 min",
     thumbnail: "🤖",
-    gradient: "linear-gradient(135deg, #BF5AF2 0%, #64D2FF 100%)",
+    gradient: "linear-gradient(135deg, #C084FC 0%, #2DD4BF 100%)",
     icon: "🤖",
   },
   {
@@ -184,7 +184,7 @@ const VIDEO_TUTORIALS: VideoTutorial[] = [
     titleKey: "supportVideo4Title",
     duration: "4 min",
     thumbnail: "👥",
-    gradient: "linear-gradient(135deg, #4ADE80 0%, #22D3EE 100%)",
+    gradient: "linear-gradient(135deg, #4ADE80 0%, #2DD4BF 100%)",
     icon: "👥",
   },
 ];
@@ -203,7 +203,7 @@ const TROUBLESHOOT_ITEMS: TroubleshootItem[] = [
     issueKey: "supportTrouble2Issue",
     solutionKey: "supportTrouble2Solution",
     icon: Zap,
-    color: "#64D2FF",
+    color: "#2DD4BF",
     target: "settings",
   },
   {
@@ -211,7 +211,7 @@ const TROUBLESHOOT_ITEMS: TroubleshootItem[] = [
     issueKey: "supportTrouble3Issue",
     solutionKey: "supportTrouble3Solution",
     icon: Zap,
-    color: "#BF5AF2",
+    color: "#C084FC",
     target: "settings",
   },
   {
@@ -219,7 +219,7 @@ const TROUBLESHOOT_ITEMS: TroubleshootItem[] = [
     issueKey: "supportTrouble4Issue",
     solutionKey: "supportTrouble4Solution",
     icon: Zap,
-    color: "#FF9500",
+    color: "#F59E0B",
     target: "settings",
   },
 ];
@@ -295,7 +295,7 @@ export function SupportScreen() {
       icon: HelpCircle,
       titleKey: "supportFaq",
       descKey: "supportFaqDesc",
-      color: "#64D2FF",
+      color: "#2DD4BF",
       action: () => handleQuickHelp("faq"),
     },
     {
@@ -311,7 +311,7 @@ export function SupportScreen() {
       icon: Bug,
       titleKey: "supportBug",
       descKey: "supportBugDesc",
-      color: "#FF9500",
+      color: "#F59E0B",
       action: () => handleQuickHelp("bug"),
     },
     {
@@ -319,7 +319,7 @@ export function SupportScreen() {
       icon: Lightbulb,
       titleKey: "supportSuggestion",
       descKey: "supportSuggestionDesc",
-      color: "#BF5AF2",
+      color: "#C084FC",
       action: () => handleQuickHelp("suggestion"),
     },
   ];
@@ -385,7 +385,7 @@ export function SupportScreen() {
           <p className="text-white/50 text-xs">{t("supportSubtitle")}</p>
         </div>
         <div className="w-10 h-10 rounded-full glass-card flex items-center justify-center">
-          <HelpCircle size={18} className="text-[#64D2FF]" />
+          <HelpCircle size={18} className="text-[#2DD4BF]" />
         </div>
       </motion.div>
 
@@ -421,7 +421,7 @@ export function SupportScreen() {
       {/* Section 2: FAQ */}
       <section id="faq-section" className="mb-6">
         <div className="flex items-center gap-2 mb-3">
-          <HelpCircle size={14} className="text-[#64D2FF]" />
+          <HelpCircle size={14} className="text-[#2DD4BF]" />
           <h2 className="text-white font-semibold text-sm">{t("supportFaqTitle")}</h2>
         </div>
 
@@ -436,7 +436,7 @@ export function SupportScreen() {
             value={faqSearch}
             onChange={(e) => setFaqSearch(e.target.value)}
             placeholder={t("supportSearchFaqQuestion")}
-            className="w-full pl-10 pr-3 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-[#64D2FF]/50 transition-colors"
+            className="w-full pl-10 pr-3 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-[#2DD4BF]/50 transition-colors"
           />
         </div>
 
@@ -491,7 +491,7 @@ export function SupportScreen() {
                   aria-expanded={isOpen}
                 >
                   <div className="flex-1 min-w-0">
-                    <span className="text-[10px] font-semibold text-[#64D2FF] uppercase tracking-wider">
+                    <span className="text-[10px] font-semibold text-[#2DD4BF] uppercase tracking-wider">
                       {t(`supportCategory${faq.category.charAt(0).toUpperCase()}${faq.category.slice(1)}`)}
                     </span>
                     <h3 className="text-white text-sm font-medium mt-0.5">{t(faq.questionKey)}</h3>
@@ -605,7 +605,7 @@ export function SupportScreen() {
       {/* Section 4: Video Tutorials */}
       <section className="mb-6">
         <div className="flex items-center gap-2 mb-3">
-          <Play size={14} className="text-[#BF5AF2]" />
+          <Play size={14} className="text-[#C084FC]" />
           <h2 className="text-white font-semibold text-sm">{t("supportVideos")}</h2>
         </div>
         <div className="flex gap-3 overflow-x-auto no-scrollbar pb-2 -mx-1 px-1">

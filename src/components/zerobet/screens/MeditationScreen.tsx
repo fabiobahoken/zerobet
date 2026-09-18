@@ -74,12 +74,12 @@ const BREATHING_TECHNIQUES: BreathingTechnique[] = [
     cycles: 3,
     difficulty: "medium",
     difficultyLevel: 2,
-    gradient: "linear-gradient(135deg, #64D2FF 0%, #5E5CE6 100%)",
-    glow: "rgba(100, 210, 255, 0.45)",
-    accent: "#64D2FF",
+    gradient: "linear-gradient(135deg, #2DD4BF 0%, #2DD4BF 100%)",
+    glow: "rgba(45, 212, 191, 0.45)",
+    accent: "#2DD4BF",
     emoji: "🌊",
     phases: [
-      { nameKey: "meditationPhaseInspire", duration: 4, color: "#64D2FF", action: "scale-up" },
+      { nameKey: "meditationPhaseInspire", duration: 4, color: "#2DD4BF", action: "scale-up" },
       { nameKey: "meditationPhaseHold", duration: 7, color: "#FBBF24", action: "hold" },
       { nameKey: "meditationPhaseExhale", duration: 8, color: "#FF3B30", action: "scale-down" },
     ],
@@ -93,7 +93,7 @@ const BREATHING_TECHNIQUES: BreathingTechnique[] = [
     cycles: 4,
     difficulty: "easy",
     difficultyLevel: 1,
-    gradient: "linear-gradient(135deg, #4ADE80 0%, #22D3EE 100%)",
+    gradient: "linear-gradient(135deg, #4ADE80 0%, #2DD4BF 100%)",
     glow: "rgba(74, 222, 128, 0.45)",
     accent: "#4ADE80",
     emoji: "🟩",
@@ -113,12 +113,12 @@ const BREATHING_TECHNIQUES: BreathingTechnique[] = [
     cycles: 5,
     difficulty: "easy",
     difficultyLevel: 1,
-    gradient: "linear-gradient(135deg, #BF5AF2 0%, #6366F1 100%)",
-    glow: "rgba(191, 90, 242, 0.45)",
-    accent: "#BF5AF2",
+    gradient: "linear-gradient(135deg, #C084FC 0%, #6366F1 100%)",
+    glow: "rgba(192, 132, 252, 0.45)",
+    accent: "#C084FC",
     emoji: "💜",
     phases: [
-      { nameKey: "meditationPhaseInspire", duration: 2, color: "#BF5AF2", action: "scale-up" },
+      { nameKey: "meditationPhaseInspire", duration: 2, color: "#C084FC", action: "scale-up" },
       { nameKey: "meditationPhaseHold", duration: 4, color: "#FBBF24", action: "hold" },
       { nameKey: "meditationPhaseExhale", duration: 6, color: "#FF3B30", action: "scale-down" },
     ],
@@ -132,12 +132,12 @@ const BREATHING_TECHNIQUES: BreathingTechnique[] = [
     cycles: 4,
     difficulty: "advanced",
     difficultyLevel: 3,
-    gradient: "linear-gradient(135deg, #FF9500 0%, #FF3B30 100%)",
-    glow: "rgba(255, 149, 0, 0.45)",
-    accent: "#FF9500",
+    gradient: "linear-gradient(135deg, #F59E0B 0%, #FF3B30 100%)",
+    glow: "rgba(245, 158, 11, 0.45)",
+    accent: "#F59E0B",
     emoji: "🌅",
     phases: [
-      { nameKey: "meditationPhaseInspire", duration: 5, color: "#FF9500", action: "scale-up" },
+      { nameKey: "meditationPhaseInspire", duration: 5, color: "#F59E0B", action: "scale-up" },
       { nameKey: "meditationPhaseExhale", duration: 5, color: "#FF3B30", action: "scale-down" },
     ],
   },
@@ -152,7 +152,7 @@ const GUIDED_MEDITATIONS: GuidedMeditation[] = [
     category: "crise",
     narratorKey: "meditationNarratorAissata",
     descKey: "meditationGuided1Desc",
-    gradient: "linear-gradient(135deg, #FF3B30 0%, #FF9500 100%)",
+    gradient: "linear-gradient(135deg, #FF3B30 0%, #F59E0B 100%)",
     accent: "#FF3B30",
     emoji: "🛟",
   },
@@ -164,7 +164,7 @@ const GUIDED_MEDITATIONS: GuidedMeditation[] = [
     category: "motivation",
     narratorKey: "meditationNarratorMarc",
     descKey: "meditationGuided2Desc",
-    gradient: "linear-gradient(135deg, #4ADE80 0%, #22D3EE 100%)",
+    gradient: "linear-gradient(135deg, #4ADE80 0%, #2DD4BF 100%)",
     accent: "#4ADE80",
     emoji: "💪",
   },
@@ -176,8 +176,8 @@ const GUIDED_MEDITATIONS: GuidedMeditation[] = [
     category: "relaxation",
     narratorKey: "meditationNarratorLea",
     descKey: "meditationGuided3Desc",
-    gradient: "linear-gradient(135deg, #64D2FF 0%, #5E5CE6 100%)",
-    accent: "#64D2FF",
+    gradient: "linear-gradient(135deg, #2DD4BF 0%, #2DD4BF 100%)",
+    accent: "#2DD4BF",
     emoji: "🕊️",
   },
   {
@@ -188,7 +188,7 @@ const GUIDED_MEDITATIONS: GuidedMeditation[] = [
     category: "motivation",
     narratorKey: "meditationNarratorKarim",
     descKey: "meditationGuided4Desc",
-    gradient: "linear-gradient(135deg, #FBBF24 0%, #FF9500 100%)",
+    gradient: "linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%)",
     accent: "#FBBF24",
     emoji: "🌟",
   },
@@ -200,8 +200,8 @@ const GUIDED_MEDITATIONS: GuidedMeditation[] = [
     category: "relaxation",
     narratorKey: "meditationNarratorLea",
     descKey: "meditationGuided5Desc",
-    gradient: "linear-gradient(135deg, #BF5AF2 0%, #6366F1 100%)",
-    accent: "#BF5AF2",
+    gradient: "linear-gradient(135deg, #C084FC 0%, #6366F1 100%)",
+    accent: "#C084FC",
     emoji: "🧘",
   },
   {
@@ -212,8 +212,8 @@ const GUIDED_MEDITATIONS: GuidedMeditation[] = [
     category: "énergie",
     narratorKey: "meditationNarratorMarc",
     descKey: "meditationGuided6Desc",
-    gradient: "linear-gradient(135deg, #FF9500 0%, #FBBF24 100%)",
-    accent: "#FF9500",
+    gradient: "linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%)",
+    accent: "#F59E0B",
     emoji: "🌅",
   },
 ];
@@ -221,8 +221,8 @@ const GUIDED_MEDITATIONS: GuidedMeditation[] = [
 const CATEGORY_LABELS: Record<GuidedMeditation["category"], { labelKey: string; color: string }> = {
   crise: { labelKey: "meditationCatCrisis", color: "#FF3B30" },
   motivation: { labelKey: "meditationCatMotivation", color: "#4ADE80" },
-  relaxation: { labelKey: "meditationCatRelaxation", color: "#64D2FF" },
-  énergie: { labelKey: "meditationCatEnergy", color: "#FF9500" },
+  relaxation: { labelKey: "meditationCatRelaxation", color: "#2DD4BF" },
+  énergie: { labelKey: "meditationCatEnergy", color: "#F59E0B" },
 };
 
 const BENEFITS = [
@@ -230,7 +230,7 @@ const BENEFITS = [
     icon: HeartPulse,
     titleKey: "meditationBenefit1Title",
     valueKey: "meditationBenefit1Value",
-    color: "#64D2FF",
+    color: "#2DD4BF",
   },
   {
     icon: Brain,
@@ -242,13 +242,13 @@ const BENEFITS = [
     icon: Flame,
     titleKey: "meditationBenefit3Title",
     valueKey: "meditationBenefit3Value",
-    color: "#FF9500",
+    color: "#F59E0B",
   },
   {
     icon: Moon,
     titleKey: "meditationBenefit4Title",
     valueKey: "meditationBenefit4Value",
-    color: "#BF5AF2",
+    color: "#C084FC",
   },
 ];
 
@@ -785,9 +785,9 @@ export function MeditationScreen() {
         </div>
         <div
           className="w-10 h-10 rounded-full flex items-center justify-center"
-          style={{ background: "rgba(100, 210, 255, 0.18)" }}
+          style={{ background: "rgba(45, 212, 191, 0.18)" }}
         >
-          <Wind size={20} className="text-[#64D2FF]" />
+          <Wind size={20} className="text-[#2DD4BF]" />
         </div>
       </div>
 
@@ -799,16 +799,16 @@ export function MeditationScreen() {
       >
         <div
           className="absolute -top-10 -right-10 w-32 h-32 rounded-full blur-3xl"
-          style={{ background: "rgba(100, 210, 255, 0.20)" }}
+          style={{ background: "rgba(45, 212, 191, 0.20)" }}
         />
         <div
           className="absolute -bottom-10 -left-10 w-32 h-32 rounded-full blur-3xl"
-          style={{ background: "rgba(191, 90, 242, 0.15)" }}
+          style={{ background: "rgba(192, 132, 252, 0.15)" }}
         />
         <div className="relative flex items-center justify-between">
           <div>
             <div className="flex items-center gap-1.5 mb-1">
-              <Sparkles size={12} className="text-[#64D2FF]" />
+              <Sparkles size={12} className="text-[#2DD4BF]" />
               <span className="text-white/60 text-[11px] font-medium uppercase tracking-wider">
                 {t("statsMeditationStreak")}
               </span>

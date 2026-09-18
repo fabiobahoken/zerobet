@@ -7,7 +7,7 @@ import {
   ChevronLeft, ChevronDown, Heart, MessageCircle, Flame, BadgeCheck, Plus, X,
   MessageSquare, Users, GraduationCap, ShieldCheck, Star, Clock,
   Trophy, Lock, Send, Globe, Sparkles, Stethoscope, Crown,
-  TrendingUp, Zap,
+  TrendingUp, Zap, Share2,
 } from "lucide-react";
 import { useStore, type Testimonial, type ForumPost, type ForumReply } from "@/store/zerobet-store";
 import { useT, useLanguage } from "@/lib/i18n/useT";
@@ -20,10 +20,13 @@ import {
   getResponseTime,
   QUICK_REPLIES,
 } from "@/lib/data/search-data";
-import { formatCurrency } from "@/lib/data/currency-data";
+import { formatCurrency, getCurrency } from "@/lib/data/currency-data";
 import { sound } from "@/lib/sound";
 import { haptics } from "@/lib/haptics";
 import { ListSkeleton } from "@/components/zerobet/components/Skeletons";
+import JourneyShareModal from "@/components/zerobet/components/JourneyShareModal";
+import type { JourneyCardData } from "@/lib/share-card";
+import { getCurrentRank } from "@/lib/data/parcours-data";
 import { PullToRefresh } from "@/components/zerobet/components/PullToRefresh";
 import { EmptyState } from "@/components/zerobet/components/EmptyState";
 import {
@@ -103,8 +106,8 @@ const FORUM_CATEGORIES: {
 }[] = [
   { key: "success", labelKey: "communityCategorySuccess", color: "#4ADE80", emoji: "🎉" },
   { key: "struggle", labelKey: "communityCategoryStruggle", color: "#FF3B30", emoji: "💪" },
-  { key: "motivation", labelKey: "communityCategoryMotivation", color: "#FF9500", emoji: "🔥" },
-  { key: "question", labelKey: "communityCategoryQuestion", color: "#64D2FF", emoji: "❓" },
+  { key: "motivation", labelKey: "communityCategoryMotivation", color: "#F59E0B", emoji: "🔥" },
+  { key: "question", labelKey: "communityCategoryQuestion", color: "#2DD4BF", emoji: "❓" },
 ];
 
 const CATEGORY_BY_KEY = Object.fromEntries(
@@ -237,11 +240,11 @@ function Avatar({ name, size = 40 }: { name: string; size?: number }) {
   // deterministic gradient from name
   const hash = name.split("").reduce((a, c) => a + c.charCodeAt(0), 0);
   const grads = [
-    "linear-gradient(135deg, #FF3B30, #FF9500)",
-    "linear-gradient(135deg, #4ADE80, #22D3EE)",
-    "linear-gradient(135deg, #BF5AF2, #FF3B30)",
-    "linear-gradient(135deg, #64D2FF, #5E5CE6)",
-    "linear-gradient(135deg, #FF9500, #FBBF24)",
+    "linear-gradient(135deg, #FF3B30, #F59E0B)",
+    "linear-gradient(135deg, #4ADE80, #2DD4BF)",
+    "linear-gradient(135deg, #C084FC, #FF3B30)",
+    "linear-gradient(135deg, #2DD4BF, #2DD4BF)",
+    "linear-gradient(135deg, #F59E0B, #FBBF24)",
     "linear-gradient(135deg, #4ADE80, #FBBF24)",
   ];
   const grad = grads[hash % grads.length];
@@ -313,7 +316,7 @@ function CommunityStatsBanner() {
       animate={{ opacity: 1, y: 0 }}
       className="glass-card-strong p-4 mb-4 relative overflow-hidden"
     >
-      <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full bg-[#FF9500]/15 blur-3xl" />
+      <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full bg-[#F59E0B]/15 blur-3xl" />
       <div className="absolute -bottom-8 -left-8 w-32 h-32 rounded-full bg-[#4ADE80]/10 blur-3xl" />
       <div className="relative grid grid-cols-3 gap-2 text-center">
         <StatItem
@@ -393,6 +396,7 @@ export function CommunityScreen() {
     testimonials, addTestimonial, toggleTestimonialLike, addTestimonialReply,
     forumPosts, addForumPost, toggleForumLike, addForumReply,
     plan, navigate, anonymousMode, streakDays, adminStreakOverride, currency,
+    weeklyBetAmount, xp, level, journalEntries,
   } = useStore();
 
   const isPremium = plan !== "free";
@@ -439,6 +443,38 @@ export function CommunityScreen() {
 
   // Mentor progress to 90 days
   const mentorProgress = Math.min(100, (effectiveStreak / 90) * 100);
+
+  // Zerobet 2.0.8 — journey card share (banner + modal)
+  const [journeyOpen, setJourneyOpen] = useState(false);
+  const journeyData = useMemo<JourneyCardData>(() => {
+    const fmt = new Intl.NumberFormat(
+      language === "en" ? "en-US" : language === "es" ? "es-ES" : "fr-FR"
+    );
+    const rank = getCurrentRank(effectiveStreak);
+    const saved = Math.round(effectiveStreak * Math.round(weeklyBetAmount / 7));
+    const info = getCurrency(currency);
+    const savedValue =
+      info.position === "before"
+        ? `${info.symbol} ${fmt.format(saved)}`
+        : `${fmt.format(saved)} ${info.symbol}`;
+    return {
+      days: effectiveStreak,
+      headerLabel: t("journeyCardHeader"),
+      daysLabel: t("journeyCardDaysLabel"),
+      savedLine: t("journeyCardSavedLine", { n: savedValue }),
+      accent: rank.color,
+      stats: [
+        { emoji: "🏅", label: t("journeyStatRank"), value: t(rank.nameKey) },
+        {
+          emoji: "⚡",
+          label: t("journeyStatLevel"),
+          value: t("journeyStatLevelValue", { level: String(level), xp: fmt.format(xp) }),
+        },
+        { emoji: "📖", label: t("journeyStatJournal"), value: t("journeyStatJournalValue", { n: journalEntries.length }) },
+      ],
+      tagline: t("journeyCardTagline"),
+    };
+  }, [effectiveStreak, weeklyBetAmount, currency, level, xp, journalEntries.length, t, language]);
 
   // Handlers
   const handleTestimonialSubmit = () => {
@@ -614,6 +650,34 @@ export function CommunityScreen() {
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.2 }}
             >
+              {/* Zerobet 2.0.8 — "Mon parcours" share banner */}
+              <div className="relative overflow-hidden rounded-3xl mb-4 p-4 glass-card">
+                <div className="absolute -top-6 -right-6 w-24 h-24 rounded-full bg-[#F59E0B]/15 blur-2xl pointer-events-none" />
+                <div className="absolute -bottom-8 -left-8 w-24 h-24 rounded-full bg-[#10B981]/15 blur-2xl pointer-events-none" />
+                <div className="relative flex items-center gap-3">
+                  <div className="w-11 h-11 rounded-2xl gradient-gold glow-green flex items-center justify-center flex-shrink-0">
+                    <Share2 size={20} className="text-white" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-white font-semibold text-sm font-[family-name:var(--font-poppins)]">
+                      {t("journeyBannerTitle")}
+                    </p>
+                    <p className="text-white/50 text-xs mt-0.5 leading-relaxed">
+                      {t("journeyBannerSubtitle")}
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => {
+                      sound.playClick();
+                      haptics.light();
+                      setJourneyOpen(true);
+                    }}
+                    className="px-4 py-2 rounded-full gradient-primary glow-green text-white text-xs font-bold flex-shrink-0 transition-transform active:scale-95"
+                  >
+                    {t("journeyBannerCta")}
+                  </button>
+                </div>
+              </div>
               <TestimonialsTab
                 testimonials={allTestimonials}
                 isPremium={isPremium}
@@ -775,7 +839,7 @@ export function CommunityScreen() {
               </label>
 
               {anonymousMode && (
-                <div className="text-[11px] text-[#FF9500] bg-[#FF9500]/10 border border-[#FF9500]/30 rounded-xl px-3 py-2 mb-4">
+                <div className="text-[11px] text-[#F59E0B] bg-[#F59E0B]/10 border border-[#F59E0B]/30 rounded-xl px-3 py-2 mb-4">
                   {t("communityAnonymousModeActive")}
                 </div>
               )}
@@ -893,6 +957,9 @@ export function CommunityScreen() {
         )}
       </AnimatePresence>
 
+      {/* Zerobet 2.0.8 — journey card share modal */}
+      <JourneyShareModal open={journeyOpen} onClose={() => setJourneyOpen(false)} data={journeyData} />
+
       {/* ========================================
           PSYCHOLOGIST RESERVATION MODAL
           ======================================== */}
@@ -934,7 +1001,7 @@ export function CommunityScreen() {
                       <span className="text-white font-semibold text-sm truncate">
                         {reservingPsy.displayName}
                       </span>
-                      <BadgeCheck size={14} className="text-[#64D2FF] shrink-0" />
+                      <BadgeCheck size={14} className="text-[#2DD4BF] shrink-0" />
                     </div>
                     <p className="text-white/50 text-xs truncate">{reservingPsy.specialty}</p>
                   </div>
@@ -1118,7 +1185,7 @@ function TestimonialsTab({
                         {testimonial.isAnonymous ? t("communityAnonymous") : testimonial.authorName}
                       </span>
                       {testimonial.isVerified && (
-                        <BadgeCheck size={14} className="text-[#64D2FF]" />
+                        <BadgeCheck size={14} className="text-[#2DD4BF]" />
                       )}
                       {testimonial.isMine && (
                         <span className="px-2 py-0.5 rounded-full bg-[#FF3B30]/20 text-[#FF3B30] text-[10px] font-bold">
@@ -1136,7 +1203,7 @@ function TestimonialsTab({
                           {countryName}
                         </span>
                       )}
-                      <span className="flex items-center gap-0.5 text-[#FF9500]">
+                      <span className="flex items-center gap-0.5 text-[#F59E0B]">
                         <Flame size={11} />
                         {testimonial.streakDays} {t("dayShort")}
                       </span>
@@ -1188,7 +1255,7 @@ function TestimonialsTab({
                               </span>
                             )}
                             {r.isPsychologist && (
-                              <span className="px-1.5 py-0.5 rounded-full bg-[#BF5AF2]/20 text-[#BF5AF2] text-[9px] font-bold">
+                              <span className="px-1.5 py-0.5 rounded-full bg-[#C084FC]/20 text-[#C084FC] text-[9px] font-bold">
                                 {t("psyBadge")}
                               </span>
                             )}
@@ -1418,7 +1485,7 @@ function ForumTab({
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-1.5">
                     <span className="text-white text-xs font-semibold truncate">{post.authorName}</span>
-                    <span className="flex items-center gap-0.5 text-[#FF9500] text-[10px]">
+                    <span className="flex items-center gap-0.5 text-[#F59E0B] text-[10px]">
                       <Flame size={10} />
                       {post.authorStreak}{t("dayShort")}
                     </span>
@@ -1456,7 +1523,7 @@ function ForumTab({
                   }
                   className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all active:scale-95 ${
                     forumReplyingTo === post.id
-                      ? "bg-[#FF9500]/20 text-[#FF9500]"
+                      ? "bg-[#F59E0B]/20 text-[#F59E0B]"
                       : "glass-pill text-white/60"
                   }`}
                 >
@@ -1484,7 +1551,7 @@ function ForumTab({
                             </span>
                           )}
                           {r.isPsychologist && (
-                            <span className="px-1.5 py-0.5 rounded-full bg-[#BF5AF2]/20 text-[#BF5AF2] text-[9px] font-bold">
+                            <span className="px-1.5 py-0.5 rounded-full bg-[#C084FC]/20 text-[#C084FC] text-[9px] font-bold">
                               {t("psyBadge")}
                             </span>
                           )}
@@ -1673,7 +1740,7 @@ function MentorsTab({
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-1.5 flex-wrap">
                   <span className="text-white font-bold text-sm">{m.displayName}</span>
-                  {m.verified && <BadgeCheck size={14} className="text-[#64D2FF]" />}
+                  {m.verified && <BadgeCheck size={14} className="text-[#2DD4BF]" />}
                   <span
                     className={`flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-[9px] font-bold ${
                       online
@@ -1689,13 +1756,13 @@ function MentorsTab({
                     {online ? t("communityOnline") : t("communityOffline")}
                   </span>
                 </div>
-                <p className="text-[#FF9500] text-xs font-medium">{m.specialty}</p>
+                <p className="text-[#F59E0B] text-xs font-medium">{m.specialty}</p>
                 <div className="flex items-center gap-2 text-white/40 text-[11px] mt-0.5">
                   <span className="flex items-center gap-0.5">
                     <Globe size={10} />
                     {m.country}
                   </span>
-                  <span className="flex items-center gap-0.5 text-[#FF9500]">
+                  <span className="flex items-center gap-0.5 text-[#F59E0B]">
                     <Flame size={10} />
                     {m.daysClean} {t("dayShort")} {t("cleanShort")}
                   </span>
@@ -1706,7 +1773,7 @@ function MentorsTab({
             <p className="text-white/70 text-xs leading-relaxed mb-3">{m.bio}</p>
 
             <div className="flex items-center gap-2 mb-3 flex-wrap">
-              <span className="flex items-center gap-1 px-2 py-1 rounded-full bg-[#64D2FF]/10 text-[#64D2FF] text-[10px] font-semibold">
+              <span className="flex items-center gap-1 px-2 py-1 rounded-full bg-[#2DD4BF]/10 text-[#2DD4BF] text-[10px] font-semibold">
                 <Zap size={10} />
                 {response.label}
               </span>
@@ -1752,8 +1819,8 @@ function PsychologistsTab({
         animate={{ opacity: 1, y: 0 }}
         className="glass-card p-4 mb-4 flex items-center gap-3"
       >
-        <div className="w-12 h-12 rounded-2xl bg-[#BF5AF2]/20 flex items-center justify-center">
-          <Stethoscope size={22} className="text-[#BF5AF2]" />
+        <div className="w-12 h-12 rounded-2xl bg-[#C084FC]/20 flex items-center justify-center">
+          <Stethoscope size={22} className="text-[#C084FC]" />
         </div>
         <div className="flex-1">
           <h3 className="text-white font-bold text-sm font-[family-name:var(--font-poppins)]">
@@ -1793,8 +1860,8 @@ function PsychologistsTab({
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-1.5 flex-wrap">
                   <span className="text-white font-bold text-sm">{p.displayName}</span>
-                  {p.verified && <BadgeCheck size={14} className="text-[#64D2FF]" />}
-                  <span className="px-2 py-0.5 rounded-full bg-[#BF5AF2]/20 text-[#BF5AF2] text-[9px] font-bold flex items-center gap-0.5">
+                  {p.verified && <BadgeCheck size={14} className="text-[#2DD4BF]" />}
+                  <span className="px-2 py-0.5 rounded-full bg-[#C084FC]/20 text-[#C084FC] text-[9px] font-bold flex items-center gap-0.5">
                     <BadgeCheck size={9} />
                     {t("certifiedBadge")}
                   </span>
@@ -1814,7 +1881,7 @@ function PsychologistsTab({
                   </span>
                 </div>
                 <p className="text-white text-xs font-medium truncate">{p.fullName}</p>
-                <p className="text-[#BF5AF2] text-xs">{p.specialty}</p>
+                <p className="text-[#C084FC] text-xs">{p.specialty}</p>
                 <div className="flex items-center gap-2 text-white/40 text-[11px] mt-0.5 flex-wrap">
                   <span className="flex items-center gap-0.5">
                     <Globe size={10} />

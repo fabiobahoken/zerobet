@@ -25,7 +25,7 @@ export default function TermsPage() {
 
       <LegalSection titleKey="termsSection2Title">
         <p className="flex items-start gap-2">
-          <FileText size={14} className="text-[#64D2FF] mt-1 flex-shrink-0" />
+          <FileText size={14} className="text-[#2DD4BF] mt-1 flex-shrink-0" />
           <span>{t("termsSection2Body1")}</span>
         </p>
         <ul className="list-disc list-inside text-white/60 space-y-1 pl-2">
@@ -38,7 +38,7 @@ export default function TermsPage() {
 
       <LegalSection titleKey="termsSection3Title">
         <p className="flex items-start gap-2">
-          <ShieldCheck size={14} className="text-[#FF9500] mt-1 flex-shrink-0" />
+          <ShieldCheck size={14} className="text-[#F59E0B] mt-1 flex-shrink-0" />
           <span>{t("termsSection3Body1")}</span>
         </p>
         <p>{t("termsSection3Body2")}</p>
@@ -54,7 +54,7 @@ export default function TermsPage() {
 
       <LegalSection titleKey="termsSection5Title">
         <p className="flex items-start gap-2">
-          <Scale size={14} className="text-[#BF5AF2] mt-1 flex-shrink-0" />
+          <Scale size={14} className="text-[#C084FC] mt-1 flex-shrink-0" />
           <span>{t("termsSection5Body1")}</span>
         </p>
         <p>{t("termsSection5Body2")}</p>

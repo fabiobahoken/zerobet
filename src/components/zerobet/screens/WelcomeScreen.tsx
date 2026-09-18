@@ -47,7 +47,7 @@ export function WelcomeScreen() {
             className="absolute inset-0 rounded-full blur-3xl"
             style={{
               background:
-                "radial-gradient(circle at 50% 45%, rgba(255,149,0,0.55) 0%, rgba(255,59,48,0.25) 35%, rgba(138,0,0,0.0) 70%)",
+                "radial-gradient(circle at 50% 45%, rgba(245, 158, 11,0.55) 0%, rgba(255,59,48,0.25) 35%, rgba(138,0,0,0.0) 70%)",
             }}
             animate={{ scale: [1, 1.08, 1], opacity: [0.85, 1, 0.85] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
@@ -70,19 +70,19 @@ export function WelcomeScreen() {
               <radialGradient id="zerobet-sun-grad" cx="50%" cy="50%" r="50%">
                 <stop offset="0%" stopColor="#FFF7B0" />
                 <stop offset="25%" stopColor="#FFD700" />
-                <stop offset="55%" stopColor="#FF9500" />
+                <stop offset="55%" stopColor="#F59E0B" />
                 <stop offset="100%" stopColor="#FBBF24" />
               </radialGradient>
 
               <linearGradient id="zerobet-ray-grad" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="#FFD700" stopOpacity="0" />
-                <stop offset="40%" stopColor="#FF9500" stopOpacity="0.9" />
+                <stop offset="40%" stopColor="#F59E0B" stopOpacity="0.9" />
                 <stop offset="100%" stopColor="#FBBF24" stopOpacity="0" />
               </linearGradient>
 
               <linearGradient id="zerobet-ring-grad" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stopColor="#FFD700" />
-                <stop offset="50%" stopColor="#FF9500" />
+                <stop offset="50%" stopColor="#F59E0B" />
                 <stop offset="100%" stopColor="#FBBF24" />
               </linearGradient>
 
@@ -227,7 +227,7 @@ export function WelcomeScreen() {
             >
               <path
                 d="M70 60 L71 63 L74 64 L71 65 L70 68 L69 65 L66 64 L69 63 Z"
-                fill="#FF9500"
+                fill="#F59E0B"
                 filter="url(#zerobet-soft-glow)"
               />
             </motion.g>
@@ -237,7 +237,7 @@ export function WelcomeScreen() {
             >
               <path
                 d="M130 60 L131 63 L134 64 L131 65 L130 68 L129 65 L126 64 L129 63 Z"
-                fill="#FF9500"
+                fill="#F59E0B"
                 filter="url(#zerobet-soft-glow)"
               />
             </motion.g>
@@ -272,8 +272,8 @@ export function WelcomeScreen() {
                 background:
                   p.id % 2 === 0
                     ? "rgba(255, 215, 0, 0.9)"
-                    : "rgba(255, 149, 0, 0.85)",
-                boxShadow: "0 0 6px rgba(255, 149, 0, 0.9)",
+                    : "rgba(245, 158, 11, 0.85)",
+                boxShadow: "0 0 6px rgba(245, 158, 11, 0.9)",
               }}
               animate={{
                 y: [0, -28, 0],

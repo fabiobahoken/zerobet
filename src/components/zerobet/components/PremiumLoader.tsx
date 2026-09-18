@@ -88,9 +88,9 @@ export function PremiumLoader({
         blur: 1.5,
         color:
           i % 3 === 0
-            ? "rgba(255,149,0,0.85)"
+            ? "rgba(245, 158, 11,0.85)"
             : i % 3 === 1
-              ? "rgba(100,210,255,0.85)"
+              ? "rgba(45, 212, 191,0.85)"
               : "rgba(255,255,255,0.85)",
         drift: 28,
       })),
@@ -107,7 +107,7 @@ export function PremiumLoader({
         color:
           i % 2 === 0
             ? "rgba(255,107,53,0.9)"
-            : "rgba(191,90,242,0.9)",
+            : "rgba(192, 132, 252,0.9)",
         drift: 40,
       })),
       // Near layer — biggest, fastest, brightest
@@ -182,7 +182,7 @@ export function PremiumLoader({
           className="absolute inset-0 rounded-full pointer-events-none"
           style={{
             background:
-              "radial-gradient(circle, rgba(255,59,48,0.55) 0%, rgba(255,149,0,0.30) 38%, transparent 70%)",
+              "radial-gradient(circle, rgba(255,59,48,0.55) 0%, rgba(245, 158, 11,0.30) 38%, transparent 70%)",
           }}
         />
         <motion.div
@@ -193,7 +193,7 @@ export function PremiumLoader({
           className="absolute inset-0 rounded-full pointer-events-none"
           style={{
             background:
-              "radial-gradient(circle, rgba(100,210,255,0.40) 0%, transparent 70%)",
+              "radial-gradient(circle, rgba(45, 212, 191,0.40) 0%, transparent 70%)",
           }}
         />
         <motion.div
@@ -204,7 +204,7 @@ export function PremiumLoader({
           className="absolute inset-0 rounded-full pointer-events-none"
           style={{
             background:
-              "radial-gradient(circle, rgba(191,90,242,0.32) 0%, transparent 70%)",
+              "radial-gradient(circle, rgba(192, 132, 252,0.32) 0%, transparent 70%)",
           }}
         />
         <div className="animate-glow-pulse premium-logo-shake">
@@ -276,9 +276,9 @@ export function PremiumLoader({
         .premium-mesh-bg {
           background:
             radial-gradient(ellipse at 25% 20%, rgba(255,59,48,0.18) 0%, transparent 45%),
-            radial-gradient(ellipse at 75% 30%, rgba(191,90,242,0.18) 0%, transparent 50%),
-            radial-gradient(ellipse at 50% 85%, rgba(255,149,0,0.18) 0%, transparent 55%),
-            radial-gradient(ellipse at 80% 75%, rgba(100,210,255,0.14) 0%, transparent 50%);
+            radial-gradient(ellipse at 75% 30%, rgba(192, 132, 252,0.18) 0%, transparent 50%),
+            radial-gradient(ellipse at 50% 85%, rgba(245, 158, 11,0.18) 0%, transparent 55%),
+            radial-gradient(ellipse at 80% 75%, rgba(45, 212, 191,0.14) 0%, transparent 50%);
           background-size: 200% 200%, 200% 200%, 200% 200%, 200% 200%;
           animation: premium-mesh-shift 14s ease-in-out infinite;
         }
@@ -328,7 +328,7 @@ export function PremiumLoader({
             100deg,
             #FF3B30 0%,
             #FF6B35 22%,
-            #FF9500 42%,
+            #F59E0B 42%,
             #FFD700 60%,
             #FF6B35 78%,
             #FF3B30 100%
@@ -350,7 +350,7 @@ export function PremiumLoader({
             90deg,
             #FF3B30 0%,
             #FF6B35 45%,
-            #FF9500 75%,
+            #F59E0B 75%,
             #FFD700 100%
           );
           transition: width 0.08s linear;
@@ -386,7 +386,7 @@ export function PremiumLoader({
         }
         .premium-logo-shake {
           filter: drop-shadow(0 0 24px rgba(255,59,48,0.45))
-                  drop-shadow(0 0 48px rgba(255,149,0,0.25));
+                  drop-shadow(0 0 48px rgba(245, 158, 11,0.25));
         }
         @media (prefers-reduced-motion: reduce) {
           .premium-mesh-bg,

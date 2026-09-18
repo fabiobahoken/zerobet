@@ -45,7 +45,7 @@ function ErrorFallbackUI({
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse at 50% 30%, rgba(255,59,48,0.15) 0%, transparent 55%), radial-gradient(ellipse at 80% 80%, rgba(255,149,0,0.1) 0%, transparent 50%)",
+            "radial-gradient(ellipse at 50% 30%, rgba(255,59,48,0.15) 0%, transparent 55%), radial-gradient(ellipse at 80% 80%, rgba(245, 158, 11,0.1) 0%, transparent 50%)",
         }}
       />
 
@@ -63,7 +63,7 @@ function ErrorFallbackUI({
           className="w-20 h-20 mx-auto mb-5 rounded-3xl flex items-center justify-center relative"
           style={{
             background:
-              "linear-gradient(135deg, rgba(255,59,48,0.22) 0%, rgba(255,149,0,0.18) 100%)",
+              "linear-gradient(135deg, rgba(255,59,48,0.22) 0%, rgba(245, 158, 11,0.18) 100%)",
             border: "1px solid rgba(255,59,48,0.35)",
             boxShadow:
               "0 0 40px rgba(255,59,48,0.35), 0 0 80px rgba(255,59,48,0.15)",
@@ -129,7 +129,7 @@ function ErrorFallbackUI({
               className="overflow-hidden"
             >
               <div className="mt-3 p-3 rounded-xl bg-black/40 border border-white/5 text-left">
-                <div className="text-[10px] uppercase tracking-wider text-[#FF9500] font-bold mb-1">
+                <div className="text-[10px] uppercase tracking-wider text-[#F59E0B] font-bold mb-1">
                   {error.name || t("errorBoundaryErrorLabel")}
                 </div>
                 <p className="text-white/70 text-[11px] font-mono break-words leading-relaxed mb-2">

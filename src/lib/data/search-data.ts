@@ -24,11 +24,11 @@ export const SEARCH_ARTICLE_CATEGORIES: Record<
   SearchArticleCategory,
   { label: string; color: string; emoji: string }
 > = {
-  addiction: { label: "Addiction", color: "#BF5AF2", emoji: "🧠" },
+  addiction: { label: "Addiction", color: "#C084FC", emoji: "🧠" },
   techniques: { label: "Techniques", color: "#4ADE80", emoji: "💪" },
-  finance: { label: "Finances", color: "#FF9500", emoji: "💰" },
+  finance: { label: "Finances", color: "#F59E0B", emoji: "💰" },
   testimonials: { label: "Témoignages", color: "#FF3B30", emoji: "👥" },
-  meditation: { label: "Méditation", color: "#64D2FF", emoji: "🧘" },
+  meditation: { label: "Méditation", color: "#2DD4BF", emoji: "🧘" },
   stories: { label: "Histoires", color: "#FBBF24", emoji: "📚" },
 };
 

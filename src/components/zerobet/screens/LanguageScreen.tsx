@@ -65,7 +65,7 @@ export function LanguageScreen() {
                   className="absolute inset-0 pointer-events-none"
                   style={{
                     background:
-                      "linear-gradient(120deg, rgba(255,59,48,0.08) 0%, rgba(255,149,0,0.05) 100%)",
+                      "linear-gradient(120deg, rgba(255,59,48,0.08) 0%, rgba(245, 158, 11,0.05) 100%)",
                   }}
                 />
               )}

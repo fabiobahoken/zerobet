@@ -67,11 +67,11 @@ function getInitials(name: string): string {
 function avatarGradient(name: string): string {
   const hash = name.split("").reduce((a, c) => a + c.charCodeAt(0), 0);
   const grads = [
-    "linear-gradient(135deg, #FF3B30, #FF9500)",
-    "linear-gradient(135deg, #4ADE80, #22D3EE)",
-    "linear-gradient(135deg, #BF5AF2, #FF3B30)",
-    "linear-gradient(135deg, #64D2FF, #5E5CE6)",
-    "linear-gradient(135deg, #FF9500, #FBBF24)",
+    "linear-gradient(135deg, #FF3B30, #F59E0B)",
+    "linear-gradient(135deg, #4ADE80, #2DD4BF)",
+    "linear-gradient(135deg, #C084FC, #FF3B30)",
+    "linear-gradient(135deg, #2DD4BF, #2DD4BF)",
+    "linear-gradient(135deg, #F59E0B, #FBBF24)",
     "linear-gradient(135deg, #4ADE80, #FBBF24)",
   ];
   return grads[hash % grads.length];
@@ -605,7 +605,7 @@ export function SearchModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
                     <ResultSection
                       title="Articles"
                       icon={BookOpen}
-                      accent="#BF5AF2"
+                      accent="#C084FC"
                       count={results.articles.length}
                     >
                       {results.articles.map((a) => (
@@ -618,7 +618,7 @@ export function SearchModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
                     <ResultSection
                       title="Forum"
                       icon={Users}
-                      accent="#FF9500"
+                      accent="#F59E0B"
                       count={results.forum.length}
                     >
                       {results.forum.map((f) => (
@@ -711,7 +711,7 @@ function RecentSearches({
               onClick={() => onPick(s)}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/70 text-xs hover:text-white hover:border-white/20 active:scale-95 transition-all"
             >
-              <TrendingUp size={11} className="text-[#FF9500]" />
+              <TrendingUp size={11} className="text-[#F59E0B]" />
               {s}
             </button>
           ))}
@@ -806,15 +806,15 @@ function MentorCard({ mentor, onClick }: { mentor: MentorResult; onClick: () => 
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-1">
           <span className="text-white text-sm font-semibold truncate">{mentor.name}</span>
-          <BadgeCheck size={12} className="text-[#64D2FF] shrink-0" />
+          <BadgeCheck size={12} className="text-[#2DD4BF] shrink-0" />
         </div>
-        <p className="text-[#FF9500] text-xs truncate">{mentor.specialty}</p>
+        <p className="text-[#F59E0B] text-xs truncate">{mentor.specialty}</p>
         <div className="flex items-center gap-2 text-white/40 text-[10px] mt-0.5">
           <span className="flex items-center gap-0.5">
             <Globe size={9} />
             {mentor.country}
           </span>
-          <span className="flex items-center gap-0.5 text-[#FF9500]">
+          <span className="flex items-center gap-0.5 text-[#F59E0B]">
             <Flame size={9} />
             {mentor.daysClean}j clean
           </span>
@@ -890,12 +890,12 @@ function TestimonialCard({
     >
       <div className="flex items-center gap-1.5 mb-1">
         {testimonial.isVerified && (
-          <span className="flex items-center gap-0.5 text-[#64D2FF] text-[10px] font-bold">
+          <span className="flex items-center gap-0.5 text-[#2DD4BF] text-[10px] font-bold">
             <BadgeCheck size={11} />
             Vérifié
           </span>
         )}
-        <span className="flex items-center gap-0.5 text-[#FF9500] text-[10px] font-bold">
+        <span className="flex items-center gap-0.5 text-[#F59E0B] text-[10px] font-bold">
           <Flame size={10} />
           {testimonial.streakDays} jours
         </span>

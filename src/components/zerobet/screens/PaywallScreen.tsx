@@ -104,7 +104,7 @@ export function PaywallScreen() {
         animate={{ opacity: 1, y: 0 }}
         className="text-center mb-5"
       >
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-pill text-xs text-[#FF9500] mb-3">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-pill text-xs text-[#F59E0B] mb-3">
           <Sparkles size={12} />
           {t("paywallSubtitle")}
         </div>

@@ -150,7 +150,7 @@ export function MessageSkeleton({ className = "" }: SkeletonProps) {
                   delay: i * 0.15,
                   ease: "easeInOut",
                 }}
-                className="w-1 h-1 rounded-full bg-[#FF9500]"
+                className="w-1 h-1 rounded-full bg-[#F59E0B]"
               />
             ))}
           </div>

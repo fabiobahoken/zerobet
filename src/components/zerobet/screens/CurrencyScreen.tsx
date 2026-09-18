@@ -61,12 +61,12 @@ export function CurrencyScreen() {
           className="inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-3"
           style={{
             background:
-              "linear-gradient(135deg, rgba(255,149,0,0.18) 0%, rgba(255,59,48,0.14) 100%)",
-            border: "1px solid rgba(255,149,0,0.3)",
+              "linear-gradient(135deg, rgba(245, 158, 11,0.18) 0%, rgba(255,59,48,0.14) 100%)",
+            border: "1px solid rgba(245, 158, 11,0.3)",
           }}
           aria-hidden
         >
-          <Coins size={26} className="text-[#FF9500]" />
+          <Coins size={26} className="text-[#F59E0B]" />
         </motion.div>
         <h1 className="text-3xl font-bold text-white font-[family-name:var(--font-poppins)] mb-2">
           {t("currencyTitle")}
@@ -100,7 +100,7 @@ export function CurrencyScreen() {
             className="shrink-0 w-10 h-10 rounded-xl flex items-center justify-center"
             style={{
               background:
-                "linear-gradient(135deg, rgba(255,149,0,0.16) 0%, rgba(255,59,48,0.10) 100%)",
+                "linear-gradient(135deg, rgba(245, 158, 11,0.16) 0%, rgba(255,59,48,0.10) 100%)",
             }}
             aria-hidden
           >
@@ -132,7 +132,7 @@ export function CurrencyScreen() {
                 whileHover={{ scale: 1.02 }}
                 onClick={() => handleSelect(c.code)}
                 className={`relative glass-card card-hover btn-press p-4 rounded-2xl flex flex-col items-start text-left overflow-hidden transition-all ${
-                  selected ? "ring-2 ring-[#FF9500] glow-orange" : ""
+                  selected ? "ring-2 ring-[#F59E0B] glow-orange" : ""
                 }`}
               >
                 {selected && (
@@ -158,7 +158,7 @@ export function CurrencyScreen() {
                 </span>
                 <span className="mt-2 inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-medium"
                   style={{
-                    background: "rgba(255,149,0,0.10)",
+                    background: "rgba(245, 158, 11,0.10)",
                     color: "#FFB84D",
                   }}
                 >

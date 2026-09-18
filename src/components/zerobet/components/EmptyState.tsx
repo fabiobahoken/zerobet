@@ -50,7 +50,7 @@ const VARIANT_CONFIG: Record<EmptyStateVariant, VariantConfig> = {
   stats: {
     icon: BarChart3,
     emoji: "📊",
-    gradient: "linear-gradient(135deg, #10B981 0%, #22D3EE 100%)",
+    gradient: "linear-gradient(135deg, #10B981 0%, #2DD4BF 100%)",
     glow: "glow-green",
     titleKey: "emptyStateStatsTitle",
     descKey: "emptyStateStatsDesc",

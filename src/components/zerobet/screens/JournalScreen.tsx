@@ -72,13 +72,13 @@ const EMOTIONS: { key: Emotion; labelKey: string; emoji: string; color: string }
   { key: "frustrated", labelKey: "emotionFrustrated", emoji: "😤", color: "#FF3B30" },
   { key: "strong", labelKey: "emotionStrong", emoji: "💪", color: "#4ADE80" },
   { key: "tempted", labelKey: "emotionTempted", emoji: "🎭", color: "#FBBF24" },
-  { key: "calm", labelKey: "emotionCalm", emoji: "😌", color: "#64D2FF" },
-  { key: "proud", labelKey: "emotionProud", emoji: "🦸", color: "#BF5AF2" },
-  { key: "anxious", labelKey: "emotionAnxious", emoji: "😰", color: "#FF9500" },
+  { key: "calm", labelKey: "emotionCalm", emoji: "😌", color: "#2DD4BF" },
+  { key: "proud", labelKey: "emotionProud", emoji: "🦸", color: "#C084FC" },
+  { key: "anxious", labelKey: "emotionAnxious", emoji: "😰", color: "#F59E0B" },
 ];
 
 const JOURNAL_PROMPTS = [
-  { tKey: "journalPrompt1", emoji: "💭", color: "#64D2FF" },
+  { tKey: "journalPrompt1", emoji: "💭", color: "#2DD4BF" },
   { tKey: "journalPrompt2", emoji: "🌟", color: "#4ADE80" },
   { tKey: "journalPrompt3", emoji: "🏆", color: "#FBBF24" },
 ];
@@ -344,7 +344,7 @@ export function JournalScreen() {
         className="glass-card p-3.5 mb-4"
       >
         <div className="flex items-center gap-2 mb-2.5">
-          <Calendar size={14} className="text-[#64D2FF]" />
+          <Calendar size={14} className="text-[#2DD4BF]" />
           <h3 className="text-white font-semibold text-xs">{t("journal7Days")}</h3>
         </div>
         <div className="grid grid-cols-7 gap-1">
@@ -390,7 +390,7 @@ export function JournalScreen() {
           className="glass-card p-4 mb-4"
         >
           <div className="flex items-center gap-2 mb-3">
-            <TrendingUp size={16} className="text-[#FF9500]" />
+            <TrendingUp size={16} className="text-[#F59E0B]" />
             <h3 className="text-white font-semibold text-sm">{t("journalAnalysis")}</h3>
           </div>
           <div className="grid grid-cols-3 gap-2 mb-3">

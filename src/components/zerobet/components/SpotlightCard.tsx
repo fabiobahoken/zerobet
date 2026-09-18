@@ -15,7 +15,7 @@ export interface SpotlightCardProps {
   children: ReactNode;
   /** Extra className applied to the card root. */
   className?: string;
-  /** Spotlight color (hex / rgb / rgba). @default "#FF9500" */
+  /** Spotlight color (hex / rgb / rgba). @default "#F59E0B" */
   spotlightColor?: string;
   /** Spotlight radius in pixels. @default 400 */
   spotlightSize?: number;
@@ -63,7 +63,7 @@ const ENTER_SPRING: Transition = {
 export function SpotlightCard({
   children,
   className,
-  spotlightColor = "#FF9500",
+  spotlightColor = "#F59E0B",
   spotlightSize = 400,
   onClick,
   glowOnHover = true,

@@ -304,7 +304,7 @@ export function NotificationSettingsScreen() {
                 ? "rgba(74,222,128,0.18)"
                 : notificationPermission === "denied"
                   ? "rgba(255,59,48,0.18)"
-                  : "rgba(255,149,0,0.18)",
+                  : "rgba(245, 158, 11,0.18)",
             }}
           />
           <div className="relative">
@@ -316,7 +316,7 @@ export function NotificationSettingsScreen() {
                     ? "rgba(74,222,128,0.15)"
                     : notificationPermission === "denied"
                       ? "rgba(255,59,48,0.15)"
-                      : "rgba(255,149,0,0.15)",
+                      : "rgba(245, 158, 11,0.15)",
                 }}
               >
                 {permissionGranted ? (

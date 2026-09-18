@@ -41,8 +41,8 @@ const QUESTS: QuestMeta[] = [
     descKey: "dailyQuestsCheckinDesc",
     reward: QUEST_REWARDS.checkin,
     icon: CalendarCheck,
-    color: "#FF9500",
-    bg: "rgba(255,149,0,0.15)",
+    color: "#F59E0B",
+    bg: "rgba(245, 158, 11,0.15)",
   },
   {
     id: "journal",
@@ -50,8 +50,8 @@ const QUESTS: QuestMeta[] = [
     descKey: "dailyQuestsJournalDesc",
     reward: QUEST_REWARDS.journal,
     icon: BookOpen,
-    color: "#64D2FF",
-    bg: "rgba(100,210,255,0.15)",
+    color: "#2DD4BF",
+    bg: "rgba(45, 212, 191,0.15)",
   },
   {
     id: "meditation",
@@ -77,8 +77,8 @@ const QUESTS: QuestMeta[] = [
     descKey: "dailyQuestsArticleDesc",
     reward: QUEST_REWARDS.article,
     icon: BookText,
-    color: "#BF5AF2",
-    bg: "rgba(191,90,242,0.15)",
+    color: "#C084FC",
+    bg: "rgba(192, 132, 252,0.15)",
   },
 ];
 
@@ -149,7 +149,7 @@ export function DailyQuests({ compact = false, showHeader = true }: DailyQuestsP
           <motion.div
             className="h-full relative"
             style={{
-              background: "linear-gradient(90deg, #FF3B30 0%, #FF9500 50%, #FBBF24 100%)",
+              background: "linear-gradient(90deg, #FF3B30 0%, #F59E0B 50%, #FBBF24 100%)",
             }}
             initial={{ width: 0 }}
             animate={{ width: `${totalProgress}%` }}
