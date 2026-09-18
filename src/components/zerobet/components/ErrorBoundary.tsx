@@ -88,7 +88,7 @@ function ErrorFallbackUI({
         <div className="flex flex-col gap-2.5 mb-5">
           <button
             onClick={onRetry}
-            className="w-full py-3.5 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold text-sm flex items-center justify-center gap-2 glow-red active:scale-[0.98] transition-transform"
+            className="w-full py-3.5 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold text-sm flex items-center justify-center gap-2 glow-green active:scale-[0.98] transition-transform"
           >
             <RefreshCw size={16} />
             {t("errorBoundaryRetry")}

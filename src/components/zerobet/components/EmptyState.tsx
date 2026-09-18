@@ -32,8 +32,8 @@ const VARIANT_CONFIG: Record<EmptyStateVariant, VariantConfig> = {
   journal: {
     icon: BookOpen,
     emoji: "📝",
-    gradient: "linear-gradient(135deg, #64D2FF 0%, #5E5CE6 100%)",
-    glow: "glow-blue",
+    gradient: "linear-gradient(135deg, #10B981 0%, #2DD4BF 100%)",
+    glow: "glow-green",
     titleKey: "emptyStateJournalTitle",
     descKey: "emptyStateJournalDesc",
     ctaKey: "emptyStateJournalCta",
@@ -41,8 +41,8 @@ const VARIANT_CONFIG: Record<EmptyStateVariant, VariantConfig> = {
   community: {
     icon: Users,
     emoji: "💬",
-    gradient: "linear-gradient(135deg, #FF9500 0%, #FF3B30 100%)",
-    glow: "glow-orange",
+    gradient: "linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%)",
+    glow: "glow-yellow",
     titleKey: "emptyStateCommunityTitle",
     descKey: "emptyStateCommunityDesc",
     ctaKey: "emptyStateCommunityCta",
@@ -50,7 +50,7 @@ const VARIANT_CONFIG: Record<EmptyStateVariant, VariantConfig> = {
   stats: {
     icon: BarChart3,
     emoji: "📊",
-    gradient: "linear-gradient(135deg, #4ADE80 0%, #22D3EE 100%)",
+    gradient: "linear-gradient(135deg, #10B981 0%, #22D3EE 100%)",
     glow: "glow-green",
     titleKey: "emptyStateStatsTitle",
     descKey: "emptyStateStatsDesc",
@@ -59,8 +59,8 @@ const VARIANT_CONFIG: Record<EmptyStateVariant, VariantConfig> = {
   default: {
     icon: Sparkles,
     emoji: "✨",
-    gradient: "linear-gradient(135deg, #FF3B30 0%, #FF9500 100%)",
-    glow: "glow-red",
+    gradient: "linear-gradient(135deg, #2DD4BF 0%, #10B981 100%)",
+    glow: "glow-green",
     titleKey: "emptyStateDefaultTitle",
     descKey: "emptyStateDefaultDesc",
     ctaKey: "emptyStateDefaultCta",
@@ -161,7 +161,7 @@ export function EmptyState({
         <motion.button
           whileTap={{ scale: 0.96 }}
           onClick={onCta}
-          className="px-6 py-3 rounded-2xl gradient-primary text-white font-medium text-sm glow-red flex items-center gap-2"
+          className="px-6 py-3 rounded-2xl gradient-primary text-white font-medium text-sm glow-green flex items-center gap-2"
         >
           <Icon size={16} />
           {finalCta ?? t("emptyStateDefaultCta")}

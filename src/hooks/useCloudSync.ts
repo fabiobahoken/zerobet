@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef } from "react";
 import { useStore } from "@/store/zerobet-store";
+import { getDeviceId } from "@/lib/device";
 
 /**
  * Zerobet 2.0 — useCloudSync
@@ -15,21 +16,6 @@ import { useStore } from "@/store/zerobet-store";
  * - store.requestSync(): manual "Sync now" trigger (Settings screen)
  * - Sync status lives in the store (cloudSyncStatus) so any screen can read it.
  */
-
-const DEVICE_ID_KEY = "zerobet-device-id";
-
-function getDeviceId(): string {
-  if (typeof window === "undefined") return "";
-  let id = localStorage.getItem(DEVICE_ID_KEY);
-  if (!id || !/^[a-zA-Z0-9_-]{8,64}$/.test(id)) {
-    id =
-      typeof crypto !== "undefined" && "randomUUID" in crypto
-        ? crypto.randomUUID().replace(/-/g, "").slice(0, 32)
-        : `dev${Date.now().toString(36)}${Math.random().toString(36).slice(2, 12)}`;
-    localStorage.setItem(DEVICE_ID_KEY, id);
-  }
-  return id;
-}
 
 /** Fields backed up to the cloud (privacy-conscious subset, no chat content). */
 function buildPayload(state: Record<string, unknown>) {

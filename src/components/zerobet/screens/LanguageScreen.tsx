@@ -55,7 +55,7 @@ export function LanguageScreen() {
               aria-pressed={selected}
               aria-label={`${lang.nativeName} — ${lang.name}`}
               className={`relative w-full glass-card p-5 flex items-center gap-4 transition-all overflow-hidden ${
-                selected ? "ring-2 ring-[#10B981] glow-red" : ""
+                selected ? "ring-2 ring-[#10B981] glow-green" : ""
               }`}
             >
               {/* Subtle accent wash on the selected card */}
@@ -103,7 +103,7 @@ export function LanguageScreen() {
         disabled={!language}
         className={`mt-6 mx-auto max-w-sm w-full py-4 rounded-2xl font-[family-name:var(--font-poppins)] font-semibold text-base transition-all ${
           language
-            ? "gradient-primary text-white glow-red"
+            ? "gradient-primary text-white glow-green"
             : "bg-white/5 text-white/30 cursor-not-allowed"
         }`}
       >

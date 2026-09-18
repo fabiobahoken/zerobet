@@ -240,7 +240,7 @@ export function AtlasScreen() {
         </div>
         <button
           onClick={() => navigate("paywall")}
-          className="w-full max-w-xs py-4 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold glow-red"
+          className="w-full max-w-xs py-4 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold glow-green"
         >
           {t("atlasUnlock")}
         </button>
@@ -472,7 +472,7 @@ export function AtlasScreen() {
               <motion.div
                 animate={{ y: [0, -8, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                className="w-16 h-16 rounded-2xl gradient-primary flex items-center justify-center mb-3 glow-red"
+                className="w-16 h-16 rounded-2xl gradient-primary flex items-center justify-center mb-3 glow-green"
               >
                 <Bot size={28} className="text-white" />
               </motion.div>
@@ -618,7 +618,7 @@ export function AtlasScreen() {
           disabled={!input.trim() || loading}
           className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all ${
             input.trim() && !loading
-              ? "gradient-primary text-white glow-red"
+              ? "gradient-primary text-white glow-green"
               : "bg-white/5 text-white/30"
           }`}
           aria-label={t("atlasSend")}

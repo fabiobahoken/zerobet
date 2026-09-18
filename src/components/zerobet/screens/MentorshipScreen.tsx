@@ -589,7 +589,7 @@ export function MentorshipScreen() {
                   disabled={!canSubmitPsy}
                   className={`w-full h-12 rounded-2xl font-semibold text-sm flex items-center justify-center gap-2 transition-all ${
                     canSubmitPsy
-                      ? "gradient-primary text-white glow-red"
+                      ? "gradient-primary text-white glow-green"
                       : "bg-white/10 text-white/40 cursor-not-allowed"
                   }`}
                 >

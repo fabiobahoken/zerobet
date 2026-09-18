@@ -597,7 +597,7 @@ export function WithdrawalScreen() {
             disabled={activeKeys.length === 0}
             className={`w-full h-11 mt-4 rounded-2xl font-semibold text-sm flex items-center justify-center gap-2 transition-all ${
               activeKeys.length > 0
-                ? "gradient-primary text-white glow-red"
+                ? "gradient-primary text-white glow-green"
                 : "bg-white/10 text-white/40 cursor-not-allowed"
             }`}
           >

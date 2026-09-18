@@ -177,7 +177,7 @@ export function CurrencyScreen() {
         transition={{ delay: 0.4 }}
         whileTap={{ scale: 0.98 }}
         onClick={handleContinue}
-        className="mt-6 mx-auto max-w-sm w-full py-4 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold text-base glow-red btn-press flex items-center justify-center gap-2"
+        className="mt-6 mx-auto max-w-sm w-full py-4 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold text-base glow-green btn-press flex items-center justify-center gap-2"
       >
         {t("continue")}
         <ChevronRight size={20} />

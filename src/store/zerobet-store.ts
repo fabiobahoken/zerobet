@@ -47,7 +47,8 @@ export type ScreenName =
   | "relapse-recovery"
   | "affirmations"
   | "notifications"
-  | "community-chat"; // Task 13-a — live community chat
+  | "community-chat" // Task 13-a — live community chat
+  | "subscription"; // Zerobet 2.0.5 — manage subscription + payment history
 
 // Community chat — real-time room messages (Task 13-a)
 // NOTE: existing `chatMessages`/`addChatMessage` are for the Atlas AI coach
@@ -475,6 +476,14 @@ interface AppState {
   // Plan
   plan: Plan;
   setPlan: (p: Plan) => void;
+  /** Billing cycle of the ACTIVE paid plan ("monthly" | "annual"). */
+  planBillingCycle: "monthly" | "annual";
+  /** ISO date of the moment the current paid plan was activated (null = free). */
+  planStartedAt: string | null;
+  /** Activate a paid plan together with its cycle + activation date. */
+  activatePaidPlan: (p: Plan, cycle: "monthly" | "annual") => void;
+  /** Downgrade to free (subscription cancelled). */
+  cancelPaidPlan: () => void;
   dataConsent: boolean;
   setDataConsent: (v: boolean) => void;
 
@@ -886,6 +895,16 @@ export const useStore = create<AppState>()(
       // Plan
       plan: "free",
       setPlan: (p) => set({ plan: p }),
+      planBillingCycle: "monthly",
+      planStartedAt: null,
+      activatePaidPlan: (p, cycle) =>
+        set({
+          plan: p,
+          planBillingCycle: cycle,
+          planStartedAt: new Date().toISOString(),
+        }),
+      cancelPaidPlan: () =>
+        set({ plan: "free", planBillingCycle: "monthly", planStartedAt: null }),
       dataConsent: false,
       setDataConsent: (v) => set({ dataConsent: v }),
 
@@ -1044,6 +1063,7 @@ export const useStore = create<AppState>()(
           "gender", "language", "name", "hasCompletedOnboarding",
           "quizAnswers", "addictionScore", "addictionLevel",
           "selectedGoals", "selectedSymptoms", "plan",
+          "planBillingCycle", "planStartedAt",
           "streakDays", "lastStreakDate", "streakHistory",
           "lastCheckInDate", "todayMood", "todayCraving",
           "xp", "level", "dailyQuests",
@@ -1818,6 +1838,11 @@ export const useStore = create<AppState>()(
           merged.chatUsage = { date: "", count: 0 };
         }
         if (!("lastSyncAt" in p)) merged.lastSyncAt = null;
+        // Plan cycle/date sanitization (Zerobet 2.0.5)
+        if (merged.planBillingCycle !== "annual") merged.planBillingCycle = "monthly";
+        if (typeof merged.planStartedAt !== "string" && merged.planStartedAt !== null) {
+          merged.planStartedAt = null;
+        }
         return merged as AppState;
       },
       partialize: (state) => ({
@@ -1833,6 +1858,8 @@ export const useStore = create<AppState>()(
         selectedGoals: state.selectedGoals,
         signatureData: state.signatureData,
         plan: state.plan,
+        planBillingCycle: state.planBillingCycle,
+        planStartedAt: state.planStartedAt,
         dataConsent: state.dataConsent,
         streakDays: state.streakDays,
         lastStreakDate: state.lastStreakDate,

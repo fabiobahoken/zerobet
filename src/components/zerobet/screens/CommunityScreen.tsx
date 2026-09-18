@@ -365,7 +365,7 @@ function PremiumLock({
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ type: "spring", stiffness: 200, damping: 15 }}
-        className="w-20 h-20 rounded-full gradient-primary flex items-center justify-center mb-4 glow-red"
+        className="w-20 h-20 rounded-full gradient-primary flex items-center justify-center mb-4 glow-green"
       >
         <Lock className="text-white" size={32} />
       </motion.div>
@@ -375,7 +375,7 @@ function PremiumLock({
       <p className="text-white/60 text-sm mb-6 max-w-xs leading-relaxed">{description}</p>
       <button
         onClick={onCta}
-        className="w-full max-w-xs py-4 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold glow-red active:scale-[0.98] transition-transform"
+        className="w-full max-w-xs py-4 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold glow-green active:scale-[0.98] transition-transform"
       >
         {t("upgrade")}
       </button>
@@ -553,7 +553,7 @@ export function CommunityScreen() {
           {!isPremium && (
             <button
               onClick={() => navigate("paywall")}
-              className="px-3 py-1.5 rounded-full gradient-primary text-white text-[11px] font-semibold flex items-center gap-1 glow-red active:scale-95 transition-transform"
+              className="px-3 py-1.5 rounded-full gradient-primary text-white text-[11px] font-semibold flex items-center gap-1 glow-green active:scale-95 transition-transform"
             >
               <Crown size={12} />
               {t("settingsPlanPremium")}
@@ -585,7 +585,7 @@ export function CommunityScreen() {
                 onClick={() => setActiveTab(tab.key)}
                 className={`flex items-center gap-1.5 px-4 py-2.5 rounded-2xl text-xs font-semibold whitespace-nowrap transition-all active:scale-95 ${
                   active
-                    ? "gradient-primary text-white glow-red"
+                    ? "gradient-primary text-white glow-green"
                     : "glass-card text-white/60"
                 }`}
               >
@@ -785,7 +785,7 @@ export function CommunityScreen() {
                 disabled={!tTitle.trim() || !tContent.trim()}
                 className={`w-full py-4 rounded-2xl font-[family-name:var(--font-poppins)] font-semibold text-base transition-all ${
                   tTitle.trim() && tContent.trim()
-                    ? "gradient-primary text-white glow-red active:scale-[0.98]"
+                    ? "gradient-primary text-white glow-green active:scale-[0.98]"
                     : "bg-white/5 text-white/30"
                 }`}
               >
@@ -882,7 +882,7 @@ export function CommunityScreen() {
                 disabled={!fTitle.trim() || !fContent.trim()}
                 className={`w-full py-4 rounded-2xl font-[family-name:var(--font-poppins)] font-semibold text-base transition-all ${
                   fTitle.trim() && fContent.trim()
-                    ? "gradient-primary text-white glow-red active:scale-[0.98]"
+                    ? "gradient-primary text-white glow-green active:scale-[0.98]"
                     : "bg-white/5 text-white/30"
                 }`}
               >
@@ -983,7 +983,7 @@ export function CommunityScreen() {
 
               <button
                 onClick={() => handleReserveSession(reservingPsy)}
-                className="w-full py-4 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold glow-red active:scale-[0.98] transition-transform flex items-center justify-center gap-2"
+                className="w-full py-4 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold glow-green active:scale-[0.98] transition-transform flex items-center justify-center gap-2"
               >
                 <Stethoscope size={18} />
                 {t("communityConfirm")} — {formatPrice(reservingPsy.sessionPrice, currency)}
@@ -1052,7 +1052,7 @@ function TestimonialsTab({
     <div>
       <button
         onClick={onWrite}
-        className="w-full mb-4 py-3.5 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold flex items-center justify-center gap-2 glow-red active:scale-[0.98] transition-transform"
+        className="w-full mb-4 py-3.5 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold flex items-center justify-center gap-2 glow-green active:scale-[0.98] transition-transform"
       >
         <Plus size={18} />
         {t("communityWriteTestimonial")}
@@ -1252,7 +1252,7 @@ function TestimonialsTab({
               {/* Premium blur overlay */}
               {isLocked && (
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-center rounded-3xl bg-[#070B0E]/40">
-                  <div className="w-12 h-12 rounded-full gradient-primary flex items-center justify-center mb-2 glow-red">
+                  <div className="w-12 h-12 rounded-full gradient-primary flex items-center justify-center mb-2 glow-green">
                     <Lock size={20} className="text-white" />
                   </div>
                   <p className="text-white font-semibold text-sm mb-1 font-[family-name:var(--font-poppins)]">
@@ -1350,7 +1350,7 @@ function ForumTab({
     <div>
       <button
         onClick={onNew}
-        className="w-full mb-4 py-3.5 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold flex items-center justify-center gap-2 glow-red active:scale-[0.98] transition-transform"
+        className="w-full mb-4 py-3.5 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold flex items-center justify-center gap-2 glow-green active:scale-[0.98] transition-transform"
       >
         <Plus size={18} />
         {t("communityNewTopic")}
@@ -1721,7 +1721,7 @@ function MentorsTab({
               <button
                 onClick={() => onContact(m.displayName)}
                 className={`px-4 py-2 rounded-xl text-white text-xs font-semibold active:scale-95 transition-transform ${
-                  online ? "gradient-primary glow-red" : "bg-white/10"
+                  online ? "gradient-primary glow-green" : "bg-white/10"
                 }`}
               >
                 {t("communityContact")}
@@ -1845,7 +1845,7 @@ function PsychologistsTab({
               <button
                 onClick={() => onReserve(p)}
                 className={`flex-1 max-w-[180px] py-3 rounded-2xl text-white text-sm font-semibold flex items-center justify-center gap-1.5 active:scale-95 transition-transform ${
-                  online ? "gradient-primary glow-red" : "bg-white/10"
+                  online ? "gradient-primary glow-green" : "bg-white/10"
                 }`}
               >
                 <Stethoscope size={15} />

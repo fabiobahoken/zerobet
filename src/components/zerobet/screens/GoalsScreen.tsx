@@ -710,7 +710,7 @@ export function GoalsScreen() {
           sound.playClick();
           haptics.medium();
         }}
-        className="w-full mb-5 py-3.5 rounded-2xl gradient-primary text-white font-semibold text-sm flex items-center justify-center gap-2 glow-red btn-press"
+        className="w-full mb-5 py-3.5 rounded-2xl gradient-primary text-white font-semibold text-sm flex items-center justify-center gap-2 glow-green btn-press"
       >
         <Plus size={18} /> {t("goalsNewLifeGoal")}
       </motion.button>
@@ -781,7 +781,7 @@ export function GoalsScreen() {
                     haptics.medium();
                     navigate("paywall");
                   }}
-                  className="px-4 py-2 rounded-xl gradient-primary text-white text-xs font-semibold glow-red btn-press"
+                  className="px-4 py-2 rounded-xl gradient-primary text-white text-xs font-semibold glow-green btn-press"
                 >
                   {t("goalsPremiumCta")}
                 </button>

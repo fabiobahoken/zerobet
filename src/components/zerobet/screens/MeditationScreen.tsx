@@ -407,7 +407,7 @@ function BreathingPlayer({ technique, onClose, onComplete }: BreathingPlayerProp
             </p>
             <button
               onClick={onClose}
-              className="px-8 py-3.5 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold glow-red active:scale-[0.98] transition-transform"
+              className="px-8 py-3.5 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold glow-green active:scale-[0.98] transition-transform"
             >
               {t("back")}
             </button>
@@ -632,7 +632,7 @@ function MeditationPlayer({ meditation, onClose, onComplete }: MeditationPlayerP
             </p>
             <button
               onClick={onClose}
-              className="px-8 py-3.5 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold glow-red active:scale-[0.98] transition-transform"
+              className="px-8 py-3.5 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold glow-green active:scale-[0.98] transition-transform"
             >
               {t("back")}
             </button>

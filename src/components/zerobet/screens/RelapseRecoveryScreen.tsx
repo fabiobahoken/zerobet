@@ -423,7 +423,7 @@ function LandingMode({ relapseHistory, onStart, navigate, t }: LandingModeProps)
         <motion.button
           whileTap={{ scale: 0.98 }}
           onClick={handleStart}
-          className="btn-press w-full py-4 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold text-base flex items-center justify-center gap-2 glow-red"
+          className="btn-press w-full py-4 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold text-base flex items-center justify-center gap-2 glow-green"
         >
           <Heart size={18} fill="#fff" />
           Commencer le protocole de 24h
@@ -1002,7 +1002,7 @@ function CurrentStepCard({
         <motion.button
           whileTap={{ scale: 0.98 }}
           onClick={onComplete}
-          className="btn-press w-full py-4 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold text-base flex items-center justify-center gap-2 glow-red"
+          className="btn-press w-full py-4 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold text-base flex items-center justify-center gap-2 glow-green"
         >
           {isLastStep ? (
             <>
@@ -1184,7 +1184,7 @@ function CompletionModal({ onReturn }: { onReturn: () => void }) {
         <motion.button
           whileTap={{ scale: 0.98 }}
           onClick={onReturn}
-          className="btn-press w-full py-4 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold text-base flex items-center justify-center gap-2 glow-red"
+          className="btn-press w-full py-4 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold text-base flex items-center justify-center gap-2 glow-green"
         >
           <Heart size={18} fill="#fff" />
           Retour à l'accueil

@@ -28,7 +28,7 @@ import { LANGUAGES } from "@/lib/i18n/dictionary";
 import { useT } from "@/lib/i18n/useT";
 import { Flag } from "@/components/zerobet/components/Flag";
 
-const PLAN_INFO: Record<Plan, {
+export const PLAN_INFO: Record<Plan, {
   labelKey: string;
   descKey: string;
   color: string;
@@ -371,13 +371,13 @@ export function SettingsScreen() {
             <motion.button
               whileTap={{ scale: 0.98 }}
               onClick={() => navigate("paywall")}
-              className="w-full py-3.5 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold text-sm glow-red flex items-center justify-center gap-2 transition-transform"
+              className="w-full py-3.5 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold text-sm glow-green flex items-center justify-center gap-2 transition-transform focus-ring"
             >
               <Crown size={16} /> {t("upgradeToPremium")}
             </motion.button>
           ) : (
             <button
-              onClick={() => navigate("paywall")}
+              onClick={() => navigate("subscription")}
               className="w-full py-2.5 text-center text-sm text-white/70 hover:text-white transition-colors flex items-center justify-center gap-1 group"
             >
               {t("manageSubscription")}

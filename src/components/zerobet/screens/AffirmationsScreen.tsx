@@ -758,7 +758,7 @@ export function AffirmationsScreen() {
           variants={itemVariants}
           whileTap={{ scale: 0.98 }}
           onClick={handleOpenAddModal}
-          className="w-full py-3.5 rounded-2xl gradient-primary text-white text-sm font-semibold flex items-center justify-center gap-2 glow-red btn-press"
+          className="w-full py-3.5 rounded-2xl gradient-primary text-white text-sm font-semibold flex items-center justify-center gap-2 glow-green btn-press"
         >
           <Plus size={16} /> {t("affirmationsCreateMine")}
         </motion.button>
@@ -859,7 +859,7 @@ export function AffirmationsScreen() {
                   </p>
                   <button
                     onClick={handlePremiumCta}
-                    className="px-4 py-2 rounded-xl gradient-primary text-white text-xs font-semibold glow-red btn-press"
+                    className="px-4 py-2 rounded-xl gradient-primary text-white text-xs font-semibold glow-green btn-press"
                   >
                     {t("goalsPremiumCta")}
                   </button>

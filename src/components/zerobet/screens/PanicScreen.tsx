@@ -183,7 +183,7 @@ export function PanicScreen() {
             </p>
             <button
               onClick={startBreathing}
-              className="w-full max-w-xs py-4 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold text-base glow-red active:scale-[0.98] transition-transform"
+              className="w-full max-w-xs py-4 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold text-base glow-green active:scale-[0.98] transition-transform"
             >
               {t("panicStartBreathing")}
             </button>
@@ -358,7 +358,7 @@ export function PanicScreen() {
             </button>
             <button
               onClick={() => navigate("dashboard")}
-              className="w-full max-w-xs py-4 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold text-base glow-red active:scale-[0.98] transition-transform"
+              className="w-full max-w-xs py-4 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold text-base glow-green active:scale-[0.98] transition-transform"
             >
               {t("panicBackHome")}
             </button>

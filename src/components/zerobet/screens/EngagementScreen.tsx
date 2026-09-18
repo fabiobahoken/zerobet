@@ -133,7 +133,7 @@ export function EngagementScreen() {
                 whileTap={{ scale: 0.97 }}
                 onClick={() => toggleGoal(goal.key)}
                 className={`relative glass-card p-4 flex flex-col items-center text-center transition-all ${
-                  isSelected ? "ring-2 ring-[#10B981] glow-red" : ""
+                  isSelected ? "ring-2 ring-[#10B981] glow-green" : ""
                 }`}
               >
                 {isSelected && (
@@ -158,7 +158,7 @@ export function EngagementScreen() {
             disabled={!goalsValid}
             className={`w-full py-4 rounded-2xl font-[family-name:var(--font-poppins)] font-semibold text-base flex items-center justify-center gap-2 transition-all ${
               goalsValid
-                ? "gradient-primary text-white glow-red active:scale-[0.98]"
+                ? "gradient-primary text-white glow-green active:scale-[0.98]"
                 : "bg-white/5 text-white/30"
             }`}
           >
@@ -238,7 +238,7 @@ export function EngagementScreen() {
           disabled={!hasSigned}
           className={`mt-6 w-full py-4 rounded-2xl font-[family-name:var(--font-poppins)] font-semibold text-base flex items-center justify-center gap-2 transition-all ${
             hasSigned
-              ? "gradient-primary text-white glow-red active:scale-[0.98]"
+              ? "gradient-primary text-white glow-green active:scale-[0.98]"
               : "bg-white/5 text-white/30"
           }`}
         >
@@ -319,7 +319,7 @@ export function EngagementScreen() {
 
       <button
         onClick={() => navigate("paywall")}
-        className="w-full py-4 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold text-base glow-red flex items-center justify-center gap-2 active:scale-[0.98] transition-transform"
+        className="w-full py-4 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold text-base glow-green flex items-center justify-center gap-2 active:scale-[0.98] transition-transform"
       >
         {t("continue")}
         <ChevronRight size={20} />

@@ -182,7 +182,7 @@ export function QuizScreen() {
                     onClick={() => handleSelect(idx)}
                     className={`w-full p-4 rounded-2xl text-left font-medium text-base transition-all border ${
                       isSelected
-                        ? "gradient-primary text-white border-transparent glow-red"
+                        ? "gradient-primary text-white border-transparent glow-green"
                         : "glass-card text-white/90 border-white/5 hover:border-white/20"
                     }`}
                   >

@@ -162,7 +162,7 @@ export function OnboardingProgress({ currentStep }: OnboardingProgressProps) {
                 </button>
                 <button
                   onClick={handleSkipConfirm}
-                  className="flex-1 py-3 rounded-2xl gradient-primary text-white font-semibold text-sm flex items-center justify-center gap-1.5 glow-red active:scale-[0.98] transition-transform"
+                  className="flex-1 py-3 rounded-2xl gradient-primary text-white font-semibold text-sm flex items-center justify-center gap-1.5 glow-green active:scale-[0.98] transition-transform"
                 >
                   <Home size={14} />
                   {t("onboardingGoDashboard")}

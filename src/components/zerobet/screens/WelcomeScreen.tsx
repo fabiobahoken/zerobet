@@ -318,7 +318,7 @@ export function WelcomeScreen() {
       >
         <button
           onClick={() => navigate("quiz")}
-          className="w-full py-4 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold text-base glow-red flex items-center justify-center gap-2 active:scale-[0.98] transition-transform"
+          className="w-full py-4 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold text-base glow-green flex items-center justify-center gap-2 active:scale-[0.98] transition-transform"
         >
           {t("welcomeCta")}
           <ChevronRight size={20} />

@@ -508,7 +508,7 @@ function NicknameSetup({ onJoin }: NicknameSetupProps) {
       className="glass-card-strong mesh-bg-aurora rounded-3xl p-6 mt-4 mx-4"
     >
       <div className="flex flex-col items-center text-center">
-        <div className="w-16 h-16 rounded-3xl gradient-primary glow-red flex items-center justify-center mb-4">
+        <div className="w-16 h-16 rounded-3xl gradient-primary glow-green flex items-center justify-center mb-4">
           <MessageCircle size={28} className="text-white" strokeWidth={2.2} />
         </div>
         <h2 className="text-xl font-extrabold text-white font-[family-name:var(--font-poppins)] mb-1">
@@ -558,7 +558,7 @@ function NicknameSetup({ onJoin }: NicknameSetupProps) {
         disabled={!isValid}
         className={`w-full py-3.5 rounded-2xl font-semibold text-white flex items-center justify-center gap-2 transition-all ${
           isValid
-            ? "gradient-primary glow-red btn-press"
+            ? "gradient-primary glow-green btn-press"
             : "bg-white/5 text-white/30 cursor-not-allowed"
         }`}
       >
@@ -1194,7 +1194,7 @@ export function CommunityChatScreen() {
             disabled={!input.trim() || connectionStatus !== "connected"}
             className={`w-10 h-10 rounded-2xl flex items-center justify-center shrink-0 transition-all ${
               input.trim() && connectionStatus === "connected"
-                ? "gradient-primary glow-red btn-press"
+                ? "gradient-primary glow-green btn-press"
                 : "bg-white/5 text-white/30"
             }`}
             aria-label={t("chatSend")}
@@ -1258,7 +1258,7 @@ function Header({ onBack, status, activeUsers }: HeaderProps) {
         </button>
 
         <div className="flex-1 flex items-center gap-2.5">
-          <div className="w-10 h-10 rounded-2xl gradient-primary glow-red flex items-center justify-center">
+          <div className="w-10 h-10 rounded-2xl gradient-primary glow-green flex items-center justify-center">
             <MessageCircle size={18} className="text-white" strokeWidth={2.2} />
           </div>
           <div className="leading-tight">

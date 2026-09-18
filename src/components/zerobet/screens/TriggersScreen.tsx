@@ -504,7 +504,7 @@ export function TriggersScreen() {
           variants={itemVariants}
           whileTap={{ scale: 0.97 }}
           onClick={openModal}
-          className="w-full py-4 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold flex items-center justify-center gap-2 glow-red btn-press"
+          className="w-full py-4 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold flex items-center justify-center gap-2 glow-green btn-press"
         >
           <Plus size={20} />
           {t("triggersReport")}
@@ -524,7 +524,7 @@ export function TriggersScreen() {
                 onClick={() => handleTabChange(tab.id)}
                 className={`relative flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium transition-all btn-press whitespace-nowrap ${
                   active
-                    ? "gradient-primary text-white glow-red"
+                    ? "gradient-primary text-white glow-green"
                     : "glass-card text-white/60"
                 }`}
               >
@@ -929,7 +929,7 @@ export function TriggersScreen() {
                       onClick={() => handleCategorySelect(c)}
                       className={`flex items-center gap-2 p-3 rounded-2xl text-left transition-all border btn-press ${
                         active
-                          ? "gradient-primary text-white border-transparent glow-red"
+                          ? "gradient-primary text-white border-transparent glow-green"
                           : "glass-card text-white/70 border-transparent"
                       }`}
                     >
@@ -1042,7 +1042,7 @@ export function TriggersScreen() {
                 disabled={!canSave}
                 className={`w-full py-4 rounded-2xl font-[family-name:var(--font-poppins)] font-semibold text-base transition-all btn-press ${
                   canSave
-                    ? "gradient-primary text-white glow-red"
+                    ? "gradient-primary text-white glow-green"
                     : "bg-white/5 text-white/30"
                 }`}
               >

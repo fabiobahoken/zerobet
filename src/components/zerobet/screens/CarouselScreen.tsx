@@ -267,7 +267,7 @@ export function CarouselScreen() {
         </button>
         <button
           onClick={handleNext}
-          className="flex-1 py-4 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold text-base glow-red flex items-center justify-center gap-2 active:scale-[0.98] transition-transform"
+          className="flex-1 py-4 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold text-base glow-green flex items-center justify-center gap-2 active:scale-[0.98] transition-transform"
         >
           {isLast ? t("carouselCommit") : t("continue")}
           <ChevronRight size={20} />

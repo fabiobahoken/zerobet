@@ -11,7 +11,7 @@ import { MobileMoneyModal } from "@/components/zerobet/components/MobileMoneyMod
 import { useT } from "@/lib/i18n/useT";
 
 export function PaywallScreen() {
-  const { plan, setPlan, navigate, goBack, dataConsent, setDataConsent, setCompletedOnboarding, streakDays, currency } = useStore();
+  const { plan, setPlan, activatePaidPlan, navigate, goBack, dataConsent, setDataConsent, setCompletedOnboarding, streakDays, currency } = useStore();
   const t = useT();
   const [selectedPlanId, setSelectedPlanId] = useState<string>(plan);
   const [billingCycle, setBillingCycle] = useState<"monthly" | "annual">("monthly");
@@ -153,7 +153,7 @@ export function PaywallScreen() {
               onClick={() => handleSelectPlan(planOption.id)}
               onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") handleSelectPlan(planOption.id); }}
               className={`relative glass-card-strong p-5 cursor-pointer transition-all ${
-                isSelected ? "ring-2 ring-[#10B981] glow-red" : ""
+                isSelected ? "ring-2 ring-[#10B981] glow-green" : ""
               }`}
             >
               {/* Badges */}
@@ -259,7 +259,7 @@ export function PaywallScreen() {
       {/* CTA */}
       <button
         onClick={handleConfirm}
-        className="w-full py-4 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold text-base glow-red flex items-center justify-center gap-2 active:scale-[0.98] transition-transform"
+        className="w-full py-4 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold text-base glow-green flex items-center justify-center gap-2 active:scale-[0.98] transition-transform"
       >
         {selectedPlanId === "free" ? <Heart size={18} /> : <Smartphone size={18} />}
         {ctaLabel}
@@ -281,7 +281,11 @@ export function PaywallScreen() {
           onClose={() => setShowPayment(false)}
           onSuccess={() => {
             setShowPayment(false);
-            activatePlan(pendingPlanId);
+            // Zerobet 2.0.5 — record cycle + activation date for the
+            // subscription management screen (renewal estimate, history).
+            activatePaidPlan(pendingPlanId as PlanOption["id"], billingCycle);
+            setCompletedOnboarding(true);
+            navigate("dashboard");
           }}
         />
       )}

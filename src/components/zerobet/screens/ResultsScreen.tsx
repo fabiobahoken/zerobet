@@ -176,7 +176,7 @@ export function ResultsScreen() {
         transition={{ delay: 1.1 }}
         whileTap={{ scale: 0.98 }}
         onClick={() => navigate("symptoms")}
-        className="w-full py-4 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold text-base glow-red flex items-center justify-center gap-2"
+        className="w-full py-4 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold text-base glow-green flex items-center justify-center gap-2"
       >
         {t("resultsCta")}
         <ChevronRight size={20} />

@@ -224,7 +224,7 @@ function RelapseModalContent({
               whileTap={{ scale: 0.98 }}
               onClick={handleConfirm}
               disabled={submitting}
-              className="w-full py-4 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold text-base flex items-center justify-center gap-2 glow-red disabled:opacity-60"
+              className="w-full py-4 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold text-base flex items-center justify-center gap-2 glow-green disabled:opacity-60"
             >
               <RotateCcw size={18} />
               {t("relapseModalConfirmBtn")}

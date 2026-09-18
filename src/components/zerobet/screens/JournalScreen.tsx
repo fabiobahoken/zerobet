@@ -254,7 +254,7 @@ export function JournalScreen() {
         </div>
         <button
           onClick={() => navigate("paywall")}
-          className="w-full max-w-xs py-4 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold glow-red"
+          className="w-full max-w-xs py-4 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold glow-green"
         >
           {t("journalUpgradeToPremium")}
         </button>
@@ -611,7 +611,7 @@ export function JournalScreen() {
                 disabled={!content.trim()}
                 className={`w-full py-4 rounded-2xl font-[family-name:var(--font-poppins)] font-semibold text-base transition-all ${
                   content.trim()
-                    ? "gradient-primary text-white glow-red active:scale-[0.98]"
+                    ? "gradient-primary text-white glow-green active:scale-[0.98]"
                     : "bg-white/5 text-white/30"
                 }`}
               >

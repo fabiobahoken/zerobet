@@ -697,7 +697,7 @@ export function ProfileScreen() {
           <motion.button
             whileTap={{ scale: 0.98 }}
             onClick={openEditModal}
-            className="relative mt-4 w-full py-3 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold text-sm flex items-center justify-center gap-2 glow-red"
+            className="relative mt-4 w-full py-3 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold text-sm flex items-center justify-center gap-2 glow-green"
           >
             <Pencil size={14} /> {t("profileEdit")}
           </motion.button>
@@ -1057,7 +1057,7 @@ export function ProfileScreen() {
                   <motion.button
                     whileTap={{ scale: 0.98 }}
                     onClick={handleSave}
-                    className="flex-1 py-3 rounded-2xl gradient-primary text-white text-sm font-[family-name:var(--font-poppins)] font-semibold flex items-center justify-center gap-2 glow-red"
+                    className="flex-1 py-3 rounded-2xl gradient-primary text-white text-sm font-[family-name:var(--font-poppins)] font-semibold flex items-center justify-center gap-2 glow-green"
                   >
                     <Check size={15} /> {t("save")}
                   </motion.button>

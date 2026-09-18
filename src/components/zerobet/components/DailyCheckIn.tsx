@@ -304,7 +304,7 @@ export function DailyCheckIn({ onDismiss }: { onDismiss?: () => void } = {}) {
                   disabled={!selectedMood}
                   className={`w-full py-4 rounded-2xl text-base font-bold flex items-center justify-center gap-2 transition-all duration-200 ${
                     selectedMood
-                      ? "gradient-primary text-white glow-red"
+                      ? "gradient-primary text-white glow-green"
                       : "bg-white/5 text-white/30 cursor-not-allowed"
                   }`}
                 >

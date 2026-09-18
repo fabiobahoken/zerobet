@@ -616,7 +616,7 @@ export function BlockerScreen() {
                 <motion.div
                   animate={{ y: [0, -6, 0] }}
                   transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                  className="w-20 h-20 rounded-3xl gradient-primary mx-auto flex items-center justify-center mb-4 glow-red"
+                  className="w-20 h-20 rounded-3xl gradient-primary mx-auto flex items-center justify-center mb-4 glow-green"
                 >
                   <Lock size={36} className="text-white" />
                 </motion.div>

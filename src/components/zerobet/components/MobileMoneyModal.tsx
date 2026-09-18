@@ -329,7 +329,7 @@ export function MobileMoneyModal({
 
                   <button
                     onClick={goToConfirm}
-                    className="w-full py-3.5 rounded-xl gradient-primary text-white font-semibold text-sm glow-red active:scale-[0.98] transition-transform"
+                    className="w-full py-3.5 rounded-xl gradient-primary text-white font-semibold text-sm glow-green active:scale-[0.98] transition-transform"
                   >
                     {t("paymentContinue")}
                   </button>
@@ -372,7 +372,7 @@ export function MobileMoneyModal({
 
                   <button
                     onClick={handlePay}
-                    className="w-full py-4 rounded-xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold text-base glow-red flex items-center justify-center gap-2 active:scale-[0.98] transition-transform mb-3"
+                    className="w-full py-4 rounded-xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold text-base glow-green flex items-center justify-center gap-2 active:scale-[0.98] transition-transform mb-3"
                   >
                     <Smartphone size={18} />
                     {t("paymentPayNow")}
@@ -425,7 +425,7 @@ export function MobileMoneyModal({
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", damping: 12, stiffness: 200, delay: 0.1 }}
-                    className="w-20 h-20 mx-auto rounded-full gradient-primary flex items-center justify-center mb-5 glow-red"
+                    className="w-20 h-20 mx-auto rounded-full gradient-primary flex items-center justify-center mb-5 glow-green"
                   >
                     <CheckCircle2 size={38} className="text-white" />
                   </motion.div>
@@ -437,7 +437,7 @@ export function MobileMoneyModal({
                   </p>
                   <button
                     onClick={onSuccess}
-                    className="w-full py-4 rounded-xl gradient-primary text-white font-semibold text-sm glow-red active:scale-[0.98] transition-transform"
+                    className="w-full py-4 rounded-xl gradient-primary text-white font-semibold text-sm glow-green active:scale-[0.98] transition-transform"
                   >
                     {t("paymentSuccessCta")}
                   </button>

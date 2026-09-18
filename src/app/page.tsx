@@ -151,6 +151,13 @@ const SettingsScreen = dynamic(
     })),
   { loading: () => <ScreenLoader /> }
 );
+const SubscriptionScreen = dynamic(
+  () =>
+    import("@/components/zerobet/screens/SubscriptionScreen").then((m) => ({
+      default: m.SubscriptionScreen,
+    })),
+  { loading: () => <ScreenLoader /> }
+);
 const ParcoursEvolutionScreen = dynamic(
   () =>
     import("@/components/zerobet/screens/ParcoursEvolutionScreen").then((m) => ({
@@ -355,6 +362,7 @@ export default function Home() {
       case "community": return <CommunityScreen />;
       case "parcours": return <ParcoursScreen />;
       case "settings": return <SettingsScreen />;
+      case "subscription": return <SubscriptionScreen />;
       case "parcours-evolution": return <ParcoursEvolutionScreen />;
       case "stats": return <StatsScreen />;
       case "resources": return <ResourcesScreen />;

@@ -939,7 +939,7 @@ export function GamificationScreen() {
           </h1>
           <p className="text-white/50 text-xs">{t("gamificationSubtitle")}</p>
         </div>
-        <div className="w-10 h-10 rounded-full gradient-primary flex items-center justify-center glow-red">
+        <div className="w-10 h-10 rounded-full gradient-primary flex items-center justify-center glow-green">
           <Gamepad2 size={20} className="text-white" />
         </div>
       </div>

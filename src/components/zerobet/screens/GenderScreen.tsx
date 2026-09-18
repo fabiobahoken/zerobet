@@ -270,7 +270,7 @@ export function GenderScreen() {
         disabled={!gender}
         className={`mt-8 mx-auto max-w-sm w-full py-4 rounded-2xl font-[family-name:var(--font-poppins)] font-semibold text-base transition-all ${
           gender
-            ? "gradient-primary text-white glow-red"
+            ? "gradient-primary text-white glow-green"
             : "bg-white/5 text-white/30 cursor-not-allowed"
         }`}
       >
