@@ -1,0 +1,211 @@
+// Zerobet Prisma Schema — Premium gambling addiction recovery app
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String   @id @default(cuid())
+  email           String?  @unique
+  name            String?
+  passwordHash    String?  // bcrypt hash (for Credentials auth)
+  gender          String?  // "male" | "female"
+  language        String   @default("fr")
+  plan            String   @default("free") // free | premium | mentor | psychologist
+  addictionScore  Int      @default(0)
+  addictionLevel  String   @default("faible") // faible | modere | severe | critique
+  streakDays      Int      @default(0)
+  lastStreakDate  DateTime?
+  savingsWeekly   Int      @default(0) // FCFA per week saved
+  goals           String?  // JSON string of selected goals
+  signatureData   String?  // base64 signature
+  dataConsent     Boolean  @default(false)
+  anonymousMode   Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  journalEntries     JournalEntry[]
+  milestones         Milestone[]
+  panicEvents        PanicEvent[]
+  testimonials       Testimonial[]
+  forumPosts         ForumPost[]
+  forumReplies       ForumReply[]
+  chatMessages       ChatMessage[]
+  mentorProfile      Mentor?
+  psychologistProfile Psychologist?
+}
+
+model JournalEntry {
+  id        String   @id @default(cuid())
+  userId    String
+  content   String
+  emotion   String   // frustrated | strong | tempted | calm | proud | anxious
+  trigger   String?  // what triggered the urge
+  intensity Int      @default(1) // 1-5
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+}
+
+model Milestone {
+  id        String   @id @default(cuid())
+  userId    String
+  rankKey   String   // e.g. "jour-1", "jour-7", "bronze", "argent"
+  rankName  String
+  rankTier  Int      // 1-13
+  unlockedAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, rankKey])
+}
+
+model PanicEvent {
+  id        String   @id @default(cuid())
+  userId    String
+  trigger   String?
+  intensity Int      @default(3)
+  resolved  Boolean  @default(true)
+  method    String?  // breathing | call | testimony | other
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+}
+
+model Testimonial {
+  id        String   @id @default(cuid())
+  userId    String?
+  authorName String
+  authorAge  Int?
+  authorCountry String?
+  streakDays Int
+  title     String
+  content   String
+  isVerified Boolean @default(false)
+  isAnonymous Boolean @default(false)
+  likes     Int      @default(0)
+  createdAt DateTime @default(now())
+
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  replies   ForumReply[]
+
+  @@index([createdAt])
+}
+
+model ForumPost {
+  id        String   @id @default(cuid())
+  userId    String
+  category  String   // success | struggle | motivation | question
+  title     String
+  content   String
+  likes     Int      @default(0)
+  views     Int      @default(0)
+  createdAt DateTime @default(now())
+
+  user    User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  replies ForumReply[]
+
+  @@index([userId, createdAt])
+  @@index([category])
+}
+
+model ForumReply {
+  id        String   @id @default(cuid())
+  postId    String
+  userId    String
+  testimonialId String?
+  content   String
+  likes     Int      @default(0)
+  createdAt DateTime @default(now())
+
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post        ForumPost   @relation(fields: [postId], references: [id], onDelete: Cascade)
+  testimonial Testimonial? @relation(fields: [testimonialId], references: [id], onDelete: SetNull)
+
+  @@index([postId, createdAt])
+}
+
+model ChatMessage {
+  id        String   @id @default(cuid())
+  userId    String
+  role      String   // user | assistant
+  content   String
+  section   String?  // journal | motivation | progress | crisis | general
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+}
+
+model Mentor {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  displayName String
+  bio       String
+  country   String
+  specialty String   // e.g. "Sportifs", "Étudiants", "Parents"
+  daysClean Int
+  verified  Boolean  @default(false)
+  rating    Float    @default(5.0)
+  sessionsCount Int  @default(0)
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Psychologist {
+  id          String   @id @default(cuid())
+  userId      String   @unique
+  displayName String
+  fullName    String
+  license     String
+  specialty   String
+  country     String
+  sessionPrice Int     @default(15000) // FCFA per session
+  verified    Boolean  @default(false)
+  rating      Float    @default(5.0)
+  sessionsCount Int    @default(0)
+  bio         String
+  createdAt   DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model BlockedSite {
+  id        String   @id @default(cuid())
+  url       String   @unique
+  name      String
+  category  String   // international | africa | crypto | france | other
+  createdAt DateTime @default(now())
+}
+
+model DailyQuote {
+  id        String   @id @default(cuid())
+  text      String
+  author    String
+  language  String   @default("fr")
+  createdAt DateTime @default(now())
+}
+
+// Zerobet 2.0 — cloud backup of core recovery progress.
+// One snapshot per anonymous device (local-first app, optional cloud sync).
+model ProgressSnapshot {
+  id         String   @id @default(cuid())
+  deviceId   String   @unique
+  payload    String   // full JSON snapshot of the user's local progress
+  streakDays Int      @default(0)
+  xp         Int      @default(0)
+  plan       String   @default("free")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}

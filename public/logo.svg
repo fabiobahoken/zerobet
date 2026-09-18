@@ -1,0 +1,26 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="zb-shield-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981" />
+      <stop offset="100%" stop-color="#065F46" />
+    </linearGradient>
+    <linearGradient id="zb-accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981" />
+      <stop offset="100%" stop-color="#FBBF24" />
+    </linearGradient>
+    <radialGradient id="zb-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FBBF24" stopOpacity="0.6" />
+      <stop offset="100%" stop-color="#10B981" stopOpacity="0" />
+    </radialGradient>
+  </defs>
+  <circle cx="60" cy="60" r="55" fill="url(#zb-glow)" />
+  <path d="M60 18 L92 28 V58 C92 78 78 92 60 100 C42 92 28 78 28 58 V28 Z" fill="url(#zb-shield-grad)" stroke="#FBBF24" stroke-width="2" />
+  <path d="M60 24 L86 32 V58 C86 74 74 86 60 93 C46 86 34 74 34 58 V32 Z" fill="rgba(11, 19, 43, 0.4)" />
+  <path d="M18 50 C16 46 18 42 22 42 L26 42 L26 48 L24 48 L24 50 L18 50 Z" fill="#FBBF24" opacity="0.8" />
+  <rect x="14" y="54" width="6" height="3" rx="1" fill="#FBBF24" opacity="0.6" />
+  <path d="M102 50 C104 46 102 42 98 42 L94 42 L94 48 L96 48 L96 50 L102 50 Z" fill="#FBBF24" opacity="0.8" />
+  <rect x="100" y="54" width="6" height="3" rx="1" fill="#FBBF24" opacity="0.6" />
+  <path d="M48 42 H72 V48 L56 72 H72 V78 H48 V72 L64 48 H48 Z" fill="white" stroke="white" stroke-width="1" />
+  <path d="M88 30 L90 34 L94 36 L90 38 L88 42 L86 38 L82 36 L86 34 Z" fill="#FBBF24" />
+  <path d="M30 78 L31 80 L33 81 L31 82 L30 84 L29 82 L27 81 L29 80 Z" fill="#FBBF24" />
+</svg>
