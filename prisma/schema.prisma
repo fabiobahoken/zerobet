@@ -209,3 +209,24 @@ model ProgressSnapshot {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 }
+
+// Zerobet 2.0.4 — Mobile Money payment attempts (simulated gateway).
+// Real operator integration will reuse this table; statuses:
+// pending → processing → success | failed | expired
+model Payment {
+  id           String   @id @default(cuid())
+  deviceId     String   @default("")
+  plan         String   // premium | mentor | psychologist
+  billingCycle String   @default("monthly") // monthly | annual
+  operator     String   // orange | mtn | wave | moov
+  phone        String   // masked in logs
+  amount       Int      // FCFA
+  currency     String   @default("FCFA")
+  status       String   @default("pending")
+  failReason   String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([deviceId, createdAt])
+  @@index([status])
+}

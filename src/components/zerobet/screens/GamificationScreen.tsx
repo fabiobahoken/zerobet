@@ -826,7 +826,7 @@ function Leaderboard() {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.1 + idx * 0.1, type: "spring", stiffness: 200 }}
-                      className={`flex-1 flex flex-col items-center ${user.isMe ? "ring-2 ring-[#FF3B30] rounded-2xl" : ""}`}
+                      className={`flex-1 flex flex-col items-center ${user.isMe ? "ring-2 ring-[#10B981] rounded-2xl" : ""}`}
                     >
                       <div className="text-2xl mb-1">{user.badge}</div>
                       <div className="text-[10px] text-white/70 font-medium text-center truncate w-full px-1">

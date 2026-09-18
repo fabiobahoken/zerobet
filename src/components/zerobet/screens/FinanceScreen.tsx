@@ -511,7 +511,7 @@ export function FinanceScreen() {
               type="number"
               value={betInput}
               onChange={(e) => setBetInput(e.target.value)}
-              className="flex-1 p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#FF3B30]"
+              className="flex-1 p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#10B981]"
               placeholder={t("financeAmountFCFA")}
             />
             <button

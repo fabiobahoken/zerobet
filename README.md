@@ -79,7 +79,7 @@ Zerobet est une application de récupération contre l'addiction aux paris sport
 - **Symptômes** → 5 catégories × 6 symptômes
 - **Carousel** → 8 slides éducatifs (cerveau piraté, opérateur, etc.)
 - **Engagement** → Objectifs + signature + plan personnalisé
-- **Paywall** → 4 plans (Free / Premium / Mentor / Psychologue)
+- **Paywall** → 4 plans (Free / Premium / Mentor / Psychologue) + checkout **Mobile Money** (Orange Money, MTN MoMo, Wave, Moov Money) avec simulation USSD réaliste (pending → processing → success/failed), historique persisté en DB (`Payment`), téléphone masqué, prix vérifiés côté serveur. Escape hatch QA : un numéro finissant par `0000` simule un refus opérateur (fonds insuffisants).
 
 ### Application Principale (38+ écrans)
 - **Dashboard** — Série, économies, citation du jour, insight, tracker d'humeur, heatmap annuel

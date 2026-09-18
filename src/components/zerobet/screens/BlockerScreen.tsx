@@ -360,7 +360,7 @@ export function BlockerScreen() {
                 checked={strictMode}
                 onCheckedChange={handleStrictToggle}
                 disabled={isPremiumLocked}
-                className="data-[state=checked]:bg-[#FF3B30]"
+                className="data-[state=checked]:bg-[#10B981]"
               />
             </div>
             <p className="text-sm font-bold text-white">{t("blockerStrictModeShort")}</p>

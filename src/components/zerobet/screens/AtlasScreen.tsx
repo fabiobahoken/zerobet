@@ -169,6 +169,15 @@ export function AtlasScreen() {
           },
         }),
       });
+      if (res.status === 429) {
+        // Server-side rate limit hit — friendly message, no refund of quota
+        addChatMessage({
+          role: "assistant",
+          content: t("atlasRateLimited"),
+          section: targetSection,
+        });
+        return;
+      }
       const data = await res.json();
       addChatMessage({
         role: "assistant",

@@ -977,7 +977,7 @@ export function TriggersScreen() {
                 onChange={(e) => setSituation(e.target.value.slice(0, 280))}
                 placeholder={t("triggersFieldSituationPlaceholder")}
                 rows={3}
-                className="bg-white/5 border-white/10 text-white text-sm placeholder-white/30 focus-visible:border-[#FF3B30] resize-none mb-1 min-h-[80px]"
+                className="bg-white/5 border-white/10 text-white text-sm placeholder-white/30 focus-visible:border-[#10B981] resize-none mb-1 min-h-[80px]"
               />
               <div className="flex items-center justify-between mb-4">
                 <span

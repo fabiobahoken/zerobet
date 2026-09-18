@@ -133,7 +133,7 @@ export function EngagementScreen() {
                 whileTap={{ scale: 0.97 }}
                 onClick={() => toggleGoal(goal.key)}
                 className={`relative glass-card p-4 flex flex-col items-center text-center transition-all ${
-                  isSelected ? "ring-2 ring-[#FF3B30] glow-red" : ""
+                  isSelected ? "ring-2 ring-[#10B981] glow-red" : ""
                 }`}
               >
                 {isSelected && (

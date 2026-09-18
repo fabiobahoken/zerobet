@@ -1032,7 +1032,7 @@ export function ProfileScreen() {
                           onClick={() => setEditingLang(lang.code)}
                           className={`flex flex-col items-center gap-1.5 p-2.5 rounded-xl transition-all ${
                             isSelected
-                              ? "glass-card-strong ring-2 ring-[#FF3B30]"
+                              ? "glass-card-strong ring-2 ring-[#10B981]"
                               : "bg-white/5 hover:bg-white/10"
                           }`}
                         >

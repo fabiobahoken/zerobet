@@ -745,7 +745,7 @@ export function CommunityScreen() {
                 onChange={(e) => setTTitle(e.target.value)}
                 placeholder={t("communityTestimonialTitlePlaceholder")}
                 maxLength={80}
-                className="w-full p-3 rounded-2xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#FF3B30] mb-4"
+                className="w-full p-3 rounded-2xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#10B981] mb-4"
               />
 
               <label className="text-white/60 text-xs mb-2 block">{t("communityYourStory")}</label>
@@ -755,7 +755,7 @@ export function CommunityScreen() {
                 placeholder={t("communityYourStoryPlaceholder")}
                 rows={5}
                 maxLength={1000}
-                className="w-full p-3 rounded-2xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#FF3B30] resize-none mb-4"
+                className="w-full p-3 rounded-2xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#10B981] resize-none mb-4"
               />
               <div className="text-right text-white/30 text-xs mb-4">{tContent.length}/1000</div>
 
@@ -863,7 +863,7 @@ export function CommunityScreen() {
                 onChange={(e) => setFTitle(e.target.value)}
                 placeholder={t("communityForumTitlePlaceholder")}
                 maxLength={80}
-                className="w-full p-3 rounded-2xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#FF3B30] mb-4"
+                className="w-full p-3 rounded-2xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#10B981] mb-4"
               />
 
               <label className="text-white/60 text-xs mb-2 block">{t("communityMessageLabel")}</label>
@@ -873,7 +873,7 @@ export function CommunityScreen() {
                 placeholder={t("communityForumMessagePlaceholder")}
                 rows={5}
                 maxLength={1500}
-                className="w-full p-3 rounded-2xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#FF3B30] resize-none mb-4"
+                className="w-full p-3 rounded-2xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#10B981] resize-none mb-4"
               />
               <div className="text-right text-white/30 text-xs mb-4">{fContent.length}/1500</div>
 
@@ -1523,7 +1523,7 @@ function ForumTab({
                         value={forumReplyText}
                         onChange={(e) => setForumReplyText(e.target.value)}
                         placeholder={t("communityForumReplyPlaceholder")}
-                        className="flex-1 p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#FF3B30]"
+                        className="flex-1 p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#10B981]"
                         onKeyDown={(e) => {
                           if (e.key === "Enter") onSubmitForumReply(post.id);
                         }}

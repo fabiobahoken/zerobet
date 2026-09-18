@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ChevronLeft, Check, Crown, Shield, Sparkles, Heart } from "lucide-react";
+import { ChevronLeft, Check, Crown, Shield, Sparkles, Heart, Smartphone } from "lucide-react";
 import { useStore } from "@/store/zerobet-store";
 import { PLAN_OPTIONS, type PlanOption } from "@/lib/data/app-data";
 import { formatCurrency } from "@/lib/data/currency-data";
 import { OnboardingProgress } from "@/components/zerobet/components/OnboardingProgress";
+import { MobileMoneyModal } from "@/components/zerobet/components/MobileMoneyModal";
 import { useT } from "@/lib/i18n/useT";
 
 export function PaywallScreen() {
@@ -15,33 +16,67 @@ export function PaywallScreen() {
   const [selectedPlanId, setSelectedPlanId] = useState<string>(plan);
   const [billingCycle, setBillingCycle] = useState<"monthly" | "annual">("monthly");
   const [showConsent, setShowConsent] = useState(false);
+  const [showPayment, setShowPayment] = useState(false);
+  const [pendingPlanId, setPendingPlanId] = useState<string | null>(null);
 
   const handleSelectPlan = (planId: PlanOption["id"]) => {
     setSelectedPlanId(planId);
+  };
+
+  const activatePlan = (planId: string) => {
+    setPlan(planId as PlanOption["id"]);
+    setCompletedOnboarding(true);
+    // Unlock first rank
+    navigate("dashboard");
   };
 
   const handleConfirm = () => {
     const planOption = PLAN_OPTIONS.find((p) => p.id === selectedPlanId);
     if (!planOption) return;
 
-    if (planOption.id !== "free" && !dataConsent) {
-      setShowConsent(true);
+    if (planOption.id !== "free") {
+      if (!dataConsent) {
+        setShowConsent(true);
+        return;
+      }
+      // Paid plan → open the Mobile Money checkout (Zerobet 2.0.4)
+      setPendingPlanId(planOption.id);
+      setShowPayment(true);
       return;
     }
 
-    setPlan(planOption.id);
-    setCompletedOnboarding(true);
-    // Unlock first rank
-    navigate("dashboard");
+    activatePlan(planOption.id);
   };
 
   const handleAcceptConsent = () => {
     setDataConsent(true);
     setShowConsent(false);
-    setPlan(selectedPlanId as PlanOption["id"]);
-    setCompletedOnboarding(true);
-    navigate("dashboard");
+    if (selectedPlanId !== "free") {
+      // Continue to payment after consent
+      setPendingPlanId(selectedPlanId);
+      setShowPayment(true);
+      return;
+    }
+    activatePlan(selectedPlanId);
   };
+
+  // CTA label adapts to the payment flow
+  const ctaLabel =
+    selectedPlanId === "free"
+      ? t("paywallStartFree")
+      : billingCycle === "annual"
+        ? t("paywallSubscribeAnnual", {
+            amount: formatCurrency(
+              PLAN_OPTIONS.find((p) => p.id === selectedPlanId)?.annualPrice ?? 0,
+              currency
+            ),
+          })
+        : t("paywallSubscribeMonthly", {
+            amount: formatCurrency(
+              PLAN_OPTIONS.find((p) => p.id === selectedPlanId)?.monthlyPrice ?? 0,
+              currency
+            ),
+          });
 
   return (
     <div className="min-h-screen flex flex-col px-6 pt-12 pb-8">
@@ -197,14 +232,59 @@ export function PaywallScreen() {
         <span>{t("paywallDataProtection")}</span>
       </div>
 
+      {/* Mobile Money operator trust row */}
+      {selectedPlanId !== "free" && (
+        <div className="flex items-center justify-center gap-2 mb-3">
+          {[
+            { name: "Orange", color: "#FF7900", dark: false },
+            { name: "MTN", color: "#FFCB05", dark: true },
+            { name: "Wave", color: "#1DC8FF", dark: false },
+            { name: "Moov", color: "#F43F5E", dark: false },
+          ].map((op) => (
+            <span
+              key={op.name}
+              className="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] text-white/60"
+            >
+              <span
+                className="w-3.5 h-3.5 rounded-full inline-block"
+                style={{ background: op.color }}
+                aria-hidden
+              />
+              {op.name}
+            </span>
+          ))}
+        </div>
+      )}
+
       {/* CTA */}
       <button
         onClick={handleConfirm}
         className="w-full py-4 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold text-base glow-red flex items-center justify-center gap-2 active:scale-[0.98] transition-transform"
       >
-        <Heart size={18} />
-        {selectedPlanId === "free" ? t("paywallStartFree") : t("paywallStartRecovery")}
+        {selectedPlanId === "free" ? <Heart size={18} /> : <Smartphone size={18} />}
+        {ctaLabel}
       </button>
+
+      {/* Mobile Money checkout (Zerobet 2.0.4) */}
+      {pendingPlanId && pendingPlanId !== "free" && (
+        <MobileMoneyModal
+          key={`mm-${showPayment}`}
+          open={showPayment}
+          planId={pendingPlanId}
+          planName={t(PLAN_OPTIONS.find((p) => p.id === pendingPlanId)?.nameKey ?? "")}
+          billingCycle={billingCycle}
+          amountFCFA={
+            billingCycle === "annual"
+              ? PLAN_OPTIONS.find((p) => p.id === pendingPlanId)?.annualPrice ?? 0
+              : PLAN_OPTIONS.find((p) => p.id === pendingPlanId)?.monthlyPrice ?? 0
+          }
+          onClose={() => setShowPayment(false)}
+          onSuccess={() => {
+            setShowPayment(false);
+            activatePlan(pendingPlanId);
+          }}
+        />
+      )}
 
       {/* Consent modal */}
       {showConsent && (

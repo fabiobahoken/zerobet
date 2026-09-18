@@ -47,10 +47,10 @@ const PLAN_INFO: Record<Plan, {
   premium: {
     labelKey: "settingsPlanPremium",
     descKey: "planPremiumDesc",
-    color: "#FF3B30",
-    gradient: "linear-gradient(135deg, #FF3B30 0%, #FF9500 100%)",
+    color: "#10B981",
+    gradient: "linear-gradient(135deg, #10B981 0%, #F59E0B 100%)",
     icon: "⭐",
-    glowClass: "glow-red",
+    glowClass: "glow-green",
   },
   mentor: {
     labelKey: "settingsPlanMentor",
@@ -413,7 +413,7 @@ export function SettingsScreen() {
                     aria-label={lang.nativeName}
                     className={`flex flex-col items-center gap-1.5 p-2.5 rounded-xl transition-all ${
                       isSelected
-                        ? "glass-card-strong ring-2 ring-[#FF3B30]"
+                        ? "glass-card-strong ring-2 ring-[#10B981]"
                         : "bg-white/5 hover:bg-white/10"
                     }`}
                   >
@@ -466,7 +466,7 @@ export function SettingsScreen() {
               onChange={(e) => setName(e.target.value)}
               placeholder={t("settingsNamePlaceholder")}
               maxLength={30}
-              className="bg-white/5 border-white/10 text-white placeholder:text-white/30 rounded-xl h-11 focus-visible:border-[#FF3B30]/60 focus-visible:ring-[#FF3B30]/20"
+              className="bg-white/5 border-white/10 text-white placeholder:text-white/30 rounded-xl h-11 focus-visible:border-[#10B981]/60 focus-visible:ring-[#10B981]/20"
             />
           </div>
         </motion.section>
@@ -492,7 +492,7 @@ export function SettingsScreen() {
               checked={anonymousMode}
               onCheckedChange={setAnonymousMode}
               aria-label={t("settingsAnonymousMode")}
-              className="data-[state=checked]:bg-[#FF3B30] data-[state=unchecked]:bg-white/15"
+              className="data-[state=checked]:bg-[#10B981] data-[state=unchecked]:bg-white/15"
             />
           </div>
 
@@ -508,7 +508,7 @@ export function SettingsScreen() {
               checked={dataConsent}
               onCheckedChange={setDataConsent}
               aria-label={t("settingsDataConsent")}
-              className="data-[state=checked]:bg-[#FF3B30] data-[state=unchecked]:bg-white/15"
+              className="data-[state=checked]:bg-[#10B981] data-[state=unchecked]:bg-white/15"
             />
           </div>
 
@@ -852,7 +852,7 @@ export function SettingsScreen() {
         {/* ============ SECTION 3e: Confidentialité & Sécurité (Task 9-a) ============ */}
         <motion.section variants={itemVariants} className="glass-card p-5">
           <div className="flex items-center gap-2 mb-4">
-            <Lock size={16} className="text-[#FF3B30]" />
+            <Lock size={16} className="text-[#10B981]" />
             <h3 className="text-xs font-bold text-white/80 uppercase tracking-[0.12em]">
               {t("privacySecurity")}
             </h3>
@@ -861,7 +861,7 @@ export function SettingsScreen() {
           <div className="flex items-start justify-between gap-3 mb-4 pb-4 border-b border-white/5">
             <div className="flex-1 min-w-0">
               <p className="text-white text-sm font-medium flex items-center gap-1.5">
-                <Lock size={12} className="text-[#FF3B30]" /> {t("appLock")}
+                <Lock size={12} className="text-[#10B981]" /> {t("appLock")}
               </p>
               <p className="text-white/50 text-xs mt-0.5 leading-relaxed">
                 {t("appLockDesc")}
@@ -871,7 +871,7 @@ export function SettingsScreen() {
               checked={appLock}
               onCheckedChange={setAppLock}
               aria-label={t("appLock")}
-              className="data-[state=checked]:bg-[#FF3B30] data-[state=unchecked]:bg-white/15"
+              className="data-[state=checked]:bg-[#10B981] data-[state=unchecked]:bg-white/15"
             />
           </div>
 

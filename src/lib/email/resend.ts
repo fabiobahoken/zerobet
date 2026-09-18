@@ -1,4 +1,4 @@
-import Resend from "resend";
+import { Resend } from "resend";
 import { logger } from "@/lib/monitoring/logger";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
