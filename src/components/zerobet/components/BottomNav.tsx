@@ -40,7 +40,7 @@ export function BottomNav() {
   else if (profileScreens.includes(currentScreen)) activeTab = "profile";
 
   return (
-    <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] z-50 safe-bottom">
+    <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] z-40 safe-bottom">
       <div className="mx-3 mb-3">
         <nav className="glass-card-strong flex items-center justify-around px-2 py-2 rounded-3xl">
           {TABS.map((tab) => {

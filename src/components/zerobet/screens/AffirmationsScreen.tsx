@@ -848,7 +848,7 @@ export function AffirmationsScreen() {
             {!isPremium ? (
               <div className="relative">
                 <div
-                  className="absolute inset-0 backdrop-blur-md bg-[#0A0A0F]/70 flex flex-col items-center justify-center gap-3 z-10 rounded-2xl py-6"
+                  className="absolute inset-0 backdrop-blur-md bg-[#070B0E]/70 flex flex-col items-center justify-center gap-3 z-10 rounded-2xl py-6"
                   aria-hidden={false}
                 >
                   <div className="w-12 h-12 rounded-full bg-[#FF9500]/15 flex items-center justify-center">

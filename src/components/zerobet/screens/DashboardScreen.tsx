@@ -159,14 +159,14 @@ export function DashboardScreen() {
   const quickActions = [
     { icon: Zap, labelKey: "qaPanic", color: "#FF3B30", screen: "panic" as const, premium: false },
     { icon: Gamepad2, labelKey: "qaQuests", color: "#FBBF24", screen: "gamification" as const, premium: false },
-    { icon: BookOpen, labelKey: "qaJournal", color: "#64D2FF", screen: "journal" as const, premium: true },
+    { icon: BookOpen, labelKey: "qaJournal", color: "#64D2FF", screen: "journal" as const, premium: false },
     { icon: Wallet, labelKey: "qaSavings", color: "#4ADE80", screen: "finance" as const, premium: false },
     { icon: BarChart3, labelKey: "qaStats", color: "#64D2FF", screen: "stats" as const, premium: false },
     { icon: Wind, labelKey: "qaMeditation", color: "#64D2FF", screen: "meditation" as const, premium: false },
-    { icon: Bot, labelKey: "qaAtlas", color: "#BF5AF2", screen: "atlas" as const, premium: true },
+    { icon: Bot, labelKey: "qaAtlas", color: "#BF5AF2", screen: "atlas" as const, premium: false },
     { icon: Shield, labelKey: "qaBlocker", color: "#FBBF24", screen: "blocker" as const, premium: true },
     { icon: Users, labelKey: "qaCommunity", color: "#FF9500", screen: "community" as const, premium: false },
-    { icon: MessageCircle, labelKey: "qaChat", color: "#4ADE80", screen: "community-chat" as const, premium: true },
+    { icon: MessageCircle, labelKey: "qaChat", color: "#4ADE80", screen: "community-chat" as const, premium: false },
     { icon: Trophy, labelKey: "qaTrophies", color: "#FBBF24", screen: "achievements" as const, premium: false },
     { icon: BookOpen, labelKey: "qaResources", color: "#BF5AF2", screen: "resources" as const, premium: false },
     { icon: User, labelKey: "qaProfile", color: "#BF5AF2", screen: "profile" as const, premium: false },
@@ -521,7 +521,7 @@ export function DashboardScreen() {
               >
                 {isLocked && (
                   <div className="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-[#FBBF24] flex items-center justify-center">
-                    <Crown size={9} className="text-[#0A0A0F]" />
+                    <Crown size={9} className="text-[#070B0E]" />
                   </div>
                 )}
                 {!isLocked && action.premium && (

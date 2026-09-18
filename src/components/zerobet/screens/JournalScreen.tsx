@@ -581,7 +581,7 @@ export function JournalScreen() {
                 onChange={(e) => setContent(e.target.value)}
                 placeholder={t("journalContentPlaceholder")}
                 rows={4}
-                className="w-full p-3 rounded-2xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#FF3B30] resize-none mb-4"
+                className="w-full p-3 rounded-2xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#10B981] focus:ring-1 focus:ring-[#10B981]/40 resize-none mb-4 transition-all"
               />
 
               {/* Trigger */}
@@ -590,7 +590,7 @@ export function JournalScreen() {
                 value={trigger}
                 onChange={(e) => setTrigger(e.target.value)}
                 placeholder={t("journalTriggerPlaceholder")}
-                className="w-full p-3 rounded-2xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#FF3B30] mb-4"
+                className="w-full p-3 rounded-2xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#10B981] focus:ring-1 focus:ring-[#10B981]/40 mb-4 transition-all"
               />
 
               {/* Intensity */}
@@ -603,7 +603,7 @@ export function JournalScreen() {
                 max="5"
                 value={intensity}
                 onChange={(e) => setIntensity(Number(e.target.value))}
-                className="w-full accent-[#FF3B30] mb-5"
+                className="w-full accent-[#10B981] mb-5"
               />
 
               <button

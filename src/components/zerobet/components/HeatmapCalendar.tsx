@@ -549,7 +549,7 @@ export function HeatmapCalendar({
                   };
                   const baseClass = `rounded-[3px] transition-transform ${
                     isToday
-                      ? "ring-2 ring-[#FF9500] ring-offset-1 ring-offset-[#0A0A0F] cursor-pointer hover:scale-125 hover:z-10"
+                      ? "ring-2 ring-[#FF9500] ring-offset-1 ring-offset-[#070B0E] cursor-pointer hover:scale-125 hover:z-10"
                       : cell.future
                       ? "cursor-default"
                       : "hover:scale-125 hover:z-10"

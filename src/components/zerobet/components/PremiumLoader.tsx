@@ -410,7 +410,7 @@ export function PremiumLoader({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
-            className="fixed inset-0 z-[100] bg-[#0A0A0F] flex items-center justify-center"
+            className="fixed inset-0 z-[100] bg-[#070B0E] flex items-center justify-center"
           >
             {content}
           </motion.div>

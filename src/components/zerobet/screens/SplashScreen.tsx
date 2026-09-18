@@ -65,14 +65,14 @@ export function SplashScreen() {
         initial={{ y: "-100%" }}
         animate={{ y: 0 }}
         transition={{ duration: 0.8, ease: "easeInOut" }}
-        className="absolute top-0 left-0 right-0 h-[6vh] bg-[#0A0A0F] z-30 pointer-events-none splash-letterbox-top"
+        className="absolute top-0 left-0 right-0 h-[6vh] bg-[#070B0E] z-30 pointer-events-none splash-letterbox-top"
       />
       <motion.div
         aria-hidden
         initial={{ y: "100%" }}
         animate={{ y: 0 }}
         transition={{ duration: 0.8, ease: "easeInOut" }}
-        className="absolute bottom-0 left-0 right-0 h-[6vh] bg-[#0A0A0F] z-30 pointer-events-none splash-letterbox-bottom"
+        className="absolute bottom-0 left-0 right-0 h-[6vh] bg-[#070B0E] z-30 pointer-events-none splash-letterbox-bottom"
       />
 
       <PremiumLoader
@@ -85,7 +85,7 @@ export function SplashScreen() {
 
       <style>{`
         .splash-cinematic-root {
-          background: #0A0A0F;
+          background: #070B0E;
         }
         .splash-mesh-bg {
           background:

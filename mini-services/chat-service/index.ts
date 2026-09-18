@@ -151,21 +151,71 @@ function createSystemMessage(content: string, room: string): ChatMessage {
 }
 
 /**
- * Basic XSS / overflow sanitization:
+ * Content normalization (safe-by-contract):
  *  - trim whitespace
  *  - cap at 500 chars
- *  - escape &, <, >, ", '
+ *  - strip control characters (keep \n)
+ *  - collapse 3+ consecutive newlines
+ *
+ * NOTE: we intentionally do NOT HTML-entity-escape here. Messages are
+ * rendered by the client through React text nodes (which never interpret
+ * HTML), and escaping here caused double-escaped artifacts like
+ * `aujourd&#39;hui` appearing literally in the chat UI (bug found in QA).
  */
 function sanitizeContent(raw: string): string {
   const trimmed = (raw ?? "").trim();
   const capped = trimmed.slice(0, 500);
   return capped
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
+    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, "")
+    .replace(/\n{3,}/g, "\n\n");
 }
+
+// ----------------------------- Rate limiting (flood control) -----------
+
+// Server-side sliding-window limiter. The client enforces the free-plan
+// daily quota, but a tampered client could bypass it — this protects the
+// rooms regardless of what the client sends.
+const RATE_WINDOW_MS = 15_000;
+const RATE_MAX_MESSAGES = 6; // generous for humans, blocks floods
+const RATE_MAX_JOINS = 5; // prevents join/leave room-flooding
+
+interface RateEntry {
+  timestamps: number[];
+}
+const messageLimiter = new Map<string, RateEntry>();
+const joinLimiter = new Map<string, RateEntry>();
+
+function allowAction(
+  map: Map<string, RateEntry>,
+  key: string,
+  max: number,
+  windowMs: number = RATE_WINDOW_MS
+): { ok: boolean; retryAfterMs: number } {
+  const now = Date.now();
+  const entry = map.get(key) ?? { timestamps: [] };
+  entry.timestamps = entry.timestamps.filter((t) => now - t < windowMs);
+  if (entry.timestamps.length >= max) {
+    const oldest = entry.timestamps[0];
+    map.set(key, entry);
+    return { ok: false, retryAfterMs: Math.max(0, windowMs - (now - oldest)) };
+  }
+  entry.timestamps.push(now);
+  map.set(key, entry);
+  return { ok: true, retryAfterMs: 0 };
+}
+
+// Periodic cleanup so the limiter maps never grow unbounded.
+setInterval(() => {
+  const now = Date.now();
+  for (const [key, entry] of messageLimiter) {
+    if (entry.timestamps.every((t) => now - t >= RATE_WINDOW_MS))
+      messageLimiter.delete(key);
+  }
+  for (const [key, entry] of joinLimiter) {
+    if (entry.timestamps.every((t) => now - t >= RATE_WINDOW_MS))
+      joinLimiter.delete(key);
+  }
+}, RATE_WINDOW_MS).unref();
 
 // ----------------------------- Connection -----------------------------
 
@@ -179,6 +229,14 @@ io.on("connection", (socket: Socket) => {
   // ---- join ----
   socket.on("join", (payload: JoinPayload) => {
     try {
+      // Flood guard: too many room switches in a short window.
+      const joinRl = allowAction(joinLimiter, socket.id, RATE_MAX_JOINS);
+      if (!joinRl.ok) {
+        socket.emit("rate-limited", { retryAfterMs: joinRl.retryAfterMs, scope: "join" });
+        console.log(`[chat] rate-limited join from ${socket.id}`);
+        return;
+      }
+
       const nickname = (payload?.nickname ?? "").trim().slice(0, 20);
       const room = (payload?.room ?? "").trim();
       const streakDays = Math.max(0, Math.min(9999, Number(payload?.streakDays ?? 0) || 0));
@@ -260,6 +318,15 @@ io.on("connection", (socket: Socket) => {
   socket.on("message", (payload: MessagePayload) => {
     try {
       if (!currentRoom || !currentNickname) return;
+
+      // Flood guard (server-authoritative — client quota is advisory only).
+      const rl = allowAction(messageLimiter, socket.id, RATE_MAX_MESSAGES);
+      if (!rl.ok) {
+        socket.emit("rate-limited", { retryAfterMs: rl.retryAfterMs, scope: "message" });
+        console.log(`[chat] rate-limited message from ${socket.id} (${currentNickname})`);
+        return;
+      }
+
       const content = sanitizeContent(payload?.content ?? "");
       if (!content) return;
 
@@ -272,7 +339,10 @@ io.on("connection", (socket: Socket) => {
         type: "user",
         room: currentRoom,
       };
-      io.to(currentRoom).emit("message", msg);
+      // Broadcast to the room EXCEPT the sender: the sender already renders a
+      // local echo (optimistic UI). Emitting to the sender too caused every
+      // message to appear twice (bug found in QA).
+      socket.to(currentRoom).emit("message", msg);
       console.log(`[chat] ${currentNickname}@${currentRoom}: ${content}`);
     } catch (err) {
       console.error("[chat] message error:", err);

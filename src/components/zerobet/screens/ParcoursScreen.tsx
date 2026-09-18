@@ -588,7 +588,7 @@ function PowerDetailSheet({
           <div className="flex justify-center mt-2">
             <span
               className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider"
-              style={{ background: rank.color, color: "#0A0A0F" }}
+              style={{ background: rank.color, color: "#070B0E" }}
             >
               <Crown size={9} /> {t("parcoursCurrentArtifact")}
             </span>

@@ -821,7 +821,7 @@ export function ProgramScreen() {
                         ? "bg-[#FF9500] border-[#FF9500]"
                         : isPassed
                           ? "bg-[#4ADE80] border-[#4ADE80]"
-                          : "bg-[#0A0A0F] border-white/20"
+                          : "bg-[#070B0E] border-white/20"
                     }`}
                   />
 
@@ -889,7 +889,7 @@ export function ProgramScreen() {
                         ? "border-transparent"
                         : status === "current"
                           ? "border-white/30 bg-white/5 pulse-glow"
-                          : "border-white/10 bg-[#0A0A0F]"
+                          : "border-white/10 bg-[#070B0E]"
                     }`}
                     style={
                       status === "achieved"

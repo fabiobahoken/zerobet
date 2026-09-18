@@ -627,7 +627,7 @@ export function WithdrawalScreen() {
               }}
             />
             <div
-              className="absolute top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-white border-2 border-[#0A0A0F]"
+              className="absolute top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-white border-2 border-[#070B0E]"
               style={{
                 left: `calc(${Math.min(100, (streakDays / 90) * 100)}% - 6px)`,
                 boxShadow: `0 0 12px ${currentPhase.color}`,
@@ -789,7 +789,7 @@ export function WithdrawalScreen() {
                   activeDot={{
                     r: 5,
                     fill: "#FF9500",
-                    stroke: "#0A0A0F",
+                    stroke: "#070B0E",
                     strokeWidth: 2,
                   }}
                 />

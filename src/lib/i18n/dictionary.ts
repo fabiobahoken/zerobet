@@ -3050,6 +3050,8 @@ const fr: Dict = {
   chatInputPlaceholder: "Écrire dans {room}…",
   chatMessage: "Message",
   chatConnectedMembers: "Connecté · {n} membres",
+  chatConnectedMemberOne: "Connecté · 1 membre",
+  chatRateLimited: "Doucement 🙏 Trop de messages d'affilée. Réessaie dans {n} s.",
 
   // ---- Task 20-a: MeditationScreen ----
   meditationTech478Name: "4-7-8 Respiration",
@@ -6338,6 +6340,8 @@ const en: Dict = {
   chatInputPlaceholder: "Write in {room}…",
   chatMessage: "Message",
   chatConnectedMembers: "Connected · {n} members",
+  chatConnectedMemberOne: "Connected · 1 member",
+  chatRateLimited: "Easy there 🙏 Too many messages in a row. Try again in {n}s.",
 
   // ---- Task 20-a: MeditationScreen ----
   meditationTech478Name: "4-7-8 Breathing",
@@ -9626,6 +9630,8 @@ const es: Dict = {
   chatInputPlaceholder: "Escribir en {room}…",
   chatMessage: "Mensaje",
   chatConnectedMembers: "Conectado · {n} miembros",
+  chatConnectedMemberOne: "Conectado · 1 miembro",
+  chatRateLimited: "Tranquilo 🙏 Demasiados mensajes seguidos. Reintenta en {n}s.",
 
   // ---- Task 20-a: MeditationScreen ----
   meditationTech478Name: "Respiración 4-7-8",

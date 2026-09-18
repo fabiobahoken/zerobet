@@ -684,7 +684,7 @@ function VideoCard({ video, index }: { video: VideoResource; index: number }) {
           whileTap={{ scale: 0.95 }}
           className="relative w-12 h-12 rounded-full bg-white/95 flex items-center justify-center shadow-lg"
         >
-          <Play size={20} className="text-[#0A0A0F] ml-0.5" fill="currentColor" />
+          <Play size={20} className="text-[#070B0E] ml-0.5" fill="currentColor" />
         </motion.div>
         {/* Duration badge */}
         <span className="absolute bottom-2 right-2 px-1.5 py-0.5 rounded bg-black/70 text-white text-[10px] font-medium">

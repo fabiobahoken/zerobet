@@ -665,7 +665,7 @@ export function MentorshipScreen() {
                           );
                           if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
                         }}
-                        className="px-4 py-2 rounded-xl bg-[#4ADE80] text-[#0A0A0F] text-xs font-bold flex items-center gap-1.5"
+                        className="px-4 py-2 rounded-xl bg-[#4ADE80] text-[#070B0E] text-xs font-bold flex items-center gap-1.5"
                       >
                         <Crown size={14} />
                         {t("mentorshipApplyBtn")}
@@ -852,7 +852,7 @@ export function MentorshipScreen() {
                           onClick={() => toggleLanguage(lang)}
                           className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all active:scale-95 ${
                             sel
-                              ? "bg-[#4ADE80] text-[#0A0A0F]"
+                              ? "bg-[#4ADE80] text-[#070B0E]"
                               : "glass-pill text-white/70"
                           }`}
                         >
@@ -893,7 +893,7 @@ export function MentorshipScreen() {
                       sound.playClick();
                       haptics.light();
                     }}
-                    className="border-white/30 data-[state=checked]:bg-[#4ADE80] data-[state=checked]:border-[#4ADE80] data-[state=checked]:text-[#0A0A0F] mt-0.5"
+                    className="border-white/30 data-[state=checked]:bg-[#4ADE80] data-[state=checked]:border-[#4ADE80] data-[state=checked]:text-[#070B0E] mt-0.5"
                   />
                   <span className="text-white/80 text-xs leading-relaxed">
                     {t("mentorshipAgreePrefix")}{" "}
@@ -916,7 +916,7 @@ export function MentorshipScreen() {
                       disabled={!canSubmitMentor}
                       className={`w-full h-12 rounded-2xl font-semibold text-sm flex items-center justify-center gap-2 transition-all ${
                         canSubmitMentor
-                          ? "gradient-success text-[#0A0A0F]"
+                          ? "gradient-success text-[#070B0E]"
                           : "bg-white/10 text-white/40 cursor-not-allowed"
                       }`}
                     >
@@ -1095,7 +1095,7 @@ export function MentorshipScreen() {
               <motion.button
                 whileTap={{ scale: 0.97 }}
                 onClick={closeSuccess}
-                className="relative w-full h-11 rounded-2xl gradient-success text-[#0A0A0F] font-bold text-sm"
+                className="relative w-full h-11 rounded-2xl gradient-success text-[#070B0E] font-bold text-sm"
               >
                 {t("mentorshipSuccessContinue")}
               </motion.button>

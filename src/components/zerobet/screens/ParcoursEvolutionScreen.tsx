@@ -380,7 +380,7 @@ export function ParcoursEvolutionScreen() {
                               initial={{ scale: 0 }}
                               animate={{ scale: 1 }}
                               className="px-1.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider"
-                              style={{ background: rank.color, color: "#0A0A0F" }}
+                              style={{ background: rank.color, color: "#070B0E" }}
                             >
                               {t("parcoursCurrentBadge")}
                             </motion.span>

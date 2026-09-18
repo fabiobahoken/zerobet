@@ -466,7 +466,7 @@ export function SearchModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[60] flex items-start justify-center bg-[#0A0A0F]/80 backdrop-blur-xl"
+          className="fixed inset-0 z-[60] flex items-start justify-center bg-[#070B0E]/80 backdrop-blur-xl"
           onClick={onClose}
         >
           <motion.div
@@ -478,7 +478,7 @@ export function SearchModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
             className="glass-card-strong w-full max-w-[430px] min-h-screen flex flex-col"
           >
             {/* Search bar */}
-            <div className="px-4 pt-12 pb-3 sticky top-0 z-10 bg-[#0A0A0F]/60 backdrop-blur-xl border-b border-white/5">
+            <div className="px-4 pt-12 pb-3 sticky top-0 z-10 bg-[#070B0E]/60 backdrop-blur-xl border-b border-white/5">
               <form onSubmit={handleSubmit} className="flex items-center gap-2">
                 <div className="flex-1 flex items-center gap-2 px-3 h-11 rounded-2xl bg-white/5 border border-white/10 focus-within:border-[#FF3B30]/60 transition-colors">
                   <SearchIcon size={18} className="text-white/40 shrink-0" />

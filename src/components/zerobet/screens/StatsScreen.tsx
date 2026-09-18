@@ -883,12 +883,12 @@ export function StatsScreen() {
                           cy={cy}
                           r={3}
                           fill={color}
-                          stroke="#0A0A0F"
+                          stroke="#070B0E"
                           strokeWidth={1.5}
                         />
                       );
                     }}
-                    activeDot={{ r: 5, fill: "#FF9500", stroke: "#0A0A0F", strokeWidth: 2 }}
+                    activeDot={{ r: 5, fill: "#FF9500", stroke: "#070B0E", strokeWidth: 2 }}
                   />
                 </AreaChart>
               </ResponsiveContainer>
@@ -1093,7 +1093,7 @@ export function StatsScreen() {
                     style={{
                       background:
                         "linear-gradient(135deg, #FBBF24 0%, #FF9500 100%)",
-                      color: "#0A0A0F",
+                      color: "#070B0E",
                       boxShadow: "0 0 14px rgba(251,191,36,0.65)",
                     }}
                   >

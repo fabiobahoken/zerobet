@@ -1015,7 +1015,7 @@ export function FinanceScreen() {
                       } flex items-center justify-end pr-1.5`}
                     >
                       {progress > 12 && (
-                        <span className="text-[9px] font-bold text-[#0A0A0F]">
+                        <span className="text-[9px] font-bold text-[#070B0E]">
                           {Math.round(progress)}%
                         </span>
                       )}
@@ -1103,7 +1103,7 @@ export function FinanceScreen() {
                 transition={{ delay: idx * 0.05 }}
                 className={`flex-1 h-10 rounded-lg flex items-center justify-center text-[10px] font-bold ${
                   w.saved
-                    ? "gradient-success text-[#0A0A0F]"
+                    ? "gradient-success text-[#070B0E]"
                     : "bg-white/5 text-white/30 border border-white/5"
                 }`}
                 title={w.saved ? t("financeSavingsWeek") : t("financeNotYet")}
@@ -1538,7 +1538,7 @@ export function FinanceScreen() {
                     </div>
                     <button
                       onClick={handleContribute}
-                      className="w-full py-3 rounded-xl gradient-success text-[#0A0A0F] text-sm font-bold flex items-center justify-center gap-1.5"
+                      className="w-full py-3 rounded-xl gradient-success text-[#070B0E] text-sm font-bold flex items-center justify-center gap-1.5"
                     >
                       <PiggyBank size={16} /> {t("financeAddToGoal")}
                     </button>

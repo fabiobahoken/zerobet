@@ -2,7 +2,9 @@
 // Plain JavaScript (runs in the browser, not TypeScript).
 
 // Bump version on every deploy to force cache invalidation.
-const CACHE_NAME = "zerobet-v2";
+// v3: purges stale HTML + dev chunks cached under v2 (fixed stale-chunk
+// "useCloudSync is not defined" crashes for returning users).
+const CACHE_NAME = "zerobet-v3";
 const APP_SHELL = [
   "/",
   "/manifest.json",
@@ -65,14 +67,19 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // Navigation requests (HTML pages): network-first, fallback to cached root
+  // Navigation requests (HTML pages): network-first, fallback to cached root.
+  // NOTE: only cache same-origin GET navigations with an OK response, and never
+  // cache a 5xx/opaque fallback — a poisoned HTML cache would reference dead
+  // chunks and crash the app until the next SW version bump.
   if (event.request.mode === "navigate") {
     event.respondWith(
       fetch(event.request)
         .then((response) => {
-          // Cache the latest navigation response
-          const clone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+          if (response && response.ok && response.type === "basic") {
+            // Cache the latest navigation response
+            const clone = response.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+          }
           return response;
         })
         .catch(() =>

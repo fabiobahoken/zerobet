@@ -1238,7 +1238,7 @@ function TestimonialsTab({
 
               {/* Premium blur overlay */}
               {isLocked && (
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-center rounded-3xl bg-[#0A0A0F]/40">
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-center rounded-3xl bg-[#070B0E]/40">
                   <div className="w-12 h-12 rounded-full gradient-primary flex items-center justify-center mb-2 glow-red">
                     <Lock size={20} className="text-white" />
                   </div>
@@ -1636,7 +1636,7 @@ function MentorsTab({
               <div className="relative shrink-0">
                 <Avatar name={m.displayName} size={52} />
                 <span
-                  className={`absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full border-2 border-[#0A0A0F] ${
+                  className={`absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full border-2 border-[#070B0E] ${
                     online ? "bg-[#4ADE80]" : "bg-white/30"
                   }`}
                   aria-hidden
@@ -1756,7 +1756,7 @@ function PsychologistsTab({
               <div className="relative shrink-0">
                 <Avatar name={p.displayName} size={52} />
                 <span
-                  className={`absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full border-2 border-[#0A0A0F] ${
+                  className={`absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full border-2 border-[#070B0E] ${
                     online ? "bg-[#4ADE80]" : "bg-white/30"
                   }`}
                   aria-hidden

@@ -601,7 +601,7 @@ export function AtlasScreen() {
             if (e.key === "Enter") sendMessage(input);
           }}
           placeholder={t("atlasTypeMessage")}
-          className="flex-1 p-3 rounded-2xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#FF3B30] transition-colors"
+          className="flex-1 p-3 rounded-2xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#10B981] focus:ring-1 focus:ring-[#10B981]/40 transition-all"
         />
         <motion.button
           whileTap={{ scale: 0.9 }}

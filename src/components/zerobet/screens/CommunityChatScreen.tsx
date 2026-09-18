@@ -222,20 +222,40 @@ function generateRandomNickname(): string {
   return `${adj}${animal}${suffix}`;
 }
 
-function escapeHtml(s: string): string {
-  return s
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
+const LEGACY_ENTITIES: Record<string, string> = {
+  "&amp;": "&",
+  "&lt;": "<",
+  "&gt;": ">",
+  "&quot;": '"',
+  "&#39;": "'",
+  "&#x27;": "'",
+};
+
+/**
+ * Decode HTML entities left over from the old server-side escaping era
+ * (pre-2.0.2 messages stored `&#39;` / `&amp;#39;` literally). Runs twice
+ * to also repair double-escaped text.
+ */
+function decodeLegacyEntities(s: string): string {
+  let out = s;
+  for (let i = 0; i < 2; i++) {
+    out = out.replace(
+      /&(?:amp|lt|gt|quot|#39|#x27);/g,
+      (m) => LEGACY_ENTITIES[m] ?? m
+    );
+  }
+  return out;
 }
 
 function sanitizeForDisplay(s: string): string {
-  // The server already escapes HTML, but if the message originated locally
-  // we want to be defensive. We render via React text nodes (auto-escaped),
-  // so this is a no-op belt-and-suspenders for any innerHTML usage.
-  return escapeHtml(s);
+  // Messages render through React text nodes, which never interpret HTML,
+  // so no escaping is needed (escaping caused visible `&#39;` artifacts —
+  // bug found in QA). We still normalize: strip control chars, cap length,
+  // and repair legacy entity-escaped text.
+  const cleaned = s
+    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, "")
+    .slice(0, 500);
+  return decodeLegacyEntities(cleaned);
 }
 
 function isPremiumPlan(plan: Plan): boolean {
@@ -712,6 +732,21 @@ export function CommunityChatScreen() {
     socket.on("connect_error", () => {
       setConnectionStatus("disconnected");
     });
+
+    // Server-side flood control feedback (Zerobet 2.0.2). The limiter is
+    // authoritative on the server — this just surfaces a friendly message.
+    socket.on(
+      "rate-limited",
+      (data: { retryAfterMs?: number; scope?: string }) => {
+        const secs = Math.max(1, Math.ceil((data?.retryAfterMs ?? 0) / 1000));
+        if (data?.scope === "join") {
+          // Room-switch flood: silent reconnect shortly after; no toast spam.
+          return;
+        }
+        toast.warning(t("chatRateLimited", { n: secs }));
+        haptics.light();
+      }
+    );
 
     socket.on(
       "message",
@@ -1234,7 +1269,11 @@ export function CommunityChatScreen() {
             {connectionStatus === "connected" ? (
               <span className="flex items-center gap-1">
                 <Wifi size={10} className="text-[#4ADE80]" />
-                {t("chatConnectedMembers", { n: activeUsersByRoom[activeRoom] })}
+                {activeUsersByRoom[activeRoom] === 1
+                  ? t("chatConnectedMemberOne")
+                  : t("chatConnectedMembers", {
+                      n: activeUsersByRoom[activeRoom],
+                    })}
               </span>
             ) : connectionStatus === "connecting" ? (
               <span className="flex items-center gap-1">
@@ -1270,7 +1309,7 @@ interface HeaderProps {
 function Header({ onBack, status, activeUsers }: HeaderProps) {
   const t = useT();
   return (
-    <header className="sticky top-0 z-30 px-4 pt-12 pb-3 bg-[#0A0A0F]/85 backdrop-blur-md border-b border-white/5">
+    <header className="sticky top-0 z-30 px-4 pt-12 pb-3 bg-[#070B0E]/85 backdrop-blur-md border-b border-white/5">
       <div className="flex items-center justify-between gap-3">
         <button
           onClick={onBack}

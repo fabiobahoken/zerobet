@@ -354,7 +354,7 @@ function BreathingPlayer({ technique, onClose, onComplete }: BreathingPlayerProp
   const progress = Math.min(100, (elapsed / technique.totalSeconds) * 100);
 
   // Background gradient based on phase color
-  const bgGradient = `radial-gradient(circle at 50% 50%, ${currentPhase.color}25 0%, transparent 60%), linear-gradient(180deg, #0A0A0F 0%, #0B132B 100%)`;
+  const bgGradient = `radial-gradient(circle at 50% 50%, ${currentPhase.color}25 0%, transparent 60%), linear-gradient(180deg, #070B0E 0%, #0B132B 100%)`;
 
   return (
     <motion.div
@@ -588,7 +588,7 @@ function MeditationPlayer({ meditation, onClose, onComplete }: MeditationPlayerP
       exit={{ opacity: 0 }}
       className="fixed inset-0 z-[60] flex flex-col items-center justify-center px-6 safe-top safe-bottom"
       style={{
-        background: `radial-gradient(circle at 50% 50%, ${meditation.accent}25 0%, transparent 60%), linear-gradient(180deg, #0A0A0F 0%, #0B132B 100%)`,
+        background: `radial-gradient(circle at 50% 50%, ${meditation.accent}25 0%, transparent 60%), linear-gradient(180deg, #070B0E 0%, #0B132B 100%)`,
       }}
     >
       <button

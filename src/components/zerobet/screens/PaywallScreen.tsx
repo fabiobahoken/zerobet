@@ -95,7 +95,7 @@ export function PaywallScreen() {
           }`}
         >
           {t("paywallAnnual")}
-          <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-[#4ADE80] text-[#0A0A0F] font-bold">
+          <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-[#4ADE80] text-[#070B0E] font-bold">
             -40%
           </span>
         </button>
@@ -129,7 +129,7 @@ export function PaywallScreen() {
                   </span>
                 )}
                 {planOption.bestValue && (
-                  <span className="px-2.5 py-1 rounded-full text-[10px] font-bold text-[#0A0A0F] bg-[#FBBF24]">
+                  <span className="px-2.5 py-1 rounded-full text-[10px] font-bold text-[#070B0E] bg-[#FBBF24]">
                     {t("paywallBestValueBadge")}
                   </span>
                 )}

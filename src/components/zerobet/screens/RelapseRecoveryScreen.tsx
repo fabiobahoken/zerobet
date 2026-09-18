@@ -262,7 +262,7 @@ function LandingMode({ relapseHistory, onStart, navigate, t }: LandingModeProps)
       {/* 1. Header */}
       <motion.div
         variants={itemVariants}
-        className="sticky top-0 z-20 -mx-5 px-5 pt-3 pb-3 bg-gradient-to-b from-[#0A0A0F]/95 via-[#0A0A0F]/80 to-transparent backdrop-blur-md"
+        className="sticky top-0 z-20 -mx-5 px-5 pt-3 pb-3 bg-gradient-to-b from-[#070B0E]/95 via-[#070B0E]/80 to-transparent backdrop-blur-md"
       >
         <div className="glass-card-strong p-4 rounded-2xl flex items-center gap-3">
           <button
@@ -653,7 +653,7 @@ function ProtocolMode({
       {/* 1. Header */}
       <motion.div
         variants={itemVariants}
-        className="sticky top-0 z-20 -mx-5 px-5 pt-3 pb-3 bg-gradient-to-b from-[#0A0A0F]/95 via-[#0A0A0F]/80 to-transparent backdrop-blur-md"
+        className="sticky top-0 z-20 -mx-5 px-5 pt-3 pb-3 bg-gradient-to-b from-[#070B0E]/95 via-[#070B0E]/80 to-transparent backdrop-blur-md"
       >
         <div className="glass-card-strong p-4 rounded-2xl flex items-center gap-3">
           <button

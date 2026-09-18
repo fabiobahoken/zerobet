@@ -582,7 +582,7 @@ export function GoalsScreen() {
   return (
     <div className="min-h-screen px-5 pt-12 pb-8">
       {/* ---------- Header ---------- */}
-      <div className="flex items-center gap-3 mb-6 sticky top-0 z-30 -mx-5 px-5 py-2 backdrop-blur-md bg-[#0A0A0F]/60">
+      <div className="flex items-center gap-3 mb-6 sticky top-0 z-30 -mx-5 px-5 py-2 backdrop-blur-md bg-[#070B0E]/60">
         <button
           onClick={() => {
             sound.playClick();
@@ -768,7 +768,7 @@ export function GoalsScreen() {
 
           {!isPremium ? (
             <div className="relative rounded-2xl border border-white/10 bg-white/5 p-4 overflow-hidden">
-              <div className="absolute inset-0 backdrop-blur-sm bg-[#0A0A0F]/60 flex flex-col items-center justify-center gap-3 z-10">
+              <div className="absolute inset-0 backdrop-blur-sm bg-[#070B0E]/60 flex flex-col items-center justify-center gap-3 z-10">
                 <div className="w-12 h-12 rounded-full bg-[#FF9500]/15 flex items-center justify-center">
                   <Lock size={20} className="text-[#FF9500]" />
                 </div>

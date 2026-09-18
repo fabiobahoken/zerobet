@@ -627,7 +627,7 @@ export function ProfileScreen() {
               <button
                 type="button"
                 onClick={() => fileInputRef.current?.click()}
-                className="absolute -bottom-1 -right-1 w-9 h-9 rounded-full bg-[#0A0A0F] border-2 border-white/15 flex items-center justify-center text-white shadow-lg active:scale-95 transition-transform hover:bg-[#15151B] z-10"
+                className="absolute -bottom-1 -right-1 w-9 h-9 rounded-full bg-[#070B0E] border-2 border-white/15 flex items-center justify-center text-white shadow-lg active:scale-95 transition-transform hover:bg-[#15151B] z-10"
                 aria-label={profilePhoto ? t("profilePhotoChange") : t("profilePhotoAdd")}
               >
                 <Camera size={15} className="text-white/90" />
@@ -638,7 +638,7 @@ export function ProfileScreen() {
                 <button
                   type="button"
                   onClick={handleRemovePhoto}
-                  className="absolute -top-1 -left-1 w-7 h-7 rounded-full bg-[#FF3B30] border-2 border-[#0A0A0F] flex items-center justify-center text-white shadow-lg active:scale-95 transition-transform hover:bg-[#FF453A] z-10"
+                  className="absolute -top-1 -left-1 w-7 h-7 rounded-full bg-[#FF3B30] border-2 border-[#070B0E] flex items-center justify-center text-white shadow-lg active:scale-95 transition-transform hover:bg-[#FF453A] z-10"
                   aria-label={t("profilePhotoRemove")}
                 >
                   <Trash2 size={12} className="text-white" />

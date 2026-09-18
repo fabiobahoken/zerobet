@@ -536,7 +536,7 @@ function SafetyStepCard({
                 : "border-white/30 bg-white/5"
             }`}
           >
-            {isRead && <Check size={12} className="text-[#0A0A0F]" strokeWidth={3} />}
+            {isRead && <Check size={12} className="text-[#070B0E]" strokeWidth={3} />}
           </motion.div>
         </button>
       </div>

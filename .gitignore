@@ -63,3 +63,4 @@ agent-ctx/
 skills/
 tests/
 .env
+tool-results/
