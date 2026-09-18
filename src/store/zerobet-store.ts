@@ -48,7 +48,8 @@ export type ScreenName =
   | "affirmations"
   | "notifications"
   | "community-chat" // Task 13-a — live community chat
-  | "subscription"; // Zerobet 2.0.5 — manage subscription + payment history
+  | "subscription" // Zerobet 2.0.5 — manage subscription + payment history
+  | "data-rights"; // Zerobet 2.0.9 — GDPR hub: inventory, export, erasure
 
 // Community chat — real-time room messages (Task 13-a)
 // NOTE: existing `chatMessages`/`addChatMessage` are for the Atlas AI coach

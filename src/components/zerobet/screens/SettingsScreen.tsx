@@ -6,7 +6,7 @@ import {
   ChevronLeft, ChevronRight, Shield, Crown, Settings as SettingsIcon,
   Mail, FileText, Lock, AlertTriangle, Sparkles, User, Venus, Mars,
   Heart, Palette, Bell, Database, Volume2, Eye, Download, Upload,
-  Trash2, Smartphone, Moon, Sun, Vibrate, Clock,
+  Trash2, Smartphone, Moon, Sun, Vibrate, Clock, FileJson,
 } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { Input } from "@/components/ui/input";
@@ -651,6 +651,21 @@ export function SettingsScreen() {
             <div className="flex-1 min-w-0">
               <p className="text-white text-sm font-medium">{t("settingsRestoreData")}</p>
               <p className="text-white/50 text-xs mt-0.5">{t("settingsRestoreDesc")}</p>
+            </div>
+            <ChevronRight size={16} className="text-white/30 flex-shrink-0" />
+          </button>
+          {/* Zerobet 2.0.9 — RGPD hub (inventory / full export / erasure) */}
+          <button
+            onClick={() => navigate("data-rights")}
+            className="w-full flex items-center gap-3 p-3.5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors text-left mt-3 focus-ring"
+            aria-label={t("settingsDataRightsRow")}
+          >
+            <div className="w-9 h-9 rounded-xl bg-[#10B981]/15 flex items-center justify-center flex-shrink-0">
+              <FileJson size={16} className="text-[#4ADE80]" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-white text-sm font-medium">{t("settingsDataRightsRow")}</p>
+              <p className="text-white/50 text-xs mt-0.5">{t("settingsDataRightsRowDesc")}</p>
             </div>
             <ChevronRight size={16} className="text-white/30 flex-shrink-0" />
           </button>
