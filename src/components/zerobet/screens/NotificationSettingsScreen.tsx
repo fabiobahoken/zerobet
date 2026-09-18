@@ -60,8 +60,8 @@ type ToggleKey =
 
 interface ToggleDef {
   key: ToggleKey;
-  label: string;
-  description: string;
+  labelKey: string;
+  descKey: string;
   icon: typeof Bell;
   color: string;
 }
@@ -69,70 +69,70 @@ interface ToggleDef {
 const TOGGLES: ToggleDef[] = [
   {
     key: "dailyReminder",
-    label: "Rappel quotidien",
-    description: "Un rappel quotidien pour ton check-in du matin.",
+    labelKey: "notifDaily",
+    descKey: "notifDailyDesc",
     icon: Clock,
-    color: "#FF9500",
+    color: "#F59E0B",
   },
   {
     key: "cravingCheckin",
-    label: "Check-in envie",
-    description: "Vérifie comment tu vas pendant les heures critiques.",
+    labelKey: "notifCraving",
+    descKey: "notifCravingDesc",
     icon: Heart,
     color: "#FF3B30",
   },
   {
     key: "milestoneAlerts",
-    label: "Alertes de jalons",
-    description: "Célèbre chaque jalon franchi (7, 14, 30 jours…).",
+    labelKey: "notifMilestones",
+    descKey: "notifMilestonesDesc",
     icon: Trophy,
     color: "#FBBF24",
   },
   {
     key: "communityActivity",
-    label: "Activité communauté",
-    description: "Réponses, mentions et citations de la communauté.",
+    labelKey: "notifCommunity",
+    descKey: "notifCommunityDesc",
     icon: Users,
     color: "#4ADE80",
   },
   {
     key: "weeklyReport",
-    label: "Rapport hebdomadaire",
-    description: "Un résumé de ta semaine chaque dimanche.",
+    labelKey: "notifWeekly",
+    descKey: "notifWeeklyDesc",
     icon: FileBarChart,
-    color: "#64D2FF",
+    color: "#10B981",
   },
   {
     key: "motivationalQuotes",
-    label: "Citations motivation",
-    description: "Une citation motivante chaque jour à 18h.",
+    labelKey: "notifQuotes",
+    descKey: "notifQuotesDesc",
     icon: Quote,
-    color: "#BF5AF2",
+    color: "#2DD4BF",
   },
   {
     key: "silentHours",
-    label: "Heures silencieuses",
-    description: "Aucune notification pendant tes heures de sommeil.",
+    labelKey: "notifSilent",
+    descKey: "notifSilentDesc",
     icon: Moon,
-    color: "#5E5CE6",
+    color: "#94A3B8",
   },
 ];
 
 interface ScheduleItem {
   time: string;
-  label: string;
+  labelKey: string;
   icon: typeof Bell;
   color: string;
   enabledKey: ToggleKey | "always";
 }
 
 const SCHEDULE: ScheduleItem[] = [
-  { time: "07:00", label: "Rappel quotidien", icon: Clock, color: "#FF9500", enabledKey: "dailyReminder" },
-  { time: "12:00", label: "Check-in envie (si activé)", icon: Heart, color: "#FF3B30", enabledKey: "cravingCheckin" },
-  { time: "18:00", label: "Citation de motivation", icon: Quote, color: "#BF5AF2", enabledKey: "motivationalQuotes" },
-  { time: "Dim. 09:00", label: "Rapport hebdomadaire", icon: FileBarChart, color: "#64D2FF", enabledKey: "weeklyReport" },
-  { time: "À tout moment", label: "Alertes de jalons", icon: Trophy, color: "#FBBF24", enabledKey: "milestoneAlerts" },
-  { time: "À tout moment", label: "Activité communauté", icon: Users, color: "#4ADE80", enabledKey: "communityActivity" },
+  { time: "07:00", labelKey: "notifDaily", icon: Clock, color: "#F59E0B", enabledKey: "dailyReminder" },
+  { time: "12:00", labelKey: "notifSchedCraving", icon: Heart, color: "#FF3B30", enabledKey: "cravingCheckin" },
+  { time: "18:00", labelKey: "notifSchedQuote", icon: Quote, color: "#2DD4BF", enabledKey: "motivationalQuotes" },
+  { time: "notifSchedTimeSunday", labelKey: "notifWeekly", icon: FileBarChart, color: "#10B981", enabledKey: "weeklyReport" },
+  { time: "notifSchedTimeAnytime", labelKey: "notifMilestones", icon: Trophy, color: "#FBBF24", enabledKey: "milestoneAlerts" },
+  { time: "notifSchedTimeAnytime", labelKey: "notifCommunity", icon: Users, color: "#4ADE80", enabledKey: "communityActivity" },
 ];
 
 export function NotificationSettingsScreen() {
@@ -169,7 +169,7 @@ export function NotificationSettingsScreen() {
       } catch {
         /* noop */
       }
-      toast.success("Zerobet est installé ! 🎉");
+      toast.success(t("notifInstalledToast"));
     };
 
     window.addEventListener("beforeinstallprompt", handler as EventListener);
@@ -178,7 +178,8 @@ export function NotificationSettingsScreen() {
       window.removeEventListener("beforeinstallprompt", handler as EventListener);
       window.removeEventListener("appinstalled", installedHandler);
     };
-  }, []);
+    // t() is stable per language; re-binding keeps the toast message current
+  }, [t]);
 
   const handleBack = useCallback(() => {
     sound.playClick();
@@ -194,12 +195,12 @@ export function NotificationSettingsScreen() {
     if (result === "granted") {
       sound.playSuccess();
       haptics.success();
-      toast.success("Notifications activées ! 🔔");
+      toast.success(t("notifEnabledToast"));
     } else if (result === "denied") {
       haptics.error();
-      toast.error("Notifications refusées. Tu peux les activer dans les réglages du navigateur.");
+      toast.error(t("notifDeniedToast"));
     }
-  }, [setNotificationPermission]);
+  }, [setNotificationPermission, t]);
 
   const handleToggle = useCallback(
     (key: ToggleKey, value: boolean) => {
@@ -223,9 +224,7 @@ export function NotificationSettingsScreen() {
     if (!installPrompt) {
       sound.playError();
       haptics.warning();
-      toast.info(
-        "Pour installer : ouvre le menu de ton navigateur et choisis « Installer l'application » ou « Ajouter à l'écran d'accueil »."
-      );
+      toast.info(t("notifInstallHint"));
       return;
     }
     sound.playClick();
@@ -237,25 +236,22 @@ export function NotificationSettingsScreen() {
         setPwaInstalled(true);
         sound.playSuccess();
         haptics.success();
-        toast.success("Installation démarrée ! 📲");
+        toast.success(t("notifInstallStartedToast"));
       } else {
-        toast.info("Installation annulée. Tu pourras réessayer plus tard.");
+        toast.info(t("notifInstallCancelledToast"));
       }
       setInstallPrompt(null);
     } catch {
-      toast.error("Impossible d'installer l'application pour le moment.");
+      toast.error(t("notifInstallErrorToast"));
     }
-  }, [installPrompt, setPwaInstalled]);
+  }, [installPrompt, setPwaInstalled, t]);
 
   const handleTestNotification = useCallback(async () => {
     sound.playPop();
     haptics.light();
-    await showLocalNotification(
-      "Zerobet",
-      "Ceci est une notification de test. Tu es fort ! 💪"
-    );
-    toast.success("Notification de test envoyée ! 👍");
-  }, []);
+    await showLocalNotification(t("notifTestTitle"), t("notifTestBody"));
+    toast.success(t("notifTestSentToast"));
+  }, [t]);
 
   const permissionGranted = notificationPermission === "granted";
 
@@ -328,23 +324,23 @@ export function NotificationSettingsScreen() {
                 ) : notificationPermission === "denied" ? (
                   <AlertTriangle size={20} className="text-[#FF3B30]" />
                 ) : (
-                  <Bell size={20} className="text-[#FF9500]" />
+                  <Bell size={20} className="text-[#F59E0B]" />
                 )}
               </div>
               <div className="flex-1">
                 <h2 className="text-white font-semibold text-sm font-[family-name:var(--font-poppins)]">
                   {permissionGranted
-                    ? "Notifications activées"
+                    ? t("notifStatusGranted")
                     : notificationPermission === "denied"
-                      ? "Notifications bloquées"
-                      : "Active les notifications"}
+                      ? t("notifStatusBlocked")
+                      : t("notifStatusEnable")}
                 </h2>
                 <p className="text-white/60 text-xs mt-1">
                   {permissionGranted
-                    ? "Tu recevras les rappels importants. Pour désactiver, ouvre les paramètres de ton navigateur."
+                    ? t("notifStatusDescGranted")
                     : notificationPermission === "denied"
-                      ? "Autorise les notifications dans les paramètres de ton navigateur pour recevoir les rappels."
-                      : "Reçois des rappels bienveillants pour rester sur le chemin de la récupération."}
+                      ? t("notifStatusDescBlocked")
+                      : t("notifStatusDescEnable")}
                 </p>
               </div>
             </div>
@@ -355,34 +351,33 @@ export function NotificationSettingsScreen() {
                 className="w-full py-3 rounded-2xl gradient-primary text-white font-semibold text-sm btn-press flex items-center justify-center gap-2"
               >
                 <Bell size={16} />
-                Autoriser les notifications
+                {t("notifAllowButton")}
               </button>
             )}
 
             {notificationPermission === "granted" && (
               <div className="text-[11px] text-white/50 italic flex items-start gap-1.5">
                 <Info size={12} className="mt-0.5 shrink-0" />
-                Astuce : pour les désactiver plus tard, ouvre les paramètres du site dans ton navigateur.
+                {t("notifGrantedTip")}
               </div>
             )}
 
             {notificationPermission === "denied" && (
               <div className="space-y-2">
                 <div className="text-[11px] text-white/70 leading-relaxed bg-[#FF3B30]/10 border border-[#FF3B30]/20 rounded-xl p-3">
-                  <strong className="text-[#FF3B30]">Comment réactiver :</strong>
+                  <strong className="text-[#FF3B30]">{t("notifReenableTitle")}</strong>
                   <br />
-                  Clique sur l&apos;icône cadenas/verrou dans la barre d&apos;adresse →
-                  Autorise les notifications → Recharge la page.
+                  {t("notifReenableDesc")}
                 </div>
                 <button
                   onClick={() => {
                     sound.playClick();
                     haptics.light();
-                    toast.info("Recharge la page après avoir changé l'autorisation.");
+                    toast.info(t("notifReloadHint"));
                   }}
                   className="w-full py-2.5 rounded-2xl glass-card text-white/80 text-xs font-medium btn-press"
                 >
-                  J&apos;ai réactivé — revérifier
+                  {t("notifRecheckButton")}
                 </button>
               </div>
             )}
@@ -394,42 +389,42 @@ export function NotificationSettingsScreen() {
             ============================================================ */}
         <motion.div variants={itemVariants} className="glass-card p-5">
           <div className="flex items-center gap-3 mb-3">
-            <div className="w-10 h-10 rounded-2xl bg-[#64D2FF]/15 flex items-center justify-center">
-              <Download size={18} className="text-[#64D2FF]" />
+            <div className="w-10 h-10 rounded-2xl bg-[#10B981]/15 flex items-center justify-center">
+              <Download size={18} className="text-[#10B981]" />
             </div>
             <div>
               <h2 className="text-white font-semibold text-sm font-[family-name:var(--font-poppins)]">
-                Installer l&apos;application
+                {t("notifInstallHeading")}
               </h2>
-              <p className="text-white/50 text-xs">Accès rapide + notifications natives</p>
+              <p className="text-white/50 text-xs">{t("notifInstallSub")}</p>
             </div>
           </div>
 
           {pwaInstalled ? (
             <div className="flex items-center gap-3 p-3 rounded-2xl bg-[#4ADE80]/10 border border-[#4ADE80]/30">
               <Check size={18} className="text-[#4ADE80] shrink-0" />
-              <span className="text-white text-sm font-medium">Application installée ✓</span>
+              <span className="text-white text-sm font-medium">{t("notifInstalledBadge")}</span>
             </div>
           ) : (
             <>
               <p className="text-white/60 text-xs mb-3 leading-relaxed">
-                Installe Zerobet sur ton téléphone pour un accès rapide et des notifications.
+                {t("notifInstallDesc")}
               </p>
               <button
                 onClick={handleInstall}
                 className="w-full py-3 rounded-2xl bg-white/10 hover:bg-white/15 text-white font-semibold text-sm btn-press flex items-center justify-center gap-2 mb-3"
               >
                 <Smartphone size={16} />
-                Installer
+                {t("notifInstallButton")}
               </button>
               <div className="space-y-1.5 text-[11px] text-white/50">
                 <p className="flex items-start gap-1.5">
-                  <span className="text-[#64D2FF] font-bold">iOS :</span>
-                  Safari → Partager → « Sur l&apos;écran d&apos;accueil »
+                  <span className="text-[#10B981] font-bold">{t("notifIosLabel")}</span>
+                  {t("notifIosSteps")}
                 </p>
                 <p className="flex items-start gap-1.5">
-                  <span className="text-[#4ADE80] font-bold">Android :</span>
-                  Chrome → menu ⋮ → « Installer l&apos;application »
+                  <span className="text-[#4ADE80] font-bold">{t("notifAndroidLabel")}</span>
+                  {t("notifAndroidSteps")}
                 </p>
               </div>
             </>
@@ -441,40 +436,40 @@ export function NotificationSettingsScreen() {
             ============================================================ */}
         <motion.div variants={itemVariants} className="glass-card-strong p-5">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 rounded-2xl bg-[#FF9500]/15 flex items-center justify-center">
-              <SettingsIcon size={18} className="text-[#FF9500]" />
+            <div className="w-10 h-10 rounded-2xl bg-[#F59E0B]/15 flex items-center justify-center">
+              <SettingsIcon size={18} className="text-[#F59E0B]" />
             </div>
             <div>
               <h2 className="text-white font-semibold text-sm font-[family-name:var(--font-poppins)]">
-                Mes préférences
+                {t("notifPrefsHeading")}
               </h2>
-              <p className="text-white/50 text-xs">Choisis ce qui te parle</p>
+              <p className="text-white/50 text-xs">{t("notifPrefsSub")}</p>
             </div>
           </div>
 
           <div className="space-y-3">
-            {TOGGLES.map((t) => {
-              const Icon = t.icon;
-              const value = notificationPreferences[t.key];
+            {TOGGLES.map((tg) => {
+              const Icon = tg.icon;
+              const value = notificationPreferences[tg.key];
               return (
                 <div
-                  key={t.key}
+                  key={tg.key}
                   className="flex items-start gap-3 p-3 rounded-2xl bg-white/[0.03] border border-white/5"
                 >
                   <div
                     className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0"
-                    style={{ background: `${t.color}22` }}
+                    style={{ background: `${tg.color}22` }}
                   >
-                    <Icon size={16} style={{ color: t.color }} />
+                    <Icon size={16} style={{ color: tg.color }} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="text-white text-sm font-medium leading-tight">{t.label}</div>
-                    <div className="text-white/50 text-[11px] mt-0.5 leading-snug">{t.description}</div>
+                    <div className="text-white text-sm font-medium leading-tight">{t(tg.labelKey)}</div>
+                    <div className="text-white/50 text-[11px] mt-0.5 leading-snug">{t(tg.descKey)}</div>
                   </div>
                   <Switch
                     checked={value}
-                    onCheckedChange={(v) => handleToggle(t.key, v)}
-                    aria-label={t.label}
+                    onCheckedChange={(v) => handleToggle(tg.key, v)}
+                    aria-label={t(tg.labelKey)}
                   />
                 </div>
               );
@@ -488,28 +483,25 @@ export function NotificationSettingsScreen() {
         {notificationPreferences.dailyReminder && (
           <motion.div variants={itemVariants} className="glass-card p-5">
             <div className="flex items-center gap-3 mb-3">
-              <div className="w-10 h-10 rounded-2xl bg-[#FF9500]/15 flex items-center justify-center">
-                <Clock size={18} className="text-[#FF9500]" />
+              <div className="w-10 h-10 rounded-2xl bg-[#F59E0B]/15 flex items-center justify-center">
+                <Clock size={18} className="text-[#F59E0B]" />
               </div>
               <div>
                 <h2 className="text-white font-semibold text-sm font-[family-name:var(--font-poppins)]">
-                  Heure du rappel quotidien
+                  {t("notifTimeHeading")}
                 </h2>
-                <p className="text-white/50 text-xs">Quand tu recevras ton check-in</p>
+                <p className="text-white/50 text-xs">{t("notifTimeSub")}</p>
               </div>
             </div>
             <input
               type="time"
               value={notificationPreferences.dailyReminderTime}
               onChange={(e) => handleTimeChange("dailyReminderTime", e.target.value)}
-              className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-white text-lg font-semibold font-[family-name:var(--font-poppins)] [color-scheme:dark] focus:outline-none focus:ring-2 focus:ring-[#FF9500]/50"
-              aria-label="Heure du rappel quotidien"
+              className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-white text-lg font-semibold font-[family-name:var(--font-poppins)] [color-scheme:dark] focus:outline-none focus:ring-2 focus:ring-[#F59E0B]/50"
+              aria-label={t("notifTimeAria")}
             />
             <p className="text-white/50 text-xs mt-2 text-center">
-              Tu recevras un rappel chaque jour à{" "}
-              <span className="text-[#FF9500] font-semibold">
-                {notificationPreferences.dailyReminderTime}
-              </span>
+              {t("notifTimeNote", { time: notificationPreferences.dailyReminderTime })}
             </p>
           </motion.div>
         )}
@@ -520,48 +512,43 @@ export function NotificationSettingsScreen() {
         {notificationPreferences.silentHours && (
           <motion.div variants={itemVariants} className="glass-card p-5">
             <div className="flex items-center gap-3 mb-3">
-              <div className="w-10 h-10 rounded-2xl bg-[#5E5CE6]/15 flex items-center justify-center">
-                <Moon size={18} className="text-[#5E5CE6]" />
+              <div className="w-10 h-10 rounded-2xl bg-[#94A3B8]/15 flex items-center justify-center">
+                <Moon size={18} className="text-[#94A3B8]" />
               </div>
               <div>
                 <h2 className="text-white font-semibold text-sm font-[family-name:var(--font-poppins)]">
-                  Heures silencieuses
+                  {t("notifSilentHeading")}
                 </h2>
-                <p className="text-white/50 text-xs">Paix pendant ton sommeil</p>
+                <p className="text-white/50 text-xs">{t("notifSilentSub")}</p>
               </div>
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="text-white/60 text-[11px] font-medium mb-1 block">Début</label>
+                <label className="text-white/60 text-[11px] font-medium mb-1 block">{t("notifSilentStart")}</label>
                 <input
                   type="time"
                   value={notificationPreferences.silentHoursStart}
                   onChange={(e) => handleTimeChange("silentHoursStart", e.target.value)}
-                  className="w-full bg-white/5 border border-white/10 rounded-2xl px-3 py-2.5 text-white text-base font-semibold [color-scheme:dark] focus:outline-none focus:ring-2 focus:ring-[#5E5CE6]/50"
-                  aria-label="Début des heures silencieuses"
+                  className="w-full bg-white/5 border border-white/10 rounded-2xl px-3 py-2.5 text-white text-base font-semibold [color-scheme:dark] focus:outline-none focus:ring-2 focus:ring-[#2DD4BF]/50"
+                  aria-label={t("notifSilentStartAria")}
                 />
               </div>
               <div>
-                <label className="text-white/60 text-[11px] font-medium mb-1 block">Fin</label>
+                <label className="text-white/60 text-[11px] font-medium mb-1 block">{t("notifSilentEnd")}</label>
                 <input
                   type="time"
                   value={notificationPreferences.silentHoursEnd}
                   onChange={(e) => handleTimeChange("silentHoursEnd", e.target.value)}
-                  className="w-full bg-white/5 border border-white/10 rounded-2xl px-3 py-2.5 text-white text-base font-semibold [color-scheme:dark] focus:outline-none focus:ring-2 focus:ring-[#5E5CE6]/50"
-                  aria-label="Fin des heures silencieuses"
+                  className="w-full bg-white/5 border border-white/10 rounded-2xl px-3 py-2.5 text-white text-base font-semibold [color-scheme:dark] focus:outline-none focus:ring-2 focus:ring-[#2DD4BF]/50"
+                  aria-label={t("notifSilentEndAria")}
                 />
               </div>
             </div>
             <p className="text-white/50 text-xs mt-3 leading-relaxed">
-              Aucune notification ne sera envoyée entre{" "}
-              <span className="text-[#5E5CE6] font-semibold">
-                {notificationPreferences.silentHoursStart}
-              </span>{" "}
-              et{" "}
-              <span className="text-[#5E5CE6] font-semibold">
-                {notificationPreferences.silentHoursEnd}
-              </span>{" "}
-              (sauf urgences).
+              {t("notifSilentNote", {
+                start: notificationPreferences.silentHoursStart,
+                end: notificationPreferences.silentHoursEnd,
+              })}
             </p>
           </motion.div>
         )}
@@ -576,9 +563,9 @@ export function NotificationSettingsScreen() {
             </div>
             <div>
               <h2 className="text-white font-semibold text-sm font-[family-name:var(--font-poppins)]">
-                Tester les notifications
+                {t("notifTestHeading")}
               </h2>
-              <p className="text-white/50 text-xs">Vérifie que tout fonctionne</p>
+              <p className="text-white/50 text-xs">{t("notifTestSub")}</p>
             </div>
           </div>
           <button
@@ -587,8 +574,11 @@ export function NotificationSettingsScreen() {
             className="w-full py-3 rounded-2xl bg-[#FBBF24]/15 hover:bg-[#FBBF24]/20 disabled:opacity-40 disabled:cursor-not-allowed text-[#FBBF24] font-semibold text-sm btn-press flex items-center justify-center gap-2"
           >
             <BellRing size={16} />
-            {permissionGranted ? "Envoyer une notification de test" : "Active les notifications d'abord"}
+            {permissionGranted ? t("notifTestSend") : t("notifTestEnableFirst")}
           </button>
+          <p className="text-white/35 text-[10px] mt-2.5 text-center leading-relaxed">
+            {t("notifLocalScopeNote")}
+          </p>
         </motion.div>
 
         {/* ============================================================
@@ -605,9 +595,9 @@ export function NotificationSettingsScreen() {
               </div>
               <div>
                 <h2 className="text-white font-semibold text-sm font-[family-name:var(--font-poppins)]">
-                  Ton programme de notifications
+                  {t("notifScheduleHeading")}
                 </h2>
-                <p className="text-white/50 text-xs">Aperçu de ta semaine</p>
+                <p className="text-white/50 text-xs">{t("notifScheduleSub")}</p>
               </div>
             </div>
 
@@ -618,7 +608,7 @@ export function NotificationSettingsScreen() {
                   item.enabledKey === "always" ? true : notificationPreferences[item.enabledKey as ToggleKey];
                 return (
                   <div
-                    key={`${item.label}-${idx}`}
+                    key={`${item.labelKey}-${idx}`}
                     className={`flex items-center gap-3 p-3 rounded-2xl border transition-all ${
                       enabled
                         ? "bg-white/[0.04] border-white/10"
@@ -637,9 +627,11 @@ export function NotificationSettingsScreen() {
                           enabled ? "text-white" : "text-white/50"
                         }`}
                       >
-                        {item.label}
+                        {t(item.labelKey)}
                       </div>
-                      <div className="text-[11px] text-white/40 mt-0.5">{item.time}</div>
+                      <div className="text-[11px] text-white/40 mt-0.5">
+                        {item.time.startsWith("notif") ? t(item.time) : item.time}
+                      </div>
                     </div>
                     {enabled ? (
                       <Check size={14} className="text-[#4ADE80] shrink-0" />
@@ -662,10 +654,9 @@ export function NotificationSettingsScreen() {
               <Shield size={15} className="text-[#4ADE80]" />
             </div>
             <div>
-              <h3 className="text-white font-semibold text-sm">Tes notifications sont privées</h3>
+              <h3 className="text-white font-semibold text-sm">{t("notifPrivacyHeading")}</h3>
               <p className="text-white/60 text-xs mt-1 leading-relaxed">
-                Nous n&apos;avons pas accès au contenu de tes notifications. Elles sont générées
-                localement sur ton appareil.
+                {t("notifPrivacyDesc")}
               </p>
             </div>
           </div>
@@ -676,15 +667,14 @@ export function NotificationSettingsScreen() {
             ============================================================ */}
         <motion.div variants={itemVariants} className="glass-card p-4 text-center">
           <div className="flex items-center justify-center gap-2 mb-2">
-            <Sparkles size={14} className="text-[#FF9500]" />
+            <Sparkles size={14} className="text-[#F59E0B]" />
             <span className="text-[11px] uppercase tracking-wider text-white/50 font-semibold">
-              Rappel bienveillant
+              {t("notifFooterBadge")}
             </span>
-            <Sparkles size={14} className="text-[#FF9500]" />
+            <Sparkles size={14} className="text-[#F59E0B]" />
           </div>
           <p className="text-white/70 text-xs leading-relaxed italic">
-            Les notifications t&apos;aident à rester sur le chemin de la récupération. Mais
-            n&apos;oublie pas : tu es le maître de ton téléphone, pas l&apos;inverse.
+            {t("notifFooterText")}
           </p>
         </motion.div>
       </motion.div>

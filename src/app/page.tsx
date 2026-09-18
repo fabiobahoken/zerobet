@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import dynamic from "next/dynamic";
 import { useStore } from "@/store/zerobet-store";
 import { useCloudSync } from "@/hooks/useCloudSync";
+import { useReminders } from "@/hooks/useReminders";
 import { BottomNav } from "@/components/zerobet/components/BottomNav";
 import { ErrorBoundary } from "@/components/zerobet/components/ErrorBoundary";
 import { ScreenLoader } from "@/components/zerobet/components/ScreenLoader";
@@ -308,6 +309,9 @@ export default function Home() {
   // Zerobet 2.0 — anonymous cloud backup of core recovery progress
   // (auto-syncs on streak/check-in/journal/XP changes; status lives in the store)
   useCloudSync();
+
+  // Zerobet 2.0.6 — smart local reminders (check-in, craving hours, quote, weekly)
+  useReminders();
 
   // Auto-increment streak once per day when app opens (after onboarding)
   useEffect(() => {
