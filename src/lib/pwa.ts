@@ -73,7 +73,12 @@ export async function subscribeToPush(): Promise<PushSubscription | null> {
   }
 }
 
-export async function showLocalNotification(title: string, body: string): Promise<void> {
+export async function showLocalNotification(
+  title: string,
+  body: string,
+  /** In-app screen name — forwarded back to the app on click (2.0.7 deep-link). */
+  deepLinkScreen?: string
+): Promise<void> {
   if (typeof window === "undefined") return;
   if (!("Notification" in window)) return;
   if (Notification.permission !== "granted") return;
@@ -85,6 +90,7 @@ export async function showLocalNotification(title: string, body: string): Promis
       badge: "/logo-zb.png",
       vibrate: [100, 50, 100],
       tag: "zerobet-local",
+      data: { url: deepLinkScreen ?? "dashboard" },
     } as NotificationOptions);
   } catch {
     // Fallback to basic Notification API

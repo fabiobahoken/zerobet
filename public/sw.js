@@ -4,7 +4,7 @@
 // Bump version on every deploy to force cache invalidation.
 // v3: purges stale HTML + dev chunks cached under v2 (fixed stale-chunk
 // "useCloudSync is not defined" crashes for returning users).
-const CACHE_NAME = "zerobet-v3";
+const CACHE_NAME = "zerobet-v4";
 const APP_SHELL = [
   "/",
   "/manifest.json",
@@ -127,10 +127,33 @@ self.addEventListener("push", (event) => {
   );
 });
 
-// Notification click
+// Notification click — focus the app (or open it) and forward the deep-link
+// screen name to the client so it can navigate to the right view (2.0.7).
 self.addEventListener("notificationclick", (event) => {
+  const target = (event.notification.data && event.notification.data.url) || "dashboard";
   event.notification.close();
-  event.waitUntil(self.clients.openWindow("/"));
+  event.waitUntil(
+    (async () => {
+      const clientList = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
+      for (const client of clientList) {
+        if (client.url.includes(self.location.origin)) {
+          await client.focus();
+          client.postMessage({ type: "NOTIFICATION_CLICK", url: target });
+          return;
+        }
+      }
+      // No open window: open one at root; the client picks up the pending
+      // deep-link from sessionStorage written below (belt & suspenders).
+      try {
+        const cache = await caches.open("zerobet-pending-deeplink");
+        const resp = new Response(JSON.stringify({ url: target }));
+        await cache.put("/__deeplink__", resp);
+      } catch (e) {
+        /* ignore */
+      }
+      await self.clients.openWindow("/?deeplink=" + encodeURIComponent(target));
+    })()
+  );
 });
 
 // Message handler — allow the app to force-update the SW cache

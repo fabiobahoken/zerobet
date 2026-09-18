@@ -41,7 +41,7 @@ export function PWARegister() {
         if (process.env.NODE_ENV === "development") {
           caches.keys().then((keys) => {
             const staleCaches = keys.filter(
-              (k) => k !== "zerobet-v3"
+              (k) => k !== "zerobet-v4"
             );
             if (staleCaches.length > 0) {
               Promise.all(staleCaches.map((k) => caches.delete(k))).then(() => {

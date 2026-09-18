@@ -2,13 +2,16 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { X, Share2, Sparkles, Trophy, TrendingUp, Wallet, Flame } from "lucide-react";
+import { X, Share2, Sparkles, Trophy, TrendingUp, Wallet, Flame, ImageIcon } from "lucide-react";
 import { useStore } from "@/store/zerobet-store";
 import { sound } from "@/lib/sound";
 import { haptics } from "@/lib/haptics";
 import { toast } from "sonner";
 import { ArtifactIcon } from "@/components/zerobet/components/ArtifactIcon";
 import { useT, useLanguage } from "@/lib/i18n/useT";
+import { showLocalNotification } from "@/lib/pwa";
+import { markReminderSent, wasReminderSent } from "@/lib/reminders";
+import { shareMilestoneCard } from "@/lib/share-card";
 
 const MILESTONE_DAYS = [7, 14, 30, 60, 90, 180, 365];
 
@@ -53,8 +56,8 @@ const MILESTONE_META: Record<
     messageKey: "milestoneMessage60",
     emoji: "💎",
     artifactKey: "jour-60",
-    color: "#64D2FF",
-    gradient: "from-cyan-500/40 via-blue-500/20 to-transparent",
+    color: "#2DD4BF",
+    gradient: "from-teal-500/40 via-emerald-500/20 to-transparent",
   },
   90: {
     titleKey: "milestoneTitle90",
@@ -68,23 +71,23 @@ const MILESTONE_META: Record<
     messageKey: "milestoneMessage180",
     emoji: "👑",
     artifactKey: "jour-365",
-    color: "#FF9500",
-    gradient: "from-orange-500/40 via-red-500/20 to-transparent",
+    color: "#F59E0B",
+    gradient: "from-amber-500/40 via-orange-500/20 to-transparent",
   },
   365: {
     titleKey: "milestoneTitle365",
     messageKey: "milestoneMessage365",
     emoji: "🏆",
-    color: "#FF3B30",
-    gradient: "from-red-500/40 via-orange-500/20 to-transparent",
+    color: "#10B981",
+    gradient: "from-emerald-500/40 via-teal-500/20 to-transparent",
   },
 };
 
 const CONFETTI_COLORS = [
-  "#FF3B30",
-  "#FF9500",
+  "#10B981",
+  "#F59E0B",
   "#4ADE80",
-  "#64D2FF",
+  "#2DD4BF",
   "#FBBF24",
   "#BF5AF2",
   "#FFD700",
@@ -150,12 +153,28 @@ export function MilestoneCelebration() {
     // Show the highest unreached one (most recent)
     const target = reached[reached.length - 1];
     // Defer to next tick so we don't setState during render
-    const t = setTimeout(() => {
+    const tt = setTimeout(() => {
       setActiveMilestone(target);
       markMilestoneCelebrated(target);
+      // Zerobet 2.0.7 — milestone notification (event-driven, honours the
+      // milestoneAlerts preference + browser permission + dedup log).
+      const prefs = useStore.getState().notificationPreferences;
+      if (
+        prefs.milestoneAlerts &&
+        typeof Notification !== "undefined" &&
+        Notification.permission === "granted" &&
+        !wasReminderSent(`milestone-${target}`)
+      ) {
+        markReminderSent(`milestone-${target}`);
+        showLocalNotification(
+          t(`milestoneTitle${target}`),
+          t(`milestoneMessage${target}`),
+          "program"
+        ).catch(() => undefined);
+      }
     }, 400);
-    return () => clearTimeout(t);
-  }, [streakDays, celebratedMilestones, markMilestoneCelebrated]);
+    return () => clearTimeout(tt);
+  }, [streakDays, celebratedMilestones, markMilestoneCelebrated, t]);
 
   // Play sound + haptics when popup opens
   useEffect(() => {
@@ -205,6 +224,28 @@ export function MilestoneCelebration() {
   // Format with locale-aware thousands separator
   const formatFCFA = (n: number) =>
     new Intl.NumberFormat(INTL_LOCALES[lang] ?? "fr-FR").format(n) + " FCFA";
+
+  // Zerobet 2.0.7 — canvas-drawn pride card (image share)
+  const handleShareCard = async () => {
+    if (!activeMilestone || !meta) return;
+    sound.playClick();
+    haptics.medium();
+    const result = await shareMilestoneCard({
+      days: activeMilestone,
+      emoji: meta.emoji,
+      color: meta.color,
+      daysLabel: t("milestoneDays"),
+      title: t(meta.titleKey),
+      savedLine: t("milestoneCardSavedLine", {
+        n: new Intl.NumberFormat(INTL_LOCALES[lang] ?? "fr-FR").format(savedEstimate),
+      }),
+      tagline: t("milestoneCardTagline"),
+    });
+    if (result === "shared") toast.success(t("milestoneCardToast"));
+    else if (result === "copied") toast.success(t("milestoneCardCopiedToast"));
+    else if (result === "downloaded") toast.success(t("milestoneCardSavedToast"));
+    else toast.error(t("milestoneCardError"));
+  };
 
   return (
     <AnimatePresence>
@@ -358,7 +399,7 @@ export function MilestoneCelebration() {
                 className="grid grid-cols-3 gap-2 mb-6"
               >
                 <div className="glass-card rounded-2xl p-3 flex flex-col items-center gap-1">
-                  <Flame size={18} className="text-[#FF9500]" />
+                  <Flame size={18} className="text-[#F59E0B]" />
                   <span className="text-base font-bold text-white">
                     {activeMilestone}
                   </span>
@@ -421,6 +462,13 @@ export function MilestoneCelebration() {
                 transition={{ delay: 0.7 }}
                 className="flex gap-2"
               >
+                <button
+                  onClick={handleShareCard}
+                  aria-label={t("milestoneCardBtn")}
+                  className="w-12 shrink-0 glass-card-strong rounded-2xl flex items-center justify-center text-[#2DD4BF] hover:bg-white/10 transition-colors btn-press"
+                >
+                  <ImageIcon size={18} />
+                </button>
                 <button
                   onClick={handleShare}
                   className="flex-1 glass-card-strong rounded-2xl py-3 flex items-center justify-center gap-2 text-sm font-medium text-white hover:bg-white/10 transition-colors btn-press"

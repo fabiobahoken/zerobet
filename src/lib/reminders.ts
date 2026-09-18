@@ -35,6 +35,8 @@ export interface DueReminder {
   id: string;
   title: string;
   body: string;
+  /** In-app screen to open when the notification is clicked (Zerobet 2.0.7). */
+  url?: string;
 }
 
 const LOG_KEY = "zerobet-reminders-sent";
@@ -74,6 +76,19 @@ function markSent(id: string): void {
 
 function wasSent(id: string): boolean {
   return Boolean(readLog()[id]);
+}
+
+/**
+ * Public dedup helpers (Zerobet 2.0.7) — shared by the event-driven
+ * milestone notifications so all "already shown" state lives in one place.
+ * Milestone ids have no date suffix, so exempt them from the date purge.
+ */
+export function markReminderSent(id: string): void {
+  markSent(id);
+}
+
+export function wasReminderSent(id: string): boolean {
+  return wasSent(id);
 }
 
 // ---------- time helpers ----------
@@ -151,6 +166,7 @@ export function computeDueReminders(ctx: ReminderContext, now: Date = new Date()
           id,
           title: t("reminderCheckinTitle"),
           body: t("reminderCheckinBody", { n: Math.max(ctx.streakDays, 0) }),
+          url: "dashboard",
         });
       }
     }
@@ -164,6 +180,7 @@ export function computeDueReminders(ctx: ReminderContext, now: Date = new Date()
         id,
         title: t("reminderCravingTitle"),
         body: t("reminderCravingBody"),
+        url: "panic",
       });
     }
   }
@@ -177,6 +194,7 @@ export function computeDueReminders(ctx: ReminderContext, now: Date = new Date()
         id,
         title: t("reminderQuoteTitle"),
         body: `« ${t(`programQuote${n}Text`)} » — ${t(`programQuote${n}Author`)}`,
+        url: "program",
       });
     }
   }
@@ -189,6 +207,7 @@ export function computeDueReminders(ctx: ReminderContext, now: Date = new Date()
         id,
         title: t("reminderWeeklyTitle"),
         body: t("reminderWeeklyBody"),
+        url: "stats",
       });
     }
   }
@@ -205,7 +224,7 @@ export async function runReminderCheck(ctx: ReminderContext, now: Date = new Dat
   try {
     const due = computeDueReminders(ctx, now);
     for (const r of due) {
-      await showLocalNotification(r.title, r.body);
+      await showLocalNotification(r.title, r.body, r.url);
       markSent(r.id);
       sent += 1;
     }

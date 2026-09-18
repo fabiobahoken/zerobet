@@ -5528,3 +5528,28 @@ Stage Summary:
 - **Fichiers clés** : `src/lib/reminders.ts` (nouveau), `src/hooks/useReminders.ts` (nouveau), `page.tsx` (+useReminders), `NotificationSettingsScreen.tsx` (i18n complète + palette), `dictionary.ts` (+~90×3).
 - **Risques/notes** : notifications locales seulement (pas de push serveur — VAPID reste la suite logique) ; la citation du jour est déterministe (même citation toute la journée, change chaque jour) ; le dedup localStorage est par appareil (cohérent avec le modèle local-first) ; si l'utilisateur ne donne pas la permission navigateur, tout est silencieux (les toasts UI restent).
 - **Prochaines étapes recommandées** : push serveur VAPID (nécessite clés), email de reçu Resend (clé API manquante), virtualisation du chat, webhook paiement réel (CinetPay/Flutterwave), profondeur : notifications « jalon atteint » event-driven depuis l'unlock de rang (milestoneAlerts) et deep-link clic-notifications → écran cible (SW notificationclick).
+---
+Task ID: 8 (cron webDevReview #7)
+Agent: Z.ai Code (session cron)
+Task: QA continue agent-browser — FEATURE carte de fierté (canvas PNG partageable), notifications de jalon event-driven (milestoneAlerts), deep-link clic-notifications (SW notificationclick + ?deeplink), polissage palette MilestoneCelebration, SW cache v4.
+
+Work Log:
+- **Diagnostic** : services OK, git propre (2a12b28 = 2.0.6). Session fraîche 0 erreur console.
+- **FEATURE — Carte de fierté (Zerobet 2.0.7)** :
+  - `src/lib/share-card.ts` (nouveau) : `generateMilestoneCard()` dessine une carte 1080×1350 « Aube Émeraude » sur canvas — fond #070B0E + aurores émeraude/teal/or + starfield déterministe + halo radial teinté par la couleur du jalon + anneau d'accent + emoji + titre + numéro géant (glow) + « JOURS » + ligne d'économies formatée locale + tagline + wordmark ZERO BET (dot émeraude) ; `shareMilestoneCard()` : navigator.share avec fichier → clipboard image (ClipboardItem) → téléchargement PNG, retourne shared/copied/downloaded/failed.
+  - MilestoneCelebration : nouveau bouton icône (ImageIcon, teal) à côté de « Partager » ; toasts dédiés par résultat ; 7 clés i18n ×3 (milestoneCard*).
+- **FEATURE — Notifications de jalon event-driven** : dans l'effet de détection de MilestoneCelebration (au moment de markMilestoneCelebrated) → si `notificationPreferences.milestoneAlerts` + Notification.permission granted + pas déjà envoyé (`milestone-<days>` via nouveaux helpers publics markReminderSent/wasReminderSent de reminders.ts) → showLocalNotification(titre, message, deep-link "program"). Rien ne se logge si permission refusée (vérifié).
+- **FEATURE — Deep-link notifications** :
+  - `public/sw.js` : handler `notificationclick` réécrit — focus du client existant + postMessage {type:"NOTIFICATION_CLICK", url} ; sinon cache "zerobet-pending-deeplink" + openWindow("/?deeplink=<screen>"). CACHE_NAME bumpé **zerobet-v4** (PWARegister aligné).
+  - `pwa.ts` : showLocalNotification(title, body, deepLinkScreen?) → data:{url} ; reminders.ts : chaque rappel porte son écran cible (checkin→dashboard, craving→panic, quote→program, weekly→stats).
+  - `useReminders.ts` : écoute les messages SW → navigate(screen) avec liste blanche de 27 écrans (la valeur traverse la frontière SW) ; cold-start `?deeplink=<screen>` honoré une fois (param nettoyé via history.replaceState, navigation différée 2.5s).
+- **Polissage palette MilestoneCelebration** : 60j `#64D2FF`/cyan→`#2DD4BF`/teal (gradient emerald-teal), 180j `#FF9500`→`#F59E0B`, 365j `#FF3B30` rouge→`#10B981` émeraude (365 jours = l'Aube, cohérent « rouge = urgence uniquement »), confettis réalignés (émeraude/teal/or/purple), Flame `#F59E0B`.
+- **Tests E2E agent-browser** : (1) streak seedé 6+j hier → auto-incrémenté 7 à l'ouverture → modale « Une semaine ! » avec le nouveau bouton carte ✓ ; (2) clic carte → « Carte copiée dans le presse-papiers 📋 » (canvas→blob→ClipboardItem OK en headless) ; PNG capturé via patch clipboard et inspecté visuellement : composition propre, halo or du jalon visible, wordmark correct ; (3) permission denied → aucun log de notification (guard correct) ; (4) `?deeplink=stats` → navigation automatique vers « Mes Statistiques » après ~2.5s, URL nettoyée ✓ ; (5) session fraîche 0 erreur console.
+- **Note QA** : le seed direct de streakDays=7 est écrasé par incrementStreak() à l'ouverture (reset 1 si lastStreakDate null) — seed correct = streakDays 6 + lastStreakDate hier.
+
+Stage Summary:
+- **Vérifié en navigateur** : carte de fierté générée/copiée (visuel inspecté), modale jalon enrichie, deep-link cold-start fonctionnel, garde-fous permission ok, 0 erreur console.
+- **Qualité** : `bunx tsc --noEmit` 0 erreur ; `bun run lint` 0 erreur/0 warning ; dev.log propre.
+- **Fichiers clés** : `src/lib/share-card.ts` (nouveau), `MilestoneCelebration.tsx` (notif + bouton + palette), `useReminders.ts` (deep-links), `public/sw.js` (notificationclick + v4), `pwa.ts` (+url), `reminders.ts` (+helpers publics), `dictionary.ts` (+7×3), `PWARegister.tsx` (v4).
+- **Risques/notes** : navigator.share avec fichiers n'existe pas sous Firefox/Safari desktop → fallbacks clipboard/téléchargement couverts ; le deep-link cold-start attend 2.5s (splash + hydratation) — acceptable ; les cartes canvas ne peuvent pas être testées sous un vrai mobile ici (simulateur limité) ; SW v4 forcera une resync chez les users (comportement voulu).
+- **Prochaines étapes recommandées** : push VAPID (clés requises), email reçu Resend (clé API manquante), virtualisation du chat, webhook paiement réel, share-card depuis le dashboard (pas seulement les jalons), partager la carte via CommunityScreen « Mon parcours ».
