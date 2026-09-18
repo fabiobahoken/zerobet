@@ -115,6 +115,39 @@ const rooms = new Map<string, Map<string, RoomUser>>();
 
 const VALID_ROOMS = new Set(["general", "crisis-support", "veterans"]);
 
+// ---- Zerobet 2.1.0 — In-memory room history ----
+// Joining users used to land in an empty room (no context) — now each room
+// keeps its last HISTORY_CAP messages and the newest PAGE_SIZE are replayed
+// on join. `history:more` pages backwards through the rest (pagination).
+// In-memory only by design: privacy-first, nothing survives a service restart.
+const roomHistory = new Map<string, ChatMessage[]>();
+const HISTORY_CAP = 200;
+const HISTORY_PAGE = 40;
+
+function pushHistory(room: string, msg: ChatMessage): void {
+  let arr = roomHistory.get(room);
+  if (!arr) {
+    arr = [];
+    roomHistory.set(room, arr);
+  }
+  arr.push(msg);
+  if (arr.length > HISTORY_CAP) arr.splice(0, arr.length - HISTORY_CAP);
+}
+
+function getHistoryPage(room: string, beforeId?: string): { messages: ChatMessage[]; hasMore: boolean } {
+  const arr = roomHistory.get(room) ?? [];
+  let end = arr.length;
+  if (beforeId) {
+    const idx = arr.findIndex((m) => m.id === beforeId);
+    if (idx > 0) end = idx;
+  }
+  const start = Math.max(0, end - HISTORY_PAGE);
+  return {
+    messages: arr.slice(start, end),
+    hasMore: start > 0,
+  };
+}
+
 // ----------------------------- Helpers --------------------------------
 
 function generateMessageId(): string {
@@ -265,7 +298,7 @@ io.on("connection", (socket: Socket) => {
       const color =
         typeof payload === "object" && payload && "color" in payload && typeof (payload as { color?: unknown }).color === "string"
           ? ((payload as { color: string }).color as string)
-          : "#FF9500";
+          : "#F59E0B";
 
       const user: RoomUser = {
         id: socket.id,
@@ -279,15 +312,28 @@ io.on("connection", (socket: Socket) => {
       r.set(socket.id, user);
       socket.join(room);
 
-      // Welcome message to the joining user.
+      // Welcome message to the joining user (ephemeral — never stored in the
+      // room history since it addresses them personally).
       const welcome = createSystemMessage(
         `Bienvenue ${nickname} dans le salon. Sois bienveillant. 👋`,
         room
       );
       socket.emit("message", welcome);
 
-      // Broadcast join to the rest of the room.
+      // Zerobet 2.1.0 — replay the newest page of room history so a new
+      // member arrives with context instead of an empty room.
+      const historyPage = getHistoryPage(room);
+      if (historyPage.messages.length > 0) {
+        socket.emit("history", {
+          room,
+          messages: historyPage.messages,
+          hasMore: historyPage.hasMore,
+        });
+      }
+
+      // Broadcast join to the rest of the room (persisted in history).
       const joinMsg = createSystemMessage(`${nickname} a rejoint le salon`, room);
+      pushHistory(room, joinMsg);
       socket.to(room).emit("message", joinMsg);
       socket.to(room).emit("user-joined", { nickname, color, streakDays });
 
@@ -335,7 +381,7 @@ io.on("connection", (socket: Socket) => {
         nickname: currentNickname,
         content,
         timestamp: new Date().toISOString(),
-        color: typeof payload?.color === "string" && payload.color ? payload.color : "#FF9500",
+        color: typeof payload?.color === "string" && payload.color ? payload.color : "#F59E0B",
         type: "user",
         room: currentRoom,
       };
@@ -343,6 +389,8 @@ io.on("connection", (socket: Socket) => {
       // local echo (optimistic UI). Emitting to the sender too caused every
       // message to appear twice (bug found in QA).
       socket.to(currentRoom).emit("message", msg);
+      // Zerobet 2.1.0 — persist in the room history (new joiners see context).
+      pushHistory(currentRoom, msg);
       console.log(`[chat] ${currentNickname}@${currentRoom}: ${content}`);
     } catch (err) {
       console.error("[chat] message error:", err);
@@ -356,6 +404,24 @@ io.on("connection", (socket: Socket) => {
       socket.to(currentRoom).emit("typing", { nickname: currentNickname, room: currentRoom });
     } catch (err) {
       console.error("[chat] typing error:", err);
+    }
+  });
+
+  // ---- history:more (Zerobet 2.1.0 — pagination backwards) ----
+  socket.on("history:more", (payload: { room?: string; beforeId?: string }) => {
+    try {
+      const room = (payload?.room ?? "").trim();
+      const beforeId = (payload?.beforeId ?? "").trim();
+      if (!room || !VALID_ROOMS.has(room)) return;
+      const page = getHistoryPage(room, beforeId || undefined);
+      socket.emit("history:more:result", {
+        room,
+        beforeId: beforeId || null,
+        messages: page.messages,
+        hasMore: page.hasMore,
+      });
+    } catch (err) {
+      console.error("[chat] history:more error:", err);
     }
   });
 
@@ -392,6 +458,7 @@ function leaveRoom(socket: Socket, room: string, nickname: string): void {
   r.delete(socket.id);
   socket.leave(room);
   const leftMsg = createSystemMessage(`${nickname} a quitté le salon`, room);
+  pushHistory(room, leftMsg);
   socket.to(room).emit("message", leftMsg);
   socket.to(room).emit("user-left", { nickname });
   emitActiveUsers(room);

@@ -10,6 +10,10 @@ import {
   RefreshCw,
   ShieldCheck,
   AlertTriangle,
+  ServerCog,
+  Send,
+  HeartHandshake,
+  X,
 } from "lucide-react";
 import { toast } from "sonner";
 import { useStore } from "@/store/zerobet-store";
@@ -32,7 +36,7 @@ import { PLAN_INFO } from "./SettingsScreen";
  * deviceId is an unguessable random ID, no account needed.
  */
 
-type PaymentStatus = "pending" | "processing" | "success" | "failed";
+type PaymentStatus = "pending" | "processing" | "success" | "failed" | "expired";
 
 interface PaymentRow {
   id: string;
@@ -55,6 +59,9 @@ const OPERATORS: Record<
   mtn: { name: "MTN MoMo", color: "#FFCB05", textDark: true },
   wave: { name: "Wave", color: "#1DC8FF" },
   moov: { name: "Moov Money", color: "#F43F5E" },
+  // Zerobet 2.1.0 — real-gateway providers (webhook records)
+  cinetpay: { name: "CinetPay", color: "#009E60" },
+  flutterwave: { name: "Flutterwave", color: "#FB4E20" },
 };
 
 const STATUS_STYLE: Record<PaymentStatus, { badgeClass: string; dotClass: string }> = {
@@ -66,6 +73,10 @@ const STATUS_STYLE: Record<PaymentStatus, { badgeClass: string; dotClass: string
     badgeClass: "bg-[#FF453A]/12 text-[#FF6B61] border-[#FF453A]/25",
     dotClass: "bg-[#FF6B61]",
   },
+  expired: {
+    badgeClass: "bg-white/8 text-white/50 border-white/15",
+    dotClass: "bg-white/40",
+  },
   pending: {
     badgeClass: "bg-[#F59E0B]/12 text-[#FBBF24] border-[#F59E0B]/25",
     dotClass: "bg-[#FBBF24]",
@@ -75,6 +86,15 @@ const STATUS_STYLE: Record<PaymentStatus, { badgeClass: string; dotClass: string
     dotClass: "bg-[#FBBF24]",
   },
 };
+
+/** Exit-survey reason keys (Zerobet 2.1.0). */
+const SURVEY_REASONS = [
+  "surveyReasonPrice",
+  "surveyReasonUnused",
+  "surveyReasonBreak",
+  "surveyReasonTechnical",
+  "surveyReasonOther",
+] as const;
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -114,12 +134,16 @@ export function SubscriptionScreen() {
     plan,
     planBillingCycle,
     planStartedAt,
+    planRenewsAt,
     navigate,
   } = useStore();
 
   const [payments, setPayments] = useState<PaymentRow[] | null>(null);
   const [loadError, setLoadError] = useState(false);
   const [showCancelModal, setShowCancelModal] = useState(false);
+  const [showSurvey, setShowSurvey] = useState(false);
+  const [surveyReason, setSurveyReason] = useState<string | null>(null);
+  const [surveyComment, setSurveyComment] = useState("");
   const mountedRef = useRef(true);
 
   const loadHistory = useCallback(async () => {
@@ -155,9 +179,14 @@ export function SubscriptionScreen() {
   const planInfo = PLAN_INFO[plan];
   const isPaid = plan !== "free";
 
-  // Renewal estimate: activation date + one cycle (30 days / 365 days).
+  // Renewal date — Zerobet 2.1.0: prefer the SERVER-confirmed date
+  // (webhook/gateway stored it in the snapshot) over the client estimate.
+  const serverRenewsValid =
+    !!planRenewsAt && !Number.isNaN(new Date(planRenewsAt).getTime());
   const renewalDate = (() => {
-    if (!isPaid || !planStartedAt) return null;
+    if (!isPaid) return null;
+    if (serverRenewsValid) return new Date(planRenewsAt as string);
+    if (!planStartedAt) return null;
     const start = new Date(planStartedAt);
     if (Number.isNaN(start.getTime())) return null;
     const next = new Date(start);
@@ -171,6 +200,22 @@ export function SubscriptionScreen() {
     useStore.getState().cancelPaidPlan();
     haptics.warning();
     toast.success(t("subscriptionCancelledToast"));
+    // Zerobet 2.1.0 — capture the exit reason (optional, skippable).
+    setSurveyReason(null);
+    setSurveyComment("");
+    setShowSurvey(true);
+  };
+
+  const handleSurveySend = () => {
+    if (!surveyReason) return;
+    useStore.getState().setDowngradeSurvey({
+      reason: surveyReason,
+      comment: surveyComment.trim() ? surveyComment.trim().slice(0, 200) : null,
+      at: new Date().toISOString(),
+    });
+    setShowSurvey(false);
+    haptics.light();
+    toast.success(t("surveyThanksToast"));
   };
 
   const successCount = payments?.filter((p) => p.status === "success").length ?? 0;
@@ -254,13 +299,22 @@ export function SubscriptionScreen() {
                 </span>
               </div>
               {renewalDate && (
-                <div className="flex items-center gap-2 text-xs text-white/60">
+                <div className="flex items-center gap-2 text-xs text-white/60 flex-wrap">
                   <RefreshCw size={14} className="text-[#2DD4BF] shrink-0" />
                   <span>
                     {t("subscriptionNextRenewal", {
                       date: formatDate(renewalDate.toISOString()),
                     })}
                   </span>
+                  {serverRenewsValid && (
+                    <span
+                      className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-[#2DD4BF]/12 border border-[#2DD4BF]/25 text-[#5EEAD4] text-[9px] font-semibold uppercase tracking-wide"
+                      title={t("subscriptionServerVerified")}
+                    >
+                      <ServerCog size={10} aria-hidden />
+                      {t("subscriptionServerVerified")}
+                    </span>
+                  )}
                 </div>
               )}
             </div>
@@ -446,6 +500,102 @@ export function SubscriptionScreen() {
                 className="flex-1 py-3 rounded-2xl border border-[#FF453A]/30 bg-[#FF453A]/8 text-[#FF6B61] font-semibold text-sm active:scale-[0.98] transition-transform focus-ring"
               >
                 {t("subscriptionCancelYes")}
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      )}
+
+      {/* ============ Exit survey (optional, Zerobet 2.1.0) ============ */}
+      {showSurvey && (
+        <div
+          className="fixed inset-0 z-[70] flex items-end sm:items-center justify-center bg-black/70 backdrop-blur-sm p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-label={t("subscriptionSurveyTitle")}
+        >
+          <motion.div
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            className="glass-card-strong p-6 max-w-md w-full max-h-[88dvh] overflow-y-auto nice-scrollbar"
+          >
+            <div className="flex items-start justify-between gap-3 mb-2">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-[#10B981]/15 flex items-center justify-center shrink-0">
+                  <HeartHandshake size={20} className="text-[#34D399]" aria-hidden />
+                </div>
+                <h3 className="text-lg font-bold text-white font-[family-name:var(--font-poppins)] leading-tight">
+                  {t("subscriptionSurveyTitle")}
+                </h3>
+              </div>
+              <button
+                onClick={() => setShowSurvey(false)}
+                aria-label={t("surveySkip")}
+                className="w-8 h-8 rounded-full flex items-center justify-center text-white/40 hover:text-white/70 hover:bg-white/5 transition-colors focus-ring shrink-0"
+              >
+                <X size={16} aria-hidden />
+              </button>
+            </div>
+            <p className="text-white/55 text-sm leading-relaxed mb-4">
+              {t("subscriptionSurveyDesc")}
+            </p>
+
+            {/* Reason chips */}
+            <div className="flex flex-wrap gap-2 mb-4" role="radiogroup" aria-label={t("subscriptionSurveyTitle")}>
+              {SURVEY_REASONS.map((reasonKey) => {
+                const selected = surveyReason === reasonKey;
+                return (
+                  <button
+                    key={reasonKey}
+                    role="radio"
+                    aria-checked={selected}
+                    onClick={() => {
+                      setSurveyReason(selected ? null : reasonKey);
+                      haptics.light();
+                    }}
+                    className={`px-3.5 py-2 rounded-full text-xs font-medium border transition-all active:scale-95 focus-ring ${
+                      selected
+                        ? "bg-[#10B981]/20 border-[#10B981]/50 text-[#6EE7B7]"
+                        : "bg-white/[0.04] border-white/10 text-white/60 hover:border-white/25 hover:text-white/80"
+                    }`}
+                  >
+                    {t(reasonKey)}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Optional comment */}
+            <textarea
+              value={surveyComment}
+              onChange={(e) => setSurveyComment(e.target.value.slice(0, 200))}
+              placeholder={t("surveyCommentPlaceholder")}
+              rows={2}
+              maxLength={200}
+              className="w-full rounded-2xl bg-white/[0.05] border border-white/10 focus:border-[#2DD4BF]/60 px-4 py-3 text-sm text-white placeholder:text-white/30 outline-none transition-colors resize-none focus-ring mb-1"
+            />
+            <p className="text-right text-[10px] text-white/25 mb-4">
+              {surveyComment.length}/200
+            </p>
+
+            <div className="flex gap-3">
+              <button
+                onClick={() => setShowSurvey(false)}
+                className="flex-1 py-3 rounded-2xl bg-white/6 hover:bg-white/10 border border-white/10 text-white/70 font-semibold text-sm active:scale-[0.98] transition-transform focus-ring"
+              >
+                {t("surveySkip")}
+              </button>
+              <button
+                onClick={handleSurveySend}
+                disabled={!surveyReason}
+                className={`flex-1 py-3 rounded-2xl font-semibold text-sm flex items-center justify-center gap-2 transition-transform focus-ring ${
+                  surveyReason
+                    ? "gradient-primary text-white glow-green active:scale-[0.98]"
+                    : "bg-white/5 text-white/25 border border-white/8 cursor-not-allowed"
+                }`}
+              >
+                <Send size={14} aria-hidden />
+                {t("surveySend")}
               </button>
             </div>
           </motion.div>

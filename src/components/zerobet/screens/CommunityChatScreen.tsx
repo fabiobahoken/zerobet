@@ -12,7 +12,7 @@
  * `addChatRoomMessage` + `clearChatRoomMessages` for community chat.
  */
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { io, type Socket } from "socket.io-client";
 import {
@@ -615,6 +615,16 @@ export function CommunityChatScreen() {
   const typingTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const isTypingRef = useRef(false);
 
+  /* -------------------- History (Zerobet 2.1.0) -------------------- */
+  // The server replays the newest page of room history on join and pages
+  // backwards through the rest via history:more. Scroll anchoring keeps the
+  // viewport stable while older messages are prepended.
+  const [historyHasMore, setHistoryHasMore] = useState(false);
+  const [loadingOlder, setLoadingOlder] = useState(false);
+  const [reachedStart, setReachedStart] = useState(false);
+  const prependAnchorRef = useRef<number | null>(null);
+  const scrollBottomRef = useRef(false);
+
   /* -------------------- Auto-scroll on new messages -------------------- */
   const visibleMessages = useMemo(
     () => chatRoomMessages.filter((m) => m.room === activeRoom),
@@ -632,6 +642,24 @@ export function CommunityChatScreen() {
     }
   }, [visibleMessages.length, activeRoom]);
 
+  // Adjust scroll position after prepend (keep the viewport anchored) or
+  // jump to the bottom after the join-history replays. Runs BEFORE the
+  // browser paints so the jump is invisible.
+  useLayoutEffect(() => {
+    const el = messagesListRef.current;
+    if (!el) return;
+    if (scrollBottomRef.current) {
+      scrollBottomRef.current = false;
+      el.scrollTop = el.scrollHeight;
+      return;
+    }
+    if (prependAnchorRef.current !== null) {
+      const delta = el.scrollHeight - prependAnchorRef.current;
+      if (delta > 0) el.scrollTop += delta;
+      prependAnchorRef.current = null;
+    }
+  }, [visibleMessages.length, activeRoom]);
+
   /* -------------------- Socket lifecycle -------------------- */
   useEffect(() => {
     if (!chatNickname) return;
@@ -641,6 +669,12 @@ export function CommunityChatScreen() {
     // satisfy the react-hooks/set-state-in-effect rule (the actual
     // status is also driven by socket connect/disconnect events below).
     queueMicrotask(() => setConnectionStatus("connecting"));
+    // Reset history state for the new room.
+    queueMicrotask(() => {
+      setHistoryHasMore(false);
+      setLoadingOlder(false);
+      setReachedStart(false);
+    });
 
     const socket = io("/?XTransformPort=3003", {
       transports: ["websocket", "polling"],
@@ -715,6 +749,92 @@ export function CommunityChatScreen() {
       // System message is broadcast separately by the server — no need to
       // duplicate here. Just a tiny tick.
     });
+
+    // ---- Zerobet 2.1.0 — join replay of the newest history page ----
+    socket.on(
+      "history",
+      (payload: {
+        room: string;
+        messages: ServerChatMessage[];
+        hasMore: boolean;
+      }) => {
+        try {
+          if (
+            !payload ||
+            payload.room !== activeRoom ||
+            !Array.isArray(payload.messages) ||
+            payload.messages.length === 0
+          )
+            return;
+          const st = useStore.getState();
+          const existing = new Set(st.chatRoomMessages.map((m) => m.id));
+          const toAdd: ChatRoomMessage[] = payload.messages
+            .filter(
+              (m) =>
+                m &&
+                typeof m.id === "string" &&
+                typeof m.content === "string" &&
+                !existing.has(m.id)
+            )
+            .map((m) => ({
+              id: m.id,
+              nickname: m.nickname ?? "",
+              content: m.content,
+              timestamp: m.timestamp ?? new Date().toISOString(),
+              color: m.color || getNicknameColor(m.nickname),
+              type: m.type === "system" ? ("system" as const) : ("user" as const),
+              room: m.room || activeRoom,
+            }));
+          if (toAdd.length > 0) st.prependChatRoomMessages(toAdd);
+          setHistoryHasMore(!!payload.hasMore);
+          // Start at the bottom (newest messages), like any chat app.
+          scrollBottomRef.current = true;
+        } catch (err) {
+          console.error("[chat] history error:", err);
+        }
+      }
+    );
+
+    // ---- Zerobet 2.1.0 — older history page (pagination) ----
+    socket.on(
+      "history:more:result",
+      (payload: {
+        room: string;
+        beforeId: string | null;
+        messages: ServerChatMessage[];
+        hasMore: boolean;
+      }) => {
+        try {
+          if (!payload || payload.room !== activeRoom) return;
+          setLoadingOlder(false);
+          const st = useStore.getState();
+          const existing = new Set(st.chatRoomMessages.map((m) => m.id));
+          const toAdd: ChatRoomMessage[] = (payload.messages ?? [])
+            .filter(
+              (m) =>
+                m &&
+                typeof m.id === "string" &&
+                typeof m.content === "string" &&
+                !existing.has(m.id)
+            )
+            .map((m) => ({
+              id: m.id,
+              nickname: m.nickname ?? "",
+              content: m.content,
+              timestamp: m.timestamp ?? new Date().toISOString(),
+              color: m.color || getNicknameColor(m.nickname),
+              type: m.type === "system" ? ("system" as const) : ("user" as const),
+              room: m.room || activeRoom,
+            }));
+          if (toAdd.length > 0) st.prependChatRoomMessages(toAdd);
+          setHistoryHasMore(!!payload.hasMore);
+          if (!payload.hasMore) setReachedStart(true);
+        } catch (err) {
+          console.error("[chat] history:more error:", err);
+          setLoadingOlder(false);
+        }
+      }
+    );
 
     socket.on("user-left", (_data: UserEventPayload) => {
       // Same — server already broadcasts a system message.
@@ -808,6 +928,22 @@ export function CommunityChatScreen() {
     },
     [activeRoom, chatNickname, streakDays, t]
   );
+
+  // Zerobet 2.1.0 — request the next older page of room history.
+  const loadOlder = useCallback(() => {
+    const socket = socketRef.current;
+    if (!socket || !socket.connected || loadingOlder) return;
+    const roomMsgs = useStore
+      .getState()
+      .chatRoomMessages.filter((m) => m.room === activeRoom);
+    const oldest = roomMsgs[0];
+    if (!oldest) return;
+    // Capture the current list height BEFORE the prepend — the layout effect
+    // uses it to keep the viewport anchored on the same messages.
+    prependAnchorRef.current = messagesListRef.current?.scrollHeight ?? null;
+    setLoadingOlder(true);
+    socket.emit("history:more", { room: activeRoom, beforeId: oldest.id });
+  }, [activeRoom, loadingOlder]);
 
   const handleSend = useCallback(() => {
     const content = input.trim();
@@ -1051,6 +1187,31 @@ export function CommunityChatScreen() {
           </div>
         ) : (
           <div className="space-y-3">
+            {/* Zerobet 2.1.0 — history pagination + conversation start */}
+            {(historyHasMore || loadingOlder || reachedStart) && (
+              <div className="flex justify-center py-1">
+                {historyHasMore ? (
+                  <button
+                    onClick={loadOlder}
+                    disabled={loadingOlder}
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full glass-card text-[11px] font-medium text-[#5EEAD4] hover:text-white hover:border-[#2DD4BF]/40 transition-colors focus-ring disabled:opacity-50 active:scale-95"
+                  >
+                    {loadingOlder ? (
+                      <Loader2 size={12} className="animate-spin" aria-hidden />
+                    ) : (
+                      <ChevronUp size={12} aria-hidden />
+                    )}
+                    {loadingOlder ? t("chatLoadingOlder") : t("chatLoadOlder")}
+                  </button>
+                ) : reachedStart ? (
+                  <span className="inline-flex items-center gap-2 text-[10px] uppercase tracking-wider text-white/25">
+                    <span className="h-px w-8 bg-white/10" aria-hidden />
+                    {t("chatHistoryStart")}
+                    <span className="h-px w-8 bg-white/10" aria-hidden />
+                  </span>
+                ) : null}
+              </div>
+            )}
             {visibleMessages.map((msg) => (
               <MessageBubble
                 key={msg.id}

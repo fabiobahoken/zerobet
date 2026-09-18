@@ -218,12 +218,16 @@ model Payment {
   deviceId     String   @default("")
   plan         String   // premium | mentor | psychologist
   billingCycle String   @default("monthly") // monthly | annual
-  operator     String   // orange | mtn | wave | moov
+  operator     String   // orange | mtn | wave | moov | cinetpay | flutterwave
   phone        String   // masked in logs
   amount       Int      // FCFA
   currency     String   @default("FCFA")
   status       String   @default("pending")
   failReason   String?
+  // Zerobet 2.1.0 — provider transaction id (webhook idempotency).
+  // Unique: a replayed webhook with the same transaction id is acknowledged
+  // (200, idempotent:true) without re-activating the plan or duplicating rows.
+  providerRef  String?  @unique
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 

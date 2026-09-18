@@ -226,6 +226,17 @@ export type Plan = "free" | "premium" | "mentor" | "psychologist";
 export type AddictionLevel = "faible" | "modere" | "severe" | "critique";
 export type Emotion = "frustrated" | "strong" | "tempted" | "calm" | "proud" | "anxious";
 
+/**
+ * Zerobet 2.1.0 — Exit survey captured after a voluntary downgrade.
+ * reason: dictionary key suffix (surveyPrice | surveyUnused | surveyBreak |
+ * surveyTechnical | surveyOther). comment: optional free text (≤200 chars).
+ */
+export interface DowngradeSurvey {
+  reason: string;
+  comment: string | null;
+  at: string;
+}
+
 export interface JournalEntry {
   id: string;
   content: string;
@@ -481,10 +492,24 @@ interface AppState {
   planBillingCycle: "monthly" | "annual";
   /** ISO date of the moment the current paid plan was activated (null = free). */
   planStartedAt: string | null;
+  /** ISO renewal date confirmed by the SERVER (webhook/gateway). null = no
+   *  server confirmation yet — UI falls back to a client-side estimate. */
+  planRenewsAt: string | null;
   /** Activate a paid plan together with its cycle + activation date. */
   activatePaidPlan: (p: Plan, cycle: "monthly" | "annual") => void;
   /** Downgrade to free (subscription cancelled). */
   cancelPaidPlan: () => void;
+  /** Apply a SERVER-confirmed plan (cloud-sync pull): used when a webhook
+   *  activated the plan while the device was offline. Never downgrades. */
+  applyServerPlan: (p: {
+    plan: Plan;
+    planBillingCycle: "monthly" | "annual";
+    planStartedAt: string;
+    planRenewsAt: string;
+  }) => void;
+  /** Exit survey captured after a voluntary downgrade (Zerobet 2.1.0). */
+  downgradeSurvey: DowngradeSurvey | null;
+  setDowngradeSurvey: (s: DowngradeSurvey | null) => void;
   dataConsent: boolean;
   setDataConsent: (v: boolean) => void;
 
@@ -732,6 +757,10 @@ interface AppState {
   setChatNickname: (name: string) => void;
   chatRoomMessages: ChatRoomMessage[];
   addChatRoomMessage: (msg: ChatRoomMessage) => void;
+  /** Zerobet 2.1.0 — prepend OLDER room messages (history pagination).
+   *  Unlike addChatRoomMessage this does NOT drop the oldest entries while
+   *  the user is paging back through history (bounded hard cap 400). */
+  prependChatRoomMessages: (msgs: ChatRoomMessage[]) => void;
   clearChatRoomMessages: () => void;
 
   // Currency selection (Task 15-a) — user's preferred display currency.
@@ -898,14 +927,27 @@ export const useStore = create<AppState>()(
       setPlan: (p) => set({ plan: p }),
       planBillingCycle: "monthly",
       planStartedAt: null,
+      planRenewsAt: null,
       activatePaidPlan: (p, cycle) =>
         set({
           plan: p,
           planBillingCycle: cycle,
           planStartedAt: new Date().toISOString(),
+          // The webhook/gateway will confirm the exact date server-side; the
+          // optimistic estimate keeps the UI honest until the pull lands.
+          planRenewsAt: null,
         }),
       cancelPaidPlan: () =>
-        set({ plan: "free", planBillingCycle: "monthly", planStartedAt: null }),
+        set({ plan: "free", planBillingCycle: "monthly", planStartedAt: null, planRenewsAt: null }),
+      applyServerPlan: ({ plan, planBillingCycle, planStartedAt, planRenewsAt }) =>
+        set({
+          plan,
+          planBillingCycle,
+          planStartedAt,
+          planRenewsAt,
+        }),
+      downgradeSurvey: null,
+      setDowngradeSurvey: (s) => set({ downgradeSurvey: s }),
       dataConsent: false,
       setDataConsent: (v) => set({ dataConsent: v }),
 
@@ -1064,7 +1106,8 @@ export const useStore = create<AppState>()(
           "gender", "language", "name", "hasCompletedOnboarding",
           "quizAnswers", "addictionScore", "addictionLevel",
           "selectedGoals", "selectedSymptoms", "plan",
-          "planBillingCycle", "planStartedAt",
+          "planBillingCycle", "planStartedAt", "planRenewsAt",
+          "downgradeSurvey",
           "streakDays", "lastStreakDate", "streakHistory",
           "lastCheckInDate", "todayMood", "todayCraving",
           "xp", "level", "dailyQuests",
@@ -1633,6 +1676,17 @@ export const useStore = create<AppState>()(
           const capped = next.length > 100 ? next.slice(next.length - 100) : next;
           return { chatRoomMessages: capped };
         }),
+      prependChatRoomMessages: (msgs) =>
+        set((s) => {
+          if (!msgs.length) return {};
+          const existing = new Set(s.chatRoomMessages.map((m) => m.id));
+          const fresh = msgs.filter((m) => m && m.id && !existing.has(m.id));
+          if (!fresh.length) return {};
+          const next = [...fresh, ...s.chatRoomMessages];
+          // Hard safety cap — generous enough for deep history paging.
+          const capped = next.length > 400 ? next.slice(0, 400) : next;
+          return { chatRoomMessages: capped };
+        }),
       clearChatRoomMessages: () => set({ chatRoomMessages: [] }),
 
       // Currency selection (Task 15-a)
@@ -1839,10 +1893,21 @@ export const useStore = create<AppState>()(
           merged.chatUsage = { date: "", count: 0 };
         }
         if (!("lastSyncAt" in p)) merged.lastSyncAt = null;
-        // Plan cycle/date sanitization (Zerobet 2.0.5)
+        // Plan cycle/date sanitization (Zerobet 2.0.5 / 2.1.0)
         if (merged.planBillingCycle !== "annual") merged.planBillingCycle = "monthly";
         if (typeof merged.planStartedAt !== "string" && merged.planStartedAt !== null) {
           merged.planStartedAt = null;
+        }
+        if (typeof merged.planRenewsAt !== "string" && merged.planRenewsAt !== null) {
+          merged.planRenewsAt = null;
+        }
+        // Exit survey sanitization (Zerobet 2.1.0)
+        if (
+          merged.downgradeSurvey !== null &&
+          (typeof merged.downgradeSurvey !== "object" ||
+            typeof (merged.downgradeSurvey as { reason?: unknown }).reason !== "string")
+        ) {
+          merged.downgradeSurvey = null;
         }
         return merged as AppState;
       },
@@ -1861,6 +1926,8 @@ export const useStore = create<AppState>()(
         plan: state.plan,
         planBillingCycle: state.planBillingCycle,
         planStartedAt: state.planStartedAt,
+        planRenewsAt: state.planRenewsAt,
+        downgradeSurvey: state.downgradeSurvey,
         dataConsent: state.dataConsent,
         streakDays: state.streakDays,
         lastStreakDate: state.lastStreakDate,

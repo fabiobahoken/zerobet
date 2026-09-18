@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
+import { activateServerPlan } from "@/lib/subscription";
 
 /**
  * Zerobet 2.0.4 — Mobile Money payment gateway (simulated).
@@ -133,6 +134,10 @@ export async function GET(req: NextRequest) {
     if (!sim) {
       if (payment.status === "pending" || payment.status === "processing") {
         await db.payment.update({ where: { id }, data: { status: "success" } });
+        // Server-authoritative plan activation (Zerobet 2.1.0): the snapshot
+        // gets the plan + a server-computed renewal date even if the client
+        // never pushes its own snapshot.
+        await activateServerPlan(payment.deviceId, payment.plan, payment.billingCycle);
         return NextResponse.json({ status: "success" });
       }
       return NextResponse.json({ status: payment.status });
@@ -153,6 +158,8 @@ export async function GET(req: NextRequest) {
     if (elapsed >= PROCESSING_MS) {
       if (payment.status !== "success") {
         await db.payment.update({ where: { id }, data: { status: "success" } });
+        // Server-authoritative plan activation (Zerobet 2.1.0).
+        await activateServerPlan(payment.deviceId, payment.plan, payment.billingCycle);
       }
       return NextResponse.json({ status: "success" });
     }
