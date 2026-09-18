@@ -116,6 +116,7 @@ export function SettingsScreen() {
     volume, setVolume,
     // Cloud sync (Zerobet 2.0)
     lastSyncAt, cloudSyncStatus, requestSync,
+    restoreFromSnapshot,
     // Journal / streak counters (for the RGPD export)
     streakDays, xp, level,
   } = useStore();
@@ -602,7 +603,7 @@ export function SettingsScreen() {
                 toast.error(t("settingsExportError"));
               }
             }}
-            className="w-full flex items-center gap-3 p-3.5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors text-left"
+            className="w-full flex items-center gap-3 p-3.5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors text-left mb-3"
             aria-label={t("settingsExportData")}
           >
             <div className="w-9 h-9 rounded-xl bg-[#4ADE80]/15 flex items-center justify-center flex-shrink-0">
@@ -611,6 +612,45 @@ export function SettingsScreen() {
             <div className="flex-1 min-w-0">
               <p className="text-white text-sm font-medium">{t("settingsExportData")}</p>
               <p className="text-white/50 text-xs mt-0.5">{t("settingsExportDesc")}</p>
+            </div>
+            <ChevronRight size={16} className="text-white/30 flex-shrink-0" />
+          </button>
+
+          {/* Zerobet 2.0 — cloud restore (récupération après réinstallation) */}
+          <button
+            onClick={async () => {
+              try {
+                const raw = localStorage.getItem("zerobet-device-id");
+                if (!raw) {
+                  toast.info(t("settingsRestoreNone"));
+                  return;
+                }
+                const res = await fetch(`/api/progress?deviceId=${encodeURIComponent(raw)}`);
+                if (res.status === 404) {
+                  toast.info(t("settingsRestoreNone"));
+                  return;
+                }
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const data = await res.json();
+                const ok = restoreFromSnapshot(data?.snapshot ?? {});
+                if (ok) {
+                  toast.success(t("settingsRestoreDone"));
+                } else {
+                  toast.info(t("settingsRestoreNone"));
+                }
+              } catch {
+                toast.error(t("settingsRestoreError"));
+              }
+            }}
+            className="w-full flex items-center gap-3 p-3.5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors text-left"
+            aria-label={t("settingsRestoreData")}
+          >
+            <div className="w-9 h-9 rounded-xl bg-[#64D2FF]/15 flex items-center justify-center flex-shrink-0">
+              <Upload size={16} className="text-[#64D2FF]" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-white text-sm font-medium">{t("settingsRestoreData")}</p>
+              <p className="text-white/50 text-xs mt-0.5">{t("settingsRestoreDesc")}</p>
             </div>
             <ChevronRight size={16} className="text-white/30 flex-shrink-0" />
           </button>

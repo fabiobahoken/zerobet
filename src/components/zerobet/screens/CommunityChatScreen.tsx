@@ -626,9 +626,20 @@ export function CommunityChatScreen() {
     clearChatRoomMessages,
     streakDays,
     plan,
+    chatUsage,
+    consumeChatMessage,
   } = useStore();
 
   const isPremium = isPremiumPlan(plan);
+
+  // Zerobet 2.0 — freemium: live chat is free to read; sending is limited
+  // to FREE_CHAT_DAILY_LIMIT messages/day on the free plan.
+  const FREE_CHAT_DAILY_LIMIT = 5;
+  const chatTodayKey = new Date().toISOString().slice(0, 10);
+  const chatUsedToday = chatUsage.date === chatTodayKey ? chatUsage.count : 0;
+  const chatRemaining = isPremium
+    ? Infinity
+    : Math.max(0, FREE_CHAT_DAILY_LIMIT - chatUsedToday);
 
   const [activeRoom, setActiveRoom] = useState<RoomKey>("general");
   const [connectionStatus, setConnectionStatus] =
@@ -666,7 +677,7 @@ export function CommunityChatScreen() {
   /* -------------------- Socket lifecycle -------------------- */
   useEffect(() => {
     if (!chatNickname) return;
-    if (!isPremium) return;
+    // Zerobet 2.0 — reading the live chat is free; only SENDING is quota-limited.
 
     // Defer the status update out of the synchronous effect body to
     // satisfy the react-hooks/set-state-in-effect rule (the actual
@@ -828,6 +839,23 @@ export function CommunityChatScreen() {
   const handleSend = useCallback(() => {
     const content = input.trim();
     if (!content) return;
+    // Zerobet 2.0 — free plan: 5 messages/day quota (reading stays free).
+    if (!isPremium) {
+      const todayKey = new Date().toISOString().slice(0, 10);
+      const used = chatUsage.date === todayKey ? chatUsage.count : 0;
+      if (used >= FREE_CHAT_DAILY_LIMIT) {
+        sound.playError();
+        haptics.error();
+        toast.error(t("chatQuotaToast", { n: FREE_CHAT_DAILY_LIMIT }), {
+          action: {
+            label: t("chatQuotaUpgrade"),
+            onClick: () => navigate("paywall"),
+          },
+        });
+        return;
+      }
+      consumeChatMessage();
+    }
     const socket = socketRef.current;
     if (!socket || !socket.connected) {
       sound.playError();
@@ -866,7 +894,7 @@ export function CommunityChatScreen() {
     setInput("");
     sound.playPop();
     haptics.light();
-  }, [input, chatNickname, activeRoom, addChatRoomMessage, t]);
+  }, [input, chatNickname, activeRoom, addChatRoomMessage, t, isPremium, chatUsage, consumeChatMessage, navigate]);
 
   const handleInputChange = useCallback(
     (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -918,15 +946,8 @@ export function CommunityChatScreen() {
     navigate("dashboard");
   }, [navigate]);
 
-  /* -------------------- Paywall gate -------------------- */
-  if (!isPremium) {
-    return (
-      <PaywallOverlay
-        onGoPremium={() => navigate("paywall")}
-        onBack={() => navigate("dashboard")}
-      />
-    );
-  }
+  /* -------------------- (Zerobet 2.0) hard paywall removed — free users
+     read the chat freely and send up to 5 messages/day (quota chip below). */
 
   /* -------------------- Nickname gate -------------------- */
   if (!chatNickname) {
@@ -955,7 +976,7 @@ export function CommunityChatScreen() {
       />
 
       {/* Room selector */}
-      <div className="px-4 pt-3 pb-2 sticky top-[68px] z-20 bg-[#0A0A0F]/80 backdrop-blur-md">
+      <div className="px-4 pt-3 pb-2 sticky top-[68px] z-20 bg-[#070B0E]/80 backdrop-blur-md">
         <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
           {ROOMS.map((room) => (
             <RoomTab
@@ -1164,7 +1185,25 @@ export function CommunityChatScreen() {
       </div>
 
       {/* Message input */}
-      <div className="sticky bottom-0 px-4 pb-[calc(env(safe-area-inset-bottom)+12px)] pt-2 z-20 bg-[#0A0A0F]/85 backdrop-blur-md">
+      <div className="sticky bottom-0 px-4 pb-[calc(env(safe-area-inset-bottom)+12px)] pt-2 z-20 bg-[#070B0E]/85 backdrop-blur-md">
+        {/* Zerobet 2.0 — free-plan quota chip above the composer */}
+        {!isPremium && (
+          <div className="flex items-center justify-between mb-1.5 px-2">
+            <span className="text-[10px] text-white/40">
+              {chatRemaining > 0
+                ? t("chatQuotaRemaining", { n: chatRemaining })
+                : t("chatQuotaEmpty")}
+            </span>
+            {chatRemaining <= 0 && (
+              <button
+                onClick={() => navigate("paywall")}
+                className="text-[10px] font-semibold text-[#FBBF24] hover:underline"
+              >
+                {t("chatQuotaUpgrade")}
+              </button>
+            )}
+          </div>
+        )}
         <div className="glass-card-strong rounded-3xl p-2 flex items-end gap-2">
           <textarea
             value={input}

@@ -47,6 +47,7 @@ import {
   StatsCardGridSkeleton,
 } from "@/components/zerobet/components/Skeletons";
 import { PullToRefresh } from "@/components/zerobet/components/PullToRefresh";
+import { WeeklyReport } from "@/components/zerobet/components/WeeklyReport";
 import { EmptyState } from "@/components/zerobet/components/EmptyState";
 import { AnimatedNumber } from "@/components/zerobet/components/AnimatedNumber";
 import { sound } from "@/lib/sound";
@@ -258,6 +259,8 @@ export function StatsScreen() {
     navigate,
     adminStreakOverride,
     plan,
+    streakHistory,
+    xpHistory,
   } = useStore();
 
   const isPremium = plan !== "free";
@@ -670,10 +673,10 @@ export function StatsScreen() {
       label: t("statsDaysWithoutBet"),
       value: effectiveStreak.toString(),
       suffix: effectiveStreak > 1 ? t("days") : t("statsDay"),
-      gradient: "linear-gradient(135deg, #FF3B30 0%, #FF9500 100%)",
-      iconBg: "rgba(255,149,0,0.18)",
-      iconColor: "#FF9500",
-      glow: "glow-orange",
+      gradient: "linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%)",
+      iconBg: "rgba(251,191,36,0.18)",
+      iconColor: "#FBBF24",
+      glow: "glow-yellow",
     },
     {
       icon: Wallet,
@@ -740,6 +743,13 @@ export function StatsScreen() {
       </motion.div>
 
       <PullToRefresh onRefresh={handleRefresh} isRefreshing={refreshing}>
+      {/* ============== Zerobet 2.0: Weekly report (renders instantly) ============== */}
+      <WeeklyReport
+        streakHistory={streakHistory}
+        journalEntries={journalEntries}
+        panicEvents={panicEvents}
+        xpHistory={xpHistory}
+      />
       {chartsLoading ? (
         <motion.div
           initial={{ opacity: 0 }}

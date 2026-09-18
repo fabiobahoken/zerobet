@@ -74,13 +74,13 @@ export function BottomNav() {
                     {/* Outer glow */}
                     <motion.div
                       layoutId="activeTabOuter"
-                      className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#FF3B30]/30 to-[#FF9500]/30"
+                      className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#10B981]/30 to-[#2DD4BF]/30"
                       transition={{ type: "spring", stiffness: 400, damping: 30 }}
                     />
                     {/* Inner glow */}
                     <motion.div
                       layoutId="activeTabInner"
-                      className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#FF3B30]/15 to-[#FF9500]/15 ring-1 ring-[#FF9500]/40"
+                      className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#10B981]/15 to-[#2DD4BF]/15 ring-1 ring-[#2DD4BF]/40"
                       transition={{ type: "spring", stiffness: 400, damping: 30 }}
                     />
                   </>

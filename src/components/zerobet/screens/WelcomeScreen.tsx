@@ -71,19 +71,19 @@ export function WelcomeScreen() {
                 <stop offset="0%" stopColor="#FFF7B0" />
                 <stop offset="25%" stopColor="#FFD700" />
                 <stop offset="55%" stopColor="#FF9500" />
-                <stop offset="100%" stopColor="#FF3B30" />
+                <stop offset="100%" stopColor="#FBBF24" />
               </radialGradient>
 
               <linearGradient id="zerobet-ray-grad" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="#FFD700" stopOpacity="0" />
                 <stop offset="40%" stopColor="#FF9500" stopOpacity="0.9" />
-                <stop offset="100%" stopColor="#FF3B30" stopOpacity="0" />
+                <stop offset="100%" stopColor="#FBBF24" stopOpacity="0" />
               </linearGradient>
 
               <linearGradient id="zerobet-ring-grad" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stopColor="#FFD700" />
                 <stop offset="50%" stopColor="#FF9500" />
-                <stop offset="100%" stopColor="#FF3B30" />
+                <stop offset="100%" stopColor="#FBBF24" />
               </linearGradient>
 
               <filter id="zerobet-sun-glow" x="-50%" y="-50%" width="200%" height="200%">

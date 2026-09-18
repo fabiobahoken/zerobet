@@ -118,7 +118,7 @@ export function PaywallScreen() {
               onClick={() => handleSelectPlan(planOption.id)}
               onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") handleSelectPlan(planOption.id); }}
               className={`relative glass-card-strong p-5 cursor-pointer transition-all ${
-                isSelected ? "ring-2 ring-[#FF3B30] glow-red" : ""
+                isSelected ? "ring-2 ring-[#10B981] glow-red" : ""
               }`}
             >
               {/* Badges */}
@@ -228,7 +228,7 @@ export function PaywallScreen() {
                 type="checkbox"
                 checked={dataConsent}
                 onChange={(e) => setDataConsent(e.target.checked)}
-                className="mt-1 w-4 h-4 rounded accent-[#FF3B30]"
+                className="mt-1 w-4 h-4 rounded accent-[#10B981]"
               />
               <span className="text-white/80 text-sm">
                 {t("paywallConsentLabel")}

@@ -21,6 +21,8 @@ import {
   QUICK_REPLIES,
 } from "@/lib/data/search-data";
 import { formatCurrency } from "@/lib/data/currency-data";
+import { sound } from "@/lib/sound";
+import { haptics } from "@/lib/haptics";
 import { ListSkeleton } from "@/components/zerobet/components/Skeletons";
 import { PullToRefresh } from "@/components/zerobet/components/PullToRefresh";
 import { EmptyState } from "@/components/zerobet/components/EmptyState";
@@ -92,6 +94,9 @@ const TABS: { key: TabKey; labelKey: string; icon: typeof Heart }[] = [
   { key: "mentors", labelKey: "communityMentors", icon: ShieldCheck },
   { key: "psychologists", labelKey: "communityPsychologists", icon: GraduationCap },
 ];
+
+// Zerobet 2.0 — live-chat entry pill (navigates to its own screen).
+const CHAT_TAB = { labelKey: "communityTabChat", icon: MessageCircle };
 
 const FORUM_CATEGORIES: {
   key: ForumPost["category"]; labelKey: string; color: string; emoji: string;
@@ -527,7 +532,7 @@ export function CommunityScreen() {
   return (
     <div className="min-h-screen pb-6">
       {/* Header */}
-      <div className="px-5 pt-12 pb-3 sticky top-0 z-20 backdrop-blur-xl bg-[#0A0A0F]/70">
+      <div className="px-5 pt-12 pb-3 sticky top-0 z-20 backdrop-blur-xl bg-[#070B0E]/70">
         <div className="flex items-center gap-3 mb-4">
           <button
             onClick={() => navigate("dashboard")}
@@ -558,6 +563,19 @@ export function CommunityScreen() {
 
         {/* Tabs */}
         <div className="flex gap-2 overflow-x-auto no-scrollbar -mx-5 px-5 pb-1">
+          {/* Zerobet 2.0 — live chat entry (own screen, opens overlay-style) */}
+          <button
+            onClick={() => {
+              sound.playClick();
+              haptics.light();
+              navigate("community-chat");
+            }}
+            className="flex items-center gap-1.5 px-4 py-2.5 rounded-2xl text-xs font-semibold whitespace-nowrap transition-all active:scale-95 gradient-gold text-[#1a1200]"
+            aria-label={t(CHAT_TAB.labelKey)}
+          >
+            <CHAT_TAB.icon size={14} />
+            {t(CHAT_TAB.labelKey)}
+          </button>
           {TABS.map((tab) => {
             const active = activeTab === tab.key;
             const Icon = tab.icon;

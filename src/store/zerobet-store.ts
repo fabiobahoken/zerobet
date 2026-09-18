@@ -514,10 +514,13 @@ interface AppState {
   // Free-tier usage quotas (Zerobet 2.0 — freemium rebalance)
   // Atlas AI: N free messages per rolling day for non-premium users.
   // Journal: N free entries per rolling week for non-premium users.
+  // Community live chat: N free messages per rolling day for non-premium users.
   atlasUsage: { date: string; count: number };
   consumeAtlasMessage: () => void;
   journalUsage: { weekStart: string; count: number };
   consumeJournalEntry: () => void;
+  chatUsage: { date: string; count: number };
+  consumeChatMessage: () => void;
 
   // Backend sync (Zerobet 2.0 — cloud backup of core progress)
   lastSyncAt: string | null;
@@ -526,6 +529,7 @@ interface AppState {
   setCloudSyncStatus: (s: "idle" | "syncing" | "ok" | "error") => void;
   syncRequestId: number;
   requestSync: () => void;
+  restoreFromSnapshot: (payload: Record<string, unknown>) => boolean;
 
   // Panic events
   panicEvents: PanicEvent[];
@@ -1005,6 +1009,16 @@ export const useStore = create<AppState>()(
               : { weekStart, count: 1 };
           return { journalUsage: usage };
         }),
+      chatUsage: { date: "", count: 0 },
+      consumeChatMessage: () =>
+        set((s) => {
+          const today = new Date().toISOString().slice(0, 10);
+          const usage =
+            s.chatUsage.date === today
+              ? { date: today, count: s.chatUsage.count + 1 }
+              : { date: today, count: 1 };
+          return { chatUsage: usage };
+        }),
 
       // Backend sync (Zerobet 2.0)
       lastSyncAt: null,
@@ -1013,6 +1027,35 @@ export const useStore = create<AppState>()(
       setCloudSyncStatus: (s) => set({ cloudSyncStatus: s }),
       syncRequestId: 0,
       requestSync: () => set((s) => ({ syncRequestId: s.syncRequestId + 1 })),
+      // Zerobet 2.0 — cloud restore: merge a server snapshot back into the
+      // store. Only whitelisted backup keys are applied, so unknown/extra
+      // fields from newer or older payloads can never corrupt state.
+      restoreFromSnapshot: (payload) => {
+        if (!payload || typeof payload !== "object") return false;
+        const BACKUP_KEYS = [
+          "gender", "language", "name", "hasCompletedOnboarding",
+          "quizAnswers", "addictionScore", "addictionLevel",
+          "selectedGoals", "selectedSymptoms", "plan",
+          "streakDays", "lastStreakDate", "streakHistory",
+          "lastCheckInDate", "todayMood", "todayCraving",
+          "xp", "level", "dailyQuests",
+          "savingsGoals", "weeklyIncome", "weeklyExpenses",
+          "savingsGoal", "weeklyBetAmount", "currency",
+          "unlockedRanks", "celebratedMilestones", "meditationStreak",
+          "articlesRead", "relapseHistory", "avatarColor",
+        ];
+        const partial: Record<string, unknown> = {};
+        let applied = 0;
+        for (const k of BACKUP_KEYS) {
+          if (k in payload && payload[k] !== undefined && payload[k] !== null) {
+            partial[k] = payload[k];
+            applied += 1;
+          }
+        }
+        if (applied === 0) return false;
+        set(partial as Partial<AppState>);
+        return true;
+      },
 
       // Community
       testimonials: [],
@@ -1745,6 +1788,9 @@ export const useStore = create<AppState>()(
         if (!merged.journalUsage || typeof merged.journalUsage !== "object") {
           merged.journalUsage = { weekStart: "", count: 0 };
         }
+        if (!merged.chatUsage || typeof merged.chatUsage !== "object") {
+          merged.chatUsage = { date: "", count: 0 };
+        }
         if (!("lastSyncAt" in p)) merged.lastSyncAt = null;
         return merged as AppState;
       },
@@ -1827,6 +1873,7 @@ export const useStore = create<AppState>()(
         customWeeklyBet: state.customWeeklyBet,
         atlasUsage: state.atlasUsage,
         journalUsage: state.journalUsage,
+        chatUsage: state.chatUsage,
         lastSyncAt: state.lastSyncAt,
       }),
     }

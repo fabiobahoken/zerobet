@@ -5358,3 +5358,33 @@ Stage Summary:
 Task ID: (cron) webDevReview
 Agent: (à venir — tâche planifiée toutes les 15 min)
 Task: QA continue agent-browser + fixes + enrichissements (voir consigne cron).
+
+---
+Task ID: 2 (cron webDevReview #1)
+Agent: Z.ai Code (session cron)
+Task: QA continue — diagnostics services, ouverture du chat live aux gratuits, restauration cloud, rapport hebdomadaire, polissage palette.
+
+Work Log:
+- **Diagnostic services** : next dev OK (200), chat-service OK sur :3003 (pgrep faux négatif — le port répond 200). Duplication de démarrage évitée (port déjà pris).
+- **QA agent-browser** : découverte que le **chat live était 100 % paywallé** et **sans point d'entrée visible** dans la Communauté (seulement via action rapide dashboard, gated premium).
+- **Diagnostic socket approfondi** : « Déconnecté » persistant côté testeur → isolé la cause : mon navigateur testait `localhost:3000` (bypass le gateway Caddy) ; le handshake socket.io via `:81/?XTransformPort=3003` répond 200 et un client de sonde se connecte + join OK. **Le chat fonctionne via le preview panel** (chemin utilisateur réel). Pattern socket identique au démo officiel `examples/websocket`.
+- **Chat live ouvert aux gratuits** (CommunityChatScreen) :
+  - Hard-paywall supprimé ; lecture libre, connexion socket pour tous
+  - Quota d'envoi **5 messages/jour** (store v3 : `chatUsage`/`consumeChatMessage`, persist + merge sécurisé)
+  - Toast quota avec action « Passer Premium » ; chip « N messages gratuits restants » au-dessus du composer (or + CTA quand épuisé)
+  - Réactions des bulles restent premium (MessageBubble inchangé)
+  - Fonds codés `#0A0A0F` → `#070B0E` (room selector, composer, header)
+- **Découvrabilité** : pilule **« Chat live »** (gradient or) ajoutée en tête des onglets Communauté → navigue vers `community-chat` (CommunityScreen + imports sound/haptics).
+- **Restauration cloud** (SettingsScreen) : bouton « Restaurer depuis le cloud » → `GET /api/progress?deviceId` + nouvelle action store `restoreFromSnapshot()` (liste blanche de 31 clés backup, refuse payload vide/corrompu). Toasts dédiés (succès / aucune sauvegarde / échec).
+- **Rapport hebdomadaire** (nouveau composant `WeeklyReport.tsx` en haut de StatsScreen, rendu instantané avant les charts) :
+  - Agrège 7 jours : jours clean (streakHistory), écritures (journal), crises gérées (panicEvents), XP gagnés (xpHistory)
+  - Verdict adaptatif (empty/start/great/good/tough) avec pilule colorée + message bienveillant (pas de culpabilisation)
+  - Accent aurora émeraude, grille 4 métriques ; 17 clés i18n × 3 langues
+  - Fix immédiat : clé de description `weeklyReportVerdict*Desc` (raw key visible en QA → corrigé et revérifié « Tu tiens bon. La régularité… »)
+- **Polissage palette 2.0** : PaywallScreen (ring/checkbox `#FF3B30`→`#10B981`), BottomNav halo actif émeraude/teal, WelcomeScreen rayons orbitaux or, carte streak StatsScreen amber/gold (fin du rouge alarme sur les cartes).
+
+Stage Summary:
+- **Vérifié en navigateur** : pilule « Chat live » visible ; pseudo + join OK en gratuit ; chip « 5 messages gratuits restants aujourd'hui » ; socket « Bienvenue TestQA ! » via service ; Rapport de la semaine complet (pill « Solide », 150 XP, message traduit) ; GET/POST /api/progress 200 continus.
+- **Qualité** : tsc 0 erreur, lint 0/0, dev.log propre.
+- **Risques/notes** : le testeur local doit passer par `:81` (Caddy) pour le socket — ne jamais juger « service down » depuis `localhost:3000` ; `PaywallOverlay` dans CommunityChatScreen désormais inutilisé (lint ne le signale pas, cleanup futur possible) ; quota chat côté client uniquement (un utilisateur avancé peut contourner — acceptable en local-first, un rate-limit serveur socket est l'étape suivante idéale).
+- **Prochaines étapes recommandées** : rate-limit serveur sur l'événement socket `message` (quota serveur), notifications push PWA réelles, traduction des 90 citations du Programme 90 jours, pagination témoignages, cleanup `journalLocked*`/`PaywallOverlay` morts.
