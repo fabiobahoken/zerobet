@@ -288,7 +288,7 @@ function AffirmationCard({
       {/* Bottom row: badge */}
       <div className="mt-3 flex items-center gap-2">
         {affirmation.isCustom ? (
-          <span className="px-2 py-0.5 rounded-full bg-[#C084FC]/15 text-[#C084FC] text-[10px] font-semibold border border-[#C084FC]/30">
+          <span className="px-2 py-0.5 rounded-full bg-[#FFD166]/15 text-[#FFD166] text-[10px] font-semibold border border-[#FFD166]/30">
             {t("affirmationsCustom")}
           </span>
         ) : (
@@ -596,7 +596,7 @@ export function AffirmationsScreen() {
             <div className="flex-1">
               <h1 className="text-white font-bold text-xl font-[family-name:var(--font-poppins)] leading-tight flex items-center gap-2">
                 {t("affirmationsTitle")}
-                <Sparkles size={18} className="text-[#C084FC]" />
+                <Sparkles size={18} className="text-[#FFD166]" />
               </h1>
               <p className="text-white/50 text-xs">{t("affirmationsSubtitle")}</p>
             </div>
@@ -848,7 +848,7 @@ export function AffirmationsScreen() {
             {!isPremium ? (
               <div className="relative">
                 <div
-                  className="absolute inset-0 backdrop-blur-md bg-[#070B0E]/70 flex flex-col items-center justify-center gap-3 z-10 rounded-2xl py-6"
+                  className="absolute inset-0 backdrop-blur-md bg-[#0B0704]/70 flex flex-col items-center justify-center gap-3 z-10 rounded-2xl py-6"
                   aria-hidden={false}
                 >
                   <div className="w-12 h-12 rounded-full bg-[#F59E0B]/15 flex items-center justify-center">
@@ -964,7 +964,7 @@ export function AffirmationsScreen() {
         >
           <Quote
             size={20}
-            className="text-[#C084FC] mx-auto mb-2"
+            className="text-[#FFD166] mx-auto mb-2"
             aria-hidden
           />
           <p className="text-white/70 text-xs italic font-[family-name:var(--font-poppins)] leading-relaxed">
@@ -1019,7 +1019,7 @@ export function AffirmationsScreen() {
                           ? "text-white/40"
                           : newText.trim().length > 200
                           ? "text-[#FF3B30]"
-                          : "text-[#4ADE80]"
+                          : "text-[#FFC94D]"
                       }`}
                     >
                       {newText.trim().length}/200

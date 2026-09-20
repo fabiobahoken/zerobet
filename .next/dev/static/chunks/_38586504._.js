@@ -500,7 +500,7 @@ const PHASE_META = {
     hour24: {
         labelKey: "relapsePhaseHour24",
         timeframe: "6-24h",
-        color: "#4ADE80",
+        color: "#FFC94D",
         emoji: "💪"
     }
 };
@@ -566,7 +566,7 @@ function getMultiplierTier(streakDays) {
         label: "Triple XP",
         min: 90,
         max: Infinity,
-        color: "#C084FC"
+        color: "#FFD166"
     };
     if (streakDays >= 30) return {
         multiplier: 2.0,
@@ -587,7 +587,7 @@ function getMultiplierTier(streakDays) {
         label: "+20% XP",
         min: 7,
         max: 14,
-        color: "#4ADE80"
+        color: "#FFC94D"
     };
     return {
         multiplier: 1.0,
@@ -1075,7 +1075,7 @@ const useStore = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_module
                 name: n
             }),
         // Avatar color
-        avatarColor: "#10B981",
+        avatarColor: "#FF6B00",
         setAvatarColor: (color)=>set({
                 avatarColor: color
             }),
@@ -2138,7 +2138,7 @@ const useStore = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_module
                 adminStreakOverride: null,
                 meditationStreak: 0,
                 lastMeditationDate: null,
-                avatarColor: "#10B981",
+                avatarColor: "#FF6B00",
                 profilePhoto: null,
                 articlesRead: 0,
                 xp: 0,
@@ -2468,26 +2468,17 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
     "subscribeToPush",
     ()=>subscribeToPush
 ]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = /*#__PURE__*/ __turbopack_context__.i("[project]/node_modules/next/dist/build/polyfills/process.js [app-client] (ecmascript)");
 async function registerServiceWorker() {
     if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
     ;
     if (!("serviceWorker" in navigator)) return false;
-    try {
-        const registration = await navigator.serviceWorker.register("/sw.js", {
-            scope: "/",
-            // updateViaCache: "none" ensures the SW itself is always fetched fresh
-            updateViaCache: "none"
-        });
-        // Check for updates on every page load (in case the SW file changed)
-        registration.update().catch(()=>{
-        // Silent fail — update is non-critical
-        });
-        console.log("[PWA] Service worker registered:", registration.scope);
-        return true;
-    } catch (error) {
-        console.error("[PWA] Service worker registration failed:", error);
-        return false;
-    }
+    // Never cache in development: the SW's app-shell cache races against
+    // Turbopack HMR chunks and serves stale assets (ChunkLoadError on reload).
+    // Dev benefit is nil, so we register in production builds only.
+    if ("TURBOPACK compile-time truthy", 1) return false;
+    //TURBOPACK unreachable
+    ;
 }
 async function clearServiceWorkerAndCaches() {
     if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable

@@ -36,7 +36,7 @@ const SYMPTOM_CATEGORIES = [
         key: "mental",
         labelKey: "symptomCatMentalLabel",
         icon: "🧠",
-        color: "#C084FC",
+        color: "#FFD166",
         symptomKeys: [
             "symptomMental1",
             "symptomMental2",
@@ -50,7 +50,7 @@ const SYMPTOM_CATEGORIES = [
         key: "social",
         labelKey: "symptomCatSocialLabel",
         icon: "👥",
-        color: "#2DD4BF",
+        color: "#FFB020",
         symptomKeys: [
             "symptomSocial1",
             "symptomSocial2",
@@ -78,7 +78,7 @@ const SYMPTOM_CATEGORIES = [
         key: "family",
         labelKey: "symptomCatFamilyLabel",
         icon: "👨‍👩‍👧",
-        color: "#4ADE80",
+        color: "#FFC94D",
         symptomKeys: [
             "symptomFamily1",
             "symptomFamily2",
@@ -221,8 +221,8 @@ const PLAN_OPTIONS = [
         // plus mentor access (verified badge, mentor directory, coaching tools).
         monthlyPrice: 20000,
         annualPrice: 200000,
-        color: "#4ADE80",
-        gradient: "linear-gradient(135deg, #4ADE80 0%, #2DD4BF 100%)",
+        color: "#FFC94D",
+        gradient: "linear-gradient(135deg, #FFC94D 0%, #FFB020 100%)",
         icon: "🛡️",
         features: [
             "Tout le plan Premium",
@@ -254,8 +254,8 @@ const PLAN_OPTIONS = [
         // and customization — designed for certified therapists.
         monthlyPrice: 40000,
         annualPrice: 400000,
-        color: "#C084FC",
-        gradient: "linear-gradient(135deg, #C084FC 0%, #2DD4BF 100%)",
+        color: "#FFD166",
+        gradient: "linear-gradient(135deg, #FFD166 0%, #FFB020 100%)",
         icon: "🎓",
         features: [
             "Tout le plan Premium",
@@ -580,7 +580,7 @@ function OnboardingProgress({ currentStep }) {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "sticky top-0 z-30 -mx-6 px-6 pt-3 pb-2.5 mb-2 backdrop-blur-xl bg-[#070B0E]/80 border-b border-white/5",
+                className: "sticky top-0 z-30 -mx-6 px-6 pt-3 pb-2.5 mb-2 backdrop-blur-xl bg-[#0B0704]/80 border-b border-white/5",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "flex items-center justify-between gap-3 mb-2",
@@ -943,7 +943,7 @@ const OPERATORS = [
     {
         id: "wave",
         name: "Wave",
-        color: "#1DC8FF",
+        color: "#FFC94D",
         countries: "SN · CI · ML · BF"
     },
     {
@@ -1377,7 +1377,7 @@ function MobileMoneyModal({ open, planId, planName, billingCycle, amountFCFA, on
                                                 placeholder: "07 00 00 00 00",
                                                 maxLength: 20,
                                                 autoFocus: true,
-                                                className: `w-full pl-10 pr-4 py-3.5 rounded-xl bg-white/5 text-white text-base tracking-wide placeholder:text-white/20 border outline-none transition-colors focus:border-[#10B981] ${phoneError ? "border-[#FF453A]" : "border-white/10"}`
+                                                className: `w-full pl-10 pr-4 py-3.5 rounded-xl bg-white/5 text-white text-base tracking-wide placeholder:text-white/20 border outline-none transition-colors focus:border-[#FF6B00] ${phoneError ? "border-[#FF453A]" : "border-white/10"}`
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/components/MobileMoneyModal.tsx",
                                                 lineNumber: 305,
@@ -1555,7 +1555,7 @@ function MobileMoneyModal({ open, planId, planName, billingCycle, amountFCFA, on
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "text-xl font-extrabold text-[#4ADE80] font-[family-name:var(--font-poppins)]",
+                                                        className: "text-xl font-extrabold text-[#FFC94D] font-[family-name:var(--font-poppins)]",
                                                         children: totalLabel
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/components/MobileMoneyModal.tsx",
@@ -1903,7 +1903,7 @@ function StatusLine({ label, done, pending, idle }) {
         className: "flex items-center gap-2.5",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: `w-4 h-4 rounded-full flex-shrink-0 ${done ? "bg-[#4ADE80]" : pending ? "bg-[#FBBF24]/80" : "bg-white/15"}`,
+                className: `w-4 h-4 rounded-full flex-shrink-0 ${done ? "bg-[#FFC94D]" : pending ? "bg-[#FBBF24]/80" : "bg-white/15"}`,
                 children: pending && !idle && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
                     animate: {
                         opacity: [
@@ -2155,7 +2155,7 @@ function PaywallScreen() {
                         children: [
                             t("paywallAnnual"),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                className: "text-[10px] px-1.5 py-0.5 rounded-full bg-[#4ADE80] text-[#070B0E] font-bold",
+                                className: "text-[10px] px-1.5 py-0.5 rounded-full bg-[#FFC94D] text-[#0B0704] font-bold",
                                 children: "-40%"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/PaywallScreen.tsx",
@@ -2197,7 +2197,7 @@ function PaywallScreen() {
                         onKeyDown: (e)=>{
                             if (e.key === "Enter" || e.key === " ") handleSelectPlan(planOption.id);
                         },
-                        className: `relative glass-card-strong p-5 cursor-pointer transition-all ${isSelected ? "ring-2 ring-[#10B981] glow-green" : ""}`,
+                        className: `relative glass-card-strong p-5 cursor-pointer transition-all ${isSelected ? "ring-2 ring-[#FF6B00] glow-green" : ""}`,
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "absolute -top-2.5 right-4 flex gap-1.5",
@@ -2221,7 +2221,7 @@ function PaywallScreen() {
                                         columnNumber: 19
                                     }, this),
                                     planOption.bestValue && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "px-2.5 py-1 rounded-full text-[10px] font-bold text-[#070B0E] bg-[#FBBF24]",
+                                        className: "px-2.5 py-1 rounded-full text-[10px] font-bold text-[#0B0704] bg-[#FBBF24]",
                                         children: t("paywallBestValueBadge")
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/PaywallScreen.tsx",
@@ -2346,7 +2346,7 @@ function PaywallScreen() {
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__["Check"], {
                                                     size: 14,
-                                                    className: "text-[#4ADE80] mt-0.5 flex-shrink-0"
+                                                    className: "text-[#FFC94D] mt-0.5 flex-shrink-0"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/zerobet/screens/PaywallScreen.tsx",
                                                     lineNumber: 214,
@@ -2425,7 +2425,7 @@ function PaywallScreen() {
                     },
                     {
                         name: "Wave",
-                        color: "#1DC8FF",
+                        color: "#FFC94D",
                         dark: false
                     },
                     {
@@ -2520,10 +2520,10 @@ function PaywallScreen() {
                             className: "flex items-center gap-3 mb-4",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "w-10 h-10 rounded-full bg-[#4ADE80]/20 flex items-center justify-center",
+                                    className: "w-10 h-10 rounded-full bg-[#FFC94D]/20 flex items-center justify-center",
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Shield$3e$__["Shield"], {
                                         size: 20,
-                                        className: "text-[#4ADE80]"
+                                        className: "text-[#FFC94D]"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/PaywallScreen.tsx",
                                         lineNumber: 303,
@@ -2563,7 +2563,7 @@ function PaywallScreen() {
                                     type: "checkbox",
                                     checked: dataConsent,
                                     onChange: (e)=>setDataConsent(e.target.checked),
-                                    className: "mt-1 w-4 h-4 rounded accent-[#10B981]"
+                                    className: "mt-1 w-4 h-4 rounded accent-[#FF6B00]"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/screens/PaywallScreen.tsx",
                                     lineNumber: 311,

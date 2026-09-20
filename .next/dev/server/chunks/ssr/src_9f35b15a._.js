@@ -239,14 +239,14 @@ const RESOURCES = [
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$message$2d$square$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__MessageSquare$3e$__["MessageSquare"],
         titleKey: "mentorshipRes2Title",
         typeKey: "mentorshipResTypeArticle",
-        color: "#2DD4BF",
+        color: "#FFB020",
         descKey: "mentorshipRes2Desc"
     },
     {
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$video$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Video$3e$__["Video"],
         titleKey: "mentorshipRes3Title",
         typeKey: "mentorshipResTypeVideo",
-        color: "#C084FC",
+        color: "#FFD166",
         descKey: "mentorshipRes3Desc"
     }
 ];
@@ -422,7 +422,7 @@ function Dropdown({ value, onChange, options, placeholder }) {
                                 }, this),
                                 selected && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__["Check"], {
                                     size: 14,
-                                    className: "text-[#4ADE80]"
+                                    className: "text-[#FFC94D]"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/screens/MentorshipScreen.tsx",
                                     lineNumber: 229,
@@ -583,7 +583,7 @@ function MentorshipScreen() {
                         "aria-hidden": true,
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2d$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ShieldCheck$3e$__["ShieldCheck"], {
                             size: 18,
-                            className: "text-[#4ADE80]"
+                            className: "text-[#FFC94D]"
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/MentorshipScreen.tsx",
                             lineNumber: 363,
@@ -622,12 +622,12 @@ function MentorshipScreen() {
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "w-9 h-9 rounded-xl flex items-center justify-center",
                                 style: {
-                                    background: `${psyMode ? "#C084FC" : "#9CA3AF"}22`
+                                    background: `${psyMode ? "#FFD166" : "#9CA3AF"}22`
                                 },
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$stethoscope$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Stethoscope$3e$__["Stethoscope"], {
                                     size: 18,
                                     style: {
-                                        color: psyMode ? "#C084FC" : "#9CA3AF"
+                                        color: psyMode ? "#FFD166" : "#9CA3AF"
                                     }
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/screens/MentorshipScreen.tsx",
@@ -671,7 +671,7 @@ function MentorshipScreen() {
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: `w-11 h-6 rounded-full p-0.5 transition-colors ${psyMode ? "bg-[#C084FC]" : "bg-white/15"}`,
+                        className: `w-11 h-6 rounded-full p-0.5 transition-colors ${psyMode ? "bg-[#FFD166]" : "bg-white/15"}`,
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
                             animate: {
                                 x: psyMode ? 20 : 0
@@ -709,14 +709,14 @@ function MentorshipScreen() {
                         className: "glass-card-strong p-5 relative overflow-hidden",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "absolute -top-16 -right-16 w-44 h-44 rounded-full blur-3xl pointer-events-none bg-[#4ADE80]/20"
+                                className: "absolute -top-16 -right-16 w-44 h-44 rounded-full blur-3xl pointer-events-none bg-[#FFC94D]/20"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/MentorshipScreen.tsx",
                                 lineNumber: 425,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "absolute -bottom-12 -left-12 w-32 h-32 rounded-full blur-3xl pointer-events-none bg-[#2DD4BF]/15"
+                                className: "absolute -bottom-12 -left-12 w-32 h-32 rounded-full blur-3xl pointer-events-none bg-[#FFB020]/15"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/MentorshipScreen.tsx",
                                 lineNumber: 426,
@@ -730,7 +730,7 @@ function MentorshipScreen() {
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sparkles$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Sparkles$3e$__["Sparkles"], {
                                                 size: 16,
-                                                className: "text-[#4ADE80]"
+                                                className: "text-[#FFC94D]"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/MentorshipScreen.tsx",
                                                 lineNumber: 430,
@@ -826,7 +826,7 @@ function MentorshipScreen() {
                             className: "glass-card p-5 relative overflow-hidden",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "absolute -top-12 -right-12 w-32 h-32 rounded-full blur-3xl pointer-events-none bg-[#C084FC]/20"
+                                    className: "absolute -top-12 -right-12 w-32 h-32 rounded-full blur-3xl pointer-events-none bg-[#FFD166]/20"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/screens/MentorshipScreen.tsx",
                                     lineNumber: 469,
@@ -840,7 +840,7 @@ function MentorshipScreen() {
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$stethoscope$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Stethoscope$3e$__["Stethoscope"], {
                                                     size: 18,
-                                                    className: "text-[#C084FC]"
+                                                    className: "text-[#FFD166]"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/zerobet/screens/MentorshipScreen.tsx",
                                                     lineNumber: 472,
@@ -958,12 +958,12 @@ function MentorshipScreen() {
                                                     __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$haptics$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["haptics"].light();
                                                     __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].success(t("mentorshipPsyDocUploaded"));
                                                 },
-                                                className: `w-full h-24 rounded-xl border-2 border-dashed flex flex-col items-center justify-center gap-1.5 transition-colors ${psyDocUploaded ? "border-[#4ADE80]/60 bg-[#4ADE80]/10" : "border-white/15 hover:border-white/30"}`,
+                                                className: `w-full h-24 rounded-xl border-2 border-dashed flex flex-col items-center justify-center gap-1.5 transition-colors ${psyDocUploaded ? "border-[#FFC94D]/60 bg-[#FFC94D]/10" : "border-white/15 hover:border-white/30"}`,
                                                 children: psyDocUploaded ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__["Check"], {
                                                             size: 20,
-                                                            className: "text-[#4ADE80]"
+                                                            className: "text-[#FFC94D]"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/zerobet/screens/MentorshipScreen.tsx",
                                                             lineNumber: 542,
@@ -1045,11 +1045,11 @@ function MentorshipScreen() {
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "flex items-start gap-2 p-3 rounded-xl bg-[#C084FC]/10 border border-[#C084FC]/25 mb-4",
+                                            className: "flex items-start gap-2 p-3 rounded-xl bg-[#FFD166]/10 border border-[#FFD166]/25 mb-4",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$triangle$2d$alert$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__AlertTriangle$3e$__["AlertTriangle"], {
                                                     size: 16,
-                                                    className: "text-[#C084FC] mt-0.5 flex-shrink-0"
+                                                    className: "text-[#FFD166] mt-0.5 flex-shrink-0"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/zerobet/screens/MentorshipScreen.tsx",
                                                     lineNumber: 577,
@@ -1130,7 +1130,7 @@ function MentorshipScreen() {
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: `px-2.5 py-1 rounded-full text-[10px] font-bold ${isEligible ? "bg-[#4ADE80]/20 text-[#4ADE80]" : "bg-[#FBBF24]/20 text-[#FBBF24]"}`,
+                                                    className: `px-2.5 py-1 rounded-full text-[10px] font-bold ${isEligible ? "bg-[#FFC94D]/20 text-[#FFC94D]" : "bg-[#FBBF24]/20 text-[#FBBF24]"}`,
                                                     children: isEligible ? t("mentorshipEligible") : t("mentorshipDaysLeft", {
                                                         n: daysRemaining
                                                     })
@@ -1162,7 +1162,7 @@ function MentorshipScreen() {
                                                 },
                                                 className: "absolute inset-y-0 left-0 rounded-full gradient-success",
                                                 style: {
-                                                    boxShadow: "0 0 16px rgba(74,222,128,0.45)"
+                                                    boxShadow: "0 0 16px rgba(255,201,77,0.45)"
                                                 }
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/MentorshipScreen.tsx",
@@ -1178,10 +1178,10 @@ function MentorshipScreen() {
                                             className: "flex items-start gap-3",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "w-9 h-9 rounded-full bg-[#4ADE80]/20 flex items-center justify-center flex-shrink-0",
+                                                    className: "w-9 h-9 rounded-full bg-[#FFC94D]/20 flex items-center justify-center flex-shrink-0",
                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__["Check"], {
                                                         size: 18,
-                                                        className: "text-[#4ADE80]"
+                                                        className: "text-[#FFC94D]"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/MentorshipScreen.tsx",
                                                         lineNumber: 649,
@@ -1224,7 +1224,7 @@ function MentorshipScreen() {
                                                                     block: "start"
                                                                 });
                                                             },
-                                                            className: "px-4 py-2 rounded-xl bg-[#4ADE80] text-[#070B0E] text-xs font-bold flex items-center gap-1.5",
+                                                            className: "px-4 py-2 rounded-xl bg-[#FFC94D] text-[#0B0704] text-xs font-bold flex items-center gap-1.5",
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$crown$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Crown$3e$__["Crown"], {
                                                                     size: 14
@@ -1312,7 +1312,7 @@ function MentorshipScreen() {
                                     className: "glass-card p-5 relative overflow-hidden",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "absolute -top-12 -right-12 w-32 h-32 rounded-full blur-3xl pointer-events-none bg-[#4ADE80]/15"
+                                            className: "absolute -top-12 -right-12 w-32 h-32 rounded-full blur-3xl pointer-events-none bg-[#FFC94D]/15"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/screens/MentorshipScreen.tsx",
                                             lineNumber: 700,
@@ -1329,7 +1329,7 @@ function MentorshipScreen() {
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__["Users"], {
                                                                     size: 16,
-                                                                    className: "text-[#4ADE80]"
+                                                                    className: "text-[#FFC94D]"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/zerobet/screens/MentorshipScreen.tsx",
                                                                     lineNumber: 704,
@@ -1346,7 +1346,7 @@ function MentorshipScreen() {
                                                             className: "flex gap-1.5",
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                    className: "px-2 py-1 rounded-full text-[10px] font-bold bg-[#4ADE80]/20 text-[#4ADE80]",
+                                                                    className: "px-2 py-1 rounded-full text-[10px] font-bold bg-[#FFC94D]/20 text-[#FFC94D]",
                                                                     children: t("mentorshipMenteesActive", {
                                                                         n: activeMentees.length
                                                                     })
@@ -1356,7 +1356,7 @@ function MentorshipScreen() {
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                    className: "px-2 py-1 rounded-full text-[10px] font-bold bg-[#2DD4BF]/20 text-[#2DD4BF]",
+                                                                    className: "px-2 py-1 rounded-full text-[10px] font-bold bg-[#FFB020]/20 text-[#FFB020]",
                                                                     children: t("mentorshipMenteesSessions")
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/zerobet/screens/MentorshipScreen.tsx",
@@ -1414,7 +1414,7 @@ function MentorshipScreen() {
                                                                                     columnNumber: 31
                                                                                 }, this),
                                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                                    className: `px-1.5 py-0.5 rounded-full text-[9px] font-bold ${m.statusKey === "mentorshipStatusActive" ? "bg-[#4ADE80]/20 text-[#4ADE80]" : "bg-[#FBBF24]/20 text-[#FBBF24]"}`,
+                                                                                    className: `px-1.5 py-0.5 rounded-full text-[9px] font-bold ${m.statusKey === "mentorshipStatusActive" ? "bg-[#FFC94D]/20 text-[#FFC94D]" : "bg-[#FBBF24]/20 text-[#FBBF24]"}`,
                                                                                     children: t(m.statusKey)
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/src/components/zerobet/screens/MentorshipScreen.tsx",
@@ -1556,7 +1556,7 @@ function MentorshipScreen() {
                                     className: "glass-card p-5 relative overflow-hidden scroll-mt-20",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "absolute -top-12 -right-12 w-32 h-32 rounded-full blur-3xl pointer-events-none bg-[#4ADE80]/15"
+                                            className: "absolute -top-12 -right-12 w-32 h-32 rounded-full blur-3xl pointer-events-none bg-[#FFC94D]/15"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/screens/MentorshipScreen.tsx",
                                             lineNumber: 793,
@@ -1570,7 +1570,7 @@ function MentorshipScreen() {
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$award$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Award$3e$__["Award"], {
                                                             size: 18,
-                                                            className: "text-[#4ADE80]"
+                                                            className: "text-[#FFC94D]"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/zerobet/screens/MentorshipScreen.tsx",
                                                             lineNumber: 796,
@@ -1671,7 +1671,7 @@ function MentorshipScreen() {
                                                             return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                                 type: "button",
                                                                 onClick: ()=>toggleLanguage(lang),
-                                                                className: `px-3 py-1.5 rounded-full text-xs font-medium transition-all active:scale-95 ${sel ? "bg-[#4ADE80] text-[#070B0E]" : "glass-pill text-white/70"}`,
+                                                                className: `px-3 py-1.5 rounded-full text-xs font-medium transition-all active:scale-95 ${sel ? "bg-[#FFC94D] text-[#0B0704]" : "glass-pill text-white/70"}`,
                                                                 children: [
                                                                     sel && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__["Check"], {
                                                                         size: 11,
@@ -1746,7 +1746,7 @@ function MentorshipScreen() {
                                                                 __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$sound$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["sound"].playClick();
                                                                 __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$haptics$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["haptics"].light();
                                                             },
-                                                            className: "border-white/30 data-[state=checked]:bg-[#4ADE80] data-[state=checked]:border-[#4ADE80] data-[state=checked]:text-[#070B0E] mt-0.5"
+                                                            className: "border-white/30 data-[state=checked]:bg-[#FFC94D] data-[state=checked]:border-[#FFC94D] data-[state=checked]:text-[#0B0704] mt-0.5"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/zerobet/screens/MentorshipScreen.tsx",
                                                             lineNumber: 889,
@@ -1763,7 +1763,7 @@ function MentorshipScreen() {
                                                                         e.preventDefault();
                                                                         setCodeOpen(true);
                                                                     },
-                                                                    className: "text-[#4ADE80] underline",
+                                                                    className: "text-[#FFC94D] underline",
                                                                     children: t("mentorshipCodeLink")
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/zerobet/screens/MentorshipScreen.tsx",
@@ -1788,7 +1788,7 @@ function MentorshipScreen() {
                                                     },
                                                     onClick: handleSubmitMentor,
                                                     disabled: !canSubmitMentor,
-                                                    className: `w-full h-12 rounded-2xl font-semibold text-sm flex items-center justify-center gap-2 transition-all ${canSubmitMentor ? "gradient-success text-[#070B0E]" : "bg-white/10 text-white/40 cursor-not-allowed"}`,
+                                                    className: `w-full h-12 rounded-2xl font-semibold text-sm flex items-center justify-center gap-2 transition-all ${canSubmitMentor ? "gradient-success text-[#0B0704]" : "bg-white/10 text-white/40 cursor-not-allowed"}`,
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$send$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Send$3e$__["Send"], {
                                                             size: 16
@@ -1834,7 +1834,7 @@ function MentorshipScreen() {
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2d$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ShieldCheck$3e$__["ShieldCheck"], {
                                                             size: 18,
-                                                            className: "text-[#4ADE80]"
+                                                            className: "text-[#FFC94D]"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/zerobet/screens/MentorshipScreen.tsx",
                                                             lineNumber: 944,
@@ -1904,7 +1904,7 @@ function MentorshipScreen() {
                                                             className: "flex items-start gap-2.5",
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                    className: "w-5 h-5 rounded-full bg-[#4ADE80]/20 text-[#4ADE80] text-[10px] font-bold flex items-center justify-center flex-shrink-0 mt-0.5",
+                                                                    className: "w-5 h-5 rounded-full bg-[#FFC94D]/20 text-[#FFC94D] text-[10px] font-bold flex items-center justify-center flex-shrink-0 mt-0.5",
                                                                     children: i + 1
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/zerobet/screens/MentorshipScreen.tsx",
@@ -2143,14 +2143,14 @@ function MentorshipScreen() {
                         className: "glass-card-strong p-7 w-full max-w-sm text-center relative overflow-hidden",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "absolute -top-16 -right-16 w-40 h-40 rounded-full blur-3xl bg-[#4ADE80]/30 pointer-events-none"
+                                className: "absolute -top-16 -right-16 w-40 h-40 rounded-full blur-3xl bg-[#FFC94D]/30 pointer-events-none"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/MentorshipScreen.tsx",
                                 lineNumber: 1068,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "absolute -bottom-12 -left-12 w-32 h-32 rounded-full blur-3xl bg-[#2DD4BF]/20 pointer-events-none"
+                                className: "absolute -bottom-12 -left-12 w-32 h-32 rounded-full blur-3xl bg-[#FFB020]/20 pointer-events-none"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/MentorshipScreen.tsx",
                                 lineNumber: 1069,
@@ -2187,10 +2187,10 @@ function MentorshipScreen() {
                                     type: "spring",
                                     stiffness: 300
                                 },
-                                className: "relative w-16 h-16 mx-auto mb-4 rounded-full bg-[#4ADE80]/20 flex items-center justify-center",
+                                className: "relative w-16 h-16 mx-auto mb-4 rounded-full bg-[#FFC94D]/20 flex items-center justify-center",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__["Check"], {
                                     size: 32,
-                                    className: "text-[#4ADE80]"
+                                    className: "text-[#FFC94D]"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/screens/MentorshipScreen.tsx",
                                     lineNumber: 1085,
@@ -2222,7 +2222,7 @@ function MentorshipScreen() {
                                     scale: 0.97
                                 },
                                 onClick: closeSuccess,
-                                className: "relative w-full h-11 rounded-2xl gradient-success text-[#070B0E] font-bold text-sm",
+                                className: "relative w-full h-11 rounded-2xl gradient-success text-[#0B0704] font-bold text-sm",
                                 children: t("mentorshipSuccessContinue")
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/MentorshipScreen.tsx",

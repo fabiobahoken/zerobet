@@ -578,7 +578,7 @@ const SECTIONS = [
         id: "journal",
         labelKey: "atlasJournal",
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$book$2d$open$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__BookOpen$3e$__["BookOpen"],
-        color: "#2DD4BF"
+        color: "#FFB020"
     },
     {
         id: "motivation",
@@ -590,7 +590,7 @@ const SECTIONS = [
         id: "progress",
         labelKey: "atlasProgress",
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trophy$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Trophy$3e$__["Trophy"],
-        color: "#4ADE80"
+        color: "#FFC94D"
     },
     {
         id: "crisis",
@@ -603,12 +603,12 @@ const SUGGESTED_PROMPTS = [
     {
         labelKey: "atlasSuggested1",
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$wind$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Wind$3e$__["Wind"],
-        color: "#2DD4BF"
+        color: "#FFB020"
     },
     {
         labelKey: "atlasSuggested2",
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$book$2d$open$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__BookOpen$3e$__["BookOpen"],
-        color: "#4ADE80"
+        color: "#FFC94D"
     },
     {
         labelKey: "atlasSuggested3",
@@ -618,12 +618,12 @@ const SUGGESTED_PROMPTS = [
     {
         labelKey: "atlasSuggested4",
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$brain$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Brain$3e$__["Brain"],
-        color: "#C084FC"
+        color: "#FFD166"
     },
     {
         labelKey: "atlasSuggested5",
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__["Users"],
-        color: "#4ADE80"
+        color: "#FFC94D"
     },
     {
         labelKey: "atlasSuggested6",
@@ -636,7 +636,7 @@ const QUICK_ACTIONS = [
         id: "journal",
         labelKey: "atlasAnalyzeJournal",
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$clipboard$2d$list$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ClipboardList$3e$__["ClipboardList"],
-        color: "#2DD4BF"
+        color: "#FFB020"
     },
     {
         id: "motivation",
@@ -648,7 +648,7 @@ const QUICK_ACTIONS = [
         id: "progress",
         labelKey: "atlasSeeProgress",
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trophy$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Trophy$3e$__["Trophy"],
-        color: "#4ADE80"
+        color: "#FFC94D"
     },
     {
         id: "crisis",
@@ -995,7 +995,7 @@ function AtlasScreen() {
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "flex items-center gap-1 text-[#4ADE80] text-[10px] flex-shrink-0",
+                                                    className: "flex items-center gap-1 text-[#FFC94D] text-[10px] flex-shrink-0",
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].span, {
                                                             animate: {
@@ -1009,7 +1009,7 @@ function AtlasScreen() {
                                                                 duration: 1.6,
                                                                 repeat: Infinity
                                                             },
-                                                            className: "w-1.5 h-1.5 rounded-full bg-[#4ADE80]"
+                                                            className: "w-1.5 h-1.5 rounded-full bg-[#FFC94D]"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/zerobet/screens/AtlasScreen.tsx",
                                                             lineNumber: 277,
@@ -1066,7 +1066,7 @@ function AtlasScreen() {
                     }, this),
                     !isPremium && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                         onClick: ()=>navigate("paywall"),
-                        className: `flex-shrink-0 px-2.5 py-1.5 rounded-full text-[10px] font-semibold flex items-center gap-1.5 border transition-colors ${remainingFree <= 2 ? "bg-[#FBBF24]/10 border-[#FBBF24]/30 text-[#FBBF24]" : "bg-[#4ADE80]/10 border-[#4ADE80]/25 text-[#4ADE80]"}`,
+                        className: `flex-shrink-0 px-2.5 py-1.5 rounded-full text-[10px] font-semibold flex items-center gap-1.5 border transition-colors ${remainingFree <= 2 ? "bg-[#FBBF24]/10 border-[#FBBF24]/30 text-[#FBBF24]" : "bg-[#FFC94D]/10 border-[#FFC94D]/25 text-[#FFC94D]"}`,
                         "aria-label": t("atlasQuotaChip", {
                             n: remainingFree
                         }),
@@ -1241,7 +1241,7 @@ function AtlasScreen() {
                                     }, this)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                     onClick: ()=>sendMessage(t("atlasAnalyzeJournalPrompt"), "journal"),
-                                    className: "w-full py-2.5 rounded-xl glass-card text-[#2DD4BF] text-xs font-medium flex items-center justify-center gap-2",
+                                    className: "w-full py-2.5 rounded-xl glass-card text-[#FFB020] text-xs font-medium flex items-center justify-center gap-2",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sparkles$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Sparkles$3e$__["Sparkles"], {
                                             size: 14
@@ -1409,7 +1409,7 @@ function AtlasScreen() {
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                     onClick: ()=>sendMessage(t("atlasSeeProgressPrompt"), "progress"),
-                                    className: "w-full py-2.5 rounded-xl glass-card text-[#4ADE80] text-xs font-medium flex items-center justify-center gap-2",
+                                    className: "w-full py-2.5 rounded-xl glass-card text-[#FFC94D] text-xs font-medium flex items-center justify-center gap-2",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trophy$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Trophy$3e$__["Trophy"], {
                                             size: 14
@@ -1830,7 +1830,7 @@ function AtlasScreen() {
                             if (e.key === "Enter") sendMessage(input);
                         },
                         placeholder: t("atlasTypeMessage"),
-                        className: "flex-1 p-3 rounded-2xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#10B981] focus:ring-1 focus:ring-[#10B981]/40 transition-all"
+                        className: "flex-1 p-3 rounded-2xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#FF6B00] focus:ring-1 focus:ring-[#FF6B00]/40 transition-all"
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/screens/AtlasScreen.tsx",
                         lineNumber: 606,

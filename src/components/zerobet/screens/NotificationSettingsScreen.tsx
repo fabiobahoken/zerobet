@@ -93,21 +93,21 @@ const TOGGLES: ToggleDef[] = [
     labelKey: "notifCommunity",
     descKey: "notifCommunityDesc",
     icon: Users,
-    color: "#4ADE80",
+    color: "#FFC94D",
   },
   {
     key: "weeklyReport",
     labelKey: "notifWeekly",
     descKey: "notifWeeklyDesc",
     icon: FileBarChart,
-    color: "#10B981",
+    color: "#FF6B00",
   },
   {
     key: "motivationalQuotes",
     labelKey: "notifQuotes",
     descKey: "notifQuotesDesc",
     icon: Quote,
-    color: "#2DD4BF",
+    color: "#FFB020",
   },
   {
     key: "silentHours",
@@ -129,10 +129,10 @@ interface ScheduleItem {
 const SCHEDULE: ScheduleItem[] = [
   { time: "07:00", labelKey: "notifDaily", icon: Clock, color: "#F59E0B", enabledKey: "dailyReminder" },
   { time: "12:00", labelKey: "notifSchedCraving", icon: Heart, color: "#FF3B30", enabledKey: "cravingCheckin" },
-  { time: "18:00", labelKey: "notifSchedQuote", icon: Quote, color: "#2DD4BF", enabledKey: "motivationalQuotes" },
-  { time: "notifSchedTimeSunday", labelKey: "notifWeekly", icon: FileBarChart, color: "#10B981", enabledKey: "weeklyReport" },
+  { time: "18:00", labelKey: "notifSchedQuote", icon: Quote, color: "#FFB020", enabledKey: "motivationalQuotes" },
+  { time: "notifSchedTimeSunday", labelKey: "notifWeekly", icon: FileBarChart, color: "#FF6B00", enabledKey: "weeklyReport" },
   { time: "notifSchedTimeAnytime", labelKey: "notifMilestones", icon: Trophy, color: "#FBBF24", enabledKey: "milestoneAlerts" },
-  { time: "notifSchedTimeAnytime", labelKey: "notifCommunity", icon: Users, color: "#4ADE80", enabledKey: "communityActivity" },
+  { time: "notifSchedTimeAnytime", labelKey: "notifCommunity", icon: Users, color: "#FFC94D", enabledKey: "communityActivity" },
 ];
 
 export function NotificationSettingsScreen() {
@@ -301,7 +301,7 @@ export function NotificationSettingsScreen() {
           <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full blur-3xl pointer-events-none"
             style={{
               background: permissionGranted
-                ? "rgba(74,222,128,0.18)"
+                ? "rgba(255,201,77,0.18)"
                 : notificationPermission === "denied"
                   ? "rgba(255,59,48,0.18)"
                   : "rgba(245, 158, 11,0.18)",
@@ -313,14 +313,14 @@ export function NotificationSettingsScreen() {
                 className="w-10 h-10 rounded-2xl flex items-center justify-center shrink-0"
                 style={{
                   background: permissionGranted
-                    ? "rgba(74,222,128,0.15)"
+                    ? "rgba(255,201,77,0.15)"
                     : notificationPermission === "denied"
                       ? "rgba(255,59,48,0.15)"
                       : "rgba(245, 158, 11,0.15)",
                 }}
               >
                 {permissionGranted ? (
-                  <Check size={20} className="text-[#4ADE80]" />
+                  <Check size={20} className="text-[#FFC94D]" />
                 ) : notificationPermission === "denied" ? (
                   <AlertTriangle size={20} className="text-[#FF3B30]" />
                 ) : (
@@ -389,8 +389,8 @@ export function NotificationSettingsScreen() {
             ============================================================ */}
         <motion.div variants={itemVariants} className="glass-card p-5">
           <div className="flex items-center gap-3 mb-3">
-            <div className="w-10 h-10 rounded-2xl bg-[#10B981]/15 flex items-center justify-center">
-              <Download size={18} className="text-[#10B981]" />
+            <div className="w-10 h-10 rounded-2xl bg-[#FF6B00]/15 flex items-center justify-center">
+              <Download size={18} className="text-[#FF6B00]" />
             </div>
             <div>
               <h2 className="text-white font-semibold text-sm font-[family-name:var(--font-poppins)]">
@@ -401,8 +401,8 @@ export function NotificationSettingsScreen() {
           </div>
 
           {pwaInstalled ? (
-            <div className="flex items-center gap-3 p-3 rounded-2xl bg-[#4ADE80]/10 border border-[#4ADE80]/30">
-              <Check size={18} className="text-[#4ADE80] shrink-0" />
+            <div className="flex items-center gap-3 p-3 rounded-2xl bg-[#FFC94D]/10 border border-[#FFC94D]/30">
+              <Check size={18} className="text-[#FFC94D] shrink-0" />
               <span className="text-white text-sm font-medium">{t("notifInstalledBadge")}</span>
             </div>
           ) : (
@@ -419,11 +419,11 @@ export function NotificationSettingsScreen() {
               </button>
               <div className="space-y-1.5 text-[11px] text-white/50">
                 <p className="flex items-start gap-1.5">
-                  <span className="text-[#10B981] font-bold">{t("notifIosLabel")}</span>
+                  <span className="text-[#FF6B00] font-bold">{t("notifIosLabel")}</span>
                   {t("notifIosSteps")}
                 </p>
                 <p className="flex items-start gap-1.5">
-                  <span className="text-[#4ADE80] font-bold">{t("notifAndroidLabel")}</span>
+                  <span className="text-[#FFC94D] font-bold">{t("notifAndroidLabel")}</span>
                   {t("notifAndroidSteps")}
                 </p>
               </div>
@@ -529,7 +529,7 @@ export function NotificationSettingsScreen() {
                   type="time"
                   value={notificationPreferences.silentHoursStart}
                   onChange={(e) => handleTimeChange("silentHoursStart", e.target.value)}
-                  className="w-full bg-white/5 border border-white/10 rounded-2xl px-3 py-2.5 text-white text-base font-semibold [color-scheme:dark] focus:outline-none focus:ring-2 focus:ring-[#2DD4BF]/50"
+                  className="w-full bg-white/5 border border-white/10 rounded-2xl px-3 py-2.5 text-white text-base font-semibold [color-scheme:dark] focus:outline-none focus:ring-2 focus:ring-[#FFB020]/50"
                   aria-label={t("notifSilentStartAria")}
                 />
               </div>
@@ -539,7 +539,7 @@ export function NotificationSettingsScreen() {
                   type="time"
                   value={notificationPreferences.silentHoursEnd}
                   onChange={(e) => handleTimeChange("silentHoursEnd", e.target.value)}
-                  className="w-full bg-white/5 border border-white/10 rounded-2xl px-3 py-2.5 text-white text-base font-semibold [color-scheme:dark] focus:outline-none focus:ring-2 focus:ring-[#2DD4BF]/50"
+                  className="w-full bg-white/5 border border-white/10 rounded-2xl px-3 py-2.5 text-white text-base font-semibold [color-scheme:dark] focus:outline-none focus:ring-2 focus:ring-[#FFB020]/50"
                   aria-label={t("notifSilentEndAria")}
                 />
               </div>
@@ -590,8 +590,8 @@ export function NotificationSettingsScreen() {
         >
           <div className="relative">
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-2xl bg-[#4ADE80]/15 flex items-center justify-center">
-                <Calendar size={18} className="text-[#4ADE80]" />
+              <div className="w-10 h-10 rounded-2xl bg-[#FFC94D]/15 flex items-center justify-center">
+                <Calendar size={18} className="text-[#FFC94D]" />
               </div>
               <div>
                 <h2 className="text-white font-semibold text-sm font-[family-name:var(--font-poppins)]">
@@ -634,7 +634,7 @@ export function NotificationSettingsScreen() {
                       </div>
                     </div>
                     {enabled ? (
-                      <Check size={14} className="text-[#4ADE80] shrink-0" />
+                      <Check size={14} className="text-[#FFC94D] shrink-0" />
                     ) : (
                       <span className="text-[10px] text-white/40 uppercase tracking-wide">Off</span>
                     )}
@@ -650,8 +650,8 @@ export function NotificationSettingsScreen() {
             ============================================================ */}
         <motion.div variants={itemVariants} className="glass-card p-4">
           <div className="flex items-start gap-3">
-            <div className="w-8 h-8 rounded-xl bg-[#4ADE80]/15 flex items-center justify-center shrink-0">
-              <Shield size={15} className="text-[#4ADE80]" />
+            <div className="w-8 h-8 rounded-xl bg-[#FFC94D]/15 flex items-center justify-center shrink-0">
+              <Shield size={15} className="text-[#FFC94D]" />
             </div>
             <div>
               <h3 className="text-white font-semibold text-sm">{t("notifPrivacyHeading")}</h3>

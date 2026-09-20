@@ -56,15 +56,15 @@ const MILESTONE_META: Record<
     messageKey: "milestoneMessage60",
     emoji: "💎",
     artifactKey: "jour-60",
-    color: "#2DD4BF",
-    gradient: "from-teal-500/40 via-emerald-500/20 to-transparent",
+    color: "#FFB020",
+    gradient: "from-amber-500/40 via-orange-500/20 to-transparent",
   },
   90: {
     titleKey: "milestoneTitle90",
     messageKey: "milestoneMessage90",
     emoji: "🔥",
-    color: "#C084FC",
-    gradient: "from-purple-500/40 via-pink-500/20 to-transparent",
+    color: "#FFD166",
+    gradient: "from-orange-500/40 via-amber-500/20 to-transparent",
   },
   180: {
     titleKey: "milestoneTitle180",
@@ -78,18 +78,18 @@ const MILESTONE_META: Record<
     titleKey: "milestoneTitle365",
     messageKey: "milestoneMessage365",
     emoji: "🏆",
-    color: "#10B981",
-    gradient: "from-emerald-500/40 via-teal-500/20 to-transparent",
+    color: "#FF6B00",
+    gradient: "from-orange-500/40 via-amber-500/20 to-transparent",
   },
 };
 
 const CONFETTI_COLORS = [
-  "#10B981",
+  "#FF6B00",
   "#F59E0B",
-  "#4ADE80",
-  "#2DD4BF",
+  "#FFC94D",
+  "#FFB020",
   "#FBBF24",
-  "#C084FC",
+  "#FFD166",
   "#FFD700",
 ];
 
@@ -408,7 +408,7 @@ export function MilestoneCelebration() {
                   </span>
                 </div>
                 <div className="glass-card rounded-2xl p-3 flex flex-col items-center gap-1">
-                  <Wallet size={18} className="text-[#4ADE80]" />
+                  <Wallet size={18} className="text-[#FFC94D]" />
                   <span className="text-xs font-bold text-white">
                     {formatFCFA(savedEstimate)}
                   </span>
@@ -434,7 +434,7 @@ export function MilestoneCelebration() {
                 transition={{ delay: 0.6 }}
                 className="glass-card rounded-2xl p-3 mb-6 flex items-center gap-2"
               >
-                <TrendingUp size={16} className="text-[#4ADE80] flex-shrink-0" />
+                <TrendingUp size={16} className="text-[#FFC94D] flex-shrink-0" />
                 <p className="text-xs text-white/80 text-left">
                   {activeMilestone >= 90
                     ? t("milestoneTrendMentor")
@@ -465,7 +465,7 @@ export function MilestoneCelebration() {
                 <button
                   onClick={handleShareCard}
                   aria-label={t("milestoneCardBtn")}
-                  className="w-12 shrink-0 glass-card-strong rounded-2xl flex items-center justify-center text-[#2DD4BF] hover:bg-white/10 transition-colors btn-press"
+                  className="w-12 shrink-0 glass-card-strong rounded-2xl flex items-center justify-center text-[#FFB020] hover:bg-white/10 transition-colors btn-press"
                 >
                   <ImageIcon size={18} />
                 </button>

@@ -30,9 +30,9 @@ import { MessageSkeleton } from "@/components/zerobet/components/Skeletons";
 type Section = "journal" | "motivation" | "progress" | "crisis";
 
 const SECTIONS: { id: Section; labelKey: string; icon: LucideIcon; color: string }[] = [
-  { id: "journal", labelKey: "atlasJournal", icon: BookOpen, color: "#2DD4BF" },
+  { id: "journal", labelKey: "atlasJournal", icon: BookOpen, color: "#FFB020" },
   { id: "motivation", labelKey: "atlasMotivation", icon: Sparkles, color: "#F59E0B" },
-  { id: "progress", labelKey: "atlasProgress", icon: Trophy, color: "#4ADE80" },
+  { id: "progress", labelKey: "atlasProgress", icon: Trophy, color: "#FFC94D" },
   { id: "crisis", labelKey: "atlasCrisis", icon: AlertTriangle, color: "#FF3B30" },
 ];
 
@@ -43,11 +43,11 @@ interface SuggestedPrompt {
 }
 
 const SUGGESTED_PROMPTS: SuggestedPrompt[] = [
-  { labelKey: "atlasSuggested1", icon: Wind, color: "#2DD4BF" },
-  { labelKey: "atlasSuggested2", icon: BookOpen, color: "#4ADE80" },
+  { labelKey: "atlasSuggested1", icon: Wind, color: "#FFB020" },
+  { labelKey: "atlasSuggested2", icon: BookOpen, color: "#FFC94D" },
   { labelKey: "atlasSuggested3", icon: Sparkles, color: "#F59E0B" },
-  { labelKey: "atlasSuggested4", icon: Brain, color: "#C084FC" },
-  { labelKey: "atlasSuggested5", icon: Users, color: "#4ADE80" },
+  { labelKey: "atlasSuggested4", icon: Brain, color: "#FFD166" },
+  { labelKey: "atlasSuggested5", icon: Users, color: "#FFC94D" },
   { labelKey: "atlasSuggested6", icon: Heart, color: "#FF3B30" },
 ];
 
@@ -59,9 +59,9 @@ interface QuickAction {
 }
 
 const QUICK_ACTIONS: QuickAction[] = [
-  { id: "journal", labelKey: "atlasAnalyzeJournal", icon: ClipboardList, color: "#2DD4BF" },
+  { id: "journal", labelKey: "atlasAnalyzeJournal", icon: ClipboardList, color: "#FFB020" },
   { id: "motivation", labelKey: "atlasAskMotivation", icon: Dumbbell, color: "#F59E0B" },
-  { id: "progress", labelKey: "atlasSeeProgress", icon: Trophy, color: "#4ADE80" },
+  { id: "progress", labelKey: "atlasSeeProgress", icon: Trophy, color: "#FFC94D" },
   { id: "crisis", labelKey: "atlasCrisis", icon: LifeBuoy, color: "#FF3B30" },
 ];
 
@@ -273,11 +273,11 @@ export function AtlasScreen() {
                 <h1 className="text-base font-bold text-white font-[family-name:var(--font-poppins)] truncate">
                   {t("atlasTitle")}
                 </h1>
-                <span className="flex items-center gap-1 text-[#4ADE80] text-[10px] flex-shrink-0">
+                <span className="flex items-center gap-1 text-[#FFC94D] text-[10px] flex-shrink-0">
                   <motion.span
                     animate={{ opacity: [1, 0.3, 1] }}
                     transition={{ duration: 1.6, repeat: Infinity }}
-                    className="w-1.5 h-1.5 rounded-full bg-[#4ADE80]"
+                    className="w-1.5 h-1.5 rounded-full bg-[#FFC94D]"
                   />
                   {t("atlasOnline")}
                 </span>
@@ -296,7 +296,7 @@ export function AtlasScreen() {
             className={`flex-shrink-0 px-2.5 py-1.5 rounded-full text-[10px] font-semibold flex items-center gap-1.5 border transition-colors ${
               remainingFree <= 2
                 ? "bg-[#FBBF24]/10 border-[#FBBF24]/30 text-[#FBBF24]"
-                : "bg-[#4ADE80]/10 border-[#4ADE80]/25 text-[#4ADE80]"
+                : "bg-[#FFC94D]/10 border-[#FFC94D]/25 text-[#FFC94D]"
             }`}
             aria-label={t("atlasQuotaChip", { n: remainingFree })}
           >
@@ -382,7 +382,7 @@ export function AtlasScreen() {
                     "journal",
                   )
                 }
-                className="w-full py-2.5 rounded-xl glass-card text-[#2DD4BF] text-xs font-medium flex items-center justify-center gap-2"
+                className="w-full py-2.5 rounded-xl glass-card text-[#FFB020] text-xs font-medium flex items-center justify-center gap-2"
               >
                 <Sparkles size={14} />
                 {t("atlasAnalyzeJournal")}
@@ -426,7 +426,7 @@ export function AtlasScreen() {
                 onClick={() =>
                   sendMessage(t("atlasSeeProgressPrompt"), "progress")
                 }
-                className="w-full py-2.5 rounded-xl glass-card text-[#4ADE80] text-xs font-medium flex items-center justify-center gap-2"
+                className="w-full py-2.5 rounded-xl glass-card text-[#FFC94D] text-xs font-medium flex items-center justify-center gap-2"
               >
                 <Trophy size={14} />
                 {t("atlasSeeProgress")}
@@ -610,7 +610,7 @@ export function AtlasScreen() {
             if (e.key === "Enter") sendMessage(input);
           }}
           placeholder={t("atlasTypeMessage")}
-          className="flex-1 p-3 rounded-2xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#10B981] focus:ring-1 focus:ring-[#10B981]/40 transition-all"
+          className="flex-1 p-3 rounded-2xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#FF6B00] focus:ring-1 focus:ring-[#FF6B00]/40 transition-all"
         />
         <motion.button
           whileTap={{ scale: 0.9 }}

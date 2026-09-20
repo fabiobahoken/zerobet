@@ -105,5 +105,5 @@ export const PHASE_META: Record<
   immediate: { labelKey: "relapsePhaseImmediate", timeframe: "0-5 min", color: "#FF3B30", emoji: "🚨" },
   hour1: { labelKey: "relapsePhaseHour1", timeframe: "5-60 min", color: "#F59E0B", emoji: "⚡" },
   hour6: { labelKey: "relapsePhaseHour6", timeframe: "1-6h", color: "#FBBF24", emoji: "🌱" },
-  hour24: { labelKey: "relapsePhaseHour24", timeframe: "6-24h", color: "#4ADE80", emoji: "💪" },
+  hour24: { labelKey: "relapsePhaseHour24", timeframe: "6-24h", color: "#FFC94D", emoji: "💪" },
 };

@@ -46,15 +46,15 @@ const BREATHING_TECHNIQUES = [
         cycles: 3,
         difficulty: "medium",
         difficultyLevel: 2,
-        gradient: "linear-gradient(135deg, #2DD4BF 0%, #2DD4BF 100%)",
-        glow: "rgba(45, 212, 191, 0.45)",
-        accent: "#2DD4BF",
+        gradient: "linear-gradient(135deg, #FFB020 0%, #FFB020 100%)",
+        glow: "rgba(255,176,32, 0.45)",
+        accent: "#FFB020",
         emoji: "🌊",
         phases: [
             {
                 nameKey: "meditationPhaseInspire",
                 duration: 4,
-                color: "#2DD4BF",
+                color: "#FFB020",
                 action: "scale-up"
             },
             {
@@ -80,15 +80,15 @@ const BREATHING_TECHNIQUES = [
         cycles: 4,
         difficulty: "easy",
         difficultyLevel: 1,
-        gradient: "linear-gradient(135deg, #4ADE80 0%, #2DD4BF 100%)",
-        glow: "rgba(74, 222, 128, 0.45)",
-        accent: "#4ADE80",
+        gradient: "linear-gradient(135deg, #FFC94D 0%, #FFB020 100%)",
+        glow: "rgba(255,201,77, 0.45)",
+        accent: "#FFC94D",
         emoji: "🟩",
         phases: [
             {
                 nameKey: "meditationPhaseInspire",
                 duration: 4,
-                color: "#4ADE80",
+                color: "#FFC94D",
                 action: "scale-up"
             },
             {
@@ -120,15 +120,15 @@ const BREATHING_TECHNIQUES = [
         cycles: 5,
         difficulty: "easy",
         difficultyLevel: 1,
-        gradient: "linear-gradient(135deg, #C084FC 0%, #6366F1 100%)",
-        glow: "rgba(192, 132, 252, 0.45)",
-        accent: "#C084FC",
+        gradient: "linear-gradient(135deg, #FFD166 0%, #E8590C 100%)",
+        glow: "rgba(255, 209, 102, 0.45)",
+        accent: "#FFD166",
         emoji: "💜",
         phases: [
             {
                 nameKey: "meditationPhaseInspire",
                 duration: 2,
-                color: "#C084FC",
+                color: "#FFD166",
                 action: "scale-up"
             },
             {
@@ -195,8 +195,8 @@ const GUIDED_MEDITATIONS = [
         category: "motivation",
         narratorKey: "meditationNarratorMarc",
         descKey: "meditationGuided2Desc",
-        gradient: "linear-gradient(135deg, #4ADE80 0%, #2DD4BF 100%)",
-        accent: "#4ADE80",
+        gradient: "linear-gradient(135deg, #FFC94D 0%, #FFB020 100%)",
+        accent: "#FFC94D",
         emoji: "💪"
     },
     {
@@ -207,8 +207,8 @@ const GUIDED_MEDITATIONS = [
         category: "relaxation",
         narratorKey: "meditationNarratorLea",
         descKey: "meditationGuided3Desc",
-        gradient: "linear-gradient(135deg, #2DD4BF 0%, #2DD4BF 100%)",
-        accent: "#2DD4BF",
+        gradient: "linear-gradient(135deg, #FFB020 0%, #FFB020 100%)",
+        accent: "#FFB020",
         emoji: "🕊️"
     },
     {
@@ -231,8 +231,8 @@ const GUIDED_MEDITATIONS = [
         category: "relaxation",
         narratorKey: "meditationNarratorLea",
         descKey: "meditationGuided5Desc",
-        gradient: "linear-gradient(135deg, #C084FC 0%, #6366F1 100%)",
-        accent: "#C084FC",
+        gradient: "linear-gradient(135deg, #FFD166 0%, #E8590C 100%)",
+        accent: "#FFD166",
         emoji: "🧘"
     },
     {
@@ -255,11 +255,11 @@ const CATEGORY_LABELS = {
     },
     motivation: {
         labelKey: "meditationCatMotivation",
-        color: "#4ADE80"
+        color: "#FFC94D"
     },
     relaxation: {
         labelKey: "meditationCatRelaxation",
-        color: "#2DD4BF"
+        color: "#FFB020"
     },
     énergie: {
         labelKey: "meditationCatEnergy",
@@ -271,13 +271,13 @@ const BENEFITS = [
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$heart$2d$pulse$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__HeartPulse$3e$__["HeartPulse"],
         titleKey: "meditationBenefit1Title",
         valueKey: "meditationBenefit1Value",
-        color: "#2DD4BF"
+        color: "#FFB020"
     },
     {
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$brain$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Brain$3e$__["Brain"],
         titleKey: "meditationBenefit2Title",
         valueKey: "meditationBenefit2Value",
-        color: "#4ADE80"
+        color: "#FFC94D"
     },
     {
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$flame$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Flame$3e$__["Flame"],
@@ -289,7 +289,7 @@ const BENEFITS = [
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$moon$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Moon$3e$__["Moon"],
         titleKey: "meditationBenefit4Title",
         valueKey: "meditationBenefit4Value",
-        color: "#C084FC"
+        color: "#FFD166"
     }
 ];
 function formatTime(seconds) {
@@ -395,7 +395,7 @@ function BreathingPlayer({ technique, onClose, onComplete }) {
     const currentPhase = technique.phases[phaseIdx];
     const progress = Math.min(100, elapsed / technique.totalSeconds * 100);
     // Background gradient based on phase color
-    const bgGradient = `radial-gradient(circle at 50% 50%, ${currentPhase.color}25 0%, transparent 60%), linear-gradient(180deg, #070B0E 0%, #0B132B 100%)`;
+    const bgGradient = `radial-gradient(circle at 50% 50%, ${currentPhase.color}25 0%, transparent 60%), linear-gradient(180deg, #0B0704 0%, #0B132B 100%)`;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
         initial: {
             opacity: 0
@@ -814,7 +814,7 @@ function MeditationPlayer({ meditation, onClose, onComplete }) {
         },
         className: "fixed inset-0 z-[60] flex flex-col items-center justify-center px-6 safe-top safe-bottom",
         style: {
-            background: `radial-gradient(circle at 50% 50%, ${meditation.accent}25 0%, transparent 60%), linear-gradient(180deg, #070B0E 0%, #0B132B 100%)`
+            background: `radial-gradient(circle at 50% 50%, ${meditation.accent}25 0%, transparent 60%), linear-gradient(180deg, #0B0704 0%, #0B132B 100%)`
         },
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1267,11 +1267,11 @@ function MeditationScreen() {
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "w-10 h-10 rounded-full flex items-center justify-center",
                         style: {
-                            background: "rgba(45, 212, 191, 0.18)"
+                            background: "rgba(255,176,32, 0.18)"
                         },
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$wind$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Wind$3e$__["Wind"], {
                             size: 20,
-                            className: "text-[#2DD4BF]"
+                            className: "text-[#FFB020]"
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
                             lineNumber: 790,
@@ -1302,7 +1302,7 @@ function MeditationScreen() {
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "absolute -top-10 -right-10 w-32 h-32 rounded-full blur-3xl",
                         style: {
-                            background: "rgba(45, 212, 191, 0.20)"
+                            background: "rgba(255,176,32, 0.20)"
                         }
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
@@ -1312,7 +1312,7 @@ function MeditationScreen() {
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "absolute -bottom-10 -left-10 w-32 h-32 rounded-full blur-3xl",
                         style: {
-                            background: "rgba(192, 132, 252, 0.15)"
+                            background: "rgba(255, 209, 102, 0.15)"
                         }
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
@@ -1329,7 +1329,7 @@ function MeditationScreen() {
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sparkles$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Sparkles$3e$__["Sparkles"], {
                                                 size: 12,
-                                                className: "text-[#2DD4BF]"
+                                                className: "text-[#FFB020]"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
                                                 lineNumber: 811,
@@ -1401,8 +1401,23 @@ function MeditationScreen() {
                                     repeat: Infinity,
                                     ease: "easeInOut"
                                 },
-                                className: "text-5xl",
-                                children: meditationStreak === 0 ? "🌱" : meditationStreak < 7 ? "🌿" : meditationStreak < 30 ? "🔥" : "🌟"
+                                className: "w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0",
+                                style: {
+                                    background: "radial-gradient(circle at 35% 30%, rgba(255,201,77,0.3), transparent 72%)",
+                                    boxShadow: "0 0 32px rgba(255,176,32,0.35), inset 0 0 20px rgba(255,201,77,0.16)"
+                                },
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$flame$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Flame$3e$__["Flame"], {
+                                    size: 36,
+                                    strokeWidth: 2,
+                                    style: {
+                                        color: meditationStreak === 0 ? "#FFC94D" : "#FFB020",
+                                        filter: "drop-shadow(0 0 10px rgba(255,176,32,0.8))"
+                                    }
+                                }, void 0, false, {
+                                    fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
+                                    lineNumber: 845,
+                                    columnNumber: 13
+                                }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
                                 lineNumber: 834,
@@ -1431,7 +1446,7 @@ function MeditationScreen() {
                                 children: t("meditationBreathing")
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                lineNumber: 847,
+                                lineNumber: 860,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1439,13 +1454,13 @@ function MeditationScreen() {
                                 children: t("meditationSwipeHint")
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                lineNumber: 848,
+                                lineNumber: 861,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                        lineNumber: 846,
+                        lineNumber: 859,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1476,14 +1491,14 @@ function MeditationScreen() {
                                         className: "absolute inset-0 bg-black/20"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                        lineNumber: 865,
+                                        lineNumber: 878,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "absolute -top-6 -right-6 w-24 h-24 rounded-full bg-white/15 blur-2xl"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                        lineNumber: 866,
+                                        lineNumber: 879,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1497,7 +1512,7 @@ function MeditationScreen() {
                                                         children: tech.emoji
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                                        lineNumber: 869,
+                                                        lineNumber: 882,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1511,18 +1526,18 @@ function MeditationScreen() {
                                                                 }
                                                             }, i, false, {
                                                                 fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                                                lineNumber: 872,
+                                                                lineNumber: 885,
                                                                 columnNumber: 23
                                                             }, this))
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                                        lineNumber: 870,
+                                                        lineNumber: 883,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                                lineNumber: 868,
+                                                lineNumber: 881,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -1530,7 +1545,7 @@ function MeditationScreen() {
                                                 children: t(tech.nameKey)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                                lineNumber: 883,
+                                                lineNumber: 896,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1538,7 +1553,7 @@ function MeditationScreen() {
                                                 children: t(tech.descKey)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                                lineNumber: 886,
+                                                lineNumber: 899,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1551,7 +1566,7 @@ function MeditationScreen() {
                                                                 size: 11
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                                                lineNumber: 891,
+                                                                lineNumber: 904,
                                                                 columnNumber: 21
                                                             }, this),
                                                             " ",
@@ -1559,7 +1574,7 @@ function MeditationScreen() {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                                        lineNumber: 890,
+                                                        lineNumber: 903,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1570,7 +1585,7 @@ function MeditationScreen() {
                                                                 fill: "white"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                                                lineNumber: 894,
+                                                                lineNumber: 907,
                                                                 columnNumber: 21
                                                             }, this),
                                                             " ",
@@ -1578,36 +1593,36 @@ function MeditationScreen() {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                                        lineNumber: 893,
+                                                        lineNumber: 906,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                                lineNumber: 889,
+                                                lineNumber: 902,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                        lineNumber: 867,
+                                        lineNumber: 880,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, tech.id, true, {
                                 fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                lineNumber: 852,
+                                lineNumber: 865,
                                 columnNumber: 13
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                        lineNumber: 850,
+                        lineNumber: 863,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                lineNumber: 845,
+                lineNumber: 858,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1621,7 +1636,7 @@ function MeditationScreen() {
                                 children: t("meditationGuided")
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                lineNumber: 906,
+                                lineNumber: 919,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1633,13 +1648,13 @@ function MeditationScreen() {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                lineNumber: 907,
+                                lineNumber: 920,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                        lineNumber: 905,
+                        lineNumber: 918,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1676,7 +1691,7 @@ function MeditationScreen() {
                                                 fill: "white"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                                lineNumber: 927,
+                                                lineNumber: 940,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1686,13 +1701,13 @@ function MeditationScreen() {
                                                 }
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                                lineNumber: 928,
+                                                lineNumber: 941,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                        lineNumber: 923,
+                                        lineNumber: 936,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1705,12 +1720,12 @@ function MeditationScreen() {
                                                     children: t(med.titleKey)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                                    lineNumber: 936,
+                                                    lineNumber: 949,
                                                     columnNumber: 21
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                                lineNumber: 935,
+                                                lineNumber: 948,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1718,7 +1733,7 @@ function MeditationScreen() {
                                                 children: t(med.narratorKey)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                                lineNumber: 940,
+                                                lineNumber: 953,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1733,7 +1748,7 @@ function MeditationScreen() {
                                                         children: t(cat.labelKey)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                                        lineNumber: 944,
+                                                        lineNumber: 957,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1743,7 +1758,7 @@ function MeditationScreen() {
                                                                 size: 10
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                                                lineNumber: 951,
+                                                                lineNumber: 964,
                                                                 columnNumber: 23
                                                             }, this),
                                                             " ",
@@ -1751,19 +1766,19 @@ function MeditationScreen() {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                                        lineNumber: 950,
+                                                        lineNumber: 963,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                                lineNumber: 943,
+                                                lineNumber: 956,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                        lineNumber: 934,
+                                        lineNumber: 947,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$left$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronLeft$3e$__["ChevronLeft"], {
@@ -1771,25 +1786,25 @@ function MeditationScreen() {
                                         className: "text-white/30 rotate-180 flex-shrink-0"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                        lineNumber: 956,
+                                        lineNumber: 969,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, med.id, true, {
                                 fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                lineNumber: 913,
+                                lineNumber: 926,
                                 columnNumber: 15
                             }, this);
                         })
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                        lineNumber: 909,
+                        lineNumber: 922,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                lineNumber: 904,
+                lineNumber: 917,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -1806,11 +1821,11 @@ function MeditationScreen() {
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "absolute -top-10 -left-10 w-32 h-32 rounded-full blur-3xl",
                         style: {
-                            background: "rgba(74, 222, 128, 0.15)"
+                            background: "rgba(255,201,77, 0.15)"
                         }
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                        lineNumber: 969,
+                        lineNumber: 982,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1822,19 +1837,19 @@ function MeditationScreen() {
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "w-8 h-8 rounded-xl flex items-center justify-center",
                                         style: {
-                                            background: "rgba(74, 222, 128, 0.18)"
+                                            background: "rgba(255,201,77, 0.18)"
                                         },
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$brain$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Brain$3e$__["Brain"], {
                                             size: 16,
-                                            className: "text-[#4ADE80]"
+                                            className: "text-[#FFC94D]"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                            lineNumber: 979,
+                                            lineNumber: 992,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                        lineNumber: 975,
+                                        lineNumber: 988,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -1842,13 +1857,13 @@ function MeditationScreen() {
                                         children: t("meditationWhyMeditate")
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                        lineNumber: 981,
+                                        lineNumber: 994,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                lineNumber: 974,
+                                lineNumber: 987,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1881,12 +1896,12 @@ function MeditationScreen() {
                                                     }
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                                    lineNumber: 1000,
+                                                    lineNumber: 1013,
                                                     columnNumber: 21
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                                lineNumber: 996,
+                                                lineNumber: 1009,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1894,7 +1909,7 @@ function MeditationScreen() {
                                                 children: t(b.titleKey)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                                lineNumber: 1002,
+                                                lineNumber: 1015,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1905,19 +1920,19 @@ function MeditationScreen() {
                                                 children: t(b.valueKey)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                                lineNumber: 1005,
+                                                lineNumber: 1018,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, b.titleKey, true, {
                                         fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                        lineNumber: 989,
+                                        lineNumber: 1002,
                                         columnNumber: 17
                                     }, this);
                                 })
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                lineNumber: 985,
+                                lineNumber: 998,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1925,26 +1940,26 @@ function MeditationScreen() {
                                 children: t("meditationMuscleDesc")
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                                lineNumber: 1015,
+                                lineNumber: 1028,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                        lineNumber: 973,
+                        lineNumber: 986,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                lineNumber: 964,
+                lineNumber: 977,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "h-4"
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                lineNumber: 1021,
+                lineNumber: 1034,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AnimatePresence"], {
@@ -1954,12 +1969,12 @@ function MeditationScreen() {
                     onComplete: handleSessionComplete
                 }, void 0, false, {
                     fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                    lineNumber: 1026,
+                    lineNumber: 1039,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                lineNumber: 1024,
+                lineNumber: 1037,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AnimatePresence"], {
@@ -1969,12 +1984,12 @@ function MeditationScreen() {
                     onComplete: handleSessionComplete
                 }, void 0, false, {
                     fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                    lineNumber: 1037,
+                    lineNumber: 1050,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/MeditationScreen.tsx",
-                lineNumber: 1035,
+                lineNumber: 1048,
                 columnNumber: 7
             }, this)
         ]

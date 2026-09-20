@@ -8,6 +8,7 @@ import {
   Target, Sparkles, Phone, BarChart3, Wind, Search, Trophy, User, Gamepad2,
   Calendar, HelpCircle, Activity, ScanSearch, HeartPulse,
   MessageCircle, Lock, Hand, RotateCcw, MoreHorizontal, Share2,
+  Sprout, Star, ShieldCheck, GraduationCap, type LucideIcon,
 } from "lucide-react";
 import { useStore } from "@/store/zerobet-store";
 import { AuroraOrb } from "@/components/zerobet/components/AuroraOrb";
@@ -39,11 +40,11 @@ import { ArtifactIcon } from "@/components/zerobet/components/ArtifactIcon";
 import JourneyShareModal from "@/components/zerobet/components/JourneyShareModal";
 import type { JourneyCardData } from "@/lib/share-card";
 
-const PLAN_BADGES: Record<string, { labelKey: string; color: string; icon: string }> = {
-  free: { labelKey: "planFree", color: "#9CA3AF", icon: "🌱" },
-  premium: { labelKey: "planPremium", color: "#10B981", icon: "⭐" },
-  mentor: { labelKey: "planMentor", color: "#4ADE80", icon: "🛡️" },
-  psychologist: { labelKey: "planPsychologist", color: "#C084FC", icon: "🎓" },
+const PLAN_BADGES: Record<string, { labelKey: string; color: string; icon: LucideIcon }> = {
+  free: { labelKey: "planFree", color: "#9CA3AF", icon: Sprout },
+  premium: { labelKey: "planPremium", color: "#FF6B00", icon: Star },
+  mentor: { labelKey: "planMentor", color: "#FFC94D", icon: ShieldCheck },
+  psychologist: { labelKey: "planPsychologist", color: "#FFD166", icon: GraduationCap },
 };
 
 const INTL_LOCALES: Record<string, string> = {
@@ -314,25 +315,25 @@ export function DashboardScreen() {
   const quickActions = [
     { icon: Zap, labelKey: "qaPanic", color: "#FF3B30", screen: "panic" as const, premium: false },
     { icon: Gamepad2, labelKey: "qaQuests", color: "#FBBF24", screen: "gamification" as const, premium: false },
-    { icon: BookOpen, labelKey: "qaJournal", color: "#2DD4BF", screen: "journal" as const, premium: false },
-    { icon: Wallet, labelKey: "qaSavings", color: "#4ADE80", screen: "finance" as const, premium: false },
-    { icon: BarChart3, labelKey: "qaStats", color: "#2DD4BF", screen: "stats" as const, premium: false },
-    { icon: Wind, labelKey: "qaMeditation", color: "#2DD4BF", screen: "meditation" as const, premium: false },
-    { icon: Bot, labelKey: "qaAtlas", color: "#C084FC", screen: "atlas" as const, premium: false },
+    { icon: BookOpen, labelKey: "qaJournal", color: "#FFB020", screen: "journal" as const, premium: false },
+    { icon: Wallet, labelKey: "qaSavings", color: "#FFC94D", screen: "finance" as const, premium: false },
+    { icon: BarChart3, labelKey: "qaStats", color: "#FFB020", screen: "stats" as const, premium: false },
+    { icon: Wind, labelKey: "qaMeditation", color: "#FFB020", screen: "meditation" as const, premium: false },
+    { icon: Bot, labelKey: "qaAtlas", color: "#FFD166", screen: "atlas" as const, premium: false },
     { icon: Shield, labelKey: "qaBlocker", color: "#FBBF24", screen: "blocker" as const, premium: true },
     { icon: Users, labelKey: "qaCommunity", color: "#F59E0B", screen: "community" as const, premium: false },
-    { icon: MessageCircle, labelKey: "qaChat", color: "#4ADE80", screen: "community-chat" as const, premium: false },
+    { icon: MessageCircle, labelKey: "qaChat", color: "#FFC94D", screen: "community-chat" as const, premium: false },
     { icon: Trophy, labelKey: "qaTrophies", color: "#FBBF24", screen: "achievements" as const, premium: false },
-    { icon: BookOpen, labelKey: "qaResources", color: "#C084FC", screen: "resources" as const, premium: false },
-    { icon: User, labelKey: "qaProfile", color: "#C084FC", screen: "profile" as const, premium: false },
+    { icon: BookOpen, labelKey: "qaResources", color: "#FFD166", screen: "resources" as const, premium: false },
+    { icon: User, labelKey: "qaProfile", color: "#FFD166", screen: "profile" as const, premium: false },
     { icon: Phone, labelKey: "qaSOS", color: "#FF3B30", screen: "sos" as const, premium: false },
     { icon: Calendar, labelKey: "qaCalendar", color: "#F59E0B", screen: "calendar" as const, premium: false },
-    { icon: HelpCircle, labelKey: "qaHelp", color: "#2DD4BF", screen: "support" as const, premium: false },
-    { icon: Target, labelKey: "qaProgram", color: "#4ADE80", screen: "program" as const, premium: false },
-    { icon: Users, labelKey: "qaMentor", color: "#4ADE80", screen: "mentorship" as const, premium: false },
+    { icon: HelpCircle, labelKey: "qaHelp", color: "#FFB020", screen: "support" as const, premium: false },
+    { icon: Target, labelKey: "qaProgram", color: "#FFC94D", screen: "program" as const, premium: false },
+    { icon: Users, labelKey: "qaMentor", color: "#FFC94D", screen: "mentorship" as const, premium: false },
     { icon: Target, labelKey: "qaGoals", color: "#F59E0B", screen: "goals" as const, premium: false },
-    { icon: Sparkles, labelKey: "qaAffirmations", color: "#C084FC", screen: "affirmations" as const, premium: false },
-    { icon: Activity, labelKey: "qaWithdrawal", color: "#C084FC", screen: "withdrawal" as const, premium: false },
+    { icon: Sparkles, labelKey: "qaAffirmations", color: "#FFD166", screen: "affirmations" as const, premium: false },
+    { icon: Activity, labelKey: "qaWithdrawal", color: "#FFD166", screen: "withdrawal" as const, premium: false },
     { icon: ScanSearch, labelKey: "qaTriggers", color: "#FF6B6B", screen: "triggers" as const, premium: false },
     { icon: HeartPulse, labelKey: "qaRelapse", color: "#FF3B30", screen: "relapse-recovery" as const, premium: false },
     { icon: Bell, labelKey: "qaNotifications", color: "#FBBF24", screen: "notifications" as const, premium: false },
@@ -368,7 +369,7 @@ export function DashboardScreen() {
             className="ml-0.5 rounded-full px-1.5 py-0.5 text-[9px] font-bold text-white"
             style={{ background: planBadge.color }}
           >
-            {planBadge.icon}
+            <planBadge.icon size={9} strokeWidth={3} />
           </span>
         </button>
 
@@ -639,10 +640,10 @@ export function DashboardScreen() {
               className="glass-card card-hover btn-press p-4 text-left"
             >
               <div className="mb-2 flex items-center justify-between">
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#4ADE80]/20">
-                  <Wallet size={18} className="text-[#4ADE80]" />
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#FFC94D]/20">
+                  <Wallet size={18} className="text-[#FFC94D]" />
                 </div>
-                <TrendingUp size={14} className="text-[#4ADE80]" />
+                <TrendingUp size={14} className="text-[#FFC94D]" />
               </div>
               <p className="text-white/50 text-xs">{t("dashboardSaved")}</p>
               <p className="font-[family-name:var(--font-poppins)] text-xl font-bold text-white">
@@ -731,8 +732,8 @@ export function DashboardScreen() {
             }}
             className="glass-card card-hover btn-press mb-4 flex w-full items-center gap-3 p-4 text-left"
           >
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#2DD4BF]/20">
-              <Share2 size={18} className="text-[#2DD4BF]" />
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#FFB020]/20">
+              <Share2 size={18} className="text-[#FFB020]" />
             </div>
             <div className="flex-1">
               <p className="text-sm font-semibold text-white">{t("journeyCardBtn")}</p>
@@ -781,7 +782,7 @@ export function DashboardScreen() {
                 >
                   {isLocked && (
                     <div className="absolute right-1.5 top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-[#FBBF24]">
-                      <Crown size={9} className="text-[#070B0E]" />
+                      <Crown size={9} className="text-[#0B0704]" />
                     </div>
                   )}
                   {!isLocked && action.premium && (

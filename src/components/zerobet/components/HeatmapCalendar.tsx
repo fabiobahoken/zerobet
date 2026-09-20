@@ -549,7 +549,7 @@ export function HeatmapCalendar({
                   };
                   const baseClass = `rounded-[3px] transition-transform ${
                     isToday
-                      ? "ring-2 ring-[#F59E0B] ring-offset-1 ring-offset-[#070B0E] cursor-pointer hover:scale-125 hover:z-10"
+                      ? "ring-2 ring-[#F59E0B] ring-offset-1 ring-offset-[#0B0704] cursor-pointer hover:scale-125 hover:z-10"
                       : cell.future
                       ? "cursor-default"
                       : "hover:scale-125 hover:z-10"
@@ -678,8 +678,8 @@ export function HeatmapCalendar({
               </div>
 
               <div className="glass-depth-1 rounded-xl p-3 flex items-center gap-3">
-                <div className="w-9 h-9 rounded-lg bg-[#C084FC]/15 flex items-center justify-center flex-shrink-0">
-                  <Award size={16} className="text-[#C084FC]" />
+                <div className="w-9 h-9 rounded-lg bg-[#FFD166]/15 flex items-center justify-center flex-shrink-0">
+                  <Award size={16} className="text-[#FFD166]" />
                 </div>
                 <div className="min-w-0">
                   <div className="text-white/50 text-[10px] uppercase tracking-wide">
@@ -695,8 +695,8 @@ export function HeatmapCalendar({
               </div>
 
               <div className="glass-depth-1 rounded-xl p-3 flex items-center gap-3">
-                <div className="w-9 h-9 rounded-lg bg-[#4ADE80]/15 flex items-center justify-center flex-shrink-0">
-                  <TrendingUp size={16} className="text-[#4ADE80]" />
+                <div className="w-9 h-9 rounded-lg bg-[#FFC94D]/15 flex items-center justify-center flex-shrink-0">
+                  <TrendingUp size={16} className="text-[#FFC94D]" />
                 </div>
                 <div className="min-w-0">
                   <div className="text-white/50 text-[10px] uppercase tracking-wide">

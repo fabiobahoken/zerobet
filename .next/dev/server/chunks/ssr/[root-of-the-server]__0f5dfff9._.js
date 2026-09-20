@@ -208,7 +208,7 @@ const metadata = {
     }
 };
 const viewport = {
-    themeColor: "#070B0E",
+    themeColor: "#0B0704",
     width: "device-width",
     initialScale: 1,
     maximumScale: 1,

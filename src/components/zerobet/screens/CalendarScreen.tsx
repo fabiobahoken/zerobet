@@ -21,6 +21,8 @@ import {
   Wallet,
   BarChart3,
   Plus,
+  Trophy,
+  type LucideIcon,
 } from "lucide-react";
 import { useStore, type Emotion } from "@/store/zerobet-store";
 import { useT, useLanguage } from "@/lib/i18n/useT";
@@ -53,15 +55,15 @@ function localeFor(lang: string): string {
 // `artifactKey` (optional) renders the ArtifactIcon SVG for parcours-rank
 // milestones; milestones without a key (90 = 🔥, 365 = 🏆) keep their emoji.
 const MILESTONES = [
-  { day: 1, labelKey: "calendarMilestone1Label", icon: "🌱", artifactKey: "jour-1", color: "#4ADE80", descKey: "calendarMilestone1Desc" },
-  { day: 3, labelKey: "calendarMilestone3Label", icon: "💧", artifactKey: "jour-3", color: "#2DD4BF", descKey: "calendarMilestone3Desc" },
+  { day: 1, labelKey: "calendarMilestone1Label", icon: "🌱", artifactKey: "jour-1", color: "#FFC94D", descKey: "calendarMilestone1Desc" },
+  { day: 3, labelKey: "calendarMilestone3Label", icon: "💧", artifactKey: "jour-3", color: "#FFB020", descKey: "calendarMilestone3Desc" },
   { day: 7, labelKey: "calendarMilestone7Label", icon: "🥉", artifactKey: "jour-7", color: "#CD7F32", descKey: "calendarMilestone7Desc" },
   { day: 14, labelKey: "calendarMilestone14Label", icon: "🥈", artifactKey: "jour-14", color: "#C0C0C0", descKey: "calendarMilestone14Desc" },
   { day: 30, labelKey: "calendarMilestone30Label", icon: "🥇", artifactKey: "jour-30", color: "#FFD700", descKey: "calendarMilestone30Desc" },
-  { day: 60, labelKey: "calendarMilestone60Label", icon: "💎", artifactKey: "jour-60", color: "#2DD4BF", descKey: "calendarMilestone60Desc" },
-  { day: 90, labelKey: "calendarMilestone90Label", icon: "🔥", color: "#C084FC", descKey: "calendarMilestone90Desc" },
+  { day: 60, labelKey: "calendarMilestone60Label", icon: "💎", artifactKey: "jour-60", color: "#FFB020", descKey: "calendarMilestone60Desc" },
+  { day: 90, labelKey: "calendarMilestone90Label", Icon: Flame as LucideIcon, color: "#FFD166", descKey: "calendarMilestone90Desc" },
   { day: 180, labelKey: "calendarMilestone180Label", icon: "👑", artifactKey: "jour-365", color: "#F59E0B", descKey: "calendarMilestone180Desc" },
-  { day: 365, labelKey: "calendarMilestone365Label", icon: "🏆", color: "#FF3B30", descKey: "calendarMilestone365Desc" },
+  { day: 365, labelKey: "calendarMilestone365Label", Icon: Trophy as LucideIcon, color: "#FFD700", descKey: "calendarMilestone365Desc" },
 ];
 
 // Days that should display a milestone star when reached inside the streak
@@ -477,8 +479,8 @@ export function CalendarScreen() {
           </div>
 
           {/* Monthly savings */}
-          <div className="relative mt-4 flex items-center justify-center gap-2 px-4 py-2.5 rounded-2xl bg-gradient-to-r from-[#4ADE80]/15 to-[#2DD4BF]/10 border border-[#4ADE80]/20">
-            <Wallet size={14} className="text-[#4ADE80]" />
+          <div className="relative mt-4 flex items-center justify-center gap-2 px-4 py-2.5 rounded-2xl bg-gradient-to-r from-[#FFC94D]/15 to-[#FFB020]/10 border border-[#FFC94D]/20">
+            <Wallet size={14} className="text-[#FFC94D]" />
             <span className="text-white text-sm font-semibold">
               {monthStats.savings.toLocaleString(localeFor(language))} FCFA
             </span>
@@ -526,7 +528,7 @@ export function CalendarScreen() {
           {/* Legend */}
           <div className="mt-4 pt-3 border-t border-white/5 flex flex-wrap items-center gap-x-3 gap-y-2 text-[10px] text-white/50">
             <span className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-[#4ADE80]" /> {t("calendarLegendNoBet")}
+              <span className="w-2 h-2 rounded-full bg-[#FFC94D]" /> {t("calendarLegendNoBet")}
             </span>
             <span className="flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-[#FF3B30]" /> {t("calendarLegendCrisis")}
@@ -544,7 +546,7 @@ export function CalendarScreen() {
         {/* SECTION 4: Streak Statistics                                 */}
         {/* ============================================================ */}
         <motion.section variants={itemVariants}>
-          <SectionTitle icon={<TrendingUp size={16} className="text-[#2DD4BF]" />} label={t("calendarStatsTitle")} />
+          <SectionTitle icon={<TrendingUp size={16} className="text-[#FFB020]" />} label={t("calendarStatsTitle")} />
           <div className="grid grid-cols-2 gap-3">
             <StatCard
               label={t("calendarBestStreak")}
@@ -566,17 +568,17 @@ export function CalendarScreen() {
               label={t("calendarTotalNoBetDays")}
               value={`${allTimeStats.totalNoBetDays}`}
               unit={t("calendarUnitDays")}
-              icon={<Target size={18} className="text-[#4ADE80]" />}
-              gradient="linear-gradient(135deg, #4ADE80 0%, #2DD4BF 100%)"
-              glow="rgba(74, 222, 128, 0.25)"
+              icon={<Target size={18} className="text-[#FFC94D]" />}
+              gradient="linear-gradient(135deg, #FFC94D 0%, #FFB020 100%)"
+              glow="rgba(255,201,77, 0.25)"
             />
             <StatCard
               label={t("calendarMonthlyAverage")}
               value={`${allTimeStats.monthlyAverage}`}
               unit={t("calendarUnitDaysPerMonth")}
-              icon={<BarChart3 size={18} className="text-[#C084FC]" />}
-              gradient="linear-gradient(135deg, #C084FC 0%, #2DD4BF 100%)"
-              glow="rgba(192, 132, 252, 0.25)"
+              icon={<BarChart3 size={18} className="text-[#FFD166]" />}
+              gradient="linear-gradient(135deg, #FFD166 0%, #FFB020 100%)"
+              glow="rgba(255, 209, 102, 0.25)"
             />
           </div>
         </motion.section>
@@ -621,6 +623,20 @@ export function CalendarScreen() {
                         {m.achieved ? (
                           m.artifactKey ? (
                             <ArtifactIcon artifactKey={m.artifactKey} size={22} glow={false} />
+                          ) : (m as { Icon?: LucideIcon }).Icon ? (
+                            (() => {
+                              const MI = (m as { Icon?: LucideIcon }).Icon!;
+                              return (
+                                <MI
+                                  size={19}
+                                  strokeWidth={2.2}
+                                  style={{
+                                    color: m.color,
+                                    filter: `drop-shadow(0 0 8px ${m.color}90)`,
+                                  }}
+                                />
+                              );
+                            })()
                           ) : (
                             <span className="text-lg leading-none">{m.icon}</span>
                           )
@@ -636,7 +652,7 @@ export function CalendarScreen() {
                           <span
                             className={`text-[10px] font-mono px-1.5 py-0.5 rounded-md ${
                               m.achieved
-                                ? "bg-[#4ADE80]/15 text-[#4ADE80]"
+                                ? "bg-[#FFC94D]/15 text-[#FFC94D]"
                                 : "bg-white/5 text-white/40"
                             }`}
                           >
@@ -675,7 +691,7 @@ export function CalendarScreen() {
               <InsightChip
                 label={t("calendarInsightNoBetDays")}
                 value={`${monthStats.noBetDays}`}
-                color="#4ADE80"
+                color="#FFC94D"
                 icon={<Flame size={14} />}
               />
               <InsightChip
@@ -687,7 +703,7 @@ export function CalendarScreen() {
               <InsightChip
                 label={t("calendarInsightJournalEntries")}
                 value={`${monthStats.journalDays}`}
-                color="#C084FC"
+                color="#FFD166"
                 icon={<BookOpen size={14} />}
               />
               <InsightChip
@@ -723,7 +739,7 @@ export function CalendarScreen() {
                             ? "bg-[#FF3B30]/60"
                             : bar.value === 0
                               ? "bg-white/5"
-                              : "bg-gradient-to-t from-[#F59E0B]/60 to-[#4ADE80]/60"
+                              : "bg-gradient-to-t from-[#F59E0B]/60 to-[#FFC94D]/60"
                         }`}
                         style={{ minHeight: bar.value > 0 ? 4 : 2 }}
                       />
@@ -857,7 +873,7 @@ function DayCell({ info, inViewMonth, onClick }: DayCellProps) {
         {isMilestone ? (
           <Star size={10} className="text-[#FFD700]" fill="currentColor" />
         ) : status === "streak" || status === "today" ? (
-          <span className="w-1.5 h-1.5 rounded-full bg-[#4ADE80] flex items-center justify-center">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#FFC94D] flex items-center justify-center">
             <Check size={6} className="text-white" strokeWidth={4} />
           </span>
         ) : status === "crisis" ? (
@@ -1011,7 +1027,7 @@ function DayDetailModal({
               ? "rgba(255, 59, 48, 0.25)"
               : isMilestone
                 ? "rgba(255, 215, 0, 0.25)"
-                : "rgba(74, 222, 128, 0.22)",
+                : "rgba(255,201,77, 0.22)",
           }}
           aria-hidden
         />
@@ -1033,7 +1049,7 @@ function DayDetailModal({
           {isCrisis ? (
             <StatusBadge color="#FF3B30" icon={<Zap size={14} />} label={t("calendarDayWithCrisis")} />
           ) : isNoBet ? (
-            <StatusBadge color="#4ADE80" icon={<Check size={14} />} label={t("calendarDayNoBet")} />
+            <StatusBadge color="#FFC94D" icon={<Check size={14} />} label={t("calendarDayNoBet")} />
           ) : (
             <StatusBadge color="#9CA3AF" icon={<CalendarIcon size={14} />} label={t("calendarNoData")} />
           )}
@@ -1054,7 +1070,7 @@ function DayDetailModal({
             <div className="rounded-2xl bg-white/5 border border-white/5 p-3">
               <div className="flex items-center justify-between mb-1.5">
                 <span className="flex items-center gap-1.5 text-xs text-white/60">
-                  <BookOpen size={12} className="text-[#C084FC]" /> {t("calendarEmotion")}
+                  <BookOpen size={12} className="text-[#FFD166]" /> {t("calendarEmotion")}
                 </span>
                 <span className="text-xs text-white/80">
                   {EMOTION_EMOJI[info.journalEntry.emotion]} {t(EMOTION_LABEL_KEYS[info.journalEntry.emotion])}
@@ -1074,7 +1090,7 @@ function DayDetailModal({
           )}
 
           <DetailRow
-            icon={<Wind size={14} className={info.meditationDone ? "text-[#2DD4BF]" : "text-white/40"} />}
+            icon={<Wind size={14} className={info.meditationDone ? "text-[#FFB020]" : "text-white/40"} />}
             label={t("calendarMeditation")}
             value={info.meditationDone ? t("calendarCompleted") : t("calendarNotDone")}
             muted={!info.meditationDone}

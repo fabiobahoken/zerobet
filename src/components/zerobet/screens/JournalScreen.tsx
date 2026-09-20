@@ -70,16 +70,16 @@ function localizeMoodEntry(content: string, language: string, t: (k: string) => 
 
 const EMOTIONS: { key: Emotion; labelKey: string; emoji: string; color: string }[] = [
   { key: "frustrated", labelKey: "emotionFrustrated", emoji: "😤", color: "#FF3B30" },
-  { key: "strong", labelKey: "emotionStrong", emoji: "💪", color: "#4ADE80" },
+  { key: "strong", labelKey: "emotionStrong", emoji: "💪", color: "#FFC94D" },
   { key: "tempted", labelKey: "emotionTempted", emoji: "🎭", color: "#FBBF24" },
-  { key: "calm", labelKey: "emotionCalm", emoji: "😌", color: "#2DD4BF" },
-  { key: "proud", labelKey: "emotionProud", emoji: "🦸", color: "#C084FC" },
+  { key: "calm", labelKey: "emotionCalm", emoji: "😌", color: "#FFB020" },
+  { key: "proud", labelKey: "emotionProud", emoji: "🦸", color: "#FFD166" },
   { key: "anxious", labelKey: "emotionAnxious", emoji: "😰", color: "#F59E0B" },
 ];
 
 const JOURNAL_PROMPTS = [
-  { tKey: "journalPrompt1", emoji: "💭", color: "#2DD4BF" },
-  { tKey: "journalPrompt2", emoji: "🌟", color: "#4ADE80" },
+  { tKey: "journalPrompt1", emoji: "💭", color: "#FFB020" },
+  { tKey: "journalPrompt2", emoji: "🌟", color: "#FFC94D" },
   { tKey: "journalPrompt3", emoji: "🏆", color: "#FBBF24" },
 ];
 
@@ -286,7 +286,7 @@ export function JournalScreen() {
             className={`flex-shrink-0 px-2.5 py-1.5 rounded-full text-[10px] font-semibold border ${
               remainingFree <= 1
                 ? "bg-[#FBBF24]/10 border-[#FBBF24]/30 text-[#FBBF24]"
-                : "bg-[#4ADE80]/10 border-[#4ADE80]/25 text-[#4ADE80]"
+                : "bg-[#FFC94D]/10 border-[#FFC94D]/25 text-[#FFC94D]"
             }`}
             aria-label={t("journalQuotaChip", { n: remainingFree })}
           >
@@ -344,7 +344,7 @@ export function JournalScreen() {
         className="glass-card p-3.5 mb-4"
       >
         <div className="flex items-center gap-2 mb-2.5">
-          <Calendar size={14} className="text-[#2DD4BF]" />
+          <Calendar size={14} className="text-[#FFB020]" />
           <h3 className="text-white font-semibold text-xs">{t("journal7Days")}</h3>
         </div>
         <div className="grid grid-cols-7 gap-1">
@@ -581,7 +581,7 @@ export function JournalScreen() {
                 onChange={(e) => setContent(e.target.value)}
                 placeholder={t("journalContentPlaceholder")}
                 rows={4}
-                className="w-full p-3 rounded-2xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#10B981] focus:ring-1 focus:ring-[#10B981]/40 resize-none mb-4 transition-all"
+                className="w-full p-3 rounded-2xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#FF6B00] focus:ring-1 focus:ring-[#FF6B00]/40 resize-none mb-4 transition-all"
               />
 
               {/* Trigger */}
@@ -590,7 +590,7 @@ export function JournalScreen() {
                 value={trigger}
                 onChange={(e) => setTrigger(e.target.value)}
                 placeholder={t("journalTriggerPlaceholder")}
-                className="w-full p-3 rounded-2xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#10B981] focus:ring-1 focus:ring-[#10B981]/40 mb-4 transition-all"
+                className="w-full p-3 rounded-2xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#FF6B00] focus:ring-1 focus:ring-[#FF6B00]/40 mb-4 transition-all"
               />
 
               {/* Intensity */}
@@ -603,7 +603,7 @@ export function JournalScreen() {
                 max="5"
                 value={intensity}
                 onChange={(e) => setIntensity(Number(e.target.value))}
-                className="w-full accent-[#10B981] mb-5"
+                className="w-full accent-[#FF6B00] mb-5"
               />
 
               <button

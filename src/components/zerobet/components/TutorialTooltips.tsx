@@ -43,7 +43,7 @@ const STEPS: StepDef[] = [
     titleKey: "tutorialStep4Title",
     descKey: "tutorialStep4Desc",
     emoji: "🤖",
-    accent: "#C084FC",
+    accent: "#FFD166",
   },
   {
     target: "community",

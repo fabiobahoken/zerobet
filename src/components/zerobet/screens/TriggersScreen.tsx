@@ -54,12 +54,12 @@ const CATEGORY_META: Record<
   { labelKey: string; icon: LucideIcon; color: string }
 > = {
   stress: { labelKey: "triggersCatStress", icon: Brain, color: "#FF3B30" },
-  solitude: { labelKey: "triggersCatSolitude", icon: UserX, color: "#2DD4BF" },
-  payday: { labelKey: "triggersCatPayday", icon: Banknote, color: "#4ADE80" },
-  alcohol: { labelKey: "triggersCatAlcohol", icon: Wine, color: "#C084FC" },
+  solitude: { labelKey: "triggersCatSolitude", icon: UserX, color: "#FFB020" },
+  payday: { labelKey: "triggersCatPayday", icon: Banknote, color: "#FFC94D" },
+  alcohol: { labelKey: "triggersCatAlcohol", icon: Wine, color: "#FFD166" },
   boredom: { labelKey: "triggersCatBoredom", icon: Coffee, color: "#F59E0B" },
   social: { labelKey: "triggersCatSocial", icon: Users, color: "#FBBF24" },
-  insomnia: { labelKey: "triggersCatInsomnia", icon: Moon, color: "#2DD4BF" },
+  insomnia: { labelKey: "triggersCatInsomnia", icon: Moon, color: "#FFB020" },
   anger: { labelKey: "triggersCatAnger", icon: Flame, color: "#FF453A" },
   ads: { labelKey: "triggersCatAds", icon: Megaphone, color: "#FF2D55" },
   other: { labelKey: "triggersCatOther", icon: MoreHorizontal, color: "#8E8E93" },
@@ -112,7 +112,7 @@ function getTimeOfDay(hour: number): { key: string; labelKey: string } {
 }
 
 function intensityColor(i: number): string {
-  if (i <= 2) return "#4ADE80";
+  if (i <= 2) return "#FFC94D";
   if (i === 3) return "#F59E0B";
   return "#FF3B30";
 }
@@ -492,7 +492,7 @@ export function TriggersScreen() {
             />
             <StatBlock
               icon={Shield}
-              color="#4ADE80"
+              color="#FFC94D"
               label={t("triggersResistance")}
               value={<CountUp value={resistanceRate} suffix="%" />}
             />
@@ -667,8 +667,8 @@ export function TriggersScreen() {
                           <span
                             className="px-2 py-0.5 rounded-full text-[11px] font-medium flex items-center gap-1"
                             style={{
-                              background: "rgba(74,222,128,0.15)",
-                              color: "#4ADE80",
+                              background: "rgba(255,201,77,0.15)",
+                              color: "#FFC94D",
                             }}
                           >
                             <Check size={10} /> {t("triggersResisted")}
@@ -698,9 +698,9 @@ export function TriggersScreen() {
           <div className="flex items-center gap-2 mb-3">
             <div
               className="w-8 h-8 rounded-xl flex items-center justify-center"
-              style={{ background: "rgba(192, 132, 252,0.15)" }}
+              style={{ background: "rgba(255, 209, 102,0.15)" }}
             >
-              <Sparkles size={16} className="text-[#C084FC]" />
+              <Sparkles size={16} className="text-[#FFD166]" />
             </div>
             <h3 className="text-white font-semibold text-sm font-[family-name:var(--font-poppins)]">
               {t("triggersInsightsTitle")}
@@ -725,7 +725,7 @@ export function TriggersScreen() {
               {insights.topCoping && (
                 <InsightRow
                   icon={TrendingUp}
-                  color="#4ADE80"
+                  color="#FFC94D"
                   text={t("triggersInsightTopCoping", { method: insights.topCoping.method, rate: insights.topCoping.rate })}
                 />
               )}
@@ -800,16 +800,16 @@ export function TriggersScreen() {
           className="relative overflow-hidden rounded-3xl p-5"
           style={{
             background:
-              "linear-gradient(135deg, rgba(192, 132, 252,0.18) 0%, rgba(255,45,85,0.18) 100%)",
-            border: "1px solid rgba(192, 132, 252,0.3)",
+              "linear-gradient(135deg, rgba(255, 209, 102,0.18) 0%, rgba(255,45,85,0.18) 100%)",
+            border: "1px solid rgba(255, 209, 102,0.3)",
           }}
         >
           <div className="flex items-center gap-2 mb-3">
             <div
               className="w-8 h-8 rounded-xl flex items-center justify-center"
-              style={{ background: "rgba(192, 132, 252,0.25)" }}
+              style={{ background: "rgba(255, 209, 102,0.25)" }}
             >
-              <Bot size={16} className="text-[#C084FC]" />
+              <Bot size={16} className="text-[#FFD166]" />
             </div>
             <h3 className="text-white font-semibold text-sm font-[family-name:var(--font-poppins)]">
               {t("triggersAtlasTitle")}
@@ -833,7 +833,7 @@ export function TriggersScreen() {
                 onClick={handleAskAtlas}
                 className="w-full py-3 rounded-2xl text-white font-medium text-sm flex items-center justify-center gap-2 btn-press"
                 style={{
-                  background: "linear-gradient(135deg, #C084FC 0%, #FF2D55 100%)",
+                  background: "linear-gradient(135deg, #FFD166 0%, #FF2D55 100%)",
                 }}
               >
                 <Bot size={16} />
@@ -977,7 +977,7 @@ export function TriggersScreen() {
                 onChange={(e) => setSituation(e.target.value.slice(0, 280))}
                 placeholder={t("triggersFieldSituationPlaceholder")}
                 rows={3}
-                className="bg-white/5 border-white/10 text-white text-sm placeholder-white/30 focus-visible:border-[#10B981] resize-none mb-1 min-h-[80px]"
+                className="bg-white/5 border-white/10 text-white text-sm placeholder-white/30 focus-visible:border-[#FF6B00] resize-none mb-1 min-h-[80px]"
               />
               <div className="flex items-center justify-between mb-4">
                 <span
@@ -1021,7 +1021,7 @@ export function TriggersScreen() {
               <div className="flex items-center justify-between p-3 rounded-2xl glass-card mb-4">
                 <div className="flex items-center gap-2">
                   {resisted ? (
-                    <Check size={16} className="text-[#4ADE80]" />
+                    <Check size={16} className="text-[#FFC94D]" />
                   ) : (
                     <X size={16} className="text-[#FF3B30]" />
                   )}

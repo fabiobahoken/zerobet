@@ -130,7 +130,7 @@ export function PaywallScreen() {
           }`}
         >
           {t("paywallAnnual")}
-          <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-[#4ADE80] text-[#070B0E] font-bold">
+          <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-[#FFC94D] text-[#0B0704] font-bold">
             -40%
           </span>
         </button>
@@ -153,7 +153,7 @@ export function PaywallScreen() {
               onClick={() => handleSelectPlan(planOption.id)}
               onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") handleSelectPlan(planOption.id); }}
               className={`relative glass-card-strong p-5 cursor-pointer transition-all ${
-                isSelected ? "ring-2 ring-[#10B981] glow-green" : ""
+                isSelected ? "ring-2 ring-[#FF6B00] glow-green" : ""
               }`}
             >
               {/* Badges */}
@@ -164,7 +164,7 @@ export function PaywallScreen() {
                   </span>
                 )}
                 {planOption.bestValue && (
-                  <span className="px-2.5 py-1 rounded-full text-[10px] font-bold text-[#070B0E] bg-[#FBBF24]">
+                  <span className="px-2.5 py-1 rounded-full text-[10px] font-bold text-[#0B0704] bg-[#FBBF24]">
                     {t("paywallBestValueBadge")}
                   </span>
                 )}
@@ -211,7 +211,7 @@ export function PaywallScreen() {
               <ul className="space-y-1.5">
                 {planOption.featureKeys.slice(0, 5).map((featureKey, i) => (
                   <li key={i} className="flex items-start gap-2 text-white/70 text-xs">
-                    <Check size={14} className="text-[#4ADE80] mt-0.5 flex-shrink-0" />
+                    <Check size={14} className="text-[#FFC94D] mt-0.5 flex-shrink-0" />
                     {t(featureKey)}
                   </li>
                 ))}
@@ -238,7 +238,7 @@ export function PaywallScreen() {
           {[
             { name: "Orange", color: "#FF7900", dark: false },
             { name: "MTN", color: "#FFCB05", dark: true },
-            { name: "Wave", color: "#1DC8FF", dark: false },
+            { name: "Wave", color: "#FFC94D", dark: false },
             { name: "Moov", color: "#F43F5E", dark: false },
           ].map((op) => (
             <span
@@ -299,8 +299,8 @@ export function PaywallScreen() {
             className="glass-card-strong p-6 max-w-md w-full"
           >
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-full bg-[#4ADE80]/20 flex items-center justify-center">
-                <Shield size={20} className="text-[#4ADE80]" />
+              <div className="w-10 h-10 rounded-full bg-[#FFC94D]/20 flex items-center justify-center">
+                <Shield size={20} className="text-[#FFC94D]" />
               </div>
               <h3 className="text-lg font-bold text-white">{t("paywallConsentTitle")}</h3>
             </div>
@@ -312,7 +312,7 @@ export function PaywallScreen() {
                 type="checkbox"
                 checked={dataConsent}
                 onChange={(e) => setDataConsent(e.target.checked)}
-                className="mt-1 w-4 h-4 rounded accent-[#10B981]"
+                className="mt-1 w-4 h-4 rounded accent-[#FF6B00]"
               />
               <span className="text-white/80 text-sm">
                 {t("paywallConsentLabel")}

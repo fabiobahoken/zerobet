@@ -44,7 +44,7 @@ export function OnboardingProgress({ currentStep }: OnboardingProgressProps) {
 
   return (
     <>
-      <div className="sticky top-0 z-30 -mx-6 px-6 pt-3 pb-2.5 mb-2 backdrop-blur-xl bg-[#070B0E]/80 border-b border-white/5">
+      <div className="sticky top-0 z-30 -mx-6 px-6 pt-3 pb-2.5 mb-2 backdrop-blur-xl bg-[#0B0704]/80 border-b border-white/5">
         <div className="flex items-center justify-between gap-3 mb-2">
           <span className="text-[11px] font-medium text-white/60 font-[family-name:var(--font-poppins)]">
             {t("onboardingStep")} <span className="text-white font-bold">{clamped}</span> {t("onboardingOf")} {TOTAL_STEPS}

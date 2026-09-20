@@ -278,7 +278,7 @@ export function ParcoursScreen() {
             >
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2">
-                  <TrendingUp size={14} className="text-[#4ADE80]" />
+                  <TrendingUp size={14} className="text-[#FFC94D]" />
                   <span className="text-xs text-white/70 font-medium">
                     {t("parcoursNextArtifactLabel")} : <span className="text-white font-semibold">{t(nextRank.nameKey)}</span>
                   </span>
@@ -588,7 +588,7 @@ function PowerDetailSheet({
           <div className="flex justify-center mt-2">
             <span
               className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider"
-              style={{ background: rank.color, color: "#070B0E" }}
+              style={{ background: rank.color, color: "#0B0704" }}
             >
               <Crown size={9} /> {t("parcoursCurrentArtifact")}
             </span>

@@ -11016,7 +11016,7 @@ function BottomNav() {
                                 layoutId: "activeIndicator",
                                 className: "absolute -top-1 left-1/2 -translate-x-1/2 h-1 w-8 rounded-full gradient-primary glow-blue",
                                 style: {
-                                    boxShadow: "0 0 8px rgba(16, 185, 129, 0.8), 0 0 16px rgba(45, 212, 191, 0.5)"
+                                    boxShadow: "0 0 8px rgba(255,107,0, 0.8), 0 0 16px rgba(255,176,32, 0.5)"
                                 },
                                 transition: {
                                     type: "spring",
@@ -11032,7 +11032,7 @@ function BottomNav() {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
                                         layoutId: "activeTabOuter",
-                                        className: "absolute inset-0 rounded-2xl bg-gradient-to-br from-[#10B981]/30 to-[#2DD4BF]/30",
+                                        className: "absolute inset-0 rounded-2xl bg-gradient-to-br from-[#FF6B00]/30 to-[#FFB020]/30",
                                         transition: {
                                             type: "spring",
                                             stiffness: 400,
@@ -11045,7 +11045,7 @@ function BottomNav() {
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
                                         layoutId: "activeTabInner",
-                                        className: "absolute inset-0 rounded-2xl bg-gradient-to-br from-[#10B981]/15 to-[#2DD4BF]/15 ring-1 ring-[#2DD4BF]/40",
+                                        className: "absolute inset-0 rounded-2xl bg-gradient-to-br from-[#FF6B00]/15 to-[#FFB020]/15 ring-1 ring-[#FFB020]/40",
                                         transition: {
                                             type: "spring",
                                             stiffness: 400,
@@ -11071,11 +11071,11 @@ function BottomNav() {
                                 },
                                 className: "relative z-10",
                                 style: isActive ? {
-                                    filter: "drop-shadow(0 0 8px rgba(45, 212, 191, 0.6))"
+                                    filter: "drop-shadow(0 0 8px rgba(255,176,32, 0.6))"
                                 } : undefined,
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Icon, {
                                     size: 22,
-                                    className: isActive ? "text-[#10B981]" : "text-white/50",
+                                    className: isActive ? "text-[#FF6B00]" : "text-white/50",
                                     strokeWidth: isActive ? 2.5 : 2
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/components/BottomNav.tsx",
@@ -11088,9 +11088,9 @@ function BottomNav() {
                                 columnNumber: 17
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                className: `text-[10px] mt-0.5 relative z-10 font-medium transition-colors ${isActive ? "text-[#10B981]" : "text-white/40"}`,
+                                className: `text-[10px] mt-0.5 relative z-10 font-medium transition-colors ${isActive ? "text-[#FF6B00]" : "text-white/40"}`,
                                 style: isActive ? {
-                                    textShadow: "0 0 8px rgba(45, 212, 191, 0.5)"
+                                    textShadow: "0 0 8px rgba(255,176,32, 0.5)"
                                 } : undefined,
                                 children: t(tab.labelKey)
                             }, void 0, false, {
@@ -11541,7 +11541,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$s
  *
  * DESKTOP (>=500px): the app is staged inside a photorealistic phone frame
  * (bezel, Dynamic Island, live status bar, home indicator) floating on an
- * ambient emerald aurora. `transform` on `.zb-phone` turns it into the
+ * ambient ember aurora. `transform` on `.zb-phone` turns it into the
  * containing block for every `position: fixed` descendant, so modals,
  * sheets and toasts stay confined inside the device screen — exactly like
  * a native app screenshot.
@@ -11679,8 +11679,8 @@ function PhoneShell({ children }) {
                         theme: "dark",
                         toastOptions: {
                             style: {
-                                background: "rgba(11, 19, 43, 0.95)",
-                                border: "1px solid rgba(255, 255, 255, 0.1)",
+                                background: "rgba(22, 11, 4, 0.95)",
+                                border: "1px solid rgba(255, 176, 32, 0.18)",
                                 color: "#fff",
                                 backdropFilter: "blur(20px)"
                             }
@@ -11737,7 +11737,7 @@ function ZerobetLogo({ size = 80, animated = true, className = "" }) {
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "0%",
-                                stopColor: "#10B981"
+                                stopColor: "#FF6B00"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
                                 lineNumber: 24,
@@ -11745,7 +11745,7 @@ function ZerobetLogo({ size = 80, animated = true, className = "" }) {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "50%",
-                                stopColor: "#14C9A8"
+                                stopColor: "#FFB020"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
                                 lineNumber: 25,
@@ -11753,7 +11753,7 @@ function ZerobetLogo({ size = 80, animated = true, className = "" }) {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "100%",
-                                stopColor: "#2DD4BF"
+                                stopColor: "#FFB020"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
                                 lineNumber: 26,
@@ -11774,7 +11774,7 @@ function ZerobetLogo({ size = 80, animated = true, className = "" }) {
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "0%",
-                                stopColor: "#10B981"
+                                stopColor: "#FF6B00"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
                                 lineNumber: 29,
@@ -11782,7 +11782,7 @@ function ZerobetLogo({ size = 80, animated = true, className = "" }) {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "100%",
-                                stopColor: "#065F46"
+                                stopColor: "#93410F"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
                                 lineNumber: 30,
@@ -11860,7 +11860,7 @@ function ZerobetLogo({ size = 80, animated = true, className = "" }) {
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "0%",
-                                stopColor: "#2DD4BF",
+                                stopColor: "#FFB020",
                                 stopOpacity: "0.6"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
@@ -11869,7 +11869,7 @@ function ZerobetLogo({ size = 80, animated = true, className = "" }) {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "100%",
-                                stopColor: "#10B981",
+                                stopColor: "#FF6B00",
                                 stopOpacity: "0"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
@@ -11907,7 +11907,7 @@ function ZerobetLogo({ size = 80, animated = true, className = "" }) {
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("feFlood", {
-                                floodColor: "#10B981",
+                                floodColor: "#FF6B00",
                                 floodOpacity: "0.5"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
@@ -12494,7 +12494,7 @@ function PremiumLoader({ show = true, fullscreen = false, subtitle = "Arrête le
                     duration: 6 + i * 13 % 5,
                     opacity: 0.35,
                     blur: 1.5,
-                    color: i % 3 === 0 ? "rgba(245, 158, 11,0.85)" : i % 3 === 1 ? "rgba(45, 212, 191,0.85)" : "rgba(255,255,255,0.85)",
+                    color: i % 3 === 0 ? "rgba(245, 158, 11,0.85)" : i % 3 === 1 ? "rgba(255,176,32,0.85)" : "rgba(255,255,255,0.85)",
                     drift: 28
                 })),
             // Mid layer — slightly larger, medium speed
@@ -12509,7 +12509,7 @@ function PremiumLoader({ show = true, fullscreen = false, subtitle = "Arrête le
                     duration: 5 + i * 11 % 4,
                     opacity: 0.6,
                     blur: 0.8,
-                    color: i % 2 === 0 ? "rgba(255,107,53,0.9)" : "rgba(192, 132, 252,0.9)",
+                    color: i % 2 === 0 ? "rgba(255,107,53,0.9)" : "rgba(255, 209, 102,0.9)",
                     drift: 40
                 })),
             // Near layer — biggest, fastest, brightest
@@ -12659,7 +12659,7 @@ function PremiumLoader({ show = true, fullscreen = false, subtitle = "Arrête le
                         },
                         className: "absolute inset-0 rounded-full pointer-events-none",
                         style: {
-                            background: "radial-gradient(circle, rgba(45, 212, 191,0.40) 0%, transparent 70%)"
+                            background: "radial-gradient(circle, rgba(255,176,32,0.40) 0%, transparent 70%)"
                         }
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/components/PremiumLoader.tsx",
@@ -12692,7 +12692,7 @@ function PremiumLoader({ show = true, fullscreen = false, subtitle = "Arrête le
                         },
                         className: "absolute inset-0 rounded-full pointer-events-none",
                         style: {
-                            background: "radial-gradient(circle, rgba(192, 132, 252,0.32) 0%, transparent 70%)"
+                            background: "radial-gradient(circle, rgba(255, 209, 102,0.32) 0%, transparent 70%)"
                         }
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/components/PremiumLoader.tsx",
@@ -12868,9 +12868,9 @@ function PremiumLoader({ show = true, fullscreen = false, subtitle = "Arrête le
         .premium-mesh-bg {
           background:
             radial-gradient(ellipse at 25% 20%, rgba(255,59,48,0.18) 0%, transparent 45%),
-            radial-gradient(ellipse at 75% 30%, rgba(192, 132, 252,0.18) 0%, transparent 50%),
+            radial-gradient(ellipse at 75% 30%, rgba(255, 209, 102,0.18) 0%, transparent 50%),
             radial-gradient(ellipse at 50% 85%, rgba(245, 158, 11,0.18) 0%, transparent 55%),
-            radial-gradient(ellipse at 80% 75%, rgba(45, 212, 191,0.14) 0%, transparent 50%);
+            radial-gradient(ellipse at 80% 75%, rgba(255,176,32,0.14) 0%, transparent 50%);
           background-size: 200% 200%, 200% 200%, 200% 200%, 200% 200%;
           animation: premium-mesh-shift 14s ease-in-out infinite;
         }
@@ -13017,7 +13017,7 @@ function PremiumLoader({ show = true, fullscreen = false, subtitle = "Arrête le
                     duration: 0.4,
                     ease: "easeOut"
                 },
-                className: "fixed inset-0 z-[100] bg-[#070B0E] flex items-center justify-center",
+                className: "fixed inset-0 z-[100] bg-[#0B0704] flex items-center justify-center",
                 children: content
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/components/PremiumLoader.tsx",
@@ -13130,7 +13130,7 @@ function SplashScreen() {
                 },
                 className: "absolute inset-0 -z-10",
                 style: {
-                    background: "radial-gradient(ellipse at 30% 80%, rgba(192, 132, 252,0.18) 0%, transparent 55%), radial-gradient(ellipse at 70% 20%, rgba(74,222,128,0.10) 0%, transparent 50%)"
+                    background: "radial-gradient(ellipse at 30% 80%, rgba(255, 209, 102,0.18) 0%, transparent 55%), radial-gradient(ellipse at 70% 20%, rgba(255,201,77,0.10) 0%, transparent 50%)"
                 }
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/SplashScreen.tsx",
@@ -13157,7 +13157,7 @@ function SplashScreen() {
                     duration: 0.8,
                     ease: "easeInOut"
                 },
-                className: "absolute top-0 left-0 right-0 h-[6vh] bg-[#070B0E] z-30 pointer-events-none splash-letterbox-top"
+                className: "absolute top-0 left-0 right-0 h-[6vh] bg-[#0B0704] z-30 pointer-events-none splash-letterbox-top"
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/SplashScreen.tsx",
                 lineNumber: 63,
@@ -13175,7 +13175,7 @@ function SplashScreen() {
                     duration: 0.8,
                     ease: "easeInOut"
                 },
-                className: "absolute bottom-0 left-0 right-0 h-[6vh] bg-[#070B0E] z-30 pointer-events-none splash-letterbox-bottom"
+                className: "absolute bottom-0 left-0 right-0 h-[6vh] bg-[#0B0704] z-30 pointer-events-none splash-letterbox-bottom"
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/SplashScreen.tsx",
                 lineNumber: 70,
@@ -13195,14 +13195,14 @@ function SplashScreen() {
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("style", {
                 children: `
         .splash-cinematic-root {
-          background: #070B0E;
+          background: #0B0704;
         }
         .splash-mesh-bg {
           background:
             radial-gradient(ellipse at 22% 18%, rgba(255,59,48,0.22) 0%, transparent 45%),
-            radial-gradient(ellipse at 78% 28%, rgba(192, 132, 252,0.22) 0%, transparent 50%),
+            radial-gradient(ellipse at 78% 28%, rgba(255, 209, 102,0.22) 0%, transparent 50%),
             radial-gradient(ellipse at 50% 85%, rgba(245, 158, 11,0.22) 0%, transparent 55%),
-            radial-gradient(ellipse at 80% 75%, rgba(45, 212, 191,0.16) 0%, transparent 50%);
+            radial-gradient(ellipse at 80% 75%, rgba(255,176,32,0.16) 0%, transparent 50%);
           background-size: 220% 220%, 220% 220%, 220% 220%, 220% 220%;
           animation: splash-mesh-shift 16s ease-in-out infinite;
         }

@@ -41,17 +41,17 @@ const EMOTION_OPTIONS: { key: Emotion; emoji: string; label: string; color: stri
   { key: "frustrated", emoji: "😤", label: "Frustré", color: "#FF3B30" },
   { key: "anxious", emoji: "😰", label: "Anxieux", color: "#FBBF24" },
   { key: "tempted", emoji: "😈", label: "Tenté", color: "#F59E0B" },
-  { key: "calm", emoji: "😌", label: "Calme", color: "#2DD4BF" },
-  { key: "proud", emoji: "🦸", label: "Fier", color: "#C084FC" },
+  { key: "calm", emoji: "😌", label: "Calme", color: "#FFB020" },
+  { key: "proud", emoji: "🦸", label: "Fier", color: "#FFD166" },
 ];
 
 const EMOTION_META: Record<Emotion, { emoji: string; label: string; color: string }> = {
   frustrated: { emoji: "😤", label: "Frustré", color: "#FF3B30" },
   anxious: { emoji: "😰", label: "Anxieux", color: "#FBBF24" },
   tempted: { emoji: "😈", label: "Tenté", color: "#F59E0B" },
-  calm: { emoji: "😌", label: "Calme", color: "#2DD4BF" },
-  proud: { emoji: "🦸", label: "Fier", color: "#C084FC" },
-  strong: { emoji: "💪", label: "Fort", color: "#4ADE80" },
+  calm: { emoji: "😌", label: "Calme", color: "#FFB020" },
+  proud: { emoji: "🦸", label: "Fier", color: "#FFD166" },
+  strong: { emoji: "💪", label: "Fort", color: "#FFC94D" },
 };
 
 // ─── Helper functions ──────────────────────────────────────────────────────
@@ -262,7 +262,7 @@ function LandingMode({ relapseHistory, onStart, navigate, t }: LandingModeProps)
       {/* 1. Header */}
       <motion.div
         variants={itemVariants}
-        className="sticky top-0 z-20 -mx-5 px-5 pt-3 pb-3 bg-gradient-to-b from-[#070B0E]/95 via-[#070B0E]/80 to-transparent backdrop-blur-md"
+        className="sticky top-0 z-20 -mx-5 px-5 pt-3 pb-3 bg-gradient-to-b from-[#0B0704]/95 via-[#0B0704]/80 to-transparent backdrop-blur-md"
       >
         <div className="glass-card-strong p-4 rounded-2xl flex items-center gap-3">
           <button
@@ -480,7 +480,7 @@ function LandingMode({ relapseHistory, onStart, navigate, t }: LandingModeProps)
                       </span>
                     )}
                     {r.protocolCompleted ? (
-                      <span className="px-2 py-0.5 rounded-full text-[10px] font-medium bg-[#4ADE80]/15 text-[#4ADE80] flex items-center gap-1">
+                      <span className="px-2 py-0.5 rounded-full text-[10px] font-medium bg-[#FFC94D]/15 text-[#FFC94D] flex items-center gap-1">
                         <Check size={10} /> Protocole complété
                       </span>
                     ) : (
@@ -529,7 +529,7 @@ function LandingMode({ relapseHistory, onStart, navigate, t }: LandingModeProps)
           <StatBlock
             label="Moy. jours"
             value={avgDaysBetween ? `${avgDaysBetween}j` : "—"}
-            color="#4ADE80"
+            color="#FFC94D"
             emoji="⏱️"
           />
         </div>
@@ -541,7 +541,7 @@ function LandingMode({ relapseHistory, onStart, navigate, t }: LandingModeProps)
       {/* 6. Quotes Section */}
       <motion.div variants={itemVariants} className="mt-4">
         <div className="flex items-center gap-2 mb-2 px-1">
-          <Quote size={14} className="text-[#C084FC]" />
+          <Quote size={14} className="text-[#FFD166]" />
           <span className="text-xs text-white/60 font-medium">Pour t'inspirer</span>
         </div>
         <div className="flex gap-3 overflow-x-auto no-scrollbar pb-2">
@@ -551,7 +551,7 @@ function LandingMode({ relapseHistory, onStart, navigate, t }: LandingModeProps)
               whileHover={{ scale: 1.02 }}
               className="card-hover glass-card p-4 rounded-2xl flex-shrink-0 w-64"
             >
-              <Quote size={16} className="text-[#C084FC] mb-2" />
+              <Quote size={16} className="text-[#FFD166] mb-2" />
               <p className="text-sm text-white/80 italic leading-relaxed mb-2">
                 {t(q.textKey)}
               </p>
@@ -653,7 +653,7 @@ function ProtocolMode({
       {/* 1. Header */}
       <motion.div
         variants={itemVariants}
-        className="sticky top-0 z-20 -mx-5 px-5 pt-3 pb-3 bg-gradient-to-b from-[#070B0E]/95 via-[#070B0E]/80 to-transparent backdrop-blur-md"
+        className="sticky top-0 z-20 -mx-5 px-5 pt-3 pb-3 bg-gradient-to-b from-[#0B0704]/95 via-[#0B0704]/80 to-transparent backdrop-blur-md"
       >
         <div className="glass-card-strong p-4 rounded-2xl flex items-center gap-3">
           <button
@@ -791,12 +791,12 @@ function ProtocolMode({
                     }`}
                     style={{
                       background: step.completed
-                        ? "rgba(74,222,128,0.18)"
+                        ? "rgba(255,201,77,0.18)"
                         : isCurrent
                         ? `${meta.color}26`
                         : "rgba(255,255,255,0.04)",
                       border: step.completed
-                        ? "1px solid #4ADE8080"
+                        ? "1px solid #FFC94D80"
                         : isCurrent
                         ? `1px solid ${meta.color}80`
                         : "1px solid rgba(255,255,255,0.08)",
@@ -806,7 +806,7 @@ function ProtocolMode({
                     }}
                   >
                     {step.completed ? (
-                      <Check size={16} className="text-[#4ADE80]" />
+                      <Check size={16} className="text-[#FFC94D]" />
                     ) : isFuture ? (
                       <Lock size={13} className="text-white/30" />
                     ) : (
@@ -844,7 +844,7 @@ function ProtocolMode({
                         {step.duration}
                       </span>
                       {step.completedAt && (
-                        <span className="text-[10px] text-[#4ADE80]">
+                        <span className="text-[10px] text-[#FFC94D]">
                           ✓ {formatDateTime(step.completedAt)}
                         </span>
                       )}
@@ -1105,7 +1105,7 @@ function CompletionModal({ onReturn }: { onReturn: () => void }) {
         x: (Math.random() - 0.5) * 240,
         delay: Math.random() * 0.4,
         duration: 1.8 + Math.random() * 0.8,
-        color: ["#FF3B30", "#F59E0B", "#FBBF24", "#4ADE80", "#C084FC"][i % 5],
+        color: ["#FF3B30", "#F59E0B", "#FBBF24", "#FFC94D", "#FFD166"][i % 5],
         shape: i % 3 === 0 ? "circle" : i % 3 === 1 ? "square" : "diamond",
       })),
     []
@@ -1178,7 +1178,7 @@ function CompletionModal({ onReturn }: { onReturn: () => void }) {
           maintenant.
         </p>
         <div className="flex items-center justify-center gap-2 mb-5 text-xs text-white/50">
-          <RotateCcw size={12} className="text-[#4ADE80]" />
+          <RotateCcw size={12} className="text-[#FFC94D]" />
           <span>Jour 1 — pas Jour 0</span>
         </div>
         <motion.button

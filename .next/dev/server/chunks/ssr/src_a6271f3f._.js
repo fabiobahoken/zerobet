@@ -264,7 +264,7 @@ const PHASES = [
         descriptionKey: "withdrawalPhaseHealDesc",
         symptomsKey: "withdrawalPhaseHealSymptoms",
         tipKey: "withdrawalPhaseHealTip",
-        color: "#4ADE80",
+        color: "#FFC94D",
         startDay: 91,
         endDay: 365
     }
@@ -273,19 +273,19 @@ const COPING = [
     {
         titleKey: "withdrawalCopingInsomnia",
         emoji: "😴",
-        color: "#2DD4BF",
+        color: "#FFB020",
         strategies: [
             {
                 icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$moon$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Moon$3e$__["Moon"],
                 labelKey: "affirmationsTipA",
-                color: "#2DD4BF",
+                color: "#FFB020",
                 screen: "meditation",
                 screenLabelKey: "withdrawalCopingScreenMeditation"
             },
             {
                 icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$wind$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Wind$3e$__["Wind"],
                 labelKey: "affirmationsTipB",
-                color: "#2DD4BF",
+                color: "#FFB020",
                 screen: "panic",
                 screenLabelKey: "withdrawalCopingScreenBreathing"
             },
@@ -301,19 +301,19 @@ const COPING = [
     {
         titleKey: "withdrawalCopingAnxiety",
         emoji: "😰",
-        color: "#C084FC",
+        color: "#FFD166",
         strategies: [
             {
                 icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$wind$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Wind$3e$__["Wind"],
                 labelKey: "triggersCopingMeditation",
-                color: "#C084FC",
+                color: "#FFD166",
                 screen: "meditation",
                 screenLabelKey: "withdrawalCopingScreenMeditate"
             },
             {
                 icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$dumbbell$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Dumbbell$3e$__["Dumbbell"],
                 labelKey: "triggersCopingExercise",
-                color: "#4ADE80",
+                color: "#FFC94D",
                 screen: "panic",
                 screenLabelKey: "withdrawalCopingScreenBouger"
             },
@@ -348,7 +348,7 @@ const COPING = [
             {
                 icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__["Users"],
                 labelKey: "mentorshipTitle",
-                color: "#4ADE80",
+                color: "#FFC94D",
                 screen: "mentorship",
                 screenLabelKey: "withdrawalCopingScreenMentor"
             }
@@ -369,14 +369,14 @@ const COPING = [
             {
                 icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$pen$2d$line$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__PenLine$3e$__["PenLine"],
                 labelKey: "triggersCopingJournal",
-                color: "#2DD4BF",
+                color: "#FFB020",
                 screen: "journal",
                 screenLabelKey: "withdrawalCopingScreenJournal"
             },
             {
                 icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$dumbbell$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Dumbbell$3e$__["Dumbbell"],
                 labelKey: "triggersCopingExercise",
-                color: "#4ADE80",
+                color: "#FFC94D",
                 screen: "panic",
                 screenLabelKey: "withdrawalCopingScreenBouger"
             }
@@ -567,7 +567,7 @@ function WithdrawalScreen() {
         improving: {
             label: "En amélioration",
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trending$2d$down$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__TrendingDown$3e$__["TrendingDown"],
-            color: "#4ADE80",
+            color: "#FFC94D",
             msg: "Tes symptômes diminuent. Continue !"
         },
         stable: {
@@ -663,7 +663,7 @@ function WithdrawalScreen() {
                         "aria-hidden": true,
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$activity$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Activity$3e$__["Activity"], {
                             size: 18,
-                            className: "text-[#C084FC]"
+                            className: "text-[#FFD166]"
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/WithdrawalScreen.tsx",
                             lineNumber: 409,
@@ -691,7 +691,7 @@ function WithdrawalScreen() {
                         className: "glass-card-strong p-5 relative overflow-hidden",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "absolute -top-16 -right-16 w-44 h-44 rounded-full blur-3xl pointer-events-none bg-[#C084FC]/20"
+                                className: "absolute -top-16 -right-16 w-44 h-44 rounded-full blur-3xl pointer-events-none bg-[#FFD166]/20"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/WithdrawalScreen.tsx",
                                 lineNumber: 426,
@@ -712,7 +712,7 @@ function WithdrawalScreen() {
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sparkles$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Sparkles$3e$__["Sparkles"], {
                                                 size: 16,
-                                                className: "text-[#C084FC]"
+                                                className: "text-[#FFD166]"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/WithdrawalScreen.tsx",
                                                 lineNumber: 431,
@@ -741,18 +741,18 @@ function WithdrawalScreen() {
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex items-center gap-2 px-3 py-2 rounded-xl bg-[#4ADE80]/10 border border-[#4ADE80]/25",
+                                        className: "flex items-center gap-2 px-3 py-2 rounded-xl bg-[#FFC94D]/10 border border-[#FFC94D]/25",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$calendar$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Calendar$3e$__["Calendar"], {
                                                 size: 14,
-                                                className: "text-[#4ADE80] flex-shrink-0"
+                                                className: "text-[#FFC94D] flex-shrink-0"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/WithdrawalScreen.tsx",
                                                 lineNumber: 440,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                className: "text-[#4ADE80] text-xs font-medium",
+                                                className: "text-[#FFC94D] text-xs font-medium",
                                                 children: t("withdrawalBannerInfo")
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/WithdrawalScreen.tsx",
@@ -828,7 +828,7 @@ function WithdrawalScreen() {
                                     const count = cat === "physique" ? physicalActive : mentalActive;
                                     const label = cat === "physique" ? t("withdrawalPhysical") : t("withdrawalMental");
                                     const emoji = cat === "physique" ? "💪" : "🧠";
-                                    const color = cat === "physique" ? "#F59E0B" : "#C084FC";
+                                    const color = cat === "physique" ? "#F59E0B" : "#FFD166";
                                     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                         onClick: ()=>{
                                             setOpenCategory(isOpen ? null : cat);
@@ -937,7 +937,7 @@ function WithdrawalScreen() {
                                                         className: "w-full flex items-center gap-2.5 text-left",
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                className: `w-5 h-5 rounded-md border flex items-center justify-center flex-shrink-0 transition-all ${checked ? "bg-[#C084FC] border-[#C084FC]" : "border-white/25"}`,
+                                                                className: `w-5 h-5 rounded-md border flex items-center justify-center flex-shrink-0 transition-all ${checked ? "bg-[#FFD166] border-[#FFD166]" : "border-white/25"}`,
                                                                 children: checked && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__["Check"], {
                                                                     size: 12,
                                                                     className: "text-white"
@@ -1012,7 +1012,7 @@ function WithdrawalScreen() {
                                                                                         4,
                                                                                         5
                                                                                     ].map((lvl)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                                            className: `w-1.5 h-1.5 rounded-full ${lvl <= intensity ? "bg-[#C084FC]" : "bg-white/15"}`
+                                                                                            className: `w-1.5 h-1.5 rounded-full ${lvl <= intensity ? "bg-[#FFD166]" : "bg-white/15"}`
                                                                                         }, lvl, false, {
                                                                                             fileName: "[project]/src/components/zerobet/screens/WithdrawalScreen.tsx",
                                                                                             lineNumber: 560,
@@ -1049,7 +1049,7 @@ function WithdrawalScreen() {
                                                                             intensity
                                                                         ],
                                                                         onValueChange: (v)=>setIntensity(s.key, v[0]),
-                                                                        className: "[&_[data-slot=slider-range]]:bg-[#C084FC] [&_[data-slot=slider-thumb]]:border-[#C084FC]"
+                                                                        className: "[&_[data-slot=slider-range]]:bg-[#FFD166] [&_[data-slot=slider-thumb]]:border-[#FFD166]"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/components/zerobet/screens/WithdrawalScreen.tsx",
                                                                         lineNumber: 574,
@@ -1157,7 +1157,7 @@ function WithdrawalScreen() {
                                         className: "absolute inset-y-0 left-0",
                                         style: {
                                             width: `${Math.min(100, streakDays / 90 * 100)}%`,
-                                            background: `linear-gradient(90deg, #FF3B30 0%, #F59E0B 35%, #FBBF24 65%, #4ADE80 100%)`
+                                            background: `linear-gradient(90deg, #FF3B30 0%, #F59E0B 35%, #FBBF24 65%, #FFC94D 100%)`
                                         }
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/WithdrawalScreen.tsx",
@@ -1165,7 +1165,7 @@ function WithdrawalScreen() {
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "absolute top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-white border-2 border-[#070B0E]",
+                                        className: "absolute top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-white border-2 border-[#0B0704]",
                                         style: {
                                             left: `calc(${Math.min(100, streakDays / 90 * 100)}% - 6px)`,
                                             boxShadow: `0 0 12px ${currentPhase.color}`
@@ -1338,7 +1338,7 @@ function WithdrawalScreen() {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$activity$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Activity$3e$__["Activity"], {
                                         size: 16,
-                                        className: "text-[#C084FC]"
+                                        className: "text-[#FFD166]"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/WithdrawalScreen.tsx",
                                         lineNumber: 705,
@@ -1431,7 +1431,7 @@ function WithdrawalScreen() {
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                                             offset: "100%",
-                                                            stopColor: "#4ADE80"
+                                                            stopColor: "#FFC94D"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/zerobet/screens/WithdrawalScreen.tsx",
                                                             lineNumber: 726,
@@ -1473,7 +1473,7 @@ function WithdrawalScreen() {
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$recharts$2f$es6$2f$cartesian$2f$ReferenceArea$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ReferenceArea"], {
                                                 x1: 30,
                                                 x2: 90,
-                                                fill: "#4ADE80",
+                                                fill: "#FFC94D",
                                                 fillOpacity: 0.08,
                                                 stroke: "none"
                                             }, void 0, false, {
@@ -1559,7 +1559,7 @@ function WithdrawalScreen() {
                                                 activeDot: {
                                                     r: 5,
                                                     fill: "#F59E0B",
-                                                    stroke: "#070B0E",
+                                                    stroke: "#0B0704",
                                                     strokeWidth: 2
                                                 }
                                             }, void 0, false, {
@@ -1569,12 +1569,12 @@ function WithdrawalScreen() {
                                             }, this),
                                             streakDays >= 1 && streakDays <= 90 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$recharts$2f$es6$2f$cartesian$2f$ReferenceLine$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ReferenceLine"], {
                                                 x: streakDays,
-                                                stroke: "#C084FC",
+                                                stroke: "#FFD166",
                                                 strokeWidth: 1.5,
                                                 strokeDasharray: "4 4",
                                                 label: {
                                                     value: t("today"),
-                                                    fill: "#C084FC",
+                                                    fill: "#FFD166",
                                                     fontSize: 9,
                                                     position: "top"
                                                 }
@@ -1658,7 +1658,7 @@ function WithdrawalScreen() {
                                         className: "flex items-center gap-1.5",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "w-2.5 h-2.5 rounded-sm bg-[#4ADE80]/30"
+                                                className: "w-2.5 h-2.5 rounded-sm bg-[#FFC94D]/30"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/WithdrawalScreen.tsx",
                                                 lineNumber: 825,
@@ -1699,7 +1699,7 @@ function WithdrawalScreen() {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$wind$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Wind$3e$__["Wind"], {
                                         size: 16,
-                                        className: "text-[#2DD4BF]"
+                                        className: "text-[#FFB020]"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/WithdrawalScreen.tsx",
                                         lineNumber: 836,
@@ -1840,7 +1840,7 @@ function WithdrawalScreen() {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$brain$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Brain$3e$__["Brain"], {
                                         size: 16,
-                                        className: "text-[#4ADE80]"
+                                        className: "text-[#FFC94D]"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/WithdrawalScreen.tsx",
                                         lineNumber: 893,
@@ -2087,7 +2087,7 @@ function WithdrawalScreen() {
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                className: "text-[#4ADE80] text-xs font-medium italic",
+                                                className: "text-[#FFC94D] text-xs font-medium italic",
                                                 children: trendInfo.msg
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/WithdrawalScreen.tsx",
@@ -2211,7 +2211,7 @@ function WithdrawalScreen() {
                                                     __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$haptics$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["haptics"].medium();
                                                     navigate("community");
                                                 },
-                                                className: "h-11 rounded-xl bg-[#C084FC] text-white text-xs font-bold flex items-center justify-center gap-1.5",
+                                                className: "h-11 rounded-xl bg-[#FFD166] text-white text-xs font-bold flex items-center justify-center gap-1.5",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__["Users"], {
                                                         size: 14

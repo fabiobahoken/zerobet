@@ -474,7 +474,7 @@ const VARIANT_CONFIG = {
     journal: {
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$book$2d$open$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__BookOpen$3e$__["BookOpen"],
         emoji: "📝",
-        gradient: "linear-gradient(135deg, #10B981 0%, #2DD4BF 100%)",
+        gradient: "linear-gradient(135deg, #FF6B00 0%, #FFB020 100%)",
         glow: "glow-green",
         titleKey: "emptyStateJournalTitle",
         descKey: "emptyStateJournalDesc",
@@ -492,7 +492,7 @@ const VARIANT_CONFIG = {
     stats: {
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chart$2d$column$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__BarChart3$3e$__["BarChart3"],
         emoji: "📊",
-        gradient: "linear-gradient(135deg, #10B981 0%, #2DD4BF 100%)",
+        gradient: "linear-gradient(135deg, #FF6B00 0%, #FFB020 100%)",
         glow: "glow-green",
         titleKey: "emptyStateStatsTitle",
         descKey: "emptyStateStatsDesc",
@@ -501,7 +501,7 @@ const VARIANT_CONFIG = {
     default: {
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sparkles$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Sparkles$3e$__["Sparkles"],
         emoji: "✨",
-        gradient: "linear-gradient(135deg, #2DD4BF 0%, #10B981 100%)",
+        gradient: "linear-gradient(135deg, #FFB020 0%, #FF6B00 100%)",
         glow: "glow-green",
         titleKey: "emptyStateDefaultTitle",
         descKey: "emptyStateDefaultDesc",
@@ -705,8 +705,8 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$di
     health: {
         labelKey: "goalCategoryHealth",
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$heart$2d$pulse$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__HeartPulse$3e$__["HeartPulse"],
-        color: "#4ADE80",
-        gradient: "from-emerald-500/20 to-emerald-700/10"
+        color: "#FFC94D",
+        gradient: "from-orange-500/20 to-orange-700/10"
     },
     finance: {
         labelKey: "goalCategoryFinance",
@@ -723,14 +723,14 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$di
     career: {
         labelKey: "goalCategoryCareer",
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$briefcase$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Briefcase$3e$__["Briefcase"],
-        color: "#2DD4BF",
-        gradient: "from-cyan-500/20 to-cyan-700/10"
+        color: "#FFB020",
+        gradient: "from-amber-500/20 to-amber-700/10"
     },
     personal: {
         labelKey: "goalCategoryPersonal",
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sparkles$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Sparkles$3e$__["Sparkles"],
-        color: "#C084FC",
-        gradient: "from-purple-500/20 to-purple-700/10"
+        color: "#FFD166",
+        gradient: "from-orange-500/20 to-orange-700/10"
     },
     spiritual: {
         labelKey: "goalCategorySpiritual",
@@ -1194,7 +1194,7 @@ function GoalsScreen() {
         className: "min-h-screen px-5 pt-12 pb-8",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex items-center gap-3 mb-6 sticky top-0 z-30 -mx-5 px-5 py-2 backdrop-blur-md bg-[#070B0E]/60",
+                className: "flex items-center gap-3 mb-6 sticky top-0 z-30 -mx-5 px-5 py-2 backdrop-blur-md bg-[#0B0704]/60",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                         onClick: ()=>{
@@ -1420,7 +1420,7 @@ function GoalsScreen() {
                                         className: "text-center",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "text-xl font-bold text-[#4ADE80] font-[family-name:var(--font-poppins)]",
+                                                className: "text-xl font-bold text-[#FFC94D] font-[family-name:var(--font-poppins)]",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(AnimatedNumber, {
                                                     value: stats.completed
                                                 }, void 0, false, {
@@ -1598,7 +1598,7 @@ function GoalsScreen() {
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sparkles$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Sparkles$3e$__["Sparkles"], {
                                     size: 16,
-                                    className: "text-[#C084FC]"
+                                    className: "text-[#FFD166]"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/screens/GoalsScreen.tsx",
                                     lineNumber: 760,
@@ -1630,7 +1630,7 @@ function GoalsScreen() {
                             className: "relative rounded-2xl border border-white/10 bg-white/5 p-4 overflow-hidden",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "absolute inset-0 backdrop-blur-sm bg-[#070B0E]/60 flex flex-col items-center justify-center gap-3 z-10",
+                                    className: "absolute inset-0 backdrop-blur-sm bg-[#0B0704]/60 flex flex-col items-center justify-center gap-3 z-10",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "w-12 h-12 rounded-full bg-[#F59E0B]/15 flex items-center justify-center",
@@ -2468,7 +2468,7 @@ function GoalsScreen() {
                                                         whileTap: {
                                                             scale: 0.85
                                                         },
-                                                        className: `w-6 h-6 rounded-md flex items-center justify-center shrink-0 ${m.completed ? "bg-[#4ADE80] border-[#4ADE80]" : "bg-transparent border border-white/30"}`,
+                                                        className: `w-6 h-6 rounded-md flex items-center justify-center shrink-0 ${m.completed ? "bg-[#FFC94D] border-[#FFC94D]" : "bg-transparent border border-white/30"}`,
                                                         children: m.completed && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__["Check"], {
                                                             size: 14,
                                                             className: "text-white",
@@ -3250,7 +3250,7 @@ function GoalsScreen() {
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                     onClick: ()=>onToggle(m.id),
-                                    className: `w-5 h-5 rounded flex items-center justify-center shrink-0 transition-colors ${m.completed ? "bg-[#4ADE80] border-[#4ADE80]" : "bg-transparent border border-white/30 hover:border-white/50"}`,
+                                    className: `w-5 h-5 rounded flex items-center justify-center shrink-0 transition-colors ${m.completed ? "bg-[#FFC94D] border-[#FFC94D]" : "bg-transparent border border-white/30 hover:border-white/50"}`,
                                     "aria-label": `${t("goalsEditButton")} ${m.title}`,
                                     children: m.completed && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__["Check"], {
                                         size: 11,

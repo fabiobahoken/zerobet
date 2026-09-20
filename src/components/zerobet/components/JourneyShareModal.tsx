@@ -149,7 +149,7 @@ export default function JourneyShareModal({ open, onClose, data }: JourneyShareM
             onClick={(e) => e.stopPropagation()}
           >
             {/* Ambient glows */}
-            <div className="absolute -top-10 -right-10 w-36 h-36 rounded-full bg-[#10B981]/15 blur-3xl pointer-events-none" />
+            <div className="absolute -top-10 -right-10 w-36 h-36 rounded-full bg-[#FF6B00]/15 blur-3xl pointer-events-none" />
             <div className="absolute -bottom-10 -left-10 w-36 h-36 rounded-full bg-[#F59E0B]/10 blur-3xl pointer-events-none" />
 
             {/* Header */}
@@ -173,7 +173,7 @@ export default function JourneyShareModal({ open, onClose, data }: JourneyShareM
             <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-black/30 mb-4">
               {status === "generating" && (
                 <div className="aspect-[4/5] max-h-[46dvh] flex flex-col items-center justify-center gap-3">
-                  <div className="w-12 h-12 rounded-full border-2 border-[#10B981]/30 border-t-[#10B981] animate-spin" />
+                  <div className="w-12 h-12 rounded-full border-2 border-[#FF6B00]/30 border-t-[#FF6B00] animate-spin" />
                   <p className="text-white/50 text-sm">{t("journeyShareGenerating")}</p>
                 </div>
               )}
@@ -223,7 +223,7 @@ export default function JourneyShareModal({ open, onClose, data }: JourneyShareM
                 disabled={status !== "ready"}
                 className="flex-1 flex items-center justify-center gap-2 py-3 rounded-2xl bg-white/8 border border-white/10 text-white font-semibold text-sm hover:bg-white/12 transition-colors active:scale-95 disabled:opacity-50 disabled:pointer-events-none"
               >
-                <Download size={16} className="text-[#2DD4BF]" />
+                <Download size={16} className="text-[#FFB020]" />
                 {t("journeyShareDownload")}
               </button>
             </div>

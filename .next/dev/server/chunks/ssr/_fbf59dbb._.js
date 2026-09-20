@@ -36,7 +36,7 @@ const SYMPTOM_CATEGORIES = [
         key: "mental",
         labelKey: "symptomCatMentalLabel",
         icon: "🧠",
-        color: "#C084FC",
+        color: "#FFD166",
         symptomKeys: [
             "symptomMental1",
             "symptomMental2",
@@ -50,7 +50,7 @@ const SYMPTOM_CATEGORIES = [
         key: "social",
         labelKey: "symptomCatSocialLabel",
         icon: "👥",
-        color: "#2DD4BF",
+        color: "#FFB020",
         symptomKeys: [
             "symptomSocial1",
             "symptomSocial2",
@@ -78,7 +78,7 @@ const SYMPTOM_CATEGORIES = [
         key: "family",
         labelKey: "symptomCatFamilyLabel",
         icon: "👨‍👩‍👧",
-        color: "#4ADE80",
+        color: "#FFC94D",
         symptomKeys: [
             "symptomFamily1",
             "symptomFamily2",
@@ -221,8 +221,8 @@ const PLAN_OPTIONS = [
         // plus mentor access (verified badge, mentor directory, coaching tools).
         monthlyPrice: 20000,
         annualPrice: 200000,
-        color: "#4ADE80",
-        gradient: "linear-gradient(135deg, #4ADE80 0%, #2DD4BF 100%)",
+        color: "#FFC94D",
+        gradient: "linear-gradient(135deg, #FFC94D 0%, #FFB020 100%)",
         icon: "🛡️",
         features: [
             "Tout le plan Premium",
@@ -254,8 +254,8 @@ const PLAN_OPTIONS = [
         // and customization — designed for certified therapists.
         monthlyPrice: 40000,
         annualPrice: 400000,
-        color: "#C084FC",
-        gradient: "linear-gradient(135deg, #C084FC 0%, #2DD4BF 100%)",
+        color: "#FFD166",
+        gradient: "linear-gradient(135deg, #FFD166 0%, #FFB020 100%)",
         icon: "🎓",
         features: [
             "Tout le plan Premium",
@@ -361,7 +361,7 @@ function OnboardingProgress({ currentStep }) {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "sticky top-0 z-30 -mx-6 px-6 pt-3 pb-2.5 mb-2 backdrop-blur-xl bg-[#070B0E]/80 border-b border-white/5",
+                className: "sticky top-0 z-30 -mx-6 px-6 pt-3 pb-2.5 mb-2 backdrop-blur-xl bg-[#0B0704]/80 border-b border-white/5",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "flex items-center justify-between gap-3 mb-2",
@@ -859,7 +859,7 @@ function EngagementScreen() {
                                 scale: 0.97
                             },
                             onClick: ()=>toggleGoal(goal.key),
-                            className: `relative glass-card p-4 flex flex-col items-center text-center transition-all ${isSelected ? "ring-2 ring-[#10B981] glow-green" : ""}`,
+                            className: `relative glass-card p-4 flex flex-col items-center text-center transition-all ${isSelected ? "ring-2 ring-[#FF6B00] glow-green" : ""}`,
                             children: [
                                 isSelected && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "absolute top-2 right-2 w-5 h-5 rounded-full gradient-primary flex items-center justify-center",
@@ -1320,7 +1320,7 @@ function EngagementScreen() {
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__["Check"], {
                                                 size: 16,
-                                                className: "text-[#4ADE80] mt-0.5 flex-shrink-0"
+                                                className: "text-[#FFC94D] mt-0.5 flex-shrink-0"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/EngagementScreen.tsx",
                                                 lineNumber: 312,

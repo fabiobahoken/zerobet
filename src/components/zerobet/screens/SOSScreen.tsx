@@ -52,14 +52,14 @@ const HOTLINES: Hotline[] = [
     name: "Gambling Therapy International",
     description: "Support en ligne mondial",
     phone: "+441472544300",
-    color: "#2DD4BF",
+    color: "#FFB020",
   },
   {
     id: "h3",
     name: "SOS Amitié",
     description: "Écoute amicale 24/7",
     phone: "0972721212",
-    color: "#4ADE80",
+    color: "#FFC94D",
   },
   {
     id: "h4",
@@ -77,7 +77,7 @@ const SAFETY_STEPS: SafetyStep[] = [
     description:
       "Apprends à identifier les pensées, émotions et comportements qui précèdent une envie de parier : irritabilité, mensonges, isolement, obsession des résultats sportifs, recherche d'argent urgent.",
     icon: Check,
-    color: "#4ADE80",
+    color: "#FFC94D",
   },
   {
     id: 2,
@@ -93,7 +93,7 @@ const SAFETY_STEPS: SafetyStep[] = [
     description:
       "Prépare une liste d'activités de substitution : respiration 4-7-8, appel à un proche, marche de 10 minutes, sport, musique, lecture. Agis dans les 90 premières secondes de l'envie.",
     icon: Shield,
-    color: "#2DD4BF",
+    color: "#FFB020",
   },
   {
     id: 4,
@@ -101,7 +101,7 @@ const SAFETY_STEPS: SafetyStep[] = [
     description:
       "Identifie 2-3 personnes que tu peux appeler sans jugement quand l'envie monte. Ajoute-les dans tes contacts de confiance ci-dessus. Tu n'as pas à traverser ça seul.",
     icon: Phone,
-    color: "#C084FC",
+    color: "#FFD166",
   },
   {
     id: 5,
@@ -246,7 +246,7 @@ export function SOSScreen() {
       {/* Section 3: Professional Help */}
       <section className="mb-6">
         <div className="flex items-center gap-2 mb-3">
-          <Shield size={14} className="text-[#2DD4BF]" />
+          <Shield size={14} className="text-[#FFB020]" />
           <h2 className="text-white font-semibold text-sm">Aide professionnelle</h2>
         </div>
         <div className="space-y-2.5">
@@ -260,7 +260,7 @@ export function SOSScreen() {
       <section className="mb-6">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
-            <Check size={14} className="text-[#4ADE80]" />
+            <Check size={14} className="text-[#FFC94D]" />
             <h2 className="text-white font-semibold text-sm">Plan de sécurité</h2>
           </div>
           <span className="text-white/40 text-xs">
@@ -410,10 +410,10 @@ function TrustedContactCard({
       <motion.a
         href={`tel:${contact.phone}`}
         whileTap={{ scale: 0.92 }}
-        className="w-9 h-9 rounded-full bg-[#4ADE80]/20 flex items-center justify-center flex-shrink-0"
+        className="w-9 h-9 rounded-full bg-[#FFC94D]/20 flex items-center justify-center flex-shrink-0"
         aria-label={`Appeler ${contact.name}`}
       >
-        <Phone size={15} className="text-[#4ADE80]" />
+        <Phone size={15} className="text-[#FFC94D]" />
       </motion.a>
       <motion.button
         whileTap={{ scale: 0.92 }}
@@ -481,7 +481,7 @@ function SafetyStepCard({
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: Math.min(index * 0.05, 0.4) }}
       className={`glass-card overflow-hidden transition-all ${
-        isRead ? "border-[#4ADE80]/30" : ""
+        isRead ? "border-[#FFC94D]/30" : ""
       }`}
     >
       <div className="flex items-stretch">
@@ -532,11 +532,11 @@ function SafetyStepCard({
             whileTap={{ scale: 0.9 }}
             className={`w-6 h-6 rounded-full flex items-center justify-center border ${
               isRead
-                ? "bg-[#4ADE80] border-[#4ADE80]"
+                ? "bg-[#FFC94D] border-[#FFC94D]"
                 : "border-white/30 bg-white/5"
             }`}
           >
-            {isRead && <Check size={12} className="text-[#070B0E]" strokeWidth={3} />}
+            {isRead && <Check size={12} className="text-[#0B0704]" strokeWidth={3} />}
           </motion.div>
         </button>
       </div>
@@ -647,7 +647,7 @@ function OptionsSheet({
                     <p className="text-white text-sm font-medium truncate">{c.name}</p>
                     <p className="text-white/50 text-[11px] truncate">{c.relationship}</p>
                   </div>
-                  <Phone size={14} className="text-[#4ADE80] flex-shrink-0" />
+                  <Phone size={14} className="text-[#FFC94D] flex-shrink-0" />
                 </a>
               ))}
             </div>
@@ -656,7 +656,7 @@ function OptionsSheet({
 
         {/* Hotlines */}
         <div className="flex items-center gap-2 mb-2 mt-4">
-          <Shield size={12} className="text-[#2DD4BF]" />
+          <Shield size={12} className="text-[#FFB020]" />
           <p className="text-white/50 text-xs uppercase tracking-wider font-medium">
             Lignes d&apos;urgence
           </p>

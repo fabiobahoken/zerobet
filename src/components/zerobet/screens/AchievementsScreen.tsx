@@ -14,6 +14,18 @@ import {
   Check,
   TrendingUp,
   Star,
+  Footprints,
+  PenLine,
+  Coins,
+  Flower2,
+  ShieldCheck,
+  MessagesSquare,
+  HandHeart,
+  Crown,
+  BookOpen,
+  Waves,
+  PartyPopper,
+  type LucideIcon,
 } from "lucide-react";
 import { useStore } from "@/store/zerobet-store";
 import {
@@ -23,6 +35,7 @@ import {
 import type { ParcoursRank } from "@/lib/data/parcours-data";
 import { TiltCard } from "@/components/zerobet/components/TiltCard";
 import { ArtifactIcon } from "@/components/zerobet/components/ArtifactIcon";
+import { BadgeMedal, type MedalTier } from "@/components/zerobet/components/BadgeMedal";
 import { useT } from "@/lib/i18n/useT";
 
 // ---------------------------------------------------------------------------
@@ -33,7 +46,8 @@ export interface SpecialAchievement {
   key: string;
   name: string;
   description: string;
-  icon: string;
+  /** Crafted Lucide icon rendered inside a metallic BadgeMedal */
+  icon: LucideIcon;
   color: string;
   target: number;
   getCurrent: (ctx: AchievementContext) => number;
@@ -57,8 +71,8 @@ export const SPECIAL_ACHIEVEMENTS: SpecialAchievement[] = [
     key: "premier-pas",
     name: "Premier Pas",
     description: "Complète ton premier jour sans pari",
-    icon: "🌱",
-    color: "#4ADE80",
+    icon: Footprints,
+    color: "#FFC94D",
     target: 1,
     getCurrent: (c) => c.streakDays,
   },
@@ -66,8 +80,8 @@ export const SPECIAL_ACHIEVEMENTS: SpecialAchievement[] = [
     key: "respirateur",
     name: "Respirateur",
     description: "Utilise le bouton d'urgence 5 fois",
-    icon: "🫁",
-    color: "#2DD4BF",
+    icon: Wind,
+    color: "#FF9A3D",
     target: 5,
     getCurrent: (c) => c.panicEventsCount,
   },
@@ -75,8 +89,8 @@ export const SPECIAL_ACHIEVEMENTS: SpecialAchievement[] = [
     key: "ecrivain",
     name: "Écrivain",
     description: "Écris 10 entrées dans ton journal",
-    icon: "✍️",
-    color: "#C084FC",
+    icon: PenLine,
+    color: "#FFD166",
     target: 10,
     getCurrent: (c) => c.journalCount,
   },
@@ -84,8 +98,8 @@ export const SPECIAL_ACHIEVEMENTS: SpecialAchievement[] = [
     key: "econome",
     name: "Économe",
     description: "Économise 100 000 FCFA",
-    icon: "💰",
-    color: "#FBBF24",
+    icon: Coins,
+    color: "#FFB020",
     target: 100000,
     getCurrent: (c) => c.totalSaved,
   },
@@ -93,8 +107,8 @@ export const SPECIAL_ACHIEVEMENTS: SpecialAchievement[] = [
     key: "mediant",
     name: "Méditant",
     description: "7 jours de méditation d'affilée",
-    icon: "🧘",
-    color: "#F59E0B",
+    icon: Flower2,
+    color: "#FF8A00",
     target: 7,
     getCurrent: (c) => c.meditationStreak,
   },
@@ -102,8 +116,8 @@ export const SPECIAL_ACHIEVEMENTS: SpecialAchievement[] = [
     key: "survivant",
     name: "Survivant",
     description: "Résiste à 10 envies fortes",
-    icon: "🛡️",
-    color: "#FF3B30",
+    icon: ShieldCheck,
+    color: "#FF6B00",
     target: 10,
     getCurrent: (c) => c.resolvedPanicCount,
   },
@@ -111,8 +125,8 @@ export const SPECIAL_ACHIEVEMENTS: SpecialAchievement[] = [
     key: "sociable",
     name: "Sociable",
     description: "Partage 5 témoignages",
-    icon: "💬",
-    color: "#2DD4BF",
+    icon: MessagesSquare,
+    color: "#FFD166",
     target: 5,
     getCurrent: (c) => c.testimonialsCount,
   },
@@ -120,8 +134,8 @@ export const SPECIAL_ACHIEVEMENTS: SpecialAchievement[] = [
     key: "mentor",
     name: "Mentor",
     description: "Aide 10 personnes dans le forum",
-    icon: "🤝",
-    color: "#4ADE80",
+    icon: HandHeart,
+    color: "#FFC94D",
     target: 10,
     getCurrent: (c) => c.forumPostsCount * 2,
   },
@@ -129,7 +143,7 @@ export const SPECIAL_ACHIEVEMENTS: SpecialAchievement[] = [
     key: "legende",
     name: "Légende",
     description: "365 jours sans pari",
-    icon: "👑",
+    icon: Crown,
     color: "#FFD700",
     target: 365,
     getCurrent: (c) => c.streakDays,
@@ -138,8 +152,8 @@ export const SPECIAL_ACHIEVEMENTS: SpecialAchievement[] = [
     key: "perseverant",
     name: "Persévérant",
     description: "30 jours sans rechute",
-    icon: "🔥",
-    color: "#FF3B30",
+    icon: Flame,
+    color: "#FF6B00",
     target: 30,
     getCurrent: (c) => c.streakDays,
   },
@@ -147,8 +161,8 @@ export const SPECIAL_ACHIEVEMENTS: SpecialAchievement[] = [
     key: "erudit",
     name: "Érudit",
     description: "Lis 20 articles",
-    icon: "📚",
-    color: "#2DD4BF",
+    icon: BookOpen,
+    color: "#FF9A3D",
     target: 20,
     getCurrent: (c) => c.articlesRead,
   },
@@ -156,8 +170,8 @@ export const SPECIAL_ACHIEVEMENTS: SpecialAchievement[] = [
     key: "zen-master",
     name: "Zen Master",
     description: "30 jours de méditation d'affilée",
-    icon: "🧘‍♂️",
-    color: "#C084FC",
+    icon: Waves,
+    color: "#FFB020",
     target: 30,
     getCurrent: (c) => c.meditationStreak,
   },
@@ -199,7 +213,10 @@ function relativeTimeLabel(daysAgo: number): string {
 interface RecentUnlock {
   key: string;
   name: string;
-  icon: string;
+  /** For rank unlocks: the ArtifactIcon key. */
+  artifactKey?: string;
+  /** For special unlocks: the crafted Lucide icon. */
+  Icon?: LucideIcon;
   color: string;
   type: "rank" | "special";
   daysAgo: number;
@@ -217,12 +234,12 @@ type ExcludedTierKey = Exclude<TierKey, "all">;
 // the parcours medal imagery. The colored pill background already conveys
 // the tier visually, so the emoji is purely decorative. We now use a small
 // colored dot instead.
-const TIER_META: Record<ExcludedTierKey, { label: string; color: string }> = {
-  bronze: { label: "Bronze", color: "#CD7F32" },
-  silver: { label: "Argent", color: "#C0C0C0" },
-  gold: { label: "Or", color: "#FFD700" },
-  diamond: { label: "Diamant", color: "#2DD4BF" },
-  legendary: { label: "Légende", color: "#C084FC" },
+const TIER_META: Record<ExcludedTierKey, { label: string; color: string; metal: string }> = {
+  bronze: { label: "Bronze", color: "#CD7F32", metal: "metal-bronze" },
+  silver: { label: "Argent", color: "#C0C0C0", metal: "metal-silver" },
+  gold: { label: "Or", color: "#FFD700", metal: "metal-gold" },
+  diamond: { label: "Diamant", color: "#CFF2FF", metal: "metal-diamond" },
+  legendary: { label: "Légende", color: "#FF6B00", metal: "metal-legendary" },
 };
 
 function getTierForTarget(target: number): ExcludedTierKey {
@@ -302,19 +319,21 @@ function ProgressRing({
 }
 
 /**
- * TierTab — a filter pill. Active state shows the tier's gradient background
- * + glow; inactive state shows a plain glass pill.
+ * TierTab — a filter pill. Active state shows the tier's real metal gradient
+ * (forged ring classes) + aura glow; inactive state shows a plain glass pill.
  */
 function TierTab({
   active,
   label,
   color,
+  metal,
   count,
   onClick,
 }: {
   active: boolean;
   label: string;
   color: string;
+  metal: string;
   count: number;
   onClick: () => void;
 }) {
@@ -323,31 +342,33 @@ function TierTab({
       type="button"
       onClick={onClick}
       aria-pressed={active}
-      className={`relative px-3.5 py-1.5 rounded-full flex items-center gap-1.5 text-[11px] font-semibold transition-all btn-press ${
-        active ? "text-white" : "text-white/65 glass-card"
+      className={`relative px-3.5 py-1.5 rounded-full flex items-center gap-1.5 text-[11px] font-semibold transition-all btn-press overflow-hidden ${
+        active ? "text-[#1A0D02]" : "text-white/65 glass-card"
       }`}
       style={
         active
           ? {
-              background: `linear-gradient(135deg, ${color} 0%, ${color}99 100%)`,
-              boxShadow: `0 0 18px ${color}80, 0 4px 16px rgba(0,0,0,0.3)`,
+              boxShadow: `0 0 18px ${color}80, 0 0 6px ${color}90, 0 4px 16px rgba(0,0,0,0.4)`,
             }
           : {}
       }
     >
+      {active && (
+        <span aria-hidden className={`absolute inset-0 ${metal} opacity-95`} />
+      )}
       <span
-        className="inline-block w-2 h-2 rounded-full flex-shrink-0"
+        className="relative inline-block w-2 h-2 rounded-full flex-shrink-0"
         style={{
           background: color,
           boxShadow: active
-            ? "0 0 6px rgba(255,255,255,0.6)"
+            ? "0 0 6px rgba(255,255,255,0.85), 0 0 12px " + color
             : `0 0 6px ${color}80`,
         }}
       />
-      <span className="leading-none">{label}</span>
+      <span className="relative leading-none">{label}</span>
       <span
-        className={`text-[9px] px-1.5 py-0.5 rounded-full ml-0.5 ${
-          active ? "bg-white/25 text-white" : "bg-white/10 text-white/70"
+        className={`relative text-[9px] px-1.5 py-0.5 rounded-full ml-0.5 ${
+          active ? "bg-black/25 text-white" : "bg-white/10 text-white/70"
         }`}
       >
         {count}
@@ -357,9 +378,10 @@ function TierTab({
 }
 
 /**
- * FlipBadge — a 3D flip card for a single achievement. Front shows the icon
- * + name; back shows the description + unlock state. Tap (or hover on
- * desktop) to flip. Unlocked badges get a tier-aura glow; locked ones get a
+ * FlipBadge — a 3D flip card for a single achievement. Front shows a forged
+ * metallic BadgeMedal + name; back shows the description + unlock state.
+ * Tap (or hover on desktop) to flip. Unlocked medals carry light rays,
+ * shine sweep, sparkles and a tier heat-aura; locked ones get a
  * desaturated treatment via .achievement-locked.
  */
 function FlipBadge({
@@ -371,7 +393,6 @@ function FlipBadge({
 }) {
   const [flipped, setFlipped] = useState(false);
   const tier = getTierForTarget(achievement.target);
-  const tierAuraClass = achievement.unlocked ? `rank-aura-${tier}` : "";
   const colorVar = {
     ["--achievement-color" as string]: achievement.color,
   } as CSSProperties;
@@ -393,6 +414,15 @@ function FlipBadge({
         }`}
         onClick={() => setFlipped((f) => !f)}
         style={colorVar}
+        role="button"
+        tabIndex={0}
+        aria-label={`${achievement.name} — ${achievement.unlocked ? "débloqué" : "verrouillé"}`}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            setFlipped((f) => !f);
+          }
+        }}
       >
         <div
           className="badge-3d-inner w-full h-full"
@@ -400,31 +430,23 @@ function FlipBadge({
         >
           {/* FRONT */}
           <div
-            className="badge-3d-front glass-card p-2.5 flex flex-col items-center justify-center text-center rounded-2xl overflow-hidden"
+            className="badge-3d-front glass-card p-2 flex flex-col items-center justify-center text-center rounded-2xl overflow-hidden"
             style={
               achievement.unlocked
-                ? { boxShadow: `0 0 20px ${achievement.color}25` }
+                ? { boxShadow: `0 0 22px ${achievement.color}30, inset 0 0 18px rgba(255,176,32,0.06)` }
                 : {}
             }
           >
-            <div
-              className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl mb-1.5 ${tierAuraClass} ${
-                achievement.unlocked ? "achievement-unlocked" : ""
-              }`}
-              style={{
-                background: achievement.unlocked
-                  ? `linear-gradient(135deg, ${achievement.color} 0%, ${achievement.color}99 100%)`
-                  : "rgba(255,255,255,0.05)",
-              }}
-            >
-              {achievement.unlocked ? (
-                achievement.icon
-              ) : (
-                <Lock size={16} className="text-white/40" />
-              )}
-            </div>
+            <BadgeMedal
+              tier={tier}
+              icon={achievement.icon}
+              color={achievement.color}
+              unlocked={achievement.unlocked}
+              size={58}
+              shineDelay={(index % 4) * 0.55}
+            />
             <p
-              className={`text-[10px] font-bold leading-tight mb-0.5 ${
+              className={`text-[10px] font-bold leading-tight mt-1.5 mb-0.5 ${
                 achievement.unlocked ? "text-white" : "text-white/60"
               }`}
             >
@@ -439,7 +461,7 @@ function FlipBadge({
           <div
             className="badge-3d-back glass-card-strong p-2.5 flex flex-col items-center justify-center text-center rounded-2xl overflow-hidden"
             style={{
-              background: `linear-gradient(135deg, ${achievement.color}25 0%, rgba(11,11,16,0.7) 100%)`,
+              background: `linear-gradient(135deg, ${achievement.color}26 0%, rgba(18,9,4,0.85) 100%)`,
               boxShadow: `0 0 20px ${achievement.color}30`,
             }}
           >
@@ -582,7 +604,7 @@ export function AchievementsScreen() {
       items.push({
         key: `rank-${rank.key}`,
         name: t(rank.nameKey),
-        icon: rank.icon,
+        artifactKey: rank.key,
         color: rank.color,
         type: "rank",
         daysAgo,
@@ -622,7 +644,7 @@ export function AchievementsScreen() {
       items.push({
         key: `special-${a.key}`,
         name: a.name,
-        icon: a.icon,
+        Icon: a.icon,
         color: a.color,
         type: "special",
         daysAgo,
@@ -666,8 +688,8 @@ export function AchievementsScreen() {
       value: `${meditationStreak}`,
       suffix: "j",
       icon: Wind,
-      gradient: "linear-gradient(135deg, #2DD4BF 0%, #2DD4BF 100%)",
-      glow: "rgba(45, 212, 191, 0.5)",
+      gradient: "linear-gradient(135deg, #FFD166 0%, #FF9A3D 100%)",
+      glow: "rgba(255,176,32, 0.5)",
     },
   ];
 
@@ -731,7 +753,7 @@ export function AchievementsScreen() {
               style={{ opacity: 0.15 }}
             />
             <Award
-              className="absolute top-1/2 right-10 text-[#C084FC] float pointer-events-none"
+              className="absolute top-1/2 right-10 text-[#FFD166] float pointer-events-none"
               size={22}
               strokeWidth={1.5}
               aria-hidden
@@ -848,7 +870,7 @@ export function AchievementsScreen() {
         <motion.div variants={itemVariants}>
           <div className="flex items-center justify-between mb-3 px-1">
             <div className="flex items-center gap-2">
-              <Sparkles size={14} className="text-[#C084FC]" />
+              <Sparkles size={14} className="text-[#FFD166]" />
               <h2 className="text-xs font-bold text-white/80 uppercase tracking-[0.12em]">
                 Exploits spéciaux
               </h2>
@@ -865,6 +887,7 @@ export function AchievementsScreen() {
                 active={activeTier === "all"}
                 label="Tous"
                 color="#F59E0B"
+                metal="metal-gold"
                 count={computedAchievements.length}
                 onClick={() => setActiveTier("all")}
               />
@@ -874,6 +897,7 @@ export function AchievementsScreen() {
                   active={activeTier === t}
                   label={TIER_META[t].label}
                   color={TIER_META[t].color}
+                  metal={TIER_META[t].metal}
                   count={tierCounts[t]}
                   onClick={() => setActiveTier(t)}
                 />
@@ -899,23 +923,27 @@ export function AchievementsScreen() {
         {recentUnlocks.length > 0 && (
           <motion.div variants={itemVariants} className="glass-card p-4">
             <div className="flex items-center gap-2 mb-3">
-              <Calendar size={14} className="text-[#4ADE80]" />
+              <Calendar size={14} className="text-[#FFC94D]" />
               <h2 className="text-xs font-bold text-white/80 uppercase tracking-[0.12em]">
                 {t("achievementsRecentUnlocks")}
               </h2>
             </div>
 
-            <div className="flex items-center gap-2 mb-4 p-3 rounded-2xl bg-[#4ADE80]/10 border border-[#4ADE80]/20">
+            <div className="flex items-center gap-2 mb-4 p-3 rounded-2xl bg-[#FFC94D]/10 border border-[#FFC94D]/20">
               <motion.div
-                animate={{ rotate: [0, 10, -10, 0] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                className="text-2xl flex-shrink-0"
+                animate={{ rotate: [0, 12, -12, 0], scale: [1, 1.12, 1] }}
+                transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+                className="flex-shrink-0"
               >
-                🎉
+                <PartyPopper
+                  size={26}
+                  className="text-[#FFC94D]"
+                  style={{ filter: "drop-shadow(0 0 8px rgba(255,201,77,0.5))" }}
+                />
               </motion.div>
               <p className="text-white/80 text-xs leading-relaxed">
                 <span className="text-white font-semibold">Félicitations !</span> Tu as débloqué{" "}
-                <span className="text-[#4ADE80] font-bold">{recentUnlocks.length}</span> réalisation
+                <span className="text-[#FFC94D] font-bold">{recentUnlocks.length}</span> réalisation
                 {recentUnlocks.length !== 1 ? "s" : ""} récemment.
               </p>
             </div>
@@ -930,15 +958,17 @@ export function AchievementsScreen() {
                   className="flex items-center gap-3 p-2.5 rounded-xl bg-white/5"
                 >
                   <div
-                    className="w-9 h-9 rounded-xl flex items-center justify-center text-lg flex-shrink-0"
+                    className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
                     style={{
                       background: `linear-gradient(135deg, ${unlock.color} 0%, ${unlock.color}99 100%)`,
                       boxShadow: `0 0 12px ${unlock.color}60`,
                     }}
                   >
-                    {unlock.type === "rank"
-                      ? <ArtifactIcon artifactKey={unlock.icon} size={22} glow={false} />
-                      : unlock.icon}
+                    {unlock.type === "rank" && unlock.artifactKey ? (
+                      <ArtifactIcon artifactKey={unlock.artifactKey} size={22} glow={false} />
+                    ) : (
+                      unlock.Icon && <unlock.Icon size={17} strokeWidth={2.2} className="text-white" />
+                    )}
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-white text-xs font-semibold leading-tight">{unlock.name}</p>
@@ -972,6 +1002,7 @@ export function AchievementsScreen() {
                   goal.target > 1000
                     ? remaining.toLocaleString("fr-FR")
                     : `${remaining}`;
+                const GoalIcon = goal.icon;
                 return (
                   <motion.div
                     key={goal.key}
@@ -981,13 +1012,14 @@ export function AchievementsScreen() {
                     className="flex items-center gap-3"
                   >
                     <div
-                      className="w-10 h-10 rounded-xl flex items-center justify-center text-lg flex-shrink-0 opacity-70"
+                      className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
                       style={{
                         background: `${goal.color}25`,
                         border: `1px solid ${goal.color}40`,
+                        boxShadow: `0 0 10px ${goal.color}30`,
                       }}
                     >
-                      {goal.icon}
+                      <GoalIcon size={18} strokeWidth={2.2} style={{ color: goal.color }} />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between mb-1">

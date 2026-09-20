@@ -18,8 +18,8 @@ const TYPE_CONFIG: Record<
   },
   motivation: {
     icon: <Dumbbell size={18} />,
-    color: "#4ADE80",
-    borderColor: "#4ADE80",
+    color: "#FFC94D",
+    borderColor: "#FFC94D",
   },
   milestone: {
     icon: <Trophy size={18} />,
@@ -28,8 +28,8 @@ const TYPE_CONFIG: Record<
   },
   weekly: {
     icon: <BarChart3 size={18} />,
-    color: "#2DD4BF",
-    borderColor: "#2DD4BF",
+    color: "#FFB020",
+    borderColor: "#FFB020",
   },
   checkin: {
     icon: <Heart size={18} />,
@@ -178,7 +178,7 @@ export function NotificationCenter({ isOpen, onClose }: NotificationCenterProps)
                 {unreadCount > 0 && (
                   <button
                     onClick={markAllRead}
-                    className="text-[#2DD4BF] text-xs font-medium hover:underline"
+                    className="text-[#FFB020] text-xs font-medium hover:underline"
                   >
                     {t("notifMarkAllRead")}
                   </button>

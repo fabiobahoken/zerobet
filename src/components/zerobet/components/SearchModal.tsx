@@ -68,11 +68,11 @@ function avatarGradient(name: string): string {
   const hash = name.split("").reduce((a, c) => a + c.charCodeAt(0), 0);
   const grads = [
     "linear-gradient(135deg, #FF3B30, #F59E0B)",
-    "linear-gradient(135deg, #4ADE80, #2DD4BF)",
-    "linear-gradient(135deg, #C084FC, #FF3B30)",
-    "linear-gradient(135deg, #2DD4BF, #2DD4BF)",
+    "linear-gradient(135deg, #FFC94D, #FFB020)",
+    "linear-gradient(135deg, #FFD166, #FF3B30)",
+    "linear-gradient(135deg, #FFB020, #FFB020)",
     "linear-gradient(135deg, #F59E0B, #FBBF24)",
-    "linear-gradient(135deg, #4ADE80, #FBBF24)",
+    "linear-gradient(135deg, #FFC94D, #FBBF24)",
   ];
   return grads[hash % grads.length];
 }
@@ -466,7 +466,7 @@ export function SearchModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[60] flex items-start justify-center bg-[#070B0E]/80 backdrop-blur-xl"
+          className="fixed inset-0 z-[60] flex items-start justify-center bg-[#0B0704]/80 backdrop-blur-xl"
           onClick={onClose}
         >
           <motion.div
@@ -478,7 +478,7 @@ export function SearchModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
             className="glass-card-strong w-full max-w-[430px] min-h-screen flex flex-col"
           >
             {/* Search bar */}
-            <div className="px-4 pt-12 pb-3 sticky top-0 z-10 bg-[#070B0E]/60 backdrop-blur-xl border-b border-white/5">
+            <div className="px-4 pt-12 pb-3 sticky top-0 z-10 bg-[#0B0704]/60 backdrop-blur-xl border-b border-white/5">
               <form onSubmit={handleSubmit} className="flex items-center gap-2">
                 <div className="flex-1 flex items-center gap-2 px-3 h-11 rounded-2xl bg-white/5 border border-white/10 focus-within:border-[#FF3B30]/60 transition-colors">
                   <SearchIcon size={18} className="text-white/40 shrink-0" />
@@ -592,7 +592,7 @@ export function SearchModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
                     <ResultSection
                       title="Mentors"
                       icon={ShieldCheck}
-                      accent="#4ADE80"
+                      accent="#FFC94D"
                       count={results.mentors.length}
                     >
                       {results.mentors.map((m) => (
@@ -605,7 +605,7 @@ export function SearchModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
                     <ResultSection
                       title="Articles"
                       icon={BookOpen}
-                      accent="#C084FC"
+                      accent="#FFD166"
                       count={results.articles.length}
                     >
                       {results.articles.map((a) => (
@@ -806,7 +806,7 @@ function MentorCard({ mentor, onClick }: { mentor: MentorResult; onClick: () => 
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-1">
           <span className="text-white text-sm font-semibold truncate">{mentor.name}</span>
-          <BadgeCheck size={12} className="text-[#2DD4BF] shrink-0" />
+          <BadgeCheck size={12} className="text-[#FFB020] shrink-0" />
         </div>
         <p className="text-[#F59E0B] text-xs truncate">{mentor.specialty}</p>
         <div className="flex items-center gap-2 text-white/40 text-[10px] mt-0.5">
@@ -890,7 +890,7 @@ function TestimonialCard({
     >
       <div className="flex items-center gap-1.5 mb-1">
         {testimonial.isVerified && (
-          <span className="flex items-center gap-0.5 text-[#2DD4BF] text-[10px] font-bold">
+          <span className="flex items-center gap-0.5 text-[#FFB020] text-[10px] font-bold">
             <BadgeCheck size={11} />
             Vérifié
           </span>

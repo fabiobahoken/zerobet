@@ -44,14 +44,14 @@ const HOTLINES = [
         name: "Gambling Therapy International",
         description: "Support en ligne mondial",
         phone: "+441472544300",
-        color: "#2DD4BF"
+        color: "#FFB020"
     },
     {
         id: "h3",
         name: "SOS Amitié",
         description: "Écoute amicale 24/7",
         phone: "0972721212",
-        color: "#4ADE80"
+        color: "#FFC94D"
     },
     {
         id: "h4",
@@ -67,7 +67,7 @@ const SAFETY_STEPS = [
         title: "Reconnaître les signes d'alerte",
         description: "Apprends à identifier les pensées, émotions et comportements qui précèdent une envie de parier : irritabilité, mensonges, isolement, obsession des résultats sportifs, recherche d'argent urgent.",
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__["Check"],
-        color: "#4ADE80"
+        color: "#FFC94D"
     },
     {
         id: 2,
@@ -81,14 +81,14 @@ const SAFETY_STEPS = [
         title: "Avoir des stratégies de distraction",
         description: "Prépare une liste d'activités de substitution : respiration 4-7-8, appel à un proche, marche de 10 minutes, sport, musique, lecture. Agis dans les 90 premières secondes de l'envie.",
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Shield$3e$__["Shield"],
-        color: "#2DD4BF"
+        color: "#FFB020"
     },
     {
         id: 4,
         title: "Contacter quelqu'un de confiance",
         description: "Identifie 2-3 personnes que tu peux appeler sans jugement quand l'envie monte. Ajoute-les dans tes contacts de confiance ci-dessus. Tu n'as pas à traverser ça seul.",
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$phone$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Phone$3e$__["Phone"],
-        color: "#C084FC"
+        color: "#FFD166"
     },
     {
         id: 5,
@@ -457,7 +457,7 @@ function SOSScreen() {
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Shield$3e$__["Shield"], {
                                 size: 14,
-                                className: "text-[#2DD4BF]"
+                                className: "text-[#FFB020]"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/SOSScreen.tsx",
                                 lineNumber: 249,
@@ -509,7 +509,7 @@ function SOSScreen() {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__["Check"], {
                                         size: 14,
-                                        className: "text-[#4ADE80]"
+                                        className: "text-[#FFC94D]"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SOSScreen.tsx",
                                         lineNumber: 263,
@@ -845,11 +845,11 @@ _c = SOSScreen;
                 whileTap: {
                     scale: 0.92
                 },
-                className: "w-9 h-9 rounded-full bg-[#4ADE80]/20 flex items-center justify-center flex-shrink-0",
+                className: "w-9 h-9 rounded-full bg-[#FFC94D]/20 flex items-center justify-center flex-shrink-0",
                 "aria-label": `Appeler ${contact.name}`,
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$phone$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Phone$3e$__["Phone"], {
                     size: 15,
-                    className: "text-[#4ADE80]"
+                    className: "text-[#FFC94D]"
                 }, void 0, false, {
                     fileName: "[project]/src/components/zerobet/screens/SOSScreen.tsx",
                     lineNumber: 416,
@@ -988,7 +988,7 @@ function SafetyStepCard({ step, index, isRead, isOpen, onToggleRead, onToggleOpe
         transition: {
             delay: Math.min(index * 0.05, 0.4)
         },
-        className: `glass-card overflow-hidden transition-all ${isRead ? "border-[#4ADE80]/30" : ""}`,
+        className: `glass-card overflow-hidden transition-all ${isRead ? "border-[#FFC94D]/30" : ""}`,
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "flex items-stretch",
@@ -1084,10 +1084,10 @@ function SafetyStepCard({ step, index, isRead, isOpen, onToggleRead, onToggleOpe
                             whileTap: {
                                 scale: 0.9
                             },
-                            className: `w-6 h-6 rounded-full flex items-center justify-center border ${isRead ? "bg-[#4ADE80] border-[#4ADE80]" : "border-white/30 bg-white/5"}`,
+                            className: `w-6 h-6 rounded-full flex items-center justify-center border ${isRead ? "bg-[#FFC94D] border-[#FFC94D]" : "border-white/30 bg-white/5"}`,
                             children: isRead && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__["Check"], {
                                 size: 12,
-                                className: "text-[#070B0E]",
+                                className: "text-[#0B0704]",
                                 strokeWidth: 3
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/SOSScreen.tsx",
@@ -1367,7 +1367,7 @@ function OptionsSheet({ hotlines, trustedContacts, onClose, onPanic }) {
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$phone$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Phone$3e$__["Phone"], {
                                             size: 14,
-                                            className: "text-[#4ADE80] flex-shrink-0"
+                                            className: "text-[#FFC94D] flex-shrink-0"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/screens/SOSScreen.tsx",
                                             lineNumber: 650,
@@ -1391,7 +1391,7 @@ function OptionsSheet({ hotlines, trustedContacts, onClose, onPanic }) {
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Shield$3e$__["Shield"], {
                             size: 12,
-                            className: "text-[#2DD4BF]"
+                            className: "text-[#FFB020]"
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/SOSScreen.tsx",
                             lineNumber: 659,

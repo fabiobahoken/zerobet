@@ -104,7 +104,7 @@ function RelapseModalContent({
       >
         {/* Decorative blurs */}
         <div className="absolute -top-12 -right-12 w-40 h-40 rounded-full bg-[#FF3B30]/15 blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-12 -left-12 w-40 h-40 rounded-full bg-[#C084FC]/15 blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-12 -left-12 w-40 h-40 rounded-full bg-[#FFD166]/15 blur-3xl pointer-events-none" />
 
         <div className="relative">
           {/* Header icon */}
@@ -170,7 +170,7 @@ function RelapseModalContent({
                 htmlFor="relapse-lesson"
                 className="text-white/70 text-xs font-medium mb-1.5 flex items-center gap-1.5"
               >
-                <Sparkles size={11} className="text-[#4ADE80]" />
+                <Sparkles size={11} className="text-[#FFC94D]" />
                 {t("relapseModalLessonLabel")}
                 <span className="text-white/30 text-[10px] font-normal">{t("relapseModalTriggerOptional")}</span>
               </label>
@@ -180,7 +180,7 @@ function RelapseModalContent({
                 onChange={(e) => setLesson(e.target.value)}
                 placeholder={t("relapseModalLessonPlaceholder")}
                 rows={3}
-                className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-[#4ADE80]/50 focus:bg-white/8 resize-none custom-scroll"
+                className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-[#FFC94D]/50 focus:bg-white/8 resize-none custom-scroll"
                 maxLength={500}
               />
               <div className="text-right text-white/30 text-[10px] mt-1">
@@ -233,9 +233,9 @@ function RelapseModalContent({
             <motion.button
               whileTap={{ scale: 0.98 }}
               onClick={handleNeedHelp}
-              className="w-full py-3.5 rounded-2xl glass-card text-white font-medium text-sm flex items-center justify-center gap-2 border border-[#2DD4BF]/30"
+              className="w-full py-3.5 rounded-2xl glass-card text-white font-medium text-sm flex items-center justify-center gap-2 border border-[#FFB020]/30"
             >
-              <LifeBuoy size={16} className="text-[#2DD4BF]" />
+              <LifeBuoy size={16} className="text-[#FFB020]" />
               {t("relapseModalHelpBtn")}
               <ChevronRight size={14} className="text-white/40" />
             </motion.button>

@@ -780,6 +780,10 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$vibrate$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Vibrate$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/vibrate.js [app-ssr] (ecmascript) <export default as Vibrate>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$clock$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Clock$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/clock.js [app-ssr] (ecmascript) <export default as Clock>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$file$2d$json$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__FileJson$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/file-json.js [app-ssr] (ecmascript) <export default as FileJson>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sprout$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Sprout$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/sprout.js [app-ssr] (ecmascript) <export default as Sprout>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$star$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Star$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/star.js [app-ssr] (ecmascript) <export default as Star>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2d$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ShieldCheck$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/shield-check.js [app-ssr] (ecmascript) <export default as ShieldCheck>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$graduation$2d$cap$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__GraduationCap$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/graduation-cap.js [app-ssr] (ecmascript) <export default as GraduationCap>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$switch$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ui/switch.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ui/input.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$slider$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ui/slider.tsx [app-ssr] (ecmascript)");
@@ -809,31 +813,31 @@ const PLAN_INFO = {
         descKey: "planFreeDesc",
         color: "#9CA3AF",
         gradient: "linear-gradient(135deg, #6B7280 0%, #374151 100%)",
-        icon: "🌱",
+        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sprout$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Sprout$3e$__["Sprout"],
         glowClass: ""
     },
     premium: {
         labelKey: "settingsPlanPremium",
         descKey: "planPremiumDesc",
-        color: "#10B981",
-        gradient: "linear-gradient(135deg, #10B981 0%, #F59E0B 100%)",
-        icon: "⭐",
+        color: "#FF6B00",
+        gradient: "linear-gradient(135deg, #FF6B00 0%, #F59E0B 100%)",
+        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$star$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Star$3e$__["Star"],
         glowClass: "glow-green"
     },
     mentor: {
         labelKey: "settingsPlanMentor",
         descKey: "planMentorDesc",
-        color: "#4ADE80",
-        gradient: "linear-gradient(135deg, #4ADE80 0%, #2DD4BF 100%)",
-        icon: "🛡️",
+        color: "#FFC94D",
+        gradient: "linear-gradient(135deg, #FFC94D 0%, #FFB020 100%)",
+        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2d$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ShieldCheck$3e$__["ShieldCheck"],
         glowClass: "glow-green"
     },
     psychologist: {
         labelKey: "settingsPlanPsychologist",
         descKey: "planPsychologistDesc",
-        color: "#C084FC",
-        gradient: "linear-gradient(135deg, #C084FC 0%, #2DD4BF 100%)",
-        icon: "🎓",
+        color: "#FFD166",
+        gradient: "linear-gradient(135deg, #FFD166 0%, #FFB020 100%)",
+        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$graduation$2d$cap$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__GraduationCap$3e$__["GraduationCap"],
         glowClass: "glow-purple"
     }
 };
@@ -1037,12 +1041,12 @@ function SettingsScreen() {
                                     className: "text-white"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                    lineNumber: 263,
+                                    lineNumber: 264,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 258,
+                                lineNumber: 259,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -1050,13 +1054,13 @@ function SettingsScreen() {
                                 children: t("settingsTitle")
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 265,
+                                lineNumber: 266,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                        lineNumber: 257,
+                        lineNumber: 258,
                         columnNumber: 9
                     }, this),
                     isAdmin && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].span, {
@@ -1079,7 +1083,7 @@ function SettingsScreen() {
                                 size: 10
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 276,
+                                lineNumber: 277,
                                 columnNumber: 13
                             }, this),
                             " ",
@@ -1087,13 +1091,13 @@ function SettingsScreen() {
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                        lineNumber: 270,
+                        lineNumber: 271,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                lineNumber: 251,
+                lineNumber: 252,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -1118,7 +1122,7 @@ function SettingsScreen() {
                         }
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                        lineNumber: 288,
+                        lineNumber: 289,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1128,7 +1132,7 @@ function SettingsScreen() {
                         }
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                        lineNumber: 292,
+                        lineNumber: 293,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1143,7 +1147,7 @@ function SettingsScreen() {
                                 children: initials
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 296,
+                                lineNumber: 297,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1157,7 +1161,7 @@ function SettingsScreen() {
                                                 children: displayName
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 307,
+                                                lineNumber: 308,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1166,26 +1170,36 @@ function SettingsScreen() {
                                                     background: planInfo.color
                                                 },
                                                 children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        "aria-hidden": true,
-                                                        children: planInfo.icon
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                        lineNumber: 314,
-                                                        columnNumber: 17
-                                                    }, this),
+                                                    (()=>{
+                                                        const PI = planInfo.icon;
+                                                        return typeof PI === "string" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                            "aria-hidden": true,
+                                                            children: PI
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
+                                                            lineNumber: 318,
+                                                            columnNumber: 21
+                                                        }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(PI, {
+                                                            size: 10,
+                                                            strokeWidth: 2.8
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
+                                                            lineNumber: 320,
+                                                            columnNumber: 21
+                                                        }, this);
+                                                    })(),
                                                     " ",
                                                     t(planInfo.labelKey)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 310,
+                                                lineNumber: 311,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 306,
+                                        lineNumber: 307,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1199,28 +1213,28 @@ function SettingsScreen() {
                                                         className: "text-[#F59E0B]"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                        lineNumber: 320,
+                                                        lineNumber: 328,
                                                         columnNumber: 19
                                                     }, this) : gender === "male" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$mars$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Mars$3e$__["Mars"], {
                                                         size: 12,
-                                                        className: "text-[#2DD4BF]"
+                                                        className: "text-[#FFB020]"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                        lineNumber: 322,
+                                                        lineNumber: 330,
                                                         columnNumber: 19
                                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$user$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__User$3e$__["User"], {
                                                         size: 12,
                                                         className: "text-white/40"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                        lineNumber: 324,
+                                                        lineNumber: 332,
                                                         columnNumber: 19
                                                     }, this),
                                                     genderLabel
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 318,
+                                                lineNumber: 326,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1228,7 +1242,7 @@ function SettingsScreen() {
                                                 "aria-hidden": true
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 328,
+                                                lineNumber: 336,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1239,7 +1253,7 @@ function SettingsScreen() {
                                                         size: 16
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                        lineNumber: 330,
+                                                        lineNumber: 338,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1247,37 +1261,37 @@ function SettingsScreen() {
                                                         children: currentLangInfo.nativeName
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                        lineNumber: 331,
+                                                        lineNumber: 339,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 329,
+                                                lineNumber: 337,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 317,
+                                        lineNumber: 325,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 305,
+                                lineNumber: 306,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                        lineNumber: 294,
+                        lineNumber: 295,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                lineNumber: 282,
+                lineNumber: 283,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -1300,7 +1314,7 @@ function SettingsScreen() {
                                         }
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 348,
+                                        lineNumber: 356,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -1308,13 +1322,13 @@ function SettingsScreen() {
                                         children: t("settingsPlan")
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 349,
+                                        lineNumber: 357,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 347,
+                                lineNumber: 355,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1326,10 +1340,23 @@ function SettingsScreen() {
                                             background: planInfo.gradient
                                         },
                                         "aria-hidden": true,
-                                        children: planInfo.icon
+                                        children: (()=>{
+                                            const PI = planInfo.icon;
+                                            return typeof PI === "string" ? PI : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(PI, {
+                                                size: 26,
+                                                strokeWidth: 2.1,
+                                                style: {
+                                                    filter: "drop-shadow(0 0 8px rgba(255,255,255,0.55))"
+                                                }
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
+                                                lineNumber: 373,
+                                                columnNumber: 19
+                                            }, this);
+                                        })()
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 355,
+                                        lineNumber: 363,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1344,7 +1371,7 @@ function SettingsScreen() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 363,
+                                                lineNumber: 382,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1352,19 +1379,19 @@ function SettingsScreen() {
                                                 children: t(planInfo.descKey)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 366,
+                                                lineNumber: 385,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 362,
+                                        lineNumber: 381,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 354,
+                                lineNumber: 362,
                                 columnNumber: 11
                             }, this),
                             plan === "free" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].button, {
@@ -1378,7 +1405,7 @@ function SettingsScreen() {
                                         size: 16
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 376,
+                                        lineNumber: 395,
                                         columnNumber: 15
                                     }, this),
                                     " ",
@@ -1386,7 +1413,7 @@ function SettingsScreen() {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 371,
+                                lineNumber: 390,
                                 columnNumber: 13
                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                 onClick: ()=>navigate("subscription"),
@@ -1398,19 +1425,19 @@ function SettingsScreen() {
                                         className: "group-hover:translate-x-0.5 transition-transform"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 384,
+                                        lineNumber: 403,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 379,
+                                lineNumber: 398,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                        lineNumber: 346,
+                        lineNumber: 354,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].section, {
@@ -1425,7 +1452,7 @@ function SettingsScreen() {
                                         className: "text-[#F59E0B]"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 392,
+                                        lineNumber: 411,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -1433,13 +1460,13 @@ function SettingsScreen() {
                                         children: t("settingsPreferences")
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 393,
+                                        lineNumber: 412,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 391,
+                                lineNumber: 410,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1450,7 +1477,7 @@ function SettingsScreen() {
                                         children: t("settingsLanguageLabel")
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 400,
+                                        lineNumber: 419,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1467,14 +1494,14 @@ function SettingsScreen() {
                                                 role: "radio",
                                                 "aria-checked": isSelected,
                                                 "aria-label": lang.nativeName,
-                                                className: `flex flex-col items-center gap-1.5 p-2.5 rounded-xl transition-all ${isSelected ? "glass-card-strong ring-2 ring-[#10B981]" : "bg-white/5 hover:bg-white/10"}`,
+                                                className: `flex flex-col items-center gap-1.5 p-2.5 rounded-xl transition-all ${isSelected ? "glass-card-strong ring-2 ring-[#FF6B00]" : "bg-white/5 hover:bg-white/10"}`,
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$Flag$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Flag"], {
                                                         code: lang.flag,
                                                         size: 28
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                        lineNumber: 420,
+                                                        lineNumber: 439,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1482,25 +1509,25 @@ function SettingsScreen() {
                                                         children: lang.nativeName
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                        lineNumber: 421,
+                                                        lineNumber: 440,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, lang.code, true, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 407,
+                                                lineNumber: 426,
                                                 columnNumber: 19
                                             }, this);
                                         })
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 403,
+                                        lineNumber: 422,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 399,
+                                lineNumber: 418,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1511,7 +1538,7 @@ function SettingsScreen() {
                                         children: t("settingsGender")
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 432,
+                                        lineNumber: 451,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1529,7 +1556,7 @@ function SettingsScreen() {
                                                         size: 14
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                        lineNumber: 442,
+                                                        lineNumber: 461,
                                                         columnNumber: 17
                                                     }, this),
                                                     " ",
@@ -1537,7 +1564,7 @@ function SettingsScreen() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 434,
+                                                lineNumber: 453,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1550,7 +1577,7 @@ function SettingsScreen() {
                                                         size: 14
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                        lineNumber: 452,
+                                                        lineNumber: 471,
                                                         columnNumber: 17
                                                     }, this),
                                                     " ",
@@ -1558,19 +1585,19 @@ function SettingsScreen() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 444,
+                                                lineNumber: 463,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 433,
+                                        lineNumber: 452,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 431,
+                                lineNumber: 450,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1581,7 +1608,7 @@ function SettingsScreen() {
                                         children: t("settingsYourName")
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 459,
+                                        lineNumber: 478,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -1591,22 +1618,22 @@ function SettingsScreen() {
                                         onChange: (e)=>setName(e.target.value),
                                         placeholder: t("settingsNamePlaceholder"),
                                         maxLength: 30,
-                                        className: "bg-white/5 border-white/10 text-white placeholder:text-white/30 rounded-xl h-11 focus-visible:border-[#10B981]/60 focus-visible:ring-[#10B981]/20"
+                                        className: "bg-white/5 border-white/10 text-white placeholder:text-white/30 rounded-xl h-11 focus-visible:border-[#FF6B00]/60 focus-visible:ring-[#FF6B00]/20"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 462,
+                                        lineNumber: 481,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 458,
+                                lineNumber: 477,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                        lineNumber: 390,
+                        lineNumber: 409,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].section, {
@@ -1618,10 +1645,10 @@ function SettingsScreen() {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$lock$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Lock$3e$__["Lock"], {
                                         size: 16,
-                                        className: "text-[#2DD4BF]"
+                                        className: "text-[#FFB020]"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 477,
+                                        lineNumber: 496,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -1629,13 +1656,13 @@ function SettingsScreen() {
                                         children: t("settingsPrivacy")
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 478,
+                                        lineNumber: 497,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 476,
+                                lineNumber: 495,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1649,7 +1676,7 @@ function SettingsScreen() {
                                                 children: t("settingsAnonymousMode")
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 486,
+                                                lineNumber: 505,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1657,29 +1684,29 @@ function SettingsScreen() {
                                                 children: t("settingsAnonymousDesc")
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 487,
+                                                lineNumber: 506,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 485,
+                                        lineNumber: 504,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$switch$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Switch"], {
                                         checked: anonymousMode,
                                         onCheckedChange: setAnonymousMode,
                                         "aria-label": t("settingsAnonymousMode"),
-                                        className: "data-[state=checked]:bg-[#10B981] data-[state=unchecked]:bg-white/15"
+                                        className: "data-[state=checked]:bg-[#FF6B00] data-[state=unchecked]:bg-white/15"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 491,
+                                        lineNumber: 510,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 484,
+                                lineNumber: 503,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1693,7 +1720,7 @@ function SettingsScreen() {
                                                 children: t("settingsDataConsent")
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 502,
+                                                lineNumber: 521,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1701,47 +1728,47 @@ function SettingsScreen() {
                                                 children: t("settingsDataConsentDesc")
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 503,
+                                                lineNumber: 522,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 501,
+                                        lineNumber: 520,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$switch$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Switch"], {
                                         checked: dataConsent,
                                         onCheckedChange: setDataConsent,
                                         "aria-label": t("settingsDataConsent"),
-                                        className: "data-[state=checked]:bg-[#10B981] data-[state=unchecked]:bg-white/15"
+                                        className: "data-[state=checked]:bg-[#FF6B00] data-[state=unchecked]:bg-white/15"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 507,
+                                        lineNumber: 526,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 500,
+                                lineNumber: 519,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex items-start gap-3 p-3.5 rounded-2xl bg-[#2DD4BF]/10 border border-[#2DD4BF]/20",
+                                className: "flex items-start gap-3 p-3.5 rounded-2xl bg-[#FFB020]/10 border border-[#FFB020]/20",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "w-9 h-9 rounded-xl bg-[#2DD4BF]/20 flex items-center justify-center flex-shrink-0",
+                                        className: "w-9 h-9 rounded-xl bg-[#FFB020]/20 flex items-center justify-center flex-shrink-0",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Shield$3e$__["Shield"], {
                                             size: 16,
-                                            className: "text-[#2DD4BF]"
+                                            className: "text-[#FFB020]"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                            lineNumber: 518,
+                                            lineNumber: 537,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 517,
+                                        lineNumber: 536,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1752,7 +1779,7 @@ function SettingsScreen() {
                                                 children: t("settingsDataProtected")
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 521,
+                                                lineNumber: 540,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1760,25 +1787,25 @@ function SettingsScreen() {
                                                 children: t("settingsDataProtectedDesc")
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 524,
+                                                lineNumber: 543,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 520,
+                                        lineNumber: 539,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 516,
+                                lineNumber: 535,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                        lineNumber: 475,
+                        lineNumber: 494,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].section, {
@@ -1790,10 +1817,10 @@ function SettingsScreen() {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$database$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Database$3e$__["Database"], {
                                         size: 16,
-                                        className: "text-[#4ADE80]"
+                                        className: "text-[#FFC94D]"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 534,
+                                        lineNumber: 553,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -1801,13 +1828,13 @@ function SettingsScreen() {
                                         children: t("settingsBackupTitle")
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 535,
+                                        lineNumber: 554,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 533,
+                                lineNumber: 552,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1821,7 +1848,7 @@ function SettingsScreen() {
                                                 children: t("settingsBackupSync")
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 543,
+                                                lineNumber: 562,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1829,7 +1856,7 @@ function SettingsScreen() {
                                                 children: t("settingsBackupSyncDesc")
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 544,
+                                                lineNumber: 563,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1844,13 +1871,13 @@ function SettingsScreen() {
                                                 }) : t("settingsBackupNever")
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 547,
+                                                lineNumber: 566,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 542,
+                                        lineNumber: 561,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1864,13 +1891,13 @@ function SettingsScreen() {
                                         children: cloudSyncStatus === "syncing" ? t("settingsBackupSyncing") : cloudSyncStatus === "error" ? t("settingsBackupRetry") : t("settingsBackupSyncNow")
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 558,
+                                        lineNumber: 577,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 541,
+                                lineNumber: 560,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1910,18 +1937,18 @@ function SettingsScreen() {
                                 "aria-label": t("settingsExportData"),
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "w-9 h-9 rounded-xl bg-[#4ADE80]/15 flex items-center justify-center flex-shrink-0",
+                                        className: "w-9 h-9 rounded-xl bg-[#FFC94D]/15 flex items-center justify-center flex-shrink-0",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$download$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Download$3e$__["Download"], {
                                             size: 16,
-                                            className: "text-[#4ADE80]"
+                                            className: "text-[#FFC94D]"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                            lineNumber: 610,
+                                            lineNumber: 629,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 609,
+                                        lineNumber: 628,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1932,7 +1959,7 @@ function SettingsScreen() {
                                                 children: t("settingsExportData")
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 613,
+                                                lineNumber: 632,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1940,13 +1967,13 @@ function SettingsScreen() {
                                                 children: t("settingsExportDesc")
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 614,
+                                                lineNumber: 633,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 612,
+                                        lineNumber: 631,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$right$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronRight$3e$__["ChevronRight"], {
@@ -1954,13 +1981,13 @@ function SettingsScreen() {
                                         className: "text-white/30 flex-shrink-0"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 616,
+                                        lineNumber: 635,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 580,
+                                lineNumber: 599,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1992,18 +2019,18 @@ function SettingsScreen() {
                                 "aria-label": t("settingsRestoreData"),
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "w-9 h-9 rounded-xl bg-[#2DD4BF]/15 flex items-center justify-center flex-shrink-0",
+                                        className: "w-9 h-9 rounded-xl bg-[#FFB020]/15 flex items-center justify-center flex-shrink-0",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$upload$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Upload$3e$__["Upload"], {
                                             size: 16,
-                                            className: "text-[#2DD4BF]"
+                                            className: "text-[#FFB020]"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                            lineNumber: 649,
+                                            lineNumber: 668,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 648,
+                                        lineNumber: 667,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2014,7 +2041,7 @@ function SettingsScreen() {
                                                 children: t("settingsRestoreData")
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 652,
+                                                lineNumber: 671,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2022,13 +2049,13 @@ function SettingsScreen() {
                                                 children: t("settingsRestoreDesc")
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 653,
+                                                lineNumber: 672,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 651,
+                                        lineNumber: 670,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$right$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronRight$3e$__["ChevronRight"], {
@@ -2036,13 +2063,13 @@ function SettingsScreen() {
                                         className: "text-white/30 flex-shrink-0"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 655,
+                                        lineNumber: 674,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 620,
+                                lineNumber: 639,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2051,18 +2078,18 @@ function SettingsScreen() {
                                 "aria-label": t("settingsDataRightsRow"),
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "w-9 h-9 rounded-xl bg-[#10B981]/15 flex items-center justify-center flex-shrink-0",
+                                        className: "w-9 h-9 rounded-xl bg-[#FF6B00]/15 flex items-center justify-center flex-shrink-0",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$file$2d$json$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__FileJson$3e$__["FileJson"], {
                                             size: 16,
-                                            className: "text-[#4ADE80]"
+                                            className: "text-[#FFC94D]"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                            lineNumber: 664,
+                                            lineNumber: 683,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 663,
+                                        lineNumber: 682,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2073,7 +2100,7 @@ function SettingsScreen() {
                                                 children: t("settingsDataRightsRow")
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 667,
+                                                lineNumber: 686,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2081,13 +2108,13 @@ function SettingsScreen() {
                                                 children: t("settingsDataRightsRowDesc")
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 668,
+                                                lineNumber: 687,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 666,
+                                        lineNumber: 685,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$right$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronRight$3e$__["ChevronRight"], {
@@ -2095,19 +2122,19 @@ function SettingsScreen() {
                                         className: "text-white/30 flex-shrink-0"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 670,
+                                        lineNumber: 689,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 658,
+                                lineNumber: 677,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                        lineNumber: 532,
+                        lineNumber: 551,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].section, {
@@ -2122,7 +2149,7 @@ function SettingsScreen() {
                                         className: "text-[#F59E0B]"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 677,
+                                        lineNumber: 696,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -2130,13 +2157,13 @@ function SettingsScreen() {
                                         children: t("settingsAppearance")
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 678,
+                                        lineNumber: 697,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 676,
+                                lineNumber: 695,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2147,7 +2174,7 @@ function SettingsScreen() {
                                         children: t("settingsTheme")
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 685,
+                                        lineNumber: 704,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2165,7 +2192,7 @@ function SettingsScreen() {
                                                         size: 14
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                        lineNumber: 695,
+                                                        lineNumber: 714,
                                                         columnNumber: 17
                                                     }, this),
                                                     " ",
@@ -2175,13 +2202,13 @@ function SettingsScreen() {
                                                         className: "opacity-60"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                        lineNumber: 696,
+                                                        lineNumber: 715,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 687,
+                                                lineNumber: 706,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2194,7 +2221,7 @@ function SettingsScreen() {
                                                         size: 14
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                        lineNumber: 706,
+                                                        lineNumber: 725,
                                                         columnNumber: 17
                                                     }, this),
                                                     " ",
@@ -2202,13 +2229,13 @@ function SettingsScreen() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 698,
+                                                lineNumber: 717,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 686,
+                                        lineNumber: 705,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2216,13 +2243,13 @@ function SettingsScreen() {
                                         children: t("themeLockNote")
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 709,
+                                        lineNumber: 728,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 684,
+                                lineNumber: 703,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2236,7 +2263,7 @@ function SettingsScreen() {
                                                 children: t("starfieldIntensity")
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 717,
+                                                lineNumber: 736,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2247,13 +2274,13 @@ function SettingsScreen() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 718,
+                                                lineNumber: 737,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 716,
+                                        lineNumber: 735,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$slider$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Slider"], {
@@ -2268,13 +2295,13 @@ function SettingsScreen() {
                                         "aria-label": t("starfieldIntensity")
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 722,
+                                        lineNumber: 741,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 715,
+                                lineNumber: 734,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2288,7 +2315,7 @@ function SettingsScreen() {
                                                 children: t("glassEffect")
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 736,
+                                                lineNumber: 755,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2296,13 +2323,13 @@ function SettingsScreen() {
                                                 children: t("glassEffectDesc")
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 737,
+                                                lineNumber: 756,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 735,
+                                        lineNumber: 754,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$switch$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Switch"], {
@@ -2312,19 +2339,19 @@ function SettingsScreen() {
                                         className: "data-[state=checked]:bg-[#F59E0B] data-[state=unchecked]:bg-white/15"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 741,
+                                        lineNumber: 760,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 734,
+                                lineNumber: 753,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                        lineNumber: 675,
+                        lineNumber: 694,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].section, {
@@ -2339,7 +2366,7 @@ function SettingsScreen() {
                                         className: "text-[#F59E0B]"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 753,
+                                        lineNumber: 772,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -2347,13 +2374,13 @@ function SettingsScreen() {
                                         children: t("notificationPrefs")
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 754,
+                                        lineNumber: 773,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 752,
+                                lineNumber: 771,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2366,7 +2393,7 @@ function SettingsScreen() {
                                         onChange: (v)=>setNotificationPref("streak", v)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 760,
+                                        lineNumber: 779,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(NotificationToggle, {
@@ -2376,7 +2403,7 @@ function SettingsScreen() {
                                         onChange: (v)=>setNotificationPref("motivation", v)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 766,
+                                        lineNumber: 785,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(NotificationToggle, {
@@ -2386,7 +2413,7 @@ function SettingsScreen() {
                                         onChange: (v)=>setNotificationPref("milestones", v)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 772,
+                                        lineNumber: 791,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(NotificationToggle, {
@@ -2396,7 +2423,7 @@ function SettingsScreen() {
                                         onChange: (v)=>setNotificationPref("checkin", v)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 778,
+                                        lineNumber: 797,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(NotificationToggle, {
@@ -2406,13 +2433,13 @@ function SettingsScreen() {
                                         onChange: (v)=>setNotificationPref("weekly", v)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 784,
+                                        lineNumber: 803,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 759,
+                                lineNumber: 778,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2426,7 +2453,7 @@ function SettingsScreen() {
                                                 size: 12
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 798,
+                                                lineNumber: 817,
                                                 columnNumber: 15
                                             }, this),
                                             " ",
@@ -2434,7 +2461,7 @@ function SettingsScreen() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 794,
+                                        lineNumber: 813,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -2445,19 +2472,19 @@ function SettingsScreen() {
                                         className: "bg-white/5 border-white/10 text-white rounded-xl h-11 focus-visible:border-[#F59E0B]/60 focus-visible:ring-[#F59E0B]/20 [color-scheme:dark]"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 800,
+                                        lineNumber: 819,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 793,
+                                lineNumber: 812,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                        lineNumber: 751,
+                        lineNumber: 770,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].section, {
@@ -2469,10 +2496,10 @@ function SettingsScreen() {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$database$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Database$3e$__["Database"], {
                                         size: 16,
-                                        className: "text-[#4ADE80]"
+                                        className: "text-[#FFC94D]"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 813,
+                                        lineNumber: 832,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -2480,13 +2507,13 @@ function SettingsScreen() {
                                         children: t("dataManagement")
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 814,
+                                        lineNumber: 833,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 812,
+                                lineNumber: 831,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2497,21 +2524,21 @@ function SettingsScreen() {
                                         children: t("dataSize")
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 821,
+                                        lineNumber: 840,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-white text-sm font-mono bg-[#4ADE80]/10 text-[#4ADE80] px-2.5 py-0.5 rounded-md",
+                                        className: "text-white text-sm font-mono bg-[#FFC94D]/10 text-[#FFC94D] px-2.5 py-0.5 rounded-md",
                                         children: dataSizeKB
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 822,
+                                        lineNumber: 841,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 820,
+                                lineNumber: 839,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2522,13 +2549,13 @@ function SettingsScreen() {
                                             scale: 0.97
                                         },
                                         onClick: handleExport,
-                                        className: "py-3 rounded-2xl bg-[#4ADE80]/15 text-[#4ADE80] text-xs font-semibold border border-[#4ADE80]/25 flex items-center justify-center gap-1.5 transition-colors hover:bg-[#4ADE80]/20",
+                                        className: "py-3 rounded-2xl bg-[#FFC94D]/15 text-[#FFC94D] text-xs font-semibold border border-[#FFC94D]/25 flex items-center justify-center gap-1.5 transition-colors hover:bg-[#FFC94D]/20",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$download$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Download$3e$__["Download"], {
                                                 size: 14
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 834,
+                                                lineNumber: 853,
                                                 columnNumber: 15
                                             }, this),
                                             " ",
@@ -2536,7 +2563,7 @@ function SettingsScreen() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 829,
+                                        lineNumber: 848,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].button, {
@@ -2544,13 +2571,13 @@ function SettingsScreen() {
                                             scale: 0.97
                                         },
                                         onClick: handleImportClick,
-                                        className: "py-3 rounded-2xl bg-[#2DD4BF]/15 text-[#2DD4BF] text-xs font-semibold border border-[#2DD4BF]/25 flex items-center justify-center gap-1.5 transition-colors hover:bg-[#2DD4BF]/20",
+                                        className: "py-3 rounded-2xl bg-[#FFB020]/15 text-[#FFB020] text-xs font-semibold border border-[#FFB020]/25 flex items-center justify-center gap-1.5 transition-colors hover:bg-[#FFB020]/20",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$upload$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Upload$3e$__["Upload"], {
                                                 size: 14
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 841,
+                                                lineNumber: 860,
                                                 columnNumber: 15
                                             }, this),
                                             " ",
@@ -2558,13 +2585,13 @@ function SettingsScreen() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 836,
+                                        lineNumber: 855,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 828,
+                                lineNumber: 847,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -2576,7 +2603,7 @@ function SettingsScreen() {
                                 "aria-hidden": true
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 845,
+                                lineNumber: 864,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].button, {
@@ -2590,7 +2617,7 @@ function SettingsScreen() {
                                         size: 14
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 859,
+                                        lineNumber: 878,
                                         columnNumber: 13
                                     }, this),
                                     " ",
@@ -2598,7 +2625,7 @@ function SettingsScreen() {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 854,
+                                lineNumber: 873,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2606,13 +2633,13 @@ function SettingsScreen() {
                                 children: t("exportImportDesc")
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 862,
+                                lineNumber: 881,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                        lineNumber: 811,
+                        lineNumber: 830,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].section, {
@@ -2624,10 +2651,10 @@ function SettingsScreen() {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$lock$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Lock$3e$__["Lock"], {
                                         size: 16,
-                                        className: "text-[#10B981]"
+                                        className: "text-[#FF6B00]"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 870,
+                                        lineNumber: 889,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -2635,13 +2662,13 @@ function SettingsScreen() {
                                         children: t("privacySecurity")
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 871,
+                                        lineNumber: 890,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 869,
+                                lineNumber: 888,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2655,10 +2682,10 @@ function SettingsScreen() {
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$lock$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Lock$3e$__["Lock"], {
                                                         size: 12,
-                                                        className: "text-[#10B981]"
+                                                        className: "text-[#FF6B00]"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                        lineNumber: 879,
+                                                        lineNumber: 898,
                                                         columnNumber: 17
                                                     }, this),
                                                     " ",
@@ -2666,7 +2693,7 @@ function SettingsScreen() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 878,
+                                                lineNumber: 897,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2674,29 +2701,29 @@ function SettingsScreen() {
                                                 children: t("appLockDesc")
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 881,
+                                                lineNumber: 900,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 877,
+                                        lineNumber: 896,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$switch$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Switch"], {
                                         checked: appLock,
                                         onCheckedChange: setAppLock,
                                         "aria-label": t("appLock"),
-                                        className: "data-[state=checked]:bg-[#10B981] data-[state=unchecked]:bg-white/15"
+                                        className: "data-[state=checked]:bg-[#FF6B00] data-[state=unchecked]:bg-white/15"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 885,
+                                        lineNumber: 904,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 876,
+                                lineNumber: 895,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2710,10 +2737,10 @@ function SettingsScreen() {
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$eye$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Eye$3e$__["Eye"], {
                                                         size: 12,
-                                                        className: "text-[#C084FC]"
+                                                        className: "text-[#FFD166]"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                        lineNumber: 896,
+                                                        lineNumber: 915,
                                                         columnNumber: 17
                                                     }, this),
                                                     " ",
@@ -2721,7 +2748,7 @@ function SettingsScreen() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 895,
+                                                lineNumber: 914,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2729,29 +2756,29 @@ function SettingsScreen() {
                                                 children: t("discreteModeDesc")
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 898,
+                                                lineNumber: 917,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 894,
+                                        lineNumber: 913,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$switch$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Switch"], {
                                         checked: discreteMode,
                                         onCheckedChange: setDiscreteMode,
                                         "aria-label": t("discreteMode"),
-                                        className: "data-[state=checked]:bg-[#C084FC] data-[state=unchecked]:bg-white/15"
+                                        className: "data-[state=checked]:bg-[#FFD166] data-[state=unchecked]:bg-white/15"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 902,
+                                        lineNumber: 921,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 893,
+                                lineNumber: 912,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2766,7 +2793,7 @@ function SettingsScreen() {
                                                         size: 12
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                        lineNumber: 913,
+                                                        lineNumber: 932,
                                                         columnNumber: 17
                                                     }, this),
                                                     " ",
@@ -2774,7 +2801,7 @@ function SettingsScreen() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 912,
+                                                lineNumber: 931,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2785,13 +2812,13 @@ function SettingsScreen() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 915,
+                                                lineNumber: 934,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 911,
+                                        lineNumber: 930,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$slider$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Slider"], {
@@ -2805,7 +2832,7 @@ function SettingsScreen() {
                                         "aria-label": t("autoLockSession")
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 919,
+                                        lineNumber: 938,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2815,19 +2842,19 @@ function SettingsScreen() {
                                         })
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 927,
+                                        lineNumber: 946,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 910,
+                                lineNumber: 929,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                        lineNumber: 868,
+                        lineNumber: 887,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].section, {
@@ -2839,10 +2866,10 @@ function SettingsScreen() {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$volume$2d$2$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Volume2$3e$__["Volume2"], {
                                         size: 16,
-                                        className: "text-[#2DD4BF]"
+                                        className: "text-[#FFB020]"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 936,
+                                        lineNumber: 955,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -2850,13 +2877,13 @@ function SettingsScreen() {
                                         children: t("soundHaptics")
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 937,
+                                        lineNumber: 956,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 935,
+                                lineNumber: 954,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2870,10 +2897,10 @@ function SettingsScreen() {
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$volume$2d$2$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Volume2$3e$__["Volume2"], {
                                                         size: 12,
-                                                        className: "text-[#2DD4BF]"
+                                                        className: "text-[#FFB020]"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                        lineNumber: 945,
+                                                        lineNumber: 964,
                                                         columnNumber: 17
                                                     }, this),
                                                     " ",
@@ -2881,7 +2908,7 @@ function SettingsScreen() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 944,
+                                                lineNumber: 963,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2889,29 +2916,29 @@ function SettingsScreen() {
                                                 children: t("soundDescFull")
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 947,
+                                                lineNumber: 966,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 943,
+                                        lineNumber: 962,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$switch$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Switch"], {
                                         checked: soundEnabled,
                                         onCheckedChange: setSoundEnabled,
                                         "aria-label": t("settingsSound"),
-                                        className: "data-[state=checked]:bg-[#2DD4BF] data-[state=unchecked]:bg-white/15"
+                                        className: "data-[state=checked]:bg-[#FFB020] data-[state=unchecked]:bg-white/15"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 951,
+                                        lineNumber: 970,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 942,
+                                lineNumber: 961,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2928,7 +2955,7 @@ function SettingsScreen() {
                                                         className: "text-[#F59E0B]"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                        lineNumber: 962,
+                                                        lineNumber: 981,
                                                         columnNumber: 17
                                                     }, this),
                                                     " ",
@@ -2936,7 +2963,7 @@ function SettingsScreen() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 961,
+                                                lineNumber: 980,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2944,13 +2971,13 @@ function SettingsScreen() {
                                                 children: t("hapticsDescFull")
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 964,
+                                                lineNumber: 983,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 960,
+                                        lineNumber: 979,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$switch$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Switch"], {
@@ -2960,13 +2987,13 @@ function SettingsScreen() {
                                         className: "data-[state=checked]:bg-[#F59E0B] data-[state=unchecked]:bg-white/15"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 968,
+                                        lineNumber: 987,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 959,
+                                lineNumber: 978,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2979,7 +3006,7 @@ function SettingsScreen() {
                                                 children: t("volume")
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 978,
+                                                lineNumber: 997,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2990,13 +3017,13 @@ function SettingsScreen() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 979,
+                                                lineNumber: 998,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 977,
+                                        lineNumber: 996,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$slider$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Slider"], {
@@ -3011,19 +3038,19 @@ function SettingsScreen() {
                                         "aria-label": t("volume")
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 983,
+                                        lineNumber: 1002,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 976,
+                                lineNumber: 995,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                        lineNumber: 934,
+                        lineNumber: 953,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].section, {
@@ -3035,10 +3062,10 @@ function SettingsScreen() {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$file$2d$text$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__FileText$3e$__["FileText"], {
                                         size: 16,
-                                        className: "text-[#C084FC]"
+                                        className: "text-[#FFD166]"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 998,
+                                        lineNumber: 1017,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -3046,13 +3073,13 @@ function SettingsScreen() {
                                         children: t("settingsAbout")
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 999,
+                                        lineNumber: 1018,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 997,
+                                lineNumber: 1016,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3063,7 +3090,7 @@ function SettingsScreen() {
                                         children: t("appVersion")
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 1005,
+                                        lineNumber: 1024,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3071,13 +3098,13 @@ function SettingsScreen() {
                                         children: "v1.0.0"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 1006,
+                                        lineNumber: 1025,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 1004,
+                                lineNumber: 1023,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(AboutLink, {
@@ -3086,13 +3113,13 @@ function SettingsScreen() {
                                     className: "text-white/50"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                    lineNumber: 1009,
+                                    lineNumber: 1028,
                                     columnNumber: 28
                                 }, void 0),
                                 label: t("settingsTerms")
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 1009,
+                                lineNumber: 1028,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(AboutLink, {
@@ -3101,13 +3128,13 @@ function SettingsScreen() {
                                     className: "text-white/50"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                    lineNumber: 1010,
+                                    lineNumber: 1029,
                                     columnNumber: 28
                                 }, void 0),
                                 label: t("settingsPolicy")
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 1010,
+                                lineNumber: 1029,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(AboutLink, {
@@ -3116,13 +3143,13 @@ function SettingsScreen() {
                                     className: "text-white/50"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                    lineNumber: 1011,
+                                    lineNumber: 1030,
                                     columnNumber: 28
                                 }, void 0),
                                 label: t("contactUs")
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 1011,
+                                lineNumber: 1030,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3133,7 +3160,7 @@ function SettingsScreen() {
                                         children: t("aboutMission")
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 1014,
+                                        lineNumber: 1033,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3145,7 +3172,7 @@ function SettingsScreen() {
                                                 fill: "currentColor"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 1018,
+                                                lineNumber: 1037,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3153,25 +3180,25 @@ function SettingsScreen() {
                                                 children: t("designedWithCare")
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 1019,
+                                                lineNumber: 1038,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 1017,
+                                        lineNumber: 1036,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 1013,
+                                lineNumber: 1032,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                        lineNumber: 996,
+                        lineNumber: 1015,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].section, {
@@ -3186,7 +3213,7 @@ function SettingsScreen() {
                                         className: "text-[#FF3B30]"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 1027,
+                                        lineNumber: 1046,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -3194,13 +3221,13 @@ function SettingsScreen() {
                                         children: t("reset")
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 1028,
+                                        lineNumber: 1047,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 1026,
+                                lineNumber: 1045,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3208,7 +3235,7 @@ function SettingsScreen() {
                                 children: t("resetDesc")
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 1033,
+                                lineNumber: 1052,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$alert$2d$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AlertDialog"], {
@@ -3225,7 +3252,7 @@ function SettingsScreen() {
                                                     size: 16
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                    lineNumber: 1043,
+                                                    lineNumber: 1062,
                                                     columnNumber: 17
                                                 }, this),
                                                 " ",
@@ -3233,12 +3260,12 @@ function SettingsScreen() {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                            lineNumber: 1039,
+                                            lineNumber: 1058,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 1038,
+                                        lineNumber: 1057,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$alert$2d$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AlertDialogContent"], {
@@ -3256,19 +3283,19 @@ function SettingsScreen() {
                                                                     className: "text-[#FF3B30]"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                                    lineNumber: 1050,
+                                                                    lineNumber: 1069,
                                                                     columnNumber: 21
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                                lineNumber: 1049,
+                                                                lineNumber: 1068,
                                                                 columnNumber: 19
                                                             }, this),
                                                             t("resetAppConfirmTitle")
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                        lineNumber: 1048,
+                                                        lineNumber: 1067,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$alert$2d$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AlertDialogDescription"], {
@@ -3276,13 +3303,13 @@ function SettingsScreen() {
                                                         children: t("resetAppConfirmDesc")
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                        lineNumber: 1054,
+                                                        lineNumber: 1073,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 1047,
+                                                lineNumber: 1066,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$alert$2d$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AlertDialogFooter"], {
@@ -3293,7 +3320,7 @@ function SettingsScreen() {
                                                         children: t("cancel")
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                        lineNumber: 1059,
+                                                        lineNumber: 1078,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$alert$2d$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AlertDialogAction"], {
@@ -3302,31 +3329,31 @@ function SettingsScreen() {
                                                         children: t("reset")
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                        lineNumber: 1062,
+                                                        lineNumber: 1081,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                                lineNumber: 1058,
+                                                lineNumber: 1077,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                        lineNumber: 1046,
+                                        lineNumber: 1065,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                                lineNumber: 1037,
+                                lineNumber: 1056,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                        lineNumber: 1025,
+                        lineNumber: 1044,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].p, {
@@ -3339,19 +3366,19 @@ function SettingsScreen() {
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                        lineNumber: 1074,
+                        lineNumber: 1093,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                lineNumber: 339,
+                lineNumber: 347,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-        lineNumber: 249,
+        lineNumber: 250,
         columnNumber: 5
     }, this);
 }
@@ -3368,7 +3395,7 @@ function AboutLink({ icon, label }) {
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                lineNumber: 1091,
+                lineNumber: 1110,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$right$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronRight$3e$__["ChevronRight"], {
@@ -3376,13 +3403,13 @@ function AboutLink({ icon, label }) {
                 className: "text-white/30 group-hover:translate-x-0.5 transition-transform"
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                lineNumber: 1095,
+                lineNumber: 1114,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-        lineNumber: 1087,
+        lineNumber: 1106,
         columnNumber: 5
     }, this);
 }
@@ -3398,7 +3425,7 @@ function NotificationToggle({ label, description, checked, onChange }) {
                         children: label
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                        lineNumber: 1114,
+                        lineNumber: 1133,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3406,13 +3433,13 @@ function NotificationToggle({ label, description, checked, onChange }) {
                         children: description
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                        lineNumber: 1115,
+                        lineNumber: 1134,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                lineNumber: 1113,
+                lineNumber: 1132,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$switch$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Switch"], {
@@ -3422,13 +3449,13 @@ function NotificationToggle({ label, description, checked, onChange }) {
                 className: "data-[state=checked]:bg-[#F59E0B] data-[state=unchecked]:bg-white/15"
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-                lineNumber: 1117,
+                lineNumber: 1136,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/zerobet/screens/SettingsScreen.tsx",
-        lineNumber: 1112,
+        lineNumber: 1131,
         columnNumber: 5
     }, this);
 }

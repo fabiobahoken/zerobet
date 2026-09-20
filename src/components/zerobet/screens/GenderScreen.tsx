@@ -25,15 +25,15 @@ function MaleIcon({ size = 96 }: { size?: number }) {
     >
       <defs>
         <linearGradient id="male-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#2DD4BF" />
-          <stop offset="100%" stopColor="#0A84FF" />
+          <stop offset="0%" stopColor="#FFC94D" />
+          <stop offset="100%" stopColor="#FF6B00" />
         </linearGradient>
         <radialGradient id="male-glow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#2DD4BF" stopOpacity="0.3" />
-          <stop offset="100%" stopColor="#2DD4BF" stopOpacity="0" />
+          <stop offset="0%" stopColor="#FFB020" stopOpacity="0.3" />
+          <stop offset="100%" stopColor="#FFB020" stopOpacity="0" />
         </radialGradient>
         <filter id="male-shadow" x="-50%" y="-50%" width="200%" height="200%">
-          <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#0A84FF" floodOpacity="0.5" />
+          <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#FF6B00" floodOpacity="0.5" />
         </filter>
       </defs>
       {/* Glow */}
@@ -205,21 +205,21 @@ export function GenderScreen() {
           aria-pressed={gender === "male"}
           aria-label={t(language, "male")}
           className={`relative glass-card p-8 flex flex-col items-center transition-all ${
-            gender === "male" ? "ring-2 ring-[#2DD4BF] glow-blue" : ""
+            gender === "male" ? "ring-2 ring-[#FFB020] glow-blue" : ""
           }`}
         >
           {gender === "male" && (
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
-              className="absolute top-4 right-4 w-7 h-7 rounded-full bg-[#2DD4BF] flex items-center justify-center"
+              className="absolute top-4 right-4 w-7 h-7 rounded-full bg-[#FFB020] flex items-center justify-center"
             >
               <Check size={16} className="text-white" strokeWidth={3} />
             </motion.div>
           )}
           <div
             className="gender-icon-container"
-            style={{ ["--icon-color" as string]: "#2DD4BF" }}
+            style={{ ["--icon-color" as string]: "#FFB020" }}
           >
             <MaleIcon size={120} />
           </div>

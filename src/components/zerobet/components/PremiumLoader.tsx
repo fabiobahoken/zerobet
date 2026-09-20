@@ -90,7 +90,7 @@ export function PremiumLoader({
           i % 3 === 0
             ? "rgba(245, 158, 11,0.85)"
             : i % 3 === 1
-              ? "rgba(45, 212, 191,0.85)"
+              ? "rgba(255,176,32,0.85)"
               : "rgba(255,255,255,0.85)",
         drift: 28,
       })),
@@ -107,7 +107,7 @@ export function PremiumLoader({
         color:
           i % 2 === 0
             ? "rgba(255,107,53,0.9)"
-            : "rgba(192, 132, 252,0.9)",
+            : "rgba(255, 209, 102,0.9)",
         drift: 40,
       })),
       // Near layer — biggest, fastest, brightest
@@ -193,7 +193,7 @@ export function PremiumLoader({
           className="absolute inset-0 rounded-full pointer-events-none"
           style={{
             background:
-              "radial-gradient(circle, rgba(45, 212, 191,0.40) 0%, transparent 70%)",
+              "radial-gradient(circle, rgba(255,176,32,0.40) 0%, transparent 70%)",
           }}
         />
         <motion.div
@@ -204,7 +204,7 @@ export function PremiumLoader({
           className="absolute inset-0 rounded-full pointer-events-none"
           style={{
             background:
-              "radial-gradient(circle, rgba(192, 132, 252,0.32) 0%, transparent 70%)",
+              "radial-gradient(circle, rgba(255, 209, 102,0.32) 0%, transparent 70%)",
           }}
         />
         <div className="animate-glow-pulse premium-logo-shake">
@@ -276,9 +276,9 @@ export function PremiumLoader({
         .premium-mesh-bg {
           background:
             radial-gradient(ellipse at 25% 20%, rgba(255,59,48,0.18) 0%, transparent 45%),
-            radial-gradient(ellipse at 75% 30%, rgba(192, 132, 252,0.18) 0%, transparent 50%),
+            radial-gradient(ellipse at 75% 30%, rgba(255, 209, 102,0.18) 0%, transparent 50%),
             radial-gradient(ellipse at 50% 85%, rgba(245, 158, 11,0.18) 0%, transparent 55%),
-            radial-gradient(ellipse at 80% 75%, rgba(45, 212, 191,0.14) 0%, transparent 50%);
+            radial-gradient(ellipse at 80% 75%, rgba(255,176,32,0.14) 0%, transparent 50%);
           background-size: 200% 200%, 200% 200%, 200% 200%, 200% 200%;
           animation: premium-mesh-shift 14s ease-in-out infinite;
         }
@@ -410,7 +410,7 @@ export function PremiumLoader({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
-            className="fixed inset-0 z-[100] bg-[#070B0E] flex items-center justify-center"
+            className="fixed inset-0 z-[100] bg-[#0B0704] flex items-center justify-center"
           >
             {content}
           </motion.div>

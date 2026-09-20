@@ -13,7 +13,7 @@ type BreathingPhaseKey = "inhale" | "hold" | "exhale";
 
 const BREATHING_CYCLES = 3;
 const PHASES: { key: BreathingPhaseKey; tKey: string; duration: number; color: string; action: string }[] = [
-  { key: "inhale", tKey: "panicInhale", duration: 4, color: "#2DD4BF", action: "scale-up" },
+  { key: "inhale", tKey: "panicInhale", duration: 4, color: "#FFB020", action: "scale-up" },
   { key: "hold", tKey: "panicHold", duration: 7, color: "#FBBF24", action: "hold" },
   { key: "exhale", tKey: "panicExhale", duration: 8, color: "#FF3B30", action: "scale-down" },
 ];
@@ -268,7 +268,7 @@ export function PanicScreen() {
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ type: "spring", stiffness: 200, damping: 12 }}
-              className="w-20 h-20 rounded-full bg-[#4ADE80]/20 flex items-center justify-center mb-6"
+              className="w-20 h-20 rounded-full bg-[#FFC94D]/20 flex items-center justify-center mb-6"
             >
               <span className="text-4xl">💪</span>
             </motion.div>
@@ -301,7 +301,7 @@ export function PanicScreen() {
             <div className="w-full max-w-sm space-y-2.5">
               <button
                 onClick={markDone}
-                className="w-full py-4 rounded-2xl bg-[#4ADE80]/20 border border-[#4ADE80] text-[#4ADE80] font-[family-name:var(--font-poppins)] font-semibold text-base flex items-center justify-center gap-2 active:scale-[0.98] transition-transform"
+                className="w-full py-4 rounded-2xl bg-[#FFC94D]/20 border border-[#FFC94D] text-[#FFC94D] font-[family-name:var(--font-poppins)] font-semibold text-base flex items-center justify-center gap-2 active:scale-[0.98] transition-transform"
               >
                 <Check size={18} />
                 {t("panicDone")}
@@ -335,7 +335,7 @@ export function PanicScreen() {
               initial={{ scale: 0, rotate: -30 }}
               animate={{ scale: 1, rotate: 0 }}
               transition={{ type: "spring", stiffness: 200, damping: 12 }}
-              className="w-32 h-32 rounded-full bg-[#4ADE80]/20 flex items-center justify-center mb-6 glow-green"
+              className="w-32 h-32 rounded-full bg-[#FFC94D]/20 flex items-center justify-center mb-6 glow-green"
             >
               <span className="text-6xl">🏆</span>
             </motion.div>
@@ -345,7 +345,7 @@ export function PanicScreen() {
             <p className="text-white/60 text-sm max-w-xs mb-2">
               {t("panicVictoryCount")}
             </p>
-            <p className="text-[#4ADE80] text-sm font-semibold mb-8">
+            <p className="text-[#FFC94D] text-sm font-semibold mb-8">
               {t("panicStreakIntact", { n: streakDays })}
             </p>
 
@@ -386,8 +386,8 @@ export function PanicScreen() {
               <h3 className="text-lg font-bold text-white mb-4 text-center">{t("panicWhatDoYouWant")}</h3>
               <div className="space-y-2">
                 <button className="w-full p-4 rounded-2xl glass-card flex items-center gap-3 text-left active:scale-[0.98] transition-transform">
-                  <div className="w-10 h-10 rounded-full bg-[#2DD4BF]/20 flex items-center justify-center">
-                    <Phone size={18} className="text-[#2DD4BF]" />
+                  <div className="w-10 h-10 rounded-full bg-[#FFB020]/20 flex items-center justify-center">
+                    <Phone size={18} className="text-[#FFB020]" />
                   </div>
                   <div>
                     <p className="text-white font-semibold text-sm">{t("panicCallFriend")}</p>
@@ -410,8 +410,8 @@ export function PanicScreen() {
                   onClick={() => { setShowOptions(false); navigate("journal"); }}
                   className="w-full p-4 rounded-2xl glass-card flex items-center gap-3 text-left active:scale-[0.98] transition-transform"
                 >
-                  <div className="w-10 h-10 rounded-full bg-[#C084FC]/20 flex items-center justify-center">
-                    <PenLine size={18} className="text-[#C084FC]" />
+                  <div className="w-10 h-10 rounded-full bg-[#FFD166]/20 flex items-center justify-center">
+                    <PenLine size={18} className="text-[#FFD166]" />
                   </div>
                   <div>
                     <p className="text-white font-semibold text-sm">{t("panicJournal")}</p>

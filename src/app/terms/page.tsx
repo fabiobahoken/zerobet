@@ -6,7 +6,7 @@ import { useT } from "@/lib/i18n/useT";
 
 export default function TermsPage() {
   const t = useT();
-  const accent = "#4ADE80";
+  const accent = "#FFC94D";
 
   return (
     <LegalLayout
@@ -17,7 +17,7 @@ export default function TermsPage() {
     >
       <LegalSection titleKey="termsSection1Title">
         <p className="flex items-start gap-2">
-          <CheckCircle2 size={14} className="text-[#4ADE80] mt-1 flex-shrink-0" />
+          <CheckCircle2 size={14} className="text-[#FFC94D] mt-1 flex-shrink-0" />
           <span>{t("termsSection1Body1")}</span>
         </p>
         <p>{t("termsSection1Body2")}</p>
@@ -25,7 +25,7 @@ export default function TermsPage() {
 
       <LegalSection titleKey="termsSection2Title">
         <p className="flex items-start gap-2">
-          <FileText size={14} className="text-[#2DD4BF] mt-1 flex-shrink-0" />
+          <FileText size={14} className="text-[#FFB020] mt-1 flex-shrink-0" />
           <span>{t("termsSection2Body1")}</span>
         </p>
         <ul className="list-disc list-inside text-white/60 space-y-1 pl-2">
@@ -54,7 +54,7 @@ export default function TermsPage() {
 
       <LegalSection titleKey="termsSection5Title">
         <p className="flex items-start gap-2">
-          <Scale size={14} className="text-[#C084FC] mt-1 flex-shrink-0" />
+          <Scale size={14} className="text-[#FFD166] mt-1 flex-shrink-0" />
           <span>{t("termsSection5Body1")}</span>
         </p>
         <p>{t("termsSection5Body2")}</p>

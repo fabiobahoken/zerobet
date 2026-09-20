@@ -55,7 +55,7 @@ export function LanguageScreen() {
               aria-pressed={selected}
               aria-label={`${lang.nativeName} — ${lang.name}`}
               className={`relative w-full glass-card p-5 flex items-center gap-4 transition-all overflow-hidden ${
-                selected ? "ring-2 ring-[#10B981] glow-green" : ""
+                selected ? "ring-2 ring-[#FF6B00] glow-green" : ""
               }`}
             >
               {/* Subtle accent wash on the selected card */}

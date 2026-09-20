@@ -116,7 +116,7 @@ __turbopack_context__.v((parentImport) => {
 __turbopack_context__.v((parentImport) => {
     return Promise.all([
   "static/chunks/src_217fb518._.js",
-  "static/chunks/node_modules_4377fede._.js",
+  "static/chunks/node_modules_e0044740._.js",
   "static/chunks/src_components_zerobet_screens_DashboardScreen_tsx_8f5117fe._.js"
 ].map((chunk) => __turbopack_context__.l(chunk))).then(() => {
         return parentImport("[project]/src/components/zerobet/screens/DashboardScreen.tsx [app-client] (ecmascript, next/dynamic entry)");
@@ -213,7 +213,7 @@ __turbopack_context__.v((parentImport) => {
 __turbopack_context__.v((parentImport) => {
     return Promise.all([
   "static/chunks/src_d3dbb3f8._.js",
-  "static/chunks/node_modules_b7ee41ba._.js",
+  "static/chunks/node_modules_6ef924ca._.js",
   "static/chunks/src_components_zerobet_screens_SettingsScreen_tsx_8f5117fe._.js"
 ].map((chunk) => __turbopack_context__.l(chunk))).then(() => {
         return parentImport("[project]/src/components/zerobet/screens/SettingsScreen.tsx [app-client] (ecmascript, next/dynamic entry)");
@@ -225,7 +225,7 @@ __turbopack_context__.v((parentImport) => {
 __turbopack_context__.v((parentImport) => {
     return Promise.all([
   "static/chunks/src_d6595dc7._.js",
-  "static/chunks/node_modules_e5fbfa86._.js",
+  "static/chunks/node_modules_fd71a5cb._.js",
   "static/chunks/src_components_zerobet_screens_SubscriptionScreen_tsx_8f5117fe._.js"
 ].map((chunk) => __turbopack_context__.l(chunk))).then(() => {
         return parentImport("[project]/src/components/zerobet/screens/SubscriptionScreen.tsx [app-client] (ecmascript, next/dynamic entry)");
@@ -310,7 +310,7 @@ __turbopack_context__.v((parentImport) => {
 __turbopack_context__.v((parentImport) => {
     return Promise.all([
   "static/chunks/src_components_zerobet_beb1c404._.js",
-  "static/chunks/node_modules_lucide-react_dist_esm_icons_b40020a3._.js",
+  "static/chunks/node_modules_lucide-react_dist_esm_icons_22f2fdf5._.js",
   "static/chunks/src_components_zerobet_screens_GamificationScreen_tsx_8f5117fe._.js"
 ].map((chunk) => __turbopack_context__.l(chunk))).then(() => {
         return parentImport("[project]/src/components/zerobet/screens/GamificationScreen.tsx [app-client] (ecmascript, next/dynamic entry)");
@@ -321,8 +321,8 @@ __turbopack_context__.v((parentImport) => {
 
 __turbopack_context__.v((parentImport) => {
     return Promise.all([
-  "static/chunks/src_52d12b24._.js",
-  "static/chunks/node_modules_2638aa94._.js",
+  "static/chunks/src_17639aab._.js",
+  "static/chunks/node_modules_e672feac._.js",
   "static/chunks/src_components_zerobet_screens_AchievementsScreen_tsx_8f5117fe._.js"
 ].map((chunk) => __turbopack_context__.l(chunk))).then(() => {
         return parentImport("[project]/src/components/zerobet/screens/AchievementsScreen.tsx [app-client] (ecmascript, next/dynamic entry)");
@@ -333,8 +333,8 @@ __turbopack_context__.v((parentImport) => {
 
 __turbopack_context__.v((parentImport) => {
     return Promise.all([
-  "static/chunks/src_d5d9d2f6._.js",
-  "static/chunks/node_modules_3d4e5573._.js",
+  "static/chunks/src_32d03f1c._.js",
+  "static/chunks/node_modules_adb660d5._.js",
   "static/chunks/src_components_zerobet_screens_ProfileScreen_tsx_8f5117fe._.js"
 ].map((chunk) => __turbopack_context__.l(chunk))).then(() => {
         return parentImport("[project]/src/components/zerobet/screens/ProfileScreen.tsx [app-client] (ecmascript, next/dynamic entry)");
@@ -346,7 +346,7 @@ __turbopack_context__.v((parentImport) => {
 __turbopack_context__.v((parentImport) => {
     return Promise.all([
   "static/chunks/src_7851ec93._.js",
-  "static/chunks/node_modules_09df65d9._.js",
+  "static/chunks/node_modules_f8861324._.js",
   "static/chunks/src_components_zerobet_screens_CalendarScreen_tsx_8f5117fe._.js"
 ].map((chunk) => __turbopack_context__.l(chunk))).then(() => {
         return parentImport("[project]/src/components/zerobet/screens/CalendarScreen.tsx [app-client] (ecmascript, next/dynamic entry)");

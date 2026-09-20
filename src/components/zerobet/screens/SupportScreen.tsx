@@ -176,7 +176,7 @@ const VIDEO_TUTORIALS: VideoTutorial[] = [
     titleKey: "supportVideo3Title",
     duration: "5 min",
     thumbnail: "🤖",
-    gradient: "linear-gradient(135deg, #C084FC 0%, #2DD4BF 100%)",
+    gradient: "linear-gradient(135deg, #FFD166 0%, #FFB020 100%)",
     icon: "🤖",
   },
   {
@@ -184,7 +184,7 @@ const VIDEO_TUTORIALS: VideoTutorial[] = [
     titleKey: "supportVideo4Title",
     duration: "4 min",
     thumbnail: "👥",
-    gradient: "linear-gradient(135deg, #4ADE80 0%, #2DD4BF 100%)",
+    gradient: "linear-gradient(135deg, #FFC94D 0%, #FFB020 100%)",
     icon: "👥",
   },
 ];
@@ -203,7 +203,7 @@ const TROUBLESHOOT_ITEMS: TroubleshootItem[] = [
     issueKey: "supportTrouble2Issue",
     solutionKey: "supportTrouble2Solution",
     icon: Zap,
-    color: "#2DD4BF",
+    color: "#FFB020",
     target: "settings",
   },
   {
@@ -211,7 +211,7 @@ const TROUBLESHOOT_ITEMS: TroubleshootItem[] = [
     issueKey: "supportTrouble3Issue",
     solutionKey: "supportTrouble3Solution",
     icon: Zap,
-    color: "#C084FC",
+    color: "#FFD166",
     target: "settings",
   },
   {
@@ -295,7 +295,7 @@ export function SupportScreen() {
       icon: HelpCircle,
       titleKey: "supportFaq",
       descKey: "supportFaqDesc",
-      color: "#2DD4BF",
+      color: "#FFB020",
       action: () => handleQuickHelp("faq"),
     },
     {
@@ -303,7 +303,7 @@ export function SupportScreen() {
       icon: Mail,
       titleKey: "supportContact",
       descKey: "supportContactDesc",
-      color: "#4ADE80",
+      color: "#FFC94D",
       action: () => handleQuickHelp("contact"),
     },
     {
@@ -319,7 +319,7 @@ export function SupportScreen() {
       icon: Lightbulb,
       titleKey: "supportSuggestion",
       descKey: "supportSuggestionDesc",
-      color: "#C084FC",
+      color: "#FFD166",
       action: () => handleQuickHelp("suggestion"),
     },
   ];
@@ -385,7 +385,7 @@ export function SupportScreen() {
           <p className="text-white/50 text-xs">{t("supportSubtitle")}</p>
         </div>
         <div className="w-10 h-10 rounded-full glass-card flex items-center justify-center">
-          <HelpCircle size={18} className="text-[#2DD4BF]" />
+          <HelpCircle size={18} className="text-[#FFB020]" />
         </div>
       </motion.div>
 
@@ -421,7 +421,7 @@ export function SupportScreen() {
       {/* Section 2: FAQ */}
       <section id="faq-section" className="mb-6">
         <div className="flex items-center gap-2 mb-3">
-          <HelpCircle size={14} className="text-[#2DD4BF]" />
+          <HelpCircle size={14} className="text-[#FFB020]" />
           <h2 className="text-white font-semibold text-sm">{t("supportFaqTitle")}</h2>
         </div>
 
@@ -436,7 +436,7 @@ export function SupportScreen() {
             value={faqSearch}
             onChange={(e) => setFaqSearch(e.target.value)}
             placeholder={t("supportSearchFaqQuestion")}
-            className="w-full pl-10 pr-3 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-[#2DD4BF]/50 transition-colors"
+            className="w-full pl-10 pr-3 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-[#FFB020]/50 transition-colors"
           />
         </div>
 
@@ -491,7 +491,7 @@ export function SupportScreen() {
                   aria-expanded={isOpen}
                 >
                   <div className="flex-1 min-w-0">
-                    <span className="text-[10px] font-semibold text-[#2DD4BF] uppercase tracking-wider">
+                    <span className="text-[10px] font-semibold text-[#FFB020] uppercase tracking-wider">
                       {t(`supportCategory${faq.category.charAt(0).toUpperCase()}${faq.category.slice(1)}`)}
                     </span>
                     <h3 className="text-white text-sm font-medium mt-0.5">{t(faq.questionKey)}</h3>
@@ -523,7 +523,7 @@ export function SupportScreen() {
       {/* Section 3: Contact Form (inline) */}
       <section className="mb-6">
         <div className="flex items-center gap-2 mb-3">
-          <Mail size={14} className="text-[#4ADE80]" />
+          <Mail size={14} className="text-[#FFC94D]" />
           <h2 className="text-white font-semibold text-sm">{t("supportContact")}</h2>
         </div>
         <div className="glass-card p-5">
@@ -562,7 +562,7 @@ export function SupportScreen() {
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder={t("supportMessagePlaceholder")}
                 maxLength={500}
-                className="bg-white/5 border-white/10 text-white placeholder:text-white/30 rounded-xl text-sm min-h-[100px] resize-none focus-visible:border-[#4ADE80]/60 focus-visible:ring-[#4ADE80]/20"
+                className="bg-white/5 border-white/10 text-white placeholder:text-white/30 rounded-xl text-sm min-h-[100px] resize-none focus-visible:border-[#FFC94D]/60 focus-visible:ring-[#FFC94D]/20"
               />
               <div className="flex items-center justify-between mt-1">
                 <span className="text-white/40 text-[10px]">
@@ -581,7 +581,7 @@ export function SupportScreen() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder={t("supportEmailPlaceholder")}
-                className="w-full px-3 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-[#4ADE80]/50 transition-colors"
+                className="w-full px-3 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-[#FFC94D]/50 transition-colors"
               />
             </div>
 
@@ -605,7 +605,7 @@ export function SupportScreen() {
       {/* Section 4: Video Tutorials */}
       <section className="mb-6">
         <div className="flex items-center gap-2 mb-3">
-          <Play size={14} className="text-[#C084FC]" />
+          <Play size={14} className="text-[#FFD166]" />
           <h2 className="text-white font-semibold text-sm">{t("supportVideos")}</h2>
         </div>
         <div className="flex gap-3 overflow-x-auto no-scrollbar pb-2 -mx-1 px-1">
@@ -765,7 +765,7 @@ export function SupportScreen() {
             >
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
-                  <Mail size={18} className="text-[#4ADE80]" />
+                  <Mail size={18} className="text-[#FFC94D]" />
                   <h3 className="text-white font-bold text-base">{t("supportContact")}</h3>
                 </div>
                 <button
@@ -805,7 +805,7 @@ export function SupportScreen() {
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder={t("supportMessagePlaceholder")}
                     maxLength={500}
-                    className="bg-white/5 border-white/10 text-white placeholder:text-white/30 rounded-xl text-sm min-h-[100px] resize-none focus-visible:border-[#4ADE80]/60 focus-visible:ring-[#4ADE80]/20"
+                    className="bg-white/5 border-white/10 text-white placeholder:text-white/30 rounded-xl text-sm min-h-[100px] resize-none focus-visible:border-[#FFC94D]/60 focus-visible:ring-[#FFC94D]/20"
                   />
                   <div className="flex items-center justify-between mt-1">
                     <span className="text-white/40 text-[10px]">
@@ -824,7 +824,7 @@ export function SupportScreen() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder={t("supportEmailPlaceholder")}
-                    className="w-full px-3 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-[#4ADE80]/50 transition-colors"
+                    className="w-full px-3 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-[#FFC94D]/50 transition-colors"
                   />
                 </div>
 

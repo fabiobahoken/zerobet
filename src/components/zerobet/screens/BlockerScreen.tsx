@@ -37,19 +37,19 @@ interface CategoryMeta {
 
 const CATEGORIES: CategoryMeta[] = [
   { key: "all", labelKey: "blockerCategoryAll", icon: Globe, color: "#9CA3AF" },
-  { key: "international", labelKey: "blockerCategoryIntl", icon: Globe, color: "#2DD4BF" },
+  { key: "international", labelKey: "blockerCategoryIntl", icon: Globe, color: "#FFB020" },
   { key: "africa", labelKey: "blockerCategoryAfrica", icon: Globe, color: "#F59E0B" },
-  { key: "crypto", labelKey: "blockerCategoryCrypto", icon: Globe, color: "#C084FC" },
-  { key: "france", labelKey: "blockerCategoryFrance", icon: Globe, color: "#4ADE80" },
+  { key: "crypto", labelKey: "blockerCategoryCrypto", icon: Globe, color: "#FFD166" },
+  { key: "france", labelKey: "blockerCategoryFrance", icon: Globe, color: "#FFC94D" },
   { key: "other", labelKey: "blockerCategoryOther", icon: Globe, color: "#FBBF24" },
 ];
 
 const DANGEROUS_SITES = [
   { id: "s1", name: "1xBet", emoji: "🔴", color: "#FF3B30" },
   { id: "s2", name: "Bet365", emoji: "🟡", color: "#FBBF24" },
-  { id: "s11", name: "Betika", emoji: "🟢", color: "#4ADE80" },
-  { id: "s13", name: "Melbet", emoji: "🟣", color: "#C084FC" },
-  { id: "s27", name: "PMU", emoji: "🔵", color: "#2DD4BF" },
+  { id: "s11", name: "Betika", emoji: "🟢", color: "#FFC94D" },
+  { id: "s13", name: "Melbet", emoji: "🟣", color: "#FFD166" },
+  { id: "s27", name: "PMU", emoji: "🔵", color: "#FFB020" },
 ];
 
 function pad(n: number): string {
@@ -191,7 +191,7 @@ export function BlockerScreen() {
           <p className="text-white/40 text-[11px]">{t("blockerProtection247")}</p>
         </div>
         <div className="w-10 h-10 rounded-full glass-card flex items-center justify-center">
-          <Shield size={18} className={blockerEnabled ? "text-[#4ADE80]" : "text-[#FF3B30]"} />
+          <Shield size={18} className={blockerEnabled ? "text-[#FFC94D]" : "text-[#FF3B30]"} />
         </div>
       </motion.div>
 
@@ -211,20 +211,20 @@ export function BlockerScreen() {
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
               className="relative overflow-hidden rounded-2xl p-3.5 flex items-center gap-3"
               style={{
-                background: "linear-gradient(135deg, rgba(74,222,128,0.2) 0%, rgba(74,222,128,0.05) 100%)",
-                border: "1px solid rgba(74,222,128,0.3)",
+                background: "linear-gradient(135deg, rgba(255,201,77,0.2) 0%, rgba(255,201,77,0.05) 100%)",
+                border: "1px solid rgba(255,201,77,0.3)",
               }}
             >
-              <div className="absolute -top-4 -right-4 w-20 h-20 rounded-full bg-[#4ADE80]/15 blur-2xl" />
+              <div className="absolute -top-4 -right-4 w-20 h-20 rounded-full bg-[#FFC94D]/15 blur-2xl" />
               <motion.div
                 animate={{ scale: [1, 1.12, 1] }}
                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                className="w-10 h-10 rounded-xl bg-[#4ADE80]/20 flex items-center justify-center flex-shrink-0"
+                className="w-10 h-10 rounded-xl bg-[#FFC94D]/20 flex items-center justify-center flex-shrink-0"
               >
-                <ShieldCheck size={20} className="text-[#4ADE80]" />
+                <ShieldCheck size={20} className="text-[#FFC94D]" />
               </motion.div>
               <div className="relative flex-1">
-                <p className="text-sm font-bold text-[#4ADE80] font-[family-name:var(--font-poppins)]">
+                <p className="text-sm font-bold text-[#FFC94D] font-[family-name:var(--font-poppins)]">
                   {t("blockerProtectionActive")}
                 </p>
                 <p className="text-[11px] text-white/60">
@@ -234,7 +234,7 @@ export function BlockerScreen() {
               <motion.div
                 animate={{ opacity: [0.4, 1, 0.4] }}
                 transition={{ duration: 1.5, repeat: Infinity }}
-                className="w-2 h-2 rounded-full bg-[#4ADE80]"
+                className="w-2 h-2 rounded-full bg-[#FFC94D]"
               />
             </motion.div>
           )}
@@ -270,7 +270,7 @@ export function BlockerScreen() {
             }}
             transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
             className={`absolute -top-16 -right-16 w-52 h-52 rounded-full blur-3xl ${
-              blockerEnabled ? "bg-[#4ADE80]" : "bg-[#FF3B30]"
+              blockerEnabled ? "bg-[#FFC94D]" : "bg-[#FF3B30]"
             }`}
           />
           <div className="relative flex items-center justify-between">
@@ -296,7 +296,7 @@ export function BlockerScreen() {
                 <p className="text-xl font-bold text-white font-[family-name:var(--font-poppins)]">
                   {blockerEnabled ? t("blockerProtected") : t("blockerInactive")}
                 </p>
-                <p className={`text-xs mt-0.5 ${blockerEnabled ? "text-[#4ADE80]" : "text-[#FF3B30]"}`}>
+                <p className={`text-xs mt-0.5 ${blockerEnabled ? "text-[#FFC94D]" : "text-[#FF3B30]"}`}>
                   {blockerEnabled ? t("blockerSitesBlockedStatus") : t("blockerVulnerable")}
                 </p>
               </div>
@@ -308,7 +308,7 @@ export function BlockerScreen() {
               <Switch
                 checked={blockerEnabled}
                 onCheckedChange={(v) => setBlockerEnabled(v)}
-                className="data-[state=checked]:bg-[#4ADE80] data-[state=unchecked]:bg-[#FF3B30]/40"
+                className="data-[state=checked]:bg-[#FFC94D] data-[state=unchecked]:bg-[#FF3B30]/40"
               />
             </motion.div>
           </div>
@@ -319,8 +319,8 @@ export function BlockerScreen() {
           {/* Stats card */}
           <motion.div variants={itemVariants} className="glass-card p-4">
             <div className="flex items-center justify-between mb-2">
-              <div className="w-9 h-9 rounded-xl bg-[#4ADE80]/20 flex items-center justify-center">
-                <ShieldCheck size={16} className="text-[#4ADE80]" />
+              <div className="w-9 h-9 rounded-xl bg-[#FFC94D]/20 flex items-center justify-center">
+                <ShieldCheck size={16} className="text-[#FFC94D]" />
               </div>
               <span className="text-[10px] text-white/40 font-medium uppercase tracking-wider">
                 {t("blockerBlocked")}
@@ -360,7 +360,7 @@ export function BlockerScreen() {
                 checked={strictMode}
                 onCheckedChange={handleStrictToggle}
                 disabled={isPremiumLocked}
-                className="data-[state=checked]:bg-[#10B981]"
+                className="data-[state=checked]:bg-[#FF6B00]"
               />
             </div>
             <p className="text-sm font-bold text-white">{t("blockerStrictModeShort")}</p>
@@ -384,10 +384,10 @@ export function BlockerScreen() {
 
         {/* Bypass attempts stats card */}
         <motion.div variants={itemVariants} className="glass-card p-4 relative overflow-hidden">
-          <div className="absolute -top-6 -left-6 w-24 h-24 rounded-full bg-[#C084FC]/15 blur-2xl" />
+          <div className="absolute -top-6 -left-6 w-24 h-24 rounded-full bg-[#FFD166]/15 blur-2xl" />
           <div className="relative flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-[#C084FC]/20 flex items-center justify-center flex-shrink-0">
-              <BarChart3 size={18} className="text-[#C084FC]" />
+            <div className="w-10 h-10 rounded-xl bg-[#FFD166]/20 flex items-center justify-center flex-shrink-0">
+              <BarChart3 size={18} className="text-[#FFD166]" />
             </div>
             <div className="flex-1">
               <p className="text-white font-semibold text-sm">{t("blockerBypassAttempts")}</p>
@@ -397,7 +397,7 @@ export function BlockerScreen() {
               key={bypassAttempts}
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              className="text-2xl font-extrabold text-[#C084FC] font-[family-name:var(--font-poppins)]"
+              className="text-2xl font-extrabold text-[#FFD166] font-[family-name:var(--font-poppins)]"
             >
               {bypassAttempts}
             </motion.p>
@@ -467,7 +467,7 @@ export function BlockerScreen() {
             onClick={() => toggleAllSites(true)}
             className="glass-card p-3 flex items-center justify-center gap-2 active:scale-[0.98] transition-transform"
           >
-            <Lock size={14} className="text-[#4ADE80]" />
+            <Lock size={14} className="text-[#FFC94D]" />
             <span className="text-sm font-medium text-white">{t("blockerBlockAll")}</span>
           </button>
           <button
@@ -587,7 +587,7 @@ export function BlockerScreen() {
           variants={itemVariants}
           className="glass-card p-4 flex items-center gap-3"
         >
-          <CheckCircle2 size={18} className="text-[#4ADE80] flex-shrink-0" />
+          <CheckCircle2 size={18} className="text-[#FFC94D] flex-shrink-0" />
           <p className="text-xs text-white/60 leading-relaxed">
             {t("blockerFooterReassurance")}
           </p>
@@ -643,7 +643,7 @@ export function BlockerScreen() {
                     t("blockerPremiumFeature4"),
                   ].map((feature) => (
                     <li key={feature} className="flex items-center gap-2 text-xs text-white/70">
-                      <CheckCircle2 size={14} className="text-[#4ADE80] flex-shrink-0" />
+                      <CheckCircle2 size={14} className="text-[#FFC94D] flex-shrink-0" />
                       {feature}
                     </li>
                   ))}
@@ -686,11 +686,11 @@ function SiteRow({ site, onToggle }: SiteRowProps) {
         <motion.div
           layout
           className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors duration-300 ${
-            site.blocked ? "bg-[#4ADE80]/15" : "bg-white/5"
+            site.blocked ? "bg-[#FFC94D]/15" : "bg-white/5"
           }`}
         >
           {site.blocked ? (
-            <Lock size={13} className="text-[#4ADE80]" />
+            <Lock size={13} className="text-[#FFC94D]" />
           ) : (
             <Globe size={13} className="text-white/40" />
           )}
@@ -705,7 +705,7 @@ function SiteRow({ site, onToggle }: SiteRowProps) {
       <Switch
         checked={site.blocked}
         onCheckedChange={onToggle}
-        className="data-[state=checked]:bg-[#4ADE80] data-[state=unchecked]:bg-white/10"
+        className="data-[state=checked]:bg-[#FFC94D] data-[state=unchecked]:bg-white/10"
       />
     </motion.div>
   );

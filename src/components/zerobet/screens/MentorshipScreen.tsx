@@ -109,14 +109,14 @@ const RESOURCES = [
     icon: MessageSquare,
     titleKey: "mentorshipRes2Title",
     typeKey: "mentorshipResTypeArticle",
-    color: "#2DD4BF",
+    color: "#FFB020",
     descKey: "mentorshipRes2Desc",
   },
   {
     icon: Video,
     titleKey: "mentorshipRes3Title",
     typeKey: "mentorshipResTypeVideo",
-    color: "#C084FC",
+    color: "#FFD166",
     descKey: "mentorshipRes3Desc",
   },
 ];
@@ -226,7 +226,7 @@ function Dropdown({ value, onChange, options, placeholder }: DropdownProps) {
                   aria-selected={selected}
                 >
                   <span>{t(opt)}</span>
-                  {selected && <Check size={14} className="text-[#4ADE80]" />}
+                  {selected && <Check size={14} className="text-[#FFC94D]" />}
                 </button>
               );
             })}
@@ -360,7 +360,7 @@ export function MentorshipScreen() {
           className="w-10 h-10 rounded-full glass-card flex items-center justify-center"
           aria-hidden
         >
-          <ShieldCheck size={18} className="text-[#4ADE80]" />
+          <ShieldCheck size={18} className="text-[#FFC94D]" />
         </div>
       </motion.div>
 
@@ -379,11 +379,11 @@ export function MentorshipScreen() {
           <div className="flex items-center gap-3">
             <div
               className="w-9 h-9 rounded-xl flex items-center justify-center"
-              style={{ background: `${psyMode ? "#C084FC" : "#9CA3AF"}22` }}
+              style={{ background: `${psyMode ? "#FFD166" : "#9CA3AF"}22` }}
             >
               <Stethoscope
                 size={18}
-                style={{ color: psyMode ? "#C084FC" : "#9CA3AF" }}
+                style={{ color: psyMode ? "#FFD166" : "#9CA3AF" }}
               />
             </div>
             <div className="text-left">
@@ -397,7 +397,7 @@ export function MentorshipScreen() {
           </div>
           <div
             className={`w-11 h-6 rounded-full p-0.5 transition-colors ${
-              psyMode ? "bg-[#C084FC]" : "bg-white/15"
+              psyMode ? "bg-[#FFD166]" : "bg-white/15"
             }`}
           >
             <motion.div
@@ -422,12 +422,12 @@ export function MentorshipScreen() {
           variants={itemVariants}
           className="glass-card-strong p-5 relative overflow-hidden"
         >
-          <div className="absolute -top-16 -right-16 w-44 h-44 rounded-full blur-3xl pointer-events-none bg-[#4ADE80]/20" />
-          <div className="absolute -bottom-12 -left-12 w-32 h-32 rounded-full blur-3xl pointer-events-none bg-[#2DD4BF]/15" />
+          <div className="absolute -top-16 -right-16 w-44 h-44 rounded-full blur-3xl pointer-events-none bg-[#FFC94D]/20" />
+          <div className="absolute -bottom-12 -left-12 w-32 h-32 rounded-full blur-3xl pointer-events-none bg-[#FFB020]/15" />
 
           <div className="relative">
             <div className="flex items-center gap-2 mb-2">
-              <Sparkles size={16} className="text-[#4ADE80]" />
+              <Sparkles size={16} className="text-[#FFC94D]" />
               <h2 className="text-base font-bold text-white font-[family-name:var(--font-poppins)]">
                 {t("mentorshipHeroTitle")}
               </h2>
@@ -466,10 +466,10 @@ export function MentorshipScreen() {
               exit={{ opacity: 0, y: -10 }}
               className="glass-card p-5 relative overflow-hidden"
             >
-              <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full blur-3xl pointer-events-none bg-[#C084FC]/20" />
+              <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full blur-3xl pointer-events-none bg-[#FFD166]/20" />
               <div className="relative">
                 <div className="flex items-center gap-2 mb-3">
-                  <Stethoscope size={18} className="text-[#C084FC]" />
+                  <Stethoscope size={18} className="text-[#FFD166]" />
                   <h2 className="text-base font-bold text-white font-[family-name:var(--font-poppins)]">
                     {t("mentorshipPsyTitle")}
                   </h2>
@@ -533,13 +533,13 @@ export function MentorshipScreen() {
                     }}
                     className={`w-full h-24 rounded-xl border-2 border-dashed flex flex-col items-center justify-center gap-1.5 transition-colors ${
                       psyDocUploaded
-                        ? "border-[#4ADE80]/60 bg-[#4ADE80]/10"
+                        ? "border-[#FFC94D]/60 bg-[#FFC94D]/10"
                         : "border-white/15 hover:border-white/30"
                     }`}
                   >
                     {psyDocUploaded ? (
                       <>
-                        <Check size={20} className="text-[#4ADE80]" />
+                        <Check size={20} className="text-[#FFC94D]" />
                         <span className="text-white text-xs font-medium">
                           licence.pdf
                         </span>
@@ -573,10 +573,10 @@ export function MentorshipScreen() {
                   />
                 </Field>
 
-                <div className="flex items-start gap-2 p-3 rounded-xl bg-[#C084FC]/10 border border-[#C084FC]/25 mb-4">
+                <div className="flex items-start gap-2 p-3 rounded-xl bg-[#FFD166]/10 border border-[#FFD166]/25 mb-4">
                   <AlertTriangle
                     size={16}
-                    className="text-[#C084FC] mt-0.5 flex-shrink-0"
+                    className="text-[#FFD166] mt-0.5 flex-shrink-0"
                   />
                   <p className="text-white/70 text-xs leading-relaxed">
                     {t("mentorshipPsyAlert")}
@@ -620,7 +620,7 @@ export function MentorshipScreen() {
                   <span
                     className={`px-2.5 py-1 rounded-full text-[10px] font-bold ${
                       isEligible
-                        ? "bg-[#4ADE80]/20 text-[#4ADE80]"
+                        ? "bg-[#FFC94D]/20 text-[#FFC94D]"
                         : "bg-[#FBBF24]/20 text-[#FBBF24]"
                     }`}
                   >
@@ -639,14 +639,14 @@ export function MentorshipScreen() {
                       delay: 0.2,
                     }}
                     className="absolute inset-y-0 left-0 rounded-full gradient-success"
-                    style={{ boxShadow: "0 0 16px rgba(74,222,128,0.45)" }}
+                    style={{ boxShadow: "0 0 16px rgba(255,201,77,0.45)" }}
                   />
                 </div>
 
                 {isEligible ? (
                   <div className="flex items-start gap-3">
-                    <div className="w-9 h-9 rounded-full bg-[#4ADE80]/20 flex items-center justify-center flex-shrink-0">
-                      <Check size={18} className="text-[#4ADE80]" />
+                    <div className="w-9 h-9 rounded-full bg-[#FFC94D]/20 flex items-center justify-center flex-shrink-0">
+                      <Check size={18} className="text-[#FFC94D]" />
                     </div>
                     <div className="flex-1">
                       <p className="text-white text-sm font-medium mb-1">
@@ -665,7 +665,7 @@ export function MentorshipScreen() {
                           );
                           if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
                         }}
-                        className="px-4 py-2 rounded-xl bg-[#4ADE80] text-[#070B0E] text-xs font-bold flex items-center gap-1.5"
+                        className="px-4 py-2 rounded-xl bg-[#FFC94D] text-[#0B0704] text-xs font-bold flex items-center gap-1.5"
                       >
                         <Crown size={14} />
                         {t("mentorshipApplyBtn")}
@@ -697,18 +697,18 @@ export function MentorshipScreen() {
                   variants={itemVariants}
                   className="glass-card p-5 relative overflow-hidden"
                 >
-                  <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full blur-3xl pointer-events-none bg-[#4ADE80]/15" />
+                  <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full blur-3xl pointer-events-none bg-[#FFC94D]/15" />
                   <div className="relative">
                     <div className="flex items-center justify-between mb-3">
                       <h2 className="text-sm font-bold text-white font-[family-name:var(--font-poppins)] flex items-center gap-2">
-                        <Users size={16} className="text-[#4ADE80]" />
+                        <Users size={16} className="text-[#FFC94D]" />
                         {t("mentorshipMenteesTitle")}
                       </h2>
                       <div className="flex gap-1.5">
-                        <span className="px-2 py-1 rounded-full text-[10px] font-bold bg-[#4ADE80]/20 text-[#4ADE80]">
+                        <span className="px-2 py-1 rounded-full text-[10px] font-bold bg-[#FFC94D]/20 text-[#FFC94D]">
                           {t("mentorshipMenteesActive", { n: activeMentees.length })}
                         </span>
-                        <span className="px-2 py-1 rounded-full text-[10px] font-bold bg-[#2DD4BF]/20 text-[#2DD4BF]">
+                        <span className="px-2 py-1 rounded-full text-[10px] font-bold bg-[#FFB020]/20 text-[#FFB020]">
                           {t("mentorshipMenteesSessions")}
                         </span>
                       </div>
@@ -734,7 +734,7 @@ export function MentorshipScreen() {
                               <span
                                 className={`px-1.5 py-0.5 rounded-full text-[9px] font-bold ${
                                   m.statusKey === "mentorshipStatusActive"
-                                    ? "bg-[#4ADE80]/20 text-[#4ADE80]"
+                                    ? "bg-[#FFC94D]/20 text-[#FFC94D]"
                                     : "bg-[#FBBF24]/20 text-[#FBBF24]"
                                 }`}
                               >
@@ -790,10 +790,10 @@ export function MentorshipScreen() {
                   variants={itemVariants}
                   className="glass-card p-5 relative overflow-hidden scroll-mt-20"
                 >
-                  <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full blur-3xl pointer-events-none bg-[#4ADE80]/15" />
+                  <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full blur-3xl pointer-events-none bg-[#FFC94D]/15" />
                   <div className="relative">
                     <div className="flex items-center gap-2 mb-3">
-                      <Award size={18} className="text-[#4ADE80]" />
+                      <Award size={18} className="text-[#FFC94D]" />
                       <h2 className="text-base font-bold text-white font-[family-name:var(--font-poppins)]">
                         {t("mentorshipFormTitle")}
                       </h2>
@@ -852,7 +852,7 @@ export function MentorshipScreen() {
                           onClick={() => toggleLanguage(lang)}
                           className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all active:scale-95 ${
                             sel
-                              ? "bg-[#4ADE80] text-[#070B0E]"
+                              ? "bg-[#FFC94D] text-[#0B0704]"
                               : "glass-pill text-white/70"
                           }`}
                         >
@@ -893,7 +893,7 @@ export function MentorshipScreen() {
                       sound.playClick();
                       haptics.light();
                     }}
-                    className="border-white/30 data-[state=checked]:bg-[#4ADE80] data-[state=checked]:border-[#4ADE80] data-[state=checked]:text-[#070B0E] mt-0.5"
+                    className="border-white/30 data-[state=checked]:bg-[#FFC94D] data-[state=checked]:border-[#FFC94D] data-[state=checked]:text-[#0B0704] mt-0.5"
                   />
                   <span className="text-white/80 text-xs leading-relaxed">
                     {t("mentorshipAgreePrefix")}{" "}
@@ -903,7 +903,7 @@ export function MentorshipScreen() {
                         e.preventDefault();
                         setCodeOpen(true);
                       }}
-                      className="text-[#4ADE80] underline"
+                      className="text-[#FFC94D] underline"
                     >
                       {t("mentorshipCodeLink")}
                     </button>
@@ -916,7 +916,7 @@ export function MentorshipScreen() {
                       disabled={!canSubmitMentor}
                       className={`w-full h-12 rounded-2xl font-semibold text-sm flex items-center justify-center gap-2 transition-all ${
                         canSubmitMentor
-                          ? "gradient-success text-[#070B0E]"
+                          ? "gradient-success text-[#0B0704]"
                           : "bg-white/10 text-white/40 cursor-not-allowed"
                       }`}
                     >
@@ -941,7 +941,7 @@ export function MentorshipScreen() {
                   aria-expanded={codeOpen}
                 >
                   <div className="flex items-center gap-2.5">
-                    <ShieldCheck size={18} className="text-[#4ADE80]" />
+                    <ShieldCheck size={18} className="text-[#FFC94D]" />
                     <span className="text-white text-sm font-bold font-[family-name:var(--font-poppins)]">
                       {t("mentorshipCodeHeader")}
                     </span>
@@ -971,7 +971,7 @@ export function MentorshipScreen() {
                             transition={{ delay: i * 0.04 }}
                             className="flex items-start gap-2.5"
                           >
-                            <span className="w-5 h-5 rounded-full bg-[#4ADE80]/20 text-[#4ADE80] text-[10px] font-bold flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span className="w-5 h-5 rounded-full bg-[#FFC94D]/20 text-[#FFC94D] text-[10px] font-bold flex items-center justify-center flex-shrink-0 mt-0.5">
                               {i + 1}
                             </span>
                             <span className="text-white/80 text-sm leading-relaxed">
@@ -1065,8 +1065,8 @@ export function MentorshipScreen() {
               onClick={(e) => e.stopPropagation()}
               className="glass-card-strong p-7 w-full max-w-sm text-center relative overflow-hidden"
             >
-              <div className="absolute -top-16 -right-16 w-40 h-40 rounded-full blur-3xl bg-[#4ADE80]/30 pointer-events-none" />
-              <div className="absolute -bottom-12 -left-12 w-32 h-32 rounded-full blur-3xl bg-[#2DD4BF]/20 pointer-events-none" />
+              <div className="absolute -top-16 -right-16 w-40 h-40 rounded-full blur-3xl bg-[#FFC94D]/30 pointer-events-none" />
+              <div className="absolute -bottom-12 -left-12 w-32 h-32 rounded-full blur-3xl bg-[#FFB020]/20 pointer-events-none" />
 
               <button
                 onClick={closeSuccess}
@@ -1080,9 +1080,9 @@ export function MentorshipScreen() {
                 initial={{ scale: 0, rotate: -30 }}
                 animate={{ scale: 1, rotate: 0 }}
                 transition={{ delay: 0.1, type: "spring", stiffness: 300 }}
-                className="relative w-16 h-16 mx-auto mb-4 rounded-full bg-[#4ADE80]/20 flex items-center justify-center"
+                className="relative w-16 h-16 mx-auto mb-4 rounded-full bg-[#FFC94D]/20 flex items-center justify-center"
               >
-                <Check size={32} className="text-[#4ADE80]" />
+                <Check size={32} className="text-[#FFC94D]" />
               </motion.div>
 
               <h3 className="relative text-lg font-extrabold text-white font-[family-name:var(--font-poppins)] mb-2">
@@ -1095,7 +1095,7 @@ export function MentorshipScreen() {
               <motion.button
                 whileTap={{ scale: 0.97 }}
                 onClick={closeSuccess}
-                className="relative w-full h-11 rounded-2xl gradient-success text-[#070B0E] font-bold text-sm"
+                className="relative w-full h-11 rounded-2xl gradient-success text-[#0B0704] font-bold text-sm"
               >
                 {t("mentorshipSuccessContinue")}
               </motion.button>

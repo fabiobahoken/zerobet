@@ -5671,3 +5671,25 @@ Stage Summary:
 - **Fichiers clés** : PhoneShell.tsx (nouveau), AuroraOrb.tsx (nouveau), DashboardScreen.tsx (réécrit), page.tsx (SCREEN_ORDER + transitions), layout.tsx, BottomNav.tsx, NotificationCenter.tsx (safe-top), globals.css (+~450 lignes), dictionary.ts (+17×3).
 - **Risques/notes** : le workspace a subi une réversion partielle entre deux tours (probable interruption) — d'où la nécessité de re-vérifier `rg PhoneShell src/app/page.tsx` au prochain tour ; le compteur live estime la sous-journée depuis minuit (pas de vrai timestamp de début de série en store — TODO champ soberSince à ajouter au prochain push schema si souhaité) ; HeatmapCalendar min-content 572px → scroll horizontal interne dans le cadre (vérifier visuellement au prochain tour) ; QA seed (streak 7, lang EN) présent dans le localStorage du navigateur de test seulement.
 - **Prochaines étapes recommandées** : champ store `soberSince` (vrai timestamp) pour un compteur exact après reset ; orbe interactive (tap = respiration guidée) ; écran Stats avec anneau "DAYS CLEAN" style QUITTR (image 2 de référence) ; community screen avec tabs Forums/Clans ; artwork HD icône PWA (génération image) ; parallax orb au scroll.
+
+---
+Task ID: 10
+Agent: Main (Z.ai Code)
+Task: Rebrand complet « orange & noir » luxueux + retour du système de badges amélioré (auras, lumière, animations féeriques)
+
+Work Log:
+- Migration couleur scriptée sur tout src/ (601+ occurrences) : #10B981→#FF6B00 (braise), #2DD4BF→#FFB020 (or), #4ADE80→#FFC94D, violets #C084FC→#FFD166, cyans→famille or, fonds froids #070B0E/#0A0A0F/#0C161A→noirs chauds #0B0704/#0C0705/#1A0F07 (app entière 100 % orange & noir, rouge réservé urgence)
+- globals.css : tokens Braise d'Or (foreground #FFF8F0, charts différenciés, --zb-ember/--zb-honey), auras rank-aura-legendary réallumées (ember), orbe AuroraOrb re-forgée en marbre de braise (pools or/ambre/ember), badge-aura fallback orange, nouveaux gradients texte or
+- NOUVEAU CSS « Badge Medal System » : .medal-rays (rayons coniques rotatifs), .medal-shine (balayage diagonal), .medal-float, .sparkle (étoiles féeriques scintillantes), .tier-glow-{bronze,silver,gold,diamond,legendary} (auras chaleur par métal, breathe/prism/fire), .metal-* (dégradés métalliques réalistes), .medal-honor-ring, prefers-reduced-motion
+- NOUVEAU composant BadgeMedal.tsx : médaille SVG multicouche (anneau d'honneur rotatif pointillé, anneau métal à dégradé 4 stops, disque obsidienne chaude, bevel, sheen) + icône Lucide éclairée + FX de déblocage (rayons, shine, 3 fées orbitales, aura par tier) — remplace définitivement les icônes emoji plates
+- AchievementsScreen : 12 exploits spéciaux passés des emojis aux icônes Lucide forgées (Footprints, Wind, PenLine, Coins, Flower2, ShieldCheck, MessagesSquare, HandHeart, Crown, Flame, BookOpen, Waves) aux couleurs chaudes ; FlipBadge rend maintenant une vraie BadgeMedal (58px, shine décalé par index, clavier accessible) ; TierTab en vrais métaux (.metal-*, texte sombre sur métal actif) ; Déblocages récents : ArtifactIcon ou Lucide doré + PartyPopper animé (fini le 🎉) ; Prochains défis : icônes éclairées ; carte méditation différenciée
+- AchievementPopup : rayons d'honneur rotatifs autour du rang, shine sweep sur la médaille, 4 fées scintillantes orbitales, confettis 26 pièces 100 % chauds
+- Chasse aux emojis basiques : GamificationScreen (TIER_ICONS Sprout/Swords/Shield/Trophy/Crown + halo radial, BADGE_ICONS leaderboard 🥇🥈🥉⭐👑🌱→Médal/Award/Star/Crown/Sprout, flamme série en Flame avec aura), DashboardScreen + ProfileScreen + SettingsScreen + SubscriptionScreen (PLAN_BADGES/PLAN_INFO emoji→Lucide : Sprout/Star/ShieldCheck/GraduationCap), MeditationScreen (série : Flame doré avec halo), CalendarScreen (jalons 90/365 : Flame/Trophy + glow)
+- FIX stabilité : service worker enregistré UNIQUEMENT en production (pwa.ts) — le cache app-shell du SW court-circuitait les chunks Turbopack HMR en dev (ChunkLoadError au reload, classe de bug v2→v4) ; purge .next + cache v5
+- QA agent-browser : desktop 1440×900 (cadre iPhone, aurora braise, Trophées avec médailles+rayons+flip 3D OK, Quêtes avec icône Sprout dorée OK), mobile 390×844 (plein écran, orbe braise, nav orange) ; vérification live du CSS compilé (règles .orb-sphere-pool now chaudes) ; TSC 0 erreur, ESLint clean
+
+Stage Summary:
+- L'app est 100 % orange & noir (0 relique froide en base de code, vérifié par scan), esthétique « Braise d'Or » : noirs chauds, braise #FF6B00, or #FFB020, dorures #FFC94D/#FFD166
+- Système de badges entièrement re-forgé : médailles SVG métalliques 5 tiers avec auras de chaleur, rayons rotatifs, balayages de lumière, fées scintillantes, flip 3D — plus aucun emoji dans les badges/rangs/plans/niveaux
+- Plus grande stabilité dev : SW dev-only désactivé (fin des ChunkLoadError au reload)
+- Écran splash or, icône Z bouclier dorée, orbe dashboard marbre de braise : cohérence premium de bout en bout

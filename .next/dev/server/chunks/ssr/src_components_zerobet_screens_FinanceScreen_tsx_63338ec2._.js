@@ -67,7 +67,7 @@ const SAVING_CATEGORIES = [
         key: "necessites",
         nameKey: "financeCategoryNecessities",
         percent: 50,
-        color: "#4ADE80",
+        color: "#FFC94D",
         descKey: "financeSavingCatNecessitiesDesc",
         icon: "🏠"
     },
@@ -75,7 +75,7 @@ const SAVING_CATEGORIES = [
         key: "epargne",
         nameKey: "financeCategorySavings",
         percent: 30,
-        color: "#2DD4BF",
+        color: "#FFB020",
         descKey: "financeSavingCatSavingsDesc",
         icon: "🏦"
     },
@@ -83,7 +83,7 @@ const SAVING_CATEGORIES = [
         key: "investissement",
         nameKey: "financeCategoryInvestment",
         percent: 15,
-        color: "#C084FC",
+        color: "#FFD166",
         descKey: "financeSavingCatInvestmentDesc",
         icon: "📈"
     },
@@ -100,7 +100,7 @@ const EDUCATION_TIPS = [
     {
         id: "rule-50-30-20",
         icon: "⚖️",
-        color: "#4ADE80",
+        color: "#FFC94D",
         titleKey: "financeTip1Title",
         shortKey: "financeTip1Short",
         detailsKey: "financeTip1Details"
@@ -108,7 +108,7 @@ const EDUCATION_TIPS = [
     {
         id: "emergency-fund",
         icon: "🛟",
-        color: "#2DD4BF",
+        color: "#FFB020",
         titleKey: "financeTip2Title",
         shortKey: "financeTip2Short",
         detailsKey: "financeTip2Details"
@@ -116,7 +116,7 @@ const EDUCATION_TIPS = [
     {
         id: "small-amounts",
         icon: "💧",
-        color: "#C084FC",
+        color: "#FFD166",
         titleKey: "financeTip3Title",
         shortKey: "financeTip3Short",
         detailsKey: "financeTip3Details"
@@ -540,7 +540,7 @@ function FinanceScreen() {
                 className: "glass-card-strong animate-glow-pulse p-6 mb-4 relative overflow-hidden",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "absolute -top-10 -right-10 w-40 h-40 rounded-full bg-[#4ADE80]/20 blur-3xl"
+                        className: "absolute -top-10 -right-10 w-40 h-40 rounded-full bg-[#FFC94D]/20 blur-3xl"
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/screens/FinanceScreen.tsx",
                         lineNumber: 466,
@@ -556,10 +556,10 @@ function FinanceScreen() {
                                         className: "flex items-center gap-2",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "w-9 h-9 rounded-xl bg-[#4ADE80]/20 flex items-center justify-center",
+                                                className: "w-9 h-9 rounded-xl bg-[#FFC94D]/20 flex items-center justify-center",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$wallet$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Wallet$3e$__["Wallet"], {
                                                     size: 18,
-                                                    className: "text-[#4ADE80]"
+                                                    className: "text-[#FFC94D]"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/zerobet/screens/FinanceScreen.tsx",
                                                     lineNumber: 471,
@@ -609,7 +609,7 @@ function FinanceScreen() {
                                 },
                                 className: "text-4xl font-extrabold bg-clip-text text-transparent font-[family-name:var(--font-poppins)]",
                                 style: {
-                                    background: "linear-gradient(135deg, #4ADE80 0%, #2DD4BF 100%)",
+                                    background: "linear-gradient(135deg, #FFC94D 0%, #FFB020 100%)",
                                     WebkitBackgroundClip: "text",
                                     WebkitTextFillColor: "transparent"
                                 },
@@ -697,7 +697,7 @@ function FinanceScreen() {
                                 type: "number",
                                 value: betInput,
                                 onChange: (e)=>setBetInput(e.target.value),
-                                className: "flex-1 p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#10B981]",
+                                className: "flex-1 p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#FF6B00]",
                                 placeholder: t("financeAmountFCFA")
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/FinanceScreen.tsx",
@@ -766,7 +766,7 @@ function FinanceScreen() {
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(SectionTitle, {
                         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$calendar$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Calendar$3e$__["Calendar"],
-                        iconColor: "#2DD4BF",
+                        iconColor: "#FFB020",
                         title: t("financeProgress30Days")
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/screens/FinanceScreen.tsx",
@@ -796,7 +796,7 @@ function FinanceScreen() {
                                                     duration: 0.5,
                                                     delay: d.day * 0.01
                                                 },
-                                                className: `w-full rounded-t-md ${d.isToday ? "gradient-primary" : d.day <= effectiveStreak ? "bg-[#4ADE80]/60" : "bg-white/10"}`,
+                                                className: `w-full rounded-t-md ${d.isToday ? "gradient-primary" : d.day <= effectiveStreak ? "bg-[#FFC94D]/60" : "bg-white/10"}`,
                                                 style: {
                                                     minHeight: 2
                                                 }
@@ -872,7 +872,7 @@ function FinanceScreen() {
                                     ":",
                                     " ",
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-[#4ADE80] font-bold",
+                                        className: "text-[#FFC94D] font-bold",
                                         children: formatFCFA(totalSaved, language)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/FinanceScreen.tsx",
@@ -987,7 +987,7 @@ function FinanceScreen() {
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(SectionTitle, {
                         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chart$2d$pie$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__PieChart$3e$__["PieChart"],
-                        iconColor: "#C084FC",
+                        iconColor: "#FFD166",
                         title: t("financeSavingsDistribution"),
                         right: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                             className: "text-[10px] text-white/40",
@@ -1206,7 +1206,7 @@ function FinanceScreen() {
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(SectionTitle, {
                         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$banknote$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Banknote$3e$__["Banknote"],
-                        iconColor: "#4ADE80",
+                        iconColor: "#FFC94D",
                         title: t("financeBudgetWeekly"),
                         right: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                             onClick: ()=>editBudget ? setEditBudget(false) : startEditBudget(),
@@ -1235,7 +1235,7 @@ function FinanceScreen() {
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trending$2d$up$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__TrendingUp$3e$__["TrendingUp"], {
                                                         size: 12,
-                                                        className: "text-[#4ADE80]"
+                                                        className: "text-[#FFC94D]"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/FinanceScreen.tsx",
                                                         lineNumber: 748,
@@ -1274,7 +1274,7 @@ function FinanceScreen() {
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$house$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Home$3e$__["Home"], {
                                                         size: 12,
-                                                        className: "text-[#2DD4BF]"
+                                                        className: "text-[#FFB020]"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/FinanceScreen.tsx",
                                                         lineNumber: 756,
@@ -1346,7 +1346,7 @@ function FinanceScreen() {
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$car$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Car$3e$__["Car"], {
                                                         size: 12,
-                                                        className: "text-[#C084FC]"
+                                                        className: "text-[#FFD166]"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/FinanceScreen.tsx",
                                                         lineNumber: 768,
@@ -1423,7 +1423,7 @@ function FinanceScreen() {
                                         className: "h-3 bg-white/10 rounded-full overflow-hidden flex",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "bg-[#2DD4BF]",
+                                                className: "bg-[#FFB020]",
                                                 style: {
                                                     width: `${Math.min(100, weeklyExpenses.rent / weeklyIncome * 100)}%`
                                                 },
@@ -1445,7 +1445,7 @@ function FinanceScreen() {
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "bg-[#C084FC]",
+                                                className: "bg-[#FFD166]",
                                                 style: {
                                                     width: `${Math.min(100, weeklyExpenses.transport / weeklyIncome * 100)}%`
                                                 },
@@ -1556,10 +1556,10 @@ function FinanceScreen() {
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "p-3 rounded-xl bg-[#4ADE80]/10 border border-[#4ADE80]/20",
+                                        className: "p-3 rounded-xl bg-[#FFC94D]/10 border border-[#FFC94D]/20",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "text-[#4ADE80] text-[10px] uppercase tracking-wide mb-1",
+                                                className: "text-[#FFC94D] text-[10px] uppercase tracking-wide mb-1",
                                                 children: t("financeWithZerobet")
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/FinanceScreen.tsx",
@@ -1583,7 +1583,7 @@ function FinanceScreen() {
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "text-[#4ADE80] text-[10px] mt-1",
+                                                className: "text-[#FFC94D] text-[10px] mt-1",
                                                 children: [
                                                     "+",
                                                     formatFCFA(weeklyDifference, language),
@@ -1618,7 +1618,7 @@ function FinanceScreen() {
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trending$2d$up$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__TrendingUp$3e$__["TrendingUp"], {
                                                 size: 12,
-                                                className: "text-[#4ADE80]"
+                                                className: "text-[#FFC94D]"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/FinanceScreen.tsx",
                                                 lineNumber: 852,
@@ -1636,7 +1636,7 @@ function FinanceScreen() {
                                         type: "number",
                                         value: incomeInput,
                                         onChange: (e)=>setIncomeInput(e.target.value),
-                                        className: "w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#4ADE80]",
+                                        className: "w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#FFC94D]",
                                         placeholder: "0"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/FinanceScreen.tsx",
@@ -1659,7 +1659,7 @@ function FinanceScreen() {
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$house$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Home$3e$__["Home"], {
                                                         size: 12,
-                                                        className: "text-[#2DD4BF]"
+                                                        className: "text-[#FFB020]"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/FinanceScreen.tsx",
                                                         lineNumber: 865,
@@ -1677,7 +1677,7 @@ function FinanceScreen() {
                                                 type: "number",
                                                 value: rentInput,
                                                 onChange: (e)=>setRentInput(e.target.value),
-                                                className: "w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#2DD4BF]",
+                                                className: "w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#FFB020]",
                                                 placeholder: "0"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/FinanceScreen.tsx",
@@ -1735,7 +1735,7 @@ function FinanceScreen() {
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$car$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Car$3e$__["Car"], {
                                                         size: 12,
-                                                        className: "text-[#C084FC]"
+                                                        className: "text-[#FFD166]"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/FinanceScreen.tsx",
                                                         lineNumber: 889,
@@ -1753,7 +1753,7 @@ function FinanceScreen() {
                                                 type: "number",
                                                 value: transportInput,
                                                 onChange: (e)=>setTransportInput(e.target.value),
-                                                className: "w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#C084FC]",
+                                                className: "w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#FFD166]",
                                                 placeholder: "0"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/FinanceScreen.tsx",
@@ -1986,11 +1986,11 @@ function FinanceScreen() {
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                         onClick: ()=>setContribGoalId(goal.id),
-                                                        className: "w-7 h-7 rounded-lg bg-[#4ADE80]/20 flex items-center justify-center",
+                                                        className: "w-7 h-7 rounded-lg bg-[#FFC94D]/20 flex items-center justify-center",
                                                         "aria-label": t("financeSaveForThisGoal"),
                                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$plus$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Plus$3e$__["Plus"], {
                                                             size: 14,
-                                                            className: "text-[#4ADE80]"
+                                                            className: "text-[#FFC94D]"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/zerobet/screens/FinanceScreen.tsx",
                                                             lineNumber: 995,
@@ -2045,7 +2045,7 @@ function FinanceScreen() {
                                             },
                                             className: `h-full ${isReached ? "gradient-success" : "gradient-primary"} flex items-center justify-end pr-1.5`,
                                             children: progress > 12 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-[9px] font-bold text-[#070B0E]",
+                                                className: "text-[9px] font-bold text-[#0B0704]",
                                                 children: [
                                                     Math.round(progress),
                                                     "%"
@@ -2069,7 +2069,7 @@ function FinanceScreen() {
                                         className: "flex justify-between mt-1.5 text-[10px]",
                                         children: [
                                             isReached ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-[#4ADE80] font-semibold flex items-center gap-1",
+                                                className: "text-[#FFC94D] font-semibold flex items-center gap-1",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__["Check"], {
                                                         size: 11
@@ -2207,7 +2207,7 @@ function FinanceScreen() {
                         iconColor: "#F59E0B",
                         title: t("financeSavingsStreak"),
                         right: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                            className: "text-[10px] text-[#4ADE80] font-semibold flex items-center gap-1",
+                            className: "text-[10px] text-[#FFC94D] font-semibold flex items-center gap-1",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$gift$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Gift$3e$__["Gift"], {
                                     size: 10
@@ -2282,7 +2282,7 @@ function FinanceScreen() {
                                         transition: {
                                             delay: idx * 0.05
                                         },
-                                        className: `flex-1 h-10 rounded-lg flex items-center justify-center text-[10px] font-bold ${w.saved ? "gradient-success text-[#070B0E]" : "bg-white/5 text-white/30 border border-white/5"}`,
+                                        className: `flex-1 h-10 rounded-lg flex items-center justify-center text-[10px] font-bold ${w.saved ? "gradient-success text-[#0B0704]" : "bg-white/5 text-white/30 border border-white/5"}`,
                                         title: w.saved ? t("financeSavingsWeek") : t("financeNotYet"),
                                         children: w.saved ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__["Check"], {
                                             size: 14
@@ -2540,7 +2540,7 @@ function FinanceScreen() {
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(SectionTitle, {
                         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chart$2d$column$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__BarChart3$3e$__["BarChart3"],
-                        iconColor: "#4ADE80",
+                        iconColor: "#FFC94D",
                         title: t("financeBeforeVsAfter"),
                         right: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                             className: "text-[10px] text-white/40",
@@ -2674,7 +2674,7 @@ function FinanceScreen() {
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$recharts$2f$es6$2f$cartesian$2f$Bar$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Bar"], {
                                         dataKey: "maintenant",
-                                        fill: "#4ADE80",
+                                        fill: "#FFC94D",
                                         radius: [
                                             4,
                                             4,
@@ -2704,12 +2704,12 @@ function FinanceScreen() {
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "mt-3 p-3 rounded-xl bg-[#4ADE80]/10 border border-[#4ADE80]/20 flex items-center justify-between",
+                        className: "mt-3 p-3 rounded-xl bg-[#FFC94D]/10 border border-[#FFC94D]/20 flex items-center justify-between",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "text-[#4ADE80] text-[11px] uppercase tracking-wide",
+                                        className: "text-[#FFC94D] text-[11px] uppercase tracking-wide",
                                         children: t("financeNetGain6Months")
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/FinanceScreen.tsx",
@@ -2792,7 +2792,7 @@ function FinanceScreen() {
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(SectionTitle, {
                         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$graduation$2d$cap$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__GraduationCap$3e$__["GraduationCap"],
-                        iconColor: "#2DD4BF",
+                        iconColor: "#FFB020",
                         title: t("financeEducation")
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/screens/FinanceScreen.tsx",
@@ -3312,7 +3312,7 @@ function FinanceScreen() {
                                                     onChange: (e)=>setContribAmount(e.target.value),
                                                     placeholder: t("financeAmountPlaceholder"),
                                                     autoFocus: true,
-                                                    className: "w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#4ADE80]"
+                                                    className: "w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#FFC94D]"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/zerobet/screens/FinanceScreen.tsx",
                                                     lineNumber: 1519,
@@ -3350,7 +3350,7 @@ function FinanceScreen() {
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                             onClick: handleContribute,
-                                            className: "w-full py-3 rounded-xl gradient-success text-[#070B0E] text-sm font-bold flex items-center justify-center gap-1.5",
+                                            className: "w-full py-3 rounded-xl gradient-success text-[#0B0704] text-sm font-bold flex items-center justify-center gap-1.5",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$piggy$2d$bank$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__PiggyBank$3e$__["PiggyBank"], {
                                                     size: 16

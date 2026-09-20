@@ -49,7 +49,7 @@ export function SplashScreen() {
         className="absolute inset-0 -z-10"
         style={{
           background:
-            "radial-gradient(ellipse at 30% 80%, rgba(192, 132, 252,0.18) 0%, transparent 55%), radial-gradient(ellipse at 70% 20%, rgba(74,222,128,0.10) 0%, transparent 50%)",
+            "radial-gradient(ellipse at 30% 80%, rgba(255, 209, 102,0.18) 0%, transparent 55%), radial-gradient(ellipse at 70% 20%, rgba(255,201,77,0.10) 0%, transparent 50%)",
         }}
       />
 
@@ -65,14 +65,14 @@ export function SplashScreen() {
         initial={{ y: "-100%" }}
         animate={{ y: 0 }}
         transition={{ duration: 0.8, ease: "easeInOut" }}
-        className="absolute top-0 left-0 right-0 h-[6vh] bg-[#070B0E] z-30 pointer-events-none splash-letterbox-top"
+        className="absolute top-0 left-0 right-0 h-[6vh] bg-[#0B0704] z-30 pointer-events-none splash-letterbox-top"
       />
       <motion.div
         aria-hidden
         initial={{ y: "100%" }}
         animate={{ y: 0 }}
         transition={{ duration: 0.8, ease: "easeInOut" }}
-        className="absolute bottom-0 left-0 right-0 h-[6vh] bg-[#070B0E] z-30 pointer-events-none splash-letterbox-bottom"
+        className="absolute bottom-0 left-0 right-0 h-[6vh] bg-[#0B0704] z-30 pointer-events-none splash-letterbox-bottom"
       />
 
       <PremiumLoader
@@ -85,14 +85,14 @@ export function SplashScreen() {
 
       <style>{`
         .splash-cinematic-root {
-          background: #070B0E;
+          background: #0B0704;
         }
         .splash-mesh-bg {
           background:
             radial-gradient(ellipse at 22% 18%, rgba(255,59,48,0.22) 0%, transparent 45%),
-            radial-gradient(ellipse at 78% 28%, rgba(192, 132, 252,0.22) 0%, transparent 50%),
+            radial-gradient(ellipse at 78% 28%, rgba(255, 209, 102,0.22) 0%, transparent 50%),
             radial-gradient(ellipse at 50% 85%, rgba(245, 158, 11,0.22) 0%, transparent 55%),
-            radial-gradient(ellipse at 80% 75%, rgba(45, 212, 191,0.16) 0%, transparent 50%);
+            radial-gradient(ellipse at 80% 75%, rgba(255,176,32,0.16) 0%, transparent 50%);
           background-size: 220% 220%, 220% 220%, 220% 220%, 220% 220%;
           animation: splash-mesh-shift 16s ease-in-out infinite;
         }

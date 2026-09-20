@@ -21,13 +21,13 @@ export function ZerobetLogo({ size = 80, animated = true, className = "" }: Logo
     >
       <defs>
         <linearGradient id="zb-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#10B981" />
-          <stop offset="50%" stopColor="#14C9A8" />
-          <stop offset="100%" stopColor="#2DD4BF" />
+          <stop offset="0%" stopColor="#FF6B00" />
+          <stop offset="50%" stopColor="#FFB020" />
+          <stop offset="100%" stopColor="#FFB020" />
         </linearGradient>
         <linearGradient id="zb-shield-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#10B981" />
-          <stop offset="100%" stopColor="#065F46" />
+          <stop offset="0%" stopColor="#FF6B00" />
+          <stop offset="100%" stopColor="#93410F" />
         </linearGradient>
         <linearGradient id="zb-shine" x1="0%" y1="0%" x2="100%" y2="0%">
           <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0" />
@@ -37,13 +37,13 @@ export function ZerobetLogo({ size = 80, animated = true, className = "" }: Logo
           <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0" />
         </linearGradient>
         <radialGradient id="zb-glow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#2DD4BF" stopOpacity="0.6" />
-          <stop offset="100%" stopColor="#10B981" stopOpacity="0" />
+          <stop offset="0%" stopColor="#FFB020" stopOpacity="0.6" />
+          <stop offset="100%" stopColor="#FF6B00" stopOpacity="0" />
         </radialGradient>
         <filter id="zb-shadow" x="-50%" y="-50%" width="200%" height="200%">
           <feGaussianBlur stdDeviation="3" result="blur" />
           <feOffset dx="0" dy="2" result="offset" />
-          <feFlood floodColor="#10B981" floodOpacity="0.5" />
+          <feFlood floodColor="#FF6B00" floodOpacity="0.5" />
           <feComposite in2="offset" operator="in" />
           <feMerge>
             <feMergeNode />

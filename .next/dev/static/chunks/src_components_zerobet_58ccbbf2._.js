@@ -567,13 +567,13 @@ const CATEGORIES = [
         key: "addiction",
         labelKey: "resourcesCategoryAddiction",
         emoji: "🧠",
-        color: "#C084FC"
+        color: "#FFD166"
     },
     {
         key: "techniques",
         labelKey: "resourcesCategoryTechniques",
         emoji: "💪",
-        color: "#4ADE80"
+        color: "#FFC94D"
     },
     {
         key: "finance",
@@ -591,7 +591,7 @@ const CATEGORIES = [
         key: "meditation",
         labelKey: "resourcesCategoryMeditation",
         emoji: "🧘",
-        color: "#2DD4BF"
+        color: "#FFB020"
     },
     {
         key: "stories",
@@ -730,7 +730,7 @@ const VIDEOS = [
         titleKey: "resourcesVideo1Title",
         duration: "10:00",
         categoryKey: "resourcesVideoCatMeditation",
-        gradient: "linear-gradient(135deg, #2DD4BF 0%, #2DD4BF 100%)"
+        gradient: "linear-gradient(135deg, #FFB020 0%, #FFB020 100%)"
     },
     {
         id: "v2",
@@ -744,14 +744,14 @@ const VIDEOS = [
         titleKey: "resourcesVideo3Title",
         duration: "08:15",
         categoryKey: "resourcesVideoCatScience",
-        gradient: "linear-gradient(135deg, #C084FC 0%, #FF3B30 100%)"
+        gradient: "linear-gradient(135deg, #FFD166 0%, #FF3B30 100%)"
     },
     {
         id: "v4",
         titleKey: "resourcesVideo4Title",
         duration: "12:30",
         categoryKey: "resourcesVideoCatMeditation",
-        gradient: "linear-gradient(135deg, #4ADE80 0%, #2DD4BF 100%)"
+        gradient: "linear-gradient(135deg, #FFC94D 0%, #FFB020 100%)"
     }
 ];
 const HOTLINES = [
@@ -767,7 +767,7 @@ const HOTLINES = [
         nameKey: "resourcesHotline2Name",
         descKey: "resourcesHotline2Desc",
         phone: "+441472544300",
-        color: "#2DD4BF"
+        color: "#FFB020"
     },
     {
         id: "h3",
@@ -784,7 +784,7 @@ const BOOKS_APPS = [
         type: "app",
         descKey: "resourcesBook1Desc",
         emoji: "📱",
-        color: "#4ADE80"
+        color: "#FFC94D"
     },
     {
         id: "b2",
@@ -792,7 +792,7 @@ const BOOKS_APPS = [
         type: "book",
         descKey: "resourcesBook2Desc",
         emoji: "📖",
-        color: "#2DD4BF"
+        color: "#FFB020"
     },
     {
         id: "b3",
@@ -917,7 +917,7 @@ function ResourcesScreen() {
                         className: "w-10 h-10 rounded-full glass-card flex items-center justify-center",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$book$2d$open$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__BookOpen$3e$__["BookOpen"], {
                             size: 18,
-                            className: "text-[#C084FC]"
+                            className: "text-[#FFD166]"
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/ResourcesScreen.tsx",
                             lineNumber: 377,
@@ -1165,7 +1165,7 @@ function ResourcesScreen() {
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$book$2d$open$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__BookOpen$3e$__["BookOpen"], {
                                 size: 14,
-                                className: "text-[#4ADE80]"
+                                className: "text-[#FFC94D]"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/ResourcesScreen.tsx",
                                 lineNumber: 470,
@@ -1672,7 +1672,7 @@ function VideoCard({ video, index }) {
                         className: "relative w-12 h-12 rounded-full bg-white/95 flex items-center justify-center shadow-lg",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$play$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Play$3e$__["Play"], {
                             size: 20,
-                            className: "text-[#070B0E] ml-0.5",
+                            className: "text-[#0B0704] ml-0.5",
                             fill: "currentColor"
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/ResourcesScreen.tsx",

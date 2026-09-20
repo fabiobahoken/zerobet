@@ -135,8 +135,8 @@ const TYPE_CONFIG = {
             lineNumber: 20,
             columnNumber: 11
         }, ("TURBOPACK compile-time value", void 0)),
-        color: "#4ADE80",
-        borderColor: "#4ADE80"
+        color: "#FFC94D",
+        borderColor: "#FFC94D"
     },
     milestone: {
         icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trophy$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Trophy$3e$__["Trophy"], {
@@ -157,8 +157,8 @@ const TYPE_CONFIG = {
             lineNumber: 30,
             columnNumber: 11
         }, ("TURBOPACK compile-time value", void 0)),
-        color: "#2DD4BF",
-        borderColor: "#2DD4BF"
+        color: "#FFB020",
+        borderColor: "#FFB020"
     },
     checkin: {
         icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$heart$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Heart$3e$__["Heart"], {
@@ -357,7 +357,7 @@ function NotificationCenter({ isOpen, onClose }) {
                                     children: [
                                         unreadCount > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                             onClick: markAllRead,
-                                            className: "text-[#2DD4BF] text-xs font-medium hover:underline",
+                                            className: "text-[#FFB020] text-xs font-medium hover:underline",
                                             children: t("notifMarkAllRead")
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/components/NotificationCenter.tsx",
@@ -623,15 +623,15 @@ const MOOD_OPTIONS = [
         key: "super",
         emoji: "😀",
         labelKey: "checkinMoodSuper",
-        color: "#4ADE80",
-        bg: "rgba(74,222,128,0.15)"
+        color: "#FFC94D",
+        bg: "rgba(255,201,77,0.15)"
     },
     {
         key: "bien",
         emoji: "😊",
         labelKey: "checkinMoodBien",
-        color: "#2DD4BF",
-        bg: "rgba(45, 212, 191,0.15)"
+        color: "#FFB020",
+        bg: "rgba(255,176,32,0.15)"
     },
     {
         key: "neutre",
@@ -1010,7 +1010,7 @@ function DailyCheckIn({ onDismiss } = {}) {
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                         onClick: ()=>setHasCraving(false),
-                                                        className: `flex-1 py-3 rounded-2xl text-sm font-semibold transition-all duration-200 ${hasCraving === false ? "bg-[#4ADE80]/20 text-[#4ADE80] ring-2 ring-[#4ADE80]/50" : "glass-pill text-white/50"}`,
+                                                        className: `flex-1 py-3 rounded-2xl text-sm font-semibold transition-all duration-200 ${hasCraving === false ? "bg-[#FFC94D]/20 text-[#FFC94D] ring-2 ring-[#FFC94D]/50" : "glass-pill text-white/50"}`,
                                                         children: t("no")
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/components/DailyCheckIn.tsx",
@@ -1162,10 +1162,10 @@ function DailyCheckIn({ onDismiss } = {}) {
                                         const colors = [
                                             "#FF3B30",
                                             "#F59E0B",
-                                            "#4ADE80",
-                                            "#2DD4BF",
+                                            "#FFC94D",
+                                            "#FFB020",
                                             "#FBBF24",
-                                            "#C084FC"
+                                            "#FFD166"
                                         ];
                                         const color = colors[i % colors.length];
                                         const leftPos = `${5 + i * 4.5 % 90}%`;
@@ -1305,16 +1305,16 @@ const PARCOURS_RANKS = [
         nameKey: "artifact2Name",
         subtitleKey: "artifact2Subtitle",
         requiredDays: 3,
-        color: "#2DD4BF",
-        glow: "rgba(45, 212, 191, 0.6)",
-        gradient: "linear-gradient(135deg, #2DD4BF 0%, #0EA5E9 100%)",
+        color: "#FFB020",
+        glow: "rgba(255,176,32, 0.6)",
+        gradient: "linear-gradient(135deg, #FFB020 0%, #FF9A3D 100%)",
         icon: "jour-3",
         description: "Forgée dans les brumes du réveil, elle protège ton esprit des illusions du jeu et dissipe le brouillard mental du sevrage précoce.",
         artifactType: "Amulette",
         powerName: "Vision Claire",
         powerDescription: "Dissipe le brouillard mental des premiers jours de sevrage et clarifie la pensée.",
-        auraColor: "#2DD4BF",
-        auraGradient: "radial-gradient(circle at center, rgba(45, 212, 191,0.35) 0%, rgba(45, 212, 191,0.10) 40%, transparent 70%)",
+        auraColor: "#FFB020",
+        auraGradient: "radial-gradient(circle at center, rgba(255,176,32,0.35) 0%, rgba(255,176,32,0.10) 40%, transparent 70%)",
         story: "Forgée dans les brumes du réveil, elle protège ton esprit des illusions du jeu.",
         descKey: "artifact2Desc",
         storyKey: "artifact2Story"
@@ -1415,16 +1415,16 @@ const PARCOURS_RANKS = [
         nameKey: "artifact7Name",
         subtitleKey: "artifact7Subtitle",
         requiredDays: 60,
-        color: "#2DD4BF",
-        glow: "rgba(45, 212, 191, 0.8)",
-        gradient: "linear-gradient(135deg, #2DD4BF 0%, #5AC8FA 100%)",
+        color: "#FFB020",
+        glow: "rgba(255,176,32, 0.8)",
+        gradient: "linear-gradient(135deg, #FFB020 0%, #FFD166 100%)",
         icon: "jour-60",
         description: "Deux mois de pression l'ont cristallisé. Rien ne peut le briser. Ta volonté est devenue un cristal indestructible au cœur de ta poitrine.",
         artifactType: "Cœur Cristal",
         powerName: "Incassable",
         powerDescription: "Rend ta volonté incassable. Aucune tentation ne peut fissurer ta détermination.",
-        auraColor: "#2DD4BF",
-        auraGradient: "radial-gradient(circle at center, rgba(45, 212, 191,0.45) 0%, rgba(90,200,250,0.15) 40%, transparent 70%)",
+        auraColor: "#FFB020",
+        auraGradient: "radial-gradient(circle at center, rgba(255,176,32,0.45) 0%, rgba(90,200,250,0.15) 40%, transparent 70%)",
         story: "Deux mois de pression l'ont cristallisé. Rien ne peut le briser.",
         descKey: "artifact7Desc",
         storyKey: "artifact7Story"
@@ -1437,16 +1437,16 @@ const PARCOURS_RANKS = [
         nameKey: "artifact8Name",
         subtitleKey: "artifact8Subtitle",
         requiredDays: 90,
-        color: "#4ADE80",
-        glow: "rgba(74, 222, 128, 0.8)",
-        gradient: "linear-gradient(135deg, #4ADE80 0%, #22C55E 100%)",
+        color: "#FFC94D",
+        glow: "rgba(255,201,77, 0.8)",
+        gradient: "linear-gradient(135deg, #FFC94D 0%, #FF8A00 100%)",
         icon: "jour-90",
         description: "Le cap des 90 jours. Ton cerveau est né de nouveau. Tu es devenu quelqu'un d'autre, façonné par trois mois de guérison neuronale.",
         artifactType: "Pierre Précieuse",
         powerName: "Neuroplasticité",
         powerDescription: "Ton cerveau s'est reconfiguré. Tu es renouvelé, littéralement transformé.",
-        auraColor: "#4ADE80",
-        auraGradient: "radial-gradient(circle at center, rgba(74,222,128,0.50) 0%, rgba(34,197,94,0.15) 40%, transparent 70%)",
+        auraColor: "#FFC94D",
+        auraGradient: "radial-gradient(circle at center, rgba(255,201,77,0.50) 0%, rgba(34,197,94,0.15) 40%, transparent 70%)",
         story: "Le cap des 90 jours. Ton cerveau est né de nouveau. Tu es devenu quelqu'un d'autre.",
         descKey: "artifact8Desc",
         storyKey: "artifact8Story"
@@ -1459,16 +1459,16 @@ const PARCOURS_RANKS = [
         nameKey: "artifact9Name",
         subtitleKey: "artifact9Subtitle",
         requiredDays: 120,
-        color: "#2DD4BF",
-        glow: "rgba(45, 212, 191, 0.8)",
-        gradient: "linear-gradient(135deg, #2DD4BF 0%, #2DD4BF 100%)",
+        color: "#FFB020",
+        glow: "rgba(255,176,32, 0.8)",
+        gradient: "linear-gradient(135deg, #FFB020 0%, #FFB020 100%)",
         icon: "jour-120",
         description: "Quatre mois de méditation ont poli cette pierre. Elle révèle les vérités cachées et te fait voir les déclencheurs avant qu'ils n'apparaissent.",
         artifactType: "Pierre Précieuse",
         powerName: "Vision Profonde",
         powerDescription: "Voit les déclencheurs avant qu'ils n'apparaissent et comprend les motifs profonds de tes envies.",
-        auraColor: "#2DD4BF",
-        auraGradient: "radial-gradient(circle at center, rgba(45, 212, 191,0.50) 0%, rgba(88,86,214,0.15) 40%, transparent 70%)",
+        auraColor: "#FFB020",
+        auraGradient: "radial-gradient(circle at center, rgba(255,176,32,0.50) 0%, rgba(88,86,214,0.15) 40%, transparent 70%)",
         story: "Quatre mois de méditation ont poli cette pierre. Elle révèle les vérités cachées.",
         descKey: "artifact9Desc",
         storyKey: "artifact9Story"
@@ -1503,16 +1503,16 @@ const PARCOURS_RANKS = [
         nameKey: "artifact11Name",
         subtitleKey: "artifact11Subtitle",
         requiredDays: 270,
-        color: "#C084FC",
-        glow: "rgba(192, 132, 252, 0.9)",
-        gradient: "linear-gradient(135deg, #C084FC 0%, #9B30FF 100%)",
+        color: "#FFD166",
+        glow: "rgba(255, 209, 102, 0.9)",
+        gradient: "linear-gradient(135deg, #FFD166 0%, #9B30FF 100%)",
         icon: "jour-270",
         description: "Neuf mois. Tu danses avec tes envies sans plus jamais trembler. La maîtrise totale de tes impulsions est enfin tienne.",
         artifactType: "Pierre Précieuse",
         powerName: "Contrôle Total",
         powerDescription: "Maîtrise complète des impulsions. Tu danses avec tes envies sans plus jamais trembler.",
-        auraColor: "#C084FC",
-        auraGradient: "radial-gradient(circle at center, rgba(192, 132, 252,0.55) 0%, rgba(155,48,255,0.15) 40%, transparent 70%)",
+        auraColor: "#FFD166",
+        auraGradient: "radial-gradient(circle at center, rgba(255, 209, 102,0.55) 0%, rgba(155,48,255,0.15) 40%, transparent 70%)",
         story: "Neuf mois. Tu danses avec tes envies sans plus jamais trembler.",
         descKey: "artifact11Desc",
         storyKey: "artifact11Story"
@@ -1549,14 +1549,14 @@ const PARCOURS_RANKS = [
         requiredDays: 730,
         color: "#FFFFFF",
         glow: "rgba(255, 255, 255, 1)",
-        gradient: "linear-gradient(135deg, #FFFFFF 0%, #2DD4BF 50%, #C084FC 100%)",
+        gradient: "linear-gradient(135deg, #FFFFFF 0%, #FFB020 50%, #FFD166 100%)",
         icon: "jour-730",
         description: "Deux ans. Tu ne te rétablis plus. Tu ES la lumière qui guide les autres. Au-delà de la guérison, tu deviens le phare des chercheurs à venir.",
         artifactType: "Étoile",
         powerName: "Transcendance",
         powerDescription: "Au-delà de la guérison. Tu deviens le phare qui guide tous les autres chercheurs.",
         auraColor: "#FFFFFF",
-        auraGradient: "radial-gradient(circle at center, rgba(255,255,255,0.55) 0%, rgba(45, 212, 191,0.18) 35%, rgba(192, 132, 252,0.10) 55%, transparent 75%)",
+        auraGradient: "radial-gradient(circle at center, rgba(255,255,255,0.55) 0%, rgba(255,176,32,0.18) 35%, rgba(255, 209, 102,0.10) 55%, transparent 75%)",
         story: "Deux ans. Tu ne te rétablis plus. Tu ES la lumière qui guide les autres.",
         descKey: "artifact13Desc",
         storyKey: "artifact13Story"
@@ -2057,7 +2057,7 @@ _c2 = DawnCrystalIcon;
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "0%",
-                                stopColor: "#67E8F9"
+                                stopColor: "#FFD166"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ArtifactIcon.tsx",
                                 lineNumber: 315,
@@ -2065,7 +2065,7 @@ _c2 = DawnCrystalIcon;
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "50%",
-                                stopColor: "#2DD4BF"
+                                stopColor: "#FFB020"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ArtifactIcon.tsx",
                                 lineNumber: 316,
@@ -2073,7 +2073,7 @@ _c2 = DawnCrystalIcon;
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "100%",
-                                stopColor: "#0EA5E9"
+                                stopColor: "#FF9A3D"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ArtifactIcon.tsx",
                                 lineNumber: 317,
@@ -2987,7 +2987,7 @@ _c7 = PlatinumOrbIcon;
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "50%",
-                                stopColor: "#2DD4BF"
+                                stopColor: "#FFB020"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ArtifactIcon.tsx",
                                 lineNumber: 723,
@@ -2995,7 +2995,7 @@ _c7 = PlatinumOrbIcon;
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "100%",
-                                stopColor: "#0EA5E9"
+                                stopColor: "#FF9A3D"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ArtifactIcon.tsx",
                                 lineNumber: 724,
@@ -3109,7 +3109,7 @@ _c8 = DiamondHeartIcon;
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "50%",
-                                stopColor: "#4ADE80"
+                                stopColor: "#FFC94D"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ArtifactIcon.tsx",
                                 lineNumber: 783,
@@ -3246,7 +3246,7 @@ _c9 = EmeraldIcon;
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "50%",
-                                stopColor: "#2DD4BF"
+                                stopColor: "#FFB020"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ArtifactIcon.tsx",
                                 lineNumber: 849,
@@ -3555,7 +3555,7 @@ _c11 = RubyIcon;
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "50%",
-                                stopColor: "#C084FC"
+                                stopColor: "#FFD166"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ArtifactIcon.tsx",
                                 lineNumber: 984,
@@ -3595,7 +3595,7 @@ _c11 = RubyIcon;
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "M24 6 C14 6, 7 14, 7 24 C7 33, 14 41, 24 41 C34 41, 41 33, 41 24 C41 14, 34 6, 24 6 Z",
                         fill: "rgba(0,0,0,0.45)",
-                        stroke: "rgba(192, 132, 252,0.5)",
+                        stroke: "rgba(255, 209, 102,0.5)",
                         strokeWidth: "0.8"
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/components/ArtifactIcon.tsx",
@@ -3983,7 +3983,7 @@ _c13 = CrownIcon;
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "100%",
-                                stopColor: "#2DD4BF"
+                                stopColor: "#FFB020"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ArtifactIcon.tsx",
                                 lineNumber: 1149,
@@ -4012,7 +4012,7 @@ _c13 = CrownIcon;
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "50%",
-                                stopColor: "#C084FC"
+                                stopColor: "#FFD166"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ArtifactIcon.tsx",
                                 lineNumber: 1153,
@@ -4020,7 +4020,7 @@ _c13 = CrownIcon;
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "100%",
-                                stopColor: "#2DD4BF"
+                                stopColor: "#FFB020"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ArtifactIcon.tsx",
                                 lineNumber: 1154,
@@ -4243,12 +4243,13 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 const CONFETTI_COLORS = [
-    "#FF3B30",
+    "#FF6B00",
+    "#FF8A00",
     "#F59E0B",
-    "#4ADE80",
-    "#2DD4BF",
+    "#FFC94D",
+    "#FFB020",
     "#FBBF24",
-    "#C084FC",
+    "#FFD166",
     "#FFD700"
 ];
 function generateConfettiParticles(count) {
@@ -4275,7 +4276,7 @@ function AchievementPopup() {
     const [newRank, setNewRank] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [isVisible, setIsVisible] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [confettiParticles] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({
-        "AchievementPopup.useState": ()=>generateConfettiParticles(18)
+        "AchievementPopup.useState": ()=>generateConfettiParticles(26)
     }["AchievementPopup.useState"]);
     const dismissTimerRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     // Use a tick counter incremented only inside setInterval callback
@@ -4426,6 +4427,18 @@ function AchievementPopup() {
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "relative",
                                     children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            "aria-hidden": true,
+                                            className: "medal-rays",
+                                            style: {
+                                                inset: "-34px",
+                                                ["--medal-glow"]: newRank.glow
+                                            }
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/zerobet/components/AchievementPopup.tsx",
+                                            lineNumber: 148,
+                                            columnNumber: 19
+                                        }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
                                             initial: {
                                                 scale: 0,
@@ -4446,7 +4459,7 @@ function AchievementPopup() {
                                             }
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/components/AchievementPopup.tsx",
-                                            lineNumber: 148,
+                                            lineNumber: 157,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -4470,7 +4483,7 @@ function AchievementPopup() {
                                             }
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/components/AchievementPopup.tsx",
-                                            lineNumber: 155,
+                                            lineNumber: 164,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -4486,23 +4499,127 @@ function AchievementPopup() {
                                                 damping: 15,
                                                 delay: 0.2
                                             },
-                                            className: "relative w-28 h-28 rounded-full flex items-center justify-center badge-aura",
+                                            className: "relative w-28 h-28 rounded-full flex items-center justify-center badge-aura overflow-hidden",
                                             style: {
                                                 background: newRank.gradient,
                                                 "--aura-color": newRank.glow
                                             },
-                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ArtifactIcon$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ArtifactIcon"], {
-                                                artifactKey: newRank.key,
-                                                size: 80,
-                                                glow: true
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ArtifactIcon$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ArtifactIcon"], {
+                                                    artifactKey: newRank.key,
+                                                    size: 80,
+                                                    glow: true
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/zerobet/components/AchievementPopup.tsx",
+                                                    lineNumber: 188,
+                                                    columnNumber: 21
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    "aria-hidden": true,
+                                                    className: "medal-shine rounded-full",
+                                                    style: {
+                                                        ["--shine-delay"]: "0.6s"
+                                                    }
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/zerobet/components/AchievementPopup.tsx",
+                                                    lineNumber: 190,
+                                                    columnNumber: 21
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/src/components/zerobet/components/AchievementPopup.tsx",
+                                            lineNumber: 173,
+                                            columnNumber: 19
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                            viewBox: "0 0 24 24",
+                                            className: "sparkle w-3 h-3",
+                                            style: {
+                                                top: "-14px",
+                                                left: "-16px",
+                                                ["--sparkle-color"]: "#FFD166"
+                                            },
+                                            "aria-hidden": true,
+                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                                d: "M12 1 L14.2 9.8 L23 12 L14.2 14.2 L12 23 L9.8 14.2 L1 12 L9.8 9.8 Z",
+                                                fill: "currentColor"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/components/AchievementPopup.tsx",
-                                                lineNumber: 179,
+                                                lineNumber: 199,
                                                 columnNumber: 21
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/components/AchievementPopup.tsx",
-                                            lineNumber: 164,
+                                            lineNumber: 198,
+                                            columnNumber: 19
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                            viewBox: "0 0 24 24",
+                                            className: "sparkle w-2.5 h-2.5",
+                                            style: {
+                                                top: "6px",
+                                                right: "-20px",
+                                                ["--sparkle-color"]: "#FFB020",
+                                                ["--sparkle-delay"]: "0.8s"
+                                            },
+                                            "aria-hidden": true,
+                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                                d: "M12 1 L14.2 9.8 L23 12 L14.2 14.2 L12 23 L9.8 14.2 L1 12 L9.8 9.8 Z",
+                                                fill: "currentColor"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/zerobet/components/AchievementPopup.tsx",
+                                                lineNumber: 202,
+                                                columnNumber: 21
+                                            }, this)
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/zerobet/components/AchievementPopup.tsx",
+                                            lineNumber: 201,
+                                            columnNumber: 19
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                            viewBox: "0 0 24 24",
+                                            className: "sparkle w-2 h-2",
+                                            style: {
+                                                bottom: "-10px",
+                                                left: "4px",
+                                                ["--sparkle-color"]: "#FFC94D",
+                                                ["--sparkle-delay"]: "1.5s"
+                                            },
+                                            "aria-hidden": true,
+                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                                d: "M12 1 L14.2 9.8 L23 12 L14.2 14.2 L12 23 L9.8 14.2 L1 12 L9.8 9.8 Z",
+                                                fill: "currentColor"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/zerobet/components/AchievementPopup.tsx",
+                                                lineNumber: 205,
+                                                columnNumber: 21
+                                            }, this)
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/zerobet/components/AchievementPopup.tsx",
+                                            lineNumber: 204,
+                                            columnNumber: 19
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                            viewBox: "0 0 24 24",
+                                            className: "sparkle w-2.5 h-2.5",
+                                            style: {
+                                                bottom: "2px",
+                                                right: "-6px",
+                                                ["--sparkle-color"]: "#FF6B00",
+                                                ["--sparkle-delay"]: "2s"
+                                            },
+                                            "aria-hidden": true,
+                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                                d: "M12 1 L14.2 9.8 L23 12 L14.2 14.2 L12 23 L9.8 14.2 L1 12 L9.8 9.8 Z",
+                                                fill: "currentColor"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/zerobet/components/AchievementPopup.tsx",
+                                                lineNumber: 208,
+                                                columnNumber: 21
+                                            }, this)
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/zerobet/components/AchievementPopup.tsx",
+                                            lineNumber: 207,
                                             columnNumber: 19
                                         }, this)
                                     ]
@@ -4538,7 +4655,7 @@ function AchievementPopup() {
                                 children: t("achievementNewRank")
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/AchievementPopup.tsx",
-                                lineNumber: 185,
+                                lineNumber: 214,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -4562,7 +4679,7 @@ function AchievementPopup() {
                                         children: t(newRank.nameKey)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/components/AchievementPopup.tsx",
-                                        lineNumber: 206,
+                                        lineNumber: 235,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4570,7 +4687,7 @@ function AchievementPopup() {
                                         children: t(newRank.subtitleKey)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/components/AchievementPopup.tsx",
-                                        lineNumber: 212,
+                                        lineNumber: 241,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4578,13 +4695,13 @@ function AchievementPopup() {
                                         children: t(newRank.descKey)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/components/AchievementPopup.tsx",
-                                        lineNumber: 215,
+                                        lineNumber: 244,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/components/AchievementPopup.tsx",
-                                lineNumber: 201,
+                                lineNumber: 230,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].p, {
@@ -4601,7 +4718,7 @@ function AchievementPopup() {
                                 children: t("tapToClose")
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/AchievementPopup.tsx",
-                                lineNumber: 221,
+                                lineNumber: 250,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4621,12 +4738,12 @@ function AchievementPopup() {
                                         }
                                     }, p.id, false, {
                                         fileName: "[project]/src/components/zerobet/components/AchievementPopup.tsx",
-                                        lineNumber: 233,
+                                        lineNumber: 262,
                                         columnNumber: 19
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/AchievementPopup.tsx",
-                                lineNumber: 231,
+                                lineNumber: 260,
                                 columnNumber: 15
                             }, this)
                         ]
@@ -4655,7 +4772,7 @@ function AchievementPopup() {
           `
                 }, void 0, false, {
                     fileName: "[project]/src/components/zerobet/components/AchievementPopup.tsx",
-                    lineNumber: 254,
+                    lineNumber: 283,
                     columnNumber: 11
                 }, this)
             ]
@@ -4666,7 +4783,7 @@ function AchievementPopup() {
         columnNumber: 5
     }, this);
 }
-_s(AchievementPopup, "WeEZouUOl8JJ//1jBhNrwjnBfEc=", false, function() {
+_s(AchievementPopup, "n/qlN4tGfaaWyyEnS/CbeTtFx08=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$i18n$2f$useT$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useT"],
         __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$store$2f$zerobet$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useStore"]
@@ -4712,7 +4829,7 @@ const W = 1080;
 const H = 1350;
 /** #RRGGBB → rgba(...) with the given alpha. */ function hexToRgba(hex, alpha) {
     const m = /^#?([0-9a-f]{6})$/i.exec(hex.trim());
-    if (!m) return `rgba(16,185,129,${alpha})`;
+    if (!m) return `rgba(255,107,0,${alpha})`;
     const n = parseInt(m[1], 16);
     return `rgba(${n >> 16 & 255}, ${n >> 8 & 255}, ${n & 255}, ${alpha})`;
 }
@@ -4722,13 +4839,13 @@ function drawAurora(ctx) {
             W * 0.2,
             H * 0.18,
             W * 0.55,
-            "rgba(16, 185, 129, 0.28)"
+            "rgba(255,107,0, 0.28)"
         ],
         [
             W * 0.85,
             H * 0.42,
             W * 0.5,
-            "rgba(45, 212, 191, 0.20)"
+            "rgba(255,176,32, 0.20)"
         ],
         [
             W * 0.35,
@@ -4773,7 +4890,7 @@ function generateMilestoneCard(data) {
             const ctx = canvas.getContext("2d");
             if (!ctx) throw new Error("no canvas context");
             // Background
-            ctx.fillStyle = "#070B0E";
+            ctx.fillStyle = "#0B0704";
             ctx.fillRect(0, 0, W, H);
             drawAurora(ctx);
             drawStars(ctx);
@@ -4820,14 +4937,14 @@ function generateMilestoneCard(data) {
             ctx.font = "600 54px 'Poppins', system-ui, sans-serif";
             ctx.fillText(data.daysLabel.toUpperCase(), W / 2, H * 0.555);
             // Savings line
-            ctx.fillStyle = "#4ADE80";
+            ctx.fillStyle = "#FFC94D";
             ctx.font = "700 58px 'Poppins', system-ui, sans-serif";
             ctx.fillText(data.savedLine, W / 2, H * 0.68);
             // Divider
             const divider = ctx.createLinearGradient(W * 0.2, 0, W * 0.8, 0);
-            divider.addColorStop(0, "rgba(16,185,129,0)");
-            divider.addColorStop(0.5, "rgba(16,185,129,0.7)");
-            divider.addColorStop(1, "rgba(16,185,129,0)");
+            divider.addColorStop(0, "rgba(255,107,0,0)");
+            divider.addColorStop(0.5, "rgba(255,107,0,0.7)");
+            divider.addColorStop(1, "rgba(255,107,0,0)");
             ctx.fillStyle = divider;
             ctx.fillRect(W * 0.2, H * 0.75, W * 0.6, 3);
             // Tagline
@@ -4860,13 +4977,13 @@ function generateMilestoneCard(data) {
 /** Zerobet wordmark — shared by both cards. */ function drawWordmark(ctx, y) {
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    ctx.fillStyle = "#2DD4BF";
+    ctx.fillStyle = "#FFB020";
     ctx.font = "800 60px 'Poppins', system-ui, sans-serif";
     ctx.fillText("ZERO", W / 2 - 78, y);
     ctx.fillStyle = "#FBBF24";
     ctx.fillText("BET", W / 2 + 62, y);
     // Emerald dot over the O of ZERO — brand nod
-    ctx.fillStyle = "#10B981";
+    ctx.fillStyle = "#FF6B00";
     ctx.beginPath();
     ctx.arc(W / 2 - 148, y - 42, 12, 0, Math.PI * 2);
     ctx.fill();
@@ -4905,7 +5022,7 @@ function generateJourneyCard(data) {
             const ctx = canvas.getContext("2d");
             if (!ctx) throw new Error("no canvas context");
             // Background
-            ctx.fillStyle = "#070B0E";
+            ctx.fillStyle = "#0B0704";
             ctx.fillRect(0, 0, W, H);
             drawAurora(ctx);
             drawStars(ctx);
@@ -4919,7 +5036,7 @@ function generateJourneyCard(data) {
             ctx.textAlign = "center";
             ctx.textBaseline = "middle";
             // Header label (letterspaced teal)
-            ctx.fillStyle = "#2DD4BF";
+            ctx.fillStyle = "#FFB020";
             ctx.font = "700 38px 'Poppins', system-ui, sans-serif";
             const header = data.headerLabel.toUpperCase();
             // Manual letterspacing: draw char by char
@@ -4962,9 +5079,9 @@ function generateJourneyCard(data) {
             ctx.fillText(data.savedLine, W / 2, H * 0.492);
             // Divider
             const divider = ctx.createLinearGradient(W * 0.2, 0, W * 0.8, 0);
-            divider.addColorStop(0, "rgba(16,185,129,0)");
-            divider.addColorStop(0.5, "rgba(16,185,129,0.7)");
-            divider.addColorStop(1, "rgba(16,185,129,0)");
+            divider.addColorStop(0, "rgba(255,107,0,0)");
+            divider.addColorStop(0.5, "rgba(255,107,0,0.7)");
+            divider.addColorStop(1, "rgba(255,107,0,0)");
             ctx.fillStyle = divider;
             ctx.fillRect(W * 0.2, H * 0.535, W * 0.6, 3);
             // Stat pills (glass rows) — stacked below the divider, never overlapping
@@ -5190,15 +5307,15 @@ const MILESTONE_META = {
         messageKey: "milestoneMessage60",
         emoji: "💎",
         artifactKey: "jour-60",
-        color: "#2DD4BF",
-        gradient: "from-teal-500/40 via-emerald-500/20 to-transparent"
+        color: "#FFB020",
+        gradient: "from-amber-500/40 via-orange-500/20 to-transparent"
     },
     90: {
         titleKey: "milestoneTitle90",
         messageKey: "milestoneMessage90",
         emoji: "🔥",
-        color: "#C084FC",
-        gradient: "from-purple-500/40 via-pink-500/20 to-transparent"
+        color: "#FFD166",
+        gradient: "from-orange-500/40 via-amber-500/20 to-transparent"
     },
     180: {
         titleKey: "milestoneTitle180",
@@ -5212,17 +5329,17 @@ const MILESTONE_META = {
         titleKey: "milestoneTitle365",
         messageKey: "milestoneMessage365",
         emoji: "🏆",
-        color: "#10B981",
-        gradient: "from-emerald-500/40 via-teal-500/20 to-transparent"
+        color: "#FF6B00",
+        gradient: "from-orange-500/40 via-amber-500/20 to-transparent"
     }
 };
 const CONFETTI_COLORS = [
-    "#10B981",
+    "#FF6B00",
     "#F59E0B",
-    "#4ADE80",
-    "#2DD4BF",
+    "#FFC94D",
+    "#FFB020",
     "#FBBF24",
-    "#C084FC",
+    "#FFD166",
     "#FFD700"
 ];
 function generateConfetti(count) {
@@ -5704,7 +5821,7 @@ function MilestoneCelebration() {
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$wallet$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Wallet$3e$__["Wallet"], {
                                                     size: 18,
-                                                    className: "text-[#4ADE80]"
+                                                    className: "text-[#FFC94D]"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/zerobet/components/MilestoneCelebration.tsx",
                                                     lineNumber: 411,
@@ -5787,7 +5904,7 @@ function MilestoneCelebration() {
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trending$2d$up$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__TrendingUp$3e$__["TrendingUp"], {
                                             size: 16,
-                                            className: "text-[#4ADE80] flex-shrink-0"
+                                            className: "text-[#FFC94D] flex-shrink-0"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/components/MilestoneCelebration.tsx",
                                             lineNumber: 437,
@@ -5826,7 +5943,7 @@ function MilestoneCelebration() {
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                             onClick: handleShareCard,
                                             "aria-label": t("milestoneCardBtn"),
-                                            className: "w-12 shrink-0 glass-card-strong rounded-2xl flex items-center justify-center text-[#2DD4BF] hover:bg-white/10 transition-colors btn-press",
+                                            className: "w-12 shrink-0 glass-card-strong rounded-2xl flex items-center justify-center text-[#FFB020] hover:bg-white/10 transition-colors btn-press",
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ImageIcon$3e$__["ImageIcon"], {
                                                 size: 18
                                             }, void 0, false, {
@@ -6055,7 +6172,7 @@ function RelapseModalContent({ previousStreak, onClose }) {
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "absolute -bottom-12 -left-12 w-40 h-40 rounded-full bg-[#C084FC]/15 blur-3xl pointer-events-none"
+                    className: "absolute -bottom-12 -left-12 w-40 h-40 rounded-full bg-[#FFD166]/15 blur-3xl pointer-events-none"
                 }, void 0, false, {
                     fileName: "[project]/src/components/zerobet/components/RelapseModal.tsx",
                     lineNumber: 107,
@@ -6209,7 +6326,7 @@ function RelapseModalContent({ previousStreak, onClose }) {
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sparkles$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Sparkles$3e$__["Sparkles"], {
                                                     size: 11,
-                                                    className: "text-[#4ADE80]"
+                                                    className: "text-[#FFC94D]"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/zerobet/components/RelapseModal.tsx",
                                                     lineNumber: 173,
@@ -6236,7 +6353,7 @@ function RelapseModalContent({ previousStreak, onClose }) {
                                             onChange: (e)=>setLesson(e.target.value),
                                             placeholder: t("relapseModalLessonPlaceholder"),
                                             rows: 3,
-                                            className: "w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-[#4ADE80]/50 focus:bg-white/8 resize-none custom-scroll",
+                                            className: "w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-[#FFC94D]/50 focus:bg-white/8 resize-none custom-scroll",
                                             maxLength: 500
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/components/RelapseModal.tsx",
@@ -6356,11 +6473,11 @@ function RelapseModalContent({ previousStreak, onClose }) {
                                         scale: 0.98
                                     },
                                     onClick: handleNeedHelp,
-                                    className: "w-full py-3.5 rounded-2xl glass-card text-white font-medium text-sm flex items-center justify-center gap-2 border border-[#2DD4BF]/30",
+                                    className: "w-full py-3.5 rounded-2xl glass-card text-white font-medium text-sm flex items-center justify-center gap-2 border border-[#FFB020]/30",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$life$2d$buoy$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__LifeBuoy$3e$__["LifeBuoy"], {
                                             size: 16,
-                                            className: "text-[#2DD4BF]"
+                                            className: "text-[#FFB020]"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/components/RelapseModal.tsx",
                                             lineNumber: 238,
@@ -6791,12 +6908,12 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 const SEARCH_ARTICLE_CATEGORIES = {
     addiction: {
         label: "Addiction",
-        color: "#C084FC",
+        color: "#FFD166",
         emoji: "🧠"
     },
     techniques: {
         label: "Techniques",
-        color: "#4ADE80",
+        color: "#FFC94D",
         emoji: "💪"
     },
     finance: {
@@ -6811,7 +6928,7 @@ const SEARCH_ARTICLE_CATEGORIES = {
     },
     meditation: {
         label: "Méditation",
-        color: "#2DD4BF",
+        color: "#FFB020",
         emoji: "🧘"
     },
     stories: {
@@ -7053,11 +7170,11 @@ function avatarGradient(name) {
     const hash = name.split("").reduce((a, c)=>a + c.charCodeAt(0), 0);
     const grads = [
         "linear-gradient(135deg, #FF3B30, #F59E0B)",
-        "linear-gradient(135deg, #4ADE80, #2DD4BF)",
-        "linear-gradient(135deg, #C084FC, #FF3B30)",
-        "linear-gradient(135deg, #2DD4BF, #2DD4BF)",
+        "linear-gradient(135deg, #FFC94D, #FFB020)",
+        "linear-gradient(135deg, #FFD166, #FF3B30)",
+        "linear-gradient(135deg, #FFB020, #FFB020)",
         "linear-gradient(135deg, #F59E0B, #FBBF24)",
-        "linear-gradient(135deg, #4ADE80, #FBBF24)"
+        "linear-gradient(135deg, #FFC94D, #FBBF24)"
     ];
     return grads[hash % grads.length];
 }
@@ -7419,7 +7536,7 @@ function SearchModal({ isOpen, onClose }) {
             exit: {
                 opacity: 0
             },
-            className: "fixed inset-0 z-[60] flex items-start justify-center bg-[#070B0E]/80 backdrop-blur-xl",
+            className: "fixed inset-0 z-[60] flex items-start justify-center bg-[#0B0704]/80 backdrop-blur-xl",
             onClick: onClose,
             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
                 initial: {
@@ -7443,7 +7560,7 @@ function SearchModal({ isOpen, onClose }) {
                 className: "glass-card-strong w-full max-w-[430px] min-h-screen flex flex-col",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "px-4 pt-12 pb-3 sticky top-0 z-10 bg-[#070B0E]/60 backdrop-blur-xl border-b border-white/5",
+                        className: "px-4 pt-12 pb-3 sticky top-0 z-10 bg-[#0B0704]/60 backdrop-blur-xl border-b border-white/5",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
                                 onSubmit: handleSubmit,
@@ -7618,7 +7735,7 @@ function SearchModal({ isOpen, onClose }) {
                                     showMentors && results.mentors.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ResultSection, {
                                         title: "Mentors",
                                         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2d$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ShieldCheck$3e$__["ShieldCheck"],
-                                        accent: "#4ADE80",
+                                        accent: "#FFC94D",
                                         count: results.mentors.length,
                                         children: results.mentors.map((m)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(MentorCard, {
                                                 mentor: m,
@@ -7636,7 +7753,7 @@ function SearchModal({ isOpen, onClose }) {
                                     showArticles && results.articles.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ResultSection, {
                                         title: "Articles",
                                         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$book$2d$open$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__BookOpen$3e$__["BookOpen"],
-                                        accent: "#C084FC",
+                                        accent: "#FFD166",
                                         count: results.articles.length,
                                         children: results.articles.map((a)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ArticleCard, {
                                                 article: a,
@@ -8064,7 +8181,7 @@ function MentorCard({ mentor, onClick }) {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$badge$2d$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__BadgeCheck$3e$__["BadgeCheck"], {
                                 size: 12,
-                                className: "text-[#2DD4BF] shrink-0"
+                                className: "text-[#FFB020] shrink-0"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/SearchModal.tsx",
                                 lineNumber: 809,
@@ -8323,7 +8440,7 @@ function TestimonialCard({ testimonial, onClick }) {
                 className: "flex items-center gap-1.5 mb-1",
                 children: [
                     testimonial.isVerified && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                        className: "flex items-center gap-0.5 text-[#2DD4BF] text-[10px] font-bold",
+                        className: "flex items-center gap-0.5 text-[#FFB020] text-[10px] font-bold",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$badge$2d$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__BadgeCheck$3e$__["BadgeCheck"], {
                                 size: 11
@@ -8811,7 +8928,7 @@ const STEPS = [
         titleKey: "tutorialStep4Title",
         descKey: "tutorialStep4Desc",
         emoji: "🤖",
-        accent: "#C084FC"
+        accent: "#FFD166"
     },
     {
         target: "community",
@@ -9471,13 +9588,13 @@ function analyzeJournalEmotions(emotions) {
 const TYPE_STYLE = {
     early: {
         emoji: "🌱",
-        accent: "#4ADE80",
-        gradient: "linear-gradient(135deg, rgba(74,222,128,0.18) 0%, rgba(245, 158, 11,0.12) 100%)"
+        accent: "#FFC94D",
+        gradient: "linear-gradient(135deg, rgba(255,201,77,0.18) 0%, rgba(245, 158, 11,0.12) 100%)"
     },
     repair: {
         emoji: "🧠",
-        accent: "#2DD4BF",
-        gradient: "linear-gradient(135deg, rgba(45, 212, 191,0.18) 0%, rgba(74,222,128,0.12) 100%)"
+        accent: "#FFB020",
+        gradient: "linear-gradient(135deg, rgba(255,176,32,0.18) 0%, rgba(255,201,77,0.12) 100%)"
     },
     control: {
         emoji: "💪",
@@ -9487,17 +9604,17 @@ const TYPE_STYLE = {
     inspiration: {
         emoji: "🌟",
         accent: "#FBBF24",
-        gradient: "linear-gradient(135deg, rgba(251,191,36,0.20) 0%, rgba(192, 132, 252,0.14) 100%)"
+        gradient: "linear-gradient(135deg, rgba(251,191,36,0.20) 0%, rgba(255, 209, 102,0.14) 100%)"
     },
     journal: {
         emoji: "📓",
-        accent: "#C084FC",
-        gradient: "linear-gradient(135deg, rgba(192, 132, 252,0.18) 0%, rgba(45, 212, 191,0.12) 100%)"
+        accent: "#FFD166",
+        gradient: "linear-gradient(135deg, rgba(255, 209, 102,0.18) 0%, rgba(255,176,32,0.12) 100%)"
     },
     panic: {
         emoji: "🛡️",
         accent: "#FF3B30",
-        gradient: "linear-gradient(135deg, rgba(255,59,48,0.18) 0%, rgba(74,222,128,0.12) 100%)"
+        gradient: "linear-gradient(135deg, rgba(255,59,48,0.18) 0%, rgba(255,201,77,0.12) 100%)"
     },
     default: {
         emoji: "💡",
@@ -9865,21 +9982,21 @@ const MOOD_OPTIONS = [
         key: "calm",
         emoji: "😌",
         label: "Calme",
-        color: "#2DD4BF",
+        color: "#FFB020",
         description: "Sérénité, équilibre, paix"
     },
     {
         key: "proud",
         emoji: "🦸",
         label: "Fier",
-        color: "#C084FC",
+        color: "#FFD166",
         description: "Fierté, accomplissement, confiance"
     },
     {
         key: "strong",
         emoji: "💪",
         label: "Fort",
-        color: "#4ADE80",
+        color: "#FFC94D",
         description: "Détermination, volonté, énergie"
     }
 ];
@@ -10003,7 +10120,7 @@ function MoodTracker() {
         className: "glass-card p-4 mb-4 relative overflow-hidden",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "absolute -top-8 -right-8 w-24 h-24 rounded-full bg-[#C084FC]/10 blur-2xl"
+                className: "absolute -top-8 -right-8 w-24 h-24 rounded-full bg-[#FFD166]/10 blur-2xl"
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/components/MoodTracker.tsx",
                 lineNumber: 79,
@@ -10238,7 +10355,7 @@ var _s = __turbopack_context__.k.signature();
             }, {
                 "ChallengeBurst.useMemo[particles]": (_, i)=>({
                         angle: i / 12 * Math.PI * 2,
-                        color: i % 3 === 0 ? "#FBBF24" : i % 3 === 1 ? "#10B981" : "#2DD4BF"
+                        color: i % 3 === 0 ? "#FBBF24" : i % 3 === 1 ? "#FF6B00" : "#FFB020"
                     })
             }["ChallengeBurst.useMemo[particles]"])
     }["ChallengeBurst.useMemo[particles]"], []);
@@ -10289,10 +10406,10 @@ function DailyChallengeCard({ challenge, completedToday, justDone, streak, t, on
             opacity: 1,
             y: 0
         },
-        className: `glass-card card-hover p-4 mb-4 relative overflow-hidden border transition-colors duration-500 ${done ? "border-[#10B981]/40" : "border-[#FBBF24]/20"}`,
+        className: `glass-card card-hover p-4 mb-4 relative overflow-hidden border transition-colors duration-500 ${done ? "border-[#FF6B00]/40" : "border-[#FBBF24]/20"}`,
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: `absolute -top-6 -right-6 w-24 h-24 rounded-full blur-2xl pointer-events-none transition-colors duration-500 ${done ? "bg-[#10B981]/15" : "bg-[#FBBF24]/10"}`
+                className: `absolute -top-6 -right-6 w-24 h-24 rounded-full blur-2xl pointer-events-none transition-colors duration-500 ${done ? "bg-[#FF6B00]/15" : "bg-[#FBBF24]/10"}`
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/components/DailyChallengeCard.tsx",
                 lineNumber: 90,
@@ -10307,7 +10424,7 @@ function DailyChallengeCard({ challenge, completedToday, justDone, streak, t, on
                 className: "relative flex items-start gap-3",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: `w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors duration-500 ${done ? "bg-[#10B981]/20" : "bg-[#FBBF24]/20"}`,
+                        className: `w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors duration-500 ${done ? "bg-[#FF6B00]/20" : "bg-[#FBBF24]/20"}`,
                         children: done ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].span, {
                             initial: {
                                 scale: 0,
@@ -10324,7 +10441,7 @@ function DailyChallengeCard({ challenge, completedToday, justDone, streak, t, on
                             },
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle2$3e$__["CheckCircle2"], {
                                 size: 20,
-                                className: "text-[#10B981]"
+                                className: "text-[#FF6B00]"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/DailyChallengeCard.tsx",
                                 lineNumber: 110,
@@ -10354,7 +10471,7 @@ function DailyChallengeCard({ challenge, completedToday, justDone, streak, t, on
                                 className: "flex items-center gap-2 mb-1 flex-wrap",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: `text-xs font-semibold uppercase tracking-wider ${done ? "text-[#10B981]" : "text-[#FBBF24]"}`,
+                                        className: `text-xs font-semibold uppercase tracking-wider ${done ? "text-[#FF6B00]" : "text-[#FBBF24]"}`,
                                         children: t("dashboardDailyChallenge")
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/components/DailyChallengeCard.tsx",
@@ -10362,7 +10479,7 @@ function DailyChallengeCard({ challenge, completedToday, justDone, streak, t, on
                                         columnNumber: 13
                                     }, this),
                                     !done && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-[#10B981]/15 text-[#10B981] border border-[#10B981]/30",
+                                        className: "text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-[#FF6B00]/15 text-[#FF6B00] border border-[#FF6B00]/30",
                                         children: [
                                             "+",
                                             __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$store$2f$zerobet$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DAILY_CHALLENGE_XP"],
@@ -11459,7 +11576,7 @@ function HeatmapCalendar({ weeks = 26, className, showHeader = true, showLegend 
                                                     background: cls.bg,
                                                     boxShadow: cls.glow === "none" ? undefined : cls.glow
                                                 };
-                                                const baseClass = `rounded-[3px] transition-transform ${isToday ? "ring-2 ring-[#F59E0B] ring-offset-1 ring-offset-[#070B0E] cursor-pointer hover:scale-125 hover:z-10" : cell.future ? "cursor-default" : "hover:scale-125 hover:z-10"}`;
+                                                const baseClass = `rounded-[3px] transition-transform ${isToday ? "ring-2 ring-[#F59E0B] ring-offset-1 ring-offset-[#0B0704] cursor-pointer hover:scale-125 hover:z-10" : cell.future ? "cursor-default" : "hover:scale-125 hover:z-10"}`;
                                                 if (isToday) {
                                                     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                         type: "button",
@@ -11776,10 +11893,10 @@ function HeatmapCalendar({ weeks = 26, className, showHeader = true, showLegend 
                                         className: "glass-depth-1 rounded-xl p-3 flex items-center gap-3",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "w-9 h-9 rounded-lg bg-[#C084FC]/15 flex items-center justify-center flex-shrink-0",
+                                                className: "w-9 h-9 rounded-lg bg-[#FFD166]/15 flex items-center justify-center flex-shrink-0",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$award$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Award$3e$__["Award"], {
                                                     size: 16,
-                                                    className: "text-[#C084FC]"
+                                                    className: "text-[#FFD166]"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/zerobet/components/HeatmapCalendar.tsx",
                                                     lineNumber: 682,
@@ -11842,10 +11959,10 @@ function HeatmapCalendar({ weeks = 26, className, showHeader = true, showLegend 
                                         className: "glass-depth-1 rounded-xl p-3 flex items-center gap-3",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "w-9 h-9 rounded-lg bg-[#4ADE80]/15 flex items-center justify-center flex-shrink-0",
+                                                className: "w-9 h-9 rounded-lg bg-[#FFC94D]/15 flex items-center justify-center flex-shrink-0",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trending$2d$up$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__TrendingUp$3e$__["TrendingUp"], {
                                                     size: 16,
-                                                    className: "text-[#4ADE80]"
+                                                    className: "text-[#FFC94D]"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/zerobet/components/HeatmapCalendar.tsx",
                                                     lineNumber: 699,
@@ -12528,7 +12645,7 @@ function JourneyShareModal({ open, onClose, data }) {
                 onClick: (e)=>e.stopPropagation(),
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "absolute -top-10 -right-10 w-36 h-36 rounded-full bg-[#10B981]/15 blur-3xl pointer-events-none"
+                        className: "absolute -top-10 -right-10 w-36 h-36 rounded-full bg-[#FF6B00]/15 blur-3xl pointer-events-none"
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/components/JourneyShareModal.tsx",
                         lineNumber: 152,
@@ -12597,7 +12714,7 @@ function JourneyShareModal({ open, onClose, data }) {
                                 className: "aspect-[4/5] max-h-[46dvh] flex flex-col items-center justify-center gap-3",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "w-12 h-12 rounded-full border-2 border-[#10B981]/30 border-t-[#10B981] animate-spin"
+                                        className: "w-12 h-12 rounded-full border-2 border-[#FF6B00]/30 border-t-[#FF6B00] animate-spin"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/components/JourneyShareModal.tsx",
                                         lineNumber: 176,
@@ -12729,7 +12846,7 @@ function JourneyShareModal({ open, onClose, data }) {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$download$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Download$3e$__["Download"], {
                                         size: 16,
-                                        className: "text-[#2DD4BF]"
+                                        className: "text-[#FFB020]"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/components/JourneyShareModal.tsx",
                                         lineNumber: 226,
@@ -12822,6 +12939,10 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$rotate$2d$ccw$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__RotateCcw$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/rotate-ccw.js [app-client] (ecmascript) <export default as RotateCcw>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$ellipsis$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MoreHorizontal$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/ellipsis.js [app-client] (ecmascript) <export default as MoreHorizontal>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$share$2d$2$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Share2$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/share-2.js [app-client] (ecmascript) <export default as Share2>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sprout$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Sprout$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/sprout.js [app-client] (ecmascript) <export default as Sprout>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$star$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Star$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/star.js [app-client] (ecmascript) <export default as Star>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2d$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ShieldCheck$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/shield-check.js [app-client] (ecmascript) <export default as ShieldCheck>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$graduation$2d$cap$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__GraduationCap$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/graduation-cap.js [app-client] (ecmascript) <export default as GraduationCap>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$store$2f$zerobet$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/store/zerobet-store.ts [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$AuroraOrb$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/zerobet/components/AuroraOrb.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ZerobetLogo$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/zerobet/components/ZerobetLogo.tsx [app-client] (ecmascript)");
@@ -12882,22 +13003,22 @@ const PLAN_BADGES = {
     free: {
         labelKey: "planFree",
         color: "#9CA3AF",
-        icon: "🌱"
+        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sprout$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Sprout$3e$__["Sprout"]
     },
     premium: {
         labelKey: "planPremium",
-        color: "#10B981",
-        icon: "⭐"
+        color: "#FF6B00",
+        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$star$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Star$3e$__["Star"]
     },
     mentor: {
         labelKey: "planMentor",
-        color: "#4ADE80",
-        icon: "🛡️"
+        color: "#FFC94D",
+        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2d$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ShieldCheck$3e$__["ShieldCheck"]
     },
     psychologist: {
         labelKey: "planPsychologist",
-        color: "#C084FC",
-        icon: "🎓"
+        color: "#FFD166",
+        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$graduation$2d$cap$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__GraduationCap$3e$__["GraduationCap"]
     }
 };
 const INTL_LOCALES = {
@@ -13027,12 +13148,12 @@ function WeekStrip({ streak, checkedToday }) {
                                 strokeLinejoin: "round"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                lineNumber: 141,
+                                lineNumber: 142,
                                 columnNumber: 19
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                            lineNumber: 140,
+                            lineNumber: 141,
                             columnNumber: 17
                         }, this) : state === "missed" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                             width: "10",
@@ -13047,23 +13168,23 @@ function WeekStrip({ streak, checkedToday }) {
                                 strokeLinecap: "round"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                lineNumber: 145,
+                                lineNumber: 146,
                                 columnNumber: 19
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                            lineNumber: 144,
+                            lineNumber: 145,
                             columnNumber: 17
                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                             className: "h-1 w-3 rounded-full bg-current"
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                            lineNumber: 148,
+                            lineNumber: 149,
                             columnNumber: 17
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                        lineNumber: 122,
+                        lineNumber: 123,
                         columnNumber: 13
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -13071,19 +13192,19 @@ function WeekStrip({ streak, checkedToday }) {
                         children: label
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                        lineNumber: 151,
+                        lineNumber: 152,
                         columnNumber: 13
                     }, this)
                 ]
             }, i, true, {
                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                lineNumber: 121,
+                lineNumber: 122,
                 columnNumber: 11
             }, this);
         })
     }, void 0, false, {
         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-        lineNumber: 117,
+        lineNumber: 118,
         columnNumber: 5
     }, this);
 }
@@ -13285,35 +13406,35 @@ function DashboardScreen() {
         {
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$book$2d$open$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__BookOpen$3e$__["BookOpen"],
             labelKey: "qaJournal",
-            color: "#2DD4BF",
+            color: "#FFB020",
             screen: "journal",
             premium: false
         },
         {
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$wallet$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Wallet$3e$__["Wallet"],
             labelKey: "qaSavings",
-            color: "#4ADE80",
+            color: "#FFC94D",
             screen: "finance",
             premium: false
         },
         {
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chart$2d$column$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__BarChart3$3e$__["BarChart3"],
             labelKey: "qaStats",
-            color: "#2DD4BF",
+            color: "#FFB020",
             screen: "stats",
             premium: false
         },
         {
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$wind$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Wind$3e$__["Wind"],
             labelKey: "qaMeditation",
-            color: "#2DD4BF",
+            color: "#FFB020",
             screen: "meditation",
             premium: false
         },
         {
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$bot$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Bot$3e$__["Bot"],
             labelKey: "qaAtlas",
-            color: "#C084FC",
+            color: "#FFD166",
             screen: "atlas",
             premium: false
         },
@@ -13334,7 +13455,7 @@ function DashboardScreen() {
         {
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$message$2d$circle$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MessageCircle$3e$__["MessageCircle"],
             labelKey: "qaChat",
-            color: "#4ADE80",
+            color: "#FFC94D",
             screen: "community-chat",
             premium: false
         },
@@ -13348,14 +13469,14 @@ function DashboardScreen() {
         {
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$book$2d$open$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__BookOpen$3e$__["BookOpen"],
             labelKey: "qaResources",
-            color: "#C084FC",
+            color: "#FFD166",
             screen: "resources",
             premium: false
         },
         {
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$user$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__User$3e$__["User"],
             labelKey: "qaProfile",
-            color: "#C084FC",
+            color: "#FFD166",
             screen: "profile",
             premium: false
         },
@@ -13376,21 +13497,21 @@ function DashboardScreen() {
         {
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$question$2d$mark$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__HelpCircle$3e$__["HelpCircle"],
             labelKey: "qaHelp",
-            color: "#2DD4BF",
+            color: "#FFB020",
             screen: "support",
             premium: false
         },
         {
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$target$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Target$3e$__["Target"],
             labelKey: "qaProgram",
-            color: "#4ADE80",
+            color: "#FFC94D",
             screen: "program",
             premium: false
         },
         {
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__["Users"],
             labelKey: "qaMentor",
-            color: "#4ADE80",
+            color: "#FFC94D",
             screen: "mentorship",
             premium: false
         },
@@ -13404,14 +13525,14 @@ function DashboardScreen() {
         {
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sparkles$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Sparkles$3e$__["Sparkles"],
             labelKey: "qaAffirmations",
-            color: "#C084FC",
+            color: "#FFD166",
             screen: "affirmations",
             premium: false
         },
         {
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$activity$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Activity$3e$__["Activity"],
             labelKey: "qaWithdrawal",
-            color: "#C084FC",
+            color: "#FFD166",
             screen: "withdrawal",
             premium: false
         },
@@ -13444,24 +13565,24 @@ function DashboardScreen() {
                 onDismiss: ()=>setCheckInDismissed(true)
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                lineNumber: 344,
+                lineNumber: 345,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$TutorialTooltips$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TutorialTooltips"], {
                 startWhen: checkInDismissed
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                lineNumber: 347,
+                lineNumber: 348,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$AchievementPopup$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AchievementPopup"], {}, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                lineNumber: 350,
+                lineNumber: 351,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$MilestoneCelebration$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["MilestoneCelebration"], {}, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                lineNumber: 351,
+                lineNumber: 352,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$JourneyShareModal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -13470,7 +13591,7 @@ function DashboardScreen() {
                 data: journeyData
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                lineNumber: 352,
+                lineNumber: 353,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("header", {
@@ -13486,7 +13607,7 @@ function DashboardScreen() {
                                 animated: false
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                lineNumber: 363,
+                                lineNumber: 364,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -13498,13 +13619,13 @@ function DashboardScreen() {
                                         children: "BET"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                        lineNumber: 365,
+                                        lineNumber: 366,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                lineNumber: 364,
+                                lineNumber: 365,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -13512,16 +13633,23 @@ function DashboardScreen() {
                                 style: {
                                     background: planBadge.color
                                 },
-                                children: planBadge.icon
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(planBadge.icon, {
+                                    size: 9,
+                                    strokeWidth: 3
+                                }, void 0, false, {
+                                    fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
+                                    lineNumber: 372,
+                                    columnNumber: 13
+                                }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                lineNumber: 367,
+                                lineNumber: 368,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                        lineNumber: 358,
+                        lineNumber: 359,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -13540,7 +13668,7 @@ function DashboardScreen() {
                                         fill: "#7C2D12"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                        lineNumber: 384,
+                                        lineNumber: 385,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -13551,13 +13679,13 @@ function DashboardScreen() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                        lineNumber: 385,
+                                        lineNumber: 386,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                lineNumber: 377,
+                                lineNumber: 378,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -13573,12 +13701,12 @@ function DashboardScreen() {
                                     className: "text-white/70"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                    lineNumber: 400,
+                                    lineNumber: 401,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                lineNumber: 391,
+                                lineNumber: 392,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -13595,7 +13723,7 @@ function DashboardScreen() {
                                         className: "text-white/70"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                        lineNumber: 411,
+                                        lineNumber: 412,
                                         columnNumber: 13
                                     }, this),
                                     unreadCount > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].span, {
@@ -13611,30 +13739,30 @@ function DashboardScreen() {
                                             children: unreadCount > 9 ? "9+" : unreadCount
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                            lineNumber: 418,
+                                            lineNumber: 419,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                        lineNumber: 413,
+                                        lineNumber: 414,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                lineNumber: 402,
+                                lineNumber: 403,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                        lineNumber: 375,
+                        lineNumber: 376,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                lineNumber: 357,
+                lineNumber: 358,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$PullToRefresh$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["PullToRefresh"], {
@@ -13654,7 +13782,7 @@ function DashboardScreen() {
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                lineNumber: 436,
+                                lineNumber: 437,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -13664,12 +13792,12 @@ function DashboardScreen() {
                                     checkedToday: checkedToday
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                    lineNumber: 446,
+                                    lineNumber: 447,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                lineNumber: 445,
+                                lineNumber: 446,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].button, {
@@ -13700,12 +13828,12 @@ function DashboardScreen() {
                                     size: 172
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                    lineNumber: 462,
+                                    lineNumber: 463,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                lineNumber: 450,
+                                lineNumber: 451,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].p, {
@@ -13724,7 +13852,7 @@ function DashboardScreen() {
                                 children: t("homeSoberSince")
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                lineNumber: 466,
+                                lineNumber: 467,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -13748,12 +13876,12 @@ function DashboardScreen() {
                                             duration: 1200
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                            lineNumber: 483,
+                                            lineNumber: 484,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                        lineNumber: 482,
+                                        lineNumber: 483,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -13761,7 +13889,7 @@ function DashboardScreen() {
                                         children: effectiveStreak > 1 ? t("dashboardDays") : t("dashboardDay")
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                        lineNumber: 485,
+                                        lineNumber: 486,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].span, {
@@ -13778,13 +13906,13 @@ function DashboardScreen() {
                                         ]
                                     }, s, true, {
                                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                        lineNumber: 488,
+                                        lineNumber: 489,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                lineNumber: 476,
+                                lineNumber: 477,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -13799,7 +13927,7 @@ function DashboardScreen() {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                lineNumber: 499,
+                                lineNumber: 500,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -13854,12 +13982,12 @@ function DashboardScreen() {
                                                     strokeWidth: 2.1
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                                    lineNumber: 546,
+                                                    lineNumber: 547,
                                                     columnNumber: 21
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                                lineNumber: 545,
+                                                lineNumber: 546,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -13867,19 +13995,19 @@ function DashboardScreen() {
                                                 children: t(action.labelKey)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                                lineNumber: 548,
+                                                lineNumber: 549,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, action.labelKey, true, {
                                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                        lineNumber: 536,
+                                        lineNumber: 537,
                                         columnNumber: 17
                                     }, this);
                                 })
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                lineNumber: 506,
+                                lineNumber: 507,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -13910,7 +14038,7 @@ function DashboardScreen() {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                                        lineNumber: 565,
+                                                        lineNumber: 566,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -13918,13 +14046,13 @@ function DashboardScreen() {
                                                         children: t("homeRewire")
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                                        lineNumber: 568,
+                                                        lineNumber: 569,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                                lineNumber: 564,
+                                                lineNumber: 565,
                                                 columnNumber: 15
                                             }, this),
                                             soberOnLabel && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -13934,13 +14062,13 @@ function DashboardScreen() {
                                                 })
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                                lineNumber: 573,
+                                                lineNumber: 574,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                        lineNumber: 563,
+                                        lineNumber: 564,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -13960,24 +14088,24 @@ function DashboardScreen() {
                                             }
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                            lineNumber: 579,
+                                            lineNumber: 580,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                        lineNumber: 578,
+                                        lineNumber: 579,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                lineNumber: 557,
+                                lineNumber: 558,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                        lineNumber: 431,
+                        lineNumber: 432,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -14031,7 +14159,7 @@ function DashboardScreen() {
                                     fill: "white"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                    lineNumber: 620,
+                                    lineNumber: 621,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -14039,18 +14167,18 @@ function DashboardScreen() {
                                     children: t("homePanicCta")
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                    lineNumber: 621,
+                                    lineNumber: 622,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                            lineNumber: 593,
+                            lineNumber: 594,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                        lineNumber: 592,
+                        lineNumber: 593,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -14061,7 +14189,7 @@ function DashboardScreen() {
                                 children: t("homeTodaySection")
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                lineNumber: 629,
+                                lineNumber: 630,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -14083,32 +14211,32 @@ function DashboardScreen() {
                                                 className: "mb-2 flex items-center justify-between",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "flex h-9 w-9 items-center justify-center rounded-xl bg-[#4ADE80]/20",
+                                                        className: "flex h-9 w-9 items-center justify-center rounded-xl bg-[#FFC94D]/20",
                                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$wallet$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Wallet$3e$__["Wallet"], {
                                                             size: 18,
-                                                            className: "text-[#4ADE80]"
+                                                            className: "text-[#FFC94D]"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                                            lineNumber: 643,
+                                                            lineNumber: 644,
                                                             columnNumber: 19
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                                        lineNumber: 642,
+                                                        lineNumber: 643,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trending$2d$up$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__TrendingUp$3e$__["TrendingUp"], {
                                                         size: 14,
-                                                        className: "text-[#4ADE80]"
+                                                        className: "text-[#FFC94D]"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                                        lineNumber: 645,
+                                                        lineNumber: 646,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                                lineNumber: 641,
+                                                lineNumber: 642,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -14116,7 +14244,7 @@ function DashboardScreen() {
                                                 children: t("dashboardSaved")
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                                lineNumber: 647,
+                                                lineNumber: 648,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -14129,18 +14257,18 @@ function DashboardScreen() {
                                                     suffix: currencyInfo.position === "after" ? ` ${currencyInfo.symbol}` : ""
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                                    lineNumber: 649,
+                                                    lineNumber: 650,
                                                     columnNumber: 17
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                                lineNumber: 648,
+                                                lineNumber: 649,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                        lineNumber: 635,
+                                        lineNumber: 636,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].button, {
@@ -14170,12 +14298,12 @@ function DashboardScreen() {
                                                             }
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                                            lineNumber: 670,
+                                                            lineNumber: 671,
                                                             columnNumber: 19
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                                        lineNumber: 666,
+                                                        lineNumber: 667,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$flame$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Flame$3e$__["Flame"], {
@@ -14185,13 +14313,13 @@ function DashboardScreen() {
                                                         }
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                                        lineNumber: 672,
+                                                        lineNumber: 673,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                                lineNumber: 665,
+                                                lineNumber: 666,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -14199,7 +14327,7 @@ function DashboardScreen() {
                                                 children: t("parcoursCurrentRank")
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                                lineNumber: 674,
+                                                lineNumber: 675,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -14207,19 +14335,19 @@ function DashboardScreen() {
                                                 children: t(currentRank.nameKey)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                                lineNumber: 675,
+                                                lineNumber: 676,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                        lineNumber: 659,
+                                        lineNumber: 660,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                lineNumber: 634,
+                                lineNumber: 635,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -14238,7 +14366,7 @@ function DashboardScreen() {
                                         children: '"'
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                        lineNumber: 687,
+                                        lineNumber: 688,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -14249,7 +14377,7 @@ function DashboardScreen() {
                                                 className: "mt-1 flex-shrink-0 text-[#F59E0B]"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                                lineNumber: 689,
+                                                lineNumber: 690,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -14259,7 +14387,7 @@ function DashboardScreen() {
                                                         children: t(quote.textKey)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                                        lineNumber: 691,
+                                                        lineNumber: 692,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -14270,35 +14398,35 @@ function DashboardScreen() {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                                        lineNumber: 692,
+                                                        lineNumber: 693,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                                lineNumber: 690,
+                                                lineNumber: 691,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                        lineNumber: 688,
+                                        lineNumber: 689,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                lineNumber: 682,
+                                lineNumber: 683,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$DailyInsights$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DailyInsights"], {}, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                lineNumber: 698,
+                                lineNumber: 699,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$MoodTracker$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["MoodTracker"], {}, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                lineNumber: 701,
+                                lineNumber: 702,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$DailyChallengeCard$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DailyChallengeCard"], {
@@ -14318,7 +14446,7 @@ function DashboardScreen() {
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                lineNumber: 704,
+                                lineNumber: 705,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -14330,18 +14458,18 @@ function DashboardScreen() {
                                 className: "glass-card card-hover btn-press mb-4 flex w-full items-center gap-3 p-4 text-left",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex h-10 w-10 items-center justify-center rounded-xl bg-[#2DD4BF]/20",
+                                        className: "flex h-10 w-10 items-center justify-center rounded-xl bg-[#FFB020]/20",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$share$2d$2$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Share2$3e$__["Share2"], {
                                             size: 18,
-                                            className: "text-[#2DD4BF]"
+                                            className: "text-[#FFB020]"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                            lineNumber: 735,
+                                            lineNumber: 736,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                        lineNumber: 734,
+                                        lineNumber: 735,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -14352,7 +14480,7 @@ function DashboardScreen() {
                                                 children: t("journeyCardBtn")
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                                lineNumber: 738,
+                                                lineNumber: 739,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -14360,13 +14488,13 @@ function DashboardScreen() {
                                                 children: t("journeyCardTagline")
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                                lineNumber: 739,
+                                                lineNumber: 740,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                        lineNumber: 737,
+                                        lineNumber: 738,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$right$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronRight$3e$__["ChevronRight"], {
@@ -14374,19 +14502,19 @@ function DashboardScreen() {
                                         className: "text-white/30"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                        lineNumber: 741,
+                                        lineNumber: 742,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                lineNumber: 726,
+                                lineNumber: 727,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                        lineNumber: 628,
+                        lineNumber: 629,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -14400,12 +14528,12 @@ function DashboardScreen() {
                                     children: t("dashboardQuickActions")
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                    lineNumber: 748,
+                                    lineNumber: 749,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                lineNumber: 747,
+                                lineNumber: 748,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -14442,15 +14570,15 @@ function DashboardScreen() {
                                                 className: "absolute right-1.5 top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-[#FBBF24]",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$crown$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Crown$3e$__["Crown"], {
                                                     size: 9,
-                                                    className: "text-[#070B0E]"
+                                                    className: "text-[#0B0704]"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                                    lineNumber: 784,
+                                                    lineNumber: 785,
                                                     columnNumber: 23
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                                lineNumber: 783,
+                                                lineNumber: 784,
                                                 columnNumber: 21
                                             }, this),
                                             !isLocked && action.premium && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$crown$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Crown$3e$__["Crown"], {
@@ -14462,7 +14590,7 @@ function DashboardScreen() {
                                                 fill: "rgba(251,191,36,0.3)"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                                lineNumber: 788,
+                                                lineNumber: 789,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -14477,12 +14605,12 @@ function DashboardScreen() {
                                                     }
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                                    lineNumber: 803,
+                                                    lineNumber: 804,
                                                     columnNumber: 21
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                                lineNumber: 797,
+                                                lineNumber: 798,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -14490,25 +14618,25 @@ function DashboardScreen() {
                                                 children: t(action.labelKey)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                                lineNumber: 805,
+                                                lineNumber: 806,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, action.screen, true, {
                                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                        lineNumber: 766,
+                                        lineNumber: 767,
                                         columnNumber: 17
                                     }, this);
                                 })
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                lineNumber: 750,
+                                lineNumber: 751,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                        lineNumber: 746,
+                        lineNumber: 747,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -14522,7 +14650,7 @@ function DashboardScreen() {
                                         children: t("dashboardBadges")
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                        lineNumber: 817,
+                                        lineNumber: 818,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -14535,19 +14663,19 @@ function DashboardScreen() {
                                                 size: 12
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                                lineNumber: 822,
+                                                lineNumber: 823,
                                                 columnNumber: 38
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                        lineNumber: 818,
+                                        lineNumber: 819,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                lineNumber: 816,
+                                lineNumber: 817,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -14572,19 +14700,19 @@ function DashboardScreen() {
                                                     glow: false
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                                    lineNumber: 844,
+                                                    lineNumber: 845,
                                                     columnNumber: 25
                                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$lock$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Lock$3e$__["Lock"], {
                                                     size: 20,
                                                     className: "text-white/30"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                                    lineNumber: 845,
+                                                    lineNumber: 846,
                                                     columnNumber: 25
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                                lineNumber: 834,
+                                                lineNumber: 835,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -14596,25 +14724,25 @@ function DashboardScreen() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                                lineNumber: 847,
+                                                lineNumber: 848,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, rank.key, true, {
                                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                        lineNumber: 829,
+                                        lineNumber: 830,
                                         columnNumber: 17
                                     }, this);
                                 })
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                lineNumber: 825,
+                                lineNumber: 826,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                        lineNumber: 815,
+                        lineNumber: 816,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -14623,12 +14751,12 @@ function DashboardScreen() {
                             weeks: 18
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                            lineNumber: 858,
+                            lineNumber: 859,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                        lineNumber: 857,
+                        lineNumber: 858,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -14637,13 +14765,13 @@ function DashboardScreen() {
                         children: t("dashboardResetStreak")
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                        lineNumber: 862,
+                        lineNumber: 863,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                lineNumber: 427,
+                lineNumber: 428,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$RelapseModal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["RelapseModal"], {
@@ -14652,7 +14780,7 @@ function DashboardScreen() {
                 previousStreak: relapsePrevStreak
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                lineNumber: 871,
+                lineNumber: 872,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AnimatePresence"], {
@@ -14676,12 +14804,12 @@ function DashboardScreen() {
                     }
                 }, void 0, false, {
                     fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                    lineNumber: 880,
+                    lineNumber: 881,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                lineNumber: 878,
+                lineNumber: 879,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$NotificationCenter$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["NotificationCenter"], {
@@ -14689,7 +14817,7 @@ function DashboardScreen() {
                 onClose: ()=>setNotifOpen(false)
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                lineNumber: 903,
+                lineNumber: 904,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$SearchModal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SearchModal"], {
@@ -14697,13 +14825,13 @@ function DashboardScreen() {
                 onClose: ()=>setSearchOpen(false)
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                lineNumber: 909,
+                lineNumber: 910,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-        lineNumber: 342,
+        lineNumber: 343,
         columnNumber: 5
     }, this);
 }
@@ -14761,7 +14889,7 @@ function AdminPanel({ streak, setStreak, plan, setPlan, addictionScore, onClose,
                                     className: "text-[#F59E0B]"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                    lineNumber: 950,
+                                    lineNumber: 951,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -14769,13 +14897,13 @@ function AdminPanel({ streak, setStreak, plan, setPlan, addictionScore, onClose,
                                     children: "Panneau Admin"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                    lineNumber: 951,
+                                    lineNumber: 952,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                            lineNumber: 949,
+                            lineNumber: 950,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -14784,13 +14912,13 @@ function AdminPanel({ streak, setStreak, plan, setPlan, addictionScore, onClose,
                             children: "Fermer"
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                            lineNumber: 953,
+                            lineNumber: 954,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                    lineNumber: 948,
+                    lineNumber: 949,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -14807,13 +14935,13 @@ function AdminPanel({ streak, setStreak, plan, setPlan, addictionScore, onClose,
                                             children: localStreak
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                            lineNumber: 959,
+                                            lineNumber: 960,
                                             columnNumber: 82
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                    lineNumber: 959,
+                                    lineNumber: 960,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -14827,7 +14955,7 @@ function AdminPanel({ streak, setStreak, plan, setPlan, addictionScore, onClose,
                                     className: "w-full accent-[#FF3B30]"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                    lineNumber: 960,
+                                    lineNumber: 961,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -14852,18 +14980,18 @@ function AdminPanel({ streak, setStreak, plan, setPlan, addictionScore, onClose,
                                             ]
                                         }, d, true, {
                                             fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                            lineNumber: 972,
+                                            lineNumber: 973,
                                             columnNumber: 17
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                    lineNumber: 970,
+                                    lineNumber: 971,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                            lineNumber: 958,
+                            lineNumber: 959,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -14873,7 +15001,7 @@ function AdminPanel({ streak, setStreak, plan, setPlan, addictionScore, onClose,
                                     children: "Plan"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                    lineNumber: 985,
+                                    lineNumber: 986,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -14889,18 +15017,18 @@ function AdminPanel({ streak, setStreak, plan, setPlan, addictionScore, onClose,
                                             children: p
                                         }, p, false, {
                                             fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                            lineNumber: 988,
+                                            lineNumber: 989,
                                             columnNumber: 17
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                    lineNumber: 986,
+                                    lineNumber: 987,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                            lineNumber: 984,
+                            lineNumber: 985,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -14916,18 +15044,18 @@ function AdminPanel({ streak, setStreak, plan, setPlan, addictionScore, onClose,
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                        lineNumber: 1003,
+                                        lineNumber: 1004,
                                         columnNumber: 85
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                lineNumber: 1003,
+                                lineNumber: 1004,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                            lineNumber: 1002,
+                            lineNumber: 1003,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -14939,7 +15067,7 @@ function AdminPanel({ streak, setStreak, plan, setPlan, addictionScore, onClose,
                                     children: "+ Entrée journal"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                    lineNumber: 1008,
+                                    lineNumber: 1009,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -14948,13 +15076,13 @@ function AdminPanel({ streak, setStreak, plan, setPlan, addictionScore, onClose,
                                     children: "Simuler jalon"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                                    lineNumber: 1014,
+                                    lineNumber: 1015,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                            lineNumber: 1007,
+                            lineNumber: 1008,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -14968,24 +15096,24 @@ function AdminPanel({ streak, setStreak, plan, setPlan, addictionScore, onClose,
                             children: "Réinitialiser toutes les données"
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                            lineNumber: 1022,
+                            lineNumber: 1023,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-                    lineNumber: 956,
+                    lineNumber: 957,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-            lineNumber: 940,
+            lineNumber: 941,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/zerobet/screens/DashboardScreen.tsx",
-        lineNumber: 933,
+        lineNumber: 934,
         columnNumber: 5
     }, this);
 }

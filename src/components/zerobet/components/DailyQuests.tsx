@@ -50,8 +50,8 @@ const QUESTS: QuestMeta[] = [
     descKey: "dailyQuestsJournalDesc",
     reward: QUEST_REWARDS.journal,
     icon: BookOpen,
-    color: "#2DD4BF",
-    bg: "rgba(45, 212, 191,0.15)",
+    color: "#FFB020",
+    bg: "rgba(255,176,32,0.15)",
   },
   {
     id: "meditation",
@@ -59,8 +59,8 @@ const QUESTS: QuestMeta[] = [
     descKey: "dailyQuestsMeditationDesc",
     reward: QUEST_REWARDS.meditation,
     icon: Wind,
-    color: "#4ADE80",
-    bg: "rgba(74,222,128,0.15)",
+    color: "#FFC94D",
+    bg: "rgba(255,201,77,0.15)",
   },
   {
     id: "streak",
@@ -77,8 +77,8 @@ const QUESTS: QuestMeta[] = [
     descKey: "dailyQuestsArticleDesc",
     reward: QUEST_REWARDS.article,
     icon: BookText,
-    color: "#C084FC",
-    bg: "rgba(192, 132, 252,0.15)",
+    color: "#FFD166",
+    bg: "rgba(255, 209, 102,0.15)",
   },
 ];
 
@@ -181,7 +181,7 @@ export function DailyQuests({ compact = false, showHeader = true }: DailyQuestsP
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.05 }}
               className={`glass-card p-3.5 relative overflow-hidden transition-all duration-300 ${
-                isDone ? "border border-[#4ADE80]/40" : ""
+                isDone ? "border border-[#FFC94D]/40" : ""
               }`}
             >
               {/* Decorative glow when done */}
@@ -192,7 +192,7 @@ export function DailyQuests({ compact = false, showHeader = true }: DailyQuestsP
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     className="absolute -top-8 -right-8 w-32 h-32 rounded-full blur-3xl"
-                    style={{ background: "rgba(74,222,128,0.18)" }}
+                    style={{ background: "rgba(255,201,77,0.18)" }}
                   />
                 )}
               </AnimatePresence>
@@ -202,7 +202,7 @@ export function DailyQuests({ compact = false, showHeader = true }: DailyQuestsP
                 <div
                   className="w-11 h-11 rounded-2xl flex items-center justify-center flex-shrink-0"
                   style={{
-                    background: isDone ? "rgba(74,222,128,0.18)" : quest.bg,
+                    background: isDone ? "rgba(255,201,77,0.18)" : quest.bg,
                   }}
                 >
                   <AnimatePresence mode="wait">
@@ -214,7 +214,7 @@ export function DailyQuests({ compact = false, showHeader = true }: DailyQuestsP
                         exit={{ scale: 0 }}
                         transition={{ type: "spring", stiffness: 400, damping: 18 }}
                       >
-                        <Check size={20} className="text-[#4ADE80]" strokeWidth={3} />
+                        <Check size={20} className="text-[#FFC94D]" strokeWidth={3} />
                       </motion.div>
                     ) : (
                       <motion.div
@@ -251,7 +251,7 @@ export function DailyQuests({ compact = false, showHeader = true }: DailyQuestsP
                     <motion.span
                       initial={{ scale: 0.8, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
-                      className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full text-[11px] font-bold text-[#4ADE80] bg-[#4ADE80]/15"
+                      className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full text-[11px] font-bold text-[#FFC94D] bg-[#FFC94D]/15"
                     >
                       <Check size={11} strokeWidth={3} />
                       {t("dailyQuestsClaimed")}

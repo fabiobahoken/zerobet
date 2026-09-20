@@ -39,7 +39,7 @@ const OPERATORS: {
 }[] = [
   { id: "orange", name: "Orange Money", color: "#FF7900", countries: "CI · SN · CM · ML · BF" },
   { id: "mtn", name: "MTN MoMo", color: "#FFCB05", textDark: true, countries: "CI · GH · CM · BJ · UG" },
-  { id: "wave", name: "Wave", color: "#1DC8FF", countries: "SN · CI · ML · BF" },
+  { id: "wave", name: "Wave", color: "#FFC94D", countries: "SN · CI · ML · BF" },
   { id: "moov", name: "Moov Money", color: "#F43F5E", countries: "CI · BJ · TG · GA" },
 ];
 
@@ -316,7 +316,7 @@ export function MobileMoneyModal({
                       placeholder="07 00 00 00 00"
                       maxLength={20}
                       autoFocus
-                      className={`w-full pl-10 pr-4 py-3.5 rounded-xl bg-white/5 text-white text-base tracking-wide placeholder:text-white/20 border outline-none transition-colors focus:border-[#10B981] ${
+                      className={`w-full pl-10 pr-4 py-3.5 rounded-xl bg-white/5 text-white text-base tracking-wide placeholder:text-white/20 border outline-none transition-colors focus:border-[#FF6B00] ${
                         phoneError ? "border-[#FF453A]" : "border-white/10"
                       }`}
                     />
@@ -364,7 +364,7 @@ export function MobileMoneyModal({
                     <div className="h-px bg-white/10 my-1" />
                     <div className="flex justify-between items-baseline">
                       <span className="text-white/60 text-sm">{t("paymentTotal")}</span>
-                      <span className="text-xl font-extrabold text-[#4ADE80] font-[family-name:var(--font-poppins)]">
+                      <span className="text-xl font-extrabold text-[#FFC94D] font-[family-name:var(--font-poppins)]">
                         {totalLabel}
                       </span>
                     </div>
@@ -504,7 +504,7 @@ function StatusLine({
     <div className="flex items-center gap-2.5">
       <div
         className={`w-4 h-4 rounded-full flex-shrink-0 ${
-          done ? "bg-[#4ADE80]" : pending ? "bg-[#FBBF24]/80" : "bg-white/15"
+          done ? "bg-[#FFC94D]" : pending ? "bg-[#FBBF24]/80" : "bg-white/15"
         }`}
       >
         {pending && !idle && (

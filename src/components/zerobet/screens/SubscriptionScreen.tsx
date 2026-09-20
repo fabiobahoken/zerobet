@@ -14,6 +14,7 @@ import {
   Send,
   HeartHandshake,
   X,
+  type LucideIcon,
 } from "lucide-react";
 import { toast } from "sonner";
 import { useStore } from "@/store/zerobet-store";
@@ -57,7 +58,7 @@ const OPERATORS: Record<
 > = {
   orange: { name: "Orange Money", color: "#FF7900" },
   mtn: { name: "MTN MoMo", color: "#FFCB05", textDark: true },
-  wave: { name: "Wave", color: "#1DC8FF" },
+  wave: { name: "Wave", color: "#FFC94D" },
   moov: { name: "Moov Money", color: "#F43F5E" },
   // Zerobet 2.1.0 — real-gateway providers (webhook records)
   cinetpay: { name: "CinetPay", color: "#009E60" },
@@ -66,8 +67,8 @@ const OPERATORS: Record<
 
 const STATUS_STYLE: Record<PaymentStatus, { badgeClass: string; dotClass: string }> = {
   success: {
-    badgeClass: "bg-[#10B981]/15 text-[#34D399] border-[#10B981]/30",
-    dotClass: "bg-[#34D399]",
+    badgeClass: "bg-[#FF6B00]/15 text-[#FFC94D] border-[#FF6B00]/30",
+    dotClass: "bg-[#FFC94D]",
   },
   failed: {
     badgeClass: "bg-[#FF453A]/12 text-[#FF6B61] border-[#FF453A]/25",
@@ -263,7 +264,18 @@ export function SubscriptionScreen() {
               style={{ background: planInfo.gradient }}
               aria-hidden
             >
-              {planInfo.icon}
+              {(() => {
+                const PI = planInfo.icon as unknown as LucideIcon | string;
+                return typeof PI === "string" ? (
+                  PI
+                ) : (
+                  <PI
+                    size={22}
+                    strokeWidth={2.1}
+                    style={{ filter: "drop-shadow(0 0 8px rgba(255,255,255,0.55))" }}
+                  />
+                );
+              })()}
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 flex-wrap">
@@ -271,7 +283,7 @@ export function SubscriptionScreen() {
                   {t(planInfo.labelKey)}
                 </p>
                 {isPaid && (
-                  <span className="px-2 py-0.5 rounded-full bg-[#10B981]/15 border border-[#10B981]/30 text-[#34D399] text-[10px] font-semibold uppercase tracking-wide">
+                  <span className="px-2 py-0.5 rounded-full bg-[#FF6B00]/15 border border-[#FF6B00]/30 text-[#FFC94D] text-[10px] font-semibold uppercase tracking-wide">
                     {t("subscriptionActiveBadge")}
                   </span>
                 )}
@@ -289,7 +301,7 @@ export function SubscriptionScreen() {
           {isPaid && (
             <div className="mt-4 space-y-2 relative">
               <div className="flex items-center gap-2 text-xs text-white/60">
-                <ShieldCheck size={14} className="text-[#34D399] shrink-0" />
+                <ShieldCheck size={14} className="text-[#FFC94D] shrink-0" />
                 <span>
                   {planStartedAt
                     ? t("subscriptionActiveSince", {
@@ -300,7 +312,7 @@ export function SubscriptionScreen() {
               </div>
               {renewalDate && (
                 <div className="flex items-center gap-2 text-xs text-white/60 flex-wrap">
-                  <RefreshCw size={14} className="text-[#2DD4BF] shrink-0" />
+                  <RefreshCw size={14} className="text-[#FFB020] shrink-0" />
                   <span>
                     {t("subscriptionNextRenewal", {
                       date: formatDate(renewalDate.toISOString()),
@@ -308,7 +320,7 @@ export function SubscriptionScreen() {
                   </span>
                   {serverRenewsValid && (
                     <span
-                      className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-[#2DD4BF]/12 border border-[#2DD4BF]/25 text-[#5EEAD4] text-[9px] font-semibold uppercase tracking-wide"
+                      className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-[#FFB020]/12 border border-[#FFB020]/25 text-[#5EEAD4] text-[9px] font-semibold uppercase tracking-wide"
                       title={t("subscriptionServerVerified")}
                     >
                       <ServerCog size={10} aria-hidden />
@@ -344,7 +356,7 @@ export function SubscriptionScreen() {
         <motion.section variants={itemVariants} className="glass-card p-5">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
-              <CreditCard size={16} className="text-[#2DD4BF]" />
+              <CreditCard size={16} className="text-[#FFB020]" />
               <h2 className="text-xs font-bold uppercase tracking-wider text-white/50 font-[family-name:var(--font-poppins)]">
                 {t("subscriptionHistoryTitle")}
               </h2>
@@ -407,7 +419,7 @@ export function SubscriptionScreen() {
                       className="w-10 h-10 rounded-full flex items-center justify-center text-[11px] font-bold shrink-0"
                       style={{
                         background: op?.color ?? "#6B7280",
-                        color: op?.textDark ? "#1F2937" : "#FFFFFF",
+                        color: op?.textDark ? "#2B1A0C" : "#FFFFFF",
                       }}
                       aria-hidden
                     >
@@ -521,8 +533,8 @@ export function SubscriptionScreen() {
           >
             <div className="flex items-start justify-between gap-3 mb-2">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#10B981]/15 flex items-center justify-center shrink-0">
-                  <HeartHandshake size={20} className="text-[#34D399]" aria-hidden />
+                <div className="w-10 h-10 rounded-full bg-[#FF6B00]/15 flex items-center justify-center shrink-0">
+                  <HeartHandshake size={20} className="text-[#FFC94D]" aria-hidden />
                 </div>
                 <h3 className="text-lg font-bold text-white font-[family-name:var(--font-poppins)] leading-tight">
                   {t("subscriptionSurveyTitle")}
@@ -555,7 +567,7 @@ export function SubscriptionScreen() {
                     }}
                     className={`px-3.5 py-2 rounded-full text-xs font-medium border transition-all active:scale-95 focus-ring ${
                       selected
-                        ? "bg-[#10B981]/20 border-[#10B981]/50 text-[#6EE7B7]"
+                        ? "bg-[#FF6B00]/20 border-[#FF6B00]/50 text-[#6EE7B7]"
                         : "bg-white/[0.04] border-white/10 text-white/60 hover:border-white/25 hover:text-white/80"
                     }`}
                   >
@@ -572,7 +584,7 @@ export function SubscriptionScreen() {
               placeholder={t("surveyCommentPlaceholder")}
               rows={2}
               maxLength={200}
-              className="w-full rounded-2xl bg-white/[0.05] border border-white/10 focus:border-[#2DD4BF]/60 px-4 py-3 text-sm text-white placeholder:text-white/30 outline-none transition-colors resize-none focus-ring mb-1"
+              className="w-full rounded-2xl bg-white/[0.05] border border-white/10 focus:border-[#FFB020]/60 px-4 py-3 text-sm text-white placeholder:text-white/30 outline-none transition-colors resize-none focus-ring mb-1"
             />
             <p className="text-right text-[10px] text-white/25 mb-4">
               {surveyComment.length}/200

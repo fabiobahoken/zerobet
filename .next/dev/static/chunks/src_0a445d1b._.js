@@ -52,16 +52,16 @@ const PARCOURS_RANKS = [
         nameKey: "artifact2Name",
         subtitleKey: "artifact2Subtitle",
         requiredDays: 3,
-        color: "#2DD4BF",
-        glow: "rgba(45, 212, 191, 0.6)",
-        gradient: "linear-gradient(135deg, #2DD4BF 0%, #0EA5E9 100%)",
+        color: "#FFB020",
+        glow: "rgba(255,176,32, 0.6)",
+        gradient: "linear-gradient(135deg, #FFB020 0%, #FF9A3D 100%)",
         icon: "jour-3",
         description: "Forgée dans les brumes du réveil, elle protège ton esprit des illusions du jeu et dissipe le brouillard mental du sevrage précoce.",
         artifactType: "Amulette",
         powerName: "Vision Claire",
         powerDescription: "Dissipe le brouillard mental des premiers jours de sevrage et clarifie la pensée.",
-        auraColor: "#2DD4BF",
-        auraGradient: "radial-gradient(circle at center, rgba(45, 212, 191,0.35) 0%, rgba(45, 212, 191,0.10) 40%, transparent 70%)",
+        auraColor: "#FFB020",
+        auraGradient: "radial-gradient(circle at center, rgba(255,176,32,0.35) 0%, rgba(255,176,32,0.10) 40%, transparent 70%)",
         story: "Forgée dans les brumes du réveil, elle protège ton esprit des illusions du jeu.",
         descKey: "artifact2Desc",
         storyKey: "artifact2Story"
@@ -162,16 +162,16 @@ const PARCOURS_RANKS = [
         nameKey: "artifact7Name",
         subtitleKey: "artifact7Subtitle",
         requiredDays: 60,
-        color: "#2DD4BF",
-        glow: "rgba(45, 212, 191, 0.8)",
-        gradient: "linear-gradient(135deg, #2DD4BF 0%, #5AC8FA 100%)",
+        color: "#FFB020",
+        glow: "rgba(255,176,32, 0.8)",
+        gradient: "linear-gradient(135deg, #FFB020 0%, #FFD166 100%)",
         icon: "jour-60",
         description: "Deux mois de pression l'ont cristallisé. Rien ne peut le briser. Ta volonté est devenue un cristal indestructible au cœur de ta poitrine.",
         artifactType: "Cœur Cristal",
         powerName: "Incassable",
         powerDescription: "Rend ta volonté incassable. Aucune tentation ne peut fissurer ta détermination.",
-        auraColor: "#2DD4BF",
-        auraGradient: "radial-gradient(circle at center, rgba(45, 212, 191,0.45) 0%, rgba(90,200,250,0.15) 40%, transparent 70%)",
+        auraColor: "#FFB020",
+        auraGradient: "radial-gradient(circle at center, rgba(255,176,32,0.45) 0%, rgba(90,200,250,0.15) 40%, transparent 70%)",
         story: "Deux mois de pression l'ont cristallisé. Rien ne peut le briser.",
         descKey: "artifact7Desc",
         storyKey: "artifact7Story"
@@ -184,16 +184,16 @@ const PARCOURS_RANKS = [
         nameKey: "artifact8Name",
         subtitleKey: "artifact8Subtitle",
         requiredDays: 90,
-        color: "#4ADE80",
-        glow: "rgba(74, 222, 128, 0.8)",
-        gradient: "linear-gradient(135deg, #4ADE80 0%, #22C55E 100%)",
+        color: "#FFC94D",
+        glow: "rgba(255,201,77, 0.8)",
+        gradient: "linear-gradient(135deg, #FFC94D 0%, #FF8A00 100%)",
         icon: "jour-90",
         description: "Le cap des 90 jours. Ton cerveau est né de nouveau. Tu es devenu quelqu'un d'autre, façonné par trois mois de guérison neuronale.",
         artifactType: "Pierre Précieuse",
         powerName: "Neuroplasticité",
         powerDescription: "Ton cerveau s'est reconfiguré. Tu es renouvelé, littéralement transformé.",
-        auraColor: "#4ADE80",
-        auraGradient: "radial-gradient(circle at center, rgba(74,222,128,0.50) 0%, rgba(34,197,94,0.15) 40%, transparent 70%)",
+        auraColor: "#FFC94D",
+        auraGradient: "radial-gradient(circle at center, rgba(255,201,77,0.50) 0%, rgba(34,197,94,0.15) 40%, transparent 70%)",
         story: "Le cap des 90 jours. Ton cerveau est né de nouveau. Tu es devenu quelqu'un d'autre.",
         descKey: "artifact8Desc",
         storyKey: "artifact8Story"
@@ -206,16 +206,16 @@ const PARCOURS_RANKS = [
         nameKey: "artifact9Name",
         subtitleKey: "artifact9Subtitle",
         requiredDays: 120,
-        color: "#2DD4BF",
-        glow: "rgba(45, 212, 191, 0.8)",
-        gradient: "linear-gradient(135deg, #2DD4BF 0%, #2DD4BF 100%)",
+        color: "#FFB020",
+        glow: "rgba(255,176,32, 0.8)",
+        gradient: "linear-gradient(135deg, #FFB020 0%, #FFB020 100%)",
         icon: "jour-120",
         description: "Quatre mois de méditation ont poli cette pierre. Elle révèle les vérités cachées et te fait voir les déclencheurs avant qu'ils n'apparaissent.",
         artifactType: "Pierre Précieuse",
         powerName: "Vision Profonde",
         powerDescription: "Voit les déclencheurs avant qu'ils n'apparaissent et comprend les motifs profonds de tes envies.",
-        auraColor: "#2DD4BF",
-        auraGradient: "radial-gradient(circle at center, rgba(45, 212, 191,0.50) 0%, rgba(88,86,214,0.15) 40%, transparent 70%)",
+        auraColor: "#FFB020",
+        auraGradient: "radial-gradient(circle at center, rgba(255,176,32,0.50) 0%, rgba(88,86,214,0.15) 40%, transparent 70%)",
         story: "Quatre mois de méditation ont poli cette pierre. Elle révèle les vérités cachées.",
         descKey: "artifact9Desc",
         storyKey: "artifact9Story"
@@ -250,16 +250,16 @@ const PARCOURS_RANKS = [
         nameKey: "artifact11Name",
         subtitleKey: "artifact11Subtitle",
         requiredDays: 270,
-        color: "#C084FC",
-        glow: "rgba(192, 132, 252, 0.9)",
-        gradient: "linear-gradient(135deg, #C084FC 0%, #9B30FF 100%)",
+        color: "#FFD166",
+        glow: "rgba(255, 209, 102, 0.9)",
+        gradient: "linear-gradient(135deg, #FFD166 0%, #9B30FF 100%)",
         icon: "jour-270",
         description: "Neuf mois. Tu danses avec tes envies sans plus jamais trembler. La maîtrise totale de tes impulsions est enfin tienne.",
         artifactType: "Pierre Précieuse",
         powerName: "Contrôle Total",
         powerDescription: "Maîtrise complète des impulsions. Tu danses avec tes envies sans plus jamais trembler.",
-        auraColor: "#C084FC",
-        auraGradient: "radial-gradient(circle at center, rgba(192, 132, 252,0.55) 0%, rgba(155,48,255,0.15) 40%, transparent 70%)",
+        auraColor: "#FFD166",
+        auraGradient: "radial-gradient(circle at center, rgba(255, 209, 102,0.55) 0%, rgba(155,48,255,0.15) 40%, transparent 70%)",
         story: "Neuf mois. Tu danses avec tes envies sans plus jamais trembler.",
         descKey: "artifact11Desc",
         storyKey: "artifact11Story"
@@ -296,14 +296,14 @@ const PARCOURS_RANKS = [
         requiredDays: 730,
         color: "#FFFFFF",
         glow: "rgba(255, 255, 255, 1)",
-        gradient: "linear-gradient(135deg, #FFFFFF 0%, #2DD4BF 50%, #C084FC 100%)",
+        gradient: "linear-gradient(135deg, #FFFFFF 0%, #FFB020 50%, #FFD166 100%)",
         icon: "jour-730",
         description: "Deux ans. Tu ne te rétablis plus. Tu ES la lumière qui guide les autres. Au-delà de la guérison, tu deviens le phare des chercheurs à venir.",
         artifactType: "Étoile",
         powerName: "Transcendance",
         powerDescription: "Au-delà de la guérison. Tu deviens le phare qui guide tous les autres chercheurs.",
         auraColor: "#FFFFFF",
-        auraGradient: "radial-gradient(circle at center, rgba(255,255,255,0.55) 0%, rgba(45, 212, 191,0.18) 35%, rgba(192, 132, 252,0.10) 55%, transparent 75%)",
+        auraGradient: "radial-gradient(circle at center, rgba(255,255,255,0.55) 0%, rgba(255,176,32,0.18) 35%, rgba(255, 209, 102,0.10) 55%, transparent 75%)",
         story: "Deux ans. Tu ne te rétablis plus. Tu ES la lumière qui guide les autres.",
         descKey: "artifact13Desc",
         storyKey: "artifact13Story"
@@ -359,21 +359,21 @@ const MOOD_OPTIONS = [
         key: "calm",
         emoji: "😌",
         label: "Calme",
-        color: "#2DD4BF",
+        color: "#FFB020",
         description: "Sérénité, équilibre, paix"
     },
     {
         key: "proud",
         emoji: "🦸",
         label: "Fier",
-        color: "#C084FC",
+        color: "#FFD166",
         description: "Fierté, accomplissement, confiance"
     },
     {
         key: "strong",
         emoji: "💪",
         label: "Fort",
-        color: "#4ADE80",
+        color: "#FFC94D",
         description: "Détermination, volonté, énergie"
     }
 ];
@@ -1343,15 +1343,15 @@ function WeeklyReport({ streakHistory, journalEntries, panicEvents, xpHistory })
             icon: "🌱"
         },
         start: {
-            pill: "bg-[#2DD4BF]/15 text-[#2DD4BF]",
+            pill: "bg-[#FFB020]/15 text-[#FFB020]",
             icon: "🌱"
         },
         great: {
-            pill: "bg-[#4ADE80]/15 text-[#4ADE80]",
+            pill: "bg-[#FFC94D]/15 text-[#FFC94D]",
             icon: "🏆"
         },
         good: {
-            pill: "bg-[#10B981]/15 text-[#10B981]",
+            pill: "bg-[#FF6B00]/15 text-[#FF6B00]",
             icon: "💪"
         },
         tough: {
@@ -1362,13 +1362,13 @@ function WeeklyReport({ streakHistory, journalEntries, panicEvents, xpHistory })
     const metrics = [
         {
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$calendar$2d$days$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CalendarDays$3e$__["CalendarDays"],
-            color: "#10B981",
+            color: "#FF6B00",
             value: `${report.cleanDays}/7`,
             labelKey: "weeklyReportClean"
         },
         {
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$book$2d$open$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__BookOpen$3e$__["BookOpen"],
-            color: "#2DD4BF",
+            color: "#FFB020",
             value: String(report.journalCount),
             labelKey: "weeklyReportJournal"
         },
@@ -1403,7 +1403,7 @@ function WeeklyReport({ streakHistory, journalEntries, panicEvents, xpHistory })
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "absolute -top-16 -right-16 w-48 h-48 rounded-full pointer-events-none",
                 style: {
-                    background: "radial-gradient(circle, rgba(16,185,129,0.16) 0%, transparent 70%)"
+                    background: "radial-gradient(circle, rgba(255,107,0,0.16) 0%, transparent 70%)"
                 }
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/components/WeeklyReport.tsx",
@@ -1421,7 +1421,7 @@ function WeeklyReport({ streakHistory, journalEntries, panicEvents, xpHistory })
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sparkles$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Sparkles$3e$__["Sparkles"], {
                                         size: 14,
-                                        className: "text-[#2DD4BF]"
+                                        className: "text-[#FFB020]"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/components/WeeklyReport.tsx",
                                         lineNumber: 134,
@@ -1585,7 +1585,7 @@ const VARIANT_CONFIG = {
     journal: {
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$book$2d$open$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__BookOpen$3e$__["BookOpen"],
         emoji: "📝",
-        gradient: "linear-gradient(135deg, #10B981 0%, #2DD4BF 100%)",
+        gradient: "linear-gradient(135deg, #FF6B00 0%, #FFB020 100%)",
         glow: "glow-green",
         titleKey: "emptyStateJournalTitle",
         descKey: "emptyStateJournalDesc",
@@ -1603,7 +1603,7 @@ const VARIANT_CONFIG = {
     stats: {
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chart$2d$column$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__BarChart3$3e$__["BarChart3"],
         emoji: "📊",
-        gradient: "linear-gradient(135deg, #10B981 0%, #2DD4BF 100%)",
+        gradient: "linear-gradient(135deg, #FF6B00 0%, #FFB020 100%)",
         glow: "glow-green",
         titleKey: "emptyStateStatsTitle",
         descKey: "emptyStateStatsDesc",
@@ -1612,7 +1612,7 @@ const VARIANT_CONFIG = {
     default: {
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sparkles$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Sparkles$3e$__["Sparkles"],
         emoji: "✨",
-        gradient: "linear-gradient(135deg, #2DD4BF 0%, #10B981 100%)",
+        gradient: "linear-gradient(135deg, #FFB020 0%, #FF6B00 100%)",
         glow: "glow-green",
         titleKey: "emptyStateDefaultTitle",
         descKey: "emptyStateDefaultDesc",
@@ -1998,9 +1998,9 @@ const EMOTION_COLORS = {
     frustrated: "#FF3B30",
     anxious: "#F59E0B",
     tempted: "#FBBF24",
-    calm: "#2DD4BF",
-    proud: "#C084FC",
-    strong: "#4ADE80"
+    calm: "#FFB020",
+    proud: "#FFD166",
+    strong: "#FFC94D"
 };
 const EMOTION_EMOJI = {
     frustrated: "😤",
@@ -2220,7 +2220,7 @@ function SavingsTooltip({ active, payload }) {
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "text-[#4ADE80] font-semibold mt-0.5",
+                className: "text-[#FFC94D] font-semibold mt-0.5",
                 children: [
                     formatFCFA(p.cumul),
                     " FCFA"
@@ -2718,9 +2718,9 @@ function StatsScreen() {
             label: t("financeTotalSaved"),
             value: formatFCFA(totalSaved),
             suffix: "FCFA",
-            gradient: "linear-gradient(135deg, #4ADE80 0%, #2DD4BF 100%)",
-            iconBg: "rgba(74,222,128,0.18)",
-            iconColor: "#4ADE80",
+            gradient: "linear-gradient(135deg, #FFC94D 0%, #FFB020 100%)",
+            iconBg: "rgba(255,201,77,0.18)",
+            iconColor: "#FFC94D",
             glow: "glow-green"
         },
         {
@@ -2728,9 +2728,9 @@ function StatsScreen() {
             label: t("statsJournalEntries"),
             value: journalCount.toString(),
             suffix: journalCount > 1 ? t("statsEntries") : t("statsEntry"),
-            gradient: "linear-gradient(135deg, #2DD4BF 0%, #2DD4BF 100%)",
-            iconBg: "rgba(45, 212, 191,0.18)",
-            iconColor: "#2DD4BF",
+            gradient: "linear-gradient(135deg, #FFB020 0%, #FFB020 100%)",
+            iconBg: "rgba(255,176,32,0.18)",
+            iconColor: "#FFB020",
             glow: "glow-blue"
         },
         {
@@ -2738,9 +2738,9 @@ function StatsScreen() {
             label: t("statsCrisesAvoided"),
             value: panicCount.toString(),
             suffix: panicCount > 1 ? t("statsCrises") : t("statsCrisis"),
-            gradient: "linear-gradient(135deg, #C084FC 0%, #7C3AED 100%)",
-            iconBg: "rgba(192, 132, 252,0.18)",
-            iconColor: "#C084FC",
+            gradient: "linear-gradient(135deg, #FFD166 0%, #D9480F 100%)",
+            iconBg: "rgba(255, 209, 102,0.18)",
+            iconColor: "#FFD166",
             glow: "glow-purple"
         }
     ];
@@ -3008,7 +3008,7 @@ function StatsScreen() {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(SectionTitle, {
                                         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$calendar$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Calendar$3e$__["Calendar"],
-                                        iconColor: "#2DD4BF",
+                                        iconColor: "#FFB020",
                                         title: t("statsMoodTrend"),
                                         right: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             className: "text-[10px] text-white/40",
@@ -3050,7 +3050,7 @@ function StatsScreen() {
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                                                     offset: "0%",
-                                                                    stopColor: "#4ADE80",
+                                                                    stopColor: "#FFC94D",
                                                                     stopOpacity: 0.5
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/zerobet/screens/StatsScreen.tsx",
@@ -3171,7 +3171,7 @@ function StatsScreen() {
                                                                 cy: cy,
                                                                 r: 3,
                                                                 fill: color,
-                                                                stroke: "#070B0E",
+                                                                stroke: "#0B0704",
                                                                 strokeWidth: 1.5
                                                             }, `dot-${payload.date}`, false, {
                                                                 fileName: "[project]/src/components/zerobet/screens/StatsScreen.tsx",
@@ -3182,7 +3182,7 @@ function StatsScreen() {
                                                         activeDot: {
                                                             r: 5,
                                                             fill: "#F59E0B",
-                                                            stroke: "#070B0E",
+                                                            stroke: "#0B0704",
                                                             strokeWidth: 2
                                                         }
                                                     }, void 0, false, {
@@ -3407,7 +3407,7 @@ function StatsScreen() {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(SectionTitle, {
                                         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$clock$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Clock$3e$__["Clock"],
-                                        iconColor: "#2DD4BF",
+                                        iconColor: "#FFB020",
                                         title: t("statsRecentMoods"),
                                         right: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             className: "text-[10px] text-white/40",
@@ -3564,7 +3564,7 @@ function StatsScreen() {
                                             className: "text-[10px] font-bold px-2 py-0.5 rounded-full",
                                             style: {
                                                 background: "linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%)",
-                                                color: "#070B0E",
+                                                color: "#0B0704",
                                                 boxShadow: "0 0 14px rgba(251,191,36,0.65)"
                                             },
                                             children: t("statsPerfect")
@@ -3735,13 +3735,13 @@ function StatsScreen() {
                                 variants: itemVariants,
                                 className: "relative rounded-3xl p-4 overflow-hidden card-hover",
                                 style: {
-                                    background: "linear-gradient(135deg, rgba(192, 132, 252,0.18) 0%, rgba(255,59,130,0.18) 100%)",
-                                    border: "1px solid rgba(192, 132, 252,0.35)",
-                                    boxShadow: "0 0 24px rgba(192, 132, 252,0.2)"
+                                    background: "linear-gradient(135deg, rgba(255, 209, 102,0.18) 0%, rgba(255,59,130,0.18) 100%)",
+                                    border: "1px solid rgba(255, 209, 102,0.35)",
+                                    boxShadow: "0 0 24px rgba(255, 209, 102,0.2)"
                                 },
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "absolute -top-10 -right-10 w-32 h-32 rounded-full bg-[#C084FC]/25 blur-3xl"
+                                        className: "absolute -top-10 -right-10 w-32 h-32 rounded-full bg-[#FFD166]/25 blur-3xl"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/StatsScreen.tsx",
                                         lineNumber: 1215,
@@ -3762,7 +3762,7 @@ function StatsScreen() {
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sparkles$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Sparkles$3e$__["Sparkles"], {
                                                         size: 14,
-                                                        className: "text-[#C084FC]"
+                                                        className: "text-[#FFD166]"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/StatsScreen.tsx",
                                                         lineNumber: 1220,
@@ -4025,7 +4025,7 @@ function StatsScreen() {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(SectionTitle, {
                                         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trending$2d$up$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__TrendingUp$3e$__["TrendingUp"],
-                                        iconColor: "#4ADE80",
+                                        iconColor: "#FFC94D",
                                         title: t("statsCumulativeSavings"),
                                         right: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             className: "text-[10px] text-white/40",
@@ -4105,7 +4105,7 @@ function StatsScreen() {
                                                                 children: [
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                                                         offset: "0%",
-                                                                        stopColor: "#4ADE80",
+                                                                        stopColor: "#FFC94D",
                                                                         stopOpacity: 1
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/components/zerobet/screens/StatsScreen.tsx",
@@ -4114,7 +4114,7 @@ function StatsScreen() {
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                                                         offset: "100%",
-                                                                        stopColor: "#2DD4BF",
+                                                                        stopColor: "#FFB020",
                                                                         stopOpacity: 0.6
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/components/zerobet/screens/StatsScreen.tsx",
@@ -4261,7 +4261,7 @@ function StatsScreen() {
                                                 className: "flex items-center gap-1.5 text-white/50",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "w-2.5 h-2.5 rounded-sm bg-gradient-to-b from-[#4ADE80] to-[#2DD4BF]"
+                                                        className: "w-2.5 h-2.5 rounded-sm bg-gradient-to-b from-[#FFC94D] to-[#FFB020]"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/StatsScreen.tsx",
                                                         lineNumber: 1385,
@@ -4342,7 +4342,7 @@ function StatsScreen() {
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "grid grid-cols-7 gap-1.5",
                                         children: heatmapCells.map((cell, idx)=>{
-                                            const bg = cell.status === "green" ? "linear-gradient(135deg, #4ADE80 0%, #2DD4BF 100%)" : cell.status === "red" ? "linear-gradient(135deg, #FF3B30 0%, #F59E0B 100%)" : cell.status === "future" ? "rgba(255,255,255,0.02)" : "rgba(255,255,255,0.06)";
+                                            const bg = cell.status === "green" ? "linear-gradient(135deg, #FFC94D 0%, #FFB020 100%)" : cell.status === "red" ? "linear-gradient(135deg, #FF3B30 0%, #F59E0B 100%)" : cell.status === "future" ? "rgba(255,255,255,0.02)" : "rgba(255,255,255,0.06)";
                                             const border = cell.isToday ? "2px solid #F59E0B" : "1px solid rgba(255,255,255,0.04)";
                                             return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
                                                 initial: {
@@ -4366,7 +4366,7 @@ function StatsScreen() {
                                                 style: {
                                                     background: bg,
                                                     border,
-                                                    boxShadow: cell.isToday ? "0 0 12px rgba(245, 158, 11,0.5)" : cell.status === "green" ? "0 0 8px rgba(74,222,128,0.25)" : cell.status === "red" ? "0 0 8px rgba(255,59,48,0.3)" : "none"
+                                                    boxShadow: cell.isToday ? "0 0 12px rgba(245, 158, 11,0.5)" : cell.status === "green" ? "0 0 8px rgba(255,201,77,0.25)" : cell.status === "red" ? "0 0 8px rgba(255,59,48,0.3)" : "none"
                                                 },
                                                 title: cell.date.toLocaleDateString("fr-FR", {
                                                     weekday: "long",
@@ -4401,7 +4401,7 @@ function StatsScreen() {
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                         className: "w-2.5 h-2.5 rounded-sm",
                                                         style: {
-                                                            background: "linear-gradient(135deg, #4ADE80, #2DD4BF)"
+                                                            background: "linear-gradient(135deg, #FFC94D, #FFB020)"
                                                         }
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/StatsScreen.tsx",
@@ -4509,7 +4509,7 @@ function StatsScreen() {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(SectionTitle, {
                                         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chart$2d$pie$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__PieChart$3e$__["PieChart"],
-                                        iconColor: "#C084FC",
+                                        iconColor: "#FFD166",
                                         title: t("statsEmotionDistribution"),
                                         right: hasEmotionData ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             className: "text-[10px] text-white/40",
@@ -4824,7 +4824,7 @@ function StatsScreen() {
                                                     },
                                                     className: "h-full rounded-full relative",
                                                     style: {
-                                                        background: "linear-gradient(90deg, #FF3B30 0%, #F59E0B 35%, #FBBF24 70%, #4ADE80 100%)",
+                                                        background: "linear-gradient(90deg, #FF3B30 0%, #F59E0B 35%, #FBBF24 70%, #FFC94D 100%)",
                                                         boxShadow: "0 0 12px rgba(245, 158, 11,0.5)"
                                                     },
                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4909,7 +4909,7 @@ function StatsScreen() {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(SectionTitle, {
                                         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chart$2d$column$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__BarChart3$3e$__["BarChart3"],
-                                        iconColor: "#2DD4BF",
+                                        iconColor: "#FFB020",
                                         title: t("statsWeeklySummary"),
                                         right: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             className: "text-[10px] text-white/40",
@@ -5004,7 +5004,7 @@ function StatsScreen() {
                                                 className: "glass-card-strong p-3 text-center relative overflow-hidden",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "absolute -top-6 -right-6 w-16 h-16 rounded-full bg-[#4ADE80]/15 blur-2xl"
+                                                        className: "absolute -top-6 -right-6 w-16 h-16 rounded-full bg-[#FFC94D]/15 blur-2xl"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/StatsScreen.tsx",
                                                         lineNumber: 1721,
@@ -5014,10 +5014,10 @@ function StatsScreen() {
                                                         className: "relative",
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                className: "w-8 h-8 rounded-lg bg-[#4ADE80]/15 flex items-center justify-center mx-auto mb-1.5",
+                                                                className: "w-8 h-8 rounded-lg bg-[#FFC94D]/15 flex items-center justify-center mx-auto mb-1.5",
                                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$wallet$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Wallet$3e$__["Wallet"], {
                                                                     size: 15,
-                                                                    className: "text-[#4ADE80]"
+                                                                    className: "text-[#FFC94D]"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/zerobet/screens/StatsScreen.tsx",
                                                                     lineNumber: 1724,
@@ -5071,7 +5071,7 @@ function StatsScreen() {
                                                 className: "glass-card-strong p-3 text-center relative overflow-hidden",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "absolute -top-6 -right-6 w-16 h-16 rounded-full bg-[#C084FC]/15 blur-2xl"
+                                                        className: "absolute -top-6 -right-6 w-16 h-16 rounded-full bg-[#FFD166]/15 blur-2xl"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/StatsScreen.tsx",
                                                         lineNumber: 1740,
@@ -5081,10 +5081,10 @@ function StatsScreen() {
                                                         className: "relative",
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                className: "w-8 h-8 rounded-lg bg-[#C084FC]/15 flex items-center justify-center mx-auto mb-1.5",
+                                                                className: "w-8 h-8 rounded-lg bg-[#FFD166]/15 flex items-center justify-center mx-auto mb-1.5",
                                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Shield$3e$__["Shield"], {
                                                                     size: 15,
-                                                                    className: "text-[#C084FC]"
+                                                                    className: "text-[#FFD166]"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/zerobet/screens/StatsScreen.tsx",
                                                                     lineNumber: 1743,
@@ -5142,7 +5142,7 @@ function StatsScreen() {
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle2$3e$__["CheckCircle2"], {
                                                 size: 14,
-                                                className: "text-[#4ADE80] flex-shrink-0"
+                                                className: "text-[#FFC94D] flex-shrink-0"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/StatsScreen.tsx",
                                                 lineNumber: 1760,

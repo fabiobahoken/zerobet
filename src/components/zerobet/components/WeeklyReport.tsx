@@ -77,22 +77,22 @@ export function WeeklyReport({ streakHistory, journalEntries, panicEvents, xpHis
 
   const verdictStyle: Record<Verdict, { pill: string; icon: string }> = {
     empty: { pill: "bg-white/10 text-white/60", icon: "🌱" },
-    start: { pill: "bg-[#2DD4BF]/15 text-[#2DD4BF]", icon: "🌱" },
-    great: { pill: "bg-[#4ADE80]/15 text-[#4ADE80]", icon: "🏆" },
-    good: { pill: "bg-[#10B981]/15 text-[#10B981]", icon: "💪" },
+    start: { pill: "bg-[#FFB020]/15 text-[#FFB020]", icon: "🌱" },
+    great: { pill: "bg-[#FFC94D]/15 text-[#FFC94D]", icon: "🏆" },
+    good: { pill: "bg-[#FF6B00]/15 text-[#FF6B00]", icon: "💪" },
     tough: { pill: "bg-[#FBBF24]/15 text-[#FBBF24]", icon: "🌤️" },
   };
 
   const metrics = [
     {
       icon: CalendarDays,
-      color: "#10B981",
+      color: "#FF6B00",
       value: `${report.cleanDays}/7`,
       labelKey: "weeklyReportClean",
     },
     {
       icon: BookOpen,
-      color: "#2DD4BF",
+      color: "#FFB020",
       value: String(report.journalCount),
       labelKey: "weeklyReportJournal",
     },
@@ -123,7 +123,7 @@ export function WeeklyReport({ streakHistory, journalEntries, panicEvents, xpHis
         className="absolute -top-16 -right-16 w-48 h-48 rounded-full pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, rgba(16,185,129,0.16) 0%, transparent 70%)",
+            "radial-gradient(circle, rgba(255,107,0,0.16) 0%, transparent 70%)",
         }}
       />
 
@@ -131,7 +131,7 @@ export function WeeklyReport({ streakHistory, journalEntries, panicEvents, xpHis
       <div className="flex items-start justify-between gap-3 mb-4">
         <div className="min-w-0">
           <div className="flex items-center gap-2 mb-1">
-            <Sparkles size={14} className="text-[#2DD4BF]" />
+            <Sparkles size={14} className="text-[#FFB020]" />
             <h2 className="text-xs font-bold text-white/80 uppercase tracking-[0.12em]">
               {t("weeklyReportTitle")}
             </h2>

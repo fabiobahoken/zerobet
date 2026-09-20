@@ -11,7 +11,7 @@ import { haptics } from "@/lib/haptics";
 import { useT } from "@/lib/i18n/useT";
 import { ArtifactIcon } from "@/components/zerobet/components/ArtifactIcon";
 
-const CONFETTI_COLORS = ["#FF3B30", "#F59E0B", "#4ADE80", "#2DD4BF", "#FBBF24", "#C084FC", "#FFD700"];
+const CONFETTI_COLORS = ["#FF6B00", "#FF8A00", "#F59E0B", "#FFC94D", "#FFB020", "#FBBF24", "#FFD166", "#FFD700"];
 
 function generateConfettiParticles(count: number) {
   return Array.from({ length: count }).map((_, i) => ({
@@ -32,7 +32,7 @@ export function AchievementPopup() {
   const unlockedRanks = useStore((s) => s.unlockedRanks);
   const [newRank, setNewRank] = useState<ParcoursRank | null>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const [confettiParticles] = useState(() => generateConfettiParticles(18));
+  const [confettiParticles] = useState(() => generateConfettiParticles(26));
   const dismissTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   // Use a tick counter incremented only inside setInterval callback
@@ -144,6 +144,15 @@ export function AchievementPopup() {
               {/* Badge with pulsing aura */}
               <div className="flex justify-center mb-6">
                 <div className="relative">
+                  {/* Rotating honor rays (fairy light show) */}
+                  <div
+                    aria-hidden
+                    className="medal-rays"
+                    style={{
+                      inset: "-34px",
+                      ["--medal-glow" as string]: newRank.glow,
+                    } as React.CSSProperties}
+                  />
                   {/* Outer aura pulse rings */}
                   <motion.div
                     initial={{ scale: 0, opacity: 0 }}
@@ -170,14 +179,34 @@ export function AchievementPopup() {
                       damping: 15,
                       delay: 0.2,
                     }}
-                    className="relative w-28 h-28 rounded-full flex items-center justify-center badge-aura"
+                    className="relative w-28 h-28 rounded-full flex items-center justify-center badge-aura overflow-hidden"
                     style={{
                       background: newRank.gradient,
                       "--aura-color": newRank.glow,
                     } as React.CSSProperties}
                   >
                     <ArtifactIcon artifactKey={newRank.key} size={80} glow={true} />
+                    {/* Diagonal shine sweep across the medal */}
+                    <div
+                      aria-hidden
+                      className="medal-shine rounded-full"
+                      style={{ ["--shine-delay" as string]: "0.6s" } as React.CSSProperties}
+                    />
                   </motion.div>
+
+                  {/* Fairy sparkles orbiting the unlocked rank */}
+                  <svg viewBox="0 0 24 24" className="sparkle w-3 h-3" style={{ top: "-14px", left: "-16px", ["--sparkle-color" as string]: "#FFD166" } as React.CSSProperties} aria-hidden>
+                    <path d="M12 1 L14.2 9.8 L23 12 L14.2 14.2 L12 23 L9.8 14.2 L1 12 L9.8 9.8 Z" fill="currentColor" />
+                  </svg>
+                  <svg viewBox="0 0 24 24" className="sparkle w-2.5 h-2.5" style={{ top: "6px", right: "-20px", ["--sparkle-color" as string]: "#FFB020", ["--sparkle-delay" as string]: "0.8s" } as React.CSSProperties} aria-hidden>
+                    <path d="M12 1 L14.2 9.8 L23 12 L14.2 14.2 L12 23 L9.8 14.2 L1 12 L9.8 9.8 Z" fill="currentColor" />
+                  </svg>
+                  <svg viewBox="0 0 24 24" className="sparkle w-2 h-2" style={{ bottom: "-10px", left: "4px", ["--sparkle-color" as string]: "#FFC94D", ["--sparkle-delay" as string]: "1.5s" } as React.CSSProperties} aria-hidden>
+                    <path d="M12 1 L14.2 9.8 L23 12 L14.2 14.2 L12 23 L9.8 14.2 L1 12 L9.8 9.8 Z" fill="currentColor" />
+                  </svg>
+                  <svg viewBox="0 0 24 24" className="sparkle w-2.5 h-2.5" style={{ bottom: "2px", right: "-6px", ["--sparkle-color" as string]: "#FF6B00", ["--sparkle-delay" as string]: "2s" } as React.CSSProperties} aria-hidden>
+                    <path d="M12 1 L14.2 9.8 L23 12 L14.2 14.2 L12 23 L9.8 14.2 L1 12 L9.8 9.8 Z" fill="currentColor" />
+                  </svg>
                 </div>
               </div>
 

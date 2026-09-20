@@ -8,7 +8,7 @@ import { OnboardingProgress } from "@/components/zerobet/components/OnboardingPr
 import { useT } from "@/lib/i18n/useT";
 
 const LEVEL_CONFIG = {
-  faible: { labelKey: "resultsLevelLow", messageKey: "resultsMessageLow", color: "#4ADE80", gradient: "linear-gradient(135deg, #4ADE80 0%, #2DD4BF 100%)", glow: "glow-green" },
+  faible: { labelKey: "resultsLevelLow", messageKey: "resultsMessageLow", color: "#FFC94D", gradient: "linear-gradient(135deg, #FFC94D 0%, #FFB020 100%)", glow: "glow-green" },
   modere: { labelKey: "resultsLevelModerate", messageKey: "resultsMessageModerate", color: "#FBBF24", gradient: "linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%)", glow: "glow-yellow" },
   severe: { labelKey: "resultsLevelSevere", messageKey: "resultsMessageSevere", color: "#F59E0B", gradient: "linear-gradient(135deg, #F59E0B 0%, #FF3B30 100%)", glow: "glow-orange" },
   critique: { labelKey: "resultsLevelCritical", messageKey: "resultsMessageCritical", color: "#FF3B30", gradient: "linear-gradient(135deg, #FF3B30 0%, #8B0000 100%)", glow: "glow-red" },
@@ -160,9 +160,9 @@ export function ResultsScreen() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.9 }}
-        className="glass-card p-5 mb-6 border-l-2 border-[#4ADE80]"
+        className="glass-card p-5 mb-6 border-l-2 border-[#FFC94D]"
       >
-        <p className="text-[#4ADE80] font-semibold text-sm mb-1">
+        <p className="text-[#FFC94D] font-semibold text-sm mb-1">
           ✨ {t("resultsGoodNewsTitle")}
         </p>
         <p className="text-white/80 text-sm">

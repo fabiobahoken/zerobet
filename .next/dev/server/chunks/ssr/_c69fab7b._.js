@@ -50,7 +50,7 @@ function OnboardingProgress({ currentStep }) {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "sticky top-0 z-30 -mx-6 px-6 pt-3 pb-2.5 mb-2 backdrop-blur-xl bg-[#070B0E]/80 border-b border-white/5",
+                className: "sticky top-0 z-30 -mx-6 px-6 pt-3 pb-2.5 mb-2 backdrop-blur-xl bg-[#0B0704]/80 border-b border-white/5",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "flex items-center justify-between gap-3 mb-2",
@@ -390,7 +390,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "0%",
-                                stopColor: "#2DD4BF"
+                                stopColor: "#FFC94D"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/GenderScreen.tsx",
                                 lineNumber: 28,
@@ -398,7 +398,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "100%",
-                                stopColor: "#0A84FF"
+                                stopColor: "#FF6B00"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/GenderScreen.tsx",
                                 lineNumber: 29,
@@ -418,7 +418,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "0%",
-                                stopColor: "#2DD4BF",
+                                stopColor: "#FFB020",
                                 stopOpacity: "0.3"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/GenderScreen.tsx",
@@ -427,7 +427,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "100%",
-                                stopColor: "#2DD4BF",
+                                stopColor: "#FFB020",
                                 stopOpacity: "0"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/GenderScreen.tsx",
@@ -450,7 +450,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet
                             dx: "0",
                             dy: "2",
                             stdDeviation: "3",
-                            floodColor: "#0A84FF",
+                            floodColor: "#FF6B00",
                             floodOpacity: "0.5"
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/GenderScreen.tsx",
@@ -816,7 +816,7 @@ function GenderScreen() {
                         onClick: ()=>handleSelect("male"),
                         "aria-pressed": gender === "male",
                         "aria-label": (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$i18n$2f$dictionary$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["t"])(language, "male"),
-                        className: `relative glass-card p-8 flex flex-col items-center transition-all ${gender === "male" ? "ring-2 ring-[#2DD4BF] glow-blue" : ""}`,
+                        className: `relative glass-card p-8 flex flex-col items-center transition-all ${gender === "male" ? "ring-2 ring-[#FFB020] glow-blue" : ""}`,
                         children: [
                             gender === "male" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
                                 initial: {
@@ -825,7 +825,7 @@ function GenderScreen() {
                                 animate: {
                                     scale: 1
                                 },
-                                className: "absolute top-4 right-4 w-7 h-7 rounded-full bg-[#2DD4BF] flex items-center justify-center",
+                                className: "absolute top-4 right-4 w-7 h-7 rounded-full bg-[#FFB020] flex items-center justify-center",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__["Check"], {
                                     size: 16,
                                     className: "text-white",
@@ -843,7 +843,7 @@ function GenderScreen() {
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "gender-icon-container",
                                 style: {
-                                    ["--icon-color"]: "#2DD4BF"
+                                    ["--icon-color"]: "#FFB020"
                                 },
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(MaleIcon, {
                                     size: 120

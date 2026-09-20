@@ -354,12 +354,12 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 const SEARCH_ARTICLE_CATEGORIES = {
     addiction: {
         label: "Addiction",
-        color: "#C084FC",
+        color: "#FFD166",
         emoji: "🧠"
     },
     techniques: {
         label: "Techniques",
-        color: "#4ADE80",
+        color: "#FFC94D",
         emoji: "💪"
     },
     finance: {
@@ -374,7 +374,7 @@ const SEARCH_ARTICLE_CATEGORIES = {
     },
     meditation: {
         label: "Méditation",
-        color: "#2DD4BF",
+        color: "#FFB020",
         emoji: "🧘"
     },
     stories: {
@@ -1314,7 +1314,7 @@ const W = 1080;
 const H = 1350;
 /** #RRGGBB → rgba(...) with the given alpha. */ function hexToRgba(hex, alpha) {
     const m = /^#?([0-9a-f]{6})$/i.exec(hex.trim());
-    if (!m) return `rgba(16,185,129,${alpha})`;
+    if (!m) return `rgba(255,107,0,${alpha})`;
     const n = parseInt(m[1], 16);
     return `rgba(${n >> 16 & 255}, ${n >> 8 & 255}, ${n & 255}, ${alpha})`;
 }
@@ -1324,13 +1324,13 @@ function drawAurora(ctx) {
             W * 0.2,
             H * 0.18,
             W * 0.55,
-            "rgba(16, 185, 129, 0.28)"
+            "rgba(255,107,0, 0.28)"
         ],
         [
             W * 0.85,
             H * 0.42,
             W * 0.5,
-            "rgba(45, 212, 191, 0.20)"
+            "rgba(255,176,32, 0.20)"
         ],
         [
             W * 0.35,
@@ -1375,7 +1375,7 @@ function generateMilestoneCard(data) {
             const ctx = canvas.getContext("2d");
             if (!ctx) throw new Error("no canvas context");
             // Background
-            ctx.fillStyle = "#070B0E";
+            ctx.fillStyle = "#0B0704";
             ctx.fillRect(0, 0, W, H);
             drawAurora(ctx);
             drawStars(ctx);
@@ -1422,14 +1422,14 @@ function generateMilestoneCard(data) {
             ctx.font = "600 54px 'Poppins', system-ui, sans-serif";
             ctx.fillText(data.daysLabel.toUpperCase(), W / 2, H * 0.555);
             // Savings line
-            ctx.fillStyle = "#4ADE80";
+            ctx.fillStyle = "#FFC94D";
             ctx.font = "700 58px 'Poppins', system-ui, sans-serif";
             ctx.fillText(data.savedLine, W / 2, H * 0.68);
             // Divider
             const divider = ctx.createLinearGradient(W * 0.2, 0, W * 0.8, 0);
-            divider.addColorStop(0, "rgba(16,185,129,0)");
-            divider.addColorStop(0.5, "rgba(16,185,129,0.7)");
-            divider.addColorStop(1, "rgba(16,185,129,0)");
+            divider.addColorStop(0, "rgba(255,107,0,0)");
+            divider.addColorStop(0.5, "rgba(255,107,0,0.7)");
+            divider.addColorStop(1, "rgba(255,107,0,0)");
             ctx.fillStyle = divider;
             ctx.fillRect(W * 0.2, H * 0.75, W * 0.6, 3);
             // Tagline
@@ -1462,13 +1462,13 @@ function generateMilestoneCard(data) {
 /** Zerobet wordmark — shared by both cards. */ function drawWordmark(ctx, y) {
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    ctx.fillStyle = "#2DD4BF";
+    ctx.fillStyle = "#FFB020";
     ctx.font = "800 60px 'Poppins', system-ui, sans-serif";
     ctx.fillText("ZERO", W / 2 - 78, y);
     ctx.fillStyle = "#FBBF24";
     ctx.fillText("BET", W / 2 + 62, y);
     // Emerald dot over the O of ZERO — brand nod
-    ctx.fillStyle = "#10B981";
+    ctx.fillStyle = "#FF6B00";
     ctx.beginPath();
     ctx.arc(W / 2 - 148, y - 42, 12, 0, Math.PI * 2);
     ctx.fill();
@@ -1507,7 +1507,7 @@ function generateJourneyCard(data) {
             const ctx = canvas.getContext("2d");
             if (!ctx) throw new Error("no canvas context");
             // Background
-            ctx.fillStyle = "#070B0E";
+            ctx.fillStyle = "#0B0704";
             ctx.fillRect(0, 0, W, H);
             drawAurora(ctx);
             drawStars(ctx);
@@ -1521,7 +1521,7 @@ function generateJourneyCard(data) {
             ctx.textAlign = "center";
             ctx.textBaseline = "middle";
             // Header label (letterspaced teal)
-            ctx.fillStyle = "#2DD4BF";
+            ctx.fillStyle = "#FFB020";
             ctx.font = "700 38px 'Poppins', system-ui, sans-serif";
             const header = data.headerLabel.toUpperCase();
             // Manual letterspacing: draw char by char
@@ -1564,9 +1564,9 @@ function generateJourneyCard(data) {
             ctx.fillText(data.savedLine, W / 2, H * 0.492);
             // Divider
             const divider = ctx.createLinearGradient(W * 0.2, 0, W * 0.8, 0);
-            divider.addColorStop(0, "rgba(16,185,129,0)");
-            divider.addColorStop(0.5, "rgba(16,185,129,0.7)");
-            divider.addColorStop(1, "rgba(16,185,129,0)");
+            divider.addColorStop(0, "rgba(255,107,0,0)");
+            divider.addColorStop(0.5, "rgba(255,107,0,0.7)");
+            divider.addColorStop(1, "rgba(255,107,0,0)");
             ctx.fillStyle = divider;
             ctx.fillRect(W * 0.2, H * 0.535, W * 0.6, 3);
             // Stat pills (glass rows) — stacked below the divider, never overlapping
@@ -1891,7 +1891,7 @@ function JourneyShareModal({ open, onClose, data }) {
                 onClick: (e)=>e.stopPropagation(),
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "absolute -top-10 -right-10 w-36 h-36 rounded-full bg-[#10B981]/15 blur-3xl pointer-events-none"
+                        className: "absolute -top-10 -right-10 w-36 h-36 rounded-full bg-[#FF6B00]/15 blur-3xl pointer-events-none"
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/components/JourneyShareModal.tsx",
                         lineNumber: 152,
@@ -1960,7 +1960,7 @@ function JourneyShareModal({ open, onClose, data }) {
                                 className: "aspect-[4/5] max-h-[46dvh] flex flex-col items-center justify-center gap-3",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "w-12 h-12 rounded-full border-2 border-[#10B981]/30 border-t-[#10B981] animate-spin"
+                                        className: "w-12 h-12 rounded-full border-2 border-[#FF6B00]/30 border-t-[#FF6B00] animate-spin"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/components/JourneyShareModal.tsx",
                                         lineNumber: 176,
@@ -2092,7 +2092,7 @@ function JourneyShareModal({ open, onClose, data }) {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$download$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Download$3e$__["Download"], {
                                         size: 16,
-                                        className: "text-[#2DD4BF]"
+                                        className: "text-[#FFB020]"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/components/JourneyShareModal.tsx",
                                         lineNumber: 226,
@@ -2193,16 +2193,16 @@ const PARCOURS_RANKS = [
         nameKey: "artifact2Name",
         subtitleKey: "artifact2Subtitle",
         requiredDays: 3,
-        color: "#2DD4BF",
-        glow: "rgba(45, 212, 191, 0.6)",
-        gradient: "linear-gradient(135deg, #2DD4BF 0%, #0EA5E9 100%)",
+        color: "#FFB020",
+        glow: "rgba(255,176,32, 0.6)",
+        gradient: "linear-gradient(135deg, #FFB020 0%, #FF9A3D 100%)",
         icon: "jour-3",
         description: "Forgée dans les brumes du réveil, elle protège ton esprit des illusions du jeu et dissipe le brouillard mental du sevrage précoce.",
         artifactType: "Amulette",
         powerName: "Vision Claire",
         powerDescription: "Dissipe le brouillard mental des premiers jours de sevrage et clarifie la pensée.",
-        auraColor: "#2DD4BF",
-        auraGradient: "radial-gradient(circle at center, rgba(45, 212, 191,0.35) 0%, rgba(45, 212, 191,0.10) 40%, transparent 70%)",
+        auraColor: "#FFB020",
+        auraGradient: "radial-gradient(circle at center, rgba(255,176,32,0.35) 0%, rgba(255,176,32,0.10) 40%, transparent 70%)",
         story: "Forgée dans les brumes du réveil, elle protège ton esprit des illusions du jeu.",
         descKey: "artifact2Desc",
         storyKey: "artifact2Story"
@@ -2303,16 +2303,16 @@ const PARCOURS_RANKS = [
         nameKey: "artifact7Name",
         subtitleKey: "artifact7Subtitle",
         requiredDays: 60,
-        color: "#2DD4BF",
-        glow: "rgba(45, 212, 191, 0.8)",
-        gradient: "linear-gradient(135deg, #2DD4BF 0%, #5AC8FA 100%)",
+        color: "#FFB020",
+        glow: "rgba(255,176,32, 0.8)",
+        gradient: "linear-gradient(135deg, #FFB020 0%, #FFD166 100%)",
         icon: "jour-60",
         description: "Deux mois de pression l'ont cristallisé. Rien ne peut le briser. Ta volonté est devenue un cristal indestructible au cœur de ta poitrine.",
         artifactType: "Cœur Cristal",
         powerName: "Incassable",
         powerDescription: "Rend ta volonté incassable. Aucune tentation ne peut fissurer ta détermination.",
-        auraColor: "#2DD4BF",
-        auraGradient: "radial-gradient(circle at center, rgba(45, 212, 191,0.45) 0%, rgba(90,200,250,0.15) 40%, transparent 70%)",
+        auraColor: "#FFB020",
+        auraGradient: "radial-gradient(circle at center, rgba(255,176,32,0.45) 0%, rgba(90,200,250,0.15) 40%, transparent 70%)",
         story: "Deux mois de pression l'ont cristallisé. Rien ne peut le briser.",
         descKey: "artifact7Desc",
         storyKey: "artifact7Story"
@@ -2325,16 +2325,16 @@ const PARCOURS_RANKS = [
         nameKey: "artifact8Name",
         subtitleKey: "artifact8Subtitle",
         requiredDays: 90,
-        color: "#4ADE80",
-        glow: "rgba(74, 222, 128, 0.8)",
-        gradient: "linear-gradient(135deg, #4ADE80 0%, #22C55E 100%)",
+        color: "#FFC94D",
+        glow: "rgba(255,201,77, 0.8)",
+        gradient: "linear-gradient(135deg, #FFC94D 0%, #FF8A00 100%)",
         icon: "jour-90",
         description: "Le cap des 90 jours. Ton cerveau est né de nouveau. Tu es devenu quelqu'un d'autre, façonné par trois mois de guérison neuronale.",
         artifactType: "Pierre Précieuse",
         powerName: "Neuroplasticité",
         powerDescription: "Ton cerveau s'est reconfiguré. Tu es renouvelé, littéralement transformé.",
-        auraColor: "#4ADE80",
-        auraGradient: "radial-gradient(circle at center, rgba(74,222,128,0.50) 0%, rgba(34,197,94,0.15) 40%, transparent 70%)",
+        auraColor: "#FFC94D",
+        auraGradient: "radial-gradient(circle at center, rgba(255,201,77,0.50) 0%, rgba(34,197,94,0.15) 40%, transparent 70%)",
         story: "Le cap des 90 jours. Ton cerveau est né de nouveau. Tu es devenu quelqu'un d'autre.",
         descKey: "artifact8Desc",
         storyKey: "artifact8Story"
@@ -2347,16 +2347,16 @@ const PARCOURS_RANKS = [
         nameKey: "artifact9Name",
         subtitleKey: "artifact9Subtitle",
         requiredDays: 120,
-        color: "#2DD4BF",
-        glow: "rgba(45, 212, 191, 0.8)",
-        gradient: "linear-gradient(135deg, #2DD4BF 0%, #2DD4BF 100%)",
+        color: "#FFB020",
+        glow: "rgba(255,176,32, 0.8)",
+        gradient: "linear-gradient(135deg, #FFB020 0%, #FFB020 100%)",
         icon: "jour-120",
         description: "Quatre mois de méditation ont poli cette pierre. Elle révèle les vérités cachées et te fait voir les déclencheurs avant qu'ils n'apparaissent.",
         artifactType: "Pierre Précieuse",
         powerName: "Vision Profonde",
         powerDescription: "Voit les déclencheurs avant qu'ils n'apparaissent et comprend les motifs profonds de tes envies.",
-        auraColor: "#2DD4BF",
-        auraGradient: "radial-gradient(circle at center, rgba(45, 212, 191,0.50) 0%, rgba(88,86,214,0.15) 40%, transparent 70%)",
+        auraColor: "#FFB020",
+        auraGradient: "radial-gradient(circle at center, rgba(255,176,32,0.50) 0%, rgba(88,86,214,0.15) 40%, transparent 70%)",
         story: "Quatre mois de méditation ont poli cette pierre. Elle révèle les vérités cachées.",
         descKey: "artifact9Desc",
         storyKey: "artifact9Story"
@@ -2391,16 +2391,16 @@ const PARCOURS_RANKS = [
         nameKey: "artifact11Name",
         subtitleKey: "artifact11Subtitle",
         requiredDays: 270,
-        color: "#C084FC",
-        glow: "rgba(192, 132, 252, 0.9)",
-        gradient: "linear-gradient(135deg, #C084FC 0%, #9B30FF 100%)",
+        color: "#FFD166",
+        glow: "rgba(255, 209, 102, 0.9)",
+        gradient: "linear-gradient(135deg, #FFD166 0%, #9B30FF 100%)",
         icon: "jour-270",
         description: "Neuf mois. Tu danses avec tes envies sans plus jamais trembler. La maîtrise totale de tes impulsions est enfin tienne.",
         artifactType: "Pierre Précieuse",
         powerName: "Contrôle Total",
         powerDescription: "Maîtrise complète des impulsions. Tu danses avec tes envies sans plus jamais trembler.",
-        auraColor: "#C084FC",
-        auraGradient: "radial-gradient(circle at center, rgba(192, 132, 252,0.55) 0%, rgba(155,48,255,0.15) 40%, transparent 70%)",
+        auraColor: "#FFD166",
+        auraGradient: "radial-gradient(circle at center, rgba(255, 209, 102,0.55) 0%, rgba(155,48,255,0.15) 40%, transparent 70%)",
         story: "Neuf mois. Tu danses avec tes envies sans plus jamais trembler.",
         descKey: "artifact11Desc",
         storyKey: "artifact11Story"
@@ -2437,14 +2437,14 @@ const PARCOURS_RANKS = [
         requiredDays: 730,
         color: "#FFFFFF",
         glow: "rgba(255, 255, 255, 1)",
-        gradient: "linear-gradient(135deg, #FFFFFF 0%, #2DD4BF 50%, #C084FC 100%)",
+        gradient: "linear-gradient(135deg, #FFFFFF 0%, #FFB020 50%, #FFD166 100%)",
         icon: "jour-730",
         description: "Deux ans. Tu ne te rétablis plus. Tu ES la lumière qui guide les autres. Au-delà de la guérison, tu deviens le phare des chercheurs à venir.",
         artifactType: "Étoile",
         powerName: "Transcendance",
         powerDescription: "Au-delà de la guérison. Tu deviens le phare qui guide tous les autres chercheurs.",
         auraColor: "#FFFFFF",
-        auraGradient: "radial-gradient(circle at center, rgba(255,255,255,0.55) 0%, rgba(45, 212, 191,0.18) 35%, rgba(192, 132, 252,0.10) 55%, transparent 75%)",
+        auraGradient: "radial-gradient(circle at center, rgba(255,255,255,0.55) 0%, rgba(255,176,32,0.18) 35%, rgba(255, 209, 102,0.10) 55%, transparent 75%)",
         story: "Deux ans. Tu ne te rétablis plus. Tu ES la lumière qui guide les autres.",
         descKey: "artifact13Desc",
         storyKey: "artifact13Story"
@@ -2819,7 +2819,7 @@ const VARIANT_CONFIG = {
     journal: {
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$book$2d$open$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__BookOpen$3e$__["BookOpen"],
         emoji: "📝",
-        gradient: "linear-gradient(135deg, #10B981 0%, #2DD4BF 100%)",
+        gradient: "linear-gradient(135deg, #FF6B00 0%, #FFB020 100%)",
         glow: "glow-green",
         titleKey: "emptyStateJournalTitle",
         descKey: "emptyStateJournalDesc",
@@ -2837,7 +2837,7 @@ const VARIANT_CONFIG = {
     stats: {
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chart$2d$column$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__BarChart3$3e$__["BarChart3"],
         emoji: "📊",
-        gradient: "linear-gradient(135deg, #10B981 0%, #2DD4BF 100%)",
+        gradient: "linear-gradient(135deg, #FF6B00 0%, #FFB020 100%)",
         glow: "glow-green",
         titleKey: "emptyStateStatsTitle",
         descKey: "emptyStateStatsDesc",
@@ -2846,7 +2846,7 @@ const VARIANT_CONFIG = {
     default: {
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sparkles$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Sparkles$3e$__["Sparkles"],
         emoji: "✨",
-        gradient: "linear-gradient(135deg, #2DD4BF 0%, #10B981 100%)",
+        gradient: "linear-gradient(135deg, #FFB020 0%, #FF6B00 100%)",
         glow: "glow-green",
         titleKey: "emptyStateDefaultTitle",
         descKey: "emptyStateDefaultDesc",
@@ -3268,7 +3268,7 @@ const FORUM_CATEGORIES = [
     {
         key: "success",
         labelKey: "communityCategorySuccess",
-        color: "#4ADE80",
+        color: "#FFC94D",
         emoji: "🎉"
     },
     {
@@ -3286,7 +3286,7 @@ const FORUM_CATEGORIES = [
     {
         key: "question",
         labelKey: "communityCategoryQuestion",
-        color: "#2DD4BF",
+        color: "#FFB020",
         emoji: "❓"
     }
 ];
@@ -3442,11 +3442,11 @@ function Avatar({ name, size = 40 }) {
     const hash = name.split("").reduce((a, c)=>a + c.charCodeAt(0), 0);
     const grads = [
         "linear-gradient(135deg, #FF3B30, #F59E0B)",
-        "linear-gradient(135deg, #4ADE80, #2DD4BF)",
-        "linear-gradient(135deg, #C084FC, #FF3B30)",
-        "linear-gradient(135deg, #2DD4BF, #2DD4BF)",
+        "linear-gradient(135deg, #FFC94D, #FFB020)",
+        "linear-gradient(135deg, #FFD166, #FF3B30)",
+        "linear-gradient(135deg, #FFB020, #FFB020)",
         "linear-gradient(135deg, #F59E0B, #FBBF24)",
-        "linear-gradient(135deg, #4ADE80, #FBBF24)"
+        "linear-gradient(135deg, #FFC94D, #FBBF24)"
     ];
     const grad = grads[hash % grads.length];
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3566,7 +3566,7 @@ function CommunityStatsBanner() {
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "absolute -bottom-8 -left-8 w-32 h-32 rounded-full bg-[#4ADE80]/10 blur-3xl"
+                className: "absolute -bottom-8 -left-8 w-32 h-32 rounded-full bg-[#FFC94D]/10 blur-3xl"
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/CommunityScreen.tsx",
                 lineNumber: 320,
@@ -3947,7 +3947,7 @@ function CommunityScreen() {
         className: "min-h-screen pb-6",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "px-5 pt-12 pb-3 sticky top-0 z-20 backdrop-blur-xl bg-[#070B0E]/70",
+                className: "px-5 pt-12 pb-3 sticky top-0 z-20 backdrop-blur-xl bg-[#0B0704]/70",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "flex items-center gap-3 mb-4",
@@ -4136,7 +4136,7 @@ function CommunityScreen() {
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "absolute -bottom-8 -left-8 w-24 h-24 rounded-full bg-[#10B981]/15 blur-2xl pointer-events-none"
+                                                    className: "absolute -bottom-8 -left-8 w-24 h-24 rounded-full bg-[#FF6B00]/15 blur-2xl pointer-events-none"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/zerobet/screens/CommunityScreen.tsx",
                                                     lineNumber: 656,
@@ -4437,7 +4437,7 @@ function CommunityScreen() {
                                 onChange: (e)=>setTTitle(e.target.value),
                                 placeholder: t("communityTestimonialTitlePlaceholder"),
                                 maxLength: 80,
-                                className: "w-full p-3 rounded-2xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#10B981] mb-4"
+                                className: "w-full p-3 rounded-2xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#FF6B00] mb-4"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/CommunityScreen.tsx",
                                 lineNumber: 807,
@@ -4457,7 +4457,7 @@ function CommunityScreen() {
                                 placeholder: t("communityYourStoryPlaceholder"),
                                 rows: 5,
                                 maxLength: 1000,
-                                className: "w-full p-3 rounded-2xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#10B981] resize-none mb-4"
+                                className: "w-full p-3 rounded-2xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#FF6B00] resize-none mb-4"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/CommunityScreen.tsx",
                                 lineNumber: 816,
@@ -4680,7 +4680,7 @@ function CommunityScreen() {
                                 onChange: (e)=>setFTitle(e.target.value),
                                 placeholder: t("communityForumTitlePlaceholder"),
                                 maxLength: 80,
-                                className: "w-full p-3 rounded-2xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#10B981] mb-4"
+                                className: "w-full p-3 rounded-2xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#FF6B00] mb-4"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/CommunityScreen.tsx",
                                 lineNumber: 925,
@@ -4700,7 +4700,7 @@ function CommunityScreen() {
                                 placeholder: t("communityForumMessagePlaceholder"),
                                 rows: 5,
                                 maxLength: 1500,
-                                className: "w-full p-3 rounded-2xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#10B981] resize-none mb-4"
+                                className: "w-full p-3 rounded-2xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#FF6B00] resize-none mb-4"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/CommunityScreen.tsx",
                                 lineNumber: 934,
@@ -4847,7 +4847,7 @@ function CommunityScreen() {
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$badge$2d$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__BadgeCheck$3e$__["BadgeCheck"], {
                                                                 size: 14,
-                                                                className: "text-[#2DD4BF] shrink-0"
+                                                                className: "text-[#FFB020] shrink-0"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/zerobet/screens/CommunityScreen.tsx",
                                                                 lineNumber: 1004,
@@ -5274,7 +5274,7 @@ function TestimonialsTab({ testimonials, isPremium, anonymousMode, onWrite, onLi
                                                             }, this),
                                                             testimonial.isVerified && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$badge$2d$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__BadgeCheck$3e$__["BadgeCheck"], {
                                                                 size: 14,
-                                                                className: "text-[#2DD4BF]"
+                                                                className: "text-[#FFB020]"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/zerobet/screens/CommunityScreen.tsx",
                                                                 lineNumber: 1188,
@@ -5460,7 +5460,7 @@ function TestimonialsTab({ testimonials, isPremium, anonymousMode, onWrite, onLi
                                                                         columnNumber: 29
                                                                     }, this),
                                                                     r.isMentor && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                        className: "px-1.5 py-0.5 rounded-full bg-[#4ADE80]/20 text-[#4ADE80] text-[9px] font-bold",
+                                                                        className: "px-1.5 py-0.5 rounded-full bg-[#FFC94D]/20 text-[#FFC94D] text-[9px] font-bold",
                                                                         children: t("mentorBadge")
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/components/zerobet/screens/CommunityScreen.tsx",
@@ -5468,7 +5468,7 @@ function TestimonialsTab({ testimonials, isPremium, anonymousMode, onWrite, onLi
                                                                         columnNumber: 31
                                                                     }, this),
                                                                     r.isPsychologist && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                        className: "px-1.5 py-0.5 rounded-full bg-[#C084FC]/20 text-[#C084FC] text-[9px] font-bold",
+                                                                        className: "px-1.5 py-0.5 rounded-full bg-[#FFD166]/20 text-[#FFD166] text-[9px] font-bold",
                                                                         children: t("psyBadge")
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/components/zerobet/screens/CommunityScreen.tsx",
@@ -5555,7 +5555,7 @@ function TestimonialsTab({ testimonials, isPremium, anonymousMode, onWrite, onLi
                                                             value: replyText,
                                                             onChange: (e)=>setReplyText(e.target.value),
                                                             placeholder: t("communityReplyPlaceholder"),
-                                                            className: "flex-1 p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#10B981]",
+                                                            className: "flex-1 p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#FF6B00]",
                                                             onKeyDown: (e)=>{
                                                                 if (e.key === "Enter") onSubmitReply(testimonial.id);
                                                             }
@@ -5604,7 +5604,7 @@ function TestimonialsTab({ testimonials, isPremium, anonymousMode, onWrite, onLi
                                 columnNumber: 15
                             }, this),
                             isLocked && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "absolute inset-0 flex flex-col items-center justify-center text-center rounded-3xl bg-[#070B0E]/40",
+                                className: "absolute inset-0 flex flex-col items-center justify-center text-center rounded-3xl bg-[#0B0704]/40",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "w-12 h-12 rounded-full gradient-primary flex items-center justify-center mb-2 glow-green",
@@ -5671,7 +5671,7 @@ function TestimonialsTab({ testimonials, isPremium, anonymousMode, onWrite, onLi
                         scale: 0.97
                     },
                     onClick: ()=>setVisibleCount((c)=>c + PAGE_SIZE),
-                    className: "px-5 py-2.5 rounded-full glass-card text-white/80 hover:text-white text-xs font-semibold inline-flex items-center gap-1.5 border border-white/10 hover:border-[#10B981]/40 transition-colors",
+                    className: "px-5 py-2.5 rounded-full glass-card text-white/80 hover:text-white text-xs font-semibold inline-flex items-center gap-1.5 border border-white/10 hover:border-[#FF6B00]/40 transition-colors",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$down$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronDown$3e$__["ChevronDown"], {
                             size: 14
@@ -6057,7 +6057,7 @@ function ForumTab({ posts, onNew, onLike, forumReplyingTo, setForumReplyingTo, f
                                                                 columnNumber: 27
                                                             }, this),
                                                             r.isMentor && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "px-1.5 py-0.5 rounded-full bg-[#4ADE80]/20 text-[#4ADE80] text-[9px] font-bold",
+                                                                className: "px-1.5 py-0.5 rounded-full bg-[#FFC94D]/20 text-[#FFC94D] text-[9px] font-bold",
                                                                 children: t("mentorBadge")
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/zerobet/screens/CommunityScreen.tsx",
@@ -6065,7 +6065,7 @@ function ForumTab({ posts, onNew, onLike, forumReplyingTo, setForumReplyingTo, f
                                                                 columnNumber: 29
                                                             }, this),
                                                             r.isPsychologist && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "px-1.5 py-0.5 rounded-full bg-[#C084FC]/20 text-[#C084FC] text-[9px] font-bold",
+                                                                className: "px-1.5 py-0.5 rounded-full bg-[#FFD166]/20 text-[#FFD166] text-[9px] font-bold",
                                                                 children: t("psyBadge")
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/zerobet/screens/CommunityScreen.tsx",
@@ -6153,7 +6153,7 @@ function ForumTab({ posts, onNew, onLike, forumReplyingTo, setForumReplyingTo, f
                                                     value: forumReplyText,
                                                     onChange: (e)=>setForumReplyText(e.target.value),
                                                     placeholder: t("communityForumReplyPlaceholder"),
-                                                    className: "flex-1 p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#10B981]",
+                                                    className: "flex-1 p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#FF6B00]",
                                                     onKeyDown: (e)=>{
                                                         if (e.key === "Enter") onSubmitForumReply(post.id);
                                                     }
@@ -6253,7 +6253,7 @@ function MentorsTab({ effectiveStreak, mentorProgress, onContact }) {
                 className: "glass-card-strong p-5 mb-5 relative overflow-hidden",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "absolute -top-10 -right-10 w-32 h-32 rounded-full bg-[#4ADE80]/20 blur-3xl"
+                        className: "absolute -top-10 -right-10 w-32 h-32 rounded-full bg-[#FFC94D]/20 blur-3xl"
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/screens/CommunityScreen.tsx",
                         lineNumber: 1653,
@@ -6401,10 +6401,10 @@ function MentorsTab({ effectiveStreak, mentorProgress, onContact }) {
                                 columnNumber: 11
                             }, this),
                             eligible ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "mt-4 p-3 rounded-2xl bg-[#4ADE80]/10 border border-[#4ADE80]/30",
+                                className: "mt-4 p-3 rounded-2xl bg-[#FFC94D]/10 border border-[#FFC94D]/30",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-[#4ADE80] text-sm font-semibold flex items-center gap-1.5",
+                                        className: "text-[#FFC94D] text-sm font-semibold flex items-center gap-1.5",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sparkles$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Sparkles$3e$__["Sparkles"], {
                                                 size: 14
@@ -6492,7 +6492,7 @@ function MentorsTab({ effectiveStreak, mentorProgress, onContact }) {
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: `absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full border-2 border-[#070B0E] ${online ? "bg-[#4ADE80]" : "bg-white/30"}`,
+                                                className: `absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full border-2 border-[#0B0704] ${online ? "bg-[#FFC94D]" : "bg-white/30"}`,
                                                 "aria-hidden": true
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/CommunityScreen.tsx",
@@ -6521,17 +6521,17 @@ function MentorsTab({ effectiveStreak, mentorProgress, onContact }) {
                                                     }, this),
                                                     m.verified && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$badge$2d$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__BadgeCheck$3e$__["BadgeCheck"], {
                                                         size: 14,
-                                                        className: "text-[#2DD4BF]"
+                                                        className: "text-[#FFB020]"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/CommunityScreen.tsx",
                                                         lineNumber: 1743,
                                                         columnNumber: 34
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: `flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-[9px] font-bold ${online ? "bg-[#4ADE80]/15 text-[#4ADE80]" : "bg-white/5 text-white/40"}`,
+                                                        className: `flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-[9px] font-bold ${online ? "bg-[#FFC94D]/15 text-[#FFC94D]" : "bg-white/5 text-white/40"}`,
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: `w-1.5 h-1.5 rounded-full ${online ? "bg-[#4ADE80]" : "bg-white/40"}`
+                                                                className: `w-1.5 h-1.5 rounded-full ${online ? "bg-[#FFC94D]" : "bg-white/40"}`
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/zerobet/screens/CommunityScreen.tsx",
                                                                 lineNumber: 1751,
@@ -6629,7 +6629,7 @@ function MentorsTab({ effectiveStreak, mentorProgress, onContact }) {
                                 className: "flex items-center gap-2 mb-3 flex-wrap",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "flex items-center gap-1 px-2 py-1 rounded-full bg-[#2DD4BF]/10 text-[#2DD4BF] text-[10px] font-semibold",
+                                        className: "flex items-center gap-1 px-2 py-1 rounded-full bg-[#FFB020]/10 text-[#FFB020] text-[10px] font-semibold",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$zap$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Zap$3e$__["Zap"], {
                                                 size: 10
@@ -6743,10 +6743,10 @@ function PsychologistsTab({ onReserve }) {
                 className: "glass-card p-4 mb-4 flex items-center gap-3",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "w-12 h-12 rounded-2xl bg-[#C084FC]/20 flex items-center justify-center",
+                        className: "w-12 h-12 rounded-2xl bg-[#FFD166]/20 flex items-center justify-center",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$stethoscope$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Stethoscope$3e$__["Stethoscope"], {
                             size: 22,
-                            className: "text-[#C084FC]"
+                            className: "text-[#FFD166]"
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/CommunityScreen.tsx",
                             lineNumber: 1823,
@@ -6815,7 +6815,7 @@ function PsychologistsTab({ onReserve }) {
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: `absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full border-2 border-[#070B0E] ${online ? "bg-[#4ADE80]" : "bg-white/30"}`,
+                                                className: `absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full border-2 border-[#0B0704] ${online ? "bg-[#FFC94D]" : "bg-white/30"}`,
                                                 "aria-hidden": true
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/CommunityScreen.tsx",
@@ -6844,14 +6844,14 @@ function PsychologistsTab({ onReserve }) {
                                                     }, this),
                                                     p.verified && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$badge$2d$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__BadgeCheck$3e$__["BadgeCheck"], {
                                                         size: 14,
-                                                        className: "text-[#2DD4BF]"
+                                                        className: "text-[#FFB020]"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/CommunityScreen.tsx",
                                                         lineNumber: 1863,
                                                         columnNumber: 34
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "px-2 py-0.5 rounded-full bg-[#C084FC]/20 text-[#C084FC] text-[9px] font-bold flex items-center gap-0.5",
+                                                        className: "px-2 py-0.5 rounded-full bg-[#FFD166]/20 text-[#FFD166] text-[9px] font-bold flex items-center gap-0.5",
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$badge$2d$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__BadgeCheck$3e$__["BadgeCheck"], {
                                                                 size: 9
@@ -6868,10 +6868,10 @@ function PsychologistsTab({ onReserve }) {
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: `flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-[9px] font-bold ${online ? "bg-[#4ADE80]/15 text-[#4ADE80]" : "bg-white/5 text-white/40"}`,
+                                                        className: `flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-[9px] font-bold ${online ? "bg-[#FFC94D]/15 text-[#FFC94D]" : "bg-white/5 text-white/40"}`,
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: `w-1.5 h-1.5 rounded-full ${online ? "bg-[#4ADE80]" : "bg-white/40"}`
+                                                                className: `w-1.5 h-1.5 rounded-full ${online ? "bg-[#FFC94D]" : "bg-white/40"}`
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/zerobet/screens/CommunityScreen.tsx",
                                                                 lineNumber: 1875,
@@ -6899,7 +6899,7 @@ function PsychologistsTab({ onReserve }) {
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                className: "text-[#C084FC] text-xs",
+                                                className: "text-[#FFD166] text-xs",
                                                 children: p.specialty
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/CommunityScreen.tsx",

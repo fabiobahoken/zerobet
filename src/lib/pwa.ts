@@ -9,6 +9,10 @@
 export async function registerServiceWorker(): Promise<boolean> {
   if (typeof window === "undefined") return false;
   if (!("serviceWorker" in navigator)) return false;
+  // Never cache in development: the SW's app-shell cache races against
+  // Turbopack HMR chunks and serves stale assets (ChunkLoadError on reload).
+  // Dev benefit is nil, so we register in production builds only.
+  if (process.env.NODE_ENV !== "production") return false;
   try {
     const registration = await navigator.serviceWorker.register("/sw.js", {
       scope: "/",

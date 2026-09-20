@@ -104,10 +104,10 @@ const CHAT_TAB = { labelKey: "communityTabChat", icon: MessageCircle };
 const FORUM_CATEGORIES: {
   key: ForumPost["category"]; labelKey: string; color: string; emoji: string;
 }[] = [
-  { key: "success", labelKey: "communityCategorySuccess", color: "#4ADE80", emoji: "🎉" },
+  { key: "success", labelKey: "communityCategorySuccess", color: "#FFC94D", emoji: "🎉" },
   { key: "struggle", labelKey: "communityCategoryStruggle", color: "#FF3B30", emoji: "💪" },
   { key: "motivation", labelKey: "communityCategoryMotivation", color: "#F59E0B", emoji: "🔥" },
-  { key: "question", labelKey: "communityCategoryQuestion", color: "#2DD4BF", emoji: "❓" },
+  { key: "question", labelKey: "communityCategoryQuestion", color: "#FFB020", emoji: "❓" },
 ];
 
 const CATEGORY_BY_KEY = Object.fromEntries(
@@ -241,11 +241,11 @@ function Avatar({ name, size = 40 }: { name: string; size?: number }) {
   const hash = name.split("").reduce((a, c) => a + c.charCodeAt(0), 0);
   const grads = [
     "linear-gradient(135deg, #FF3B30, #F59E0B)",
-    "linear-gradient(135deg, #4ADE80, #2DD4BF)",
-    "linear-gradient(135deg, #C084FC, #FF3B30)",
-    "linear-gradient(135deg, #2DD4BF, #2DD4BF)",
+    "linear-gradient(135deg, #FFC94D, #FFB020)",
+    "linear-gradient(135deg, #FFD166, #FF3B30)",
+    "linear-gradient(135deg, #FFB020, #FFB020)",
     "linear-gradient(135deg, #F59E0B, #FBBF24)",
-    "linear-gradient(135deg, #4ADE80, #FBBF24)",
+    "linear-gradient(135deg, #FFC94D, #FBBF24)",
   ];
   const grad = grads[hash % grads.length];
   return (
@@ -317,7 +317,7 @@ function CommunityStatsBanner() {
       className="glass-card-strong p-4 mb-4 relative overflow-hidden"
     >
       <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full bg-[#F59E0B]/15 blur-3xl" />
-      <div className="absolute -bottom-8 -left-8 w-32 h-32 rounded-full bg-[#4ADE80]/10 blur-3xl" />
+      <div className="absolute -bottom-8 -left-8 w-32 h-32 rounded-full bg-[#FFC94D]/10 blur-3xl" />
       <div className="relative grid grid-cols-3 gap-2 text-center">
         <StatItem
           value={members.toLocaleString(locale)}
@@ -568,7 +568,7 @@ export function CommunityScreen() {
   return (
     <div className="min-h-screen pb-6">
       {/* Header */}
-      <div className="px-5 pt-12 pb-3 sticky top-0 z-20 backdrop-blur-xl bg-[#070B0E]/70">
+      <div className="px-5 pt-12 pb-3 sticky top-0 z-20 backdrop-blur-xl bg-[#0B0704]/70">
         <div className="flex items-center gap-3 mb-4">
           <button
             onClick={() => navigate("dashboard")}
@@ -653,7 +653,7 @@ export function CommunityScreen() {
               {/* Zerobet 2.0.8 — "Mon parcours" share banner */}
               <div className="relative overflow-hidden rounded-3xl mb-4 p-4 glass-card">
                 <div className="absolute -top-6 -right-6 w-24 h-24 rounded-full bg-[#F59E0B]/15 blur-2xl pointer-events-none" />
-                <div className="absolute -bottom-8 -left-8 w-24 h-24 rounded-full bg-[#10B981]/15 blur-2xl pointer-events-none" />
+                <div className="absolute -bottom-8 -left-8 w-24 h-24 rounded-full bg-[#FF6B00]/15 blur-2xl pointer-events-none" />
                 <div className="relative flex items-center gap-3">
                   <div className="w-11 h-11 rounded-2xl gradient-gold glow-green flex items-center justify-center flex-shrink-0">
                     <Share2 size={20} className="text-white" />
@@ -809,7 +809,7 @@ export function CommunityScreen() {
                 onChange={(e) => setTTitle(e.target.value)}
                 placeholder={t("communityTestimonialTitlePlaceholder")}
                 maxLength={80}
-                className="w-full p-3 rounded-2xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#10B981] mb-4"
+                className="w-full p-3 rounded-2xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#FF6B00] mb-4"
               />
 
               <label className="text-white/60 text-xs mb-2 block">{t("communityYourStory")}</label>
@@ -819,7 +819,7 @@ export function CommunityScreen() {
                 placeholder={t("communityYourStoryPlaceholder")}
                 rows={5}
                 maxLength={1000}
-                className="w-full p-3 rounded-2xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#10B981] resize-none mb-4"
+                className="w-full p-3 rounded-2xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#FF6B00] resize-none mb-4"
               />
               <div className="text-right text-white/30 text-xs mb-4">{tContent.length}/1000</div>
 
@@ -927,7 +927,7 @@ export function CommunityScreen() {
                 onChange={(e) => setFTitle(e.target.value)}
                 placeholder={t("communityForumTitlePlaceholder")}
                 maxLength={80}
-                className="w-full p-3 rounded-2xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#10B981] mb-4"
+                className="w-full p-3 rounded-2xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#FF6B00] mb-4"
               />
 
               <label className="text-white/60 text-xs mb-2 block">{t("communityMessageLabel")}</label>
@@ -937,7 +937,7 @@ export function CommunityScreen() {
                 placeholder={t("communityForumMessagePlaceholder")}
                 rows={5}
                 maxLength={1500}
-                className="w-full p-3 rounded-2xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#10B981] resize-none mb-4"
+                className="w-full p-3 rounded-2xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#FF6B00] resize-none mb-4"
               />
               <div className="text-right text-white/30 text-xs mb-4">{fContent.length}/1500</div>
 
@@ -1001,7 +1001,7 @@ export function CommunityScreen() {
                       <span className="text-white font-semibold text-sm truncate">
                         {reservingPsy.displayName}
                       </span>
-                      <BadgeCheck size={14} className="text-[#2DD4BF] shrink-0" />
+                      <BadgeCheck size={14} className="text-[#FFB020] shrink-0" />
                     </div>
                     <p className="text-white/50 text-xs truncate">{reservingPsy.specialty}</p>
                   </div>
@@ -1185,7 +1185,7 @@ function TestimonialsTab({
                         {testimonial.isAnonymous ? t("communityAnonymous") : testimonial.authorName}
                       </span>
                       {testimonial.isVerified && (
-                        <BadgeCheck size={14} className="text-[#2DD4BF]" />
+                        <BadgeCheck size={14} className="text-[#FFB020]" />
                       )}
                       {testimonial.isMine && (
                         <span className="px-2 py-0.5 rounded-full bg-[#FF3B30]/20 text-[#FF3B30] text-[10px] font-bold">
@@ -1250,12 +1250,12 @@ function TestimonialsTab({
                           <div className="flex items-center gap-1.5">
                             <span className="text-white text-xs font-semibold">{r.authorName}</span>
                             {r.isMentor && (
-                              <span className="px-1.5 py-0.5 rounded-full bg-[#4ADE80]/20 text-[#4ADE80] text-[9px] font-bold">
+                              <span className="px-1.5 py-0.5 rounded-full bg-[#FFC94D]/20 text-[#FFC94D] text-[9px] font-bold">
                                 {t("mentorBadge")}
                               </span>
                             )}
                             {r.isPsychologist && (
-                              <span className="px-1.5 py-0.5 rounded-full bg-[#C084FC]/20 text-[#C084FC] text-[9px] font-bold">
+                              <span className="px-1.5 py-0.5 rounded-full bg-[#FFD166]/20 text-[#FFD166] text-[9px] font-bold">
                                 {t("psyBadge")}
                               </span>
                             )}
@@ -1294,7 +1294,7 @@ function TestimonialsTab({
                           value={replyText}
                           onChange={(e) => setReplyText(e.target.value)}
                           placeholder={t("communityReplyPlaceholder")}
-                          className="flex-1 p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#10B981]"
+                          className="flex-1 p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#FF6B00]"
                           onKeyDown={(e) => {
                             if (e.key === "Enter") onSubmitReply(testimonial.id);
                           }}
@@ -1318,7 +1318,7 @@ function TestimonialsTab({
 
               {/* Premium blur overlay */}
               {isLocked && (
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-center rounded-3xl bg-[#070B0E]/40">
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-center rounded-3xl bg-[#0B0704]/40">
                   <div className="w-12 h-12 rounded-full gradient-primary flex items-center justify-center mb-2 glow-green">
                     <Lock size={20} className="text-white" />
                   </div>
@@ -1349,7 +1349,7 @@ function TestimonialsTab({
           <motion.button
             whileTap={{ scale: 0.97 }}
             onClick={() => setVisibleCount((c) => c + PAGE_SIZE)}
-            className="px-5 py-2.5 rounded-full glass-card text-white/80 hover:text-white text-xs font-semibold inline-flex items-center gap-1.5 border border-white/10 hover:border-[#10B981]/40 transition-colors"
+            className="px-5 py-2.5 rounded-full glass-card text-white/80 hover:text-white text-xs font-semibold inline-flex items-center gap-1.5 border border-white/10 hover:border-[#FF6B00]/40 transition-colors"
           >
             <ChevronDown size={14} />
             {t("communityLoadMore", { n: remaining })}
@@ -1546,12 +1546,12 @@ function ForumTab({
                         <div className="flex items-center gap-1.5">
                           <span className="text-white text-[11px] font-semibold">{r.authorName}</span>
                           {r.isMentor && (
-                            <span className="px-1.5 py-0.5 rounded-full bg-[#4ADE80]/20 text-[#4ADE80] text-[9px] font-bold">
+                            <span className="px-1.5 py-0.5 rounded-full bg-[#FFC94D]/20 text-[#FFC94D] text-[9px] font-bold">
                               {t("mentorBadge")}
                             </span>
                           )}
                           {r.isPsychologist && (
-                            <span className="px-1.5 py-0.5 rounded-full bg-[#C084FC]/20 text-[#C084FC] text-[9px] font-bold">
+                            <span className="px-1.5 py-0.5 rounded-full bg-[#FFD166]/20 text-[#FFD166] text-[9px] font-bold">
                               {t("psyBadge")}
                             </span>
                           )}
@@ -1590,7 +1590,7 @@ function ForumTab({
                         value={forumReplyText}
                         onChange={(e) => setForumReplyText(e.target.value)}
                         placeholder={t("communityForumReplyPlaceholder")}
-                        className="flex-1 p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#10B981]"
+                        className="flex-1 p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#FF6B00]"
                         onKeyDown={(e) => {
                           if (e.key === "Enter") onSubmitForumReply(post.id);
                         }}
@@ -1650,7 +1650,7 @@ function MentorsTab({
         animate={{ opacity: 1, y: 0 }}
         className="glass-card-strong p-5 mb-5 relative overflow-hidden"
       >
-        <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-[#4ADE80]/20 blur-3xl" />
+        <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-[#FFC94D]/20 blur-3xl" />
         <div className="relative">
           <div className="flex items-center gap-2 mb-3">
             <div className="w-10 h-10 rounded-2xl gradient-success flex items-center justify-center">
@@ -1687,8 +1687,8 @@ function MentorsTab({
           </div>
 
           {eligible ? (
-            <div className="mt-4 p-3 rounded-2xl bg-[#4ADE80]/10 border border-[#4ADE80]/30">
-              <p className="text-[#4ADE80] text-sm font-semibold flex items-center gap-1.5">
+            <div className="mt-4 p-3 rounded-2xl bg-[#FFC94D]/10 border border-[#FFC94D]/30">
+              <p className="text-[#FFC94D] text-sm font-semibold flex items-center gap-1.5">
                 <Sparkles size={14} />
                 {t("communityEligibleMentor")}
               </p>
@@ -1731,8 +1731,8 @@ function MentorsTab({
               <div className="relative shrink-0">
                 <Avatar name={m.displayName} size={52} />
                 <span
-                  className={`absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full border-2 border-[#070B0E] ${
-                    online ? "bg-[#4ADE80]" : "bg-white/30"
+                  className={`absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full border-2 border-[#0B0704] ${
+                    online ? "bg-[#FFC94D]" : "bg-white/30"
                   }`}
                   aria-hidden
                 />
@@ -1740,17 +1740,17 @@ function MentorsTab({
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-1.5 flex-wrap">
                   <span className="text-white font-bold text-sm">{m.displayName}</span>
-                  {m.verified && <BadgeCheck size={14} className="text-[#2DD4BF]" />}
+                  {m.verified && <BadgeCheck size={14} className="text-[#FFB020]" />}
                   <span
                     className={`flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-[9px] font-bold ${
                       online
-                        ? "bg-[#4ADE80]/15 text-[#4ADE80]"
+                        ? "bg-[#FFC94D]/15 text-[#FFC94D]"
                         : "bg-white/5 text-white/40"
                     }`}
                   >
                     <span
                       className={`w-1.5 h-1.5 rounded-full ${
-                        online ? "bg-[#4ADE80]" : "bg-white/40"
+                        online ? "bg-[#FFC94D]" : "bg-white/40"
                       }`}
                     />
                     {online ? t("communityOnline") : t("communityOffline")}
@@ -1773,7 +1773,7 @@ function MentorsTab({
             <p className="text-white/70 text-xs leading-relaxed mb-3">{m.bio}</p>
 
             <div className="flex items-center gap-2 mb-3 flex-wrap">
-              <span className="flex items-center gap-1 px-2 py-1 rounded-full bg-[#2DD4BF]/10 text-[#2DD4BF] text-[10px] font-semibold">
+              <span className="flex items-center gap-1 px-2 py-1 rounded-full bg-[#FFB020]/10 text-[#FFB020] text-[10px] font-semibold">
                 <Zap size={10} />
                 {response.label}
               </span>
@@ -1819,8 +1819,8 @@ function PsychologistsTab({
         animate={{ opacity: 1, y: 0 }}
         className="glass-card p-4 mb-4 flex items-center gap-3"
       >
-        <div className="w-12 h-12 rounded-2xl bg-[#C084FC]/20 flex items-center justify-center">
-          <Stethoscope size={22} className="text-[#C084FC]" />
+        <div className="w-12 h-12 rounded-2xl bg-[#FFD166]/20 flex items-center justify-center">
+          <Stethoscope size={22} className="text-[#FFD166]" />
         </div>
         <div className="flex-1">
           <h3 className="text-white font-bold text-sm font-[family-name:var(--font-poppins)]">
@@ -1851,8 +1851,8 @@ function PsychologistsTab({
               <div className="relative shrink-0">
                 <Avatar name={p.displayName} size={52} />
                 <span
-                  className={`absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full border-2 border-[#070B0E] ${
-                    online ? "bg-[#4ADE80]" : "bg-white/30"
+                  className={`absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full border-2 border-[#0B0704] ${
+                    online ? "bg-[#FFC94D]" : "bg-white/30"
                   }`}
                   aria-hidden
                 />
@@ -1860,28 +1860,28 @@ function PsychologistsTab({
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-1.5 flex-wrap">
                   <span className="text-white font-bold text-sm">{p.displayName}</span>
-                  {p.verified && <BadgeCheck size={14} className="text-[#2DD4BF]" />}
-                  <span className="px-2 py-0.5 rounded-full bg-[#C084FC]/20 text-[#C084FC] text-[9px] font-bold flex items-center gap-0.5">
+                  {p.verified && <BadgeCheck size={14} className="text-[#FFB020]" />}
+                  <span className="px-2 py-0.5 rounded-full bg-[#FFD166]/20 text-[#FFD166] text-[9px] font-bold flex items-center gap-0.5">
                     <BadgeCheck size={9} />
                     {t("certifiedBadge")}
                   </span>
                   <span
                     className={`flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-[9px] font-bold ${
                       online
-                        ? "bg-[#4ADE80]/15 text-[#4ADE80]"
+                        ? "bg-[#FFC94D]/15 text-[#FFC94D]"
                         : "bg-white/5 text-white/40"
                     }`}
                   >
                     <span
                       className={`w-1.5 h-1.5 rounded-full ${
-                        online ? "bg-[#4ADE80]" : "bg-white/40"
+                        online ? "bg-[#FFC94D]" : "bg-white/40"
                       }`}
                     />
                     {online ? t("communityOnline") : t("communityOffline")}
                   </span>
                 </div>
                 <p className="text-white text-xs font-medium truncate">{p.fullName}</p>
-                <p className="text-[#C084FC] text-xs">{p.specialty}</p>
+                <p className="text-[#FFD166] text-xs">{p.specialty}</p>
                 <div className="flex items-center gap-2 text-white/40 text-[11px] mt-0.5 flex-wrap">
                   <span className="flex items-center gap-0.5">
                     <Globe size={10} />

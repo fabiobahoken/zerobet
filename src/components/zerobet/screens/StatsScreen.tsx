@@ -78,9 +78,9 @@ const EMOTION_COLORS: Record<Emotion, string> = {
   frustrated: "#FF3B30",
   anxious: "#F59E0B",
   tempted: "#FBBF24",
-  calm: "#2DD4BF",
-  proud: "#C084FC",
-  strong: "#4ADE80",
+  calm: "#FFB020",
+  proud: "#FFD166",
+  strong: "#FFC94D",
 };
 
 const EMOTION_EMOJI: Record<Emotion, string> = {
@@ -235,7 +235,7 @@ function SavingsTooltip({
   return (
     <div className="glass-card-strong px-3 py-2 rounded-xl text-xs">
       <div className="text-white/80 font-medium">{p.date}</div>
-      <div className="text-[#4ADE80] font-semibold mt-0.5">
+      <div className="text-[#FFC94D] font-semibold mt-0.5">
         {formatFCFA(p.cumul)} FCFA
       </div>
       <div className="text-white/40">
@@ -683,9 +683,9 @@ export function StatsScreen() {
       label: t("financeTotalSaved"),
       value: formatFCFA(totalSaved),
       suffix: "FCFA",
-      gradient: "linear-gradient(135deg, #4ADE80 0%, #2DD4BF 100%)",
-      iconBg: "rgba(74,222,128,0.18)",
-      iconColor: "#4ADE80",
+      gradient: "linear-gradient(135deg, #FFC94D 0%, #FFB020 100%)",
+      iconBg: "rgba(255,201,77,0.18)",
+      iconColor: "#FFC94D",
       glow: "glow-green",
     },
     {
@@ -693,9 +693,9 @@ export function StatsScreen() {
       label: t("statsJournalEntries"),
       value: journalCount.toString(),
       suffix: journalCount > 1 ? t("statsEntries") : t("statsEntry"),
-      gradient: "linear-gradient(135deg, #2DD4BF 0%, #2DD4BF 100%)",
-      iconBg: "rgba(45, 212, 191,0.18)",
-      iconColor: "#2DD4BF",
+      gradient: "linear-gradient(135deg, #FFB020 0%, #FFB020 100%)",
+      iconBg: "rgba(255,176,32,0.18)",
+      iconColor: "#FFB020",
       glow: "glow-blue",
     },
     {
@@ -703,9 +703,9 @@ export function StatsScreen() {
       label: t("statsCrisesAvoided"),
       value: panicCount.toString(),
       suffix: panicCount > 1 ? t("statsCrises") : t("statsCrisis"),
-      gradient: "linear-gradient(135deg, #C084FC 0%, #7C3AED 100%)",
-      iconBg: "rgba(192, 132, 252,0.18)",
-      iconColor: "#C084FC",
+      gradient: "linear-gradient(135deg, #FFD166 0%, #D9480F 100%)",
+      iconBg: "rgba(255, 209, 102,0.18)",
+      iconColor: "#FFD166",
       glow: "glow-purple",
     },
   ];
@@ -814,7 +814,7 @@ export function StatsScreen() {
         <motion.div variants={itemVariants} className="glass-card p-4">
           <SectionTitle
             icon={Calendar}
-            iconColor="#2DD4BF"
+            iconColor="#FFB020"
             title={t("statsMoodTrend")}
             right={
               <span className="text-[10px] text-white/40">{t("statsLast14Days")}</span>
@@ -829,7 +829,7 @@ export function StatsScreen() {
                 >
                   <defs>
                     <linearGradient id="moodGradient" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#4ADE80" stopOpacity={0.5} />
+                      <stop offset="0%" stopColor="#FFC94D" stopOpacity={0.5} />
                       <stop offset="50%" stopColor="#FBBF24" stopOpacity={0.35} />
                       <stop offset="100%" stopColor="#FF3B30" stopOpacity={0.05} />
                     </linearGradient>
@@ -885,12 +885,12 @@ export function StatsScreen() {
                           cy={cy}
                           r={3}
                           fill={color}
-                          stroke="#070B0E"
+                          stroke="#0B0704"
                           strokeWidth={1.5}
                         />
                       );
                     }}
-                    activeDot={{ r: 5, fill: "#F59E0B", stroke: "#070B0E", strokeWidth: 2 }}
+                    activeDot={{ r: 5, fill: "#F59E0B", stroke: "#0B0704", strokeWidth: 2 }}
                   />
                 </AreaChart>
               </ResponsiveContainer>
@@ -1009,7 +1009,7 @@ export function StatsScreen() {
           >
             <SectionTitle
               icon={Clock}
-              iconColor="#2DD4BF"
+              iconColor="#FFB020"
               title={t("statsRecentMoods")}
               right={
                 <span className="text-[10px] text-white/40">
@@ -1095,7 +1095,7 @@ export function StatsScreen() {
                     style={{
                       background:
                         "linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%)",
-                      color: "#070B0E",
+                      color: "#0B0704",
                       boxShadow: "0 0 14px rgba(251,191,36,0.65)",
                     }}
                   >
@@ -1207,17 +1207,17 @@ export function StatsScreen() {
             className="relative rounded-3xl p-4 overflow-hidden card-hover"
             style={{
               background:
-                "linear-gradient(135deg, rgba(192, 132, 252,0.18) 0%, rgba(255,59,130,0.18) 100%)",
-              border: "1px solid rgba(192, 132, 252,0.35)",
-              boxShadow: "0 0 24px rgba(192, 132, 252,0.2)",
+                "linear-gradient(135deg, rgba(255, 209, 102,0.18) 0%, rgba(255,59,130,0.18) 100%)",
+              border: "1px solid rgba(255, 209, 102,0.35)",
+              boxShadow: "0 0 24px rgba(255, 209, 102,0.2)",
             }}
           >
-            <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-[#C084FC]/25 blur-3xl" />
+            <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-[#FFD166]/25 blur-3xl" />
             <div className="absolute -bottom-12 -left-8 w-32 h-32 rounded-full bg-[#FF3B83]/15 blur-3xl" />
 
             <div className="relative">
               <div className="flex items-center gap-2 mb-2">
-                <Sparkles size={14} className="text-[#C084FC]" />
+                <Sparkles size={14} className="text-[#FFD166]" />
                 <h2 className="text-white text-sm font-semibold font-[family-name:var(--font-poppins)]">
                   {t("statsDominantMood")}
                 </h2>
@@ -1313,7 +1313,7 @@ export function StatsScreen() {
         <motion.div variants={itemVariants} className="glass-card p-4">
           <SectionTitle
             icon={TrendingUp}
-            iconColor="#4ADE80"
+            iconColor="#FFC94D"
             title={t("statsCumulativeSavings")}
             right={
               <span className="text-[10px] text-white/40">{t("statsLast30Days")}</span>
@@ -1336,8 +1336,8 @@ export function StatsScreen() {
               >
                 <defs>
                   <linearGradient id="barGreen" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#4ADE80" stopOpacity={1} />
-                    <stop offset="100%" stopColor="#2DD4BF" stopOpacity={0.6} />
+                    <stop offset="0%" stopColor="#FFC94D" stopOpacity={1} />
+                    <stop offset="100%" stopColor="#FFB020" stopOpacity={0.6} />
                   </linearGradient>
                   <linearGradient id="barOrange" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0%" stopColor="#F59E0B" stopOpacity={1} />
@@ -1382,7 +1382,7 @@ export function StatsScreen() {
           </div>
           <div className="mt-3 pt-3 border-t border-white/5 flex items-center justify-between text-[10px]">
             <div className="flex items-center gap-1.5 text-white/50">
-              <span className="w-2.5 h-2.5 rounded-sm bg-gradient-to-b from-[#4ADE80] to-[#2DD4BF]" />
+              <span className="w-2.5 h-2.5 rounded-sm bg-gradient-to-b from-[#FFC94D] to-[#FFB020]" />
               {t("financeSaved")}
             </div>
             <div className="flex items-center gap-1.5 text-white/50">
@@ -1418,7 +1418,7 @@ export function StatsScreen() {
             {heatmapCells.map((cell, idx) => {
               const bg =
                 cell.status === "green"
-                  ? "linear-gradient(135deg, #4ADE80 0%, #2DD4BF 100%)"
+                  ? "linear-gradient(135deg, #FFC94D 0%, #FFB020 100%)"
                   : cell.status === "red"
                   ? "linear-gradient(135deg, #FF3B30 0%, #F59E0B 100%)"
                   : cell.status === "future"
@@ -1446,7 +1446,7 @@ export function StatsScreen() {
                     boxShadow: cell.isToday
                       ? "0 0 12px rgba(245, 158, 11,0.5)"
                       : cell.status === "green"
-                      ? "0 0 8px rgba(74,222,128,0.25)"
+                      ? "0 0 8px rgba(255,201,77,0.25)"
                       : cell.status === "red"
                       ? "0 0 8px rgba(255,59,48,0.3)"
                       : "none",
@@ -1472,7 +1472,7 @@ export function StatsScreen() {
               <span
                 className="w-2.5 h-2.5 rounded-sm"
                 style={{
-                  background: "linear-gradient(135deg, #4ADE80, #2DD4BF)",
+                  background: "linear-gradient(135deg, #FFC94D, #FFB020)",
                 }}
               />
               {t("statsNoBet")}
@@ -1503,7 +1503,7 @@ export function StatsScreen() {
         <motion.div variants={itemVariants} className="glass-card p-4">
           <SectionTitle
             icon={PieChartIcon}
-            iconColor="#C084FC"
+            iconColor="#FFD166"
             title={t("statsEmotionDistribution")}
             right={
               hasEmotionData ? (
@@ -1659,7 +1659,7 @@ export function StatsScreen() {
                 className="h-full rounded-full relative"
                 style={{
                   background:
-                    "linear-gradient(90deg, #FF3B30 0%, #F59E0B 35%, #FBBF24 70%, #4ADE80 100%)",
+                    "linear-gradient(90deg, #FF3B30 0%, #F59E0B 35%, #FBBF24 70%, #FFC94D 100%)",
                   boxShadow: "0 0 12px rgba(245, 158, 11,0.5)",
                 }}
               >
@@ -1688,7 +1688,7 @@ export function StatsScreen() {
         <motion.div variants={itemVariants} className="glass-card p-4">
           <SectionTitle
             icon={BarChart3}
-            iconColor="#2DD4BF"
+            iconColor="#FFB020"
             title={t("statsWeeklySummary")}
             right={
               <span className="text-[10px] text-white/40">{t("statsLast7Days")}</span>
@@ -1718,10 +1718,10 @@ export function StatsScreen() {
               whileTap={{ scale: 0.96 }}
               className="glass-card-strong p-3 text-center relative overflow-hidden"
             >
-              <div className="absolute -top-6 -right-6 w-16 h-16 rounded-full bg-[#4ADE80]/15 blur-2xl" />
+              <div className="absolute -top-6 -right-6 w-16 h-16 rounded-full bg-[#FFC94D]/15 blur-2xl" />
               <div className="relative">
-                <div className="w-8 h-8 rounded-lg bg-[#4ADE80]/15 flex items-center justify-center mx-auto mb-1.5">
-                  <Wallet size={15} className="text-[#4ADE80]" />
+                <div className="w-8 h-8 rounded-lg bg-[#FFC94D]/15 flex items-center justify-center mx-auto mb-1.5">
+                  <Wallet size={15} className="text-[#FFC94D]" />
                 </div>
                 <div className="text-xl font-extrabold text-white font-[family-name:var(--font-poppins)] leading-tight">
                   {formatFCFA(weekSavings)}
@@ -1737,10 +1737,10 @@ export function StatsScreen() {
               whileTap={{ scale: 0.96 }}
               className="glass-card-strong p-3 text-center relative overflow-hidden"
             >
-              <div className="absolute -top-6 -right-6 w-16 h-16 rounded-full bg-[#C084FC]/15 blur-2xl" />
+              <div className="absolute -top-6 -right-6 w-16 h-16 rounded-full bg-[#FFD166]/15 blur-2xl" />
               <div className="relative">
-                <div className="w-8 h-8 rounded-lg bg-[#C084FC]/15 flex items-center justify-center mx-auto mb-1.5">
-                  <Shield size={15} className="text-[#C084FC]" />
+                <div className="w-8 h-8 rounded-lg bg-[#FFD166]/15 flex items-center justify-center mx-auto mb-1.5">
+                  <Shield size={15} className="text-[#FFD166]" />
                 </div>
                 <div className="text-xl font-extrabold text-white font-[family-name:var(--font-poppins)]">
                   {weekCrisesAvoided}
@@ -1757,7 +1757,7 @@ export function StatsScreen() {
 
           {/* Encouragement banner */}
           <div className="mt-3 pt-3 border-t border-white/5 flex items-center gap-2">
-            <CheckCircle2 size={14} className="text-[#4ADE80] flex-shrink-0" />
+            <CheckCircle2 size={14} className="text-[#FFC94D] flex-shrink-0" />
             <p className="text-white/60 text-[11px] leading-snug">
               {weekDaysClean >= 7
                 ? t("statsWeekPerfect")

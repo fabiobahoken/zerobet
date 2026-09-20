@@ -66,13 +66,13 @@ function analyzeJournalEmotions(
 const TYPE_STYLE: Record<InsightType, { emoji: string; accent: string; gradient: string }> = {
   early: {
     emoji: "🌱",
-    accent: "#4ADE80",
-    gradient: "linear-gradient(135deg, rgba(74,222,128,0.18) 0%, rgba(245, 158, 11,0.12) 100%)",
+    accent: "#FFC94D",
+    gradient: "linear-gradient(135deg, rgba(255,201,77,0.18) 0%, rgba(245, 158, 11,0.12) 100%)",
   },
   repair: {
     emoji: "🧠",
-    accent: "#2DD4BF",
-    gradient: "linear-gradient(135deg, rgba(45, 212, 191,0.18) 0%, rgba(74,222,128,0.12) 100%)",
+    accent: "#FFB020",
+    gradient: "linear-gradient(135deg, rgba(255,176,32,0.18) 0%, rgba(255,201,77,0.12) 100%)",
   },
   control: {
     emoji: "💪",
@@ -82,17 +82,17 @@ const TYPE_STYLE: Record<InsightType, { emoji: string; accent: string; gradient:
   inspiration: {
     emoji: "🌟",
     accent: "#FBBF24",
-    gradient: "linear-gradient(135deg, rgba(251,191,36,0.20) 0%, rgba(192, 132, 252,0.14) 100%)",
+    gradient: "linear-gradient(135deg, rgba(251,191,36,0.20) 0%, rgba(255, 209, 102,0.14) 100%)",
   },
   journal: {
     emoji: "📓",
-    accent: "#C084FC",
-    gradient: "linear-gradient(135deg, rgba(192, 132, 252,0.18) 0%, rgba(45, 212, 191,0.12) 100%)",
+    accent: "#FFD166",
+    gradient: "linear-gradient(135deg, rgba(255, 209, 102,0.18) 0%, rgba(255,176,32,0.12) 100%)",
   },
   panic: {
     emoji: "🛡️",
     accent: "#FF3B30",
-    gradient: "linear-gradient(135deg, rgba(255,59,48,0.18) 0%, rgba(74,222,128,0.12) 100%)",
+    gradient: "linear-gradient(135deg, rgba(255,59,48,0.18) 0%, rgba(255,201,77,0.12) 100%)",
   },
   default: {
     emoji: "💡",

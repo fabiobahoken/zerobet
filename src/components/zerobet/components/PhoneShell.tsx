@@ -12,7 +12,7 @@ import { Toaster as SonnerToaster } from "@/components/ui/sonner";
  *
  * DESKTOP (>=500px): the app is staged inside a photorealistic phone frame
  * (bezel, Dynamic Island, live status bar, home indicator) floating on an
- * ambient emerald aurora. `transform` on `.zb-phone` turns it into the
+ * ambient ember aurora. `transform` on `.zb-phone` turns it into the
  * containing block for every `position: fixed` descendant, so modals,
  * sheets and toasts stay confined inside the device screen — exactly like
  * a native app screenshot.
@@ -76,8 +76,8 @@ export function PhoneShell({ children }: { children: React.ReactNode }) {
           theme="dark"
           toastOptions={{
             style: {
-              background: "rgba(11, 19, 43, 0.95)",
-              border: "1px solid rgba(255, 255, 255, 0.1)",
+              background: "rgba(22, 11, 4, 0.95)",
+              border: "1px solid rgba(255, 176, 32, 0.18)",
               color: "#fff",
               backdropFilter: "blur(20px)",
             },

@@ -101,7 +101,7 @@ const CATEGORIES = [
         key: "international",
         labelKey: "blockerCategoryIntl",
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$globe$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Globe$3e$__["Globe"],
-        color: "#2DD4BF"
+        color: "#FFB020"
     },
     {
         key: "africa",
@@ -113,13 +113,13 @@ const CATEGORIES = [
         key: "crypto",
         labelKey: "blockerCategoryCrypto",
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$globe$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Globe$3e$__["Globe"],
-        color: "#C084FC"
+        color: "#FFD166"
     },
     {
         key: "france",
         labelKey: "blockerCategoryFrance",
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$globe$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Globe$3e$__["Globe"],
-        color: "#4ADE80"
+        color: "#FFC94D"
     },
     {
         key: "other",
@@ -145,19 +145,19 @@ const DANGEROUS_SITES = [
         id: "s11",
         name: "Betika",
         emoji: "🟢",
-        color: "#4ADE80"
+        color: "#FFC94D"
     },
     {
         id: "s13",
         name: "Melbet",
         emoji: "🟣",
-        color: "#C084FC"
+        color: "#FFD166"
     },
     {
         id: "s27",
         name: "PMU",
         emoji: "🔵",
-        color: "#2DD4BF"
+        color: "#FFB020"
     }
 ];
 function pad(n) {
@@ -332,7 +332,7 @@ function BlockerScreen() {
                         className: "w-10 h-10 rounded-full glass-card flex items-center justify-center",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Shield$3e$__["Shield"], {
                             size: 18,
-                            className: blockerEnabled ? "text-[#4ADE80]" : "text-[#FF3B30]"
+                            className: blockerEnabled ? "text-[#FFC94D]" : "text-[#FF3B30]"
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/BlockerScreen.tsx",
                             lineNumber: 194,
@@ -379,12 +379,12 @@ function BlockerScreen() {
                             },
                             className: "relative overflow-hidden rounded-2xl p-3.5 flex items-center gap-3",
                             style: {
-                                background: "linear-gradient(135deg, rgba(74,222,128,0.2) 0%, rgba(74,222,128,0.05) 100%)",
-                                border: "1px solid rgba(74,222,128,0.3)"
+                                background: "linear-gradient(135deg, rgba(255,201,77,0.2) 0%, rgba(255,201,77,0.05) 100%)",
+                                border: "1px solid rgba(255,201,77,0.3)"
                             },
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "absolute -top-4 -right-4 w-20 h-20 rounded-full bg-[#4ADE80]/15 blur-2xl"
+                                    className: "absolute -top-4 -right-4 w-20 h-20 rounded-full bg-[#FFC94D]/15 blur-2xl"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/screens/BlockerScreen.tsx",
                                     lineNumber: 218,
@@ -403,10 +403,10 @@ function BlockerScreen() {
                                         repeat: Infinity,
                                         ease: "easeInOut"
                                     },
-                                    className: "w-10 h-10 rounded-xl bg-[#4ADE80]/20 flex items-center justify-center flex-shrink-0",
+                                    className: "w-10 h-10 rounded-xl bg-[#FFC94D]/20 flex items-center justify-center flex-shrink-0",
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2d$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ShieldCheck$3e$__["ShieldCheck"], {
                                         size: 20,
-                                        className: "text-[#4ADE80]"
+                                        className: "text-[#FFC94D]"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/BlockerScreen.tsx",
                                         lineNumber: 224,
@@ -421,7 +421,7 @@ function BlockerScreen() {
                                     className: "relative flex-1",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                            className: "text-sm font-bold text-[#4ADE80] font-[family-name:var(--font-poppins)]",
+                                            className: "text-sm font-bold text-[#FFC94D] font-[family-name:var(--font-poppins)]",
                                             children: t("blockerProtectionActive")
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/screens/BlockerScreen.tsx",
@@ -454,7 +454,7 @@ function BlockerScreen() {
                                         duration: 1.5,
                                         repeat: Infinity
                                     },
-                                    className: "w-2 h-2 rounded-full bg-[#4ADE80]"
+                                    className: "w-2 h-2 rounded-full bg-[#FFC94D]"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/screens/BlockerScreen.tsx",
                                     lineNumber: 234,
@@ -567,7 +567,7 @@ function BlockerScreen() {
                                     repeat: Infinity,
                                     ease: "easeInOut"
                                 },
-                                className: `absolute -top-16 -right-16 w-52 h-52 rounded-full blur-3xl ${blockerEnabled ? "bg-[#4ADE80]" : "bg-[#FF3B30]"}`
+                                className: `absolute -top-16 -right-16 w-52 h-52 rounded-full blur-3xl ${blockerEnabled ? "bg-[#FFC94D]" : "bg-[#FF3B30]"}`
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/BlockerScreen.tsx",
                                 lineNumber: 266,
@@ -637,7 +637,7 @@ function BlockerScreen() {
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                        className: `text-xs mt-0.5 ${blockerEnabled ? "text-[#4ADE80]" : "text-[#FF3B30]"}`,
+                                                        className: `text-xs mt-0.5 ${blockerEnabled ? "text-[#FFC94D]" : "text-[#FF3B30]"}`,
                                                         children: blockerEnabled ? t("blockerSitesBlockedStatus") : t("blockerVulnerable")
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/BlockerScreen.tsx",
@@ -668,7 +668,7 @@ function BlockerScreen() {
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$switch$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Switch"], {
                                             checked: blockerEnabled,
                                             onCheckedChange: (v)=>setBlockerEnabled(v),
-                                            className: "data-[state=checked]:bg-[#4ADE80] data-[state=unchecked]:bg-[#FF3B30]/40"
+                                            className: "data-[state=checked]:bg-[#FFC94D] data-[state=unchecked]:bg-[#FF3B30]/40"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/screens/BlockerScreen.tsx",
                                             lineNumber: 308,
@@ -702,10 +702,10 @@ function BlockerScreen() {
                                         className: "flex items-center justify-between mb-2",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "w-9 h-9 rounded-xl bg-[#4ADE80]/20 flex items-center justify-center",
+                                                className: "w-9 h-9 rounded-xl bg-[#FFC94D]/20 flex items-center justify-center",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2d$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ShieldCheck$3e$__["ShieldCheck"], {
                                                     size: 16,
-                                                    className: "text-[#4ADE80]"
+                                                    className: "text-[#FFC94D]"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/zerobet/screens/BlockerScreen.tsx",
                                                     lineNumber: 323,
@@ -814,7 +814,7 @@ function BlockerScreen() {
                                                 checked: strictMode,
                                                 onCheckedChange: handleStrictToggle,
                                                 disabled: isPremiumLocked,
-                                                className: "data-[state=checked]:bg-[#10B981]"
+                                                className: "data-[state=checked]:bg-[#FF6B00]"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/BlockerScreen.tsx",
                                                 lineNumber: 359,
@@ -893,7 +893,7 @@ function BlockerScreen() {
                         className: "glass-card p-4 relative overflow-hidden",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "absolute -top-6 -left-6 w-24 h-24 rounded-full bg-[#C084FC]/15 blur-2xl"
+                                className: "absolute -top-6 -left-6 w-24 h-24 rounded-full bg-[#FFD166]/15 blur-2xl"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/BlockerScreen.tsx",
                                 lineNumber: 387,
@@ -903,10 +903,10 @@ function BlockerScreen() {
                                 className: "relative flex items-center gap-3",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "w-10 h-10 rounded-xl bg-[#C084FC]/20 flex items-center justify-center flex-shrink-0",
+                                        className: "w-10 h-10 rounded-xl bg-[#FFD166]/20 flex items-center justify-center flex-shrink-0",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chart$2d$column$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__BarChart3$3e$__["BarChart3"], {
                                             size: 18,
-                                            className: "text-[#C084FC]"
+                                            className: "text-[#FFD166]"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/screens/BlockerScreen.tsx",
                                             lineNumber: 390,
@@ -951,7 +951,7 @@ function BlockerScreen() {
                                             scale: 1,
                                             opacity: 1
                                         },
-                                        className: "text-2xl font-extrabold text-[#C084FC] font-[family-name:var(--font-poppins)]",
+                                        className: "text-2xl font-extrabold text-[#FFD166] font-[family-name:var(--font-poppins)]",
                                         children: bypassAttempts
                                     }, bypassAttempts, false, {
                                         fileName: "[project]/src/components/zerobet/screens/BlockerScreen.tsx",
@@ -1114,7 +1114,7 @@ function BlockerScreen() {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$lock$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Lock$3e$__["Lock"], {
                                         size: 14,
-                                        className: "text-[#4ADE80]"
+                                        className: "text-[#FFC94D]"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/BlockerScreen.tsx",
                                         lineNumber: 470,
@@ -1416,7 +1416,7 @@ function BlockerScreen() {
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle2$3e$__["CheckCircle2"], {
                                 size: 18,
-                                className: "text-[#4ADE80] flex-shrink-0"
+                                className: "text-[#FFC94D] flex-shrink-0"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/BlockerScreen.tsx",
                                 lineNumber: 590,
@@ -1567,7 +1567,7 @@ function BlockerScreen() {
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle2$3e$__["CheckCircle2"], {
                                                         size: 14,
-                                                        className: "text-[#4ADE80] flex-shrink-0"
+                                                        className: "text-[#FFC94D] flex-shrink-0"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/BlockerScreen.tsx",
                                                         lineNumber: 646,
@@ -1651,10 +1651,10 @@ function SiteRow({ site, onToggle }) {
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
                         layout: true,
-                        className: `w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors duration-300 ${site.blocked ? "bg-[#4ADE80]/15" : "bg-white/5"}`,
+                        className: `w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors duration-300 ${site.blocked ? "bg-[#FFC94D]/15" : "bg-white/5"}`,
                         children: site.blocked ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$lock$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Lock$3e$__["Lock"], {
                             size: 13,
-                            className: "text-[#4ADE80]"
+                            className: "text-[#FFC94D]"
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/BlockerScreen.tsx",
                             lineNumber: 693,
@@ -1706,7 +1706,7 @@ function SiteRow({ site, onToggle }) {
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$switch$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Switch"], {
                 checked: site.blocked,
                 onCheckedChange: onToggle,
-                className: "data-[state=checked]:bg-[#4ADE80] data-[state=unchecked]:bg-white/10"
+                className: "data-[state=checked]:bg-[#FFC94D] data-[state=unchecked]:bg-white/10"
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/BlockerScreen.tsx",
                 lineNumber: 705,

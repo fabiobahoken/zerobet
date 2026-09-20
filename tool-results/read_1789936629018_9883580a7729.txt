@@ -1,0 +1,1125 @@
+     1→     1→"use client";
+     2→     2→
+     3→     3→import { useMemo, useState, type CSSProperties } from "react";
+     4→     4→import { motion } from "framer-motion";
+     5→     5→import {
+     6→     6→  ChevronLeft,
+     7→     7→  Award,
+     8→     8→  Lock,
+     9→     9→  Trophy,
+    10→    10→  Flame,
+    11→    11→  Wind,
+    12→    12→  Sparkles,
+    13→    13→  Calendar,
+    14→    14→  Check,
+    15→    15→  TrendingUp,
+    16→    16→  Star,
+    17→    17→} from "lucide-react";
+    18→    18→import { useStore } from "@/store/zerobet-store";
+    19→    19→import {
+    20→    20→  PARCOURS_RANKS,
+    21→    21→  getCurrentRank,
+    22→    22→} from "@/lib/data/parcours-data";
+    23→    23→import type { ParcoursRank } from "@/lib/data/parcours-data";
+    24→    24→import { TiltCard } from "@/components/zerobet/components/TiltCard";
+    25→    25→import { ArtifactIcon } from "@/components/zerobet/components/ArtifactIcon";
+    26→    26→import { useT } from "@/lib/i18n/useT";
+    27→    27→
+    28→    28→// ---------------------------------------------------------------------------
+    29→    29→// Special achievements — not tied to ranks
+    30→    30→// ---------------------------------------------------------------------------
+    31→    31→
+    32→    32→export interface SpecialAchievement {
+    33→    33→  key: string;
+    34→    34→  name: string;
+    35→    35→  description: string;
+    36→    36→  icon: string;
+    37→    37→  color: string;
+    38→    38→  target: number;
+    39→    39→  getCurrent: (ctx: AchievementContext) => number;
+    40→    40→  unlockHint?: (ctx: AchievementContext) => string | null;
+    41→    41→}
+    42→    42→
+    43→    43→export interface AchievementContext {
+    44→    44→  streakDays: number;
+    45→    45→  panicEventsCount: number;
+    46→    46→  resolvedPanicCount: number;
+    47→    47→  journalCount: number;
+    48→    48→  totalSaved: number;
+    49→    49→  meditationStreak: number;
+    50→    50→  testimonialsCount: number;
+    51→    51→  forumPostsCount: number;
+    52→    52→  articlesRead: number;
+    53→    53→}
+    54→    54→
+    55→    55→export const SPECIAL_ACHIEVEMENTS: SpecialAchievement[] = [
+    56→    56→  {
+    57→    57→    key: "premier-pas",
+    58→    58→    name: "Premier Pas",
+    59→    59→    description: "Complète ton premier jour sans pari",
+    60→    60→    icon: "🌱",
+    61→    61→    color: "#4ADE80",
+    62→    62→    target: 1,
+    63→    63→    getCurrent: (c) => c.streakDays,
+    64→    64→  },
+    65→    65→  {
+    66→    66→    key: "respirateur",
+    67→    67→    name: "Respirateur",
+    68→    68→    description: "Utilise le bouton d'urgence 5 fois",
+    69→    69→    icon: "🫁",
+    70→    70→    color: "#2DD4BF",
+    71→    71→    target: 5,
+    72→    72→    getCurrent: (c) => c.panicEventsCount,
+    73→    73→  },
+    74→    74→  {
+    75→    75→    key: "ecrivain",
+    76→    76→    name: "Écrivain",
+    77→    77→    description: "Écris 10 entrées dans ton journal",
+    78→    78→    icon: "✍️",
+    79→    79→    color: "#C084FC",
+    80→    80→    target: 10,
+    81→    81→    getCurrent: (c) => c.journalCount,
+    82→    82→  },
+    83→    83→  {
+    84→    84→    key: "econome",
+    85→    85→    name: "Économe",
+    86→    86→    description: "Économise 100 000 FCFA",
+    87→    87→    icon: "💰",
+    88→    88→    color: "#FBBF24",
+    89→    89→    target: 100000,
+    90→    90→    getCurrent: (c) => c.totalSaved,
+    91→    91→  },
+    92→    92→  {
+    93→    93→    key: "mediant",
+    94→    94→    name: "Méditant",
+    95→    95→    description: "7 jours de méditation d'affilée",
+    96→    96→    icon: "🧘",
+    97→    97→    color: "#F59E0B",
+    98→    98→    target: 7,
+    99→    99→    getCurrent: (c) => c.meditationStreak,
+   100→   100→  },
+   101→   101→  {
+   102→   102→    key: "survivant",
+   103→   103→    name: "Survivant",
+   104→   104→    description: "Résiste à 10 envies fortes",
+   105→   105→    icon: "🛡️",
+   106→   106→    color: "#FF3B30",
+   107→   107→    target: 10,
+   108→   108→    getCurrent: (c) => c.resolvedPanicCount,
+   109→   109→  },
+   110→   110→  {
+   111→   111→    key: "sociable",
+   112→   112→    name: "Sociable",
+   113→   113→    description: "Partage 5 témoignages",
+   114→   114→    icon: "💬",
+   115→   115→    color: "#2DD4BF",
+   116→   116→    target: 5,
+   117→   117→    getCurrent: (c) => c.testimonialsCount,
+   118→   118→  },
+   119→   119→  {
+   120→   120→    key: "mentor",
+   121→   121→    name: "Mentor",
+   122→   122→    description: "Aide 10 personnes dans le forum",
+   123→   123→    icon: "🤝",
+   124→   124→    color: "#4ADE80",
+   125→   125→    target: 10,
+   126→   126→    getCurrent: (c) => c.forumPostsCount * 2,
+   127→   127→  },
+   128→   128→  {
+   129→   129→    key: "legende",
+   130→   130→    name: "Légende",
+   131→   131→    description: "365 jours sans pari",
+   132→   132→    icon: "👑",
+   133→   133→    color: "#FFD700",
+   134→   134→    target: 365,
+   135→   135→    getCurrent: (c) => c.streakDays,
+   136→   136→  },
+   137→   137→  {
+   138→   138→    key: "perseverant",
+   139→   139→    name: "Persévérant",
+   140→   140→    description: "30 jours sans rechute",
+   141→   141→    icon: "🔥",
+   142→   142→    color: "#FF3B30",
+   143→   143→    target: 30,
+   144→   144→    getCurrent: (c) => c.streakDays,
+   145→   145→  },
+   146→   146→  {
+   147→   147→    key: "erudit",
+   148→   148→    name: "Érudit",
+   149→   149→    description: "Lis 20 articles",
+   150→   150→    icon: "📚",
+   151→   151→    color: "#2DD4BF",
+   152→   152→    target: 20,
+   153→   153→    getCurrent: (c) => c.articlesRead,
+   154→   154→  },
+   155→   155→  {
+   156→   156→    key: "zen-master",
+   157→   157→    name: "Zen Master",
+   158→   158→    description: "30 jours de méditation d'affilée",
+   159→   159→    icon: "🧘‍♂️",
+   160→   160→    color: "#C084FC",
+   161→   161→    target: 30,
+   162→   162→    getCurrent: (c) => c.meditationStreak,
+   163→   163→  },
+   164→   164→];
+   165→   165→
+   166→   166→// ---------------------------------------------------------------------------
+   167→   167→// Helpers
+   168→   168→// ---------------------------------------------------------------------------
+   169→   169→
+   170→   170→const containerVariants = {
+   171→   171→  hidden: { opacity: 0 },
+   172→   172→  visible: {
+   173→   173→    opacity: 1,
+   174→   174→    transition: { staggerChildren: 0.06, delayChildren: 0.05 },
+   175→   175→  },
+   176→   176→};
+   177→   177→
+   178→   178→const itemVariants = {
+   179→   179→  hidden: { opacity: 0, y: 16 },
+   180→   180→  visible: {
+   181→   181→    opacity: 1,
+   182→   182→    y: 0,
+   183→   183→    transition: { type: "spring" as const, stiffness: 260, damping: 24 },
+   184→   184→  },
+   185→   185→};
+   186→   186→
+   187→   187→function relativeTimeLabel(daysAgo: number): string {
+   188→   188→  if (daysAgo <= 0) return "Aujourd'hui";
+   189→   189→  if (daysAgo === 1) return "Hier";
+   190→   190→  if (daysAgo < 7) return `Il y a ${daysAgo} jours`;
+   191→   191→  if (daysAgo < 30) {
+   192→   192→    const weeks = Math.floor(daysAgo / 7);
+   193→   193→    return weeks === 1 ? "Il y a 1 semaine" : `Il y a ${weeks} semaines`;
+   194→   194→  }
+   195→   195→  const months = Math.floor(daysAgo / 30);
+   196→   196→  return months === 1 ? "Il y a 1 mois" : `Il y a ${months} mois`;
+   197→   197→}
+   198→   198→
+   199→   199→interface RecentUnlock {
+   200→   200→  key: string;
+   201→   201→  name: string;
+   202→   202→  icon: string;
+   203→   203→  color: string;
+   204→   204→  type: "rank" | "special";
+   205→   205→  daysAgo: number;
+   206→   206→}
+   207→   207→
+   208→   208→// ---------------------------------------------------------------------------
+   209→   209→// Tier helpers (Task 13-d)
+   210→   210→// ---------------------------------------------------------------------------
+   211→   211→
+   212→   212→type TierKey = "all" | "bronze" | "silver" | "gold" | "diamond" | "legendary";
+   213→   213→
+   214→   214→type ExcludedTierKey = Exclude<TierKey, "all">;
+   215→   215→
+   216→   216→// TIER_META — the tier emoji icons were removed because they collided with
+   217→   217→// the parcours medal imagery. The colored pill background already conveys
+   218→   218→// the tier visually, so the emoji is purely decorative. We now use a small
+   219→   219→// colored dot instead.
+   220→   220→const TIER_META: Record<ExcludedTierKey, { label: string; color: string }> = {
+   221→   221→  bronze: { label: "Bronze", color: "#CD7F32" },
+   222→   222→  silver: { label: "Argent", color: "#C0C0C0" },
+   223→   223→  gold: { label: "Or", color: "#FFD700" },
+   224→   224→  diamond: { label: "Diamant", color: "#2DD4BF" },
+   225→   225→  legendary: { label: "Légende", color: "#C084FC" },
+   226→   226→};
+   227→   227→
+   228→   228→function getTierForTarget(target: number): ExcludedTierKey {
+   229→   229→  if (target >= 365) return "legendary";
+   230→   230→  if (target >= 30) return "gold";
+   231→   231→  if (target >= 10) return "diamond";
+   232→   232→  if (target >= 5) return "silver";
+   233→   233→  return "bronze";
+   234→   234→}
+   235→   235→
+   236→   236→// ---------------------------------------------------------------------------
+   237→   237→// Premium sub-components (Task 13-d)
+   238→   238→// ---------------------------------------------------------------------------
+   239→   239→
+   240→   240→type ComputedAchievement = SpecialAchievement & {
+   241→   241→  current: number;
+   242→   242→  unlocked: boolean;
+   243→   243→  progress: number;
+   244→   244→};
+   245→   245→
+   246→   246→/**
+   247→   247→ * ProgressRing — premium SVG circle that animates its stroke-dashoffset over
+   248→   248→ * 1.2s using the `.progress-ring-circle` utility class (globals.css).
+   249→   249→ */
+   250→   250→function ProgressRing({
+   251→   251→  percent,
+   252→   252→  color,
+   253→   253→  size = 72,
+   254→   254→  stroke = 6,
+   255→   255→}: {
+   256→   256→  percent: number;
+   257→   257→  color: string;
+   258→   258→  size?: number;
+   259→   259→  stroke?: number;
+   260→   260→}) {
+   261→   261→  const radius = (size - stroke) / 2;
+   262→   262→  const circumference = 2 * Math.PI * radius;
+   263→   263→  const clamped = Math.max(0, Math.min(100, percent));
+   264→   264→  const offset = circumference - (clamped / 100) * circumference;
+   265→   265→  return (
+   266→   266→    <svg width={size} height={size} className="flex-shrink-0" aria-hidden>
+   267→   267→      <circle
+   268→   268→        cx={size / 2}
+   269→   269→        cy={size / 2}
+   270→   270→        r={radius}
+   271→   271→        fill="none"
+   272→   272→        stroke="rgba(255,255,255,0.08)"
+   273→   273→        strokeWidth={stroke}
+   274→   274→      />
+   275→   275→      <motion.circle
+   276→   276→        className="progress-ring-circle"
+   277→   277→        cx={size / 2}
+   278→   278→        cy={size / 2}
+   279→   279→        r={radius}
+   280→   280→        fill="none"
+   281→   281→        stroke={color}
+   282→   282→        strokeWidth={stroke}
+   283→   283→        strokeLinecap="round"
+   284→   284→        strokeDasharray={circumference}
+   285→   285→        initial={{ strokeDashoffset: circumference }}
+   286→   286→        animate={{ strokeDashoffset: offset }}
+   287→   287→        transition={{ duration: 1.2, ease: "easeOut", delay: 0.15 }}
+   288→   288→        style={{ filter: `drop-shadow(0 0 8px ${color}80)` }}
+   289→   289→      />
+   290→   290→      <text
+   291→   291→        x="50%"
+   292→   292→        y="50%"
+   293→   293→        textAnchor="middle"
+   294→   294→        dominantBaseline="central"
+   295→   295→        className="font-[family-name:var(--font-poppins)] font-extrabold fill-white"
+   296→   296→        style={{ fontSize: size * 0.22 }}
+   297→   297→      >
+   298→   298→        {Math.round(clamped)}%
+   299→   299→      </text>
+   300→   300→    </svg>
+   301→   301→  );
+   302→   302→}
+   303→   303→
+   304→   304→/**
+   305→   305→ * TierTab — a filter pill. Active state shows the tier's gradient background
+   306→   306→ * + glow; inactive state shows a plain glass pill.
+   307→   307→ */
+   308→   308→function TierTab({
+   309→   309→  active,
+   310→   310→  label,
+   311→   311→  color,
+   312→   312→  count,
+   313→   313→  onClick,
+   314→   314→}: {
+   315→   315→  active: boolean;
+   316→   316→  label: string;
+   317→   317→  color: string;
+   318→   318→  count: number;
+   319→   319→  onClick: () => void;
+   320→   320→}) {
+   321→   321→  return (
+   322→   322→    <button
+   323→   323→      type="button"
+   324→   324→      onClick={onClick}
+   325→   325→      aria-pressed={active}
+   326→   326→      className={`relative px-3.5 py-1.5 rounded-full flex items-center gap-1.5 text-[11px] font-semibold transition-all btn-press ${
+   327→   327→        active ? "text-white" : "text-white/65 glass-card"
+   328→   328→      }`}
+   329→   329→      style={
+   330→   330→        active
+   331→   331→          ? {
+   332→   332→              background: `linear-gradient(135deg, ${color} 0%, ${color}99 100%)`,
+   333→   333→              boxShadow: `0 0 18px ${color}80, 0 4px 16px rgba(0,0,0,0.3)`,
+   334→   334→            }
+   335→   335→          : {}
+   336→   336→      }
+   337→   337→    >
+   338→   338→      <span
+   339→   339→        className="inline-block w-2 h-2 rounded-full flex-shrink-0"
+   340→   340→        style={{
+   341→   341→          background: color,
+   342→   342→          boxShadow: active
+   343→   343→            ? "0 0 6px rgba(255,255,255,0.6)"
+   344→   344→            : `0 0 6px ${color}80`,
+   345→   345→        }}
+   346→   346→      />
+   347→   347→      <span className="leading-none">{label}</span>
+   348→   348→      <span
+   349→   349→        className={`text-[9px] px-1.5 py-0.5 rounded-full ml-0.5 ${
+   350→   350→          active ? "bg-white/25 text-white" : "bg-white/10 text-white/70"
+   351→   351→        }`}
+   352→   352→      >
+   353→   353→        {count}
+   354→   354→      </span>
+   355→   355→    </button>
+   356→   356→  );
+   357→   357→}
+   358→   358→
+   359→   359→/**
+   360→   360→ * FlipBadge — a 3D flip card for a single achievement. Front shows the icon
+   361→   361→ * + name; back shows the description + unlock state. Tap (or hover on
+   362→   362→ * desktop) to flip. Unlocked badges get a tier-aura glow; locked ones get a
+   363→   363→ * desaturated treatment via .achievement-locked.
+   364→   364→ */
+   365→   365→function FlipBadge({
+   366→   366→  achievement,
+   367→   367→  index,
+   368→   368→}: {
+   369→   369→  achievement: ComputedAchievement;
+   370→   370→  index: number;
+   371→   371→}) {
+   372→   372→  const [flipped, setFlipped] = useState(false);
+   373→   373→  const tier = getTierForTarget(achievement.target);
+   374→   374→  const tierAuraClass = achievement.unlocked ? `rank-aura-${tier}` : "";
+   375→   375→  const colorVar = {
+   376→   376→    ["--achievement-color" as string]: achievement.color,
+   377→   377→  } as CSSProperties;
+   378→   378→
+   379→   379→  return (
+   380→   380→    <motion.div
+   381→   381→      initial={{ opacity: 0, scale: 0.85 }}
+   382→   382→      animate={{ opacity: 1, scale: 1 }}
+   383→   383→      transition={{
+   384→   384→        delay: 0.05 + index * 0.03,
+   385→   385→        type: "spring",
+   386→   386→        stiffness: 280,
+   387→   387→        damping: 22,
+   388→   388→      }}
+   389→   389→    >
+   390→   390→      <div
+   391→   391→        className={`badge-3d w-full h-36 select-none cursor-pointer ${
+   392→   392→          achievement.unlocked ? "" : "achievement-locked"
+   393→   393→        }`}
+   394→   394→        onClick={() => setFlipped((f) => !f)}
+   395→   395→        style={colorVar}
+   396→   396→      >
+   397→   397→        <div
+   398→   398→          className="badge-3d-inner w-full h-full"
+   399→   399→          style={flipped ? { transform: "rotateY(180deg)" } : undefined}
+   400→   400→        >
+   401→   401→          {/* FRONT */}
+   402→   402→          <div
+   403→   403→            className="badge-3d-front glass-card p-2.5 flex flex-col items-center justify-center text-center rounded-2xl overflow-hidden"
+   404→   404→            style={
+   405→   405→              achievement.unlocked
+   406→   406→                ? { boxShadow: `0 0 20px ${achievement.color}25` }
+   407→   407→                : {}
+   408→   408→            }
+   409→   409→          >
+   410→   410→            <div
+   411→   411→              className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl mb-1.5 ${tierAuraClass} ${
+   412→   412→                achievement.unlocked ? "achievement-unlocked" : ""
+   413→   413→              }`}
+   414→   414→              style={{
+   415→   415→                background: achievement.unlocked
+   416→   416→                  ? `linear-gradient(135deg, ${achievement.color} 0%, ${achievement.color}99 100%)`
+   417→   417→                  : "rgba(255,255,255,0.05)",
+   418→   418→              }}
+   419→   419→            >
+   420→   420→              {achievement.unlocked ? (
+   421→   421→                achievement.icon
+   422→   422→              ) : (
+   423→   423→                <Lock size={16} className="text-white/40" />
+   424→   424→              )}
+   425→   425→            </div>
+   426→   426→            <p
+   427→   427→              className={`text-[10px] font-bold leading-tight mb-0.5 ${
+   428→   428→                achievement.unlocked ? "text-white" : "text-white/60"
+   429→   429→              }`}
+   430→   430→            >
+   431→   431→              {achievement.name}
+   432→   432→            </p>
+   433→   433→            <p className="text-white/30 text-[8px] uppercase tracking-wider">
+   434→   434→              {achievement.unlocked ? "Tap pour retourner" : "Verrouillé"}
+   435→   435→            </p>
+   436→   436→          </div>
+   437→   437→
+   438→   438→          {/* BACK */}
+   439→   439→          <div
+   440→   440→            className="badge-3d-back glass-card-strong p-2.5 flex flex-col items-center justify-center text-center rounded-2xl overflow-hidden"
+   441→   441→            style={{
+   442→   442→              background: `linear-gradient(135deg, ${achievement.color}25 0%, rgba(11,11,16,0.7) 100%)`,
+   443→   443→              boxShadow: `0 0 20px ${achievement.color}30`,
+   444→   444→            }}
+   445→   445→          >
+   446→   446→            <p className="text-white text-[10px] font-bold leading-tight mb-1">
+   447→   447→              {achievement.name}
+   448→   448→            </p>
+   449→   449→            <p className="text-white/75 text-[8.5px] leading-tight line-clamp-3 mb-1.5">
+   450→   450→              {achievement.description}
+   451→   451→            </p>
+   452→   452→            {achievement.unlocked ? (
+   453→   453→              <p
+   454→   454→                className="text-[9px] font-semibold uppercase tracking-wider flex items-center gap-1"
+   455→   455→                style={{ color: achievement.color }}
+   456→   456→              >
+   457→   457→                <Check size={9} strokeWidth={3} /> Débloqué
+   458→   458→              </p>
+   459→   459→            ) : (
+   460→   460→              <div className="w-full">
+   461→   461→                <p className="text-white/55 text-[8px] font-mono mb-0.5">
+   462→   462→                  {achievement.target > 1000
+   463→   463→                    ? `${Math.min(achievement.current, achievement.target).toLocaleString("fr-FR")}/${achievement.target.toLocaleString("fr-FR")}`
+   464→   464→                    : `${Math.min(achievement.current, achievement.target)}/${achievement.target}`}
+   465→   465→                </p>
+   466→   466→                <p className="text-white/45 text-[8px] uppercase tracking-wider">
+   467→   467→                  Verrouillé
+   468→   468→                </p>
+   469→   469→              </div>
+   470→   470→            )}
+   471→   471→          </div>
+   472→   472→        </div>
+   473→   473→      </div>
+   474→   474→    </motion.div>
+   475→   475→  );
+   476→   476→}
+   477→   477→
+   478→   478→// ---------------------------------------------------------------------------
+   479→   479→// Main component
+   480→   480→// ---------------------------------------------------------------------------
+   481→   481→
+   482→   482→export function AchievementsScreen() {
+   483→   483→  const t = useT();
+   484→   484→  const {
+   485→   485→    navigate,
+   486→   486→    streakDays,
+   487→   487→    adminStreakOverride,
+   488→   488→    unlockedRanks,
+   489→   489→    meditationStreak,
+   490→   490→    weeklyBetAmount,
+   491→   491→    panicEvents,
+   492→   492→    journalEntries,
+   493→   493→    testimonials,
+   494→   494→    forumPosts,
+   495→   495→    articlesRead,
+   496→   496→  } = useStore();
+   497→   497→
+   498→   498→  const effectiveStreak = adminStreakOverride !== null ? adminStreakOverride : streakDays;
+   499→   499→  const currentRank = getCurrentRank(effectiveStreak);
+   500→   500→  const totalSaved = effectiveStreak * Math.round(weeklyBetAmount / 7);
+   501→   501→
+   502→   502→  const achievementContext: AchievementContext = useMemo(
+   503→   503→    () => ({
+   504→   504→      streakDays: effectiveStreak,
+   505→   505→      panicEventsCount: panicEvents.length,
+   506→   506→      resolvedPanicCount: panicEvents.filter((p) => p.resolved).length,
+   507→   507→      journalCount: journalEntries.length,
+   508→   508→      totalSaved,
+   509→   509→      meditationStreak,
+   510→   510→      testimonialsCount: testimonials.filter((t) => t.isMine).length,
+   511→   511→      forumPostsCount: forumPosts.length,
+   512→   512→      articlesRead,
+   513→   513→    }),
+   514→   514→    [
+   515→   515→      effectiveStreak,
+   516→   516→      panicEvents,
+   517→   517→      journalEntries.length,
+   518→   518→      totalSaved,
+   519→   519→      meditationStreak,
+   520→   520→      testimonials,
+   521→   521→      forumPosts.length,
+   522→   522→      articlesRead,
+   523→   523→    ]
+   524→   524→  );
+   525→   525→
+   526→   526→  // Compute progress for each special achievement
+   527→   527→  const computedAchievements = useMemo(
+   528→   528→    () =>
+   529→   529→      SPECIAL_ACHIEVEMENTS.map((a) => {
+   530→   530→        const current = a.getCurrent(achievementContext);
+   531→   531→        const unlocked = current >= a.target;
+   532→   532→        const progress = Math.min(100, (current / a.target) * 100);
+   533→   533→        return { ...a, current, unlocked, progress };
+   534→   534→      }),
+   535→   535→    [achievementContext]
+   536→   536→  );
+   537→   537→
+   538→   538→  const unlockedAchievements = computedAchievements.filter((a) => a.unlocked);
+   539→   539→  const unlockedRanksCount = unlockedRanks.length;
+   540→   540→
+   541→   541→  // ----- Task 13-d: tier filter + totals -----
+   542→   542→  const [activeTier, setActiveTier] = useState<TierKey>("all");
+   543→   543→  const filteredAchievements = useMemo(
+   544→   544→    () =>
+   545→   545→      activeTier === "all"
+   546→   546→        ? computedAchievements
+   547→   547→        : computedAchievements.filter(
+   548→   548→            (a) => getTierForTarget(a.target) === activeTier,
+   549→   549→          ),
+   550→   550→    [activeTier, computedAchievements],
+   551→   551→  );
+   552→   552→
+   553→   553→  const totalUnlocked = unlockedAchievements.length + unlockedRanksCount;
+   554→   554→  const totalAchievements = SPECIAL_ACHIEVEMENTS.length + PARCOURS_RANKS.length;
+   555→   555→  const unlockedPercent =
+   556→   556→    totalAchievements > 0 ? (totalUnlocked / totalAchievements) * 100 : 0;
+   557→   557→
+   558→   558→  const tierCounts = useMemo(() => {
+   559→   559→    const counts: Record<ExcludedTierKey, number> = {
+   560→   560→      bronze: 0,
+   561→   561→      silver: 0,
+   562→   562→      gold: 0,
+   563→   563→      diamond: 0,
+   564→   564→      legendary: 0,
+   565→   565→    };
+   566→   566→    for (const a of computedAchievements) {
+   567→   567→      counts[getTierForTarget(a.target)] += 1;
+   568→   568→    }
+   569→   569→    return counts;
+   570→   570→  }, [computedAchievements]);
+   571→   571→
+   572→   572→  // Build a "recent unlocks" list
+   573→   573→  const recentUnlocks: RecentUnlock[] = useMemo(() => {
+   574→   574→    const items: RecentUnlock[] = [];
+   575→   575→
+   576→   576→    // Ranks — derive "days ago" from streak (when streakDays first crossed requiredDays)
+   577→   577→    PARCOURS_RANKS.forEach((rank) => {
+   578→   578→      const isUnlocked =
+   579→   579→        effectiveStreak >= rank.requiredDays || unlockedRanks.includes(rank.key);
+   580→   580→      if (!isUnlocked) return;
+   581→   581→      const daysAgo = Math.max(0, effectiveStreak - rank.requiredDays);
+   582→   582→      items.push({
+   583→   583→        key: `rank-${rank.key}`,
+   584→   584→        name: t(rank.nameKey),
+   585→   585→        icon: rank.icon,
+   586→   586→        color: rank.color,
+   587→   587→        type: "rank",
+   588→   588→        daysAgo,
+   589→   589→      });
+   590→   590→    });
+   591→   591→
+   592→   592→    // Special achievements — derive a rough "days ago" from each metric
+   593→   593→    computedAchievements.forEach((a) => {
+   594→   594→      if (!a.unlocked) return;
+   595→   595→      let daysAgo = 0;
+   596→   596→      if (a.key === "premier-pas" || a.key === "perseverant" || a.key === "legende") {
+   597→   597→        daysAgo = Math.max(0, effectiveStreak - a.target);
+   598→   598→      } else if (a.key === "respirateur" || a.key === "survivant") {
+   599→   599→        // Use latest panic event as a proxy
+   600→   600→        const latest = panicEvents[0];
+   601→   601→        if (latest) {
+   602→   602→          const diff = Math.floor(
+   603→   603→            (Date.now() - new Date(latest.createdAt).getTime()) / 86400000
+   604→   604→          );
+   605→   605→          daysAgo = Math.max(0, diff);
+   606→   606→        }
+   607→   607→      } else if (a.key === "ecrivain") {
+   608→   608→        const tenth = journalEntries[9]; // 10th entry (0-indexed)
+   609→   609→        if (tenth) {
+   610→   610→          const diff = Math.floor(
+   611→   611→            (Date.now() - new Date(tenth.createdAt).getTime()) / 86400000
+   612→   612→          );
+   613→   613→          daysAgo = Math.max(0, diff);
+   614→   614→        }
+   615→   615→      } else if (a.key === "mediant" || a.key === "zen-master") {
+   616→   616→        daysAgo = 0; // meditation streak resets if broken — assume today
+   617→   617→      } else if (a.key === "econome") {
+   618→   618→        daysAgo = Math.max(0, effectiveStreak - 30);
+   619→   619→      } else {
+   620→   620→        daysAgo = 0;
+   621→   621→      }
+   622→   622→      items.push({
+   623→   623→        key: `special-${a.key}`,
+   624→   624→        name: a.name,
+   625→   625→        icon: a.icon,
+   626→   626→        color: a.color,
+   627→   627→        type: "special",
+   628→   628→        daysAgo,
+   629→   629→      });
+   630→   630→    });
+   631→   631→
+   632→   632→    // Sort by most recent (smallest daysAgo first)
+   633→   633→    return items.sort((a, b) => a.daysAgo - b.daysAgo).slice(0, 5);
+   634→   634→  }, [effectiveStreak, unlockedRanks, computedAchievements, panicEvents, journalEntries]);
+   635→   635→
+   636→   636→  // Next goals: locked achievements closest to completion (by progress %)
+   637→   637→  const nextGoals = useMemo(
+   638→   638→    () =>
+   639→   639→      computedAchievements
+   640→   640→        .filter((a) => !a.unlocked)
+   641→   641→        .sort((a, b) => b.progress - a.progress)
+   642→   642→        .slice(0, 3),
+   643→   643→    [computedAchievements]
+   644→   644→  );
+   645→   645→
+   646→   646→  // ----- Stats summary cards -----
+   647→   647→  const statsCards = [
+   648→   648→    {
+   649→   649→      label: "Badges débloqués",
+   650→   650→      value: `${unlockedRanksCount}`,
+   651→   651→      suffix: "/13",
+   652→   652→      icon: Trophy,
+   653→   653→      gradient: "linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%)",
+   654→   654→      glow: "rgba(251, 191, 36, 0.5)",
+   655→   655→    },
+   656→   656→    {
+   657→   657→      label: "Jours cumulés",
+   658→   658→      value: `${effectiveStreak}`,
+   659→   659→      suffix: "",
+   660→   660→      icon: Flame,
+   661→   661→      gradient: "linear-gradient(135deg, #FF3B30 0%, #F59E0B 100%)",
+   662→   662→      glow: "rgba(255, 59, 48, 0.5)",
+   663→   663→    },
+   664→   664→    {
+   665→   665→      label: "Série méditation",
+   666→   666→      value: `${meditationStreak}`,
+   667→   667→      suffix: "j",
+   668→   668→      icon: Wind,
+   669→   669→      gradient: "linear-gradient(135deg, #2DD4BF 0%, #2DD4BF 100%)",
+   670→   670→      glow: "rgba(45, 212, 191, 0.5)",
+   671→   671→    },
+   672→   672→  ];
+   673→   673→
+   674→   674→  return (
+   675→   675→    <div className="min-h-screen px-5 pt-12 pb-10 safe-bottom">
+   676→   676→      {/* Header */}
+   677→   677→      <motion.div
+   678→   678→        initial={{ opacity: 0, y: -10 }}
+   679→   679→        animate={{ opacity: 1, y: 0 }}
+   680→   680→        className="flex items-center justify-between mb-5"
+   681→   681→      >
+   682→   682→        <button
+   683→   683→          onClick={() => navigate("dashboard")}
+   684→   684→          className="w-10 h-10 rounded-full glass-card flex items-center justify-center active:scale-95 transition-transform focus-ring"
+   685→   685→          aria-label={t("back")}
+   686→   686→        >
+   687→   687→          <ChevronLeft size={20} className="text-white" />
+   688→   688→        </button>
+   689→   689→        <div className="text-center">
+   690→   690→          <h1 className="text-lg font-extrabold font-[family-name:var(--font-poppins)] tracking-tight shimmer-text">
+   691→   691→            {t("achievementsHeaderTitle")}
+   692→   692→          </h1>
+   693→   693→          <p className="text-white/40 text-[11px]">{t("achievementsYourExploits")}</p>
+   694→   694→        </div>
+   695→   695→        <div className="w-10 h-10 rounded-full glass-card flex items-center justify-center">
+   696→   696→          <Trophy size={18} className="text-[#FBBF24]" />
+   697→   697→        </div>
+   698→   698→      </motion.div>
+   699→   699→
+   700→   700→      <motion.div
+   701→   701→        variants={containerVariants}
+   702→   702→        initial="hidden"
+   703→   703→        animate="visible"
+   704→   704→        className="space-y-5"
+   705→   705→      >
+   706→   706→        {/* ====== SECTION 1: Premium Hero Card (Task 13-d) ====== */}
+   707→   707→        <motion.div variants={itemVariants}>
+   708→   708→          <TiltCard
+   709→   709→            className="rounded-2xl gradient-border-card p-5 overflow-hidden"
+   710→   710→            maxTilt={8}
+   711→   711→            scale={1.01}
+   712→   712→          >
+   713→   713→            {/* Aurora mesh background layer */}
+   714→   714→            <div
+   715→   715→              aria-hidden
+   716→   716→              className="absolute inset-0 mesh-bg-aurora opacity-70 pointer-events-none"
+   717→   717→            />
+   718→   718→            {/* Floating decorative icons */}
+   719→   719→            <Trophy
+   720→   720→              className="absolute top-3 right-4 text-[#FBBF24] float pointer-events-none"
+   721→   721→              size={28}
+   722→   722→              strokeWidth={1.5}
+   723→   723→              aria-hidden
+   724→   724→              style={{ opacity: 0.15 }}
+   725→   725→            />
+   726→   726→            <Star
+   727→   727→              className="absolute bottom-8 left-3 text-[#F59E0B] float-slow pointer-events-none"
+   728→   728→              size={20}
+   729→   729→              strokeWidth={1.5}
+   730→   730→              aria-hidden
+   731→   731→              style={{ opacity: 0.15 }}
+   732→   732→            />
+   733→   733→            <Award
+   734→   734→              className="absolute top-1/2 right-10 text-[#C084FC] float pointer-events-none"
+   735→   735→              size={22}
+   736→   736→              strokeWidth={1.5}
+   737→   737→              aria-hidden
+   738→   738→              style={{ opacity: 0.15 }}
+   739→   739→            />
+   740→   740→
+   741→   741→            <div className="relative z-10">
+   742→   742→              {/* Progress ring + count */}
+   743→   743→              <div className="flex items-center gap-4 mb-4">
+   744→   744→                <ProgressRing percent={unlockedPercent} color={currentRank.color} />
+   745→   745→                <div className="flex-1 min-w-0">
+   746→   746→                  <p className="text-white/55 text-[9px] uppercase tracking-[0.16em] mb-1">
+   747→   747→                    Achievements débloqués
+   748→   748→                  </p>
+   749→   749→                  <p className="font-[family-name:var(--font-poppins)] text-2xl font-extrabold leading-none mb-1.5">
+   750→   750→                    <span className="shimmer-text">{totalUnlocked}</span>
+   751→   751→                    <span className="text-white/40 text-base font-bold ml-1">
+   752→   752→                      / {totalAchievements}
+   753→   753→                    </span>
+   754→   754→                  </p>
+   755→   755→                  <p className="text-white/55 text-[11px] leading-tight">
+   756→   756→                    Rang actuel :{" "}
+   757→   757→                    <span
+   758→   758→                      style={{ color: currentRank.color }}
+   759→   759→                      className="font-semibold inline-flex items-center gap-1 align-middle"
+   760→   760→                    >
+   761→   761→                      <ArtifactIcon artifactKey={currentRank.key} size={14} glow={true} />
+   762→   762→                      {t(currentRank.nameKey)}
+   763→   763→                    </span>
+   764→   764→                  </p>
+   765→   765→                </div>
+   766→   766→              </div>
+   767→   767→
+   768→   768→              {/* Stats grid */}
+   769→   769→              <div className="grid grid-cols-3 gap-2.5">
+   770→   770→                {statsCards.map((stat, idx) => {
+   771→   771→                  const Icon = stat.icon;
+   772→   772→                  return (
+   773→   773→                    <motion.div
+   774→   774→                      key={stat.label}
+   775→   775→                      initial={{ opacity: 0, scale: 0.85 }}
+   776→   776→                      animate={{ opacity: 1, scale: 1 }}
+   777→   777→                      transition={{
+   778→   778→                        delay: 0.1 + idx * 0.08,
+   779→   779→                        type: "spring",
+   780→   780→                        stiffness: 260,
+   781→   781→                        damping: 18,
+   782→   782→                      }}
+   783→   783→                      className="glass-card p-2.5 flex flex-col items-center text-center relative overflow-hidden"
+   784→   784→                      style={{ boxShadow: `0 0 18px ${stat.glow}` }}
+   785→   785→                    >
+   786→   786→                      <div
+   787→   787→                        className="w-8 h-8 rounded-xl flex items-center justify-center mb-1.5"
+   788→   788→                        style={{ background: stat.gradient }}
+   789→   789→                      >
+   790→   790→                        <Icon size={14} className="text-white" />
+   791→   791→                      </div>
+   792→   792→                      <p className="text-base font-extrabold text-white font-[family-name:var(--font-poppins)] leading-none">
+   793→   793→                        {stat.value}
+   794→   794→                        <span className="text-white/50 text-[10px] font-medium ml-0.5">
+   795→   795→                          {stat.suffix}
+   796→   796→                        </span>
+   797→   797→                      </p>
+   798→   798→                      <p className="text-white/55 text-[8.5px] mt-1 leading-tight">
+   799→   799→                        {stat.label}
+   800→   800→                      </p>
+   801→   801→                    </motion.div>
+   802→   802→                  );
+   803→   803→                })}
+   804→   804→              </div>
+   805→   805→            </div>
+   806→   806→          </TiltCard>
+   807→   807→        </motion.div>
+   808→   808→
+   809→   809→        {/* ====== SECTION 2: Rank Progress Timeline ====== */}
+   810→   810→        <motion.div variants={itemVariants} className="glass-card p-4">
+   811→   811→          <div className="flex items-center gap-2 mb-4">
+   812→   812→            <Award size={14} className="text-[#FBBF24]" />
+   813→   813→            <h2 className="text-xs font-bold text-white/80 uppercase tracking-[0.12em]">
+   814→   814→              Parcours des rangs
+   815→   815→            </h2>
+   816→   816→          </div>
+   817→   817→
+   818→   818→          <div className="overflow-x-auto no-scrollbar -mx-1 px-1 pb-2">
+   819→   819→            <div className="flex items-start gap-0 min-w-max">
+   820→   820→              {PARCOURS_RANKS.map((rank, idx) => (
+   821→   821→                <RankTimelineNode
+   822→   822→                  key={rank.key}
+   823→   823→                  rank={rank}
+   824→   824→                  isUnlocked={
+   825→   825→                    effectiveStreak >= rank.requiredDays ||
+   826→   826→                    unlockedRanks.includes(rank.key)
+   827→   827→                  }
+   828→   828→                  isCurrent={rank.key === currentRank.key}
+   829→   829→                  isLast={idx === PARCOURS_RANKS.length - 1}
+   830→   830→                  nextUnlocked={
+   831→   831→                    idx < PARCOURS_RANKS.length - 1
+   832→   832→                      ? effectiveStreak >= PARCOURS_RANKS[idx + 1].requiredDays ||
+   833→   833→                        unlockedRanks.includes(PARCOURS_RANKS[idx + 1].key)
+   834→   834→                      : false
+   835→   835→                  }
+   836→   836→                />
+   837→   837→              ))}
+   838→   838→            </div>
+   839→   839→          </div>
+   840→   840→
+   841→   841→          <p className="text-white/40 text-[10px] mt-2 text-center">
+   842→   842→            Glisse pour explorer les 13 rangs • Tu es à{" "}
+   843→   843→            <span className="text-white font-semibold">{t(currentRank.nameKey)}</span>
+   844→   844→          </p>
+   845→   845→        </motion.div>
+   846→   846→
+   847→   847→        {/* ====== SECTION 3: Special Achievements Grid (Task 13-d) ====== */}
+   848→   848→        <motion.div variants={itemVariants}>
+   849→   849→          <div className="flex items-center justify-between mb-3 px-1">
+   850→   850→            <div className="flex items-center gap-2">
+   851→   851→              <Sparkles size={14} className="text-[#C084FC]" />
+   852→   852→              <h2 className="text-xs font-bold text-white/80 uppercase tracking-[0.12em]">
+   853→   853→                Exploits spéciaux
+   854→   854→              </h2>
+   855→   855→            </div>
+   856→   856→            <span className="text-[10px] text-white/50">
+   857→   857→              {unlockedAchievements.length}/{SPECIAL_ACHIEVEMENTS.length}
+   858→   858→            </span>
+   859→   859→          </div>
+   860→   860→
+   861→   861→          {/* Tier filter tabs */}
+   862→   862→          <div className="overflow-x-auto no-scrollbar -mx-1 px-1 pb-3 mb-1">
+   863→   863→            <div className="flex items-center gap-2 min-w-max">
+   864→   864→              <TierTab
+   865→   865→                active={activeTier === "all"}
+   866→   866→                label="Tous"
+   867→   867→                color="#F59E0B"
+   868→   868→                count={computedAchievements.length}
+   869→   869→                onClick={() => setActiveTier("all")}
+   870→   870→              />
+   871→   871→              {(["bronze", "silver", "gold", "diamond", "legendary"] as const).map((t) => (
+   872→   872→                <TierTab
+   873→   873→                  key={t}
+   874→   874→                  active={activeTier === t}
+   875→   875→                  label={TIER_META[t].label}
+   876→   876→                  color={TIER_META[t].color}
+   877→   877→                  count={tierCounts[t]}
+   878→   878→                  onClick={() => setActiveTier(t)}
+   879→   879→                />
+   880→   880→              ))}
+   881→   881→            </div>
+   882→   882→          </div>
+   883→   883→
+   884→   884→          {/* 3D flip badges */}
+   885→   885→          <div className="grid grid-cols-3 gap-3">
+   886→   886→            {filteredAchievements.map((achv, idx) => (
+   887→   887→              <FlipBadge key={achv.key} achievement={achv} index={idx} />
+   888→   888→            ))}
+   889→   889→          </div>
+   890→   890→
+   891→   891→          {filteredAchievements.length === 0 && (
+   892→   892→            <p className="text-center text-white/40 text-[11px] py-6">
+   893→   893→              {t("achievementsNoItems")}
+   894→   894→            </p>
+   895→   895→          )}
+   896→   896→        </motion.div>
+   897→   897→
+   898→   898→        {/* ====== SECTION 4: Recent Unlocks ====== */}
+   899→   899→        {recentUnlocks.length > 0 && (
+   900→   900→          <motion.div variants={itemVariants} className="glass-card p-4">
+   901→   901→            <div className="flex items-center gap-2 mb-3">
+   902→   902→              <Calendar size={14} className="text-[#4ADE80]" />
+   903→   903→              <h2 className="text-xs font-bold text-white/80 uppercase tracking-[0.12em]">
+   904→   904→                {t("achievementsRecentUnlocks")}
+   905→   905→              </h2>
+   906→   906→            </div>
+   907→   907→
+   908→   908→            <div className="flex items-center gap-2 mb-4 p-3 rounded-2xl bg-[#4ADE80]/10 border border-[#4ADE80]/20">
+   909→   909→              <motion.div
+   910→   910→                animate={{ rotate: [0, 10, -10, 0] }}
+   911→   911→                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+   912→   912→                className="text-2xl flex-shrink-0"
+   913→   913→              >
+   914→   914→                🎉
+   915→   915→              </motion.div>
+   916→   916→              <p className="text-white/80 text-xs leading-relaxed">
+   917→   917→                <span className="text-white font-semibold">Félicitations !</span> Tu as débloqué{" "}
+   918→   918→                <span className="text-[#4ADE80] font-bold">{recentUnlocks.length}</span> réalisation
+   919→   919→                {recentUnlocks.length !== 1 ? "s" : ""} récemment.
+   920→   920→              </p>
+   921→   921→            </div>
+   922→   922→
+   923→   923→            <div className="space-y-2 max-h-72 overflow-y-auto pr-1">
+   924→   924→              {recentUnlocks.map((unlock, idx) => (
+   925→   925→                <motion.div
+   926→   926→                  key={unlock.key}
+   927→   927→                  initial={{ opacity: 0, x: -10 }}
+   928→   928→                  animate={{ opacity: 1, x: 0 }}
+   929→   929→                  transition={{ delay: 0.05 + idx * 0.05 }}
+   930→   930→                  className="flex items-center gap-3 p-2.5 rounded-xl bg-white/5"
+   931→   931→                >
+   932→   932→                  <div
+   933→   933→                    className="w-9 h-9 rounded-xl flex items-center justify-center text-lg flex-shrink-0"
+   934→   934→                    style={{
+   935→   935→                      background: `linear-gradient(135deg, ${unlock.color} 0%, ${unlock.color}99 100%)`,
+   936→   936→                      boxShadow: `0 0 12px ${unlock.color}60`,
+   937→   937→                    }}
+   938→   938→                  >
+   939→   939→                    {unlock.type === "rank"
+   940→   940→                      ? <ArtifactIcon artifactKey={unlock.icon} size={22} glow={false} />
+   941→   941→                      : unlock.icon}
+   942→   942→                  </div>
+   943→   943→                  <div className="flex-1 min-w-0">
+   944→   944→                    <p className="text-white text-xs font-semibold leading-tight">{unlock.name}</p>
+   945→   945→                    <p className="text-white/40 text-[10px] mt-0.5">
+   946→   946→                      {unlock.type === "rank" ? "Rang débloqué" : "Exploit spécial"}
+   947→   947→                    </p>
+   948→   948→                  </div>
+   949→   949→                  <span className="text-white/50 text-[10px] flex-shrink-0">
+   950→   950→                    {relativeTimeLabel(unlock.daysAgo)}
+   951→   951→                  </span>
+   952→   952→                </motion.div>
+   953→   953→              ))}
+   954→   954→            </div>
+   955→   955→          </motion.div>
+   956→   956→        )}
+   957→   957→
+   958→   958→        {/* ====== SECTION 5: Next Goals ====== */}
+   959→   959→        {nextGoals.length > 0 && (
+   960→   960→          <motion.div variants={itemVariants} className="glass-card p-4">
+   961→   961→            <div className="flex items-center gap-2 mb-3">
+   962→   962→              <TrendingUp size={14} className="text-[#F59E0B]" />
+   963→   963→              <h2 className="text-xs font-bold text-white/80 uppercase tracking-[0.12em]">
+   964→   964→                Tes prochains défis
+   965→   965→              </h2>
+   966→   966→            </div>
+   967→   967→
+   968→   968→            <div className="space-y-3">
+   969→   969→              {nextGoals.map((goal, idx) => {
+   970→   970→                const remaining = Math.max(0, goal.target - goal.current);
+   971→   971→                const remainingLabel =
+   972→   972→                  goal.target > 1000
+   973→   973→                    ? remaining.toLocaleString("fr-FR")
+   974→   974→                    : `${remaining}`;
+   975→   975→                return (
+   976→   976→                  <motion.div
+   977→   977→                    key={goal.key}
+   978→   978→                    initial={{ opacity: 0, y: 8 }}
+   979→   979→                    animate={{ opacity: 1, y: 0 }}
+   980→   980→                    transition={{ delay: 0.1 + idx * 0.07 }}
+   981→   981→                    className="flex items-center gap-3"
+   982→   982→                  >
+   983→   983→                    <div
+   984→   984→                      className="w-10 h-10 rounded-xl flex items-center justify-center text-lg flex-shrink-0 opacity-70"
+   985→   985→                      style={{
+   986→   986→                        background: `${goal.color}25`,
+   987→   987→                        border: `1px solid ${goal.color}40`,
+   988→   988→                      }}
+   989→   989→                    >
+   990→   990→                      {goal.icon}
+   991→   991→                    </div>
+   992→   992→                    <div className="flex-1 min-w-0">
+   993→   993→                      <div className="flex items-center justify-between mb-1">
+   994→   994→                        <p className="text-white text-xs font-semibold truncate">{goal.name}</p>
+   995→   995→                        <span className="text-[10px] font-mono text-white/50 ml-2">
+   996→   996→                          {goal.target > 1000
+   997→   997→                            ? `${Math.min(goal.current, goal.target).toLocaleString("fr-FR")}/${goal.target.toLocaleString("fr-FR")}`
+   998→   998→                            : `${Math.min(goal.current, goal.target)}/${goal.target}`}
+   999→   999→                        </span>
+  1000→  1000→                      </div>
+  1001→  1001→                      <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
+  1002→  1002→                        <motion.div
+  1003→  1003→                          className="h-full rounded-full"
+  1004→  1004→                          style={{ background: goal.color }}
+  1005→  1005→                          initial={{ width: 0 }}
+  1006→  1006→                          animate={{ width: `${goal.progress}%` }}
+  1007→  1007→                          transition={{ duration: 0.9, ease: "easeOut", delay: 0.15 + idx * 0.07 }}
+  1008→  1008→                        />
+  1009→  1009→                      </div>
+  1010→  1010→                      <p className="text-[10px] text-white/40 mt-1">
+  1011→  1011→                        Plus que{" "}
+  1012→  1012→                        <span className="font-semibold" style={{ color: goal.color }}>
+  1013→  1013→                          {remainingLabel}
+  1014→  1014→                        </span>
+  1015→  1015→                        ...
+  1016→  1016→                      </p>
+  1017→  1017→                    </div>
+  1018→  1018→                  </motion.div>
+  1019→  1019→                );
+  1020→  1020→              })}
+  1021→  1021→            </div>
+  1022→  1022→          </motion.div>
+  1023→  1023→        )}
+  1024→  1024→
+  1025→  1025→        {/* Footer motivation */}
+  1026→  1026→        <motion.div variants={itemVariants} className="glass-card p-4 text-center">
+  1027→  1027→          <p className="text-white/60 text-xs leading-relaxed">
+  1028→  1028→            Chaque exploit est une preuve de ta force.
+  1029→  1029→            <br />
+  1030→  1030→            <span className="text-white font-semibold">
+  1031→  1031→              Continue, ta collection grandit chaque jour.
+  1032→  1032→            </span>
+  1033→  1033→          </p>
+  1034→  1034→        </motion.div>
+  1035→  1035→      </motion.div>
+  1036→  1036→    </div>
+  1037→  1037→  );
+  1038→  1038→}
+  1039→  1039→
+  1040→  1040→// ---------------------------------------------------------------------------
+  1041→  1041→// Rank timeline node
+  1042→  1042→// ---------------------------------------------------------------------------
+  1043→  1043→
+  1044→  1044→interface RankTimelineNodeProps {
+  1045→  1045→  rank: ParcoursRank;
+  1046→  1046→  isUnlocked: boolean;
+  1047→  1047→  isCurrent: boolean;
+  1048→  1048→  isLast: boolean;
+  1049→  1049→  nextUnlocked: boolean;
+  1050→  1050→}
+  1051→  1051→
+  1052→  1052→function RankTimelineNode({
+  1053→  1053→  rank,
+  1054→  1054→  isUnlocked,
+  1055→  1055→  isCurrent,
+  1056→  1056→  isLast,
+  1057→  1057→  nextUnlocked,
+  1058→  1058→}: RankTimelineNodeProps) {
+  1059→  1059→  const t = useT();
+  1060→  1060→  return (
+  1061→  1061→    <div className="flex items-center flex-shrink-0">
+  1062→  1062→      <div className="flex flex-col items-center w-16">
+  1063→  1063→        <div className="relative">
+  1064→  1064→          {/* Pulsing aura for current rank */}
+  1065→  1065→          {isCurrent && (
+  1066→  1066→            <motion.div
+  1067→  1067→              className="absolute inset-0 rounded-full"
+  1068→  1068→              style={{ border: `2px solid ${rank.color}` }}
+  1069→  1069→              animate={{ scale: [1, 1.4], opacity: [0.7, 0] }}
+  1070→  1070→              transition={{ duration: 2.2, repeat: Infinity, ease: "easeOut" }}
+  1071→  1071→            />
+  1072→  1072→          )}
+  1073→  1073→          {isUnlocked ? (
+  1074→  1074→            <motion.div
+  1075→  1075→              className="relative w-11 h-11 rounded-full flex items-center justify-center badge-aura"
+  1076→  1076→              style={{
+  1077→  1077→                background: rank.gradient,
+  1078→  1078→                ["--aura-color" as string]: rank.glow,
+  1079→  1079→              }}
+  1080→  1080→              animate={isCurrent ? { scale: [1, 1.06, 1] } : {}}
+  1081→  1081→              transition={{ duration: 2.5, repeat: isCurrent ? Infinity : 0 }}
+  1082→  1082→            >
+  1083→  1083→              <ArtifactIcon artifactKey={rank.key} size={28} glow={true} />
+  1084→  1084→            </motion.div>
+  1085→  1085→          ) : (
+  1086→  1086→            <div className="w-11 h-11 rounded-full bg-white/5 flex items-center justify-center opacity-40">
+  1087→  1087→              <Lock size={14} className="text-white/40" />
+  1088→  1088→            </div>
+  1089→  1089→          )}
+  1090→  1090→        </div>
+  1091→  1091→        <p
+  1092→  1092→          className={`text-[9px] font-semibold mt-1.5 text-center leading-tight truncate w-full ${
+  1093→  1093→            isUnlocked ? "text-white" : "text-white/40"
+  1094→  1094→          }`}
+  1095→  1095→        >
+  1096→  1096→          {t(rank.nameKey)}
+  1097→  1097→        </p>
+  1098→  1098→        <p className={`text-[8px] mt-0.5 ${isUnlocked ? "text-white/50" : "text-white/30"}`}>
+  1099→  1099→          {rank.requiredDays}j
+  1100→  1100→        </p>
+  1101→  1101→      </div>
+  1102→  1102→
+  1103→  1103→      {/* Connecting line */}
+  1104→  1104→      {!isLast && (
+  1105→  1105→        <div className="h-0.5 w-5 -mt-7 rounded-full overflow-hidden bg-white/10">
+  1106→  1106→          <motion.div
+  1107→  1107→            className="h-full"
+  1108→  1108→            style={{
+  1109→  1109→              background:
+  1110→  1110→                isUnlocked && nextUnlocked
+  1111→  1111→                  ? "linear-gradient(90deg, #FF3B30, #F59E0B, #FBBF24)"
+  1112→  1112→                  : "rgba(255,255,255,0.1)",
+  1113→  1113→            }}
+  1114→  1114→            initial={{ width: isUnlocked && nextUnlocked ? "0%" : "100%" }}
+  1115→  1115→            animate={{ width: "100%" }}
+  1116→  1116→            transition={{ duration: 0.6, ease: "easeOut" }}
+  1117→  1117→          />
+  1118→  1118→        </div>
+  1119→  1119→      )}
+  1120→  1120→    </div>
+  1121→  1121→  );
+  1122→  1122→}
+  1123→  1123→
+  1124→  1124→export default AchievementsScreen;
+  1125→  1125→

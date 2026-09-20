@@ -312,9 +312,9 @@ function MistAmuletIcon(
     <svg {...svg}>
       <defs>
         <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#67E8F9" />
-          <stop offset="50%" stopColor="#2DD4BF" />
-          <stop offset="100%" stopColor="#0EA5E9" />
+          <stop offset="0%" stopColor="#FFD166" />
+          <stop offset="50%" stopColor="#FFB020" />
+          <stop offset="100%" stopColor="#FF9A3D" />
         </linearGradient>
         <GlowFilter glowId={glowId} glow={glow} />
       </defs>
@@ -720,8 +720,8 @@ function DiamondHeartIcon(
       <defs>
         <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#BFEEFF" />
-          <stop offset="50%" stopColor="#2DD4BF" />
-          <stop offset="100%" stopColor="#0EA5E9" />
+          <stop offset="50%" stopColor="#FFB020" />
+          <stop offset="100%" stopColor="#FF9A3D" />
         </linearGradient>
         <GlowFilter glowId={glowId} glow={glow} />
       </defs>
@@ -780,7 +780,7 @@ function EmeraldIcon(
       <defs>
         <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#BBF7D0" />
-          <stop offset="50%" stopColor="#4ADE80" />
+          <stop offset="50%" stopColor="#FFC94D" />
           <stop offset="100%" stopColor="#166534" />
         </linearGradient>
         <GlowFilter glowId={glowId} glow={glow} />
@@ -846,7 +846,7 @@ function SapphireIcon(
       <defs>
         <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#A5B4FC" />
-          <stop offset="50%" stopColor="#2DD4BF" />
+          <stop offset="50%" stopColor="#FFB020" />
           <stop offset="100%" stopColor="#1E3A8A" />
         </linearGradient>
         <GlowFilter glowId={glowId} glow={glow} />
@@ -981,7 +981,7 @@ function AmethystIcon(
       <defs>
         <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#E9D5FF" />
-          <stop offset="50%" stopColor="#C084FC" />
+          <stop offset="50%" stopColor="#FFD166" />
           <stop offset="100%" stopColor="#6B21A8" />
         </linearGradient>
         <GlowFilter glowId={glowId} glow={glow} />
@@ -995,7 +995,7 @@ function AmethystIcon(
              C34 41, 41 33, 41 24
              C41 14, 34 6, 24 6 Z"
           fill="rgba(0,0,0,0.45)"
-          stroke="rgba(192, 132, 252,0.5)"
+          stroke="rgba(255, 209, 102,0.5)"
           strokeWidth="0.8"
         />
         {/* Inner geode cavity (darker) */}
@@ -1146,12 +1146,12 @@ function StarMasteryIcon(
         <radialGradient id={gradientId} cx="50%" cy="50%" r="50%">
           <stop offset="0%" stopColor="#FFFFFF" />
           <stop offset="60%" stopColor="#E0F2FE" />
-          <stop offset="100%" stopColor="#2DD4BF" />
+          <stop offset="100%" stopColor="#FFB020" />
         </radialGradient>
         <linearGradient id={gradient2Id} x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#FFFFFF" />
-          <stop offset="50%" stopColor="#C084FC" />
-          <stop offset="100%" stopColor="#2DD4BF" />
+          <stop offset="50%" stopColor="#FFD166" />
+          <stop offset="100%" stopColor="#FFB020" />
         </linearGradient>
         <radialGradient id={radialId} cx="50%" cy="50%" r="50%">
           <stop offset="0%" stopColor="rgba(255,255,255,0.6)" />

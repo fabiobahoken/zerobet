@@ -149,7 +149,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$haptics$2e$ts_
         key: "general",
         labelKey: "chatRoomGeneralLabel",
         emoji: "💬",
-        color: "#2DD4BF",
+        color: "#FFB020",
         descKey: "chatRoomGeneralDesc"
     },
     {
@@ -176,12 +176,12 @@ const ROOM_BY_KEY = Object.fromEntries(ROOMS.map((r)=>[
     "#FF3B30",
     "#F59E0B",
     "#FBBF24",
-    "#4ADE80",
-    "#2DD4BF",
-    "#C084FC",
+    "#FFC94D",
+    "#FFB020",
+    "#FFD166",
     "#FF2D55",
-    "#2DD4BF",
-    "#30D158",
+    "#FFB020",
+    "#FF9A3D",
     "#FF6B6B"
 ];
 const NICKNAME_ADJECTIVES = [
@@ -293,7 +293,7 @@ function isPremiumPlan(plan) {
 }
 function StatusDot({ status }) {
     const t = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$i18n$2f$useT$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useT"])();
-    const color = status === "connected" ? "#4ADE80" : status === "connecting" ? "#FBBF24" : "#FF3B30";
+    const color = status === "connected" ? "#FFC94D" : status === "connecting" ? "#FBBF24" : "#FF3B30";
     const label = status === "connected" ? t("chatConnected") : status === "connecting" ? t("chatConnecting") : t("chatDisconnected");
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
         className: "inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-white/5 border border-white/10",
@@ -733,7 +733,7 @@ function NicknameSetup({ onJoin }) {
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                        className: isValid ? "text-[#4ADE80]" : "",
+                        className: isValid ? "text-[#FFC94D]" : "",
                         children: [
                             name.trim().length,
                             "/",
@@ -1260,7 +1260,7 @@ function CommunityChatScreen() {
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "px-4 pt-3 pb-2 sticky top-[68px] z-20 bg-[#070B0E]/80 backdrop-blur-md",
+                className: "px-4 pt-3 pb-2 sticky top-[68px] z-20 bg-[#0B0704]/80 backdrop-blur-md",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "flex items-center gap-2 overflow-x-auto no-scrollbar pb-1",
@@ -1491,7 +1491,7 @@ function CommunityChatScreen() {
                                 children: historyHasMore ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                     onClick: loadOlder,
                                     disabled: loadingOlder,
-                                    className: "inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full glass-card text-[11px] font-medium text-[#5EEAD4] hover:text-white hover:border-[#2DD4BF]/40 transition-colors focus-ring disabled:opacity-50 active:scale-95",
+                                    className: "inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full glass-card text-[11px] font-medium text-[#5EEAD4] hover:text-white hover:border-[#FFB020]/40 transition-colors focus-ring disabled:opacity-50 active:scale-95",
                                     children: [
                                         loadingOlder ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$loader$2d$circle$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Loader2$3e$__["Loader2"], {
                                             size: 12,
@@ -1667,7 +1667,7 @@ function CommunityChatScreen() {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$info$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Info$3e$__["Info"], {
                                         size: 13,
-                                        className: "text-[#2DD4BF]"
+                                        className: "text-[#FFB020]"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/CommunityChatScreen.tsx",
                                         lineNumber: 1273,
@@ -1791,7 +1791,7 @@ function CommunityChatScreen() {
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "sticky bottom-0 px-4 pb-[calc(env(safe-area-inset-bottom)+12px)] pt-2 z-20 bg-[#070B0E]/85 backdrop-blur-md",
+                className: "sticky bottom-0 px-4 pb-[calc(env(safe-area-inset-bottom)+12px)] pt-2 z-20 bg-[#0B0704]/85 backdrop-blur-md",
                 children: [
                     !isPremium && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "flex items-center justify-between mb-1.5 px-2",
@@ -1876,7 +1876,7 @@ function CommunityChatScreen() {
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$wifi$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Wifi$3e$__["Wifi"], {
                                             size: 10,
-                                            className: "text-[#4ADE80]"
+                                            className: "text-[#FFC94D]"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/screens/CommunityChatScreen.tsx",
                                             lineNumber: 1370,
@@ -1964,7 +1964,7 @@ function CommunityChatScreen() {
 function Header({ onBack, status, activeUsers }) {
     const t = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$i18n$2f$useT$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useT"])();
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("header", {
-        className: "sticky top-0 z-30 px-4 pt-12 pb-3 bg-[#070B0E]/85 backdrop-blur-md border-b border-white/5",
+        className: "sticky top-0 z-30 px-4 pt-12 pb-3 bg-[#0B0704]/85 backdrop-blur-md border-b border-white/5",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "flex items-center justify-between gap-3",
             children: [

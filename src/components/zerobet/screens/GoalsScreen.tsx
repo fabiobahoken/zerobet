@@ -51,8 +51,8 @@ const CATEGORY_META: Record<
   health: {
     labelKey: "goalCategoryHealth",
     icon: HeartPulse,
-    color: "#4ADE80",
-    gradient: "from-emerald-500/20 to-emerald-700/10",
+    color: "#FFC94D",
+    gradient: "from-orange-500/20 to-orange-700/10",
   },
   finance: {
     labelKey: "goalCategoryFinance",
@@ -69,14 +69,14 @@ const CATEGORY_META: Record<
   career: {
     labelKey: "goalCategoryCareer",
     icon: Briefcase,
-    color: "#2DD4BF",
-    gradient: "from-cyan-500/20 to-cyan-700/10",
+    color: "#FFB020",
+    gradient: "from-amber-500/20 to-amber-700/10",
   },
   personal: {
     labelKey: "goalCategoryPersonal",
     icon: Sparkles,
-    color: "#C084FC",
-    gradient: "from-purple-500/20 to-purple-700/10",
+    color: "#FFD166",
+    gradient: "from-orange-500/20 to-orange-700/10",
   },
   spiritual: {
     labelKey: "goalCategorySpiritual",
@@ -582,7 +582,7 @@ export function GoalsScreen() {
   return (
     <div className="min-h-screen px-5 pt-12 pb-8">
       {/* ---------- Header ---------- */}
-      <div className="flex items-center gap-3 mb-6 sticky top-0 z-30 -mx-5 px-5 py-2 backdrop-blur-md bg-[#070B0E]/60">
+      <div className="flex items-center gap-3 mb-6 sticky top-0 z-30 -mx-5 px-5 py-2 backdrop-blur-md bg-[#0B0704]/60">
         <button
           onClick={() => {
             sound.playClick();
@@ -656,7 +656,7 @@ export function GoalsScreen() {
               </div>
             </div>
             <div className="text-center">
-              <div className="text-xl font-bold text-[#4ADE80] font-[family-name:var(--font-poppins)]">
+              <div className="text-xl font-bold text-[#FFC94D] font-[family-name:var(--font-poppins)]">
                 <AnimatedNumber value={stats.completed} />
               </div>
               <div className="text-[10px] text-white/50 uppercase tracking-wide">
@@ -757,7 +757,7 @@ export function GoalsScreen() {
       <div className="relative mb-5">
         <div className="glass-card-strong p-5">
           <div className="flex items-center gap-2 mb-1">
-            <Sparkles size={16} className="text-[#C084FC]" />
+            <Sparkles size={16} className="text-[#FFD166]" />
             <h3 className="text-white font-bold font-[family-name:var(--font-poppins)] text-sm">
               {t("goalsSuggested")}
             </h3>
@@ -768,7 +768,7 @@ export function GoalsScreen() {
 
           {!isPremium ? (
             <div className="relative rounded-2xl border border-white/10 bg-white/5 p-4 overflow-hidden">
-              <div className="absolute inset-0 backdrop-blur-sm bg-[#070B0E]/60 flex flex-col items-center justify-center gap-3 z-10">
+              <div className="absolute inset-0 backdrop-blur-sm bg-[#0B0704]/60 flex flex-col items-center justify-center gap-3 z-10">
                 <div className="w-12 h-12 rounded-full bg-[#F59E0B]/15 flex items-center justify-center">
                   <Lock size={20} className="text-[#F59E0B]" />
                 </div>
@@ -1185,7 +1185,7 @@ export function GoalsScreen() {
                           whileTap={{ scale: 0.85 }}
                           className={`w-6 h-6 rounded-md flex items-center justify-center shrink-0 ${
                             m.completed
-                              ? "bg-[#4ADE80] border-[#4ADE80]"
+                              ? "bg-[#FFC94D] border-[#FFC94D]"
                               : "bg-transparent border border-white/30"
                           }`}
                         >
@@ -1582,7 +1582,7 @@ function GoalCard({
               onClick={() => onToggle(m.id)}
               className={`w-5 h-5 rounded flex items-center justify-center shrink-0 transition-colors ${
                 m.completed
-                  ? "bg-[#4ADE80] border-[#4ADE80]"
+                  ? "bg-[#FFC94D] border-[#FFC94D]"
                   : "bg-transparent border border-white/30 hover:border-white/50"
               }`}
               aria-label={`${t("goalsEditButton")} ${m.title}`}

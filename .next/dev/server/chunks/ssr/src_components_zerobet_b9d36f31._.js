@@ -45,8 +45,8 @@ const QUESTS = [
         descKey: "dailyQuestsJournalDesc",
         reward: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$store$2f$zerobet$2d$store$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["QUEST_REWARDS"].journal,
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$book$2d$open$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__BookOpen$3e$__["BookOpen"],
-        color: "#2DD4BF",
-        bg: "rgba(45, 212, 191,0.15)"
+        color: "#FFB020",
+        bg: "rgba(255,176,32,0.15)"
     },
     {
         id: "meditation",
@@ -54,8 +54,8 @@ const QUESTS = [
         descKey: "dailyQuestsMeditationDesc",
         reward: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$store$2f$zerobet$2d$store$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["QUEST_REWARDS"].meditation,
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$wind$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Wind$3e$__["Wind"],
-        color: "#4ADE80",
-        bg: "rgba(74,222,128,0.15)"
+        color: "#FFC94D",
+        bg: "rgba(255,201,77,0.15)"
     },
     {
         id: "streak",
@@ -72,8 +72,8 @@ const QUESTS = [
         descKey: "dailyQuestsArticleDesc",
         reward: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$store$2f$zerobet$2d$store$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["QUEST_REWARDS"].article,
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$book$2d$text$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__BookText$3e$__["BookText"],
-        color: "#C084FC",
-        bg: "rgba(192, 132, 252,0.15)"
+        color: "#FFD166",
+        bg: "rgba(255, 209, 102,0.15)"
     }
 ];
 const TOTAL_DAILY_XP = QUESTS.reduce((sum, q)=>sum + q.reward, 0);
@@ -255,7 +255,7 @@ function DailyQuests({ compact = false, showHeader = true }) {
                         transition: {
                             delay: idx * 0.05
                         },
-                        className: `glass-card p-3.5 relative overflow-hidden transition-all duration-300 ${isDone ? "border border-[#4ADE80]/40" : ""}`,
+                        className: `glass-card p-3.5 relative overflow-hidden transition-all duration-300 ${isDone ? "border border-[#FFC94D]/40" : ""}`,
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AnimatePresence"], {
                                 children: isDone && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -270,7 +270,7 @@ function DailyQuests({ compact = false, showHeader = true }) {
                                     },
                                     className: "absolute -top-8 -right-8 w-32 h-32 rounded-full blur-3xl",
                                     style: {
-                                        background: "rgba(74,222,128,0.18)"
+                                        background: "rgba(255,201,77,0.18)"
                                     }
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/components/DailyQuests.tsx",
@@ -288,7 +288,7 @@ function DailyQuests({ compact = false, showHeader = true }) {
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "w-11 h-11 rounded-2xl flex items-center justify-center flex-shrink-0",
                                         style: {
-                                            background: isDone ? "rgba(74,222,128,0.18)" : quest.bg
+                                            background: isDone ? "rgba(255,201,77,0.18)" : quest.bg
                                         },
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AnimatePresence"], {
                                             mode: "wait",
@@ -311,7 +311,7 @@ function DailyQuests({ compact = false, showHeader = true }) {
                                                 },
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__["Check"], {
                                                     size: 20,
-                                                    className: "text-[#4ADE80]",
+                                                    className: "text-[#FFC94D]",
                                                     strokeWidth: 3
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/zerobet/components/DailyQuests.tsx",
@@ -403,7 +403,7 @@ function DailyQuests({ compact = false, showHeader = true }) {
                                                 scale: 1,
                                                 opacity: 1
                                             },
-                                            className: "inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full text-[11px] font-bold text-[#4ADE80] bg-[#4ADE80]/15",
+                                            className: "inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full text-[11px] font-bold text-[#FFC94D] bg-[#FFC94D]/15",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__["Check"], {
                                                     size: 11,
@@ -515,6 +515,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/users.js [app-ssr] (ecmascript) <export default as Users>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$crown$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Crown$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/crown.js [app-ssr] (ecmascript) <export default as Crown>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$medal$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Medal$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/medal.js [app-ssr] (ecmascript) <export default as Medal>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$star$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Star$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/star.js [app-ssr] (ecmascript) <export default as Star>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$flame$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Flame$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/flame.js [app-ssr] (ecmascript) <export default as Flame>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/x.js [app-ssr] (ecmascript) <export default as X>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/check.js [app-ssr] (ecmascript) <export default as Check>");
@@ -522,6 +523,9 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$history$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__History$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/history.js [app-ssr] (ecmascript) <export default as History>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$right$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronRight$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/chevron-right.js [app-ssr] (ecmascript) <export default as ChevronRight>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$target$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Target$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/target.js [app-ssr] (ecmascript) <export default as Target>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sprout$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Sprout$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/sprout.js [app-ssr] (ecmascript) <export default as Sprout>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$swords$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Swords$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/swords.js [app-ssr] (ecmascript) <export default as Swords>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Shield$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/shield.js [app-ssr] (ecmascript) <export default as Shield>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$store$2f$zerobet$2d$store$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/store/zerobet-store.ts [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$i18n$2f$useT$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/i18n/useT.ts [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$DailyQuests$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/zerobet/components/DailyQuests.tsx [app-ssr] (ecmascript)");
@@ -558,8 +562,8 @@ const WEEKLY_CHALLENGES = [
         description: "Mets de l'argent de côté cette semaine",
         reward: 300,
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$wallet$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Wallet$3e$__["Wallet"],
-        color: "#4ADE80",
-        bg: "rgba(74,222,128,0.15)",
+        color: "#FFC94D",
+        bg: "rgba(255,201,77,0.15)",
         current: 6500,
         target: 10000,
         unit: "FCFA"
@@ -653,18 +657,51 @@ const LEADERBOARD_SEED = [
 /* ========================================================================
    Helpers
    ======================================================================== */ const TIER_GRADIENTS = {
-    Novice: "linear-gradient(135deg, #9CA3AF 0%, #2DD4BF 100%)",
-    Apprenti: "linear-gradient(135deg, #2DD4BF 0%, #4ADE80 100%)",
+    Novice: "linear-gradient(135deg, #9CA3AF 0%, #FFB020 100%)",
+    Apprenti: "linear-gradient(135deg, #FFB020 0%, #FFC94D 100%)",
     Guerrier: "linear-gradient(135deg, #F59E0B 0%, #FF3B30 100%)",
-    Champion: "linear-gradient(135deg, #FF3B30 0%, #C084FC 100%)",
-    Légende: "linear-gradient(135deg, #FBBF24 0%, #FF3B30 50%, #C084FC 100%)"
+    Champion: "linear-gradient(135deg, #FF3B30 0%, #FFD166 100%)",
+    Légende: "linear-gradient(135deg, #FBBF24 0%, #FF3B30 50%, #FFD166 100%)"
 };
-const TIER_EMOJIS = {
-    Novice: "🌱",
-    Apprenti: "⚔️",
-    Guerrier: "🛡️",
-    Champion: "🏆",
-    Légende: "👑"
+const TIER_ICONS = {
+    Novice: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sprout$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Sprout$3e$__["Sprout"],
+    Apprenti: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$swords$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Swords$3e$__["Swords"],
+    Guerrier: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Shield$3e$__["Shield"],
+    Champion: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trophy$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Trophy$3e$__["Trophy"],
+    Légende: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$crown$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Crown$3e$__["Crown"]
+};
+const TIER_ICON_COLORS = {
+    Novice: "#FFC94D",
+    Apprenti: "#FF9A3D",
+    Guerrier: "#FF8A00",
+    Champion: "#FF6B00",
+    Légende: "#FFD700"
+};
+/** Leaderboard honours — crafted Lucide medals instead of emoji. */ const BADGE_ICONS = {
+    "👑": {
+        Icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$crown$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Crown$3e$__["Crown"],
+        color: "#FFD700"
+    },
+    "🥇": {
+        Icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$medal$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Medal$3e$__["Medal"],
+        color: "#FFD700"
+    },
+    "🥈": {
+        Icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$medal$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Medal$3e$__["Medal"],
+        color: "#C0C0C0"
+    },
+    "🥉": {
+        Icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$award$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Award$3e$__["Award"],
+        color: "#CD7F32"
+    },
+    "⭐": {
+        Icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$star$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Star$3e$__["Star"],
+        color: "#FFC94D"
+    },
+    "🌱": {
+        Icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sprout$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Sprout$3e$__["Sprout"],
+        color: "#FFC94D"
+    }
 };
 function formatRelativeTime(iso) {
     const now = Date.now();
@@ -694,12 +731,12 @@ function getSourceIcon(source) {
         case "journal":
             return {
                 icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$book$2d$open$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__BookOpen$3e$__["BookOpen"],
-                color: "#2DD4BF"
+                color: "#FFB020"
             };
         case "méditation":
             return {
                 icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$zap$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Zap$3e$__["Zap"],
-                color: "#4ADE80"
+                color: "#FFC94D"
             };
         case "sans pari":
             return {
@@ -709,7 +746,7 @@ function getSourceIcon(source) {
         case "article":
             return {
                 icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$book$2d$open$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__BookOpen$3e$__["BookOpen"],
-                color: "#C084FC"
+                color: "#FFD166"
             };
         default:
             return {
@@ -725,10 +762,10 @@ function getSourceIcon(source) {
     const colors = [
         "#FF3B30",
         "#F59E0B",
-        "#4ADE80",
-        "#2DD4BF",
+        "#FFC94D",
+        "#FFB020",
         "#FBBF24",
-        "#C084FC"
+        "#FFD166"
     ];
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "absolute inset-0 pointer-events-none overflow-hidden",
@@ -756,7 +793,7 @@ function getSourceIcon(source) {
                     }
                 }, i, false, {
                     fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                    lineNumber: 188,
+                    lineNumber: 210,
                     columnNumber: 11
                 }, this);
             }),
@@ -769,13 +806,13 @@ function getSourceIcon(source) {
       `
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                lineNumber: 204,
+                lineNumber: 226,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-        lineNumber: 179,
+        lineNumber: 201,
         columnNumber: 5
     }, this);
 }
@@ -809,7 +846,7 @@ function getSourceIcon(source) {
                     className: "text-[#FBBF24]"
                 }, void 0, false, {
                     fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                    lineNumber: 243,
+                    lineNumber: 265,
                     columnNumber: 15
                 }, this),
                 duration: 4000
@@ -828,7 +865,8 @@ function getSourceIcon(source) {
     ]);
     const progress = Math.max(0, Math.min(100, levelInfo.progress));
     const tierGradient = TIER_GRADIENTS[levelInfo.tier];
-    const tierEmoji = TIER_EMOJIS[levelInfo.tier];
+    const TierIcon = TIER_ICONS[levelInfo.tier];
+    const tierIconColor = TIER_ICON_COLORS[levelInfo.tier];
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
         initial: {
             opacity: 0,
@@ -844,7 +882,7 @@ function getSourceIcon(source) {
                 show: showConfetti
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                lineNumber: 266,
+                lineNumber: 289,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -854,14 +892,14 @@ function getSourceIcon(source) {
                 }
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                lineNumber: 269,
+                lineNumber: 292,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "absolute -bottom-12 -left-12 w-32 h-32 rounded-full bg-[#F59E0B]/15 blur-3xl"
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                lineNumber: 273,
+                lineNumber: 296,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -878,7 +916,7 @@ function getSourceIcon(source) {
                                         className: "text-[#FBBF24]"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                        lineNumber: 279,
+                                        lineNumber: 302,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -886,13 +924,13 @@ function getSourceIcon(source) {
                                         children: "Niveau & XP"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                        lineNumber: 280,
+                                        lineNumber: 303,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                lineNumber: 278,
+                                lineNumber: 301,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -901,19 +939,26 @@ function getSourceIcon(source) {
                                     background: tierGradient
                                 },
                                 children: [
-                                    tierEmoji,
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(TierIcon, {
+                                        size: 11,
+                                        strokeWidth: 2.4
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
+                                        lineNumber: 311,
+                                        columnNumber: 13
+                                    }, this),
                                     " ",
                                     levelInfo.tier
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                lineNumber: 284,
+                                lineNumber: 307,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                        lineNumber: 277,
+                        lineNumber: 300,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -926,7 +971,7 @@ function getSourceIcon(source) {
                                         children: "Niveau actuel"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                        lineNumber: 295,
+                                        lineNumber: 318,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -959,13 +1004,13 @@ function getSourceIcon(source) {
                                         children: levelInfo.level
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                        lineNumber: 296,
+                                        lineNumber: 319,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                lineNumber: 294,
+                                lineNumber: 317,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -987,17 +1032,32 @@ function getSourceIcon(source) {
                                     repeat: Infinity,
                                     ease: "easeInOut"
                                 },
-                                className: "text-6xl",
-                                children: tierEmoji
+                                className: "w-20 h-20 rounded-3xl flex items-center justify-center",
+                                style: {
+                                    background: `radial-gradient(circle at 35% 30%, ${tierIconColor}30, transparent 70%)`,
+                                    boxShadow: `0 0 34px ${tierIconColor}35, inset 0 0 22px ${tierIconColor}18`
+                                },
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(TierIcon, {
+                                    size: 44,
+                                    strokeWidth: 1.9,
+                                    style: {
+                                        color: tierIconColor,
+                                        filter: `drop-shadow(0 0 10px ${tierIconColor}90)`
+                                    }
+                                }, void 0, false, {
+                                    fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
+                                    lineNumber: 346,
+                                    columnNumber: 13
+                                }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                lineNumber: 314,
+                                lineNumber: 337,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                        lineNumber: 293,
+                        lineNumber: 316,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1011,7 +1071,7 @@ function getSourceIcon(source) {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                lineNumber: 325,
+                                lineNumber: 359,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1022,13 +1082,13 @@ function getSourceIcon(source) {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                lineNumber: 328,
+                                lineNumber: 362,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                        lineNumber: 324,
+                        lineNumber: 358,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1057,17 +1117,17 @@ function getSourceIcon(source) {
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                lineNumber: 341,
+                                lineNumber: 375,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                            lineNumber: 333,
+                            lineNumber: 367,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                        lineNumber: 332,
+                        lineNumber: 366,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1083,7 +1143,7 @@ function getSourceIcon(source) {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                lineNumber: 354,
+                                lineNumber: 388,
                                 columnNumber: 11
                             }, this),
                             " ",
@@ -1092,7 +1152,7 @@ function getSourceIcon(source) {
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                        lineNumber: 352,
+                        lineNumber: 386,
                         columnNumber: 9
                     }, this),
                     streakDays >= 7 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1103,7 +1163,7 @@ function getSourceIcon(source) {
                                 className: "text-[#FBBF24]"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                lineNumber: 363,
+                                lineNumber: 397,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1114,25 +1174,25 @@ function getSourceIcon(source) {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                lineNumber: 364,
+                                lineNumber: 398,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                        lineNumber: 362,
+                        lineNumber: 396,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                lineNumber: 275,
+                lineNumber: 298,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-        lineNumber: 261,
+        lineNumber: 284,
         columnNumber: 5
     }, this);
 }
@@ -1153,7 +1213,7 @@ function getSourceIcon(source) {
                                 className: "text-[#FF3B30]"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                lineNumber: 383,
+                                lineNumber: 417,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -1161,13 +1221,13 @@ function getSourceIcon(source) {
                                 children: "Défis hebdomadaires"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                lineNumber: 384,
+                                lineNumber: 418,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                        lineNumber: 382,
+                        lineNumber: 416,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1175,13 +1235,13 @@ function getSourceIcon(source) {
                         children: "Réinitialisé chaque lundi"
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                        lineNumber: 388,
+                        lineNumber: 422,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                lineNumber: 381,
+                lineNumber: 415,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1202,7 +1262,7 @@ function getSourceIcon(source) {
                         transition: {
                             delay: idx * 0.06
                         },
-                        className: `glass-card p-4 relative overflow-hidden ${isComplete ? "border border-[#4ADE80]/40" : ""}`,
+                        className: `glass-card p-4 relative overflow-hidden ${isComplete ? "border border-[#FFC94D]/40" : ""}`,
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "absolute -top-8 -right-8 w-28 h-28 rounded-full blur-3xl opacity-40",
@@ -1211,7 +1271,7 @@ function getSourceIcon(source) {
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                lineNumber: 405,
+                                lineNumber: 439,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1229,12 +1289,12 @@ function getSourceIcon(source) {
                                             }
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                            lineNumber: 414,
+                                            lineNumber: 448,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                        lineNumber: 410,
+                                        lineNumber: 444,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1245,7 +1305,7 @@ function getSourceIcon(source) {
                                                 children: challenge.title
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                                lineNumber: 417,
+                                                lineNumber: 451,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1253,13 +1313,13 @@ function getSourceIcon(source) {
                                                 children: challenge.description
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                                lineNumber: 420,
+                                                lineNumber: 454,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                        lineNumber: 416,
+                                        lineNumber: 450,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1273,7 +1333,7 @@ function getSourceIcon(source) {
                                                 size: 10
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                                lineNumber: 429,
+                                                lineNumber: 463,
                                                 columnNumber: 19
                                             }, this),
                                             "+",
@@ -1281,13 +1341,13 @@ function getSourceIcon(source) {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                        lineNumber: 422,
+                                        lineNumber: 456,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                lineNumber: 409,
+                                lineNumber: 443,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1308,7 +1368,7 @@ function getSourceIcon(source) {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                                lineNumber: 435,
+                                                lineNumber: 469,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1319,13 +1379,13 @@ function getSourceIcon(source) {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                                lineNumber: 439,
+                                                lineNumber: 473,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                        lineNumber: 434,
+                                        lineNumber: 468,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1333,7 +1393,7 @@ function getSourceIcon(source) {
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
                                             className: "h-full rounded-full",
                                             style: {
-                                                background: isComplete ? "linear-gradient(90deg, #4ADE80 0%, #2DD4BF 100%)" : `linear-gradient(90deg, ${challenge.color} 0%, ${challenge.color}99 100%)`
+                                                background: isComplete ? "linear-gradient(90deg, #FFC94D 0%, #FFB020 100%)" : `linear-gradient(90deg, ${challenge.color} 0%, ${challenge.color}99 100%)`
                                             },
                                             initial: {
                                                 width: 0
@@ -1347,36 +1407,36 @@ function getSourceIcon(source) {
                                             }
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                            lineNumber: 442,
+                                            lineNumber: 476,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                        lineNumber: 441,
+                                        lineNumber: 475,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                lineNumber: 433,
+                                lineNumber: 467,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, challenge.id, true, {
                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                        lineNumber: 396,
+                        lineNumber: 430,
                         columnNumber: 13
                     }, this);
                 })
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                lineNumber: 390,
+                lineNumber: 424,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-        lineNumber: 380,
+        lineNumber: 414,
         columnNumber: 5
     }, this);
 }
@@ -1397,7 +1457,7 @@ function getSourceIcon(source) {
         label: "+20% XP",
         min: 7,
         max: 13,
-        color: "#4ADE80"
+        color: "#FFC94D"
     },
     {
         range: "14 - 29 jours",
@@ -1421,7 +1481,7 @@ function getSourceIcon(source) {
         label: "Triple XP",
         min: 90,
         max: Infinity,
-        color: "#C084FC"
+        color: "#FFD166"
     }
 ];
 function StreakMultipliers() {
@@ -1440,7 +1500,7 @@ function StreakMultipliers() {
                             className: "text-[#F59E0B]"
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                            lineNumber: 483,
+                            lineNumber: 517,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -1448,18 +1508,18 @@ function StreakMultipliers() {
                             children: "Multiplicateurs de série"
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                            lineNumber: 484,
+                            lineNumber: 518,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                    lineNumber: 482,
+                    lineNumber: 516,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                lineNumber: 481,
+                lineNumber: 515,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -1485,7 +1545,7 @@ function StreakMultipliers() {
                         }
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                        lineNumber: 501,
+                        lineNumber: 535,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1498,7 +1558,7 @@ function StreakMultipliers() {
                                         children: "Ton multiplicateur"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                        lineNumber: 507,
+                                        lineNumber: 541,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1527,12 +1587,12 @@ function StreakMultipliers() {
                                             ]
                                         }, currentTier.multiplier, true, {
                                             fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                            lineNumber: 511,
+                                            lineNumber: 545,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                        lineNumber: 510,
+                                        lineNumber: 544,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1540,13 +1600,13 @@ function StreakMultipliers() {
                                         children: currentTier.label
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                        lineNumber: 522,
+                                        lineNumber: 556,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                lineNumber: 506,
+                                lineNumber: 540,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -1568,17 +1628,32 @@ function StreakMultipliers() {
                                     repeat: Infinity,
                                     ease: "easeInOut"
                                 },
-                                className: "text-5xl",
-                                children: streakDays >= 90 ? "👑" : streakDays >= 30 ? "🔥" : streakDays >= 14 ? "⚡" : streakDays >= 7 ? "🌟" : "🌱"
+                                className: "w-16 h-16 rounded-2xl flex items-center justify-center",
+                                style: {
+                                    background: "radial-gradient(circle at 35% 30%, rgba(255,140,26,0.35), transparent 72%)",
+                                    boxShadow: "0 0 36px rgba(255,107,0,0.4), inset 0 0 24px rgba(255,176,32,0.2)"
+                                },
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$flame$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Flame$3e$__["Flame"], {
+                                    size: 38,
+                                    strokeWidth: 2,
+                                    style: {
+                                        color: "#FF9A3D",
+                                        filter: "drop-shadow(0 0 12px rgba(255,140,26,0.9))"
+                                    }
+                                }, void 0, false, {
+                                    fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
+                                    lineNumber: 571,
+                                    columnNumber: 13
+                                }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                lineNumber: 526,
+                                lineNumber: 560,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                        lineNumber: 505,
+                        lineNumber: 539,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1596,24 +1671,24 @@ function StreakMultipliers() {
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                    lineNumber: 536,
+                                    lineNumber: 583,
                                     columnNumber: 30
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                            lineNumber: 535,
+                            lineNumber: 582,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                        lineNumber: 534,
+                        lineNumber: 581,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                lineNumber: 491,
+                lineNumber: 525,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1640,18 +1715,18 @@ function StreakMultipliers() {
                                     strokeWidth: 3
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                    lineNumber: 567,
+                                    lineNumber: 614,
                                     columnNumber: 19
                                 }, this) : isCurrent ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$flame$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Flame$3e$__["Flame"], {
                                     size: 14
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                    lineNumber: 569,
+                                    lineNumber: 616,
                                     columnNumber: 19
                                 }, this) : "🔒"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                lineNumber: 559,
+                                lineNumber: 606,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1662,7 +1737,7 @@ function StreakMultipliers() {
                                         children: tier.range
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                        lineNumber: 575,
+                                        lineNumber: 622,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1670,13 +1745,13 @@ function StreakMultipliers() {
                                         children: tier.label
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                        lineNumber: 582,
+                                        lineNumber: 629,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                lineNumber: 574,
+                                lineNumber: 621,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1687,25 +1762,25 @@ function StreakMultipliers() {
                                 children: tier.multiplier
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                lineNumber: 584,
+                                lineNumber: 631,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, tier.range, true, {
                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                        lineNumber: 548,
+                        lineNumber: 595,
                         columnNumber: 13
                     }, this);
                 })
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                lineNumber: 542,
+                lineNumber: 589,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-        lineNumber: 480,
+        lineNumber: 514,
         columnNumber: 5
     }, this);
 }
@@ -1724,10 +1799,10 @@ function StreakMultipliers() {
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$history$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__History$3e$__["History"], {
                                 size: 14,
-                                className: "text-[#2DD4BF]"
+                                className: "text-[#FFB020]"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                lineNumber: 609,
+                                lineNumber: 656,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -1735,13 +1810,13 @@ function StreakMultipliers() {
                                 children: "Historique XP"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                lineNumber: 610,
+                                lineNumber: 657,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                        lineNumber: 608,
+                        lineNumber: 655,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1753,13 +1828,13 @@ function StreakMultipliers() {
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                        lineNumber: 614,
+                        lineNumber: 661,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                lineNumber: 607,
+                lineNumber: 654,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1772,7 +1847,7 @@ function StreakMultipliers() {
                             children: "📜"
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                            lineNumber: 619,
+                            lineNumber: 666,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1780,7 +1855,7 @@ function StreakMultipliers() {
                             children: "Aucun XP gagné pour l'instant"
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                            lineNumber: 620,
+                            lineNumber: 667,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1788,13 +1863,13 @@ function StreakMultipliers() {
                             children: "Complète des quêtes pour commencer"
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                            lineNumber: 621,
+                            lineNumber: 668,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                    lineNumber: 618,
+                    lineNumber: 665,
                     columnNumber: 11
                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
                     className: "space-y-1",
@@ -1826,12 +1901,12 @@ function StreakMultipliers() {
                                         }
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                        lineNumber: 639,
+                                        lineNumber: 686,
                                         columnNumber: 21
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                    lineNumber: 635,
+                                    lineNumber: 682,
                                     columnNumber: 19
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1842,7 +1917,7 @@ function StreakMultipliers() {
                                             children: entry.source
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                            lineNumber: 642,
+                                            lineNumber: 689,
                                             columnNumber: 21
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1850,17 +1925,17 @@ function StreakMultipliers() {
                                             children: formatRelativeTime(entry.timestamp)
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                            lineNumber: 645,
+                                            lineNumber: 692,
                                             columnNumber: 21
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                    lineNumber: 641,
+                                    lineNumber: 688,
                                     columnNumber: 19
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                    className: "flex-shrink-0 text-[#4ADE80] font-bold text-sm tabular-nums",
+                                    className: "flex-shrink-0 text-[#FFC94D] font-bold text-sm tabular-nums",
                                     children: [
                                         "+",
                                         entry.amount,
@@ -1868,30 +1943,30 @@ function StreakMultipliers() {
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                    lineNumber: 649,
+                                    lineNumber: 696,
                                     columnNumber: 19
                                 }, this)
                             ]
                         }, entry.id, true, {
                             fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                            lineNumber: 628,
+                            lineNumber: 675,
                             columnNumber: 17
                         }, this);
                     })
                 }, void 0, false, {
                     fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                    lineNumber: 624,
+                    lineNumber: 671,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                lineNumber: 616,
+                lineNumber: 663,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-        lineNumber: 606,
+        lineNumber: 653,
         columnNumber: 5
     }, this);
 }
@@ -1947,7 +2022,7 @@ function StreakMultipliers() {
                                 className: "text-[#FBBF24]"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                lineNumber: 705,
+                                lineNumber: 752,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -1955,13 +2030,13 @@ function StreakMultipliers() {
                                 children: "Classement de la semaine"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                lineNumber: 706,
+                                lineNumber: 753,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                        lineNumber: 704,
+                        lineNumber: 751,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1973,19 +2048,19 @@ function StreakMultipliers() {
                                 size: 12
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                lineNumber: 714,
+                                lineNumber: 761,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                        lineNumber: 710,
+                        lineNumber: 757,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                lineNumber: 703,
+                lineNumber: 750,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2002,7 +2077,7 @@ function StreakMultipliers() {
                                         className: "text-[#F59E0B]"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                        lineNumber: 722,
+                                        lineNumber: 769,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2010,13 +2085,13 @@ function StreakMultipliers() {
                                         children: "Ton rang"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                        lineNumber: 723,
+                                        lineNumber: 770,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                lineNumber: 721,
+                                lineNumber: 768,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2027,13 +2102,13 @@ function StreakMultipliers() {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                lineNumber: 725,
+                                lineNumber: 772,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                        lineNumber: 720,
+                        lineNumber: 767,
                         columnNumber: 9
                     }, this),
                     top5.map((user, idx)=>{
@@ -2061,18 +2136,31 @@ function StreakMultipliers() {
                                     children: rankBadge(rank)
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                    lineNumber: 742,
+                                    lineNumber: 789,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 text-lg",
+                                    className: "w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0",
                                     style: {
                                         background: "rgba(255,255,255,0.05)"
                                     },
-                                    children: user.badge
+                                    children: (()=>{
+                                        const b = BADGE_ICONS[user.badge];
+                                        return b ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(b.Icon, {
+                                            size: 16,
+                                            strokeWidth: 2.2,
+                                            style: {
+                                                color: b.color
+                                            }
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
+                                            lineNumber: 805,
+                                            columnNumber: 21
+                                        }, this) : user.badge;
+                                    })()
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                    lineNumber: 751,
+                                    lineNumber: 798,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2087,7 +2175,7 @@ function StreakMultipliers() {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                            lineNumber: 758,
+                                            lineNumber: 812,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2098,13 +2186,13 @@ function StreakMultipliers() {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                            lineNumber: 765,
+                                            lineNumber: 819,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                    lineNumber: 757,
+                                    lineNumber: 811,
                                     columnNumber: 15
                                 }, this),
                                 rank <= 3 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2117,25 +2205,25 @@ function StreakMultipliers() {
                                         fill: rankColor(rank)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                        lineNumber: 771,
+                                        lineNumber: 825,
                                         columnNumber: 19
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                    lineNumber: 770,
+                                    lineNumber: 824,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, user.id, true, {
                             fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                            lineNumber: 731,
+                            lineNumber: 778,
                             columnNumber: 13
                         }, this);
                     })
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                lineNumber: 718,
+                lineNumber: 765,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AnimatePresence"], {
@@ -2180,7 +2268,7 @@ function StreakMultipliers() {
                                                 className: "text-[#FBBF24]"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                                lineNumber: 804,
+                                                lineNumber: 858,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -2188,13 +2276,13 @@ function StreakMultipliers() {
                                                 children: "Classement complet"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                                lineNumber: 805,
+                                                lineNumber: 859,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                        lineNumber: 803,
+                                        lineNumber: 857,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2206,18 +2294,18 @@ function StreakMultipliers() {
                                             className: "text-white/60"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                            lineNumber: 814,
+                                            lineNumber: 868,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                        lineNumber: 809,
+                                        lineNumber: 863,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                lineNumber: 802,
+                                lineNumber: 856,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2243,14 +2331,28 @@ function StreakMultipliers() {
                                             type: "spring",
                                             stiffness: 200
                                         },
-                                        className: `flex-1 flex flex-col items-center ${user.isMe ? "ring-2 ring-[#10B981] rounded-2xl" : ""}`,
+                                        className: `flex-1 flex flex-col items-center ${user.isMe ? "ring-2 ring-[#FF6B00] rounded-2xl" : ""}`,
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "text-2xl mb-1",
-                                                children: user.badge
+                                                children: (()=>{
+                                                    const b = BADGE_ICONS[user.badge];
+                                                    return b ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(b.Icon, {
+                                                        size: 26,
+                                                        strokeWidth: 2.1,
+                                                        style: {
+                                                            color: b.color,
+                                                            filter: `drop-shadow(0 0 8px ${b.color}80)`
+                                                        }
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
+                                                        lineNumber: 889,
+                                                        columnNumber: 29
+                                                    }, this) : user.badge;
+                                                })()
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                                lineNumber: 831,
+                                                lineNumber: 885,
                                                 columnNumber: 23
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2258,7 +2360,7 @@ function StreakMultipliers() {
                                                 children: user.name.split(" ")[0]
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                                lineNumber: 832,
+                                                lineNumber: 902,
                                                 columnNumber: 23
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2269,7 +2371,7 @@ function StreakMultipliers() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                                lineNumber: 835,
+                                                lineNumber: 905,
                                                 columnNumber: 23
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2281,19 +2383,19 @@ function StreakMultipliers() {
                                                 children: rankBadge(rank)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                                lineNumber: 836,
+                                                lineNumber: 906,
                                                 columnNumber: 23
                                             }, this)
                                         ]
                                     }, user.id, true, {
                                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                        lineNumber: 824,
+                                        lineNumber: 878,
                                         columnNumber: 21
                                     }, this);
                                 })
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                lineNumber: 819,
+                                lineNumber: 873,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2311,18 +2413,31 @@ function StreakMultipliers() {
                                                 children: rankBadge(rank)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                                lineNumber: 863,
+                                                lineNumber: 933,
                                                 columnNumber: 23
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "w-9 h-9 rounded-full flex items-center justify-center text-lg",
+                                                className: "w-9 h-9 rounded-full flex items-center justify-center",
                                                 style: {
                                                     background: "rgba(255,255,255,0.05)"
                                                 },
-                                                children: user.badge
+                                                children: (()=>{
+                                                    const b = BADGE_ICONS[user.badge];
+                                                    return b ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(b.Icon, {
+                                                        size: 16,
+                                                        strokeWidth: 2.2,
+                                                        style: {
+                                                            color: b.color
+                                                        }
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
+                                                        lineNumber: 946,
+                                                        columnNumber: 29
+                                                    }, this) : user.badge;
+                                                })()
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                                lineNumber: 869,
+                                                lineNumber: 939,
                                                 columnNumber: 23
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2337,7 +2452,7 @@ function StreakMultipliers() {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                                        lineNumber: 876,
+                                                        lineNumber: 953,
                                                         columnNumber: 25
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2348,13 +2463,13 @@ function StreakMultipliers() {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                                        lineNumber: 879,
+                                                        lineNumber: 956,
                                                         columnNumber: 25
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                                lineNumber: 875,
+                                                lineNumber: 952,
                                                 columnNumber: 23
                                             }, this),
                                             rank <= 3 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$crown$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Crown$3e$__["Crown"], {
@@ -2365,19 +2480,19 @@ function StreakMultipliers() {
                                                 fill: rankColor(rank)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                                lineNumber: 884,
+                                                lineNumber: 961,
                                                 columnNumber: 25
                                             }, this)
                                         ]
                                     }, user.id, true, {
                                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                        lineNumber: 855,
+                                        lineNumber: 925,
                                         columnNumber: 21
                                     }, this);
                                 })
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                lineNumber: 851,
+                                lineNumber: 921,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2385,29 +2500,29 @@ function StreakMultipliers() {
                                 children: "Le classement se réinitialise chaque lundi à minuit."
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                lineNumber: 895,
+                                lineNumber: 972,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                        lineNumber: 793,
+                        lineNumber: 847,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                    lineNumber: 786,
+                    lineNumber: 840,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                lineNumber: 784,
+                lineNumber: 838,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-        lineNumber: 702,
+        lineNumber: 749,
         columnNumber: 5
     }, this);
 }
@@ -2443,12 +2558,12 @@ function GamificationScreen() {
                             className: "text-white"
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                            lineNumber: 934,
+                            lineNumber: 1011,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                        lineNumber: 929,
+                        lineNumber: 1006,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2459,7 +2574,7 @@ function GamificationScreen() {
                                 children: t("gamificationTitle")
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                lineNumber: 937,
+                                lineNumber: 1014,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2467,13 +2582,13 @@ function GamificationScreen() {
                                 children: t("gamificationSubtitle")
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                                lineNumber: 940,
+                                lineNumber: 1017,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                        lineNumber: 936,
+                        lineNumber: 1013,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2483,23 +2598,23 @@ function GamificationScreen() {
                             className: "text-white"
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                            lineNumber: 943,
+                            lineNumber: 1020,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                        lineNumber: 942,
+                        lineNumber: 1019,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                lineNumber: 928,
+                lineNumber: 1005,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(LevelXPCard, {}, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                lineNumber: 948,
+                lineNumber: 1025,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2509,32 +2624,32 @@ function GamificationScreen() {
                     showHeader: true
                 }, void 0, false, {
                     fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                    lineNumber: 952,
+                    lineNumber: 1029,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                lineNumber: 951,
+                lineNumber: 1028,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(WeeklyChallenges, {}, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                lineNumber: 956,
+                lineNumber: 1033,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(StreakMultipliers, {}, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                lineNumber: 959,
+                lineNumber: 1036,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(XPHistory, {}, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                lineNumber: 962,
+                lineNumber: 1039,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Leaderboard, {}, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                lineNumber: 965,
+                lineNumber: 1042,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2546,25 +2661,25 @@ function GamificationScreen() {
                             size: 11
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                            lineNumber: 970,
+                            lineNumber: 1047,
                             columnNumber: 11
                         }, this),
                         "Gagne de l'XP en restant actif dans ta récupération"
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                    lineNumber: 969,
+                    lineNumber: 1046,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-                lineNumber: 968,
+                lineNumber: 1045,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/zerobet/screens/GamificationScreen.tsx",
-        lineNumber: 926,
+        lineNumber: 1003,
         columnNumber: 5
     }, this);
 }

@@ -23,6 +23,11 @@ import {
   BarChart3,
   Camera,
   Trash2,
+  Sprout,
+  Star,
+  ShieldCheck,
+  GraduationCap,
+  type LucideIcon,
 } from "lucide-react";
 import { toast } from "sonner";
 import { useStore, type Gender } from "@/store/zerobet-store";
@@ -54,40 +59,40 @@ const itemVariants = {
   },
 };
 
-const PLAN_BADGES: Record<string, { labelKey: string; color: string; gradient: string; icon: string }> = {
+const PLAN_BADGES: Record<string, { labelKey: string; color: string; gradient: string; icon: LucideIcon }> = {
   free: {
     labelKey: "settingsPlanFree",
     color: "#9CA3AF",
     gradient: "linear-gradient(135deg, #6B7280 0%, #374151 100%)",
-    icon: "🌱",
+    icon: Sprout,
   },
   premium: {
     labelKey: "settingsPlanPremium",
-    color: "#10B981",
-    gradient: "linear-gradient(135deg, #10B981 0%, #F59E0B 100%)",
-    icon: "⭐",
+    color: "#FF6B00",
+    gradient: "linear-gradient(135deg, #FF6B00 0%, #F59E0B 100%)",
+    icon: Star,
   },
   mentor: {
     labelKey: "settingsPlanMentor",
-    color: "#4ADE80",
-    gradient: "linear-gradient(135deg, #4ADE80 0%, #2DD4BF 100%)",
-    icon: "🛡️",
+    color: "#FFC94D",
+    gradient: "linear-gradient(135deg, #FFC94D 0%, #FFB020 100%)",
+    icon: ShieldCheck,
   },
   psychologist: {
     labelKey: "settingsPlanPsychologist",
-    color: "#C084FC",
-    gradient: "linear-gradient(135deg, #C084FC 0%, #2DD4BF 100%)",
-    icon: "🎓",
+    color: "#FFD166",
+    gradient: "linear-gradient(135deg, #FFD166 0%, #FFB020 100%)",
+    icon: GraduationCap,
   },
 };
 
 const AVATAR_COLOR_OPTIONS = [
-  "#10B981",
-  "#2DD4BF",
+  "#FF6B00",
+  "#FFB020",
   "#FBBF24",
-  "#4ADE80",
+  "#FFC94D",
   "#F59E0B",
-  "#C084FC",
+  "#FFD166",
 ];
 
 function getInitials(name: string): string {
@@ -220,10 +225,10 @@ function buildHeatmap(ctx: {
 
 const HEATMAP_COLORS = [
   "rgba(255,255,255,0.05)",
-  "rgba(74,222,128,0.35)",
-  "rgba(74,222,128,0.55)",
-  "rgba(74,222,128,0.75)",
-  "rgba(74,222,128,1)",
+  "rgba(255,201,77,0.35)",
+  "rgba(255,201,77,0.55)",
+  "rgba(255,201,77,0.75)",
+  "rgba(255,201,77,1)",
 ];
 
 const WEEKDAY_LABEL_KEYS = ["weekdayShortMon", "weekdayShortTue", "weekdayShortWed", "weekdayShortThu", "weekdayShortFri", "weekdayShortSat", "weekdayShortSun"];
@@ -444,8 +449,8 @@ export function ProfileScreen() {
       value: totalSaved.toLocaleString("fr-FR"),
       suffix: " FCFA",
       icon: Wallet,
-      color: "#4ADE80",
-      gradient: "linear-gradient(135deg, #4ADE80 0%, #22C55E 100%)",
+      color: "#FFC94D",
+      gradient: "linear-gradient(135deg, #FFC94D 0%, #FF8A00 100%)",
     },
     {
       label: t("profileStatBadges"),
@@ -460,8 +465,8 @@ export function ProfileScreen() {
       value: `${panicEvents.filter((p) => p.resolved).length}`,
       suffix: "",
       icon: Shield,
-      color: "#2DD4BF",
-      gradient: "linear-gradient(135deg, #2DD4BF 0%, #2DD4BF 100%)",
+      color: "#FFB020",
+      gradient: "linear-gradient(135deg, #FFB020 0%, #FFB020 100%)",
     },
   ];
 
@@ -477,7 +482,7 @@ export function ProfileScreen() {
       label: t("profileMonthlySavings"),
       value: `${monthlySavings.toLocaleString("fr-FR")} FCFA`,
       icon: TrendingUp,
-      color: "#4ADE80",
+      color: "#FFC94D",
     },
     {
       label: t("profileTotalSavings"),
@@ -627,7 +632,7 @@ export function ProfileScreen() {
               <button
                 type="button"
                 onClick={() => fileInputRef.current?.click()}
-                className="absolute -bottom-1 -right-1 w-9 h-9 rounded-full bg-[#070B0E] border-2 border-white/15 flex items-center justify-center text-white shadow-lg active:scale-95 transition-transform hover:bg-[#15151B] z-10"
+                className="absolute -bottom-1 -right-1 w-9 h-9 rounded-full bg-[#0B0704] border-2 border-white/15 flex items-center justify-center text-white shadow-lg active:scale-95 transition-transform hover:bg-[#15151B] z-10"
                 aria-label={profilePhoto ? t("profilePhotoChange") : t("profilePhotoAdd")}
               >
                 <Camera size={15} className="text-white/90" />
@@ -638,7 +643,7 @@ export function ProfileScreen() {
                 <button
                   type="button"
                   onClick={handleRemovePhoto}
-                  className="absolute -top-1 -left-1 w-7 h-7 rounded-full bg-[#FF3B30] border-2 border-[#070B0E] flex items-center justify-center text-white shadow-lg active:scale-95 transition-transform hover:bg-[#FF453A] z-10"
+                  className="absolute -top-1 -left-1 w-7 h-7 rounded-full bg-[#FF3B30] border-2 border-[#0B0704] flex items-center justify-center text-white shadow-lg active:scale-95 transition-transform hover:bg-[#FF453A] z-10"
                   aria-label={t("profilePhotoRemove")}
                 >
                   <Trash2 size={12} className="text-white" />
@@ -656,7 +661,7 @@ export function ProfileScreen() {
                   className="px-2 py-0.5 rounded-full text-[10px] font-bold text-white inline-flex items-center gap-1"
                   style={{ background: planBadge.color }}
                 >
-                  <span aria-hidden>{planBadge.icon}</span> {t(planBadge.labelKey)}
+                  <planBadge.icon size={10} strokeWidth={2.8} /> {t(planBadge.labelKey)}
                 </span>
                 <span
                   className="px-2 py-0.5 rounded-full text-[10px] font-semibold inline-flex items-center gap-1"
@@ -678,7 +683,7 @@ export function ProfileScreen() {
                   {gender === "female" ? (
                     <Venus size={12} className="text-[#F59E0B]" />
                   ) : gender === "male" ? (
-                    <Mars size={12} className="text-[#2DD4BF]" />
+                    <Mars size={12} className="text-[#FFB020]" />
                   ) : (
                     <UserIcon size={12} className="text-white/40" />
                   )}
@@ -783,7 +788,7 @@ export function ProfileScreen() {
         {/* ====== SECTION 4: Goals & Commitments ====== */}
         <motion.div variants={itemVariants} className="glass-card p-5">
           <div className="flex items-center gap-2 mb-4">
-            <Target size={14} className="text-[#10B981]" />
+            <Target size={14} className="text-[#FF6B00]" />
             <h2 className="text-xs font-bold text-white/80 uppercase tracking-[0.12em]">
               {t("profileMyGoals")}
             </h2>
@@ -801,7 +806,7 @@ export function ProfileScreen() {
                     <div className="text-white font-semibold text-sm">{t(goal.labelKey)}</div>
                     <div className="text-white/50 text-xs">{t(goal.descKey)}</div>
                   </div>
-                  <Check size={14} className="text-[#4ADE80] flex-shrink-0" />
+                  <Check size={14} className="text-[#FFC94D] flex-shrink-0" />
                 </div>
               ))}
             </div>
@@ -832,7 +837,7 @@ export function ProfileScreen() {
         <motion.div variants={itemVariants} className="glass-card p-5">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
-              <Calendar size={14} className="text-[#4ADE80]" />
+              <Calendar size={14} className="text-[#FFC94D]" />
               <h2 className="text-xs font-bold text-white/80 uppercase tracking-[0.12em]">
                 {t("profileActivity", { n: 12 })}
               </h2>
@@ -993,7 +998,7 @@ export function ProfileScreen() {
                     onChange={(e) => setEditingName(e.target.value)}
                     placeholder={t("settingsNamePlaceholder")}
                     maxLength={30}
-                    className="w-full bg-white/5 border border-white/10 text-white placeholder:text-white/30 rounded-xl h-11 px-4 text-sm focus:outline-none focus:border-[#10B981]/60 focus:ring-2 focus:ring-[#10B981]/20"
+                    className="w-full bg-white/5 border border-white/10 text-white placeholder:text-white/30 rounded-xl h-11 px-4 text-sm focus:outline-none focus:border-[#FF6B00]/60 focus:ring-2 focus:ring-[#FF6B00]/20"
                   />
                 </div>
 
@@ -1032,7 +1037,7 @@ export function ProfileScreen() {
                           onClick={() => setEditingLang(lang.code)}
                           className={`flex flex-col items-center gap-1.5 p-2.5 rounded-xl transition-all ${
                             isSelected
-                              ? "glass-card-strong ring-2 ring-[#10B981]"
+                              ? "glass-card-strong ring-2 ring-[#FF6B00]"
                               : "bg-white/5 hover:bg-white/10"
                           }`}
                         >

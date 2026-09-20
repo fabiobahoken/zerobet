@@ -50,8 +50,8 @@ const PHASES = [
             1,
             30
         ],
-        gradient: "linear-gradient(135deg, #4ADE80 0%, #2DD4BF 100%)",
-        color: "#4ADE80",
+        gradient: "linear-gradient(135deg, #FFC94D 0%, #FFB020 100%)",
+        color: "#FFC94D",
         description: "Les 30 premiers jours sont les plus importants. Tu apprends à connaître tes déclencheurs, à utiliser tes outils et à construire les fondations de ta récupération.",
         goalKeys: [
             "programPhase1Goal1",
@@ -96,8 +96,8 @@ const PHASES = [
             61,
             90
         ],
-        gradient: "linear-gradient(135deg, #C084FC 0%, #FF3B30 100%)",
-        color: "#C084FC",
+        gradient: "linear-gradient(135deg, #FFD166 0%, #FF3B30 100%)",
+        color: "#FFD166",
         description: "La dernière phase est celle de la transformation. Tu deviens une inspiration pour les autres, tu partages ton témoignage et tu construis la version de toi que tu veux être.",
         goalKeys: [
             "programPhase3Goal1",
@@ -120,7 +120,7 @@ const TASKS_BY_PHASE = {
             descKey: "programTaskCheckinDesc",
             xp: 50,
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle2$3e$__["CheckCircle2"],
-            color: "#4ADE80",
+            color: "#FFC94D",
             autoDone: (ctx)=>ctx.lastCheckInDate === ctx.todayStr
         },
         {
@@ -129,7 +129,7 @@ const TASKS_BY_PHASE = {
             descKey: "programTaskJournalDesc",
             xp: 30,
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$book$2d$open$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__BookOpen$3e$__["BookOpen"],
-            color: "#2DD4BF",
+            color: "#FFB020",
             autoDone: (ctx)=>ctx.hasJournalToday
         },
         {
@@ -138,7 +138,7 @@ const TASKS_BY_PHASE = {
             descKey: "programTaskBreathingDesc",
             xp: 40,
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$wind$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Wind$3e$__["Wind"],
-            color: "#2DD4BF",
+            color: "#FFB020",
             autoDone: (ctx)=>ctx.meditationStreak >= 1
         },
         {
@@ -147,7 +147,7 @@ const TASKS_BY_PHASE = {
             descKey: "programTaskArticleDesc",
             xp: 20,
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$book$2d$open$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__BookOpen$3e$__["BookOpen"],
-            color: "#C084FC"
+            color: "#FFD166"
         }
     ],
     2: [
@@ -157,7 +157,7 @@ const TASKS_BY_PHASE = {
             descKey: "programTaskCheckinDesc",
             xp: 50,
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle2$3e$__["CheckCircle2"],
-            color: "#4ADE80",
+            color: "#FFC94D",
             autoDone: (ctx)=>ctx.lastCheckInDate === ctx.todayStr
         },
         {
@@ -166,7 +166,7 @@ const TASKS_BY_PHASE = {
             descKey: "programTaskJournalDesc",
             xp: 30,
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$book$2d$open$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__BookOpen$3e$__["BookOpen"],
-            color: "#2DD4BF",
+            color: "#FFB020",
             autoDone: (ctx)=>ctx.hasJournalToday
         },
         {
@@ -175,7 +175,7 @@ const TASKS_BY_PHASE = {
             descKey: "programTaskBreathingDesc",
             xp: 40,
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$wind$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Wind$3e$__["Wind"],
-            color: "#2DD4BF",
+            color: "#FFB020",
             autoDone: (ctx)=>ctx.meditationStreak >= 1
         },
         {
@@ -184,7 +184,7 @@ const TASKS_BY_PHASE = {
             descKey: "programTaskArticleDesc",
             xp: 20,
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$book$2d$open$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__BookOpen$3e$__["BookOpen"],
-            color: "#C084FC"
+            color: "#FFD166"
         },
         {
             id: "task-meditate",
@@ -212,7 +212,7 @@ const TASKS_BY_PHASE = {
             descKey: "programTaskCheckinDesc",
             xp: 50,
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle2$3e$__["CheckCircle2"],
-            color: "#4ADE80",
+            color: "#FFC94D",
             autoDone: (ctx)=>ctx.lastCheckInDate === ctx.todayStr
         },
         {
@@ -221,7 +221,7 @@ const TASKS_BY_PHASE = {
             descKey: "programTaskJournalDesc",
             xp: 30,
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$book$2d$open$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__BookOpen$3e$__["BookOpen"],
-            color: "#2DD4BF",
+            color: "#FFB020",
             autoDone: (ctx)=>ctx.hasJournalToday
         },
         {
@@ -230,7 +230,7 @@ const TASKS_BY_PHASE = {
             descKey: "programTaskBreathingDesc",
             xp: 40,
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$wind$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Wind$3e$__["Wind"],
-            color: "#2DD4BF",
+            color: "#FFB020",
             autoDone: (ctx)=>ctx.meditationStreak >= 1
         },
         {
@@ -266,7 +266,7 @@ const TASKS_BY_PHASE = {
             descKey: "programTaskMentorDesc",
             xp: 100,
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$crown$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Crown$3e$__["Crown"],
-            color: "#C084FC"
+            color: "#FFD166"
         },
         {
             id: "task-testimony",
@@ -365,7 +365,7 @@ const MILESTONES = [
         labelKey: "programMilestone1Label",
         descKey: "programMilestone1Desc",
         badge: "🌱",
-        color: "#4ADE80"
+        color: "#FFC94D"
     },
     {
         day: 7,
@@ -393,14 +393,14 @@ const MILESTONES = [
         labelKey: "programMilestone45Label",
         descKey: "programMilestone45Desc",
         badge: "💎",
-        color: "#2DD4BF"
+        color: "#FFB020"
     },
     {
         day: 60,
         labelKey: "programMilestone60Label",
         descKey: "programMilestone60Desc",
         badge: "🏆",
-        color: "#C084FC"
+        color: "#FFD166"
     },
     {
         day: 90,
@@ -605,7 +605,7 @@ function ProgramScreen() {
                         className: "w-10 h-10 rounded-full glass-card flex items-center justify-center",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$target$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Target$3e$__["Target"], {
                             size: 18,
-                            className: "text-[#4ADE80]"
+                            className: "text-[#FFC94D]"
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/ProgramScreen.tsx",
                             lineNumber: 528,
@@ -636,13 +636,13 @@ function ProgramScreen() {
                 },
                 className: "relative overflow-hidden rounded-3xl mb-6 p-5 border border-white/10",
                 style: {
-                    background: "linear-gradient(135deg, rgba(74,222,128,0.18) 0%, rgba(45, 212, 191,0.10) 50%, rgba(192, 132, 252,0.10) 100%)"
+                    background: "linear-gradient(135deg, rgba(255,201,77,0.18) 0%, rgba(255,176,32,0.10) 50%, rgba(255, 209, 102,0.10) 100%)"
                 },
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "absolute -top-16 -right-16 w-48 h-48 rounded-full blur-3xl pointer-events-none",
                         style: {
-                            background: "rgba(74,222,128,0.25)"
+                            background: "rgba(255,201,77,0.25)"
                         }
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/screens/ProgramScreen.tsx",
@@ -657,14 +657,14 @@ function ProgramScreen() {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sparkles$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Sparkles$3e$__["Sparkles"], {
                                         size: 14,
-                                        className: "text-[#4ADE80]"
+                                        className: "text-[#FFC94D]"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/ProgramScreen.tsx",
                                         lineNumber: 546,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-[#4ADE80] text-[11px] font-bold uppercase tracking-wider",
+                                        className: "text-[#FFC94D] text-[11px] font-bold uppercase tracking-wider",
                                         children: t("programOverviewLabel")
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/ProgramScreen.tsx",
@@ -727,7 +727,7 @@ function ProgramScreen() {
                                         className: "text-right",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "text-[#4ADE80] text-lg font-bold",
+                                                className: "text-[#FFC94D] text-lg font-bold",
                                                 children: [
                                                     Math.round(progressPercent),
                                                     "%"
@@ -773,7 +773,7 @@ function ProgramScreen() {
                                         },
                                         className: "absolute inset-y-0 left-0 rounded-full",
                                         style: {
-                                            background: "linear-gradient(90deg, #4ADE80 0%, #FBBF24 50%, #C084FC 100%)"
+                                            background: "linear-gradient(90deg, #FFC94D 0%, #FBBF24 50%, #FFD166 100%)"
                                         }
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/ProgramScreen.tsx",
@@ -806,7 +806,7 @@ function ProgramScreen() {
                                     const active = phase.id === currentPhase.id;
                                     const passed = currentDay > phase.dayRange[1];
                                     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: `p-2.5 rounded-xl border transition-colors ${active ? "border-white/30 bg-white/10" : passed ? "border-[#4ADE80]/30 bg-[#4ADE80]/10" : "border-white/5 bg-white/5"}`,
+                                        className: `p-2.5 rounded-xl border transition-colors ${active ? "border-white/30 bg-white/10" : passed ? "border-[#FFC94D]/30 bg-[#FFC94D]/10" : "border-white/5 bg-white/5"}`,
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "flex items-center gap-1 mb-1",
@@ -1115,7 +1115,7 @@ function ProgramScreen() {
                                                 className: "text-white/70 text-xs flex items-start gap-1.5",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "text-[#4ADE80] mt-0.5",
+                                                        className: "text-[#FFC94D] mt-0.5",
                                                         children: "•"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/ProgramScreen.tsx",
@@ -1393,7 +1393,7 @@ function ProgramScreen() {
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trending$2d$up$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__TrendingUp$3e$__["TrendingUp"], {
                                 size: 14,
-                                className: "text-[#2DD4BF]"
+                                className: "text-[#FFB020]"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/ProgramScreen.tsx",
                                 lineNumber: 797,
@@ -1444,7 +1444,7 @@ function ProgramScreen() {
                                         className: `relative pl-4 ${isCurrent ? "" : ""}`,
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: `absolute -left-[10px] top-3 w-3 h-3 rounded-full border-2 ${isCurrent ? "bg-[#F59E0B] border-[#F59E0B]" : isPassed ? "bg-[#4ADE80] border-[#4ADE80]" : "bg-[#070B0E] border-white/20"}`
+                                                className: `absolute -left-[10px] top-3 w-3 h-3 rounded-full border-2 ${isCurrent ? "bg-[#F59E0B] border-[#F59E0B]" : isPassed ? "bg-[#FFC94D] border-[#FFC94D]" : "bg-[#0B0704] border-white/20"}`
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/ProgramScreen.tsx",
                                                 lineNumber: 818,
@@ -1479,7 +1479,7 @@ function ProgramScreen() {
                                                                     }, this),
                                                                     isPassed && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle2$3e$__["CheckCircle2"], {
                                                                         size: 11,
-                                                                        className: "text-[#4ADE80]"
+                                                                        className: "text-[#FFC94D]"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/components/zerobet/screens/ProgramScreen.tsx",
                                                                         lineNumber: 846,
@@ -1609,7 +1609,7 @@ function ProgramScreen() {
                                         className: "relative pl-7",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: `absolute -left-[10px] top-1 w-8 h-8 rounded-full flex items-center justify-center text-sm border-2 ${status === "achieved" ? "border-transparent" : status === "current" ? "border-white/30 bg-white/5 pulse-glow" : "border-white/10 bg-[#070B0E]"}`,
+                                                className: `absolute -left-[10px] top-1 w-8 h-8 rounded-full flex items-center justify-center text-sm border-2 ${status === "achieved" ? "border-transparent" : status === "current" ? "border-white/30 bg-white/5 pulse-glow" : "border-white/10 bg-[#0B0704]"}`,
                                                 style: status === "achieved" ? {
                                                     background: `${milestone.color}30`,
                                                     borderColor: milestone.color
@@ -1665,7 +1665,7 @@ function ProgramScreen() {
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     status === "achieved" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                        className: "px-1.5 py-0.5 rounded-full bg-[#4ADE80]/20 text-[#4ADE80] text-[9px] font-bold uppercase",
+                                                                        className: "px-1.5 py-0.5 rounded-full bg-[#FFC94D]/20 text-[#FFC94D] text-[9px] font-bold uppercase",
                                                                         children: t("programMilestoneReached")
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/components/zerobet/screens/ProgramScreen.tsx",
@@ -1747,13 +1747,13 @@ function ProgramScreen() {
                 },
                 className: "relative overflow-hidden rounded-3xl mb-4 p-6 border border-white/10",
                 style: {
-                    background: "linear-gradient(135deg, rgba(192, 132, 252,0.18) 0%, rgba(245, 158, 11,0.10) 100%)"
+                    background: "linear-gradient(135deg, rgba(255, 209, 102,0.18) 0%, rgba(245, 158, 11,0.10) 100%)"
                 },
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "absolute -top-12 -left-12 w-40 h-40 rounded-full blur-3xl pointer-events-none",
                         style: {
-                            background: "rgba(192, 132, 252,0.3)"
+                            background: "rgba(255, 209, 102,0.3)"
                         }
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/screens/ProgramScreen.tsx",
@@ -1768,14 +1768,14 @@ function ProgramScreen() {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$quote$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Quote$3e$__["Quote"], {
                                         size: 16,
-                                        className: "text-[#C084FC]"
+                                        className: "text-[#FFD166]"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/ProgramScreen.tsx",
                                         lineNumber: 962,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-[#C084FC] text-[11px] font-bold uppercase tracking-wider",
+                                        className: "text-[#FFD166] text-[11px] font-bold uppercase tracking-wider",
                                         children: t("programInspirationLabel", {
                                             n: currentDay
                                         })

@@ -40,7 +40,7 @@ function ChallengeBurst() {
     () =>
       Array.from({ length: 12 }, (_, i) => ({
         angle: (i / 12) * Math.PI * 2,
-        color: i % 3 === 0 ? "#FBBF24" : i % 3 === 1 ? "#10B981" : "#2DD4BF",
+        color: i % 3 === 0 ? "#FBBF24" : i % 3 === 1 ? "#FF6B00" : "#FFB020",
       })),
     []
   );
@@ -82,14 +82,14 @@ export function DailyChallengeCard({
       animate={{ opacity: 1, y: 0 }}
       className={`glass-card card-hover p-4 mb-4 relative overflow-hidden border transition-colors duration-500 ${
         done
-          ? "border-[#10B981]/40"
+          ? "border-[#FF6B00]/40"
           : "border-[#FBBF24]/20"
       }`}
     >
       {/* Decorative accent */}
       <div
         className={`absolute -top-6 -right-6 w-24 h-24 rounded-full blur-2xl pointer-events-none transition-colors duration-500 ${
-          done ? "bg-[#10B981]/15" : "bg-[#FBBF24]/10"
+          done ? "bg-[#FF6B00]/15" : "bg-[#FBBF24]/10"
         }`}
       />
 
@@ -98,7 +98,7 @@ export function DailyChallengeCard({
       <div className="relative flex items-start gap-3">
         <div
           className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors duration-500 ${
-            done ? "bg-[#10B981]/20" : "bg-[#FBBF24]/20"
+            done ? "bg-[#FF6B00]/20" : "bg-[#FBBF24]/20"
           }`}
         >
           {done ? (
@@ -107,7 +107,7 @@ export function DailyChallengeCard({
               animate={{ scale: 1, rotate: 0 }}
               transition={{ type: "spring", stiffness: 300, damping: 15 }}
             >
-              <CheckCircle2 size={20} className="text-[#10B981]" />
+              <CheckCircle2 size={20} className="text-[#FF6B00]" />
             </motion.span>
           ) : (
             <Target size={20} className="text-[#FBBF24]" />
@@ -118,13 +118,13 @@ export function DailyChallengeCard({
           <div className="flex items-center gap-2 mb-1 flex-wrap">
             <span
               className={`text-xs font-semibold uppercase tracking-wider ${
-                done ? "text-[#10B981]" : "text-[#FBBF24]"
+                done ? "text-[#FF6B00]" : "text-[#FBBF24]"
               }`}
             >
               {t("dashboardDailyChallenge")}
             </span>
             {!done && (
-              <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-[#10B981]/15 text-[#10B981] border border-[#10B981]/30">
+              <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-[#FF6B00]/15 text-[#FF6B00] border border-[#FF6B00]/30">
                 +{DAILY_CHALLENGE_XP} XP
               </span>
             )}

@@ -79,11 +79,11 @@ interface BookApp {
 }
 
 const CATEGORIES: Category[] = [
-  { key: "addiction", labelKey: "resourcesCategoryAddiction", emoji: "🧠", color: "#C084FC" },
-  { key: "techniques", labelKey: "resourcesCategoryTechniques", emoji: "💪", color: "#4ADE80" },
+  { key: "addiction", labelKey: "resourcesCategoryAddiction", emoji: "🧠", color: "#FFD166" },
+  { key: "techniques", labelKey: "resourcesCategoryTechniques", emoji: "💪", color: "#FFC94D" },
   { key: "finance", labelKey: "resourcesCategoryFinance", emoji: "💰", color: "#F59E0B" },
   { key: "testimonials", labelKey: "resourcesCategoryTestimonials", emoji: "👥", color: "#FF3B30" },
-  { key: "meditation", labelKey: "resourcesCategoryMeditation", emoji: "🧘", color: "#2DD4BF" },
+  { key: "meditation", labelKey: "resourcesCategoryMeditation", emoji: "🧘", color: "#FFB020" },
   { key: "stories", labelKey: "resourcesCategoryStories", emoji: "📚", color: "#FBBF24" },
 ];
 
@@ -219,7 +219,7 @@ const VIDEOS: VideoResource[] = [
     titleKey: "resourcesVideo1Title",
     duration: "10:00",
     categoryKey: "resourcesVideoCatMeditation",
-    gradient: "linear-gradient(135deg, #2DD4BF 0%, #2DD4BF 100%)",
+    gradient: "linear-gradient(135deg, #FFB020 0%, #FFB020 100%)",
   },
   {
     id: "v2",
@@ -233,14 +233,14 @@ const VIDEOS: VideoResource[] = [
     titleKey: "resourcesVideo3Title",
     duration: "08:15",
     categoryKey: "resourcesVideoCatScience",
-    gradient: "linear-gradient(135deg, #C084FC 0%, #FF3B30 100%)",
+    gradient: "linear-gradient(135deg, #FFD166 0%, #FF3B30 100%)",
   },
   {
     id: "v4",
     titleKey: "resourcesVideo4Title",
     duration: "12:30",
     categoryKey: "resourcesVideoCatMeditation",
-    gradient: "linear-gradient(135deg, #4ADE80 0%, #2DD4BF 100%)",
+    gradient: "linear-gradient(135deg, #FFC94D 0%, #FFB020 100%)",
   },
 ];
 
@@ -257,7 +257,7 @@ const HOTLINES: Hotline[] = [
     nameKey: "resourcesHotline2Name",
     descKey: "resourcesHotline2Desc",
     phone: "+441472544300",
-    color: "#2DD4BF",
+    color: "#FFB020",
   },
   {
     id: "h3",
@@ -275,7 +275,7 @@ const BOOKS_APPS: BookApp[] = [
     type: "app",
     descKey: "resourcesBook1Desc",
     emoji: "📱",
-    color: "#4ADE80",
+    color: "#FFC94D",
   },
   {
     id: "b2",
@@ -283,7 +283,7 @@ const BOOKS_APPS: BookApp[] = [
     type: "book",
     descKey: "resourcesBook2Desc",
     emoji: "📖",
-    color: "#2DD4BF",
+    color: "#FFB020",
   },
   {
     id: "b3",
@@ -374,7 +374,7 @@ export function ResourcesScreen() {
           <p className="text-white/50 text-xs">{t("resourcesSubtitle")}</p>
         </div>
         <div className="w-10 h-10 rounded-full glass-card flex items-center justify-center">
-          <BookOpen size={18} className="text-[#C084FC]" />
+          <BookOpen size={18} className="text-[#FFD166]" />
         </div>
       </div>
 
@@ -467,7 +467,7 @@ export function ResourcesScreen() {
       {/* Section 6: Books & Apps */}
       <section className="mb-4">
         <div className="flex items-center gap-2 mb-3">
-          <BookOpen size={14} className="text-[#4ADE80]" />
+          <BookOpen size={14} className="text-[#FFC94D]" />
           <h2 className="text-white font-semibold text-sm">{t("resourcesBooksAppsTitle")}</h2>
         </div>
         <div className="space-y-3">
@@ -684,7 +684,7 @@ function VideoCard({ video, index }: { video: VideoResource; index: number }) {
           whileTap={{ scale: 0.95 }}
           className="relative w-12 h-12 rounded-full bg-white/95 flex items-center justify-center shadow-lg"
         >
-          <Play size={20} className="text-[#070B0E] ml-0.5" fill="currentColor" />
+          <Play size={20} className="text-[#0B0704] ml-0.5" fill="currentColor" />
         </motion.div>
         {/* Duration badge */}
         <span className="absolute bottom-2 right-2 px-1.5 py-0.5 rounded bg-black/70 text-white text-[10px] font-medium">

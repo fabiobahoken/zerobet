@@ -33,7 +33,7 @@ const PHASES = [
         key: "inhale",
         tKey: "panicInhale",
         duration: 4,
-        color: "#2DD4BF",
+        color: "#FFB020",
         action: "scale-up"
     },
     {
@@ -464,7 +464,7 @@ function PanicScreen() {
                                     stiffness: 200,
                                     damping: 12
                                 },
-                                className: "w-20 h-20 rounded-full bg-[#4ADE80]/20 flex items-center justify-center mb-6",
+                                className: "w-20 h-20 rounded-full bg-[#FFC94D]/20 flex items-center justify-center mb-6",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                     className: "text-4xl",
                                     children: "💪"
@@ -547,7 +547,7 @@ function PanicScreen() {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                         onClick: markDone,
-                                        className: "w-full py-4 rounded-2xl bg-[#4ADE80]/20 border border-[#4ADE80] text-[#4ADE80] font-[family-name:var(--font-poppins)] font-semibold text-base flex items-center justify-center gap-2 active:scale-[0.98] transition-transform",
+                                        className: "w-full py-4 rounded-2xl bg-[#FFC94D]/20 border border-[#FFC94D] text-[#FFC94D] font-[family-name:var(--font-poppins)] font-semibold text-base flex items-center justify-center gap-2 active:scale-[0.98] transition-transform",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__["Check"], {
                                                 size: 18
@@ -621,7 +621,7 @@ function PanicScreen() {
                                     stiffness: 200,
                                     damping: 12
                                 },
-                                className: "w-32 h-32 rounded-full bg-[#4ADE80]/20 flex items-center justify-center mb-6 glow-green",
+                                className: "w-32 h-32 rounded-full bg-[#FFC94D]/20 flex items-center justify-center mb-6 glow-green",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                     className: "text-6xl",
                                     children: "🏆"
@@ -652,7 +652,7 @@ function PanicScreen() {
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                className: "text-[#4ADE80] text-sm font-semibold mb-8",
+                                className: "text-[#FFC94D] text-sm font-semibold mb-8",
                                 children: t("panicStreakIntact", {
                                     n: streakDays
                                 })
@@ -741,10 +741,10 @@ function PanicScreen() {
                                         className: "w-full p-4 rounded-2xl glass-card flex items-center gap-3 text-left active:scale-[0.98] transition-transform",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "w-10 h-10 rounded-full bg-[#2DD4BF]/20 flex items-center justify-center",
+                                                className: "w-10 h-10 rounded-full bg-[#FFB020]/20 flex items-center justify-center",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$phone$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Phone$3e$__["Phone"], {
                                                     size: 18,
-                                                    className: "text-[#2DD4BF]"
+                                                    className: "text-[#FFB020]"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/zerobet/screens/PanicScreen.tsx",
                                                     lineNumber: 390,
@@ -845,10 +845,10 @@ function PanicScreen() {
                                         className: "w-full p-4 rounded-2xl glass-card flex items-center gap-3 text-left active:scale-[0.98] transition-transform",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "w-10 h-10 rounded-full bg-[#C084FC]/20 flex items-center justify-center",
+                                                className: "w-10 h-10 rounded-full bg-[#FFD166]/20 flex items-center justify-center",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$pen$2d$line$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__PenLine$3e$__["PenLine"], {
                                                     size: 18,
-                                                    className: "text-[#C084FC]"
+                                                    className: "text-[#FFD166]"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/zerobet/screens/PanicScreen.tsx",
                                                     lineNumber: 414,

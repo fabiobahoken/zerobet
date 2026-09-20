@@ -100,7 +100,7 @@ const ROOMS: {
     key: "general",
     labelKey: "chatRoomGeneralLabel",
     emoji: "💬",
-    color: "#2DD4BF",
+    color: "#FFB020",
     descKey: "chatRoomGeneralDesc",
   },
   {
@@ -129,12 +129,12 @@ const NICKNAME_COLORS = [
   "#FF3B30",
   "#F59E0B",
   "#FBBF24",
-  "#4ADE80",
-  "#2DD4BF",
-  "#C084FC",
+  "#FFC94D",
+  "#FFB020",
+  "#FFD166",
   "#FF2D55",
-  "#2DD4BF",
-  "#30D158",
+  "#FFB020",
+  "#FF9A3D",
   "#FF6B6B",
 ];
 
@@ -274,7 +274,7 @@ function StatusDot({ status }: StatusDotProps) {
   const t = useT();
   const color =
     status === "connected"
-      ? "#4ADE80"
+      ? "#FFC94D"
       : status === "connecting"
         ? "#FBBF24"
         : "#FF3B30";
@@ -548,7 +548,7 @@ function NicknameSetup({ onJoin }: NicknameSetupProps) {
 
       <div className="flex items-center justify-between mb-4 text-[11px] text-white/40">
         <span>{t("chatNicknameRange", { min: MIN_NICKNAME_LENGTH, max: MAX_NICKNAME_LENGTH })}</span>
-        <span className={isValid ? "text-[#4ADE80]" : ""}>
+        <span className={isValid ? "text-[#FFC94D]" : ""}>
           {name.trim().length}/{MAX_NICKNAME_LENGTH}
         </span>
       </div>
@@ -1085,7 +1085,7 @@ export function CommunityChatScreen() {
       />
 
       {/* Room selector */}
-      <div className="px-4 pt-3 pb-2 sticky top-[68px] z-20 bg-[#070B0E]/80 backdrop-blur-md">
+      <div className="px-4 pt-3 pb-2 sticky top-[68px] z-20 bg-[#0B0704]/80 backdrop-blur-md">
         <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
           {ROOMS.map((room) => (
             <RoomTab
@@ -1194,7 +1194,7 @@ export function CommunityChatScreen() {
                   <button
                     onClick={loadOlder}
                     disabled={loadingOlder}
-                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full glass-card text-[11px] font-medium text-[#5EEAD4] hover:text-white hover:border-[#2DD4BF]/40 transition-colors focus-ring disabled:opacity-50 active:scale-95"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full glass-card text-[11px] font-medium text-[#5EEAD4] hover:text-white hover:border-[#FFB020]/40 transition-colors focus-ring disabled:opacity-50 active:scale-95"
                   >
                     {loadingOlder ? (
                       <Loader2 size={12} className="animate-spin" aria-hidden />
@@ -1270,7 +1270,7 @@ export function CommunityChatScreen() {
           aria-expanded={showRules}
         >
           <span className="flex items-center gap-2">
-            <Info size={13} className="text-[#2DD4BF]" />
+            <Info size={13} className="text-[#FFB020]" />
             {t("chatRulesTitle")}
           </span>
           {showRules ? (
@@ -1319,7 +1319,7 @@ export function CommunityChatScreen() {
       </div>
 
       {/* Message input */}
-      <div className="sticky bottom-0 px-4 pb-[calc(env(safe-area-inset-bottom)+12px)] pt-2 z-20 bg-[#070B0E]/85 backdrop-blur-md">
+      <div className="sticky bottom-0 px-4 pb-[calc(env(safe-area-inset-bottom)+12px)] pt-2 z-20 bg-[#0B0704]/85 backdrop-blur-md">
         {/* Zerobet 2.0 — free-plan quota chip above the composer */}
         {!isPremium && (
           <div className="flex items-center justify-between mb-1.5 px-2">
@@ -1367,7 +1367,7 @@ export function CommunityChatScreen() {
           <span>
             {connectionStatus === "connected" ? (
               <span className="flex items-center gap-1">
-                <Wifi size={10} className="text-[#4ADE80]" />
+                <Wifi size={10} className="text-[#FFC94D]" />
                 {activeUsersByRoom[activeRoom] === 1
                   ? t("chatConnectedMemberOne")
                   : t("chatConnectedMembers", {
@@ -1408,7 +1408,7 @@ interface HeaderProps {
 function Header({ onBack, status, activeUsers }: HeaderProps) {
   const t = useT();
   return (
-    <header className="sticky top-0 z-30 px-4 pt-12 pb-3 bg-[#070B0E]/85 backdrop-blur-md border-b border-white/5">
+    <header className="sticky top-0 z-30 px-4 pt-12 pb-3 bg-[#0B0704]/85 backdrop-blur-md border-b border-white/5">
       <div className="flex items-center justify-between gap-3">
         <button
           onClick={onBack}

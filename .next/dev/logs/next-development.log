@@ -1,90 +1,688 @@
-[00:00:02.547] Server  LOG     ✓ Ready in 2.3s
-[00:00:05.604] Server  LOG     ○ Compiling / ...
-[00:00:48.741] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:52.419] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
-[00:00:56.966] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
-[00:00:57.700] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
-[00:06:53.988] Server  LOG     [WARN] CSP violation · documentUri="https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/" violatedDirective="frame-ancestors" blockedUri="https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/" sourceFile=undefined lineNumber=undefined
-[00:07:16.533] Server  LOG     prisma:query "SELECT 1"
-[00:07:16.533] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
-[00:26:16.275] Server  LOG     [WARN] CSP violation · documentUri="https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/" violatedDirective="frame-ancestors" blockedUri="https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/" sourceFile=undefined lineNumber=undefined
-[02:20:32.725] Server  LOG     [WARN] CSP violation · documentUri="https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/" violatedDirective="frame-ancestors" blockedUri="https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/" sourceFile=undefined lineNumber=undefined
-[02:27:01.931] Server  LOG     ✓ Compiled in 504ms
-[02:29:02.816] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:29:03.369] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
-[02:29:04.010] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:29:09.634] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
-[02:29:15.670] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:29:16.151] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
-[02:29:20.048] Server  LOG     prisma:query "SELECT 1"
-[02:29:20.049] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
-[02:29:20.074] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
-[02:32:02.740] Server  LOG     ✓ Compiled in 2.3s
-[02:32:04.077] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:32:04.377] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
-[02:32:08.299] Server  LOG     prisma:query "SELECT 1"
-[02:32:08.300] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
-[02:32:08.369] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
-[02:32:17.950] Server  LOG     ✓ Compiled in 0ms
-[02:32:18.977] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:32:23.466] Server  LOG     prisma:query "SELECT 1"
-[02:32:23.466] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
-[02:32:23.543] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
-[02:32:26.644] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
-[02:32:31.610] Server  LOG     ✓ Compiled in 523ms
-[02:32:50.077] Server  LOG     ✓ Compiled in 1104ms
-[02:33:03.241] Server  LOG     ✓ Compiled in 1525ms
-[02:34:15.672] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:34:16.096] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
-[02:34:20.193] Server  LOG     prisma:query "SELECT 1"
-[02:34:20.206] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
-[02:34:20.272] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
-[02:35:46.608] Server  LOG     ✓ Compiled in 1208ms
-[02:35:53.772] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:35:54.094] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
-[02:35:58.051] Server  LOG     prisma:query "SELECT 1"
-[02:35:58.058] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
-[02:35:58.197] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
-[02:36:46.040] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:36:46.368] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
-[02:36:50.296] Server  LOG     prisma:query "SELECT 1"
-[02:36:50.296] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
-[02:36:50.361] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
-[02:39:00.711] Server  LOG     ✓ Compiled in 1237ms
-[02:39:08.202] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:39:08.645] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
-[02:39:12.587] Server  LOG     prisma:query "SELECT 1"
-[02:39:12.587] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
-[02:39:12.662] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
-[02:39:48.460] Server  LOG     ✓ Compiled in 408ms
-[02:40:28.379] Server  LOG     ✓ Compiled in 662ms
-[02:41:35.251] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:41:35.575] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
-[02:41:39.558] Server  LOG     prisma:query "SELECT 1"
-[02:41:39.570] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
-[02:41:39.640] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
-[02:41:58.672] Server  LOG     ✓ Compiled in 388ms
-[02:42:09.682] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:42:10.042] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
-[02:42:13.955] Server  LOG     prisma:query "SELECT 1"
-[02:42:13.955] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
-[02:42:14.090] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
-[02:44:58.406] Server  LOG     ✓ Compiled in 1188ms
-[02:45:07.392] Server  LOG     ✓ Compiled in 477ms
-[02:45:22.483] Server  LOG     ✓ Compiled in 1268ms
-[02:45:29.696] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:45:30.051] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
-[02:45:33.965] Server  LOG     prisma:query "SELECT 1"
-[02:45:33.965] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
-[02:45:34.100] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
-[02:46:40.551] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:46:40.811] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
-[02:46:44.716] Server  LOG     prisma:query "SELECT 1"
-[02:46:44.716] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
-[02:46:44.740] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
-[02:47:26.852] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:47:27.244] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
-[02:47:31.150] Server  LOG     prisma:query "SELECT 1"
-[02:47:31.151] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
-[02:47:31.183] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
-[02:50:13.340] Server  LOG     ✓ Compiled in 656ms
+[00:00:01.846] Server  LOG     ✓ Ready in 1467ms
+[00:00:02.129] Browser ERROR   [ErrorBoundary] Caught error: {"name":"ChunkLoadError"} 
+    at Lazy (<anonymous>)
+    at Suspense (<anonymous>)
+    at LoadableComponent (<anonymous>)
+    at div (<anonymous>)
+    at MotionDOMComponent (http://localhost:3000/_next/static/chunks/node_modules_af3ce0b7._.js:5302:192)
+    at PresenceChild (http://localhost:3000/_next/static/chunks/node_modules_af3ce0b7._.js:13388:26)
+    at AnimatePresence (http://localhost:3000/_next/static/chunks/node_modules_af3ce0b7._.js:13551:32)
+    at main (<anonymous>)
+    at div (<anonymous>)
+    at div (<anonymous>)
+    at PhoneShell (http://localhost:3000/_next/static/chunks/src_a5e66fb9._.js:11890:23)
+    at ErrorBoundary (http://localhost:3000/_next/static/chunks/src_a5e66fb9._.js:11652:9)
+    at Home (http://localhost:3000/_next/static/chunks/src_a5e66fb9._.js:14312:304)
+    at ClientPageRoot (http://localhost:3000/_next/static/chunks/node_modules_next_dist_be32b49c._.js:2358:27)
+    at SegmentViewNode (http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3309:28)
+    at InnerLayoutRouter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_be32b49c._.js:351:34)
+    at RedirectErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_17643121._.js:10149:9)
+    at RedirectBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_17643121._.js:10191:29)
+    at HTTPAccessFallbackErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_17643121._.js:10577:9)
+    at HTTPAccessFallbackBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_17643121._.js:10652:39)
+    at LoadingBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_be32b49c._.js:433:32)
+    at ErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_17643121._.js:1096:26)
+    at InnerScrollAndFocusHandler (http://localhost:3000/_next/static/chunks/node_modules_next_dist_be32b49c._.js:251:9)
+    at ScrollAndFocusHandler (http://localhost:3000/_next/static/chunks/node_modules_next_dist_be32b49c._.js:334:34)
+    at RenderFromTemplateContext (http://localhost:3000/_next/static/chunks/node_modules_next_dist_be32b49c._.js:696:44)
+    at SegmentStateProvider (http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3325:33)
+    at OuterLayoutRouter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_be32b49c._.js:469:30)
+    at div (<anonymous>)
+    at body (<anonymous>)
+    at html (<anonymous>)
+    at RootLayout [Server] (<anonymous>)
+    at SegmentViewNode (http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3309:28)
+    at __next_root_layout_boundary__ (http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:1681:64)
+    at RedirectErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_17643121._.js:10149:9)
+    at RedirectBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_17643121._.js:10191:29)
+    at HTTPAccessFallbackErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_17643121._.js:10577:9)
+    at HTTPAccessFallbackBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_17643121._.js:10652:39)
+    at DevRootHTTPAccessFallbackBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_17643121._.js:10721:46)
+    at AppDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3420:9)
+    at HotReload (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_17643121._.js:11750:22)
+    at Router (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_17643121._.js:11906:23)
+    at ErrorBoundaryHandler (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_17643121._.js:1030:9)
+    at ErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_17643121._.js:1096:26)
+    at RootErrorBoundary (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_17643121._.js:10403:30)
+    at AppRouter (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_17643121._.js:12225:22)
+    at ServerRoot (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_17643121._.js:12584:23)
+    at Root (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_17643121._.js:12602:17)
+[00:00:03.605] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:00:03.710] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:00:05.142] Server  LOG     ○ Compiling /api/progress ...
+[00:00:07.044] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:00:25.002] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:25.527] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:00:26.400] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:30.793] Server  LOG     prisma:query "SELECT 1"
+[00:00:30.795] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:00:30.905] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:00:32.213] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:36.339] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:00:37.219] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:37.398] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:00:37.943] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:42.275] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:00:42.314] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:00:50.271] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:00:51.008] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:51.230] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:00:51.940] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:56.182] Server  LOG     prisma:query "SELECT 1"
+[00:00:56.182] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:00:56.207] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:00:59.277] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:00:59.979] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:00.179] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:01:00.908] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:05.121] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:01:05.190] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:01:08.282] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:01:08.935] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:09.241] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:01:09.976] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:14.198] Server  LOG     prisma:query "SELECT 1"
+[00:01:14.199] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:01:14.240] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:01:20.274] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:01:20.792] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:21.198] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:01:21.927] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:26.180] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:01:26.209] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:01:29.271] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:01:29.829] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:30.141] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:01:30.886] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:35.121] Server  LOG     prisma:query "SELECT 1"
+[00:01:35.121] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:01:35.137] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:01:38.264] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:01:38.826] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:39.117] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:01:39.839] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:44.101] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:01:44.137] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:01:47.269] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:01:47.879] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:48.184] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:01:48.984] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:53.198] Server  LOG     prisma:query "SELECT 1"
+[00:01:53.198] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:01:53.223] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:01:56.290] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:01:57.098] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:57.304] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:01:58.039] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:02.339] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:02:02.387] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:02:05.382] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:02:06.234] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:06.528] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:02:07.201] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:11.519] Server  LOG     prisma:query "SELECT 1"
+[00:02:11.519] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:02:11.581] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:02:14.282] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:02:15.028] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:15.210] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:02:15.817] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:19.300] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:02:19.919] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:20.273] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:02:20.842] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:23.285] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:02:23.998] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:24.213] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:02:24.726] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:29.029] Server  LOG     prisma:query "SELECT 1"
+[00:02:29.029] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:02:29.091] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:02:33.309] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:02:33.901] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:34.141] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:02:34.788] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:39.019] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:02:39.045] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:02:41.300] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:02:41.916] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:42.149] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:02:42.919] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:45.295] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:02:45.921] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:46.198] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:02:46.917] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:49.295] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:02:50.094] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:50.286] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:02:50.571] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:50.687] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:02:50.873] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:54.309] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:02:55.102] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:55.399] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:02:56.037] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:57.671] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:58.229] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:02:58.260] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:02:59.080] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:59.487] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:03:00.312] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:02.972] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:02.972] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:03:04.614] Server  LOG     prisma:query "SELECT 1"
+[00:03:04.615] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:03:04.637] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:03:07.290] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:03:07.828] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:08.108] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:03:08.436] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:08.436] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:03:08.934] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:13.302] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:03:13.438] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:03:14.896] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:15.411] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:03:16.393] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:03:17.212] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:17.475] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:03:18.137] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:20.281] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:03:21.041] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:21.321] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:03:22.389] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:24.211] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:24.211] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:03:26.288] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:03:27.006] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:27.307] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:03:27.888] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:28.910] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:28.910] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:03:30.301] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:03:30.907] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:31.126] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:03:31.799] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:34.416] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:34.416] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:03:36.085] Server  LOG     prisma:query "SELECT 1"
+[00:03:36.085] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:03:36.122] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:03:37.787] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:37.787] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:03:39.300] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:03:40.133] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:40.444] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:03:41.198] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:41.201] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:41.201] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:03:44.551] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:44.551] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:03:45.516] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:03:45.598] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:03:46.329] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:03:47.385] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:47.837] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:03:48.400] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:52.737] Server  LOG     prisma:query "SELECT 1"
+[00:03:52.737] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:03:52.791] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:03:53.801] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:53.801] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:03:55.293] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:03:56.022] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:56.390] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:03:57.002] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:00.314] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:04:01.028] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:01.285] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:04:01.987] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:04.586] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:04.586] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:04:06.273] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:04:06.321] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:04:08.236] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:08.236] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:04:09.290] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:04:10.214] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:10.427] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:04:11.082] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:15.414] Server  LOG     prisma:query "SELECT 1"
+[00:04:15.414] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:04:15.471] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:04:15.833] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:15.833] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:04:18.379] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:04:18.918] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:19.198] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:04:19.831] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:20.236] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:20.236] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:04:24.190] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:04:24.238] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:04:25.018] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:25.018] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:04:27.296] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:04:27.845] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:27.845] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:04:28.127] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:28.323] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:04:29.004] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:31.493] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:31.493] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:04:33.237] Server  LOG     prisma:query "SELECT 1"
+[00:04:33.238] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:04:33.322] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:04:34.417] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:34.417] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:04:36.434] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:04:37.094] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:37.398] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:37.398] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:04:37.424] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:04:38.198] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:40.352] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:40.352] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:04:42.439] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:04:42.525] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:04:43.002] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:43.002] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:04:47.286] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:04:47.338] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:47.338] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:04:48.117] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:48.392] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:04:49.327] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:50.584] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:50.584] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:04:53.306] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:04:53.818] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:53.926] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:54.171] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:04:54.721] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:55.698] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:04:58.284] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:04:58.982] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:59.331] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:04:59.778] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:59.778] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:05:00.089] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:03.295] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:03.295] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:05:04.529] Server  LOG     prisma:query "SELECT 1"
+[00:05:04.530] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:05:04.598] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:05:06.615] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:07.146] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:05:08.293] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:05:08.742] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:08.992] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:05:09.606] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:11.207] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:11.207] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:05:13.258] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:05:13.841] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:14.113] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:05:14.681] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:18.283] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:05:19.105] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:19.387] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:05:19.972] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:22.282] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:05:22.939] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:23.182] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:05:23.821] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:27.323] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:05:27.988] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:28.332] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:05:28.988] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:31.877] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:31.877] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:05:33.311] Server  LOG     prisma:query "SELECT 1"
+[00:05:33.311] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:05:33.439] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:05:36.290] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:05:36.933] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:37.211] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:05:37.920] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:40.301] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:05:41.127] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:41.399] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:05:42.085] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:46.375] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:05:46.506] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:05:48.677] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:48.677] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:05:49.276] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:05:49.912] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:50.212] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:05:50.929] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:53.297] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:05:53.397] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:53.397] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:05:54.222] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:54.629] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:05:55.240] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:58.420] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:58.420] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:05:59.540] Server  LOG     prisma:query "SELECT 1"
+[00:05:59.541] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:05:59.607] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:06:02.289] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:06:03.094] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:03.398] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:06:03.504] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:03.504] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:06:04.182] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:07.571] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:07.572] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:06:08.437] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:06:08.510] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:06:11.292] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:06:12.016] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:12.240] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:06:12.871] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:15.051] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:15.051] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:06:16.290] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:06:17.082] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:17.317] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:06:17.887] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:17.887] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:06:18.080] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:21.437] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:21.437] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:06:22.243] Server  LOG     prisma:query "SELECT 1"
+[00:06:22.243] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:06:22.281] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:06:24.585] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:24.585] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:06:25.286] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:06:26.039] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:26.313] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:06:26.995] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:28.137] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:28.137] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:06:31.239] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:06:31.313] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:06:34.303] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:06:34.923] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:35.125] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:06:35.603] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:38.286] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:06:38.480] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:38.480] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:06:38.946] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:39.395] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:06:40.133] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:43.441] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:43.442] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:06:44.279] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:06:44.894] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:45.142] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:06:46.015] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:46.575] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:46.575] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:06:50.319] Server  LOG     prisma:query "SELECT 1"
+[00:06:50.320] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:06:50.372] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:06:50.811] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:50.811] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:06:53.310] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:06:53.817] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:54.009] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:06:54.681] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:57.444] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:57.444] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:06:58.945] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:06:59.014] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:07:02.294] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:07:02.416] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:02.805] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:03.182] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:07:03.512] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:07:03.786] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:07.296] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:07:07.974] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:08.171] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:08.287] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:07:08.606] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:07:08.974] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:11.287] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:07:12.021] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:12.217] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:07:12.835] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:15.984] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:17.208] Server  LOG     prisma:query "SELECT 1"
+[00:07:17.208] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:07:17.241] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:07:18.713] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:07:20.301] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:07:20.905] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:21.230] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:07:21.886] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:23.992] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:23.992] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:07:26.027] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:07:26.081] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:07:27.640] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:27.641] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:07:29.304] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:07:29.908] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:30.112] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:07:30.736] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:30.935] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:30.935] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:07:34.936] Server  LOG     prisma:query "SELECT 1"
+[00:07:34.936] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:07:35.085] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:07:35.390] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:35.390] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:07:37.296] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:07:38.311] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:38.720] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:07:39.335] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:39.502] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:39.502] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:07:43.685] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:07:43.719] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:07:44.406] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:44.406] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:07:47.172] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:47.172] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:07:47.282] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:07:47.997] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:48.380] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:07:48.901] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:51.181] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:51.181] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:07:52.318] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:07:53.084] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:53.383] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:07:53.994] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:54.418] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:54.418] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:07:57.376] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:07:57.581] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:57.581] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:07:58.328] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:58.579] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:07:59.229] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:00.733] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:00.733] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:08:03.538] Server  LOG     prisma:query "SELECT 1"
+[00:08:03.538] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:08:03.721] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:08:05.510] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:05.510] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:08:06.263] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:06.976] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:07.205] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:07.833] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:08.006] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:08.493] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:08.636] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:08.990] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:08.990] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:08:09.492] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:09.793] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:10.397] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:10.623] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:11.195] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:11.322] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:11.925] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:12.121] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:12.888] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:13.088] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:13.626] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:13.813] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:14.339] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:14.533] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:14.533] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:08:14.586] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:15.288] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:15.528] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:16.174] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:16.480] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:17.038] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:17.241] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:17.843] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:18.085] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:18.873] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:19.222] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:19.381] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:19.381] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:08:20.046] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:20.526] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:21.225] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:21.409] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:22.191] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:22.329] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:23.087] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:23.815] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:24.499] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:24.775] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:25.396] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:25.407] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:25.407] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:08:25.625] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:26.402] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:26.680] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:27.375] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:27.637] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:28.208] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:28.386] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:29.072] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:29.277] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:29.815] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:29.815] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:08:30.085] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:30.372] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:31.031] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:31.271] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:32.085] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:32.220] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:32.827] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:32.933] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:32.933] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:08:33.177] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:33.723] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:33.918] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:34.409] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:34.604] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:35.329] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:35.595] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:36.120] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:36.120] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:08:36.317] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:36.694] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:37.421] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:37.782] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:38.440] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:38.898] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:39.588] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:40.197] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:40.482] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:08:43.291] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:43.916] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:44.189] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:44.902] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:48.280] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:48.576] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:48.818] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:48.872] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:08:49.113] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:49.799] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:53.526] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:53.771] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:08:54.299] Server  LOG     prisma:query "SELECT 1"
+[00:08:54.299] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:08:54.340] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:08:57.288] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:57.824] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:58.019] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:08:58.602] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:58.972] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:59.171] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:09:02.297] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:09:03.210] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:09:03.306] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:09:03.487] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:09:04.139] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:09:05.202] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:09:08.299] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:09:08.340] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:09:11.284] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:09:11.996] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:09:12.217] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:09:12.528] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:09:12.772] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:09:12.775] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:09:15.315] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:09:16.041] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:09:16.404] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:09:17.143] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:09:17.172] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:09:17.581] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:09:21.431] Server  LOG     prisma:query "SELECT 1"
+[00:09:21.432] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:09:21.495] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:09:21.519] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:09:21.671] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:09:24.390] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:09:25.032] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:09:25.314] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:09:26.297] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:09:26.537] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:09:26.711] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:09:30.495] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:09:30.608] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:09:33.292] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:09:33.598] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:09:33.792] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:09:33.938] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:09:34.227] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:09:34.929] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:09:38.621] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:09:38.722] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:09:39.295] Server  LOG     prisma:query "SELECT 1"
+[00:09:39.295] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:09:39.335] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:09:42.307] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:09:43.115] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:09:43.379] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:09:44.073] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:09:44.943] Server  LOG     ✓ Compiled in 797ms
+[00:09:46.476] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:09:46.681] Browser LOG     [PWA] Service worker registered: https://preview-chat-8bb33061-c471-4f4c-a628-b5bf67977e4b.space-z.ai/
+[00:09:48.313] Browser LOG     [PWA] Service worker registered: http://localhost:3000/
+[00:09:49.001] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:09:53.516] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:09:53.589] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:09:53.627] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:09:58.118] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:09:58.227] Server  LOG     prisma:query "SELECT 1"
+[00:09:58.228] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:09:58.677] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"
+[00:10:02.394] Server  LOG     prisma:query "SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`payload`, `main`.`ProgressSnapshot`.`streakDays`, `main`.`ProgressSnapshot`.`xp`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`updatedAt` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?"
+[00:10:02.438] Server  LOG     prisma:query "INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`"

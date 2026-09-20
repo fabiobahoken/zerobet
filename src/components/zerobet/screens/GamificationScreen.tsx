@@ -23,6 +23,10 @@ import {
   History,
   ChevronRight,
   Target,
+  Sprout,
+  Swords,
+  Shield,
+  type LucideIcon,
 } from "lucide-react";
 import {
   useStore,
@@ -73,8 +77,8 @@ const WEEKLY_CHALLENGES: WeeklyChallenge[] = [
     description: "Mets de l'argent de côté cette semaine",
     reward: 300,
     icon: Wallet,
-    color: "#4ADE80",
-    bg: "rgba(74,222,128,0.15)",
+    color: "#FFC94D",
+    bg: "rgba(255,201,77,0.15)",
     current: 6500,
     target: 10000,
     unit: "FCFA",
@@ -120,19 +124,37 @@ const LEADERBOARD_SEED: LeaderUser[] = [
    ======================================================================== */
 
 const TIER_GRADIENTS: Record<LevelTier, string> = {
-  Novice: "linear-gradient(135deg, #9CA3AF 0%, #2DD4BF 100%)",
-  Apprenti: "linear-gradient(135deg, #2DD4BF 0%, #4ADE80 100%)",
+  Novice: "linear-gradient(135deg, #9CA3AF 0%, #FFB020 100%)",
+  Apprenti: "linear-gradient(135deg, #FFB020 0%, #FFC94D 100%)",
   Guerrier: "linear-gradient(135deg, #F59E0B 0%, #FF3B30 100%)",
-  Champion: "linear-gradient(135deg, #FF3B30 0%, #C084FC 100%)",
-  Légende: "linear-gradient(135deg, #FBBF24 0%, #FF3B30 50%, #C084FC 100%)",
+  Champion: "linear-gradient(135deg, #FF3B30 0%, #FFD166 100%)",
+  Légende: "linear-gradient(135deg, #FBBF24 0%, #FF3B30 50%, #FFD166 100%)",
 };
 
-const TIER_EMOJIS: Record<LevelTier, string> = {
-  Novice: "🌱",
-  Apprenti: "⚔️",
-  Guerrier: "🛡️",
-  Champion: "🏆",
-  Légende: "👑",
+const TIER_ICONS: Record<LevelTier, LucideIcon> = {
+  Novice: Sprout,
+  Apprenti: Swords,
+  Guerrier: Shield,
+  Champion: Trophy,
+  Légende: Crown,
+};
+
+const TIER_ICON_COLORS: Record<LevelTier, string> = {
+  Novice: "#FFC94D",
+  Apprenti: "#FF9A3D",
+  Guerrier: "#FF8A00",
+  Champion: "#FF6B00",
+  Légende: "#FFD700",
+};
+
+/** Leaderboard honours — crafted Lucide medals instead of emoji. */
+const BADGE_ICONS: Record<string, { Icon: LucideIcon; color: string }> = {
+  "👑": { Icon: Crown, color: "#FFD700" },
+  "🥇": { Icon: Medal, color: "#FFD700" },
+  "🥈": { Icon: Medal, color: "#C0C0C0" },
+  "🥉": { Icon: Award, color: "#CD7F32" },
+  "⭐": { Icon: Star, color: "#FFC94D" },
+  "🌱": { Icon: Sprout, color: "#FFC94D" },
 };
 
 function formatRelativeTime(iso: string): string {
@@ -156,13 +178,13 @@ function getSourceIcon(source: string) {
     case "check-in":
       return { icon: Calendar, color: "#F59E0B" };
     case "journal":
-      return { icon: BookOpen, color: "#2DD4BF" };
+      return { icon: BookOpen, color: "#FFB020" };
     case "méditation":
-      return { icon: Zap, color: "#4ADE80" };
+      return { icon: Zap, color: "#FFC94D" };
     case "sans pari":
       return { icon: Flame, color: "#FF3B30" };
     case "article":
-      return { icon: BookOpen, color: "#C084FC" };
+      return { icon: BookOpen, color: "#FFD166" };
     default:
       return { icon: Sparkles, color: "#FBBF24" };
   }
@@ -174,7 +196,7 @@ function getSourceIcon(source: string) {
 
 function ConfettiBurst({ show }: { show: boolean }) {
   if (!show) return null;
-  const colors = ["#FF3B30", "#F59E0B", "#4ADE80", "#2DD4BF", "#FBBF24", "#C084FC"];
+  const colors = ["#FF3B30", "#F59E0B", "#FFC94D", "#FFB020", "#FBBF24", "#FFD166"];
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden">
       {Array.from({ length: 30 }).map((_, i) => {
@@ -255,7 +277,8 @@ function LevelXPCard() {
 
   const progress = Math.max(0, Math.min(100, levelInfo.progress));
   const tierGradient = TIER_GRADIENTS[levelInfo.tier];
-  const tierEmoji = TIER_EMOJIS[levelInfo.tier];
+  const TierIcon = TIER_ICONS[levelInfo.tier];
+  const tierIconColor = TIER_ICON_COLORS[levelInfo.tier];
 
   return (
     <motion.div
@@ -285,7 +308,7 @@ function LevelXPCard() {
             className="px-2.5 py-1 rounded-full text-[10px] font-bold text-white flex items-center gap-1"
             style={{ background: tierGradient }}
           >
-            {tierEmoji} {levelInfo.tier}
+            <TierIcon size={11} strokeWidth={2.4} /> {levelInfo.tier}
           </span>
         </div>
 
@@ -314,9 +337,20 @@ function LevelXPCard() {
           <motion.div
             animate={{ scale: [1, 1.1, 1], rotate: [0, 5, -5, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="text-6xl"
+            className="w-20 h-20 rounded-3xl flex items-center justify-center"
+            style={{
+              background: `radial-gradient(circle at 35% 30%, ${tierIconColor}30, transparent 70%)`,
+              boxShadow: `0 0 34px ${tierIconColor}35, inset 0 0 22px ${tierIconColor}18`,
+            }}
           >
-            {tierEmoji}
+            <TierIcon
+              size={44}
+              strokeWidth={1.9}
+              style={{
+                color: tierIconColor,
+                filter: `drop-shadow(0 0 10px ${tierIconColor}90)`,
+              }}
+            />
           </motion.div>
         </div>
 
@@ -399,7 +433,7 @@ function WeeklyChallenges() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.06 }}
               className={`glass-card p-4 relative overflow-hidden ${
-                isComplete ? "border border-[#4ADE80]/40" : ""
+                isComplete ? "border border-[#FFC94D]/40" : ""
               }`}
             >
               <div
@@ -443,7 +477,7 @@ function WeeklyChallenges() {
                     className="h-full rounded-full"
                     style={{
                       background: isComplete
-                        ? "linear-gradient(90deg, #4ADE80 0%, #2DD4BF 100%)"
+                        ? "linear-gradient(90deg, #FFC94D 0%, #FFB020 100%)"
                         : `linear-gradient(90deg, ${challenge.color} 0%, ${challenge.color}99 100%)`,
                     }}
                     initial={{ width: 0 }}
@@ -466,10 +500,10 @@ function WeeklyChallenges() {
 
 const MULTIPLIER_TIERS = [
   { range: "1 - 6 jours", multiplier: "1.0x", label: "Normal", min: 0, max: 6, color: "#9CA3AF" },
-  { range: "7 - 13 jours", multiplier: "1.2x", label: "+20% XP", min: 7, max: 13, color: "#4ADE80" },
+  { range: "7 - 13 jours", multiplier: "1.2x", label: "+20% XP", min: 7, max: 13, color: "#FFC94D" },
   { range: "14 - 29 jours", multiplier: "1.5x", label: "+50% XP", min: 14, max: 29, color: "#FBBF24" },
   { range: "30 - 89 jours", multiplier: "2.0x", label: "Double XP", min: 30, max: 89, color: "#F59E0B" },
-  { range: "90+ jours", multiplier: "3.0x", label: "Triple XP", min: 90, max: Infinity, color: "#C084FC" },
+  { range: "90+ jours", multiplier: "3.0x", label: "Triple XP", min: 90, max: Infinity, color: "#FFD166" },
 ];
 
 function StreakMultipliers() {
@@ -526,9 +560,22 @@ function StreakMultipliers() {
           <motion.div
             animate={{ scale: [1, 1.15, 1], rotate: [0, 8, -8, 0] }}
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            className="text-5xl"
+            className="w-16 h-16 rounded-2xl flex items-center justify-center"
+            style={{
+              background:
+                "radial-gradient(circle at 35% 30%, rgba(255,140,26,0.35), transparent 72%)",
+              boxShadow:
+                "0 0 36px rgba(255,107,0,0.4), inset 0 0 24px rgba(255,176,32,0.2)",
+            }}
           >
-            {streakDays >= 90 ? "👑" : streakDays >= 30 ? "🔥" : streakDays >= 14 ? "⚡" : streakDays >= 7 ? "🌟" : "🌱"}
+            <Flame
+              size={38}
+              strokeWidth={2}
+              style={{
+                color: "#FF9A3D",
+                filter: "drop-shadow(0 0 12px rgba(255,140,26,0.9))",
+              }}
+            />
           </motion.div>
         </div>
         <div className="relative mt-3 px-3 py-2 rounded-xl bg-black/30">
@@ -606,7 +653,7 @@ function XPHistory() {
     <section className="mb-6">
       <div className="flex items-center justify-between mb-3 px-1">
         <div className="flex items-center gap-2">
-          <History size={14} className="text-[#2DD4BF]" />
+          <History size={14} className="text-[#FFB020]" />
           <h2 className="text-white font-semibold text-sm font-[family-name:var(--font-poppins)]">
             Historique XP
           </h2>
@@ -646,7 +693,7 @@ function XPHistory() {
                       {formatRelativeTime(entry.timestamp)}
                     </p>
                   </div>
-                  <span className="flex-shrink-0 text-[#4ADE80] font-bold text-sm tabular-nums">
+                  <span className="flex-shrink-0 text-[#FFC94D] font-bold text-sm tabular-nums">
                     +{entry.amount} XP
                   </span>
                 </motion.li>
@@ -749,10 +796,17 @@ function Leaderboard() {
                 {rankBadge(rank)}
               </div>
               <div
-                className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 text-lg"
+                className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0"
                 style={{ background: "rgba(255,255,255,0.05)" }}
               >
-                {user.badge}
+                {(() => {
+                  const b = BADGE_ICONS[user.badge];
+                  return b ? (
+                    <b.Icon size={16} strokeWidth={2.2} style={{ color: b.color }} />
+                  ) : (
+                    user.badge
+                  );
+                })()}
               </div>
               <div className="flex-1 min-w-0">
                 <p
@@ -826,9 +880,25 @@ function Leaderboard() {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.1 + idx * 0.1, type: "spring", stiffness: 200 }}
-                      className={`flex-1 flex flex-col items-center ${user.isMe ? "ring-2 ring-[#10B981] rounded-2xl" : ""}`}
+                      className={`flex-1 flex flex-col items-center ${user.isMe ? "ring-2 ring-[#FF6B00] rounded-2xl" : ""}`}
                     >
-                      <div className="text-2xl mb-1">{user.badge}</div>
+                      <div className="text-2xl mb-1">
+                        {(() => {
+                          const b = BADGE_ICONS[user.badge];
+                          return b ? (
+                            <b.Icon
+                              size={26}
+                              strokeWidth={2.1}
+                              style={{
+                                color: b.color,
+                                filter: `drop-shadow(0 0 8px ${b.color}80)`,
+                              }}
+                            />
+                          ) : (
+                            user.badge
+                          );
+                        })()}
+                      </div>
                       <div className="text-[10px] text-white/70 font-medium text-center truncate w-full px-1">
                         {user.name.split(" ")[0]}
                       </div>
@@ -867,10 +937,17 @@ function Leaderboard() {
                         {rankBadge(rank)}
                       </span>
                       <div
-                        className="w-9 h-9 rounded-full flex items-center justify-center text-lg"
+                        className="w-9 h-9 rounded-full flex items-center justify-center"
                         style={{ background: "rgba(255,255,255,0.05)" }}
                       >
-                        {user.badge}
+                        {(() => {
+                          const b = BADGE_ICONS[user.badge];
+                          return b ? (
+                            <b.Icon size={16} strokeWidth={2.2} style={{ color: b.color }} />
+                          ) : (
+                            user.badge
+                          );
+                        })()}
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className={`text-sm font-semibold truncate ${user.isMe ? "text-white" : "text-white/80"}`}>

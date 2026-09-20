@@ -150,21 +150,21 @@ const TOGGLES = [
         labelKey: "notifCommunity",
         descKey: "notifCommunityDesc",
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__["Users"],
-        color: "#4ADE80"
+        color: "#FFC94D"
     },
     {
         key: "weeklyReport",
         labelKey: "notifWeekly",
         descKey: "notifWeeklyDesc",
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$file$2d$chart$2d$column$2d$increasing$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__FileBarChart$3e$__["FileBarChart"],
-        color: "#10B981"
+        color: "#FF6B00"
     },
     {
         key: "motivationalQuotes",
         labelKey: "notifQuotes",
         descKey: "notifQuotesDesc",
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$quote$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Quote$3e$__["Quote"],
-        color: "#2DD4BF"
+        color: "#FFB020"
     },
     {
         key: "silentHours",
@@ -193,14 +193,14 @@ const SCHEDULE = [
         time: "18:00",
         labelKey: "notifSchedQuote",
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$quote$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Quote$3e$__["Quote"],
-        color: "#2DD4BF",
+        color: "#FFB020",
         enabledKey: "motivationalQuotes"
     },
     {
         time: "notifSchedTimeSunday",
         labelKey: "notifWeekly",
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$file$2d$chart$2d$column$2d$increasing$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__FileBarChart$3e$__["FileBarChart"],
-        color: "#10B981",
+        color: "#FF6B00",
         enabledKey: "weeklyReport"
     },
     {
@@ -214,7 +214,7 @@ const SCHEDULE = [
         time: "notifSchedTimeAnytime",
         labelKey: "notifCommunity",
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__["Users"],
-        color: "#4ADE80",
+        color: "#FFC94D",
         enabledKey: "communityActivity"
     }
 ];
@@ -419,7 +419,7 @@ function NotificationSettingsScreen() {
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "absolute -top-12 -right-12 w-32 h-32 rounded-full blur-3xl pointer-events-none",
                             style: {
-                                background: permissionGranted ? "rgba(74,222,128,0.18)" : notificationPermission === "denied" ? "rgba(255,59,48,0.18)" : "rgba(245, 158, 11,0.18)"
+                                background: permissionGranted ? "rgba(255,201,77,0.18)" : notificationPermission === "denied" ? "rgba(255,59,48,0.18)" : "rgba(245, 158, 11,0.18)"
                             }
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/NotificationSettingsScreen.tsx",
@@ -435,11 +435,11 @@ function NotificationSettingsScreen() {
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "w-10 h-10 rounded-2xl flex items-center justify-center shrink-0",
                                             style: {
-                                                background: permissionGranted ? "rgba(74,222,128,0.15)" : notificationPermission === "denied" ? "rgba(255,59,48,0.15)" : "rgba(245, 158, 11,0.15)"
+                                                background: permissionGranted ? "rgba(255,201,77,0.15)" : notificationPermission === "denied" ? "rgba(255,59,48,0.15)" : "rgba(245, 158, 11,0.15)"
                                             },
                                             children: permissionGranted ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__["Check"], {
                                                 size: 20,
-                                                className: "text-[#4ADE80]"
+                                                className: "text-[#FFC94D]"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/NotificationSettingsScreen.tsx",
                                                 lineNumber: 323,
@@ -596,10 +596,10 @@ function NotificationSettingsScreen() {
                             className: "flex items-center gap-3 mb-3",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "w-10 h-10 rounded-2xl bg-[#10B981]/15 flex items-center justify-center",
+                                    className: "w-10 h-10 rounded-2xl bg-[#FF6B00]/15 flex items-center justify-center",
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$download$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Download$3e$__["Download"], {
                                         size: 18,
-                                        className: "text-[#10B981]"
+                                        className: "text-[#FF6B00]"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/NotificationSettingsScreen.tsx",
                                         lineNumber: 393,
@@ -641,11 +641,11 @@ function NotificationSettingsScreen() {
                             columnNumber: 11
                         }, this),
                         pwaInstalled ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "flex items-center gap-3 p-3 rounded-2xl bg-[#4ADE80]/10 border border-[#4ADE80]/30",
+                            className: "flex items-center gap-3 p-3 rounded-2xl bg-[#FFC94D]/10 border border-[#FFC94D]/30",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__["Check"], {
                                     size: 18,
-                                    className: "text-[#4ADE80] shrink-0"
+                                    className: "text-[#FFC94D] shrink-0"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/screens/NotificationSettingsScreen.tsx",
                                     lineNumber: 405,
@@ -699,7 +699,7 @@ function NotificationSettingsScreen() {
                                             className: "flex items-start gap-1.5",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "text-[#10B981] font-bold",
+                                                    className: "text-[#FF6B00] font-bold",
                                                     children: t("notifIosLabel")
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/zerobet/screens/NotificationSettingsScreen.tsx",
@@ -717,7 +717,7 @@ function NotificationSettingsScreen() {
                                             className: "flex items-start gap-1.5",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "text-[#4ADE80] font-bold",
+                                                    className: "text-[#FFC94D] font-bold",
                                                     children: t("notifAndroidLabel")
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/zerobet/screens/NotificationSettingsScreen.tsx",
@@ -1025,7 +1025,7 @@ function NotificationSettingsScreen() {
                                             type: "time",
                                             value: notificationPreferences.silentHoursStart,
                                             onChange: (e)=>handleTimeChange("silentHoursStart", e.target.value),
-                                            className: "w-full bg-white/5 border border-white/10 rounded-2xl px-3 py-2.5 text-white text-base font-semibold [color-scheme:dark] focus:outline-none focus:ring-2 focus:ring-[#2DD4BF]/50",
+                                            className: "w-full bg-white/5 border border-white/10 rounded-2xl px-3 py-2.5 text-white text-base font-semibold [color-scheme:dark] focus:outline-none focus:ring-2 focus:ring-[#FFB020]/50",
                                             "aria-label": t("notifSilentStartAria")
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/screens/NotificationSettingsScreen.tsx",
@@ -1052,7 +1052,7 @@ function NotificationSettingsScreen() {
                                             type: "time",
                                             value: notificationPreferences.silentHoursEnd,
                                             onChange: (e)=>handleTimeChange("silentHoursEnd", e.target.value),
-                                            className: "w-full bg-white/5 border border-white/10 rounded-2xl px-3 py-2.5 text-white text-base font-semibold [color-scheme:dark] focus:outline-none focus:ring-2 focus:ring-[#2DD4BF]/50",
+                                            className: "w-full bg-white/5 border border-white/10 rounded-2xl px-3 py-2.5 text-white text-base font-semibold [color-scheme:dark] focus:outline-none focus:ring-2 focus:ring-[#FFB020]/50",
                                             "aria-label": t("notifSilentEndAria")
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/screens/NotificationSettingsScreen.tsx",
@@ -1183,10 +1183,10 @@ function NotificationSettingsScreen() {
                                 className: "flex items-center gap-3 mb-4",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "w-10 h-10 rounded-2xl bg-[#4ADE80]/15 flex items-center justify-center",
+                                        className: "w-10 h-10 rounded-2xl bg-[#FFC94D]/15 flex items-center justify-center",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$calendar$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Calendar$3e$__["Calendar"], {
                                             size: 18,
-                                            className: "text-[#4ADE80]"
+                                            className: "text-[#FFC94D]"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/screens/NotificationSettingsScreen.tsx",
                                             lineNumber: 594,
@@ -1282,7 +1282,7 @@ function NotificationSettingsScreen() {
                                             }, this),
                                             enabled ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__["Check"], {
                                                 size: 14,
-                                                className: "text-[#4ADE80] shrink-0"
+                                                className: "text-[#FFC94D] shrink-0"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/NotificationSettingsScreen.tsx",
                                                 lineNumber: 637,
@@ -1325,10 +1325,10 @@ function NotificationSettingsScreen() {
                         className: "flex items-start gap-3",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "w-8 h-8 rounded-xl bg-[#4ADE80]/15 flex items-center justify-center shrink-0",
+                                className: "w-8 h-8 rounded-xl bg-[#FFC94D]/15 flex items-center justify-center shrink-0",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Shield$3e$__["Shield"], {
                                     size: 15,
-                                    className: "text-[#4ADE80]"
+                                    className: "text-[#FFC94D]"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/screens/NotificationSettingsScreen.tsx",
                                     lineNumber: 654,

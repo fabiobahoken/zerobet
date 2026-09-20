@@ -62,7 +62,7 @@ export function BottomNav() {
                     className="absolute -top-1 left-1/2 -translate-x-1/2 h-1 w-8 rounded-full gradient-primary glow-blue"
                     style={{
                       boxShadow:
-                        "0 0 8px rgba(16, 185, 129, 0.8), 0 0 16px rgba(45, 212, 191, 0.5)",
+                        "0 0 8px rgba(255,107,0, 0.8), 0 0 16px rgba(255,176,32, 0.5)",
                     }}
                     transition={{ type: "spring", stiffness: 400, damping: 30 }}
                   />
@@ -74,13 +74,13 @@ export function BottomNav() {
                     {/* Outer glow */}
                     <motion.div
                       layoutId="activeTabOuter"
-                      className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#10B981]/30 to-[#2DD4BF]/30"
+                      className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#FF6B00]/30 to-[#FFB020]/30"
                       transition={{ type: "spring", stiffness: 400, damping: 30 }}
                     />
                     {/* Inner glow */}
                     <motion.div
                       layoutId="activeTabInner"
-                      className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#10B981]/15 to-[#2DD4BF]/15 ring-1 ring-[#2DD4BF]/40"
+                      className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#FF6B00]/15 to-[#FFB020]/15 ring-1 ring-[#FFB020]/40"
                       transition={{ type: "spring", stiffness: 400, damping: 30 }}
                     />
                   </>
@@ -94,27 +94,27 @@ export function BottomNav() {
                     isActive
                       ? {
                           filter:
-                            "drop-shadow(0 0 8px rgba(45, 212, 191, 0.6))",
+                            "drop-shadow(0 0 8px rgba(255,176,32, 0.6))",
                         }
                       : undefined
                   }
                 >
                   <Icon
                     size={22}
-                    className={isActive ? "text-[#10B981]" : "text-white/50"}
+                    className={isActive ? "text-[#FF6B00]" : "text-white/50"}
                     strokeWidth={isActive ? 2.5 : 2}
                   />
                 </motion.div>
                 <span
                   className={`text-[10px] mt-0.5 relative z-10 font-medium transition-colors ${
                     isActive
-                      ? "text-[#10B981]"
+                      ? "text-[#FF6B00]"
                       : "text-white/40"
                   }`}
                   style={
                     isActive
                       ? {
-                          textShadow: "0 0 8px rgba(45, 212, 191, 0.5)",
+                          textShadow: "0 0 8px rgba(255,176,32, 0.5)",
                         }
                       : undefined
                   }

@@ -263,7 +263,7 @@ function DataRightsScreen() {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$file$2d$json$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__FileJson$3e$__["FileJson"], {
                                         size: 16,
-                                        className: "text-[#2DD4BF]"
+                                        className: "text-[#FFB020]"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/DataRightsScreen.tsx",
                                         lineNumber: 239,
@@ -342,13 +342,13 @@ function DataRightsScreen() {
                                 className: "space-y-3",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex items-start gap-3 p-3.5 rounded-2xl bg-[#10B981]/8 border border-[#10B981]/20",
+                                        className: "flex items-start gap-3 p-3.5 rounded-2xl bg-[#FF6B00]/8 border border-[#FF6B00]/20",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "w-9 h-9 rounded-xl bg-[#10B981]/20 flex items-center justify-center flex-shrink-0",
+                                                className: "w-9 h-9 rounded-xl bg-[#FF6B00]/20 flex items-center justify-center flex-shrink-0",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$smartphone$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Smartphone$3e$__["Smartphone"], {
                                                     size: 16,
-                                                    className: "text-[#4ADE80]"
+                                                    className: "text-[#FFC94D]"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/zerobet/screens/DataRightsScreen.tsx",
                                                     lineNumber: 270,
@@ -430,13 +430,13 @@ function DataRightsScreen() {
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex items-start gap-3 p-3.5 rounded-2xl bg-[#2DD4BF]/8 border border-[#2DD4BF]/20",
+                                        className: "flex items-start gap-3 p-3.5 rounded-2xl bg-[#FFB020]/8 border border-[#FFB020]/20",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "w-9 h-9 rounded-xl bg-[#2DD4BF]/20 flex items-center justify-center flex-shrink-0",
+                                                className: "w-9 h-9 rounded-xl bg-[#FFB020]/20 flex items-center justify-center flex-shrink-0",
                                                 children: cloud ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$cloud$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Cloud$3e$__["Cloud"], {
                                                     size: 16,
-                                                    className: "text-[#2DD4BF]"
+                                                    className: "text-[#FFB020]"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/zerobet/screens/DataRightsScreen.tsx",
                                                     lineNumber: 295,
@@ -626,7 +626,7 @@ function DataRightsScreen() {
                         className: "glass-card p-5 relative overflow-hidden",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "absolute -top-16 -right-16 w-44 h-44 rounded-full blur-3xl bg-[#10B981]/10 pointer-events-none",
+                                className: "absolute -top-16 -right-16 w-44 h-44 rounded-full blur-3xl bg-[#FF6B00]/10 pointer-events-none",
                                 "aria-hidden": true
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/DataRightsScreen.tsx",
@@ -637,10 +637,10 @@ function DataRightsScreen() {
                                 className: "flex items-start gap-3 mb-4 relative",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "w-10 h-10 rounded-xl bg-[#10B981]/15 flex items-center justify-center flex-shrink-0",
+                                        className: "w-10 h-10 rounded-xl bg-[#FF6B00]/15 flex items-center justify-center flex-shrink-0",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$download$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Download$3e$__["Download"], {
                                             size: 18,
-                                            className: "text-[#4ADE80]"
+                                            className: "text-[#FFC94D]"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/screens/DataRightsScreen.tsx",
                                             lineNumber: 369,

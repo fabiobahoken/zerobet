@@ -380,13 +380,13 @@ export function ParcoursEvolutionScreen() {
                               initial={{ scale: 0 }}
                               animate={{ scale: 1 }}
                               className="px-1.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider"
-                              style={{ background: rank.color, color: "#070B0E" }}
+                              style={{ background: rank.color, color: "#0B0704" }}
                             >
                               {t("parcoursCurrentBadge")}
                             </motion.span>
                           )}
                           {isPast && (
-                            <span className="text-[9px] text-[#4ADE80] font-bold uppercase tracking-wider">
+                            <span className="text-[9px] text-[#FFC94D] font-bold uppercase tracking-wider">
                               {t("parcoursConquered")}
                             </span>
                           )}

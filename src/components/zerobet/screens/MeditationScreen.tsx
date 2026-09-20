@@ -74,12 +74,12 @@ const BREATHING_TECHNIQUES: BreathingTechnique[] = [
     cycles: 3,
     difficulty: "medium",
     difficultyLevel: 2,
-    gradient: "linear-gradient(135deg, #2DD4BF 0%, #2DD4BF 100%)",
-    glow: "rgba(45, 212, 191, 0.45)",
-    accent: "#2DD4BF",
+    gradient: "linear-gradient(135deg, #FFB020 0%, #FFB020 100%)",
+    glow: "rgba(255,176,32, 0.45)",
+    accent: "#FFB020",
     emoji: "🌊",
     phases: [
-      { nameKey: "meditationPhaseInspire", duration: 4, color: "#2DD4BF", action: "scale-up" },
+      { nameKey: "meditationPhaseInspire", duration: 4, color: "#FFB020", action: "scale-up" },
       { nameKey: "meditationPhaseHold", duration: 7, color: "#FBBF24", action: "hold" },
       { nameKey: "meditationPhaseExhale", duration: 8, color: "#FF3B30", action: "scale-down" },
     ],
@@ -93,12 +93,12 @@ const BREATHING_TECHNIQUES: BreathingTechnique[] = [
     cycles: 4,
     difficulty: "easy",
     difficultyLevel: 1,
-    gradient: "linear-gradient(135deg, #4ADE80 0%, #2DD4BF 100%)",
-    glow: "rgba(74, 222, 128, 0.45)",
-    accent: "#4ADE80",
+    gradient: "linear-gradient(135deg, #FFC94D 0%, #FFB020 100%)",
+    glow: "rgba(255,201,77, 0.45)",
+    accent: "#FFC94D",
     emoji: "🟩",
     phases: [
-      { nameKey: "meditationPhaseInspire", duration: 4, color: "#4ADE80", action: "scale-up" },
+      { nameKey: "meditationPhaseInspire", duration: 4, color: "#FFC94D", action: "scale-up" },
       { nameKey: "meditationPhaseHold", duration: 4, color: "#FBBF24", action: "hold" },
       { nameKey: "meditationPhaseExhale", duration: 4, color: "#FF3B30", action: "scale-down" },
       { nameKey: "meditationPhaseHold", duration: 4, color: "#FBBF24", action: "hold" },
@@ -113,12 +113,12 @@ const BREATHING_TECHNIQUES: BreathingTechnique[] = [
     cycles: 5,
     difficulty: "easy",
     difficultyLevel: 1,
-    gradient: "linear-gradient(135deg, #C084FC 0%, #6366F1 100%)",
-    glow: "rgba(192, 132, 252, 0.45)",
-    accent: "#C084FC",
+    gradient: "linear-gradient(135deg, #FFD166 0%, #E8590C 100%)",
+    glow: "rgba(255, 209, 102, 0.45)",
+    accent: "#FFD166",
     emoji: "💜",
     phases: [
-      { nameKey: "meditationPhaseInspire", duration: 2, color: "#C084FC", action: "scale-up" },
+      { nameKey: "meditationPhaseInspire", duration: 2, color: "#FFD166", action: "scale-up" },
       { nameKey: "meditationPhaseHold", duration: 4, color: "#FBBF24", action: "hold" },
       { nameKey: "meditationPhaseExhale", duration: 6, color: "#FF3B30", action: "scale-down" },
     ],
@@ -164,8 +164,8 @@ const GUIDED_MEDITATIONS: GuidedMeditation[] = [
     category: "motivation",
     narratorKey: "meditationNarratorMarc",
     descKey: "meditationGuided2Desc",
-    gradient: "linear-gradient(135deg, #4ADE80 0%, #2DD4BF 100%)",
-    accent: "#4ADE80",
+    gradient: "linear-gradient(135deg, #FFC94D 0%, #FFB020 100%)",
+    accent: "#FFC94D",
     emoji: "💪",
   },
   {
@@ -176,8 +176,8 @@ const GUIDED_MEDITATIONS: GuidedMeditation[] = [
     category: "relaxation",
     narratorKey: "meditationNarratorLea",
     descKey: "meditationGuided3Desc",
-    gradient: "linear-gradient(135deg, #2DD4BF 0%, #2DD4BF 100%)",
-    accent: "#2DD4BF",
+    gradient: "linear-gradient(135deg, #FFB020 0%, #FFB020 100%)",
+    accent: "#FFB020",
     emoji: "🕊️",
   },
   {
@@ -200,8 +200,8 @@ const GUIDED_MEDITATIONS: GuidedMeditation[] = [
     category: "relaxation",
     narratorKey: "meditationNarratorLea",
     descKey: "meditationGuided5Desc",
-    gradient: "linear-gradient(135deg, #C084FC 0%, #6366F1 100%)",
-    accent: "#C084FC",
+    gradient: "linear-gradient(135deg, #FFD166 0%, #E8590C 100%)",
+    accent: "#FFD166",
     emoji: "🧘",
   },
   {
@@ -220,8 +220,8 @@ const GUIDED_MEDITATIONS: GuidedMeditation[] = [
 
 const CATEGORY_LABELS: Record<GuidedMeditation["category"], { labelKey: string; color: string }> = {
   crise: { labelKey: "meditationCatCrisis", color: "#FF3B30" },
-  motivation: { labelKey: "meditationCatMotivation", color: "#4ADE80" },
-  relaxation: { labelKey: "meditationCatRelaxation", color: "#2DD4BF" },
+  motivation: { labelKey: "meditationCatMotivation", color: "#FFC94D" },
+  relaxation: { labelKey: "meditationCatRelaxation", color: "#FFB020" },
   énergie: { labelKey: "meditationCatEnergy", color: "#F59E0B" },
 };
 
@@ -230,13 +230,13 @@ const BENEFITS = [
     icon: HeartPulse,
     titleKey: "meditationBenefit1Title",
     valueKey: "meditationBenefit1Value",
-    color: "#2DD4BF",
+    color: "#FFB020",
   },
   {
     icon: Brain,
     titleKey: "meditationBenefit2Title",
     valueKey: "meditationBenefit2Value",
-    color: "#4ADE80",
+    color: "#FFC94D",
   },
   {
     icon: Flame,
@@ -248,7 +248,7 @@ const BENEFITS = [
     icon: Moon,
     titleKey: "meditationBenefit4Title",
     valueKey: "meditationBenefit4Value",
-    color: "#C084FC",
+    color: "#FFD166",
   },
 ];
 
@@ -354,7 +354,7 @@ function BreathingPlayer({ technique, onClose, onComplete }: BreathingPlayerProp
   const progress = Math.min(100, (elapsed / technique.totalSeconds) * 100);
 
   // Background gradient based on phase color
-  const bgGradient = `radial-gradient(circle at 50% 50%, ${currentPhase.color}25 0%, transparent 60%), linear-gradient(180deg, #070B0E 0%, #0B132B 100%)`;
+  const bgGradient = `radial-gradient(circle at 50% 50%, ${currentPhase.color}25 0%, transparent 60%), linear-gradient(180deg, #0B0704 0%, #0B132B 100%)`;
 
   return (
     <motion.div
@@ -588,7 +588,7 @@ function MeditationPlayer({ meditation, onClose, onComplete }: MeditationPlayerP
       exit={{ opacity: 0 }}
       className="fixed inset-0 z-[60] flex flex-col items-center justify-center px-6 safe-top safe-bottom"
       style={{
-        background: `radial-gradient(circle at 50% 50%, ${meditation.accent}25 0%, transparent 60%), linear-gradient(180deg, #070B0E 0%, #0B132B 100%)`,
+        background: `radial-gradient(circle at 50% 50%, ${meditation.accent}25 0%, transparent 60%), linear-gradient(180deg, #0B0704 0%, #0B132B 100%)`,
       }}
     >
       <button
@@ -785,9 +785,9 @@ export function MeditationScreen() {
         </div>
         <div
           className="w-10 h-10 rounded-full flex items-center justify-center"
-          style={{ background: "rgba(45, 212, 191, 0.18)" }}
+          style={{ background: "rgba(255,176,32, 0.18)" }}
         >
-          <Wind size={20} className="text-[#2DD4BF]" />
+          <Wind size={20} className="text-[#FFB020]" />
         </div>
       </div>
 
@@ -799,16 +799,16 @@ export function MeditationScreen() {
       >
         <div
           className="absolute -top-10 -right-10 w-32 h-32 rounded-full blur-3xl"
-          style={{ background: "rgba(45, 212, 191, 0.20)" }}
+          style={{ background: "rgba(255,176,32, 0.20)" }}
         />
         <div
           className="absolute -bottom-10 -left-10 w-32 h-32 rounded-full blur-3xl"
-          style={{ background: "rgba(192, 132, 252, 0.15)" }}
+          style={{ background: "rgba(255, 209, 102, 0.15)" }}
         />
         <div className="relative flex items-center justify-between">
           <div>
             <div className="flex items-center gap-1.5 mb-1">
-              <Sparkles size={12} className="text-[#2DD4BF]" />
+              <Sparkles size={12} className="text-[#FFB020]" />
               <span className="text-white/60 text-[11px] font-medium uppercase tracking-wider">
                 {t("statsMeditationStreak")}
               </span>
@@ -834,9 +834,22 @@ export function MeditationScreen() {
           <motion.div
             animate={{ scale: [1, 1.08, 1] }}
             transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-            className="text-5xl"
+            className="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0"
+            style={{
+              background:
+                "radial-gradient(circle at 35% 30%, rgba(255,201,77,0.3), transparent 72%)",
+              boxShadow:
+                "0 0 32px rgba(255,176,32,0.35), inset 0 0 20px rgba(255,201,77,0.16)",
+            }}
           >
-            {meditationStreak === 0 ? "🌱" : meditationStreak < 7 ? "🌿" : meditationStreak < 30 ? "🔥" : "🌟"}
+            <Flame
+              size={36}
+              strokeWidth={2}
+              style={{
+                color: meditationStreak === 0 ? "#FFC94D" : "#FFB020",
+                filter: "drop-shadow(0 0 10px rgba(255,176,32,0.8))",
+              }}
+            />
           </motion.div>
         </div>
       </motion.div>
@@ -968,15 +981,15 @@ export function MeditationScreen() {
       >
         <div
           className="absolute -top-10 -left-10 w-32 h-32 rounded-full blur-3xl"
-          style={{ background: "rgba(74, 222, 128, 0.15)" }}
+          style={{ background: "rgba(255,201,77, 0.15)" }}
         />
         <div className="relative">
           <div className="flex items-center gap-2 mb-4">
             <div
               className="w-8 h-8 rounded-xl flex items-center justify-center"
-              style={{ background: "rgba(74, 222, 128, 0.18)" }}
+              style={{ background: "rgba(255,201,77, 0.18)" }}
             >
-              <Brain size={16} className="text-[#4ADE80]" />
+              <Brain size={16} className="text-[#FFC94D]" />
             </div>
             <h3 className="text-white font-bold text-base font-[family-name:var(--font-poppins)]">
               {t("meditationWhyMeditate")}

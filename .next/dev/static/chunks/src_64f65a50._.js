@@ -173,13 +173,13 @@ const EMOTION_OPTIONS = [
         key: "calm",
         emoji: "😌",
         label: "Calme",
-        color: "#2DD4BF"
+        color: "#FFB020"
     },
     {
         key: "proud",
         emoji: "🦸",
         label: "Fier",
-        color: "#C084FC"
+        color: "#FFD166"
     }
 ];
 const EMOTION_META = {
@@ -201,17 +201,17 @@ const EMOTION_META = {
     calm: {
         emoji: "😌",
         label: "Calme",
-        color: "#2DD4BF"
+        color: "#FFB020"
     },
     proud: {
         emoji: "🦸",
         label: "Fier",
-        color: "#C084FC"
+        color: "#FFD166"
     },
     strong: {
         emoji: "💪",
         label: "Fort",
-        color: "#4ADE80"
+        color: "#FFC94D"
     }
 };
 // ─── Helper functions ──────────────────────────────────────────────────────
@@ -370,7 +370,7 @@ function LandingMode({ relapseHistory, onStart, navigate, t }) {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
                 variants: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$animations$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["itemVariants"],
-                className: "sticky top-0 z-20 -mx-5 px-5 pt-3 pb-3 bg-gradient-to-b from-[#070B0E]/95 via-[#070B0E]/80 to-transparent backdrop-blur-md",
+                className: "sticky top-0 z-20 -mx-5 px-5 pt-3 pb-3 bg-gradient-to-b from-[#0B0704]/95 via-[#0B0704]/80 to-transparent backdrop-blur-md",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "glass-card-strong p-4 rounded-2xl flex items-center gap-3",
                     children: [
@@ -869,7 +869,7 @@ function LandingMode({ relapseHistory, onStart, navigate, t }) {
                                                 columnNumber: 23
                                             }, this),
                                             r.protocolCompleted ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "px-2 py-0.5 rounded-full text-[10px] font-medium bg-[#4ADE80]/15 text-[#4ADE80] flex items-center gap-1",
+                                                className: "px-2 py-0.5 rounded-full text-[10px] font-medium bg-[#FFC94D]/15 text-[#FFC94D] flex items-center gap-1",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__["Check"], {
                                                         size: 10
@@ -980,7 +980,7 @@ function LandingMode({ relapseHistory, onStart, navigate, t }) {
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(StatBlock, {
                                 label: "Moy. jours",
                                 value: avgDaysBetween ? `${avgDaysBetween}j` : "—",
-                                color: "#4ADE80",
+                                color: "#FFC94D",
                                 emoji: "⏱️"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/RelapseRecoveryScreen.tsx",
@@ -1016,7 +1016,7 @@ function LandingMode({ relapseHistory, onStart, navigate, t }) {
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$quote$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Quote$3e$__["Quote"], {
                                 size: 14,
-                                className: "text-[#C084FC]"
+                                className: "text-[#FFD166]"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/RelapseRecoveryScreen.tsx",
                                 lineNumber: 544,
@@ -1046,7 +1046,7 @@ function LandingMode({ relapseHistory, onStart, navigate, t }) {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$quote$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Quote$3e$__["Quote"], {
                                         size: 16,
-                                        className: "text-[#C084FC] mb-2"
+                                        className: "text-[#FFD166] mb-2"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/RelapseRecoveryScreen.tsx",
                                         lineNumber: 554,
@@ -1215,7 +1215,7 @@ function ProtocolMode({ protocol, allDone, onCompleteStep, onAbandon, navigate }
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
                 variants: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$animations$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["itemVariants"],
-                className: "sticky top-0 z-20 -mx-5 px-5 pt-3 pb-3 bg-gradient-to-b from-[#070B0E]/95 via-[#070B0E]/80 to-transparent backdrop-blur-md",
+                className: "sticky top-0 z-20 -mx-5 px-5 pt-3 pb-3 bg-gradient-to-b from-[#0B0704]/95 via-[#0B0704]/80 to-transparent backdrop-blur-md",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "glass-card-strong p-4 rounded-2xl flex items-center gap-3",
                     children: [
@@ -1491,13 +1491,13 @@ function ProtocolMode({ protocol, allDone, onCompleteStep, onAbandon, navigate }
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: `relative z-10 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${isCurrent ? "animate-glow-pulse" : ""}`,
                                                 style: {
-                                                    background: step.completed ? "rgba(74,222,128,0.18)" : isCurrent ? `${meta.color}26` : "rgba(255,255,255,0.04)",
-                                                    border: step.completed ? "1px solid #4ADE8080" : isCurrent ? `1px solid ${meta.color}80` : "1px solid rgba(255,255,255,0.08)",
+                                                    background: step.completed ? "rgba(255,201,77,0.18)" : isCurrent ? `${meta.color}26` : "rgba(255,255,255,0.04)",
+                                                    border: step.completed ? "1px solid #FFC94D80" : isCurrent ? `1px solid ${meta.color}80` : "1px solid rgba(255,255,255,0.08)",
                                                     boxShadow: isCurrent ? `0 0 12px -2px ${meta.color}` : "none"
                                                 },
                                                 children: step.completed ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__["Check"], {
                                                     size: 16,
-                                                    className: "text-[#4ADE80]"
+                                                    className: "text-[#FFC94D]"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/zerobet/screens/RelapseRecoveryScreen.tsx",
                                                     lineNumber: 809,
@@ -1574,7 +1574,7 @@ function ProtocolMode({ protocol, allDone, onCompleteStep, onAbandon, navigate }
                                                                 columnNumber: 23
                                                             }, this),
                                                             step.completedAt && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "text-[10px] text-[#4ADE80]",
+                                                                className: "text-[10px] text-[#FFC94D]",
                                                                 children: [
                                                                     "✓ ",
                                                                     formatDateTime(step.completedAt)
@@ -2141,8 +2141,8 @@ function CompletionModal({ onReturn }) {
                             "#FF3B30",
                             "#F59E0B",
                             "#FBBF24",
-                            "#4ADE80",
-                            "#C084FC"
+                            "#FFC94D",
+                            "#FFD166"
                         ][i % 5],
                         shape: i % 3 === 0 ? "circle" : i % 3 === 1 ? "square" : "diamond"
                     })
@@ -2286,7 +2286,7 @@ function CompletionModal({ onReturn }) {
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$rotate$2d$ccw$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__RotateCcw$3e$__["RotateCcw"], {
                                 size: 12,
-                                className: "text-[#4ADE80]"
+                                className: "text-[#FFC94D]"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/RelapseRecoveryScreen.tsx",
                                 lineNumber: 1181,

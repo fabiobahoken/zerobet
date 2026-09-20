@@ -40,7 +40,7 @@ export const CAROUSEL_SLIDES: CarouselSlide[] = [
     bodyKey: "carousel2Body",
     emoji: "🎰",
     bgGradient: "linear-gradient(135deg, #1E3A8A 0%, #0F172A 100%)",
-    accentColor: "#2DD4BF",
+    accentColor: "#FFB020",
     statKey: "carousel2Stat",
   },
   {
@@ -48,8 +48,8 @@ export const CAROUSEL_SLIDES: CarouselSlide[] = [
     titleKey: "carousel3Title",
     bodyKey: "carousel3Body",
     emoji: "🎯",
-    bgGradient: "linear-gradient(135deg, #7C3AED 0%, #2D1B69 100%)",
-    accentColor: "#C084FC",
+    bgGradient: "linear-gradient(135deg, #D9480F 0%, #2D1B69 100%)",
+    accentColor: "#FFD166",
     statKey: "carousel3Stat",
   },
   {
@@ -57,8 +57,8 @@ export const CAROUSEL_SLIDES: CarouselSlide[] = [
     titleKey: "carousel4Title",
     bodyKey: "carousel4Body",
     emoji: "🔬",
-    bgGradient: "linear-gradient(135deg, #065F46 0%, #064E3B 100%)",
-    accentColor: "#4ADE80",
+    bgGradient: "linear-gradient(135deg, #93410F 0%, #7C2D12 100%)",
+    accentColor: "#FFC94D",
     statKey: "carousel4Stat",
   },
   {
@@ -75,8 +75,8 @@ export const CAROUSEL_SLIDES: CarouselSlide[] = [
     titleKey: "carousel6Title",
     bodyKey: "carousel6Body",
     emoji: "🌅",
-    bgGradient: "linear-gradient(135deg, #4ADE80 0%, #065F46 100%)",
-    accentColor: "#4ADE80",
+    bgGradient: "linear-gradient(135deg, #FFC94D 0%, #93410F 100%)",
+    accentColor: "#FFC94D",
     statKey: "carousel6Stat",
   },
   {

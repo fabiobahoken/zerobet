@@ -15,7 +15,7 @@ export async function sendWelcomeEmail(email: string, name?: string) {
       to: email,
       subject: "Bienvenue sur Zerobet 🎉",
       html: `
-        <div style="font-family: sans-serif; max-width: 480px; margin: auto; background: #0A0A0F; color: #fff; padding: 32px; border-radius: 16px;">
+        <div style="font-family: sans-serif; max-width: 480px; margin: auto; background: #0C0705; color: #fff; padding: 32px; border-radius: 16px;">
           <h1 style="color: #F59E0B; font-size: 24px;">Bienvenue ${name || ""} !</h1>
           <p style="color: rgba(255,255,255,0.7); line-height: 1.6;">
             Tu as fait le premier pas. Zerobet est là pour t'accompagner à chaque étape
@@ -55,7 +55,7 @@ export async function sendPasswordResetEmail(email: string, resetToken: string) 
       to: email,
       subject: "Réinitialise ton mot de passe",
       html: `
-        <div style="font-family: sans-serif; max-width: 480px; margin: auto; background: #0A0A0F; color: #fff; padding: 32px; border-radius: 16px;">
+        <div style="font-family: sans-serif; max-width: 480px; margin: auto; background: #0C0705; color: #fff; padding: 32px; border-radius: 16px;">
           <h1 style="color: #F59E0B; font-size: 24px;">Réinitialisation</h1>
           <p style="color: rgba(255,255,255,0.7); line-height: 1.6;">
             Clique sur le bouton ci-dessous pour réinitialiser ton mot de passe.
@@ -93,7 +93,7 @@ export async function sendStreakReminderEmail(email: string, name: string, strea
       to: email,
       subject: `🔥 Ta série est en jeu !`,
       html: `
-        <div style="font-family: sans-serif; max-width: 480px; margin: auto; background: #0A0A0F; color: #fff; padding: 32px; border-radius: 16px;">
+        <div style="font-family: sans-serif; max-width: 480px; margin: auto; background: #0C0705; color: #fff; padding: 32px; border-radius: 16px;">
           <h1 style="color: #FF3B30; font-size: 24px;">${streakDays} jours sans pari 🔥</h1>
           <p style="color: rgba(255,255,255,0.7); line-height: 1.6;">
             ${name}, ta série de ${streakDays} jours est en jeu ! Ouvre l'app maintenant

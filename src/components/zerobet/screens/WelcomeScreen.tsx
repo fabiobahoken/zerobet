@@ -299,7 +299,7 @@ export function WelcomeScreen() {
         className="text-center mb-8"
       >
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-pill text-xs text-white/70 mb-4">
-          <span className="w-2 h-2 rounded-full bg-[#4ADE80] animate-pulse" />
+          <span className="w-2 h-2 rounded-full bg-[#FFC94D] animate-pulse" />
           {t("welcomeTagline")}
         </div>
         <h1 className="text-4xl font-extrabold text-white font-[family-name:var(--font-poppins)] mb-3 leading-tight">

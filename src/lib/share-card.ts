@@ -52,15 +52,15 @@ const H = 1350;
 /** #RRGGBB → rgba(...) with the given alpha. */
 function hexToRgba(hex: string, alpha: number): string {
   const m = /^#?([0-9a-f]{6})$/i.exec(hex.trim());
-  if (!m) return `rgba(16,185,129,${alpha})`;
+  if (!m) return `rgba(255,107,0,${alpha})`;
   const n = parseInt(m[1], 16);
   return `rgba(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}, ${alpha})`;
 }
 
 function drawAurora(ctx: CanvasRenderingContext2D) {
   const blobs: Array<[number, number, number, string]> = [
-    [W * 0.2, H * 0.18, W * 0.55, "rgba(16, 185, 129, 0.28)"], // emerald
-    [W * 0.85, H * 0.42, W * 0.5, "rgba(45, 212, 191, 0.20)"], // teal
+    [W * 0.2, H * 0.18, W * 0.55, "rgba(255,107,0, 0.28)"], // emerald
+    [W * 0.85, H * 0.42, W * 0.5, "rgba(255,176,32, 0.20)"], // teal
     [W * 0.35, H * 0.85, W * 0.6, "rgba(245, 158, 11, 0.12)"], // gold
   ];
   for (const [x, y, r, color] of blobs) {
@@ -102,7 +102,7 @@ export function generateMilestoneCard(data: MilestoneCardData): Promise<Blob> {
       if (!ctx) throw new Error("no canvas context");
 
       // Background
-      ctx.fillStyle = "#070B0E";
+      ctx.fillStyle = "#0B0704";
       ctx.fillRect(0, 0, W, H);
       drawAurora(ctx);
       drawStars(ctx);
@@ -156,15 +156,15 @@ export function generateMilestoneCard(data: MilestoneCardData): Promise<Blob> {
       ctx.fillText(data.daysLabel.toUpperCase(), W / 2, H * 0.555);
 
       // Savings line
-      ctx.fillStyle = "#4ADE80";
+      ctx.fillStyle = "#FFC94D";
       ctx.font = "700 58px 'Poppins', system-ui, sans-serif";
       ctx.fillText(data.savedLine, W / 2, H * 0.68);
 
       // Divider
       const divider = ctx.createLinearGradient(W * 0.2, 0, W * 0.8, 0);
-      divider.addColorStop(0, "rgba(16,185,129,0)");
-      divider.addColorStop(0.5, "rgba(16,185,129,0.7)");
-      divider.addColorStop(1, "rgba(16,185,129,0)");
+      divider.addColorStop(0, "rgba(255,107,0,0)");
+      divider.addColorStop(0.5, "rgba(255,107,0,0.7)");
+      divider.addColorStop(1, "rgba(255,107,0,0)");
       ctx.fillStyle = divider;
       ctx.fillRect(W * 0.2, H * 0.75, W * 0.6, 3);
 
@@ -202,13 +202,13 @@ export function generateMilestoneCard(data: MilestoneCardData): Promise<Blob> {
 function drawWordmark(ctx: CanvasRenderingContext2D, y: number) {
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
-  ctx.fillStyle = "#2DD4BF";
+  ctx.fillStyle = "#FFB020";
   ctx.font = "800 60px 'Poppins', system-ui, sans-serif";
   ctx.fillText("ZERO", W / 2 - 78, y);
   ctx.fillStyle = "#FBBF24";
   ctx.fillText("BET", W / 2 + 62, y);
   // Emerald dot over the O of ZERO — brand nod
-  ctx.fillStyle = "#10B981";
+  ctx.fillStyle = "#FF6B00";
   ctx.beginPath();
   ctx.arc(W / 2 - 148, y - 42, 12, 0, Math.PI * 2);
   ctx.fill();
@@ -268,7 +268,7 @@ export function generateJourneyCard(data: JourneyCardData): Promise<Blob> {
       if (!ctx) throw new Error("no canvas context");
 
       // Background
-      ctx.fillStyle = "#070B0E";
+      ctx.fillStyle = "#0B0704";
       ctx.fillRect(0, 0, W, H);
       drawAurora(ctx);
       drawStars(ctx);
@@ -285,7 +285,7 @@ export function generateJourneyCard(data: JourneyCardData): Promise<Blob> {
       ctx.textBaseline = "middle";
 
       // Header label (letterspaced teal)
-      ctx.fillStyle = "#2DD4BF";
+      ctx.fillStyle = "#FFB020";
       ctx.font = "700 38px 'Poppins', system-ui, sans-serif";
       const header = data.headerLabel.toUpperCase();
       // Manual letterspacing: draw char by char
@@ -333,9 +333,9 @@ export function generateJourneyCard(data: JourneyCardData): Promise<Blob> {
 
       // Divider
       const divider = ctx.createLinearGradient(W * 0.2, 0, W * 0.8, 0);
-      divider.addColorStop(0, "rgba(16,185,129,0)");
-      divider.addColorStop(0.5, "rgba(16,185,129,0.7)");
-      divider.addColorStop(1, "rgba(16,185,129,0)");
+      divider.addColorStop(0, "rgba(255,107,0,0)");
+      divider.addColorStop(0.5, "rgba(255,107,0,0.7)");
+      divider.addColorStop(1, "rgba(255,107,0,0)");
       ctx.fillStyle = divider;
       ctx.fillRect(W * 0.2, H * 0.535, W * 0.6, 3);
 

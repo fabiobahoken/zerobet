@@ -4,7 +4,7 @@
 // Bump version on every deploy to force cache invalidation.
 // v3: purges stale HTML + dev chunks cached under v2 (fixed stale-chunk
 // "useCloudSync is not defined" crashes for returning users).
-const CACHE_NAME = "zerobet-v4";
+const CACHE_NAME = "zerobet-v5";
 const APP_SHELL = [
   "/",
   "/manifest.json",

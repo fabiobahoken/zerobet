@@ -52,16 +52,16 @@ const PARCOURS_RANKS = [
         nameKey: "artifact2Name",
         subtitleKey: "artifact2Subtitle",
         requiredDays: 3,
-        color: "#2DD4BF",
-        glow: "rgba(45, 212, 191, 0.6)",
-        gradient: "linear-gradient(135deg, #2DD4BF 0%, #0EA5E9 100%)",
+        color: "#FFB020",
+        glow: "rgba(255,176,32, 0.6)",
+        gradient: "linear-gradient(135deg, #FFB020 0%, #FF9A3D 100%)",
         icon: "jour-3",
         description: "Forgée dans les brumes du réveil, elle protège ton esprit des illusions du jeu et dissipe le brouillard mental du sevrage précoce.",
         artifactType: "Amulette",
         powerName: "Vision Claire",
         powerDescription: "Dissipe le brouillard mental des premiers jours de sevrage et clarifie la pensée.",
-        auraColor: "#2DD4BF",
-        auraGradient: "radial-gradient(circle at center, rgba(45, 212, 191,0.35) 0%, rgba(45, 212, 191,0.10) 40%, transparent 70%)",
+        auraColor: "#FFB020",
+        auraGradient: "radial-gradient(circle at center, rgba(255,176,32,0.35) 0%, rgba(255,176,32,0.10) 40%, transparent 70%)",
         story: "Forgée dans les brumes du réveil, elle protège ton esprit des illusions du jeu.",
         descKey: "artifact2Desc",
         storyKey: "artifact2Story"
@@ -162,16 +162,16 @@ const PARCOURS_RANKS = [
         nameKey: "artifact7Name",
         subtitleKey: "artifact7Subtitle",
         requiredDays: 60,
-        color: "#2DD4BF",
-        glow: "rgba(45, 212, 191, 0.8)",
-        gradient: "linear-gradient(135deg, #2DD4BF 0%, #5AC8FA 100%)",
+        color: "#FFB020",
+        glow: "rgba(255,176,32, 0.8)",
+        gradient: "linear-gradient(135deg, #FFB020 0%, #FFD166 100%)",
         icon: "jour-60",
         description: "Deux mois de pression l'ont cristallisé. Rien ne peut le briser. Ta volonté est devenue un cristal indestructible au cœur de ta poitrine.",
         artifactType: "Cœur Cristal",
         powerName: "Incassable",
         powerDescription: "Rend ta volonté incassable. Aucune tentation ne peut fissurer ta détermination.",
-        auraColor: "#2DD4BF",
-        auraGradient: "radial-gradient(circle at center, rgba(45, 212, 191,0.45) 0%, rgba(90,200,250,0.15) 40%, transparent 70%)",
+        auraColor: "#FFB020",
+        auraGradient: "radial-gradient(circle at center, rgba(255,176,32,0.45) 0%, rgba(90,200,250,0.15) 40%, transparent 70%)",
         story: "Deux mois de pression l'ont cristallisé. Rien ne peut le briser.",
         descKey: "artifact7Desc",
         storyKey: "artifact7Story"
@@ -184,16 +184,16 @@ const PARCOURS_RANKS = [
         nameKey: "artifact8Name",
         subtitleKey: "artifact8Subtitle",
         requiredDays: 90,
-        color: "#4ADE80",
-        glow: "rgba(74, 222, 128, 0.8)",
-        gradient: "linear-gradient(135deg, #4ADE80 0%, #22C55E 100%)",
+        color: "#FFC94D",
+        glow: "rgba(255,201,77, 0.8)",
+        gradient: "linear-gradient(135deg, #FFC94D 0%, #FF8A00 100%)",
         icon: "jour-90",
         description: "Le cap des 90 jours. Ton cerveau est né de nouveau. Tu es devenu quelqu'un d'autre, façonné par trois mois de guérison neuronale.",
         artifactType: "Pierre Précieuse",
         powerName: "Neuroplasticité",
         powerDescription: "Ton cerveau s'est reconfiguré. Tu es renouvelé, littéralement transformé.",
-        auraColor: "#4ADE80",
-        auraGradient: "radial-gradient(circle at center, rgba(74,222,128,0.50) 0%, rgba(34,197,94,0.15) 40%, transparent 70%)",
+        auraColor: "#FFC94D",
+        auraGradient: "radial-gradient(circle at center, rgba(255,201,77,0.50) 0%, rgba(34,197,94,0.15) 40%, transparent 70%)",
         story: "Le cap des 90 jours. Ton cerveau est né de nouveau. Tu es devenu quelqu'un d'autre.",
         descKey: "artifact8Desc",
         storyKey: "artifact8Story"
@@ -206,16 +206,16 @@ const PARCOURS_RANKS = [
         nameKey: "artifact9Name",
         subtitleKey: "artifact9Subtitle",
         requiredDays: 120,
-        color: "#2DD4BF",
-        glow: "rgba(45, 212, 191, 0.8)",
-        gradient: "linear-gradient(135deg, #2DD4BF 0%, #2DD4BF 100%)",
+        color: "#FFB020",
+        glow: "rgba(255,176,32, 0.8)",
+        gradient: "linear-gradient(135deg, #FFB020 0%, #FFB020 100%)",
         icon: "jour-120",
         description: "Quatre mois de méditation ont poli cette pierre. Elle révèle les vérités cachées et te fait voir les déclencheurs avant qu'ils n'apparaissent.",
         artifactType: "Pierre Précieuse",
         powerName: "Vision Profonde",
         powerDescription: "Voit les déclencheurs avant qu'ils n'apparaissent et comprend les motifs profonds de tes envies.",
-        auraColor: "#2DD4BF",
-        auraGradient: "radial-gradient(circle at center, rgba(45, 212, 191,0.50) 0%, rgba(88,86,214,0.15) 40%, transparent 70%)",
+        auraColor: "#FFB020",
+        auraGradient: "radial-gradient(circle at center, rgba(255,176,32,0.50) 0%, rgba(88,86,214,0.15) 40%, transparent 70%)",
         story: "Quatre mois de méditation ont poli cette pierre. Elle révèle les vérités cachées.",
         descKey: "artifact9Desc",
         storyKey: "artifact9Story"
@@ -250,16 +250,16 @@ const PARCOURS_RANKS = [
         nameKey: "artifact11Name",
         subtitleKey: "artifact11Subtitle",
         requiredDays: 270,
-        color: "#C084FC",
-        glow: "rgba(192, 132, 252, 0.9)",
-        gradient: "linear-gradient(135deg, #C084FC 0%, #9B30FF 100%)",
+        color: "#FFD166",
+        glow: "rgba(255, 209, 102, 0.9)",
+        gradient: "linear-gradient(135deg, #FFD166 0%, #9B30FF 100%)",
         icon: "jour-270",
         description: "Neuf mois. Tu danses avec tes envies sans plus jamais trembler. La maîtrise totale de tes impulsions est enfin tienne.",
         artifactType: "Pierre Précieuse",
         powerName: "Contrôle Total",
         powerDescription: "Maîtrise complète des impulsions. Tu danses avec tes envies sans plus jamais trembler.",
-        auraColor: "#C084FC",
-        auraGradient: "radial-gradient(circle at center, rgba(192, 132, 252,0.55) 0%, rgba(155,48,255,0.15) 40%, transparent 70%)",
+        auraColor: "#FFD166",
+        auraGradient: "radial-gradient(circle at center, rgba(255, 209, 102,0.55) 0%, rgba(155,48,255,0.15) 40%, transparent 70%)",
         story: "Neuf mois. Tu danses avec tes envies sans plus jamais trembler.",
         descKey: "artifact11Desc",
         storyKey: "artifact11Story"
@@ -296,14 +296,14 @@ const PARCOURS_RANKS = [
         requiredDays: 730,
         color: "#FFFFFF",
         glow: "rgba(255, 255, 255, 1)",
-        gradient: "linear-gradient(135deg, #FFFFFF 0%, #2DD4BF 50%, #C084FC 100%)",
+        gradient: "linear-gradient(135deg, #FFFFFF 0%, #FFB020 50%, #FFD166 100%)",
         icon: "jour-730",
         description: "Deux ans. Tu ne te rétablis plus. Tu ES la lumière qui guide les autres. Au-delà de la guérison, tu deviens le phare des chercheurs à venir.",
         artifactType: "Étoile",
         powerName: "Transcendance",
         powerDescription: "Au-delà de la guérison. Tu deviens le phare qui guide tous les autres chercheurs.",
         auraColor: "#FFFFFF",
-        auraGradient: "radial-gradient(circle at center, rgba(255,255,255,0.55) 0%, rgba(45, 212, 191,0.18) 35%, rgba(192, 132, 252,0.10) 55%, transparent 75%)",
+        auraGradient: "radial-gradient(circle at center, rgba(255,255,255,0.55) 0%, rgba(255,176,32,0.18) 35%, rgba(255, 209, 102,0.10) 55%, transparent 75%)",
         story: "Deux ans. Tu ne te rétablis plus. Tu ES la lumière qui guide les autres.",
         descKey: "artifact13Desc",
         storyKey: "artifact13Story"
@@ -791,7 +791,7 @@ function ArtifactIcon({ artifactKey, size = 48, className, glow = true }) {
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "0%",
-                                stopColor: "#67E8F9"
+                                stopColor: "#FFD166"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ArtifactIcon.tsx",
                                 lineNumber: 315,
@@ -799,7 +799,7 @@ function ArtifactIcon({ artifactKey, size = 48, className, glow = true }) {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "50%",
-                                stopColor: "#2DD4BF"
+                                stopColor: "#FFB020"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ArtifactIcon.tsx",
                                 lineNumber: 316,
@@ -807,7 +807,7 @@ function ArtifactIcon({ artifactKey, size = 48, className, glow = true }) {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "100%",
-                                stopColor: "#0EA5E9"
+                                stopColor: "#FF9A3D"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ArtifactIcon.tsx",
                                 lineNumber: 317,
@@ -1716,7 +1716,7 @@ function ArtifactIcon({ artifactKey, size = 48, className, glow = true }) {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "50%",
-                                stopColor: "#2DD4BF"
+                                stopColor: "#FFB020"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ArtifactIcon.tsx",
                                 lineNumber: 723,
@@ -1724,7 +1724,7 @@ function ArtifactIcon({ artifactKey, size = 48, className, glow = true }) {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "100%",
-                                stopColor: "#0EA5E9"
+                                stopColor: "#FF9A3D"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ArtifactIcon.tsx",
                                 lineNumber: 724,
@@ -1837,7 +1837,7 @@ function ArtifactIcon({ artifactKey, size = 48, className, glow = true }) {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "50%",
-                                stopColor: "#4ADE80"
+                                stopColor: "#FFC94D"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ArtifactIcon.tsx",
                                 lineNumber: 783,
@@ -1973,7 +1973,7 @@ function ArtifactIcon({ artifactKey, size = 48, className, glow = true }) {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "50%",
-                                stopColor: "#2DD4BF"
+                                stopColor: "#FFB020"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ArtifactIcon.tsx",
                                 lineNumber: 849,
@@ -2280,7 +2280,7 @@ function ArtifactIcon({ artifactKey, size = 48, className, glow = true }) {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "50%",
-                                stopColor: "#C084FC"
+                                stopColor: "#FFD166"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ArtifactIcon.tsx",
                                 lineNumber: 984,
@@ -2320,7 +2320,7 @@ function ArtifactIcon({ artifactKey, size = 48, className, glow = true }) {
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "M24 6 C14 6, 7 14, 7 24 C7 33, 14 41, 24 41 C34 41, 41 33, 41 24 C41 14, 34 6, 24 6 Z",
                         fill: "rgba(0,0,0,0.45)",
-                        stroke: "rgba(192, 132, 252,0.5)",
+                        stroke: "rgba(255, 209, 102,0.5)",
                         strokeWidth: "0.8"
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/components/ArtifactIcon.tsx",
@@ -2706,7 +2706,7 @@ function ArtifactIcon({ artifactKey, size = 48, className, glow = true }) {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "100%",
-                                stopColor: "#2DD4BF"
+                                stopColor: "#FFB020"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ArtifactIcon.tsx",
                                 lineNumber: 1149,
@@ -2735,7 +2735,7 @@ function ArtifactIcon({ artifactKey, size = 48, className, glow = true }) {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "50%",
-                                stopColor: "#C084FC"
+                                stopColor: "#FFD166"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ArtifactIcon.tsx",
                                 lineNumber: 1153,
@@ -2743,7 +2743,7 @@ function ArtifactIcon({ artifactKey, size = 48, className, glow = true }) {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "100%",
-                                stopColor: "#2DD4BF"
+                                stopColor: "#FFB020"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ArtifactIcon.tsx",
                                 lineNumber: 1154,
@@ -3469,7 +3469,7 @@ function ParcoursScreen() {
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trending$2d$up$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__TrendingUp$3e$__["TrendingUp"], {
                                                     size: 14,
-                                                    className: "text-[#4ADE80]"
+                                                    className: "text-[#FFC94D]"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/zerobet/screens/ParcoursScreen.tsx",
                                                     lineNumber: 281,
@@ -4086,7 +4086,7 @@ function ParcoursScreen() {
                             className: "inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider",
                             style: {
                                 background: rank.color,
-                                color: "#070B0E"
+                                color: "#0B0704"
                             },
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$crown$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Crown$3e$__["Crown"], {

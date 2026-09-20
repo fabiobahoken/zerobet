@@ -192,7 +192,7 @@ const VIDEO_TUTORIALS = [
         titleKey: "supportVideo3Title",
         duration: "5 min",
         thumbnail: "🤖",
-        gradient: "linear-gradient(135deg, #C084FC 0%, #2DD4BF 100%)",
+        gradient: "linear-gradient(135deg, #FFD166 0%, #FFB020 100%)",
         icon: "🤖"
     },
     {
@@ -200,7 +200,7 @@ const VIDEO_TUTORIALS = [
         titleKey: "supportVideo4Title",
         duration: "4 min",
         thumbnail: "👥",
-        gradient: "linear-gradient(135deg, #4ADE80 0%, #2DD4BF 100%)",
+        gradient: "linear-gradient(135deg, #FFC94D 0%, #FFB020 100%)",
         icon: "👥"
     }
 ];
@@ -218,7 +218,7 @@ const TROUBLESHOOT_ITEMS = [
         issueKey: "supportTrouble2Issue",
         solutionKey: "supportTrouble2Solution",
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$zap$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Zap$3e$__["Zap"],
-        color: "#2DD4BF",
+        color: "#FFB020",
         target: "settings"
     },
     {
@@ -226,7 +226,7 @@ const TROUBLESHOOT_ITEMS = [
         issueKey: "supportTrouble3Issue",
         solutionKey: "supportTrouble3Solution",
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$zap$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Zap$3e$__["Zap"],
-        color: "#C084FC",
+        color: "#FFD166",
         target: "settings"
     },
     {
@@ -345,7 +345,7 @@ function SupportScreen() {
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$question$2d$mark$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__HelpCircle$3e$__["HelpCircle"],
             titleKey: "supportFaq",
             descKey: "supportFaqDesc",
-            color: "#2DD4BF",
+            color: "#FFB020",
             action: ()=>handleQuickHelp("faq")
         },
         {
@@ -353,7 +353,7 @@ function SupportScreen() {
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$mail$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Mail$3e$__["Mail"],
             titleKey: "supportContact",
             descKey: "supportContactDesc",
-            color: "#4ADE80",
+            color: "#FFC94D",
             action: ()=>handleQuickHelp("contact")
         },
         {
@@ -369,7 +369,7 @@ function SupportScreen() {
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$lightbulb$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Lightbulb$3e$__["Lightbulb"],
             titleKey: "supportSuggestion",
             descKey: "supportSuggestionDesc",
-            color: "#C084FC",
+            color: "#FFD166",
             action: ()=>handleQuickHelp("suggestion")
         }
     ];
@@ -474,7 +474,7 @@ function SupportScreen() {
                         className: "w-10 h-10 rounded-full glass-card flex items-center justify-center",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$question$2d$mark$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__HelpCircle$3e$__["HelpCircle"], {
                             size: 18,
-                            className: "text-[#2DD4BF]"
+                            className: "text-[#FFB020]"
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/SupportScreen.tsx",
                             lineNumber: 388,
@@ -577,7 +577,7 @@ function SupportScreen() {
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$question$2d$mark$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__HelpCircle$3e$__["HelpCircle"], {
                                 size: 14,
-                                className: "text-[#2DD4BF]"
+                                className: "text-[#FFB020]"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/SupportScreen.tsx",
                                 lineNumber: 424,
@@ -613,7 +613,7 @@ function SupportScreen() {
                                 value: faqSearch,
                                 onChange: (e)=>setFaqSearch(e.target.value),
                                 placeholder: t("supportSearchFaqQuestion"),
-                                className: "w-full pl-10 pr-3 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-[#2DD4BF]/50 transition-colors"
+                                className: "w-full pl-10 pr-3 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-[#FFB020]/50 transition-colors"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/SupportScreen.tsx",
                                 lineNumber: 434,
@@ -695,7 +695,7 @@ function SupportScreen() {
                                                     className: "flex-1 min-w-0",
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                            className: "text-[10px] font-semibold text-[#2DD4BF] uppercase tracking-wider",
+                                                            className: "text-[10px] font-semibold text-[#FFB020] uppercase tracking-wider",
                                                             children: t(`supportCategory${faq.category.charAt(0).toUpperCase()}${faq.category.slice(1)}`)
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/zerobet/screens/SupportScreen.tsx",
@@ -813,7 +813,7 @@ function SupportScreen() {
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$mail$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Mail$3e$__["Mail"], {
                                 size: 14,
-                                className: "text-[#4ADE80]"
+                                className: "text-[#FFC94D]"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/SupportScreen.tsx",
                                 lineNumber: 526,
@@ -892,7 +892,7 @@ function SupportScreen() {
                                             onChange: (e)=>setMessage(e.target.value),
                                             placeholder: t("supportMessagePlaceholder"),
                                             maxLength: 500,
-                                            className: "bg-white/5 border-white/10 text-white placeholder:text-white/30 rounded-xl text-sm min-h-[100px] resize-none focus-visible:border-[#4ADE80]/60 focus-visible:ring-[#4ADE80]/20"
+                                            className: "bg-white/5 border-white/10 text-white placeholder:text-white/30 rounded-xl text-sm min-h-[100px] resize-none focus-visible:border-[#FFC94D]/60 focus-visible:ring-[#FFC94D]/20"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/screens/SupportScreen.tsx",
                                             lineNumber: 560,
@@ -949,7 +949,7 @@ function SupportScreen() {
                                             value: email,
                                             onChange: (e)=>setEmail(e.target.value),
                                             placeholder: t("supportEmailPlaceholder"),
-                                            className: "w-full px-3 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-[#4ADE80]/50 transition-colors"
+                                            className: "w-full px-3 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-[#FFC94D]/50 transition-colors"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/screens/SupportScreen.tsx",
                                             lineNumber: 579,
@@ -1034,7 +1034,7 @@ function SupportScreen() {
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$play$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Play$3e$__["Play"], {
                                 size: 14,
-                                className: "text-[#C084FC]"
+                                className: "text-[#FFD166]"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/SupportScreen.tsx",
                                 lineNumber: 608,
@@ -1534,7 +1534,7 @@ function SupportScreen() {
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$mail$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Mail$3e$__["Mail"], {
                                                 size: 18,
-                                                className: "text-[#4ADE80]"
+                                                className: "text-[#FFC94D]"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/SupportScreen.tsx",
                                                 lineNumber: 768,
@@ -1630,7 +1630,7 @@ function SupportScreen() {
                                                 onChange: (e)=>setMessage(e.target.value),
                                                 placeholder: t("supportMessagePlaceholder"),
                                                 maxLength: 500,
-                                                className: "bg-white/5 border-white/10 text-white placeholder:text-white/30 rounded-xl text-sm min-h-[100px] resize-none focus-visible:border-[#4ADE80]/60 focus-visible:ring-[#4ADE80]/20"
+                                                className: "bg-white/5 border-white/10 text-white placeholder:text-white/30 rounded-xl text-sm min-h-[100px] resize-none focus-visible:border-[#FFC94D]/60 focus-visible:ring-[#FFC94D]/20"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/SupportScreen.tsx",
                                                 lineNumber: 803,
@@ -1687,7 +1687,7 @@ function SupportScreen() {
                                                 value: email,
                                                 onChange: (e)=>setEmail(e.target.value),
                                                 placeholder: t("supportEmailPlaceholder"),
-                                                className: "w-full px-3 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-[#4ADE80]/50 transition-colors"
+                                                className: "w-full px-3 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-[#FFC94D]/50 transition-colors"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/SupportScreen.tsx",
                                                 lineNumber: 822,

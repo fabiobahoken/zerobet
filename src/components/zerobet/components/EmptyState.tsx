@@ -32,7 +32,7 @@ const VARIANT_CONFIG: Record<EmptyStateVariant, VariantConfig> = {
   journal: {
     icon: BookOpen,
     emoji: "📝",
-    gradient: "linear-gradient(135deg, #10B981 0%, #2DD4BF 100%)",
+    gradient: "linear-gradient(135deg, #FF6B00 0%, #FFB020 100%)",
     glow: "glow-green",
     titleKey: "emptyStateJournalTitle",
     descKey: "emptyStateJournalDesc",
@@ -50,7 +50,7 @@ const VARIANT_CONFIG: Record<EmptyStateVariant, VariantConfig> = {
   stats: {
     icon: BarChart3,
     emoji: "📊",
-    gradient: "linear-gradient(135deg, #10B981 0%, #2DD4BF 100%)",
+    gradient: "linear-gradient(135deg, #FF6B00 0%, #FFB020 100%)",
     glow: "glow-green",
     titleKey: "emptyStateStatsTitle",
     descKey: "emptyStateStatsDesc",
@@ -59,7 +59,7 @@ const VARIANT_CONFIG: Record<EmptyStateVariant, VariantConfig> = {
   default: {
     icon: Sparkles,
     emoji: "✨",
-    gradient: "linear-gradient(135deg, #2DD4BF 0%, #10B981 100%)",
+    gradient: "linear-gradient(135deg, #FFB020 0%, #FF6B00 100%)",
     glow: "glow-green",
     titleKey: "emptyStateDefaultTitle",
     descKey: "emptyStateDefaultDesc",

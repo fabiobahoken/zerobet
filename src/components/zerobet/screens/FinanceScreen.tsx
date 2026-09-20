@@ -71,7 +71,7 @@ const SAVING_CATEGORIES: SavingCategory[] = [
     key: "necessites",
     nameKey: "financeCategoryNecessities",
     percent: 50,
-    color: "#4ADE80",
+    color: "#FFC94D",
     descKey: "financeSavingCatNecessitiesDesc",
     icon: "🏠",
   },
@@ -79,7 +79,7 @@ const SAVING_CATEGORIES: SavingCategory[] = [
     key: "epargne",
     nameKey: "financeCategorySavings",
     percent: 30,
-    color: "#2DD4BF",
+    color: "#FFB020",
     descKey: "financeSavingCatSavingsDesc",
     icon: "🏦",
   },
@@ -87,7 +87,7 @@ const SAVING_CATEGORIES: SavingCategory[] = [
     key: "investissement",
     nameKey: "financeCategoryInvestment",
     percent: 15,
-    color: "#C084FC",
+    color: "#FFD166",
     descKey: "financeSavingCatInvestmentDesc",
     icon: "📈",
   },
@@ -114,7 +114,7 @@ const EDUCATION_TIPS: EducationTip[] = [
   {
     id: "rule-50-30-20",
     icon: "⚖️",
-    color: "#4ADE80",
+    color: "#FFC94D",
     titleKey: "financeTip1Title",
     shortKey: "financeTip1Short",
     detailsKey: "financeTip1Details",
@@ -122,7 +122,7 @@ const EDUCATION_TIPS: EducationTip[] = [
   {
     id: "emergency-fund",
     icon: "🛟",
-    color: "#2DD4BF",
+    color: "#FFB020",
     titleKey: "financeTip2Title",
     shortKey: "financeTip2Short",
     detailsKey: "financeTip2Details",
@@ -130,7 +130,7 @@ const EDUCATION_TIPS: EducationTip[] = [
   {
     id: "small-amounts",
     icon: "💧",
-    color: "#C084FC",
+    color: "#FFD166",
     titleKey: "financeTip3Title",
     shortKey: "financeTip3Short",
     detailsKey: "financeTip3Details",
@@ -463,12 +463,12 @@ export function FinanceScreen() {
         animate={{ opacity: 1, y: 0 }}
         className="glass-card-strong animate-glow-pulse p-6 mb-4 relative overflow-hidden"
       >
-        <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-[#4ADE80]/20 blur-3xl" />
+        <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-[#FFC94D]/20 blur-3xl" />
         <div className="relative">
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-2">
-              <div className="w-9 h-9 rounded-xl bg-[#4ADE80]/20 flex items-center justify-center">
-                <Wallet size={18} className="text-[#4ADE80]" />
+              <div className="w-9 h-9 rounded-xl bg-[#FFC94D]/20 flex items-center justify-center">
+                <Wallet size={18} className="text-[#FFC94D]" />
               </div>
               <span className="text-white/60 text-sm">{t("financeTotalSaved")}</span>
             </div>
@@ -480,7 +480,7 @@ export function FinanceScreen() {
             animate={{ scale: 1, opacity: 1 }}
             className="text-4xl font-extrabold bg-clip-text text-transparent font-[family-name:var(--font-poppins)]"
             style={{
-              background: "linear-gradient(135deg, #4ADE80 0%, #2DD4BF 100%)",
+              background: "linear-gradient(135deg, #FFC94D 0%, #FFB020 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
             }}
@@ -511,7 +511,7 @@ export function FinanceScreen() {
               type="number"
               value={betInput}
               onChange={(e) => setBetInput(e.target.value)}
-              className="flex-1 p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#10B981]"
+              className="flex-1 p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#FF6B00]"
               placeholder={t("financeAmountFCFA")}
             />
             <button
@@ -540,7 +540,7 @@ export function FinanceScreen() {
       >
         <SectionTitle
           icon={Calendar}
-          iconColor="#2DD4BF"
+          iconColor="#FFB020"
           title={t("financeProgress30Days")}
         />
         <div className="overflow-x-auto custom-scroll -mx-1 px-1">
@@ -560,7 +560,7 @@ export function FinanceScreen() {
                       d.isToday
                         ? "gradient-primary"
                         : d.day <= effectiveStreak
-                        ? "bg-[#4ADE80]/60"
+                        ? "bg-[#FFC94D]/60"
                         : "bg-white/10"
                     }`}
                     style={{ minHeight: 2 }}
@@ -588,7 +588,7 @@ export function FinanceScreen() {
             </span>
             <span className="text-white/40">
               {t("total")}:{" "}
-              <span className="text-[#4ADE80] font-bold">
+              <span className="text-[#FFC94D] font-bold">
                 {formatFCFA(totalSaved, language)}
               </span>{" "}
               FCFA
@@ -623,7 +623,7 @@ export function FinanceScreen() {
       >
         <SectionTitle
           icon={PieChartIcon}
-          iconColor="#C084FC"
+          iconColor="#FFD166"
           title={t("financeSavingsDistribution")}
           right={
             <span className="text-[10px] text-white/40">
@@ -727,7 +727,7 @@ export function FinanceScreen() {
       >
         <SectionTitle
           icon={Banknote}
-          iconColor="#4ADE80"
+          iconColor="#FFC94D"
           title={t("financeBudgetWeekly")}
           right={
             <button
@@ -745,7 +745,7 @@ export function FinanceScreen() {
             <div className="space-y-2 mb-3">
               <div className="flex justify-between text-xs">
                 <span className="text-white/60 flex items-center gap-1">
-                  <TrendingUp size={12} className="text-[#4ADE80]" /> {t("financeIncomeWeekly")}
+                  <TrendingUp size={12} className="text-[#FFC94D]" /> {t("financeIncomeWeekly")}
                 </span>
                 <span className="text-white font-semibold">
                   {formatFCFA(weeklyIncome, language)} FCFA
@@ -753,7 +753,7 @@ export function FinanceScreen() {
               </div>
               <div className="flex justify-between text-xs">
                 <span className="text-white/60 flex items-center gap-1">
-                  <Home size={12} className="text-[#2DD4BF]" /> {t("financeCategoryRent")}
+                  <Home size={12} className="text-[#FFB020]" /> {t("financeCategoryRent")}
                 </span>
                 <span className="text-white/70">{formatFCFA(weeklyExpenses.rent, language)}</span>
               </div>
@@ -765,7 +765,7 @@ export function FinanceScreen() {
               </div>
               <div className="flex justify-between text-xs">
                 <span className="text-white/60 flex items-center gap-1">
-                  <Car size={12} className="text-[#C084FC]" /> {t("financeCategoryTransport")}
+                  <Car size={12} className="text-[#FFD166]" /> {t("financeCategoryTransport")}
                 </span>
                 <span className="text-white/70">{formatFCFA(weeklyExpenses.transport, language)}</span>
               </div>
@@ -782,7 +782,7 @@ export function FinanceScreen() {
               <div className="mb-3">
                 <div className="h-3 bg-white/10 rounded-full overflow-hidden flex">
                   <div
-                    className="bg-[#2DD4BF]"
+                    className="bg-[#FFB020]"
                     style={{
                       width: `${Math.min(100, (weeklyExpenses.rent / weeklyIncome) * 100)}%`,
                     }}
@@ -796,7 +796,7 @@ export function FinanceScreen() {
                     title={t("financeCategoryFood")}
                   />
                   <div
-                    className="bg-[#C084FC]"
+                    className="bg-[#FFD166]"
                     style={{
                       width: `${Math.min(100, (weeklyExpenses.transport / weeklyIncome) * 100)}%`,
                     }}
@@ -831,15 +831,15 @@ export function FinanceScreen() {
                   -{formatFCFA(weeklyBetAmount, language)} {t("financeLostToBets")}
                 </div>
               </div>
-              <div className="p-3 rounded-xl bg-[#4ADE80]/10 border border-[#4ADE80]/20">
-                <div className="text-[#4ADE80] text-[10px] uppercase tracking-wide mb-1">
+              <div className="p-3 rounded-xl bg-[#FFC94D]/10 border border-[#FFC94D]/20">
+                <div className="text-[#FFC94D] text-[10px] uppercase tracking-wide mb-1">
                   {t("financeWithZerobet")}
                 </div>
                 <div className="text-white text-lg font-bold">
                   {formatFCFA(Math.max(0, availableWithZerobet), language)}
                 </div>
                 <div className="text-white/40 text-[10px]">{t("financeRemainingPerWeek")}</div>
-                <div className="text-[#4ADE80] text-[10px] mt-1">
+                <div className="text-[#FFC94D] text-[10px] mt-1">
                   +{formatFCFA(weeklyDifference, language)} {t("financeGained")}
                 </div>
               </div>
@@ -849,26 +849,26 @@ export function FinanceScreen() {
           <div className="space-y-3">
             <div>
               <label className="text-white/60 text-xs flex items-center gap-1 mb-1">
-                <TrendingUp size={12} className="text-[#4ADE80]" /> {t("financeIncomeWeekly")}
+                <TrendingUp size={12} className="text-[#FFC94D]" /> {t("financeIncomeWeekly")}
               </label>
               <input
                 type="number"
                 value={incomeInput}
                 onChange={(e) => setIncomeInput(e.target.value)}
-                className="w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#4ADE80]"
+                className="w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#FFC94D]"
                 placeholder="0"
               />
             </div>
             <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="text-white/60 text-xs flex items-center gap-1 mb-1">
-                  <Home size={12} className="text-[#2DD4BF]" /> {t("financeCategoryRent")}
+                  <Home size={12} className="text-[#FFB020]" /> {t("financeCategoryRent")}
                 </label>
                 <input
                   type="number"
                   value={rentInput}
                   onChange={(e) => setRentInput(e.target.value)}
-                  className="w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#2DD4BF]"
+                  className="w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#FFB020]"
                   placeholder="0"
                 />
               </div>
@@ -886,13 +886,13 @@ export function FinanceScreen() {
               </div>
               <div>
                 <label className="text-white/60 text-xs flex items-center gap-1 mb-1">
-                  <Car size={12} className="text-[#C084FC]" /> {t("financeCategoryTransport")}
+                  <Car size={12} className="text-[#FFD166]" /> {t("financeCategoryTransport")}
                 </label>
                 <input
                   type="number"
                   value={transportInput}
                   onChange={(e) => setTransportInput(e.target.value)}
-                  className="w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#C084FC]"
+                  className="w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#FFD166]"
                   placeholder="0"
                 />
               </div>
@@ -989,10 +989,10 @@ export function FinanceScreen() {
                     <div className="flex gap-1 flex-shrink-0">
                       <button
                         onClick={() => setContribGoalId(goal.id)}
-                        className="w-7 h-7 rounded-lg bg-[#4ADE80]/20 flex items-center justify-center"
+                        className="w-7 h-7 rounded-lg bg-[#FFC94D]/20 flex items-center justify-center"
                         aria-label={t("financeSaveForThisGoal")}
                       >
-                        <Plus size={14} className="text-[#4ADE80]" />
+                        <Plus size={14} className="text-[#FFC94D]" />
                       </button>
                       <button
                         onClick={() => handleDeleteGoal(goal.id, goal.name)}
@@ -1015,7 +1015,7 @@ export function FinanceScreen() {
                       } flex items-center justify-end pr-1.5`}
                     >
                       {progress > 12 && (
-                        <span className="text-[9px] font-bold text-[#070B0E]">
+                        <span className="text-[9px] font-bold text-[#0B0704]">
                           {Math.round(progress)}%
                         </span>
                       )}
@@ -1023,7 +1023,7 @@ export function FinanceScreen() {
                   </div>
                   <div className="flex justify-between mt-1.5 text-[10px]">
                     {isReached ? (
-                      <span className="text-[#4ADE80] font-semibold flex items-center gap-1">
+                      <span className="text-[#FFC94D] font-semibold flex items-center gap-1">
                         <Check size={11} /> {t("financeGoalReached")}
                       </span>
                     ) : (
@@ -1077,7 +1077,7 @@ export function FinanceScreen() {
           iconColor="#F59E0B"
           title={t("financeSavingsStreak")}
           right={
-            <span className="text-[10px] text-[#4ADE80] font-semibold flex items-center gap-1">
+            <span className="text-[10px] text-[#FFC94D] font-semibold flex items-center gap-1">
               <Gift size={10} /> +{formatFCFA(streakBonusXP, language)} {t("financeXpBonus")}
             </span>
           }
@@ -1103,7 +1103,7 @@ export function FinanceScreen() {
                 transition={{ delay: idx * 0.05 }}
                 className={`flex-1 h-10 rounded-lg flex items-center justify-center text-[10px] font-bold ${
                   w.saved
-                    ? "gradient-success text-[#070B0E]"
+                    ? "gradient-success text-[#0B0704]"
                     : "bg-white/5 text-white/30 border border-white/5"
                 }`}
                 title={w.saved ? t("financeSavingsWeek") : t("financeNotYet")}
@@ -1215,7 +1215,7 @@ export function FinanceScreen() {
       >
         <SectionTitle
           icon={BarChart3}
-          iconColor="#4ADE80"
+          iconColor="#FFC94D"
           title={t("financeBeforeVsAfter")}
           right={
             <span className="text-[10px] text-white/40">{t("financeLast6Months")}</span>
@@ -1266,15 +1266,15 @@ export function FinanceScreen() {
                 wrapperStyle={{ fontSize: 11, paddingTop: 4 }}
               />
               <Bar dataKey="avant" fill="#FF3B30" radius={[4, 4, 0, 0]} name="avant" />
-              <Bar dataKey="maintenant" fill="#4ADE80" radius={[4, 4, 0, 0]} name="maintenant" />
+              <Bar dataKey="maintenant" fill="#FFC94D" radius={[4, 4, 0, 0]} name="maintenant" />
             </BarChart>
           </ResponsiveContainer>
         </div>
 
         {/* Net gain calculation */}
-        <div className="mt-3 p-3 rounded-xl bg-[#4ADE80]/10 border border-[#4ADE80]/20 flex items-center justify-between">
+        <div className="mt-3 p-3 rounded-xl bg-[#FFC94D]/10 border border-[#FFC94D]/20 flex items-center justify-between">
           <div>
-            <div className="text-[#4ADE80] text-[11px] uppercase tracking-wide">
+            <div className="text-[#FFC94D] text-[11px] uppercase tracking-wide">
               {t("financeNetGain6Months")}
             </div>
             <div className="text-white font-bold text-lg font-[family-name:var(--font-poppins)]">
@@ -1300,7 +1300,7 @@ export function FinanceScreen() {
       >
         <SectionTitle
           icon={GraduationCap}
-          iconColor="#2DD4BF"
+          iconColor="#FFB020"
           title={t("financeEducation")}
         />
 
@@ -1522,7 +1522,7 @@ export function FinanceScreen() {
                         onChange={(e) => setContribAmount(e.target.value)}
                         placeholder={t("financeAmountPlaceholder")}
                         autoFocus
-                        className="w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#4ADE80]"
+                        className="w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#FFC94D]"
                       />
                     </div>
                     <div className="flex gap-2 flex-wrap">
@@ -1538,7 +1538,7 @@ export function FinanceScreen() {
                     </div>
                     <button
                       onClick={handleContribute}
-                      className="w-full py-3 rounded-xl gradient-success text-[#070B0E] text-sm font-bold flex items-center justify-center gap-1.5"
+                      className="w-full py-3 rounded-xl gradient-success text-[#0B0704] text-sm font-bold flex items-center justify-center gap-1.5"
                     >
                       <PiggyBank size={16} /> {t("financeAddToGoal")}
                     </button>

@@ -133,7 +133,7 @@ export function EngagementScreen() {
                 whileTap={{ scale: 0.97 }}
                 onClick={() => toggleGoal(goal.key)}
                 className={`relative glass-card p-4 flex flex-col items-center text-center transition-all ${
-                  isSelected ? "ring-2 ring-[#10B981] glow-green" : ""
+                  isSelected ? "ring-2 ring-[#FF6B00] glow-green" : ""
                 }`}
               >
                 {isSelected && (
@@ -309,7 +309,7 @@ export function EngagementScreen() {
               t("engagementPlan6"),
             ].map((item, idx) => (
               <li key={idx} className="flex items-start gap-2 text-white/70 text-sm">
-                <Check size={16} className="text-[#4ADE80] mt-0.5 flex-shrink-0" />
+                <Check size={16} className="text-[#FFC94D] mt-0.5 flex-shrink-0" />
                 {item}
               </li>
             ))}

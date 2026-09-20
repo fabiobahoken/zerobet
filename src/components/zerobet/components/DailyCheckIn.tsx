@@ -12,8 +12,8 @@ import { useLanguage } from "@/lib/i18n/useT";
 import type { Language } from "@/lib/i18n/dictionary";
 
 const MOOD_OPTIONS = [
-  { key: "super", emoji: "😀", labelKey: "checkinMoodSuper", color: "#4ADE80", bg: "rgba(74,222,128,0.15)" },
-  { key: "bien", emoji: "😊", labelKey: "checkinMoodBien", color: "#2DD4BF", bg: "rgba(45, 212, 191,0.15)" },
+  { key: "super", emoji: "😀", labelKey: "checkinMoodSuper", color: "#FFC94D", bg: "rgba(255,201,77,0.15)" },
+  { key: "bien", emoji: "😊", labelKey: "checkinMoodBien", color: "#FFB020", bg: "rgba(255,176,32,0.15)" },
   { key: "neutre", emoji: "😐", labelKey: "checkinMoodNeutre", color: "#FBBF24", bg: "rgba(251,191,36,0.15)" },
   { key: "difficile", emoji: "😟", labelKey: "checkinMoodDifficile", color: "#F59E0B", bg: "rgba(245, 158, 11,0.15)" },
   { key: "critique", emoji: "😢", labelKey: "checkinMoodCritique", color: "#FF3B30", bg: "rgba(255,59,48,0.15)" },
@@ -239,7 +239,7 @@ export function DailyCheckIn({ onDismiss }: { onDismiss?: () => void } = {}) {
                       onClick={() => setHasCraving(false)}
                       className={`flex-1 py-3 rounded-2xl text-sm font-semibold transition-all duration-200 ${
                         hasCraving === false
-                          ? "bg-[#4ADE80]/20 text-[#4ADE80] ring-2 ring-[#4ADE80]/50"
+                          ? "bg-[#FFC94D]/20 text-[#FFC94D] ring-2 ring-[#FFC94D]/50"
                           : "glass-pill text-white/50"
                       }`}
                     >
@@ -318,7 +318,7 @@ export function DailyCheckIn({ onDismiss }: { onDismiss?: () => void } = {}) {
                 {showConfetti && (
                   <div className="absolute inset-0 pointer-events-none overflow-hidden">
                     {Array.from({ length: 20 }).map((_, i) => {
-                      const colors = ["#FF3B30", "#F59E0B", "#4ADE80", "#2DD4BF", "#FBBF24", "#C084FC"];
+                      const colors = ["#FF3B30", "#F59E0B", "#FFC94D", "#FFB020", "#FBBF24", "#FFD166"];
                       const color = colors[i % colors.length];
                       const leftPos = `${5 + (i * 4.5) % 90}%`;
                       const delay = `${(i * 0.05).toFixed(2)}s`;

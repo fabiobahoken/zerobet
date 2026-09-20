@@ -7,6 +7,7 @@ import {
   Mail, FileText, Lock, AlertTriangle, Sparkles, User, Venus, Mars,
   Heart, Palette, Bell, Database, Volume2, Eye, Download, Upload,
   Trash2, Smartphone, Moon, Sun, Vibrate, Clock, FileJson,
+  Sprout, Star, ShieldCheck, GraduationCap, type LucideIcon,
 } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { Input } from "@/components/ui/input";
@@ -33,7 +34,7 @@ export const PLAN_INFO: Record<Plan, {
   descKey: string;
   color: string;
   gradient: string;
-  icon: string;
+  icon: LucideIcon;
   glowClass: string;
 }> = {
   free: {
@@ -41,31 +42,31 @@ export const PLAN_INFO: Record<Plan, {
     descKey: "planFreeDesc",
     color: "#9CA3AF",
     gradient: "linear-gradient(135deg, #6B7280 0%, #374151 100%)",
-    icon: "🌱",
+    icon: Sprout as LucideIcon,
     glowClass: "",
   },
   premium: {
     labelKey: "settingsPlanPremium",
     descKey: "planPremiumDesc",
-    color: "#10B981",
-    gradient: "linear-gradient(135deg, #10B981 0%, #F59E0B 100%)",
-    icon: "⭐",
+    color: "#FF6B00",
+    gradient: "linear-gradient(135deg, #FF6B00 0%, #F59E0B 100%)",
+    icon: Star as LucideIcon,
     glowClass: "glow-green",
   },
   mentor: {
     labelKey: "settingsPlanMentor",
     descKey: "planMentorDesc",
-    color: "#4ADE80",
-    gradient: "linear-gradient(135deg, #4ADE80 0%, #2DD4BF 100%)",
-    icon: "🛡️",
+    color: "#FFC94D",
+    gradient: "linear-gradient(135deg, #FFC94D 0%, #FFB020 100%)",
+    icon: ShieldCheck as LucideIcon,
     glowClass: "glow-green",
   },
   psychologist: {
     labelKey: "settingsPlanPsychologist",
     descKey: "planPsychologistDesc",
-    color: "#C084FC",
-    gradient: "linear-gradient(135deg, #C084FC 0%, #2DD4BF 100%)",
-    icon: "🎓",
+    color: "#FFD166",
+    gradient: "linear-gradient(135deg, #FFD166 0%, #FFB020 100%)",
+    icon: GraduationCap as LucideIcon,
     glowClass: "glow-purple",
   },
 };
@@ -311,7 +312,14 @@ export function SettingsScreen() {
                 className="px-2 py-0.5 rounded-full text-[10px] font-bold text-white flex items-center gap-1 flex-shrink-0"
                 style={{ background: planInfo.color }}
               >
-                <span aria-hidden>{planInfo.icon}</span> {t(planInfo.labelKey)}
+                {(() => {
+                  const PI = planInfo.icon as LucideIcon | string;
+                  return typeof PI === "string" ? (
+                    <span aria-hidden>{PI}</span>
+                  ) : (
+                    <PI size={10} strokeWidth={2.8} />
+                  );
+                })()} {t(planInfo.labelKey)}
               </span>
             </div>
             <div className="flex items-center gap-3 text-xs text-white/60">
@@ -319,7 +327,7 @@ export function SettingsScreen() {
                 {gender === "female" ? (
                   <Venus size={12} className="text-[#F59E0B]" />
                 ) : gender === "male" ? (
-                  <Mars size={12} className="text-[#2DD4BF]" />
+                  <Mars size={12} className="text-[#FFB020]" />
                 ) : (
                   <User size={12} className="text-white/40" />
                 )}
@@ -357,7 +365,18 @@ export function SettingsScreen() {
               style={{ background: planInfo.gradient }}
               aria-hidden
             >
-              {planInfo.icon}
+              {(() => {
+                const PI = planInfo.icon as LucideIcon | string;
+                return typeof PI === "string" ? (
+                  PI
+                ) : (
+                  <PI
+                    size={26}
+                    strokeWidth={2.1}
+                    style={{ filter: "drop-shadow(0 0 8px rgba(255,255,255,0.55))" }}
+                  />
+                );
+              })()}
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-lg font-bold text-white font-[family-name:var(--font-poppins)] leading-tight">
@@ -413,7 +432,7 @@ export function SettingsScreen() {
                     aria-label={lang.nativeName}
                     className={`flex flex-col items-center gap-1.5 p-2.5 rounded-xl transition-all ${
                       isSelected
-                        ? "glass-card-strong ring-2 ring-[#10B981]"
+                        ? "glass-card-strong ring-2 ring-[#FF6B00]"
                         : "bg-white/5 hover:bg-white/10"
                     }`}
                   >
@@ -466,7 +485,7 @@ export function SettingsScreen() {
               onChange={(e) => setName(e.target.value)}
               placeholder={t("settingsNamePlaceholder")}
               maxLength={30}
-              className="bg-white/5 border-white/10 text-white placeholder:text-white/30 rounded-xl h-11 focus-visible:border-[#10B981]/60 focus-visible:ring-[#10B981]/20"
+              className="bg-white/5 border-white/10 text-white placeholder:text-white/30 rounded-xl h-11 focus-visible:border-[#FF6B00]/60 focus-visible:ring-[#FF6B00]/20"
             />
           </div>
         </motion.section>
@@ -474,7 +493,7 @@ export function SettingsScreen() {
         {/* ============ SECTION 3: Confidentialité & Protection des données ============ */}
         <motion.section variants={itemVariants} className="glass-card p-5">
           <div className="flex items-center gap-2 mb-4">
-            <Lock size={16} className="text-[#2DD4BF]" />
+            <Lock size={16} className="text-[#FFB020]" />
             <h3 className="text-xs font-bold text-white/80 uppercase tracking-[0.12em]">
               {t("settingsPrivacy")}
             </h3>
@@ -492,7 +511,7 @@ export function SettingsScreen() {
               checked={anonymousMode}
               onCheckedChange={setAnonymousMode}
               aria-label={t("settingsAnonymousMode")}
-              className="data-[state=checked]:bg-[#10B981] data-[state=unchecked]:bg-white/15"
+              className="data-[state=checked]:bg-[#FF6B00] data-[state=unchecked]:bg-white/15"
             />
           </div>
 
@@ -508,14 +527,14 @@ export function SettingsScreen() {
               checked={dataConsent}
               onCheckedChange={setDataConsent}
               aria-label={t("settingsDataConsent")}
-              className="data-[state=checked]:bg-[#10B981] data-[state=unchecked]:bg-white/15"
+              className="data-[state=checked]:bg-[#FF6B00] data-[state=unchecked]:bg-white/15"
             />
           </div>
 
           {/* Data protection info card */}
-          <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-[#2DD4BF]/10 border border-[#2DD4BF]/20">
-            <div className="w-9 h-9 rounded-xl bg-[#2DD4BF]/20 flex items-center justify-center flex-shrink-0">
-              <Shield size={16} className="text-[#2DD4BF]" />
+          <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-[#FFB020]/10 border border-[#FFB020]/20">
+            <div className="w-9 h-9 rounded-xl bg-[#FFB020]/20 flex items-center justify-center flex-shrink-0">
+              <Shield size={16} className="text-[#FFB020]" />
             </div>
             <div className="min-w-0">
               <p className="text-white text-sm font-semibold leading-tight">
@@ -531,7 +550,7 @@ export function SettingsScreen() {
         {/* ============ SECTION 3a: Sauvegarde cloud & Export (Zerobet 2.0) ============ */}
         <motion.section variants={itemVariants} className="glass-card p-5">
           <div className="flex items-center gap-2 mb-4">
-            <Database size={16} className="text-[#4ADE80]" />
+            <Database size={16} className="text-[#FFC94D]" />
             <h3 className="text-xs font-bold text-white/80 uppercase tracking-[0.12em]">
               {t("settingsBackupTitle")}
             </h3>
@@ -606,8 +625,8 @@ export function SettingsScreen() {
             className="w-full flex items-center gap-3 p-3.5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors text-left mb-3"
             aria-label={t("settingsExportData")}
           >
-            <div className="w-9 h-9 rounded-xl bg-[#4ADE80]/15 flex items-center justify-center flex-shrink-0">
-              <Download size={16} className="text-[#4ADE80]" />
+            <div className="w-9 h-9 rounded-xl bg-[#FFC94D]/15 flex items-center justify-center flex-shrink-0">
+              <Download size={16} className="text-[#FFC94D]" />
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-white text-sm font-medium">{t("settingsExportData")}</p>
@@ -645,8 +664,8 @@ export function SettingsScreen() {
             className="w-full flex items-center gap-3 p-3.5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors text-left"
             aria-label={t("settingsRestoreData")}
           >
-            <div className="w-9 h-9 rounded-xl bg-[#2DD4BF]/15 flex items-center justify-center flex-shrink-0">
-              <Upload size={16} className="text-[#2DD4BF]" />
+            <div className="w-9 h-9 rounded-xl bg-[#FFB020]/15 flex items-center justify-center flex-shrink-0">
+              <Upload size={16} className="text-[#FFB020]" />
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-white text-sm font-medium">{t("settingsRestoreData")}</p>
@@ -660,8 +679,8 @@ export function SettingsScreen() {
             className="w-full flex items-center gap-3 p-3.5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors text-left mt-3 focus-ring"
             aria-label={t("settingsDataRightsRow")}
           >
-            <div className="w-9 h-9 rounded-xl bg-[#10B981]/15 flex items-center justify-center flex-shrink-0">
-              <FileJson size={16} className="text-[#4ADE80]" />
+            <div className="w-9 h-9 rounded-xl bg-[#FF6B00]/15 flex items-center justify-center flex-shrink-0">
+              <FileJson size={16} className="text-[#FFC94D]" />
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-white text-sm font-medium">{t("settingsDataRightsRow")}</p>
@@ -810,7 +829,7 @@ export function SettingsScreen() {
         {/* ============ SECTION 3d: Gestion des données (Task 9-a) ============ */}
         <motion.section variants={itemVariants} className="glass-card p-5">
           <div className="flex items-center gap-2 mb-4">
-            <Database size={16} className="text-[#4ADE80]" />
+            <Database size={16} className="text-[#FFC94D]" />
             <h3 className="text-xs font-bold text-white/80 uppercase tracking-[0.12em]">
               {t("dataManagement")}
             </h3>
@@ -819,7 +838,7 @@ export function SettingsScreen() {
           {/* Data size display */}
           <div className="flex items-center justify-between mb-4 p-3 rounded-2xl bg-white/5 border border-white/5">
             <span className="text-white/70 text-sm">{t("dataSize")}</span>
-            <span className="text-white text-sm font-mono bg-[#4ADE80]/10 text-[#4ADE80] px-2.5 py-0.5 rounded-md">
+            <span className="text-white text-sm font-mono bg-[#FFC94D]/10 text-[#FFC94D] px-2.5 py-0.5 rounded-md">
               {dataSizeKB}
             </span>
           </div>
@@ -829,14 +848,14 @@ export function SettingsScreen() {
             <motion.button
               whileTap={{ scale: 0.97 }}
               onClick={handleExport}
-              className="py-3 rounded-2xl bg-[#4ADE80]/15 text-[#4ADE80] text-xs font-semibold border border-[#4ADE80]/25 flex items-center justify-center gap-1.5 transition-colors hover:bg-[#4ADE80]/20"
+              className="py-3 rounded-2xl bg-[#FFC94D]/15 text-[#FFC94D] text-xs font-semibold border border-[#FFC94D]/25 flex items-center justify-center gap-1.5 transition-colors hover:bg-[#FFC94D]/20"
             >
               <Download size={14} /> {t("export")}
             </motion.button>
             <motion.button
               whileTap={{ scale: 0.97 }}
               onClick={handleImportClick}
-              className="py-3 rounded-2xl bg-[#2DD4BF]/15 text-[#2DD4BF] text-xs font-semibold border border-[#2DD4BF]/25 flex items-center justify-center gap-1.5 transition-colors hover:bg-[#2DD4BF]/20"
+              className="py-3 rounded-2xl bg-[#FFB020]/15 text-[#FFB020] text-xs font-semibold border border-[#FFB020]/25 flex items-center justify-center gap-1.5 transition-colors hover:bg-[#FFB020]/20"
             >
               <Upload size={14} /> {t("import")}
             </motion.button>
@@ -867,7 +886,7 @@ export function SettingsScreen() {
         {/* ============ SECTION 3e: Confidentialité & Sécurité (Task 9-a) ============ */}
         <motion.section variants={itemVariants} className="glass-card p-5">
           <div className="flex items-center gap-2 mb-4">
-            <Lock size={16} className="text-[#10B981]" />
+            <Lock size={16} className="text-[#FF6B00]" />
             <h3 className="text-xs font-bold text-white/80 uppercase tracking-[0.12em]">
               {t("privacySecurity")}
             </h3>
@@ -876,7 +895,7 @@ export function SettingsScreen() {
           <div className="flex items-start justify-between gap-3 mb-4 pb-4 border-b border-white/5">
             <div className="flex-1 min-w-0">
               <p className="text-white text-sm font-medium flex items-center gap-1.5">
-                <Lock size={12} className="text-[#10B981]" /> {t("appLock")}
+                <Lock size={12} className="text-[#FF6B00]" /> {t("appLock")}
               </p>
               <p className="text-white/50 text-xs mt-0.5 leading-relaxed">
                 {t("appLockDesc")}
@@ -886,14 +905,14 @@ export function SettingsScreen() {
               checked={appLock}
               onCheckedChange={setAppLock}
               aria-label={t("appLock")}
-              className="data-[state=checked]:bg-[#10B981] data-[state=unchecked]:bg-white/15"
+              className="data-[state=checked]:bg-[#FF6B00] data-[state=unchecked]:bg-white/15"
             />
           </div>
 
           <div className="flex items-start justify-between gap-3 mb-4 pb-4 border-b border-white/5">
             <div className="flex-1 min-w-0">
               <p className="text-white text-sm font-medium flex items-center gap-1.5">
-                <Eye size={12} className="text-[#C084FC]" /> {t("discreteMode")}
+                <Eye size={12} className="text-[#FFD166]" /> {t("discreteMode")}
               </p>
               <p className="text-white/50 text-xs mt-0.5 leading-relaxed">
                 {t("discreteModeDesc")}
@@ -903,7 +922,7 @@ export function SettingsScreen() {
               checked={discreteMode}
               onCheckedChange={setDiscreteMode}
               aria-label={t("discreteMode")}
-              className="data-[state=checked]:bg-[#C084FC] data-[state=unchecked]:bg-white/15"
+              className="data-[state=checked]:bg-[#FFD166] data-[state=unchecked]:bg-white/15"
             />
           </div>
 
@@ -933,7 +952,7 @@ export function SettingsScreen() {
         {/* ============ SECTION 3f: Son & Haptiques (Task 9-a) ============ */}
         <motion.section variants={itemVariants} className="glass-card p-5">
           <div className="flex items-center gap-2 mb-4">
-            <Volume2 size={16} className="text-[#2DD4BF]" />
+            <Volume2 size={16} className="text-[#FFB020]" />
             <h3 className="text-xs font-bold text-white/80 uppercase tracking-[0.12em]">
               {t("soundHaptics")}
             </h3>
@@ -942,7 +961,7 @@ export function SettingsScreen() {
           <div className="flex items-start justify-between gap-3 mb-4 pb-4 border-b border-white/5">
             <div className="flex-1 min-w-0">
               <p className="text-white text-sm font-medium flex items-center gap-1.5">
-                <Volume2 size={12} className="text-[#2DD4BF]" /> {t("settingsSound")}
+                <Volume2 size={12} className="text-[#FFB020]" /> {t("settingsSound")}
               </p>
               <p className="text-white/50 text-xs mt-0.5 leading-relaxed">
                 {t("soundDescFull")}
@@ -952,7 +971,7 @@ export function SettingsScreen() {
               checked={soundEnabled}
               onCheckedChange={setSoundEnabled}
               aria-label={t("settingsSound")}
-              className="data-[state=checked]:bg-[#2DD4BF] data-[state=unchecked]:bg-white/15"
+              className="data-[state=checked]:bg-[#FFB020] data-[state=unchecked]:bg-white/15"
             />
           </div>
 
@@ -995,7 +1014,7 @@ export function SettingsScreen() {
         {/* ============ SECTION 4: À propos ============ */}
         <motion.section variants={itemVariants} className="glass-card p-5">
           <div className="flex items-center gap-2 mb-4">
-            <FileText size={16} className="text-[#C084FC]" />
+            <FileText size={16} className="text-[#FFD166]" />
             <h3 className="text-xs font-bold text-white/80 uppercase tracking-[0.12em]">
               {t("settingsAbout")}
             </h3>

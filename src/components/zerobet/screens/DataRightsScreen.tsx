@@ -236,7 +236,7 @@ export function DataRightsScreen() {
         {/* ============ Inventory ============ */}
         <motion.section variants={itemVariants} className="glass-card p-5">
           <div className="flex items-center gap-2 mb-4">
-            <FileJson size={16} className="text-[#2DD4BF]" />
+            <FileJson size={16} className="text-[#FFB020]" />
             <h2 className="text-xs font-bold uppercase tracking-[0.12em] text-white/80 font-[family-name:var(--font-poppins)]">
               {t("dataRightsInventoryTitle")}
             </h2>
@@ -265,9 +265,9 @@ export function DataRightsScreen() {
           {exportData !== null && !loadError && (
             <div className="space-y-3">
               {/* 1. Local device data — always present (local-first) */}
-              <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-[#10B981]/8 border border-[#10B981]/20">
-                <div className="w-9 h-9 rounded-xl bg-[#10B981]/20 flex items-center justify-center flex-shrink-0">
-                  <Smartphone size={16} className="text-[#4ADE80]" />
+              <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-[#FF6B00]/8 border border-[#FF6B00]/20">
+                <div className="w-9 h-9 rounded-xl bg-[#FF6B00]/20 flex items-center justify-center flex-shrink-0">
+                  <Smartphone size={16} className="text-[#FFC94D]" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-white text-sm font-semibold">{t("dataRightsLocalTitle")}</p>
@@ -289,10 +289,10 @@ export function DataRightsScreen() {
               </div>
 
               {/* 2. Cloud backup snapshot */}
-              <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-[#2DD4BF]/8 border border-[#2DD4BF]/20">
-                <div className="w-9 h-9 rounded-xl bg-[#2DD4BF]/20 flex items-center justify-center flex-shrink-0">
+              <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-[#FFB020]/8 border border-[#FFB020]/20">
+                <div className="w-9 h-9 rounded-xl bg-[#FFB020]/20 flex items-center justify-center flex-shrink-0">
                   {cloud ? (
-                    <Cloud size={16} className="text-[#2DD4BF]" />
+                    <Cloud size={16} className="text-[#FFB020]" />
                   ) : (
                     <CloudOff size={16} className="text-white/40" />
                   )}
@@ -361,12 +361,12 @@ export function DataRightsScreen() {
           className="glass-card p-5 relative overflow-hidden"
         >
           <div
-            className="absolute -top-16 -right-16 w-44 h-44 rounded-full blur-3xl bg-[#10B981]/10 pointer-events-none"
+            className="absolute -top-16 -right-16 w-44 h-44 rounded-full blur-3xl bg-[#FF6B00]/10 pointer-events-none"
             aria-hidden
           />
           <div className="flex items-start gap-3 mb-4 relative">
-            <div className="w-10 h-10 rounded-xl bg-[#10B981]/15 flex items-center justify-center flex-shrink-0">
-              <Download size={18} className="text-[#4ADE80]" />
+            <div className="w-10 h-10 rounded-xl bg-[#FF6B00]/15 flex items-center justify-center flex-shrink-0">
+              <Download size={18} className="text-[#FFC94D]" />
             </div>
             <div className="min-w-0">
               <h2 className="text-white text-base font-bold font-[family-name:var(--font-poppins)] leading-tight">

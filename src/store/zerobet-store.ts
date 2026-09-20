@@ -149,13 +149,13 @@ export function getMultiplierTier(streakDays: number): {
   color: string;
 } {
   if (streakDays >= 90)
-    return { multiplier: 3.0, label: "Triple XP", min: 90, max: Infinity, color: "#C084FC" };
+    return { multiplier: 3.0, label: "Triple XP", min: 90, max: Infinity, color: "#FFD166" };
   if (streakDays >= 30)
     return { multiplier: 2.0, label: "Double XP", min: 30, max: 90, color: "#F59E0B" };
   if (streakDays >= 14)
     return { multiplier: 1.5, label: "+50% XP", min: 14, max: 30, color: "#FBBF24" };
   if (streakDays >= 7)
-    return { multiplier: 1.2, label: "+20% XP", min: 7, max: 14, color: "#4ADE80" };
+    return { multiplier: 1.2, label: "+20% XP", min: 7, max: 14, color: "#FFC94D" };
   return { multiplier: 1.0, label: "XP normal", min: 0, max: 7, color: "#9CA3AF" };
 }
 
@@ -873,7 +873,7 @@ export const useStore = create<AppState>()(
       setName: (n) => set({ name: n }),
 
       // Avatar color
-      avatarColor: "#10B981",
+      avatarColor: "#FF6B00",
       setAvatarColor: (color) => set({ avatarColor: color }),
 
       // Profile photo (base64 data URL or null)
@@ -1772,7 +1772,7 @@ export const useStore = create<AppState>()(
           adminStreakOverride: null,
           meditationStreak: 0,
           lastMeditationDate: null,
-          avatarColor: "#10B981",
+          avatarColor: "#FF6B00",
           profilePhoto: null,
           articlesRead: 0,
           xp: 0,

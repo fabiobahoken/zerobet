@@ -503,7 +503,7 @@ function ArtifactIcon({ artifactKey, size = 48, className, glow = true }) {
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "0%",
-                                stopColor: "#67E8F9"
+                                stopColor: "#FFD166"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ArtifactIcon.tsx",
                                 lineNumber: 315,
@@ -511,7 +511,7 @@ function ArtifactIcon({ artifactKey, size = 48, className, glow = true }) {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "50%",
-                                stopColor: "#2DD4BF"
+                                stopColor: "#FFB020"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ArtifactIcon.tsx",
                                 lineNumber: 316,
@@ -519,7 +519,7 @@ function ArtifactIcon({ artifactKey, size = 48, className, glow = true }) {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "100%",
-                                stopColor: "#0EA5E9"
+                                stopColor: "#FF9A3D"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ArtifactIcon.tsx",
                                 lineNumber: 317,
@@ -1428,7 +1428,7 @@ function ArtifactIcon({ artifactKey, size = 48, className, glow = true }) {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "50%",
-                                stopColor: "#2DD4BF"
+                                stopColor: "#FFB020"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ArtifactIcon.tsx",
                                 lineNumber: 723,
@@ -1436,7 +1436,7 @@ function ArtifactIcon({ artifactKey, size = 48, className, glow = true }) {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "100%",
-                                stopColor: "#0EA5E9"
+                                stopColor: "#FF9A3D"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ArtifactIcon.tsx",
                                 lineNumber: 724,
@@ -1549,7 +1549,7 @@ function ArtifactIcon({ artifactKey, size = 48, className, glow = true }) {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "50%",
-                                stopColor: "#4ADE80"
+                                stopColor: "#FFC94D"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ArtifactIcon.tsx",
                                 lineNumber: 783,
@@ -1685,7 +1685,7 @@ function ArtifactIcon({ artifactKey, size = 48, className, glow = true }) {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "50%",
-                                stopColor: "#2DD4BF"
+                                stopColor: "#FFB020"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ArtifactIcon.tsx",
                                 lineNumber: 849,
@@ -1992,7 +1992,7 @@ function ArtifactIcon({ artifactKey, size = 48, className, glow = true }) {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "50%",
-                                stopColor: "#C084FC"
+                                stopColor: "#FFD166"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ArtifactIcon.tsx",
                                 lineNumber: 984,
@@ -2032,7 +2032,7 @@ function ArtifactIcon({ artifactKey, size = 48, className, glow = true }) {
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "M24 6 C14 6, 7 14, 7 24 C7 33, 14 41, 24 41 C34 41, 41 33, 41 24 C41 14, 34 6, 24 6 Z",
                         fill: "rgba(0,0,0,0.45)",
-                        stroke: "rgba(192, 132, 252,0.5)",
+                        stroke: "rgba(255, 209, 102,0.5)",
                         strokeWidth: "0.8"
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/components/ArtifactIcon.tsx",
@@ -2418,7 +2418,7 @@ function ArtifactIcon({ artifactKey, size = 48, className, glow = true }) {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "100%",
-                                stopColor: "#2DD4BF"
+                                stopColor: "#FFB020"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ArtifactIcon.tsx",
                                 lineNumber: 1149,
@@ -2447,7 +2447,7 @@ function ArtifactIcon({ artifactKey, size = 48, className, glow = true }) {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "50%",
-                                stopColor: "#C084FC"
+                                stopColor: "#FFD166"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ArtifactIcon.tsx",
                                 lineNumber: 1153,
@@ -2455,7 +2455,7 @@ function ArtifactIcon({ artifactKey, size = 48, className, glow = true }) {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                 offset: "100%",
-                                stopColor: "#2DD4BF"
+                                stopColor: "#FFB020"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/components/ArtifactIcon.tsx",
                                 lineNumber: 1154,
@@ -2656,6 +2656,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$wallet$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Wallet$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/wallet.js [app-ssr] (ecmascript) <export default as Wallet>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chart$2d$column$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__BarChart3$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/chart-column.js [app-ssr] (ecmascript) <export default as BarChart3>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$plus$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Plus$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/plus.js [app-ssr] (ecmascript) <export default as Plus>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trophy$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Trophy$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/trophy.js [app-ssr] (ecmascript) <export default as Trophy>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$store$2f$zerobet$2d$store$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/store/zerobet-store.ts [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$i18n$2f$useT$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/i18n/useT.ts [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/sonner/dist/index.mjs [app-ssr] (ecmascript)");
@@ -2761,7 +2762,7 @@ const MILESTONES = [
         labelKey: "calendarMilestone1Label",
         icon: "🌱",
         artifactKey: "jour-1",
-        color: "#4ADE80",
+        color: "#FFC94D",
         descKey: "calendarMilestone1Desc"
     },
     {
@@ -2769,7 +2770,7 @@ const MILESTONES = [
         labelKey: "calendarMilestone3Label",
         icon: "💧",
         artifactKey: "jour-3",
-        color: "#2DD4BF",
+        color: "#FFB020",
         descKey: "calendarMilestone3Desc"
     },
     {
@@ -2801,14 +2802,14 @@ const MILESTONES = [
         labelKey: "calendarMilestone60Label",
         icon: "💎",
         artifactKey: "jour-60",
-        color: "#2DD4BF",
+        color: "#FFB020",
         descKey: "calendarMilestone60Desc"
     },
     {
         day: 90,
         labelKey: "calendarMilestone90Label",
-        icon: "🔥",
-        color: "#C084FC",
+        Icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$flame$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Flame$3e$__["Flame"],
+        color: "#FFD166",
         descKey: "calendarMilestone90Desc"
     },
     {
@@ -2822,8 +2823,8 @@ const MILESTONES = [
     {
         day: 365,
         labelKey: "calendarMilestone365Label",
-        icon: "🏆",
-        color: "#FF3B30",
+        Icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trophy$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Trophy$3e$__["Trophy"],
+        color: "#FFD700",
         descKey: "calendarMilestone365Desc"
     }
 ];
@@ -3171,12 +3172,12 @@ function CalendarScreen() {
                                     className: "text-white"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                    lineNumber: 404,
+                                    lineNumber: 406,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                lineNumber: 399,
+                                lineNumber: 401,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3186,7 +3187,7 @@ function CalendarScreen() {
                                         children: t("calendarTitle")
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                        lineNumber: 407,
+                                        lineNumber: 409,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3194,19 +3195,19 @@ function CalendarScreen() {
                                         children: t("calendarSubtitle")
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                        lineNumber: 410,
+                                        lineNumber: 412,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                lineNumber: 406,
+                                lineNumber: 408,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                        lineNumber: 398,
+                        lineNumber: 400,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3217,18 +3218,18 @@ function CalendarScreen() {
                             className: "text-[#F59E0B]"
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                            lineNumber: 414,
+                            lineNumber: 416,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                        lineNumber: 413,
+                        lineNumber: 415,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                lineNumber: 392,
+                lineNumber: 394,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -3245,14 +3246,14 @@ function CalendarScreen() {
                                 className: "absolute -top-16 -right-16 w-44 h-44 rounded-full blur-3xl pointer-events-none bg-[#F59E0B]/20"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                lineNumber: 428,
+                                lineNumber: 430,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "absolute -bottom-12 -left-12 w-32 h-32 rounded-full blur-3xl pointer-events-none bg-[#FF3B30]/15"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                lineNumber: 429,
+                                lineNumber: 431,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3267,12 +3268,12 @@ function CalendarScreen() {
                                             className: "text-white/80"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                            lineNumber: 438,
+                                            lineNumber: 440,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                        lineNumber: 433,
+                                        lineNumber: 435,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -3280,7 +3281,7 @@ function CalendarScreen() {
                                         children: monthLabel
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                        lineNumber: 440,
+                                        lineNumber: 442,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -3293,18 +3294,18 @@ function CalendarScreen() {
                                             className: "text-white/80"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                            lineNumber: 451,
+                                            lineNumber: 453,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                        lineNumber: 443,
+                                        lineNumber: 445,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                lineNumber: 432,
+                                lineNumber: 434,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3331,7 +3332,7 @@ function CalendarScreen() {
                                                 "aria-hidden": true
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                                lineNumber: 464,
+                                                lineNumber: 466,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$flame$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Flame$3e$__["Flame"], {
@@ -3340,13 +3341,13 @@ function CalendarScreen() {
                                                 fill: "currentColor"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                                lineNumber: 465,
+                                                lineNumber: 467,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, monthStats.noBetDays, true, {
                                         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                        lineNumber: 457,
+                                        lineNumber: 459,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3354,7 +3355,7 @@ function CalendarScreen() {
                                         children: monthStats.noBetDays
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                        lineNumber: 467,
+                                        lineNumber: 469,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3366,24 +3367,24 @@ function CalendarScreen() {
                                         }) : t("calendarNoBetDaysNone")
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                        lineNumber: 470,
+                                        lineNumber: 472,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                lineNumber: 456,
+                                lineNumber: 458,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "relative mt-4 flex items-center justify-center gap-2 px-4 py-2.5 rounded-2xl bg-gradient-to-r from-[#4ADE80]/15 to-[#2DD4BF]/10 border border-[#4ADE80]/20",
+                                className: "relative mt-4 flex items-center justify-center gap-2 px-4 py-2.5 rounded-2xl bg-gradient-to-r from-[#FFC94D]/15 to-[#FFB020]/10 border border-[#FFC94D]/20",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$wallet$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Wallet$3e$__["Wallet"], {
                                         size: 14,
-                                        className: "text-[#4ADE80]"
+                                        className: "text-[#FFC94D]"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                        lineNumber: 481,
+                                        lineNumber: 483,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3394,7 +3395,7 @@ function CalendarScreen() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                        lineNumber: 482,
+                                        lineNumber: 484,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3402,19 +3403,19 @@ function CalendarScreen() {
                                         children: t("calendarSavedThisMonth")
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                        lineNumber: 485,
+                                        lineNumber: 487,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                lineNumber: 480,
+                                lineNumber: 482,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                        lineNumber: 427,
+                        lineNumber: 429,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].section, {
@@ -3428,12 +3429,12 @@ function CalendarScreen() {
                                         children: d
                                     }, d, false, {
                                         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                        lineNumber: 496,
+                                        lineNumber: 498,
                                         columnNumber: 15
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                lineNumber: 494,
+                                lineNumber: 496,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AnimatePresence"], {
@@ -3461,17 +3462,17 @@ function CalendarScreen() {
                                             onClick: ()=>handleDayClick(cell)
                                         }, `${cell.date.toISOString()}-${idx}`, false, {
                                             fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                            lineNumber: 516,
+                                            lineNumber: 518,
                                             columnNumber: 17
                                         }, this))
                                 }, monthLabel, false, {
                                     fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                    lineNumber: 507,
+                                    lineNumber: 509,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                lineNumber: 506,
+                                lineNumber: 508,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3481,10 +3482,10 @@ function CalendarScreen() {
                                         className: "flex items-center gap-1.5",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "w-2 h-2 rounded-full bg-[#4ADE80]"
+                                                className: "w-2 h-2 rounded-full bg-[#FFC94D]"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                                lineNumber: 529,
+                                                lineNumber: 531,
                                                 columnNumber: 15
                                             }, this),
                                             " ",
@@ -3492,7 +3493,7 @@ function CalendarScreen() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                        lineNumber: 528,
+                                        lineNumber: 530,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3502,7 +3503,7 @@ function CalendarScreen() {
                                                 className: "w-2 h-2 rounded-full bg-[#FF3B30]"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                                lineNumber: 532,
+                                                lineNumber: 534,
                                                 columnNumber: 15
                                             }, this),
                                             " ",
@@ -3510,7 +3511,7 @@ function CalendarScreen() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                        lineNumber: 531,
+                                        lineNumber: 533,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3520,7 +3521,7 @@ function CalendarScreen() {
                                                 className: "w-2 h-2 rounded-full bg-white/20"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                                lineNumber: 535,
+                                                lineNumber: 537,
                                                 columnNumber: 15
                                             }, this),
                                             " ",
@@ -3528,7 +3529,7 @@ function CalendarScreen() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                        lineNumber: 534,
+                                        lineNumber: 536,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3540,7 +3541,7 @@ function CalendarScreen() {
                                                 fill: "currentColor"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                                lineNumber: 538,
+                                                lineNumber: 540,
                                                 columnNumber: 15
                                             }, this),
                                             " ",
@@ -3548,19 +3549,19 @@ function CalendarScreen() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                        lineNumber: 537,
+                                        lineNumber: 539,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                lineNumber: 527,
+                                lineNumber: 529,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                        lineNumber: 492,
+                        lineNumber: 494,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].section, {
@@ -3569,16 +3570,16 @@ function CalendarScreen() {
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(SectionTitle, {
                                 icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trending$2d$up$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__TrendingUp$3e$__["TrendingUp"], {
                                     size: 16,
-                                    className: "text-[#2DD4BF]"
+                                    className: "text-[#FFB020]"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                    lineNumber: 547,
+                                    lineNumber: 549,
                                     columnNumber: 31
                                 }, void 0),
                                 label: t("calendarStatsTitle")
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                lineNumber: 547,
+                                lineNumber: 549,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3593,14 +3594,14 @@ function CalendarScreen() {
                                             className: "text-[#FFD700]"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                            lineNumber: 553,
+                                            lineNumber: 555,
                                             columnNumber: 21
                                         }, void 0),
                                         gradient: "linear-gradient(135deg, #FFD700 0%, #F59E0B 100%)",
                                         glow: "rgba(255, 215, 0, 0.25)"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                        lineNumber: 549,
+                                        lineNumber: 551,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(StatCard, {
@@ -3612,14 +3613,14 @@ function CalendarScreen() {
                                             className: "text-[#FF3B30]"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                            lineNumber: 561,
+                                            lineNumber: 563,
                                             columnNumber: 21
                                         }, void 0),
                                         gradient: "linear-gradient(135deg, #FF3B30 0%, #F59E0B 100%)",
                                         glow: "rgba(255, 59, 48, 0.25)"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                        lineNumber: 557,
+                                        lineNumber: 559,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(StatCard, {
@@ -3628,17 +3629,17 @@ function CalendarScreen() {
                                         unit: t("calendarUnitDays"),
                                         icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$target$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Target$3e$__["Target"], {
                                             size: 18,
-                                            className: "text-[#4ADE80]"
+                                            className: "text-[#FFC94D]"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                            lineNumber: 569,
+                                            lineNumber: 571,
                                             columnNumber: 21
                                         }, void 0),
-                                        gradient: "linear-gradient(135deg, #4ADE80 0%, #2DD4BF 100%)",
-                                        glow: "rgba(74, 222, 128, 0.25)"
+                                        gradient: "linear-gradient(135deg, #FFC94D 0%, #FFB020 100%)",
+                                        glow: "rgba(255,201,77, 0.25)"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                        lineNumber: 565,
+                                        lineNumber: 567,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(StatCard, {
@@ -3647,29 +3648,29 @@ function CalendarScreen() {
                                         unit: t("calendarUnitDaysPerMonth"),
                                         icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chart$2d$column$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__BarChart3$3e$__["BarChart3"], {
                                             size: 18,
-                                            className: "text-[#C084FC]"
+                                            className: "text-[#FFD166]"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                            lineNumber: 577,
+                                            lineNumber: 579,
                                             columnNumber: 21
                                         }, void 0),
-                                        gradient: "linear-gradient(135deg, #C084FC 0%, #2DD4BF 100%)",
-                                        glow: "rgba(192, 132, 252, 0.25)"
+                                        gradient: "linear-gradient(135deg, #FFD166 0%, #FFB020 100%)",
+                                        glow: "rgba(255, 209, 102, 0.25)"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                        lineNumber: 573,
+                                        lineNumber: 575,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                lineNumber: 548,
+                                lineNumber: 550,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                        lineNumber: 546,
+                        lineNumber: 548,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].section, {
@@ -3681,13 +3682,13 @@ function CalendarScreen() {
                                     className: "text-[#FFD700]"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                    lineNumber: 589,
+                                    lineNumber: 591,
                                     columnNumber: 19
                                 }, void 0),
                                 label: t("calendarMilestonesTitle")
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                lineNumber: 588,
+                                lineNumber: 590,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3700,7 +3701,7 @@ function CalendarScreen() {
                                             "aria-hidden": true
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                            lineNumber: 595,
+                                            lineNumber: 597,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3734,26 +3735,40 @@ function CalendarScreen() {
                                                                 glow: false
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                                                lineNumber: 623,
+                                                                lineNumber: 625,
                                                                 columnNumber: 29
-                                                            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                            }, this) : m.Icon ? (()=>{
+                                                                const MI = m.Icon;
+                                                                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(MI, {
+                                                                    size: 19,
+                                                                    strokeWidth: 2.2,
+                                                                    style: {
+                                                                        color: m.color,
+                                                                        filter: `drop-shadow(0 0 8px ${m.color}90)`
+                                                                    }
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
+                                                                    lineNumber: 630,
+                                                                    columnNumber: 33
+                                                                }, this);
+                                                            })() : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                 className: "text-lg leading-none",
                                                                 children: m.icon
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                                                lineNumber: 625,
+                                                                lineNumber: 641,
                                                                 columnNumber: 29
                                                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$lock$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Lock$3e$__["Lock"], {
                                                                 size: 14,
                                                                 className: "text-white/40"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                                                lineNumber: 628,
+                                                                lineNumber: 644,
                                                                 columnNumber: 27
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                                            lineNumber: 611,
+                                                            lineNumber: 613,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3773,23 +3788,23 @@ function CalendarScreen() {
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                                                            lineNumber: 633,
+                                                                            lineNumber: 649,
                                                                             columnNumber: 27
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                            className: `text-[10px] font-mono px-1.5 py-0.5 rounded-md ${m.achieved ? "bg-[#4ADE80]/15 text-[#4ADE80]" : "bg-white/5 text-white/40"}`,
+                                                                            className: `text-[10px] font-mono px-1.5 py-0.5 rounded-md ${m.achieved ? "bg-[#FFC94D]/15 text-[#FFC94D]" : "bg-white/5 text-white/40"}`,
                                                                             children: m.achieved ? t("calendarReached") : t("calendarDaysBefore", {
                                                                                 n: m.day - streakDays
                                                                             })
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                                                            lineNumber: 636,
+                                                                            lineNumber: 652,
                                                                             columnNumber: 27
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                                                    lineNumber: 632,
+                                                                    lineNumber: 648,
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3797,7 +3812,7 @@ function CalendarScreen() {
                                                                     children: t(m.descKey)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                                                    lineNumber: 646,
+                                                                    lineNumber: 662,
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3817,42 +3832,42 @@ function CalendarScreen() {
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                                                    lineNumber: 649,
+                                                                    lineNumber: 665,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                                            lineNumber: 631,
+                                                            lineNumber: 647,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, m.day, true, {
                                                     fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                                    lineNumber: 603,
+                                                    lineNumber: 605,
                                                     columnNumber: 21
                                                 }, this);
                                             })
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                            lineNumber: 599,
+                                            lineNumber: 601,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                    lineNumber: 593,
+                                    lineNumber: 595,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                lineNumber: 592,
+                                lineNumber: 594,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                        lineNumber: 587,
+                        lineNumber: 589,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].section, {
@@ -3864,13 +3879,13 @@ function CalendarScreen() {
                                     className: "text-[#F59E0B]"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                    lineNumber: 670,
+                                    lineNumber: 686,
                                     columnNumber: 19
                                 }, void 0),
                                 label: `${t("calendarInsightsTitle")} — ${MONTH_NAMES[language]?.[viewMonth.getMonth()] ?? MONTH_NAMES.fr[viewMonth.getMonth()]}`
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                lineNumber: 669,
+                                lineNumber: 685,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3882,17 +3897,17 @@ function CalendarScreen() {
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(InsightChip, {
                                                 label: t("calendarInsightNoBetDays"),
                                                 value: `${monthStats.noBetDays}`,
-                                                color: "#4ADE80",
+                                                color: "#FFC94D",
                                                 icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$flame$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Flame$3e$__["Flame"], {
                                                     size: 14
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                                    lineNumber: 679,
+                                                    lineNumber: 695,
                                                     columnNumber: 23
                                                 }, void 0)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                                lineNumber: 675,
+                                                lineNumber: 691,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(InsightChip, {
@@ -3903,28 +3918,28 @@ function CalendarScreen() {
                                                     size: 14
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                                    lineNumber: 685,
+                                                    lineNumber: 701,
                                                     columnNumber: 23
                                                 }, void 0)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                                lineNumber: 681,
+                                                lineNumber: 697,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(InsightChip, {
                                                 label: t("calendarInsightJournalEntries"),
                                                 value: `${monthStats.journalDays}`,
-                                                color: "#C084FC",
+                                                color: "#FFD166",
                                                 icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$book$2d$open$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__BookOpen$3e$__["BookOpen"], {
                                                     size: 14
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                                    lineNumber: 691,
+                                                    lineNumber: 707,
                                                     columnNumber: 23
                                                 }, void 0)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                                lineNumber: 687,
+                                                lineNumber: 703,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(InsightChip, {
@@ -3935,18 +3950,18 @@ function CalendarScreen() {
                                                     size: 14
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                                    lineNumber: 697,
+                                                    lineNumber: 713,
                                                     columnNumber: 23
                                                 }, void 0)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                                lineNumber: 693,
+                                                lineNumber: 709,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                        lineNumber: 674,
+                                        lineNumber: 690,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3956,7 +3971,7 @@ function CalendarScreen() {
                                                 children: t("calendarDailyActivity")
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                                lineNumber: 703,
+                                                lineNumber: 719,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3982,24 +3997,24 @@ function CalendarScreen() {
                                                                 duration: 0.4,
                                                                 delay: bar.day * 0.01
                                                             },
-                                                            className: `w-full rounded-t-sm ${isCrisis ? "bg-[#FF3B30]/60" : bar.value === 0 ? "bg-white/5" : "bg-gradient-to-t from-[#F59E0B]/60 to-[#4ADE80]/60"}`,
+                                                            className: `w-full rounded-t-sm ${isCrisis ? "bg-[#FF3B30]/60" : bar.value === 0 ? "bg-white/5" : "bg-gradient-to-t from-[#F59E0B]/60 to-[#FFC94D]/60"}`,
                                                             style: {
                                                                 minHeight: bar.value > 0 ? 4 : 2
                                                             }
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                                            lineNumber: 717,
+                                                            lineNumber: 733,
                                                             columnNumber: 23
                                                         }, this)
                                                     }, bar.day, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                                        lineNumber: 712,
+                                                        lineNumber: 728,
                                                         columnNumber: 21
                                                     }, this);
                                                 })
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                                lineNumber: 706,
+                                                lineNumber: 722,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4009,38 +4024,38 @@ function CalendarScreen() {
                                                         children: "1"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                                        lineNumber: 735,
+                                                        lineNumber: 751,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                         children: dailyActivity.length
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                                        lineNumber: 736,
+                                                        lineNumber: 752,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                                lineNumber: 734,
+                                                lineNumber: 750,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                        lineNumber: 702,
+                                        lineNumber: 718,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                lineNumber: 673,
+                                lineNumber: 689,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                        lineNumber: 668,
+                        lineNumber: 684,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].p, {
@@ -4051,13 +4066,13 @@ function CalendarScreen() {
                         })
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                        lineNumber: 743,
+                        lineNumber: 759,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                lineNumber: 418,
+                lineNumber: 420,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AnimatePresence"], {
@@ -4069,18 +4084,18 @@ function CalendarScreen() {
                     onSubmitNote: handleAddNote
                 }, void 0, false, {
                     fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                    lineNumber: 753,
+                    lineNumber: 769,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                lineNumber: 751,
+                lineNumber: 767,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-        lineNumber: 390,
+        lineNumber: 392,
         columnNumber: 5
     }, this);
 }
@@ -4151,7 +4166,7 @@ function DayCell({ info, inViewMonth, onClick }) {
                 "aria-hidden": true
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                lineNumber: 838,
+                lineNumber: 854,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -4159,7 +4174,7 @@ function DayCell({ info, inViewMonth, onClick }) {
                 children: date.getDate()
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                lineNumber: 847,
+                lineNumber: 863,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4170,22 +4185,22 @@ function DayCell({ info, inViewMonth, onClick }) {
                     fill: "currentColor"
                 }, void 0, false, {
                     fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                    lineNumber: 858,
+                    lineNumber: 874,
                     columnNumber: 11
                 }, this) : status === "streak" || status === "today" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                    className: "w-1.5 h-1.5 rounded-full bg-[#4ADE80] flex items-center justify-center",
+                    className: "w-1.5 h-1.5 rounded-full bg-[#FFC94D] flex items-center justify-center",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__["Check"], {
                         size: 6,
                         className: "text-white",
                         strokeWidth: 4
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                        lineNumber: 861,
+                        lineNumber: 877,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                    lineNumber: 860,
+                    lineNumber: 876,
                     columnNumber: 11
                 }, this) : status === "crisis" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                     className: "w-1.5 h-1.5 rounded-full bg-[#FF3B30] flex items-center justify-center",
@@ -4195,23 +4210,23 @@ function DayCell({ info, inViewMonth, onClick }) {
                         strokeWidth: 3
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                        lineNumber: 865,
+                        lineNumber: 881,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                    lineNumber: 864,
+                    lineNumber: 880,
                     columnNumber: 11
                 }, this) : status === "no-data" && inViewMonth && !isFuture ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                     className: "w-1.5 h-1.5 rounded-full bg-white/15"
                 }, void 0, false, {
                     fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                    lineNumber: 868,
+                    lineNumber: 884,
                     columnNumber: 11
                 }, this) : null
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                lineNumber: 856,
+                lineNumber: 872,
                 columnNumber: 7
             }, this),
             isMilestone && streakDay > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -4219,13 +4234,13 @@ function DayCell({ info, inViewMonth, onClick }) {
                 children: streakDay
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                lineNumber: 874,
+                lineNumber: 890,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-        lineNumber: 828,
+        lineNumber: 844,
         columnNumber: 5
     }, this);
 }
@@ -4247,7 +4262,7 @@ function StatCard({ label, value, unit, icon, gradient, glow }) {
                 "aria-hidden": true
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                lineNumber: 898,
+                lineNumber: 914,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4263,12 +4278,12 @@ function StatCard({ label, value, unit, icon, gradient, glow }) {
                             children: icon
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                            lineNumber: 905,
+                            lineNumber: 921,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                        lineNumber: 904,
+                        lineNumber: 920,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4280,13 +4295,13 @@ function StatCard({ label, value, unit, icon, gradient, glow }) {
                                 children: unit
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                lineNumber: 914,
+                                lineNumber: 930,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                        lineNumber: 912,
+                        lineNumber: 928,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4294,19 +4309,19 @@ function StatCard({ label, value, unit, icon, gradient, glow }) {
                         children: label
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                        lineNumber: 916,
+                        lineNumber: 932,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                lineNumber: 903,
+                lineNumber: 919,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-        lineNumber: 893,
+        lineNumber: 909,
         columnNumber: 5
     }, this);
 }
@@ -4330,13 +4345,13 @@ function InsightChip({ label, value, color, icon }) {
                         children: label
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                        lineNumber: 943,
+                        lineNumber: 959,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                lineNumber: 941,
+                lineNumber: 957,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4344,13 +4359,13 @@ function InsightChip({ label, value, color, icon }) {
                 children: value
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                lineNumber: 945,
+                lineNumber: 961,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-        lineNumber: 934,
+        lineNumber: 950,
         columnNumber: 5
     }, this);
 }
@@ -4364,13 +4379,13 @@ function SectionTitle({ icon, label }) {
                 children: label
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                lineNumber: 956,
+                lineNumber: 972,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-        lineNumber: 954,
+        lineNumber: 970,
         columnNumber: 5
     }, this);
 }
@@ -4426,12 +4441,12 @@ function DayDetailModal({ detail, noteText, setNoteText, onClose, onSubmitNote }
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "absolute -top-16 -right-16 w-40 h-40 rounded-full blur-3xl pointer-events-none",
                     style: {
-                        background: isCrisis ? "rgba(255, 59, 48, 0.25)" : isMilestone ? "rgba(255, 215, 0, 0.25)" : "rgba(74, 222, 128, 0.22)"
+                        background: isCrisis ? "rgba(255, 59, 48, 0.25)" : isMilestone ? "rgba(255, 215, 0, 0.25)" : "rgba(255,201,77, 0.22)"
                     },
                     "aria-hidden": true
                 }, void 0, false, {
                     fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                    lineNumber: 1007,
+                    lineNumber: 1023,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -4443,12 +4458,12 @@ function DayDetailModal({ detail, noteText, setNoteText, onClose, onSubmitNote }
                         className: "text-white/70"
                     }, void 0, false, {
                         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                        lineNumber: 1025,
+                        lineNumber: 1041,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                    lineNumber: 1020,
+                    lineNumber: 1036,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4456,7 +4471,7 @@ function DayDetailModal({ detail, noteText, setNoteText, onClose, onSubmitNote }
                     children: fullDate
                 }, void 0, false, {
                     fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                    lineNumber: 1029,
+                    lineNumber: 1045,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4468,27 +4483,27 @@ function DayDetailModal({ detail, noteText, setNoteText, onClose, onSubmitNote }
                                 size: 14
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                lineNumber: 1034,
+                                lineNumber: 1050,
                                 columnNumber: 48
                             }, void 0),
                             label: t("calendarDayWithCrisis")
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                            lineNumber: 1034,
+                            lineNumber: 1050,
                             columnNumber: 13
                         }, this) : isNoBet ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(StatusBadge, {
-                            color: "#4ADE80",
+                            color: "#FFC94D",
                             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__["Check"], {
                                 size: 14
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                lineNumber: 1036,
+                                lineNumber: 1052,
                                 columnNumber: 48
                             }, void 0),
                             label: t("calendarDayNoBet")
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                            lineNumber: 1036,
+                            lineNumber: 1052,
                             columnNumber: 13
                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(StatusBadge, {
                             color: "#9CA3AF",
@@ -4496,13 +4511,13 @@ function DayDetailModal({ detail, noteText, setNoteText, onClose, onSubmitNote }
                                 size: 14
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                lineNumber: 1038,
+                                lineNumber: 1054,
                                 columnNumber: 48
                             }, void 0),
                             label: t("calendarNoData")
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                            lineNumber: 1038,
+                            lineNumber: 1054,
                             columnNumber: 13
                         }, this),
                         isMilestone && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(StatusBadge, {
@@ -4511,7 +4526,7 @@ function DayDetailModal({ detail, noteText, setNoteText, onClose, onSubmitNote }
                                 size: 14
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                lineNumber: 1041,
+                                lineNumber: 1057,
                                 columnNumber: 48
                             }, void 0),
                             label: t("calendarMilestoneBadge", {
@@ -4519,13 +4534,13 @@ function DayDetailModal({ detail, noteText, setNoteText, onClose, onSubmitNote }
                             })
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                            lineNumber: 1041,
+                            lineNumber: 1057,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                    lineNumber: 1032,
+                    lineNumber: 1048,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4537,7 +4552,7 @@ function DayDetailModal({ detail, noteText, setNoteText, onClose, onSubmitNote }
                                 className: "text-[#F59E0B]"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                lineNumber: 1048,
+                                lineNumber: 1064,
                                 columnNumber: 19
                             }, void 0),
                             label: t("calendarStreakThatDay"),
@@ -4546,7 +4561,7 @@ function DayDetailModal({ detail, noteText, setNoteText, onClose, onSubmitNote }
                             }) : "—"
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                            lineNumber: 1047,
+                            lineNumber: 1063,
                             columnNumber: 11
                         }, this),
                         info.journalEntry ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4560,10 +4575,10 @@ function DayDetailModal({ detail, noteText, setNoteText, onClose, onSubmitNote }
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$book$2d$open$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__BookOpen$3e$__["BookOpen"], {
                                                     size: 12,
-                                                    className: "text-[#C084FC]"
+                                                    className: "text-[#FFD166]"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                                    lineNumber: 1057,
+                                                    lineNumber: 1073,
                                                     columnNumber: 19
                                                 }, this),
                                                 " ",
@@ -4571,7 +4586,7 @@ function DayDetailModal({ detail, noteText, setNoteText, onClose, onSubmitNote }
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                            lineNumber: 1056,
+                                            lineNumber: 1072,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -4583,13 +4598,13 @@ function DayDetailModal({ detail, noteText, setNoteText, onClose, onSubmitNote }
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                            lineNumber: 1059,
+                                            lineNumber: 1075,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                    lineNumber: 1055,
+                                    lineNumber: 1071,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4601,13 +4616,13 @@ function DayDetailModal({ detail, noteText, setNoteText, onClose, onSubmitNote }
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                    lineNumber: 1063,
+                                    lineNumber: 1079,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                            lineNumber: 1054,
+                            lineNumber: 1070,
                             columnNumber: 13
                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(DetailRow, {
                             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$book$2d$open$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__BookOpen$3e$__["BookOpen"], {
@@ -4615,7 +4630,7 @@ function DayDetailModal({ detail, noteText, setNoteText, onClose, onSubmitNote }
                                 className: "text-white/40"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                lineNumber: 1069,
+                                lineNumber: 1085,
                                 columnNumber: 21
                             }, void 0),
                             label: t("calendarJournal"),
@@ -4623,16 +4638,16 @@ function DayDetailModal({ detail, noteText, setNoteText, onClose, onSubmitNote }
                             muted: true
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                            lineNumber: 1068,
+                            lineNumber: 1084,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(DetailRow, {
                             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$wind$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Wind$3e$__["Wind"], {
                                 size: 14,
-                                className: info.meditationDone ? "text-[#2DD4BF]" : "text-white/40"
+                                className: info.meditationDone ? "text-[#FFB020]" : "text-white/40"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                lineNumber: 1077,
+                                lineNumber: 1093,
                                 columnNumber: 19
                             }, void 0),
                             label: t("calendarMeditation"),
@@ -4640,7 +4655,7 @@ function DayDetailModal({ detail, noteText, setNoteText, onClose, onSubmitNote }
                             muted: !info.meditationDone
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                            lineNumber: 1076,
+                            lineNumber: 1092,
                             columnNumber: 11
                         }, this),
                         info.panicEvent && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(DetailRow, {
@@ -4649,14 +4664,14 @@ function DayDetailModal({ detail, noteText, setNoteText, onClose, onSubmitNote }
                                 className: "text-[#FF3B30]"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                lineNumber: 1085,
+                                lineNumber: 1101,
                                 columnNumber: 21
                             }, void 0),
                             label: t("calendarCrisisIntensity"),
                             value: `${info.panicEvent.intensity}/10`
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                            lineNumber: 1084,
+                            lineNumber: 1100,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(DetailRow, {
@@ -4665,20 +4680,20 @@ function DayDetailModal({ detail, noteText, setNoteText, onClose, onSubmitNote }
                                 className: "text-[#FFD700]"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                lineNumber: 1092,
+                                lineNumber: 1108,
                                 columnNumber: 19
                             }, void 0),
                             label: t("calendarXpEarned"),
                             value: `${xpEarned} XP`
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                            lineNumber: 1091,
+                            lineNumber: 1107,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                    lineNumber: 1046,
+                    lineNumber: 1062,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4689,7 +4704,7 @@ function DayDetailModal({ detail, noteText, setNoteText, onClose, onSubmitNote }
                             children: t("calendarAddNote")
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                            lineNumber: 1100,
+                            lineNumber: 1116,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$textarea$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Textarea"], {
@@ -4700,7 +4715,7 @@ function DayDetailModal({ detail, noteText, setNoteText, onClose, onSubmitNote }
                             className: "bg-white/5 border-white/10 text-white placeholder:text-white/30 rounded-xl text-sm min-h-[72px] resize-none focus-visible:border-[#F59E0B]/60 focus-visible:ring-[#F59E0B]/20"
                         }, void 0, false, {
                             fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                            lineNumber: 1101,
+                            lineNumber: 1117,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].button, {
@@ -4715,7 +4730,7 @@ function DayDetailModal({ detail, noteText, setNoteText, onClose, onSubmitNote }
                                     size: 14
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                                    lineNumber: 1114,
+                                    lineNumber: 1130,
                                     columnNumber: 13
                                 }, this),
                                 " ",
@@ -4723,24 +4738,24 @@ function DayDetailModal({ detail, noteText, setNoteText, onClose, onSubmitNote }
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                            lineNumber: 1108,
+                            lineNumber: 1124,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                    lineNumber: 1099,
+                    lineNumber: 1115,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-            lineNumber: 998,
+            lineNumber: 1014,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-        lineNumber: 991,
+        lineNumber: 1007,
         columnNumber: 5
     }, this);
 }
@@ -4758,7 +4773,7 @@ function StatusBadge({ color, icon, label }) {
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-        lineNumber: 1132,
+        lineNumber: 1148,
         columnNumber: 5
     }, this);
 }
@@ -4774,7 +4789,7 @@ function DetailRow({ icon, label, value, muted = false }) {
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                lineNumber: 1155,
+                lineNumber: 1171,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -4782,13 +4797,13 @@ function DetailRow({ icon, label, value, muted = false }) {
                 children: value
             }, void 0, false, {
                 fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-                lineNumber: 1159,
+                lineNumber: 1175,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/zerobet/screens/CalendarScreen.tsx",
-        lineNumber: 1154,
+        lineNumber: 1170,
         columnNumber: 5
     }, this);
 }

@@ -32,7 +32,7 @@ export default function PrivacyPage() {
 
       <LegalSection titleKey="privacySection2Title">
         <p className="flex items-start gap-2">
-          <Database size={14} className="text-[#2DD4BF] mt-1 flex-shrink-0" />
+          <Database size={14} className="text-[#FFB020] mt-1 flex-shrink-0" />
           <span>{t("privacySection2Body1")}</span>
         </p>
         <p>{t("privacySection2Body2")}</p>
@@ -40,7 +40,7 @@ export default function PrivacyPage() {
 
       <LegalSection titleKey="privacySection3Title">
         <p className="flex items-start gap-2">
-          <Share2 size={14} className="text-[#C084FC] mt-1 flex-shrink-0" />
+          <Share2 size={14} className="text-[#FFD166] mt-1 flex-shrink-0" />
           <span>{t("privacySection3Body1")}</span>
         </p>
         <p>{t("privacySection3Body2")}</p>
@@ -55,7 +55,7 @@ export default function PrivacyPage() {
 
       <LegalSection titleKey="privacySection5Title">
         <p className="flex items-start gap-2">
-          <UserCheck size={14} className="text-[#4ADE80] mt-1 flex-shrink-0" />
+          <UserCheck size={14} className="text-[#FFC94D] mt-1 flex-shrink-0" />
           <span>{t("privacySection5Body1")}</span>
         </p>
         <ul className="list-disc list-inside text-white/60 space-y-1 pl-2">
