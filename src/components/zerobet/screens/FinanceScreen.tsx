@@ -46,6 +46,9 @@ import {
   Legend,
 } from "recharts";
 import { toast } from "sonner";
+import { ProgressRing } from "@/components/zerobet/components/ProgressRing";
+import { sound } from "@/lib/sound";
+import { haptics } from "@/lib/haptics";
 import { useStore, type SavingsGoal } from "@/store/zerobet-store";
 import { useT, useLanguage } from "@/lib/i18n/useT";
 import { SAVINGS_GOALS } from "@/lib/data/app-data";
@@ -227,6 +230,28 @@ export function FinanceScreen() {
   // ----- Weekly bet input state -----
   const [editBet, setEditBet] = useState(false);
   const [betInput, setBetInput] = useState(weeklyBetAmount.toString());
+
+  // ----- Savings-goal ring state (QUITTR-style circular gauge) -----
+  const [editGoal, setEditGoal] = useState(false);
+  const [goalInput, setGoalInput] = useState(savingsGoal.toString());
+
+  const startEditGoal = () => {
+    setGoalInput(savingsGoal.toString());
+    setEditGoal(true);
+  };
+
+  const handleSaveGoal = () => {
+    const n = parseInt(goalInput, 10);
+    if (isNaN(n) || n < 1000) {
+      toast.error(t("financeGoalMinError"));
+      return;
+    }
+    setSavingsGoal(n);
+    setEditGoal(false);
+    sound.playSuccess();
+    haptics.light();
+    toast.success(t("financeGoalUpdated"));
+  };
 
   // ----- Budget input state -----
   const [editBudget, setEditBudget] = useState(false);
@@ -531,6 +556,104 @@ export function FinanceScreen() {
           {t("financeSavedPerDay", { n: formatFCFA(dailySaved, language) })}
         </p>
       </div>
+
+      {/* ============ QUITTR-STYLE SAVINGS GOAL RING ============ */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="glass-card-strong card-hover p-4 mb-4 relative overflow-hidden"
+      >
+        <div className="pointer-events-none absolute -top-12 -left-12 h-36 w-36 rounded-full bg-[#FF6B00]/12 blur-3xl" />
+        <div className="relative">
+          <div className="flex items-center justify-between mb-3">
+            <h3 className="text-white font-semibold text-sm flex items-center gap-2 font-[family-name:var(--font-poppins)]">
+              <PiggyBank size={16} className="text-[#FFB020]" />
+              {t("financeGoal")}
+            </h3>
+            <button
+              onClick={() => (editGoal ? setEditGoal(false) : startEditGoal())}
+              className="text-[#F59E0B] text-xs"
+            >
+              {editGoal ? t("cancel") : t("edit")}
+            </button>
+          </div>
+
+          <div className="flex items-center gap-4">
+            <ProgressRing
+              progress={goalProgress / 100}
+              size={128}
+              strokeWidth={8}
+              delay={0.15}
+              ariaLabel={t("financeGoalProgress", { pct: Math.round(goalProgress) })}
+            >
+              <span className="font-[family-name:var(--font-poppins)] text-2xl font-extrabold leading-none text-white tabular-nums">
+                {Math.round(goalProgress)}
+                <span className="text-sm text-white/60">%</span>
+              </span>
+              <span className="mt-1 text-[9px] font-medium uppercase tracking-wider text-white/45">
+                {t("financeSavedOverDays", { n: effectiveStreak })}
+              </span>
+            </ProgressRing>
+
+            <div className="min-w-0 flex-1">
+              {editGoal ? (
+                <div className="flex gap-2">
+                  <input
+                    type="number"
+                    value={goalInput}
+                    onChange={(e) => setGoalInput(e.target.value)}
+                    className="min-w-0 flex-1 p-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#FF6B00]"
+                    placeholder={t("financeAmountFCFA")}
+                    aria-label={t("financeGoal")}
+                  />
+                  <button
+                    onClick={handleSaveGoal}
+                    className="px-3 py-2.5 rounded-xl gradient-primary text-white text-sm font-semibold"
+                  >
+                    <Check size={16} />
+                  </button>
+                </div>
+              ) : (
+                <button
+                  onClick={startEditGoal}
+                  className="w-full text-left rounded-xl active:opacity-80 transition-opacity"
+                >
+                  <div className="text-white/50 text-xs mb-0.5">{t("financeTarget")}</div>
+                  <div className="font-[family-name:var(--font-poppins)] text-xl font-bold text-white tabular-nums leading-tight">
+                    {formatFCFA(savingsGoal, language)}{" "}
+                    <span className="text-white/50 text-xs font-normal">FCFA</span>
+                  </div>
+                </button>
+              )}
+
+              <div className="mt-2 text-sm font-semibold text-[#FFC94D] tabular-nums">
+                {formatFCFA(totalSaved, language)}{" "}
+                <span className="text-white/40 text-xs font-normal">
+                  / {formatFCFA(savingsGoal, language)}
+                </span>
+              </div>
+
+              {totalSaved >= savingsGoal ? (
+                <div
+                  className="mt-2 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-[#2B1500]"
+                  style={{
+                    background: "linear-gradient(135deg,#FFC94D,#FFB020)",
+                    boxShadow: "0 0 16px rgba(255,201,77,0.4)",
+                  }}
+                >
+                  <Trophy size={11} strokeWidth={2.6} />
+                  {t("financeGoalReached")}
+                </div>
+              ) : (
+                <div className="mt-2 inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] font-semibold text-white/70">
+                  <Calendar size={11} className="text-[#F59E0B]" />
+                  {t("financeGoalDaysLeft", { n: daysToGoal })}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </motion.div>
 
       {/* 30-day progress chart */}
       <motion.div

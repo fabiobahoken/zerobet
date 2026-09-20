@@ -1945,3 +1945,33 @@ select,
     animation: none;
   }
 }
+
+/* ================================================================
+   PROGRESS RING — QUITTR circular gauges (Braise d'Or edition)
+   ================================================================ */
+@keyframes pr-breathe {
+  0%,
+  100% {
+    opacity: 0.65;
+    transform: scale(0.97);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+}
+
+/* Milestone pill under dashboard ring */
+.pr-milestone-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 9999px;
+  background: rgba(255, 107, 0, 0.12);
+  border: 1px solid rgba(255, 201, 77, 0.28);
+  box-shadow:
+    0 0 18px rgba(255, 107, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(8px);
+}

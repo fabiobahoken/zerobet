@@ -19,6 +19,7 @@ import {
   Clock,
   Crown,
   Lock,
+  Zap,
 } from "lucide-react";
 import {
   Area,
@@ -47,6 +48,11 @@ import {
   StatsCardGridSkeleton,
 } from "@/components/zerobet/components/Skeletons";
 import { PullToRefresh } from "@/components/zerobet/components/PullToRefresh";
+import {
+  ProgressRing,
+  milestoneProgress,
+} from "@/components/zerobet/components/ProgressRing";
+import { computeLevel } from "@/store/zerobet-store";
 import { WeeklyReport } from "@/components/zerobet/components/WeeklyReport";
 import { EmptyState } from "@/components/zerobet/components/EmptyState";
 import { AnimatedNumber } from "@/components/zerobet/components/AnimatedNumber";
@@ -261,6 +267,9 @@ export function StatsScreen() {
     plan,
     streakHistory,
     xpHistory,
+    xp,
+    level,
+    savingsGoal,
   } = useStore();
 
   const isPremium = plan !== "free";
@@ -288,6 +297,14 @@ export function StatsScreen() {
   const dailySaved = Math.round(weeklyBetAmount / 7);
   const totalSaved = effectiveStreak * dailySaved;
   const journalCount = journalEntries.length;
+
+  // QUITTR-style counters row — live gauges (streak / savings / level).
+  const statGoalPct =
+    savingsGoal > 0 ? Math.min(100, (totalSaved / savingsGoal) * 100) : 0;
+  const statLevelInfo = computeLevel(xp);
+  const statMilestone = milestoneProgress(effectiveStreak, [
+    7, 14, 30, 60, 90, 180, 365,
+  ]);
   const panicCount = panicEvents.length;
 
   // ---------- Section 2: Mood trends (last 14 days) ----------
@@ -743,6 +760,94 @@ export function StatsScreen() {
       </motion.div>
 
       <PullToRefresh onRefresh={handleRefresh} isRefreshing={refreshing}>
+      {/* ============== QUITTR counters row: 3 live gauges ============== */}
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.05 }}
+        className="glass-card-strong p-4 mb-5"
+      >
+        <div className="grid grid-cols-3 gap-2">
+          {/* Streak gauge — progress to next milestone */}
+          <button
+            onClick={() => {
+              sound.playClick();
+              navigate("dashboard");
+            }}
+            className="flex flex-col items-center gap-2 rounded-2xl outline-none active:scale-95 transition-transform"
+            aria-label={t("statsMiniStreak")}
+          >
+            <ProgressRing
+              progress={statMilestone.fraction}
+              size={94}
+              strokeWidth={6}
+              aura={false}
+              shine={false}
+            >
+              <Flame size={13} className="mb-0.5 text-[#F59E0B]" />
+              <span className="font-[family-name:var(--font-poppins)] text-xl font-extrabold leading-none text-white tabular-nums">
+                {effectiveStreak}
+              </span>
+            </ProgressRing>
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-white/50">
+              {t("statsMiniStreak")}
+            </span>
+          </button>
+
+          {/* Savings gauge — progress to savings goal */}
+          <button
+            onClick={() => {
+              sound.playClick();
+              navigate("finance");
+            }}
+            className="flex flex-col items-center gap-2 rounded-2xl outline-none active:scale-95 transition-transform"
+            aria-label={t("statsMiniSaved")}
+          >
+            <ProgressRing
+              progress={statGoalPct / 100}
+              size={94}
+              strokeWidth={6}
+              aura={false}
+              shine={false}
+            >
+              <Wallet size={13} className="mb-0.5 text-[#FFC94D]" />
+              <span className="font-[family-name:var(--font-poppins)] text-[13px] font-extrabold leading-none text-white tabular-nums">
+                {formatFCFA(totalSaved)}
+              </span>
+            </ProgressRing>
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-white/50">
+              {t("statsMiniSaved")}
+            </span>
+          </button>
+
+          {/* Level gauge — XP progress within current level */}
+          <button
+            onClick={() => {
+              sound.playClick();
+              navigate("gamification");
+            }}
+            className="flex flex-col items-center gap-2 rounded-2xl outline-none active:scale-95 transition-transform"
+            aria-label={t("statsMiniLevel")}
+          >
+            <ProgressRing
+              progress={statLevelInfo.progress / 100}
+              size={94}
+              strokeWidth={6}
+              aura={false}
+              shine={false}
+            >
+              <Zap size={13} className="mb-0.5 text-[#FFD166]" />
+              <span className="font-[family-name:var(--font-poppins)] text-xl font-extrabold leading-none text-white tabular-nums">
+                {statLevelInfo.level}
+              </span>
+            </ProgressRing>
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-white/50">
+              {t("statsMiniLevel")}
+            </span>
+          </button>
+        </div>
+      </motion.div>
+
       {/* ============== Zerobet 2.0: Weekly report (renders instantly) ============== */}
       <WeeklyReport
         streakHistory={streakHistory}

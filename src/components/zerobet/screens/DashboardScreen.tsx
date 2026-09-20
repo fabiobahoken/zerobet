@@ -12,6 +12,10 @@ import {
 } from "lucide-react";
 import { useStore } from "@/store/zerobet-store";
 import { AuroraOrb } from "@/components/zerobet/components/AuroraOrb";
+import {
+  ProgressRing,
+  milestoneProgress,
+} from "@/components/zerobet/components/ProgressRing";
 import { ZerobetLogo } from "@/components/zerobet/components/ZerobetLogo";
 import { NotificationCenter } from "@/components/zerobet/components/NotificationCenter";
 import { DailyCheckIn } from "@/components/zerobet/components/DailyCheckIn";
@@ -227,6 +231,13 @@ export function DashboardScreen() {
 
   // Brain rewiring — the reference model: ~90 days to fully rewire
   const rewirePct = Math.min(100, Math.round((effectiveStreak / 90) * 100));
+
+  // QUITTR "DAYS CLEAN" ring — progress toward the next streak milestone.
+  const STREAK_MILESTONES = [7, 14, 30, 60, 90, 180, 365];
+  const milestone = milestoneProgress(effectiveStreak, STREAK_MILESTONES);
+  // Quarter checkpoints inside the current segment — they ignite as the
+  // streak advances toward the next milestone.
+  const ringTicks = [0.25, 0.5, 0.75];
 
   // Notification panel state
   const [notifOpen, setNotifOpen] = useState(false);
@@ -447,28 +458,66 @@ export function DashboardScreen() {
             <WeekStrip streak={effectiveStreak} checkedToday={checkedToday} />
           </div>
 
-          {/* Aurora orb — tap for a gentle pulse */}
-          <motion.button
+          {/* Aurora orb wrapped in the QUITTR "days clean" milestone ring */}
+          <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ type: "spring", stiffness: 160, damping: 18, delay: 0.1 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => {
-              sound.playSuccess();
-              haptics.light();
-            }}
-            className="relative mt-4 outline-none"
-            aria-label={t("homeStreakStable")}
+            className="relative mt-4"
           >
-            <AuroraOrb size={172} />
-          </motion.button>
+            <ProgressRing
+              progress={milestone.fraction}
+              size={236}
+              strokeWidth={7}
+              ticks={ringTicks}
+              delay={0.35}
+              ariaLabel={`${t("homeMilestoneNext")} ${milestone.next} ${t("dashboardDays")}`}
+            >
+              <motion.button
+                whileTap={{ scale: 0.95 }}
+                onClick={() => {
+                  sound.playSuccess();
+                  haptics.light();
+                }}
+                className="relative outline-none"
+                aria-label={t("homeStreakStable")}
+              >
+                <AuroraOrb size={172} />
+              </motion.button>
+            </ProgressRing>
+
+            {/* Milestone pill — floats right under the ring */}
+            <motion.div
+              initial={{ opacity: 0, y: -6 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.9 }}
+              className="pointer-events-none absolute -bottom-2 left-1/2 z-10 -translate-x-1/2"
+            >
+              <span className="pr-milestone-pill whitespace-nowrap">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#FFC94D] shadow-[0_0_6px_#FFC94D]" />
+                {effectiveStreak >= 365 ? (
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#FFD166]">
+                    {t("homeMilestoneMax")}
+                  </span>
+                ) : (
+                  <span className="text-[10px] font-semibold text-white/80">
+                    {t("homeMilestoneNext")}{" "}
+                    <span className="font-extrabold text-[#FFC94D]">
+                      {milestone.next}j{" \u00b7 "}
+                      {t("homeMilestoneIn", { n: milestone.daysLeft })}
+                    </span>
+                  </span>
+                )}
+              </span>
+            </motion.div>
+          </motion.div>
 
           {/* Sober since label */}
           <motion.p
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.25 }}
-            className="mt-4 text-[13px] font-medium text-white/55"
+            className="mt-8 text-[13px] font-medium text-white/55"
           >
             {t("homeSoberSince")}
           </motion.p>
