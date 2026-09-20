@@ -1,15 +1,16 @@
 "use client";
 
-import { useEffect, useState, useRef, useMemo } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Zap, BookOpen, Wallet, Bot, Shield, Users, Flame, TrendingUp,
   Crown, ChevronRight, Quote, Award, Settings as SettingsIcon, Bell,
   Target, Sparkles, Phone, BarChart3, Wind, Search, Trophy, User, Gamepad2,
   Calendar, HelpCircle, Activity, ScanSearch, HeartPulse,
-  MessageCircle, Lock, CheckCircle2, ArrowRight, Share2,
+  MessageCircle, Lock, Hand, RotateCcw, MoreHorizontal, Share2,
 } from "lucide-react";
 import { useStore } from "@/store/zerobet-store";
+import { AuroraOrb } from "@/components/zerobet/components/AuroraOrb";
 import { ZerobetLogo } from "@/components/zerobet/components/ZerobetLogo";
 import { NotificationCenter } from "@/components/zerobet/components/NotificationCenter";
 import { DailyCheckIn } from "@/components/zerobet/components/DailyCheckIn";
@@ -23,13 +24,11 @@ import { DailyInsights } from "@/components/zerobet/components/DailyInsights";
 import { MoodTracker } from "@/components/zerobet/components/MoodTracker";
 import { DailyChallengeCard } from "@/components/zerobet/components/DailyChallengeCard";
 import { AnimatedNumber } from "@/components/zerobet/components/AnimatedNumber";
-import { StreakFlame } from "@/components/zerobet/components/StreakFlame";
 import { HeatmapCalendar } from "@/components/zerobet/components/HeatmapCalendar";
 import { sound } from "@/lib/sound";
 import { haptics } from "@/lib/haptics";
 import { getDailyQuote } from "@/lib/data/community-data";
 import { getCurrentRank, getNextRank, PARCOURS_RANKS } from "@/lib/data/parcours-data";
-import { PLAN_OPTIONS } from "@/lib/data/app-data";
 import { getCurrency } from "@/lib/data/currency-data";
 import {
   containerVariants,
@@ -53,14 +52,7 @@ const INTL_LOCALES: Record<string, string> = {
   es: "es-ES",
 };
 
-function getMotivationalMessage(t: (k: string) => string, streak: number): string {
-  if (streak === 0) return t("motiv0");
-  if (streak <= 3) return t("motiv3");
-  if (streak <= 7) return t("motiv7");
-  if (streak <= 30) return t("motiv30");
-  if (streak <= 90) return t("motiv90");
-  return t("motiv90plus");
-}
+const DAY_MS = 86_400_000;
 
 const DAILY_CHALLENGES = [
   { textKey: "challenge1", screen: "journal" as const },
@@ -83,6 +75,115 @@ function getDailyChallenge() {
     (today.getTime() - new Date(today.getFullYear(), 0, 0).getTime()) / 86400000
   );
   return DAILY_CHALLENGES[dayOfYear % DAILY_CHALLENGES.length];
+}
+
+/* ------------------------------------------------------------------ */
+/* Week strip — QUITTR-style M T W T F S S check-in dots               */
+/* ------------------------------------------------------------------ */
+type DayState = "done" | "missed" | "today" | "upcoming";
+
+function WeekStrip({ streak, checkedToday }: { streak: number; checkedToday: boolean }) {
+  const lang = useLanguage();
+
+  const { labels, states } = useMemo(() => {
+    const locale = INTL_LOCALES[lang] ?? "fr-FR";
+    const narrow = new Intl.DateTimeFormat(locale, { weekday: "narrow" });
+    const now = new Date();
+    const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const dow = (now.getDay() + 6) % 7; // 0 = Monday
+    const monday = new Date(startOfToday.getTime() - dow * DAY_MS);
+    const streakStart =
+      streak > 0 ? new Date(startOfToday.getTime() - (streak - 1) * DAY_MS) : null;
+
+    const labels: string[] = [];
+    const states: DayState[] = [];
+    for (let i = 0; i < 7; i++) {
+      const day = new Date(monday.getTime() + i * DAY_MS);
+      labels.push(narrow.format(day).toUpperCase());
+      if (day.getTime() > startOfToday.getTime()) {
+        states.push("upcoming");
+      } else if (day.getTime() === startOfToday.getTime()) {
+        states.push(streak > 0 && checkedToday ? "done" : "today");
+      } else if (streakStart && day.getTime() >= streakStart.getTime()) {
+        states.push("done");
+      } else {
+        states.push("missed");
+      }
+    }
+    return { labels, states };
+  }, [lang, streak, checkedToday]);
+
+  return (
+    <div className="flex items-start justify-between px-1">
+      {labels.map((label, i) => {
+        const state = states[i];
+        return (
+          <div key={i} className="flex flex-col items-center gap-1.5">
+            <div
+              className={`flex h-8 w-8 items-center justify-center rounded-full text-[11px] font-bold transition-colors ${
+                state === "done"
+                  ? "gradient-primary text-white glow-blue"
+                  : state === "today"
+                    ? "animate-glow-pulse border border-dashed border-white/40 text-white/80"
+                    : state === "missed"
+                      ? "text-white/25"
+                      : "text-white/35"
+              }`}
+              style={
+                state === "missed"
+                  ? { background: "rgba(255,255,255,0.04)" }
+                  : undefined
+              }
+              aria-label={`${label} — ${state}`}
+            >
+              {state === "done" ? (
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden>
+                  <path d="M2.5 6.5L5 9L9.5 3.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              ) : state === "missed" ? (
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden>
+                  <path d="M2 2L8 8M8 2L2 8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                </svg>
+              ) : (
+                <span className="h-1 w-3 rounded-full bg-current" />
+              )}
+            </div>
+            <span
+              className={`text-[9px] font-semibold tracking-wide ${
+                state === "today" ? "text-white" : "text-white/30"
+              }`}
+            >
+              {label}
+            </span>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Live sober clock — ticks every second, QUITTR-style                 */
+/* ------------------------------------------------------------------ */
+function useLiveSoberClock(streak: number) {
+  const [now, setNow] = useState(() => new Date());
+
+  useEffect(() => {
+    const id = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const elapsedSubDay = Math.max(0, now.getTime() - startOfToday.getTime());
+  const h = Math.floor(elapsedSubDay / 3_600_000);
+  const m = Math.floor((elapsedSubDay % 3_600_000) / 60_000);
+  const s = Math.floor((elapsedSubDay % 60_000) / 1000);
+
+  const soberOn = streak > 0
+    ? new Date(startOfToday.getTime() - (streak - 1) * DAY_MS)
+    : null;
+
+  return { h, m, s, soberOn };
 }
 
 export function DashboardScreen() {
@@ -120,6 +221,11 @@ export function DashboardScreen() {
     () => notifications.filter((n) => !n.read).length,
     [notifications]
   );
+  const { h, m, s, soberOn } = useLiveSoberClock(effectiveStreak);
+  const checkedToday = lastCheckInDate === todayStr;
+
+  // Brain rewiring — the reference model: ~90 days to fully rewire
+  const rewirePct = Math.min(100, Math.round((effectiveStreak / 90) * 100));
 
   // Notification panel state
   const [notifOpen, setNotifOpen] = useState(false);
@@ -156,12 +262,6 @@ export function DashboardScreen() {
   }, [effectiveStreak, unlockedRanks, unlockRank]);
 
   const totalSaved = effectiveStreak * Math.round(weeklyBetAmount / 7);
-  const nextRankProgress = nextRank
-    ? Math.min(100, ((effectiveStreak - currentRank.requiredDays) / (nextRank.requiredDays - currentRank.requiredDays)) * 100)
-    : 100;
-
-  const motivationalMessage = getMotivationalMessage(t, effectiveStreak);
-  const displayName = name || "champion";
 
   // Zerobet 2.0.8 — data for the shareable journey card
   const journeyData = useMemo<JourneyCardData>(() => {
@@ -190,12 +290,25 @@ export function DashboardScreen() {
     };
   }, [effectiveStreak, totalSaved, currencyInfo, currentRank, level, xp, journalEntries.length, t, lang]);
 
+  const soberOnLabel = useMemo(() => {
+    if (!soberOn) return null;
+    return new Intl.DateTimeFormat(INTL_LOCALES[lang] ?? "fr-FR", {
+      day: "numeric",
+      month: "long",
+    }).format(soberOn);
+  }, [soberOn, lang]);
+
   const handleRefresh = async () => {
     setRefreshing(true);
-    // Simulate a brief data refresh (no remote source). The component
-    // itself controls the spinner duration via the isRefreshing prop.
     await new Promise((resolve) => setTimeout(resolve, 800));
     setRefreshing(false);
+  };
+
+  const openRelapseModal = () => {
+    sound.playClick();
+    haptics.medium();
+    setRelapsePrevStreak(effectiveStreak);
+    setRelapseOpen(true);
   };
 
   const quickActions = [
@@ -226,7 +339,7 @@ export function DashboardScreen() {
   ];
 
   return (
-    <div className="min-h-screen px-5 pt-12 pb-4">
+    <div className="min-h-screen pb-4">
       {/* Daily Check-In Modal */}
       <DailyCheckIn onDismiss={() => setCheckInDismissed(true)} />
 
@@ -238,38 +351,53 @@ export function DashboardScreen() {
       <MilestoneCelebration />
       <JourneyShareModal open={journeyOpen} onClose={() => setJourneyOpen(false)} data={journeyData} />
 
-      {/* Header */}
-      <div className="flex items-center justify-between mb-6">
-        <button onClick={handleLogoTap} className="flex items-center gap-3 active:scale-95">
-          <ZerobetLogo size={40} animated={false} />
-          <div className="text-left">
-            <div className="flex items-center gap-2">
-              <h1 className="text-xl font-extrabold text-white font-[family-name:var(--font-poppins)] tracking-tight">
-                Zerobet
-              </h1>
-              <span
-                className="px-2 py-0.5 rounded-full text-[10px] font-bold text-white flex items-center gap-1"
-                style={{ background: planBadge.color }}
-              >
-                {planBadge.icon} {t(planBadge.labelKey)}
-              </span>
-            </div>
-            <p className="text-white/50 text-xs">
-              {t("dashboardHello")}{name ? `, ${name}` : ""} 👋
-            </p>
-          </div>
+      {/* ================================================================ */}
+      {/* QUITTR-STYLE HEADER — logo wordmark + streak pill + actions      */}
+      {/* ================================================================ */}
+      <header className="flex items-center justify-between px-5 pt-5 pb-3">
+        <button
+          onClick={handleLogoTap}
+          className="flex items-center gap-2.5 active:scale-95 transition-transform"
+          aria-label="Zerobet"
+        >
+          <ZerobetLogo size={36} animated={false} />
+          <span className="text-left font-[family-name:var(--font-poppins)] text-lg font-extrabold leading-none tracking-tight text-white">
+            ZERO<span className="gradient-primary-text">BET</span>
+          </span>
+          <span
+            className="ml-0.5 rounded-full px-1.5 py-0.5 text-[9px] font-bold text-white"
+            style={{ background: planBadge.color }}
+          >
+            {planBadge.icon}
+          </span>
         </button>
+
         <div className="flex items-center gap-2">
+          {/* Gold streak pill — QUITTR "7 days" badge */}
+          <div
+            className="flex h-8 items-center gap-1.5 rounded-full px-3"
+            style={{
+              background: "linear-gradient(135deg,#F59E0B,#FBBF24)",
+              boxShadow: "0 4px 16px rgba(245,158,11,0.35)",
+            }}
+          >
+            <Flame size={13} className="text-[#7C2D12]" fill="#7C2D12" />
+            <span className="text-[12px] font-extrabold tabular-nums text-[#451A03]">
+              {effectiveStreak}
+              {t("homeBadgeDays")}
+            </span>
+          </div>
+
           <button
             onClick={() => {
               sound.playClick();
               haptics.light();
               setSearchOpen(true);
             }}
-            className="w-10 h-10 rounded-full glass-card btn-press flex items-center justify-center active:scale-95 transition-transform"
+            className="glass-card btn-press flex h-9 w-9 items-center justify-center rounded-full transition-transform active:scale-95"
             aria-label={t("dashboardSearch")}
           >
-            <Search size={18} className="text-white/70" />
+            <Search size={16} className="text-white/70" />
           </button>
           <button
             onClick={() => {
@@ -277,403 +405,466 @@ export function DashboardScreen() {
               haptics.light();
               setNotifOpen(true);
             }}
-            className="relative w-10 h-10 rounded-full glass-card btn-press flex items-center justify-center active:scale-95 transition-transform"
+            className="glass-card btn-press relative flex h-9 w-9 items-center justify-center rounded-full transition-transform active:scale-95"
             aria-label={t("dashboardNotifications")}
           >
-            <Bell size={18} className="text-white/70" />
+            <Bell size={16} className="text-white/70" />
             {unreadCount > 0 && (
               <motion.span
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
-                className="absolute -top-1 -right-1 min-w-[18px] h-[18px] rounded-full gradient-primary flex items-center justify-center px-1"
+                className="absolute -right-1 -top-1 flex h-[17px] min-w-[17px] items-center justify-center rounded-full gradient-primary px-1"
               >
-                <span className="text-[10px] font-bold text-white">
+                <span className="text-[9px] font-bold text-white">
                   {unreadCount > 9 ? "9+" : unreadCount}
                 </span>
               </motion.span>
             )}
           </button>
         </div>
-      </div>
+      </header>
 
-      <PullToRefresh onRefresh={handleRefresh} isRefreshing={refreshing}>
-      {/* Motivational Hero Section — "Aube Émeraude" aurora */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="relative overflow-hidden rounded-3xl mb-4 p-5"
-        style={{
-          background: "linear-gradient(135deg, rgba(16,185,129,0.22) 0%, rgba(245,158,11,0.16) 50%, rgba(45,212,191,0.14) 100%)",
-        }}
-      >
-        {/* Animated gradient background */}
-        <div className="absolute inset-0 opacity-60">
-          <motion.div
-            animate={{
-              background: [
-                "linear-gradient(135deg, rgba(16,185,129,0.28) 0%, rgba(245,158,11,0.12) 50%, rgba(45,212,191,0.10) 100%)",
-                "linear-gradient(135deg, rgba(45,212,191,0.22) 0%, rgba(16,185,129,0.16) 50%, rgba(245,158,11,0.12) 100%)",
-                "linear-gradient(135deg, rgba(16,185,129,0.28) 0%, rgba(245,158,11,0.12) 50%, rgba(45,212,191,0.10) 100%)",
-              ],
-            }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute inset-0"
-          />
-        </div>
-
-        {/* Decorative blurs */}
-        <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full bg-[#10B981]/25 blur-3xl" />
-        <div className="absolute -bottom-8 -left-8 w-32 h-32 rounded-full bg-[#F59E0B]/15 blur-3xl" />
-
-        <div className="relative flex items-center justify-between">
-          <div className="flex-1 pr-3">
-            <div className="flex items-center gap-1.5 mb-2">
-              <Sparkles size={14} className="text-[#FBBF24]" />
-              <span className="text-white/60 text-[11px] font-medium uppercase tracking-wider">
-                {t("dashboardMotivation")}
-              </span>
-            </div>
-            <h2 className="text-white font-bold text-base leading-snug mb-1.5 font-[family-name:var(--font-poppins)]">
-              {gender === "female" ? t("dashboardDearFemale") : t("dashboardDearMale")}
-            </h2>
-            <p className="text-white/80 text-sm leading-relaxed">
-              {motivationalMessage}
-            </p>
-          </div>
-          <div className="flex-shrink-0 flex flex-col items-center">
-            <motion.div
-              animate={{ scale: [1, 1.05, 1], rotate: [0, 2, -2, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="text-5xl"
-            >
-              {effectiveStreak === 0
-                ? "🌅"
-                : effectiveStreak <= 7
-                  ? "💪"
-                  : effectiveStreak <= 30
-                    ? "🔥"
-                    : effectiveStreak <= 90
-                      ? "🧠"
-                      : "🌟"}
-            </motion.div>
-            <span className="text-white/40 text-[10px] mt-1.5 font-medium">
-              {t("dashboardDay")}{effectiveStreak}
-            </span>
-          </div>
-        </div>
-      </motion.div>
-
-      {/* Streak hero card */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="glass-card-strong glass-shimmer premium-shimmer mesh-bg-aurora p-6 mb-4 relative overflow-hidden"
-        data-tutorial="streak"
-      >
-        {/* Decorative glow */}
-        <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-[#10B981]/20 blur-3xl" />
-        <div className="absolute -bottom-10 -left-10 w-40 h-40 rounded-full bg-[#F59E0B]/15 blur-3xl" />
-
-        {/* Zerobet 2.0.8 — share journey card button */}
-        <button
-          onClick={() => {
-            sound.playClick();
-            haptics.light();
-            setJourneyOpen(true);
-          }}
-          className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-white/8 border border-white/10 flex items-center justify-center text-[#2DD4BF] hover:bg-white/15 hover:scale-105 transition-all active:scale-90"
-          aria-label={t("journeyCardBtn")}
-          title={t("journeyCardBtn")}
+      <PullToRefresh onRefresh={handleRefresh} isRefreshing={refreshing} hideDesktopButton>
+        {/* -------------------------------------------------------------- */}
+        {/* HERO — week strip, aurora orb, live sober clock                 */}
+        {/* -------------------------------------------------------------- */}
+        <section
+          className="relative flex flex-col items-center px-5 pb-2"
+          data-tutorial="streak"
         >
-          <Share2 size={15} />
-        </button>
+          {/* Ambient purple-violet glow behind the hero (QUITTR vibe) */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 -top-10 h-[420px]"
+            style={{
+              background:
+                "radial-gradient(60% 55% at 50% 32%, rgba(139,92,246,0.22) 0%, rgba(236,72,153,0.10) 45%, transparent 70%)",
+            }}
+          />
 
-        <div className="relative flex items-center justify-between">
-          <div>
-            <p className="text-white/50 text-xs mb-1">{t("dashboardYouAt")}</p>
-            <div className="flex items-baseline gap-2">
-              <motion.span
-                key={effectiveStreak}
-                initial={{ scale: 1.4, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                className="text-6xl font-extrabold gradient-primary-text font-[family-name:var(--font-poppins)]"
-              >
-                <AnimatedNumber value={effectiveStreak} duration={1200} />
-              </motion.span>
-              <span className="text-white/60 text-lg font-medium">
-                {effectiveStreak > 1 ? t("dashboardDays") : t("dashboardDay")}
-              </span>
-            </div>
-            <p className="text-white/50 text-xs mt-1">{t("dashboardWithoutBetting")}</p>
+          <div className="relative w-full">
+            <WeekStrip streak={effectiveStreak} checkedToday={checkedToday} />
           </div>
-          <StreakFlame days={effectiveStreak} size="lg" showNumber={false} />
-        </div>
 
-        {/* Next rank progress */}
-        {nextRank && (
-          <div className="relative mt-4">
-            <div className="flex justify-between text-xs text-white/60 mb-1.5">
-              <span>{t(currentRank.nameKey)}</span>
-              <span>{t("dayLabel")} {nextRank.requiredDays}</span>
+          {/* Aurora orb — tap for a gentle pulse */}
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ type: "spring", stiffness: 160, damping: 18, delay: 0.1 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => {
+              sound.playSuccess();
+              haptics.light();
+            }}
+            className="relative mt-4 outline-none"
+            aria-label={t("homeStreakStable")}
+          >
+            <AuroraOrb size={172} />
+          </motion.button>
+
+          {/* Sober since label */}
+          <motion.p
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.25 }}
+            className="mt-4 text-[13px] font-medium text-white/55"
+          >
+            {t("homeSoberSince")}
+          </motion.p>
+
+          {/* Big counter + live seconds pill */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="mt-1 flex items-baseline justify-center gap-2"
+          >
+            <span className="font-[family-name:var(--font-poppins)] text-[56px] font-extrabold leading-none tracking-tight text-white">
+              <AnimatedNumber value={effectiveStreak} duration={1200} />
+            </span>
+            <span className="text-xl font-semibold text-white/70">
+              {effectiveStreak > 1 ? t("dashboardDays") : t("dashboardDay")}
+            </span>
+            <motion.span
+              key={s}
+              initial={{ scale: 1.12 }}
+              animate={{ scale: 1 }}
+              className="ml-0.5 flex h-6 min-w-[34px] items-center justify-center rounded-lg border border-white/10 bg-white/10 px-1.5 text-[11px] font-bold tabular-nums text-white/90"
+            >
+              {s}s
+            </motion.span>
+          </motion.div>
+
+          {/* Live h/m/s line */}
+          <p className="mt-2 text-base font-medium tabular-nums text-white/60">
+            {h}h {String(m).padStart(2, "0")}m {String(s).padStart(2, "0")}s
+          </p>
+
+          {/* ---------------------------------------------------------- */}
+          {/* 4 circular quick actions — Pledge / Meditate / Reset / More */}
+          {/* ---------------------------------------------------------- */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="mt-4 flex items-start justify-center gap-7"
+          >
+            {[
+              {
+                icon: Hand,
+                labelKey: "homePledge",
+                onClick: () => navigate("goals"),
+              },
+              {
+                icon: Wind,
+                labelKey: "homeMeditate",
+                onClick: () => navigate("meditation"),
+              },
+              {
+                icon: RotateCcw,
+                labelKey: "homeReset",
+                onClick: openRelapseModal,
+              },
+              {
+                icon: MoreHorizontal,
+                labelKey: "homeMore",
+                onClick: () => navigate("journal"),
+              },
+            ].map((action) => {
+              const Icon = action.icon;
+              return (
+                <button
+                  key={action.labelKey}
+                  onClick={() => {
+                    sound.playClick();
+                    haptics.light();
+                    action.onClick();
+                  }}
+                  className="group flex flex-col items-center gap-1.5 outline-none"
+                >
+                  <span className="glass-card-strong btn-press flex h-[52px] w-[52px] items-center justify-center rounded-full transition-all group-active:scale-90 group-hover:glow-blue">
+                    <Icon size={21} className="text-white/85" strokeWidth={2.1} />
+                  </span>
+                  <span className="text-[10px] font-semibold text-white/55">
+                    {t(action.labelKey)}
+                  </span>
+                </button>
+              );
+            })}
+          </motion.div>
+
+          {/* Brain rewiring progress + sober-on date */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="mt-4 w-full"
+          >
+            <div className="flex items-center justify-between gap-3">
+              <div className="flex items-baseline gap-1.5">
+                <span className="font-[family-name:var(--font-poppins)] text-sm font-bold gradient-primary-text">
+                  {rewirePct}%
+                </span>
+                <span className="text-[10px] font-medium uppercase tracking-wider text-white/45">
+                  {t("homeRewire")}
+                </span>
+              </div>
+              {soberOnLabel && (
+                <span className="text-[10px] font-medium text-white/40">
+                  {t("homeSoberOn", { date: soberOnLabel })}
+                </span>
+              )}
             </div>
-            <div className="h-2 bg-white/10 rounded-full overflow-hidden">
+            <div className="mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-white/8">
               <motion.div
-                className="h-full"
-                style={{ background: currentRank.gradient }}
+                className="h-full rounded-full gradient-primary"
                 initial={{ width: 0 }}
-                animate={{ width: `${nextRankProgress}%` }}
-                transition={{ duration: 1, ease: "easeOut" }}
+                animate={{ width: `${Math.max(2, rewirePct)}%` }}
+                transition={{ duration: 1.2, ease: "easeOut", delay: 0.6 }}
               />
             </div>
-            <p className="text-white/40 text-xs mt-1.5 text-center">
-              {t("dashboardDaysToRank", { days: nextRank.requiredDays - effectiveStreak, rank: t(nextRank.nameKey) })}
-            </p>
-          </div>
-        )}
-      </motion.div>
+          </motion.div>
+        </section>
 
-      {/* Stats row */}
-      <div className="grid grid-cols-2 gap-3 mb-4">
-        <motion.button
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          onClick={() => navigate("finance")}
-          className="glass-card card-hover btn-press p-4 text-left"
-        >
-          <div className="flex items-center justify-between mb-2">
-            <div className="w-9 h-9 rounded-xl bg-[#4ADE80]/20 flex items-center justify-center">
-              <Wallet size={18} className="text-[#4ADE80]" />
-            </div>
-            <TrendingUp size={14} className="text-[#4ADE80]" />
-          </div>
-          <p className="text-white/50 text-xs">{t("dashboardSaved")}</p>
-          <p className="text-xl font-bold text-white font-[family-name:var(--font-poppins)]">
-            <AnimatedNumber
-              value={totalSaved * currencyInfo.rateFromFCFA}
-              duration={1400}
-              decimals={currencyInfo.decimals}
-              prefix={currencyInfo.position === "before" ? currencyInfo.symbol : ""}
-              suffix={currencyInfo.position === "after" ? ` ${currencyInfo.symbol}` : ""}
-            />
-          </p>
-        </motion.button>
-
-        <motion.button
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          onClick={() => navigate("parcours")}
-          className="glass-card card-hover btn-press p-4 text-left"
-        >
-          <div className="flex items-center justify-between mb-2">
-            <div
-              className="w-9 h-9 rounded-xl flex items-center justify-center"
-              style={{ background: `${currentRank.color}30` }}
-            >
-              <Award size={18} style={{ color: currentRank.color }} />
-            </div>
-            <Flame size={14} style={{ color: currentRank.color }} />
-          </div>
-          <p className="text-white/50 text-xs">{t("parcoursCurrentRank")}</p>
-          <p className="text-xl font-bold text-white font-[family-name:var(--font-poppins)]">
-            {t(currentRank.nameKey)}
-          </p>
-        </motion.button>
-      </div>
-
-      {/* Quote of the day */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="glass-card card-hover p-4 mb-4 relative overflow-hidden"
-      >
-        <div className="absolute -top-4 -left-2 text-6xl text-[#F59E0B]/20 font-serif">"</div>
-        <div className="relative flex items-start gap-3">
-          <Quote size={16} className="text-[#F59E0B] mt-1 flex-shrink-0" />
-          <div>
-            <p className="text-white text-sm leading-relaxed italic">{t(quote.textKey)}</p>
-            <p className="text-white/40 text-xs mt-1.5">— {t(quote.authorKey)}</p>
-          </div>
-        </div>
-      </motion.div>
-
-      {/* AI-powered daily insight */}
-      <DailyInsights />
-
-      {/* Quick mood tracker */}
-      <MoodTracker />
-
-      {/* Daily Challenge Card — completable, +15 XP, streak tracking */}
-      <DailyChallengeCard
-        challenge={dailyChallenge}
-        completedToday={challengeCompletedDate === new Date().toDateString()}
-        justDone={challengeJustDone}
-        streak={challengeStreak}
-        t={t}
-        onComplete={() => {
-          completeDailyChallenge();
-          setChallengeJustDone(true);
-          haptics.success();
-        }}
-        onNavigate={(screen) => {
-          const isLocked =
-            screen !== "panic" &&
-            screen !== "finance" &&
-            screen !== "community" &&
-            plan === "free";
-          navigate(isLocked ? "paywall" : screen);
-        }}
-      />
-
-      {/* Quick actions */}
-      <div className="mb-4" data-tutorial="quickActions">
-        <div className="flex items-center justify-between mb-3">
-          <h2 className="text-white font-semibold text-sm">{t("dashboardQuickActions")}</h2>
-        </div>
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="grid grid-cols-3 gap-3"
-        >
-          {quickActions.map((action, idx) => {
-            const Icon = action.icon;
-            const isLocked = action.premium && plan === "free";
-            const tutorialKey =
-              action.screen === "atlas"
-                ? "atlas"
-                : action.screen === "community"
-                  ? "community"
-                  : undefined;
-            return (
-              <motion.button
-                key={action.screen}
-                variants={itemVariants}
-                custom={idx}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => {
-                  sound.playClick();
-                  haptics.light();
-                  if (isLocked) navigate("paywall");
-                  else navigate(action.screen);
-                }}
-                style={{ "--tw-glow-color": action.color } as React.CSSProperties}
-                className="glass-card card-hover btn-press p-3 flex flex-col items-center text-center relative hover:shadow-[0_0_20px_-5px_var(--tw-glow-color)] transition-shadow"
-                data-tutorial={tutorialKey}
-              >
-                {isLocked && (
-                  <div className="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-[#FBBF24] flex items-center justify-center">
-                    <Crown size={9} className="text-[#070B0E]" />
-                  </div>
-                )}
-                {!isLocked && action.premium && (
-                  <Crown
-                    size={12}
-                    className="absolute top-1.5 right-1.5 text-[#FBBF24]"
-                    style={{
-                      filter: "drop-shadow(0 0 4px rgba(251,191,36,0.7))",
-                    }}
-                    fill="rgba(251,191,36,0.3)"
-                  />
-                )}
-                <div
-                  className="w-10 h-10 rounded-xl flex items-center justify-center mb-1.5"
-                  style={{
-                    background: `linear-gradient(135deg, ${action.color}33, ${action.color}11)`,
-                  }}
-                >
-                  <Icon size={18} style={{ color: action.color }} />
-                </div>
-                <span className="text-white text-xs font-medium font-[family-name:var(--font-poppins)]">
-                  {t(action.labelKey)}
-                </span>
-              </motion.button>
-            );
-          })}
-        </motion.div>
-      </div>
-
-      {/* Panic button - prominent */}
-      <motion.button
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        whileTap={{ scale: 0.97 }}
-        onClick={() => {
-          sound.playClick();
-          haptics.medium();
-          navigate("panic");
-        }}
-        data-tutorial="panic"
-        className="w-full glass-card-strong btn-press p-5 mb-4 flex items-center gap-4 border-2 border-[#FF3B30]/30 pulse-glow"
-      >
-        <div className="relative">
-          <div className="w-14 h-14 rounded-full gradient-primary flex items-center justify-center">
-            <Zap size={26} className="text-white" fill="white" />
-          </div>
-          <div className="absolute inset-0 rounded-full gradient-primary animate-ping opacity-30" />
-        </div>
-        <div className="flex-1 text-left">
-          <h3 className="text-white font-bold text-base">{t("dashboardPanicButton")}</h3>
-          <p className="text-white/60 text-xs">{t("dashboardPanicDesc")}</p>
-        </div>
-        <ChevronRight size={20} className="text-white/40" />
-      </motion.button>
-
-      {/* Recent badges preview */}
-      <div className="mb-4">
-        <div className="flex items-center justify-between mb-3">
-          <h2 className="text-white font-semibold text-sm">{t("dashboardBadges")}</h2>
-          <button
-            onClick={() => navigate("parcours")}
-            className="text-white/50 text-xs flex items-center gap-1"
+        {/* -------------------------------------------------------------- */}
+        {/* PANIC BUTTON — QUITTR-style red pill                            */}
+        {/* -------------------------------------------------------------- */}
+        <div className="px-5" data-tutorial="panic">
+          <motion.button
+            initial={{ opacity: 0, y: 12 }}
+            animate={{
+              opacity: 1,
+              y: 0,
+              boxShadow: [
+                "0 10px 34px rgba(225,29,72,0.42), inset 0 1px 0 rgba(255,255,255,0.18)",
+                "0 10px 44px rgba(225,29,72,0.62), inset 0 1px 0 rgba(255,255,255,0.18)",
+                "0 10px 34px rgba(225,29,72,0.42), inset 0 1px 0 rgba(255,255,255,0.18)",
+              ],
+            }}
+            transition={{
+              opacity: { delay: 0.55, duration: 0.4 },
+              y: { delay: 0.55, duration: 0.4 },
+              boxShadow: { duration: 2.2, repeat: Infinity, ease: "easeInOut" },
+            }}
+            whileTap={{ scale: 0.97 }}
+            onClick={() => {
+              sound.playClick();
+              haptics.medium();
+              navigate("panic");
+            }}
+            className="relative mt-4 flex w-full items-center justify-center gap-2.5 rounded-full py-3.5"
+            style={{
+              background: "linear-gradient(135deg, #E11D48 0%, #DC2626 100%)",
+            }}
           >
-            {t("dashboardViewAll")} <ChevronRight size={12} />
-          </button>
+            <Zap size={17} className="text-white" fill="white" />
+            <span className="text-sm font-bold text-white">{t("homePanicCta")}</span>
+          </motion.button>
         </div>
-        <div className="flex gap-3 overflow-x-auto no-scrollbar pb-2">
-          {PARCOURS_RANKS.slice(0, 8).map((rank) => {
-            const isUnlocked = effectiveStreak >= rank.requiredDays;
-            return (
-              <button
-                key={rank.key}
-                onClick={() => navigate("parcours")}
-                className="flex-shrink-0 flex flex-col items-center gap-1"
-              >
-                <div
-                  className={`relative w-14 h-14 rounded-2xl flex items-center justify-center ${
-                    isUnlocked ? "badge-aura" : "opacity-30 grayscale"
-                  }`}
-                  style={isUnlocked ? ({
-                    background: rank.gradient,
-                    "--aura-color": rank.glow,
-                  } as React.CSSProperties) : { background: "rgba(255,255,255,0.05)" }}
-                >
-                  {isUnlocked
-                    ? <ArtifactIcon artifactKey={rank.key} size={32} glow={false} />
-                    : <Lock size={20} className="text-white/30" />}
+
+        {/* -------------------------------------------------------------- */}
+        {/* TODAY — stats, quote, insights, mood, challenge                 */}
+        {/* -------------------------------------------------------------- */}
+        <section className="mt-6 px-5">
+          <h2 className="mb-3 text-sm font-semibold text-white">
+            {t("homeTodaySection")}
+          </h2>
+
+          {/* Stats row */}
+          <div className="mb-4 grid grid-cols-2 gap-3">
+            <motion.button
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              onClick={() => navigate("finance")}
+              className="glass-card card-hover btn-press p-4 text-left"
+            >
+              <div className="mb-2 flex items-center justify-between">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#4ADE80]/20">
+                  <Wallet size={18} className="text-[#4ADE80]" />
                 </div>
-                <span className={`text-[10px] ${isUnlocked ? "text-white" : "text-white/30"}`}>
-                  {t("dayLabel")} {rank.requiredDays}
-                </span>
-              </button>
-            );
-          })}
-        </div>
-      </div>
+                <TrendingUp size={14} className="text-[#4ADE80]" />
+              </div>
+              <p className="text-white/50 text-xs">{t("dashboardSaved")}</p>
+              <p className="font-[family-name:var(--font-poppins)] text-xl font-bold text-white">
+                <AnimatedNumber
+                  value={totalSaved * currencyInfo.rateFromFCFA}
+                  duration={1400}
+                  decimals={currencyInfo.decimals}
+                  prefix={currencyInfo.position === "before" ? currencyInfo.symbol : ""}
+                  suffix={currencyInfo.position === "after" ? ` ${currencyInfo.symbol}` : ""}
+                />
+              </p>
+            </motion.button>
 
-      {/* Heatmap calendar — year-long recovery journey (Task 13-b) */}
-      <HeatmapCalendar weeks={18} />
+            <motion.button
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              onClick={() => navigate("parcours")}
+              className="glass-card card-hover btn-press p-4 text-left"
+            >
+              <div className="mb-2 flex items-center justify-between">
+                <div
+                  className="flex h-9 w-9 items-center justify-center rounded-xl"
+                  style={{ background: `${currentRank.color}30` }}
+                >
+                  <Award size={18} style={{ color: currentRank.color }} />
+                </div>
+                <Flame size={14} style={{ color: currentRank.color }} />
+              </div>
+              <p className="text-white/50 text-xs">{t("parcoursCurrentRank")}</p>
+              <p className="font-[family-name:var(--font-poppins)] text-xl font-bold text-white">
+                {t(currentRank.nameKey)}
+              </p>
+            </motion.button>
+          </div>
 
-      {/* Reset streak (subtle) */}
-      <button
-        onClick={() => {
-          setRelapsePrevStreak(effectiveStreak);
-          setRelapseOpen(true);
-        }}
-        className="w-full py-3 text-white/40 text-xs hover:text-white/60 transition-colors"
-      >
-        {t("dashboardResetStreak")}
-      </button>
+          {/* Quote of the day */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="glass-card card-hover relative mb-4 overflow-hidden p-4"
+          >
+            <div className="absolute -left-2 -top-4 font-serif text-6xl text-[#F59E0B]/20">"</div>
+            <div className="relative flex items-start gap-3">
+              <Quote size={16} className="mt-1 flex-shrink-0 text-[#F59E0B]" />
+              <div>
+                <p className="text-sm italic leading-relaxed text-white">{t(quote.textKey)}</p>
+                <p className="mt-1.5 text-xs text-white/40">— {t(quote.authorKey)}</p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* AI-powered daily insight */}
+          <DailyInsights />
+
+          {/* Quick mood tracker */}
+          <MoodTracker />
+
+          {/* Daily Challenge Card — completable, +15 XP, streak tracking */}
+          <DailyChallengeCard
+            challenge={dailyChallenge}
+            completedToday={challengeCompletedDate === new Date().toDateString()}
+            justDone={challengeJustDone}
+            streak={challengeStreak}
+            t={t}
+            onComplete={() => {
+              completeDailyChallenge();
+              setChallengeJustDone(true);
+              haptics.success();
+            }}
+            onNavigate={(screen) => {
+              const isLocked =
+                screen !== "panic" &&
+                screen !== "finance" &&
+                screen !== "community" &&
+                plan === "free";
+              navigate(isLocked ? "paywall" : screen);
+            }}
+          />
+
+          {/* Share journey */}
+          <button
+            onClick={() => {
+              sound.playClick();
+              haptics.light();
+              setJourneyOpen(true);
+            }}
+            className="glass-card card-hover btn-press mb-4 flex w-full items-center gap-3 p-4 text-left"
+          >
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#2DD4BF]/20">
+              <Share2 size={18} className="text-[#2DD4BF]" />
+            </div>
+            <div className="flex-1">
+              <p className="text-sm font-semibold text-white">{t("journeyCardBtn")}</p>
+              <p className="text-xs text-white/50">{t("journeyCardTagline")}</p>
+            </div>
+            <ChevronRight size={18} className="text-white/30" />
+          </button>
+        </section>
+
+        {/* Quick actions */}
+        <section className="mb-4 px-5" data-tutorial="quickActions">
+          <div className="mb-3 flex items-center justify-between">
+            <h2 className="text-sm font-semibold text-white">{t("dashboardQuickActions")}</h2>
+          </div>
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="grid grid-cols-3 gap-3"
+          >
+            {quickActions.map((action, idx) => {
+              const Icon = action.icon;
+              const isLocked = action.premium && plan === "free";
+              const tutorialKey =
+                action.screen === "atlas"
+                  ? "atlas"
+                  : action.screen === "community"
+                    ? "community"
+                    : undefined;
+              return (
+                <motion.button
+                  key={action.screen}
+                  variants={itemVariants}
+                  custom={idx}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => {
+                    sound.playClick();
+                    haptics.light();
+                    if (isLocked) navigate("paywall");
+                    else navigate(action.screen);
+                  }}
+                  style={{ "--tw-glow-color": action.color } as React.CSSProperties}
+                  className="glass-card card-hover btn-press relative flex flex-col items-center p-3 text-center transition-shadow hover:shadow-[0_0_20px_-5px_var(--tw-glow-color)]"
+                  data-tutorial={tutorialKey}
+                >
+                  {isLocked && (
+                    <div className="absolute right-1.5 top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-[#FBBF24]">
+                      <Crown size={9} className="text-[#070B0E]" />
+                    </div>
+                  )}
+                  {!isLocked && action.premium && (
+                    <Crown
+                      size={12}
+                      className="absolute right-1.5 top-1.5 text-[#FBBF24]"
+                      style={{
+                        filter: "drop-shadow(0 0 4px rgba(251,191,36,0.7))",
+                      }}
+                      fill="rgba(251,191,36,0.3)"
+                    />
+                  )}
+                  <div
+                    className="mb-1.5 flex h-10 w-10 items-center justify-center rounded-xl"
+                    style={{
+                      background: `linear-gradient(135deg, ${action.color}33, ${action.color}11)`,
+                    }}
+                  >
+                    <Icon size={18} style={{ color: action.color }} />
+                  </div>
+                  <span className="font-[family-name:var(--font-poppins)] text-xs font-medium text-white">
+                    {t(action.labelKey)}
+                  </span>
+                </motion.button>
+              );
+            })}
+          </motion.div>
+        </section>
+
+        {/* Recent badges preview */}
+        <section className="mb-4 px-5">
+          <div className="mb-3 flex items-center justify-between">
+            <h2 className="text-sm font-semibold text-white">{t("dashboardBadges")}</h2>
+            <button
+              onClick={() => navigate("parcours")}
+              className="flex items-center gap-1 text-xs text-white/50"
+            >
+              {t("dashboardSeeAll")} <ChevronRight size={12} />
+            </button>
+          </div>
+          <div className="no-scrollbar flex gap-3 overflow-x-auto pb-2">
+            {PARCOURS_RANKS.slice(0, 8).map((rank) => {
+              const isUnlocked = effectiveStreak >= rank.requiredDays;
+              return (
+                <button
+                  key={rank.key}
+                  onClick={() => navigate("parcours")}
+                  className="flex flex-shrink-0 flex-col items-center gap-1"
+                >
+                  <div
+                    className={`relative flex h-14 w-14 items-center justify-center rounded-2xl ${
+                      isUnlocked ? "badge-aura" : "opacity-30 grayscale"
+                    }`}
+                    style={isUnlocked ? ({
+                      background: rank.gradient,
+                      "--aura-color": rank.glow,
+                    } as React.CSSProperties) : { background: "rgba(255,255,255,0.05)" }}
+                  >
+                    {isUnlocked
+                      ? <ArtifactIcon artifactKey={rank.key} size={32} glow={false} />
+                      : <Lock size={20} className="text-white/30" />}
+                  </div>
+                  <span className={`text-[10px] ${isUnlocked ? "text-white" : "text-white/30"}`}>
+                    {t("dayLabel")} {rank.requiredDays}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* Heatmap calendar — year-long recovery journey */}
+        <section className="px-5">
+          <HeatmapCalendar weeks={18} />
+        </section>
+
+        {/* Reset streak (subtle) */}
+        <button
+          onClick={openRelapseModal}
+          className="mt-4 w-full py-3 text-xs text-white/40 transition-colors hover:text-white/60"
+        >
+          {t("dashboardResetStreak")}
+        </button>
       </PullToRefresh>
 
       {/* Relapse Recovery Modal */}

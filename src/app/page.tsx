@@ -1,13 +1,14 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import dynamic from "next/dynamic";
-import { useStore } from "@/store/zerobet-store";
+import { useStore, type ScreenName } from "@/store/zerobet-store";
 import { useCloudSync } from "@/hooks/useCloudSync";
 import { useReminders } from "@/hooks/useReminders";
 import { BottomNav } from "@/components/zerobet/components/BottomNav";
 import { ErrorBoundary } from "@/components/zerobet/components/ErrorBoundary";
+import { PhoneShell } from "@/components/zerobet/components/PhoneShell";
 import { ScreenLoader } from "@/components/zerobet/components/ScreenLoader";
 
 // Splash screen stays eagerly loaded — it's the very first thing users see
@@ -300,6 +301,36 @@ const CommunityChatScreen = dynamic(
   { loading: () => <ScreenLoader /> }
 );
 
+// ---------------------------------------------------------------------
+// Native-style navigation: every screen lives at a fixed position on a
+// conceptual "map" of the app. Navigating forward (higher position)
+// pushes the next screen in from the right; navigating back slides the
+// previous screen in from the left — like an iOS navigation stack.
+// ---------------------------------------------------------------------
+const SCREEN_ORDER: ScreenName[] = [
+  // Onboarding flow (top to bottom)
+  "splash", "gender", "language", "currency", "welcome", "quiz", "results",
+  "symptoms", "carousel", "engagement", "paywall",
+  // Main tab (home) and its details
+  "dashboard", "stats", "finance", "calendar", "gamification",
+  // Tools tab and its details
+  "journal", "meditation", "affirmations", "triggers", "goals",
+  "withdrawal", "relapse-recovery", "parcours", "blocker", "notifications",
+  // Coach tab and its details
+  "atlas", "program", "mentorship", "resources",
+  // Community tab and its details
+  "community", "community-chat",
+  // Profile tab and its details
+  "profile", "settings", "subscription", "data-rights", "support",
+  // Immersive full-screen tools (deepest layer)
+  "sos", "panic", "achievements", "parcours-evolution",
+];
+
+function orderOf(screen: ScreenName): number {
+  const index = SCREEN_ORDER.indexOf(screen);
+  return index === -1 ? SCREEN_ORDER.length : index;
+}
+
 export default function Home() {
   const {
     currentScreen,
@@ -351,6 +382,21 @@ export default function Home() {
     window.scrollTo(0, 0);
   }, [currentScreen]);
 
+  // Direction of the horizontal push/pop transition. Derived during render
+  // (React's "adjust state when a prop changes" pattern) so the entering
+  // screen animates from the correct side on the very first commit.
+  const [nav, setNav] = useState<{ last: ScreenName; dir: number }>({
+    last: currentScreen,
+    dir: 1,
+  });
+  if (nav.last !== currentScreen) {
+    setNav({
+      last: currentScreen,
+      dir: orderOf(currentScreen) >= orderOf(nav.last) ? 1 : -1,
+    });
+  }
+  const dir = nav.dir;
+
   const renderScreen = () => {
     switch (currentScreen) {
       case "splash": return <SplashScreen />;
@@ -400,21 +446,23 @@ export default function Home() {
 
   return (
     <ErrorBoundary>
-      <main className="app-container relative">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentScreen}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-          >
-            {renderScreen()}
-          </motion.div>
-        </AnimatePresence>
+      <PhoneShell>
+        <main className="app-container relative">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentScreen}
+              initial={{ opacity: 0, x: 56 * dir }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -56 * dir }}
+              transition={{ duration: 0.28, ease: [0.32, 0.72, 0, 1] }}
+            >
+              {renderScreen()}
+            </motion.div>
+          </AnimatePresence>
+          <div className="h-24" aria-hidden />
+        </main>
         <BottomNav />
-        <div className="h-24" aria-hidden />
-      </main>
+      </PhoneShell>
     </ErrorBoundary>
   );
 }

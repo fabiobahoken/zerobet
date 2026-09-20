@@ -1,8 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Poppins, Inter } from "next/font/google";
 import "./globals.css";
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as SonnerToaster } from "@/components/ui/sonner";
 import { SoundInit } from "@/components/zerobet/components/SoundInit";
 import { PWARegister } from "@/components/zerobet/components/PWARegister";
 
@@ -87,19 +85,6 @@ export default function RootLayout({
           {/* PWA service worker registration (no UI) */}
           <PWARegister />
         </div>
-        <Toaster />
-        <SonnerToaster
-          position="top-center"
-          theme="dark"
-          toastOptions={{
-            style: {
-              background: "rgba(11, 19, 43, 0.95)",
-              border: "1px solid rgba(255, 255, 255, 0.1)",
-              color: "#fff",
-              backdropFilter: "blur(20px)",
-            },
-          }}
-        />
       </body>
     </html>
   );

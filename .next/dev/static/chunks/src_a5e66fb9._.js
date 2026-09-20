@@ -1,0 +1,14765 @@
+(globalThis.TURBOPACK || (globalThis.TURBOPACK = [])).push([typeof document === "object" ? document.currentScript : undefined,
+"[project]/src/lib/device.ts [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+/**
+ * Zerobet 2.0.5 — Anonymous device identity (shared).
+ *
+ * A random, unguessable ID kept in localStorage. No account needed.
+ * Used by useCloudSync (backup) and the payment APIs (history / checkout)
+ * so a user can find their payments and restore progress after a reinstall.
+ */ __turbopack_context__.s([
+    "DEVICE_ID_KEY",
+    ()=>DEVICE_ID_KEY,
+    "getDeviceId",
+    ()=>getDeviceId
+]);
+const DEVICE_ID_KEY = "zerobet-device-id";
+function getDeviceId() {
+    if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+    ;
+    let id = null;
+    try {
+        id = localStorage.getItem(DEVICE_ID_KEY);
+    } catch  {
+        return "";
+    }
+    if (!id || !/^[a-zA-Z0-9_-]{8,64}$/.test(id)) {
+        id = typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID().replace(/-/g, "").slice(0, 32) : `dev${Date.now().toString(36)}${Math.random().toString(36).slice(2, 12)}`;
+        try {
+            localStorage.setItem(DEVICE_ID_KEY, id);
+        } catch  {
+        /* private mode — identity is per-session, acceptable */ }
+    }
+    return id;
+}
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/hooks/useCloudSync.ts [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "useCloudSync",
+    ()=>useCloudSync
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$store$2f$zerobet$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/store/zerobet-store.ts [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$device$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/device.ts [app-client] (ecmascript)");
+var _s = __turbopack_context__.k.signature();
+"use client";
+;
+;
+;
+/**
+ * Zerobet 2.0 — useCloudSync
+ *
+ * Anonymous, opt-out cloud backup of the user's core recovery progress.
+ * The app stays local-first: this hook pushes a JSON snapshot of the
+ * persisted store to /api/progress whenever meaningful progress changes
+ * (streak, check-in, journal, XP), debounced to avoid hammering the API.
+ *
+ * - deviceId: random ID kept in localStorage (no account needed)
+ * - store.requestSync(): manual "Sync now" trigger (Settings screen)
+ * - Sync status lives in the store (cloudSyncStatus) so any screen can read it.
+ */ /** Fields backed up to the cloud (privacy-conscious subset, no chat content). */ function buildPayload(state) {
+    const out = {};
+    const keys = [
+        "gender",
+        "language",
+        "name",
+        "hasCompletedOnboarding",
+        "quizAnswers",
+        "addictionScore",
+        "addictionLevel",
+        "selectedGoals",
+        "selectedSymptoms",
+        "plan",
+        "planBillingCycle",
+        "planStartedAt",
+        "planRenewsAt",
+        "downgradeSurvey",
+        "streakDays",
+        "lastStreakDate",
+        "streakHistory",
+        "lastCheckInDate",
+        "todayMood",
+        "todayCraving",
+        "xp",
+        "level",
+        "dailyQuests",
+        "savingsGoals",
+        "weeklyIncome",
+        "weeklyExpenses",
+        "savingsGoal",
+        "weeklyBetAmount",
+        "currency",
+        "unlockedRanks",
+        "celebratedMilestones",
+        "meditationStreak",
+        "articlesRead",
+        "relapseHistory",
+        "avatarColor"
+    ];
+    for (const k of keys)if (k in state) out[k] = state[k];
+    return out;
+}
+function useCloudSync() {
+    _s();
+    const { hasCompletedOnboarding, streakDays, xp, plan, lastCheckInDate, journalEntries, setLastSyncAt, setCloudSyncStatus, syncRequestId } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$store$2f$zerobet$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useStore"])();
+    const syncingRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(false);
+    const syncNow = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "useCloudSync.useCallback[syncNow]": async ()=>{
+            if (syncingRef.current) return false;
+            if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+            ;
+            syncingRef.current = true;
+            setCloudSyncStatus("syncing");
+            try {
+                const deviceId = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$device$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getDeviceId"])();
+                const snapshot = buildPayload(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$store$2f$zerobet$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useStore"].getState());
+                const res = await fetch("/api/progress", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        deviceId,
+                        payload: snapshot,
+                        streakDays: snapshot.streakDays,
+                        xp: snapshot.xp,
+                        plan: snapshot.plan
+                    })
+                });
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const data = await res.json();
+                if (data?.updatedAt) setLastSyncAt(data.updatedAt);
+                setCloudSyncStatus("ok");
+                return true;
+            } catch  {
+                setCloudSyncStatus("error");
+                return false;
+            } finally{
+                syncingRef.current = false;
+            }
+        }
+    }["useCloudSync.useCallback[syncNow]"], [
+        setCloudSyncStatus,
+        setLastSyncAt
+    ]);
+    // Zerobet 2.1.0 — Initial pull-before-push gate.
+    // The first auto-sync used to run 4s after mount and OVERWRITE the server
+    // snapshot with the (still free) local plan before the pull could restore a
+    // webhook-activated plan — a race found in QA. Every push now awaits this
+    // one-time pull first, so a server-activated plan lands BEFORE any push.
+    const initialPullDoneRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(false);
+    const initialPullPromiseRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const ensureInitialPull = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "useCloudSync.useCallback[ensureInitialPull]": ()=>{
+            if (initialPullDoneRef.current) return Promise.resolve();
+            if (!initialPullPromiseRef.current) {
+                initialPullPromiseRef.current = ({
+                    "useCloudSync.useCallback[ensureInitialPull]": async ()=>{
+                        // Zerobet 2.1.0 — up to 4 attempts (dev servers compile routes lazily
+                        // and transient failures must not silently drop a paid-plan restore).
+                        for(let attempt = 0; attempt < 4; attempt++){
+                            try {
+                                const deviceId = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$device$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getDeviceId"])();
+                                if (!deviceId) return;
+                                const res = await fetch(`/api/progress?deviceId=${encodeURIComponent(deviceId)}`);
+                                if (res.status === 404) return; // no snapshot yet — nothing to pull
+                                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                                const data = await res.json();
+                                const serverPlan = data.plan;
+                                const state = __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$store$2f$zerobet$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useStore"].getState();
+                                if (typeof serverPlan === "string" && serverPlan !== "free" && state.plan === "free" // never downgrade a local paid plan
+                                ) {
+                                    const snap = data.snapshot && typeof data.snapshot === "object" ? data.snapshot : {};
+                                    const cycle = snap.planBillingCycle === "annual" ? "annual" : "monthly";
+                                    const startedAt = typeof snap.planStartedAt === "string" ? snap.planStartedAt : null;
+                                    const renewsAt = typeof snap.planRenewsAt === "string" ? snap.planRenewsAt : null;
+                                    if (startedAt && renewsAt) {
+                                        __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$store$2f$zerobet$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useStore"].getState().applyServerPlan({
+                                            plan: serverPlan,
+                                            planBillingCycle: cycle,
+                                            planStartedAt: startedAt,
+                                            planRenewsAt: renewsAt
+                                        });
+                                    }
+                                }
+                                return; // one successful response ends the pull lifecycle
+                            } catch  {
+                                // Transient failure — brief backoff, then retry.
+                                await new Promise({
+                                    "useCloudSync.useCallback[ensureInitialPull]": (r)=>setTimeout(r, 2500)
+                                }["useCloudSync.useCallback[ensureInitialPull]"]);
+                            }
+                        }
+                    }
+                })["useCloudSync.useCallback[ensureInitialPull]"]().finally({
+                    "useCloudSync.useCallback[ensureInitialPull]": ()=>{
+                        initialPullDoneRef.current = true;
+                    }
+                }["useCloudSync.useCallback[ensureInitialPull]"]);
+            }
+            return initialPullPromiseRef.current;
+        }
+    }["useCloudSync.useCallback[ensureInitialPull]"], []);
+    // Auto-sync (debounced 4s) whenever meaningful progress changes.
+    // The initial run awaits the server pull BEFORE the first push.
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "useCloudSync.useEffect": ()=>{
+            if (!hasCompletedOnboarding) return;
+            const timer = setTimeout({
+                "useCloudSync.useEffect.timer": ()=>{
+                    void ensureInitialPull().then({
+                        "useCloudSync.useEffect.timer": ()=>syncNow()
+                    }["useCloudSync.useEffect.timer"]);
+                }
+            }["useCloudSync.useEffect.timer"], 4000);
+            return ({
+                "useCloudSync.useEffect": ()=>clearTimeout(timer)
+            })["useCloudSync.useEffect"];
+        }
+    }["useCloudSync.useEffect"], [
+        hasCompletedOnboarding,
+        ensureInitialPull,
+        streakDays,
+        xp,
+        plan,
+        lastCheckInDate,
+        journalEntries.length
+    ]);
+    // Manual sync requested from the Settings screen.
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "useCloudSync.useEffect": ()=>{
+            if (!hasCompletedOnboarding || syncRequestId === 0) return;
+            void ensureInitialPull().then({
+                "useCloudSync.useEffect": ()=>syncNow()
+            }["useCloudSync.useEffect"]);
+        }
+    }["useCloudSync.useEffect"], [
+        syncRequestId,
+        ensureInitialPull
+    ]);
+    return {
+        syncNow
+    };
+}
+_s(useCloudSync, "8xhMkNGY7hWrlJzBUElAfGBitC8=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$store$2f$zerobet$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useStore"]
+    ];
+});
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/lib/i18n/dictionary.ts [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+/**
+ * Zerobet i18n dictionary
+ *
+ * Supports: French (default), English, Spanish.
+ *
+ * NOTE (Task 14-a): the `Language` type is being narrowed to `"fr" | "en" | "es"`.
+ * Other legacy codes (pt, ar, wo, ln) still appear in the union for backward
+ * compatibility but are intentionally not exposed in the UI. They fall back to
+ * the French dictionary.
+ *
+ * NOTE (Task 14-b): the `fr`, `en`, and `es` dictionaries below are full,
+ * standalone translations — each contains the complete 450+ key set used
+ * across the app's 38+ screens. Task 14-c will wire up `t()` calls in the
+ * screens; the keys here are the canonical source of truth for those calls.
+ */ __turbopack_context__.s([
+    "LANGUAGES",
+    ()=>LANGUAGES,
+    "t",
+    ()=>t
+]);
+const LANGUAGES = [
+    {
+        code: "fr",
+        name: "French",
+        nativeName: "Français",
+        flag: "fr"
+    },
+    {
+        code: "en",
+        name: "English",
+        nativeName: "English",
+        flag: "gb"
+    },
+    {
+        code: "es",
+        name: "Spanish",
+        nativeName: "Español",
+        flag: "es"
+    }
+];
+/* ============================================================
+ * FRENCH (default)
+ * ============================================================ */ const fr = {
+    // ---- App & General ----
+    appName: "Zerobet",
+    tagline: "Reprends le contrôle de ta vie",
+    continue: "Continuer",
+    back: "Retour",
+    skip: "Passer",
+    next: "Suivant",
+    finish: "Terminer",
+    save: "Enregistrer",
+    cancel: "Annuler",
+    delete: "Supprimer",
+    edit: "Modifier",
+    close: "Fermer",
+    confirm: "Confirmer",
+    loading: "Chargement...",
+    retry: "Réessayer",
+    send: "Envoyer",
+    publish: "Publier",
+    reply: "Répondre",
+    like: "J'aime",
+    share: "Partager",
+    unlock: "Débloquer",
+    locked: "Verrouillé",
+    premium: "Premium",
+    free: "Gratuit",
+    upgrade: "Passer à Premium",
+    yes: "Oui",
+    no: "Non",
+    or: "ou",
+    search: "Recherche",
+    filter: "Filtrer",
+    all: "Tous",
+    none: "Aucun",
+    select: "Sélectionner",
+    selected: "sélectionné(s)",
+    done: "Terminé",
+    today: "Aujourd'hui",
+    yesterday: "Hier",
+    tomorrow: "Demain",
+    days: "jours",
+    day: "jour",
+    hours: "heures",
+    hour: "heure",
+    minutes: "min",
+    minute: "min",
+    seconds: "sec",
+    second: "sec",
+    weeks: "semaines",
+    week: "semaine",
+    months: "mois",
+    month: "mois",
+    years: "années",
+    year: "an",
+    seeAll: "Voir tout",
+    seeMore: "Voir plus",
+    seeLess: "Voir moins",
+    add: "Ajouter",
+    remove: "Retirer",
+    clear: "Effacer",
+    reset: "Réinitialiser",
+    apply: "Appliquer",
+    view: "Voir",
+    hide: "Masquer",
+    show: "Afficher",
+    enable: "Activer",
+    disable: "Désactiver",
+    on: "Activé",
+    off: "Désactivé",
+    fcfa: "FCFA",
+    perWeek: "/semaine",
+    perMonth: "/mois",
+    perYear: "/an",
+    backHome: "Retour à l'accueil",
+    refresh: "Actualiser",
+    justNow: "à l'instant",
+    minutesAgo: "il y a {n} min",
+    hoursAgo: "il y a {n}h",
+    daysAgo: "il y a {n}j",
+    loadMore: "Charger plus",
+    thisWeek: "Cette semaine",
+    thisMonth: "Ce mois-ci",
+    thisYear: "Cette année",
+    lastWeek: "La semaine dernière",
+    lastMonth: "Le mois dernier",
+    comingSoon: "Bientôt disponible",
+    beta: "Bêta",
+    new: "Nouveau",
+    updated: "Mis à jour",
+    optional: "optionnel",
+    required: "requis",
+    // ---- Splash ----
+    splashTitle: "Zerobet",
+    splashSubtitle: "Arrête les paris. Reconstruis-toi.",
+    splashLoading: "Chargement...",
+    // ---- Gender ----
+    genderTitle: "Choisis ton genre",
+    genderSubtitle: "Pour personnaliser ton expérience",
+    male: "Homme",
+    female: "Femme",
+    // ---- Language ----
+    languageTitle: "Choisis ta langue",
+    languageSubtitle: "L'application s'adaptera à ton choix",
+    // ---- Currency ----
+    currencyTitle: "Choisis ta monnaie",
+    currencySubtitle: "Pour afficher tes économies dans ta devise",
+    currencyPreview: "Aperçu",
+    // ---- Welcome ----
+    welcomeTitle: "Tu peux arrêter.",
+    welcomeSubtitle: "Des milliers l'ont fait avant toi.",
+    welcomeCta: "Commencer mon évaluation",
+    welcomeHaveAccount: "J'ai déjà un compte",
+    welcomeTagline: "Évaluation gratuite en 3 minutes",
+    welcomeTerms: "En continuant, tu acceptes nos conditions d'utilisation et notre politique de protection des données. Tes données restent sur ton appareil.",
+    // ---- Quiz ----
+    quizTitle: "Évaluation de dépendance",
+    quizProgress: "Question {n} sur {total}",
+    quizAnswer: "Réponds honnêtement",
+    quizCategoryBehavior: "Comportement",
+    quizCategoryFinance: "Finance",
+    quizCategoryEmotions: "Émotions",
+    quizCategorySocial: "Social",
+    quizPrivacy: "Tes réponses sont privées et stockées localement",
+    quizStep: "Étape",
+    // ---- Results ----
+    resultsTitle: "Ton analyse",
+    resultsSubtitle: "Voici ton score",
+    resultsScore: "Score de dépendance",
+    resultsLevelLow: "Faible",
+    resultsLevelModerate: "Modéré",
+    resultsLevelSevere: "Sévère",
+    resultsLevelCritical: "Critique",
+    resultsComparison: "Ton score est plus élevé que {pct}% des parieurs",
+    resultsCta: "Voir mes symptômes",
+    resultsGoodNews: "Bonne nouvelle",
+    resultsGoodNewsDesc: "La récupération est possible. Ton cerveau peut se réparer en 90 jours d'abstinence. Des milliers l'ont fait avant toi.",
+    resultsMessageLow: "Tu es dans la zone verte. Ne laisse pas l'addiction prendre racine. Agis maintenant.",
+    resultsMessageModerate: "Tu es sur la pente glissante. C'est le moment d'agir avant que ça empire.",
+    resultsMessageSevere: "L'addiction a pris racine. Mais la récupération est possible. Tu n'es pas seul.",
+    resultsMessageCritical: "Tu es en zone critique. Mais des milliers s'en sont sortis. Tu peux le faire.",
+    // ---- Symptoms ----
+    symptomsTitle: "Vérificateur de symptômes",
+    symptomsSubtitle: "Sélectionne ce que tu ressens. Cela nous aidera à personnaliser ton plan.",
+    symptomsFinancial: "Financier",
+    symptomsMental: "Mental",
+    symptomsSocial: "Social",
+    symptomsPhysical: "Physique",
+    symptomsFamily: "Familial",
+    symptomsSelected: "{n} symptôme(s) sélectionné(s)",
+    symptomsStep: "Étape {n} sur {total}",
+    symptomsContinue: "Continuer",
+    // ---- Carousel ----
+    carouselTitle: "Comprends l'addiction",
+    carouselSubtitle: "8 vérités que les opérateurs cachent",
+    carouselSkip: "Passer",
+    carouselEngage: "Je veux m'engager",
+    carouselSlide: "Slide {n}",
+    // ---- Carousel slides (Task 17-b) ----
+    carousel1Title: "Ton cerveau est piraté",
+    carousel1Body: "Chaque pari déclenche une libération de dopamine identique à la cocaïne. L'opérateur conçoit ses produits pour maximiser cet effet. Ce n'est pas une faiblesse — c'est de la biologie.",
+    carousel1Stat: "+200% dopamine",
+    carousel2Title: "L'opérateur gagne TOUJOURS",
+    carousel2Body: "Le margin d'un opérateur = 5 à 12%. Sur {weeklyBet} pariés chaque semaine pendant un an, tu perds statistiquement entre {minLoss} et {maxLoss} — garantis. Il n'y a pas de système gagnant.",
+    carousel2Stat: "-{amount}/an",
+    carousel3Title: "Tu n'as pas un système. Tu as un biais cognitif.",
+    carousel3Body: "Le cerveau humain détecte des patterns même là où il n'y en a pas. Les cotes changent en temps réel selon les algorithmes. Le 'tip' que tu analyses est déjà pris en compte par des équipes entières de data scientists payés pour te faire perdre.",
+    carousel3Stat: "0% de contrôle",
+    carousel4Title: "Ton cerveau sous addiction",
+    carousel4Body: "L'IRM d'un cerveau addict montre une altération du cortex préfrontal — la zone qui contrôle les impulsions. Plus tu paries, moins tu contrôles. Mais bonne nouvelle : la neuroplasticité permet de tout réparer en 90 jours d'abstinence.",
+    carousel4Stat: "90 jours pour guérir",
+    carousel5Title: "Ce que tu perds vraiment",
+    carousel5Body: "L'argent n'est rien comparé au temps perdu, aux relations détruites, à la confiance envolée. Un parieur moyen perd 5 ans de sa vie entre paris, obsession et récupération. Ta vie vaut plus que ça.",
+    carousel5Stat: "5 ans de vie perdus",
+    carousel6Title: "La récupération est possible",
+    carousel6Body: "Ton cerveau peut se réparer. Les récepteurs dopaminergiques se rééquilibrent. Le sommeil revient. L'anxiété diminue. La confiance en soi revient. Des milliers ont réussi. Tu es le prochain.",
+    carousel6Stat: "Des milliers ont réussi",
+    carousel7Title: "Histoire vraie : {name}, {age} ans, {city}",
+    carousel7Body: "« J'ai perdu {amountLost} en 2 ans. Ma femme a failli me quitter. J'ai téléchargé Zerobet. Aujourd'hui, j'ai {days} jours sans pari. J'ai racheté {achievement}. Ma femme me fait confiance. Je suis un homme libre. »",
+    carousel7Stat: "{days} jours",
+    carousel8Title: "À toi de jouer",
+    carousel8Body: "Tu as compris. Tu sais maintenant que les paris sont conçus pour te détruire. Tu as le pouvoir de dire non. Des milliers t'attendent de l'autre côté. Fais le premier pas. Maintenant.",
+    carousel8Stat: "Ton tour",
+    // ---- Engagement ----
+    engagementTitle: "Ton engagement",
+    engagementSubtitle: "Choisis les objectifs qui te tiennent à cœur. Tu pourras les changer plus tard.",
+    engagementSignHere: "Signe ici ton engagement",
+    engagementSigned: "Engagement signé",
+    engagementCta: "Voir mon plan personnalisé",
+    engagementStep: "Étape {n} sur {total}",
+    engagementSelectedGoals: "{n} objectif(s) sélectionné(s)",
+    engagementSignatureTitle: "Signature d'engagement",
+    engagementSignTitle: "Signe ton engagement",
+    engagementPledge: "Je m'engage, par ma signature, à mettre tout en œuvre pour arrêter les paris et reprendre le contrôle de ma vie.",
+    engagementSignHint: "Signe ici avec ton doigt",
+    engagementClearResign: "Effacer et resigner",
+    engagementPlanTitle: "Ton plan personnalisé",
+    engagementYourGoals: "Tes objectifs",
+    engagementWillDoTitle: "Ce que Zerobet va faire pour toi :",
+    engagementWillDo1: "Suivre ta série de jours sans pari",
+    engagementWillDo2: "Te donner un bouton d'urgence pour les envies",
+    engagementWillDo3: "T'aider à visualiser l'argent que tu économises",
+    engagementWillDo4: "Te proposer un coach IA 24/7 (Premium)",
+    engagementWillDo5: "Bloquer les sites de paris (Premium)",
+    engagementWillDo6: "Te connecter à une communauté de récupérateurs",
+    // ---- Paywall ----
+    paywallTitle: "Choisis ton plan",
+    paywallSubtitle: "Investis dans ta récupération",
+    paywallHero: "Tu as fait le plus dur. Maintenant, choisis l'outil qui t'accompagnera chaque jour vers ta liberté.",
+    paywallMonthly: "Mensuel",
+    paywallAnnual: "Annuel",
+    paywallLastStep: "Dernière étape",
+    paywallPopular: "POPULAIRE",
+    paywallBestValue: "MEILLEURE OFFRE",
+    paywallOtherBenefits: "+ {n} autres avantages",
+    paywallDataProtected: "Données protégées • Stockage local • Confidentialité totale",
+    paywallStartFree: "Commencer gratuitement",
+    paywallStartRecovery: "Démarrer ma récupération",
+    paywallConsentTitle: "Protection de tes données",
+    paywallConsentDesc: "En passant à un plan payant, tu acceptes que Zerobet stocke tes données de progression (série, journal, badges) pour te fournir le service. Tes données restent confidentielles et ne sont jamais vendues.",
+    paywallConsentLabel: "J'accepte le stockage et le traitement de mes données par Zerobet",
+    paywallPerMonth: "FCFA/mois",
+    planFree: "Gratuit",
+    planPremium: "Premium",
+    planMentor: "Mentor",
+    planPsychologist: "Psychologue",
+    planPerMonth: "/mois",
+    // Plan taglines
+    planFreeTagline: "Pour commencer ton parcours",
+    planPremiumTagline: "Le plus populaire — récupération complète",
+    planMentorTagline: "Deviens un guide pour les autres",
+    planPsychologistTagline: "Pour les professionnels certifiés",
+    // Plan features — Free (8)
+    planFreeFeature1: "Quiz complet (15 questions)",
+    planFreeFeature2: "Score et niveau d'addiction",
+    planFreeFeature3: "Carousel éducatif (8 slides)",
+    planFreeFeature4: "Vérificateur de symptômes",
+    planFreeFeature5: "3 témoignages par jour",
+    planFreeFeature6: "Compteur de série basique",
+    planFreeFeature7: "Coffre de récupération (visualisation)",
+    planFreeFeature8: "Notifications de rappel",
+    // Plan features — Premium (11)
+    planPremiumFeature1: "Tout le plan Gratuit",
+    planPremiumFeature2: "Bouton Panique complet (4-7-8)",
+    planPremiumFeature3: "Atlas AI Coach illimité",
+    planPremiumFeature4: "Journal illimité + analyse IA",
+    planPremiumFeature5: "Bloqueur de paris (50+ sites)",
+    planPremiumFeature6: "Mode Fort 72h",
+    planPremiumFeature7: "Statistiques détaillées (30/60/90j)",
+    planPremiumFeature8: "Communauté complète (forum, témoignages)",
+    planPremiumFeature9: "Contenu exclusif Premium",
+    planPremiumFeature10: "Suppression des publicités",
+    planPremiumFeature11: "Support prioritaire",
+    // Plan features — Mentor (7)
+    planMentorFeature1: "Tout le plan Premium",
+    planMentorFeature2: "Badge Mentor vérifié",
+    planMentorFeature3: "Répondre en tant que mentor",
+    planMentorFeature4: "Annuaire des mentors",
+    planMentorFeature5: "Statistiques de mentorat",
+    planMentorFeature6: "Outils de coaching",
+    planMentorFeature7: "Conditions : 90 jours sans pari minimum",
+    // Plan features — Psychologist (7)
+    planPsychologistFeature1: "Tout le plan Premium",
+    planPsychologistFeature2: "Profil professionnel certifié",
+    planPsychologistFeature3: "Chat avec les membres",
+    planPsychologistFeature4: "Badge professionnel certifié",
+    planPsychologistFeature5: "Gestion des sessions",
+    planPsychologistFeature6: "Tarif de session personnalisable",
+    planPsychologistFeature7: "Vérification sous 48h",
+    choosePlan: "Choisir ce plan",
+    currentPlan: "Plan actuel",
+    bestValue: "Meilleure offre",
+    mostPopular: "Le plus populaire",
+    // ---- Dashboard ----
+    dashboardHello: "Salut",
+    dashboardDay: "Jour",
+    dashboardWithoutBetting: "sans pari",
+    homeSoberSince: "Tu es sobre des paris depuis :",
+    homePledge: "Engagement",
+    homeMeditate: "Méditer",
+    homeReset: "Reset",
+    homeMore: "Plus",
+    homeRewire: "Rebrainement",
+    homeSoberOn: "Sobre le {date}",
+    homeBadgeDays: "j",
+    homePanicCta: "Bouton Panique",
+    homePanicCtaDesc: "Envie urgente ? Respire avec nous",
+    homeTodaySection: "Aujourd'hui",
+    homeStreakStable: "Ta série est en cours",
+    dashboardStreak: "Série",
+    dashboardSaved: "Économisé",
+    dashboardDays: "jours",
+    dashboardQuote: "Citation du jour",
+    dashboardQuickActions: "Actions rapides",
+    dashboardBadges: "Mes badges",
+    dashboardTodayProgress: "Progression du jour",
+    dashboardKeepGoing: "Continue comme ça !",
+    dashboardFirstDay: "C'est ton premier jour. Bravo !",
+    dashboardResetStreak: "Réinitialiser ma série",
+    dashboardResetConfirm: "Es-tu sûr ? Tu reviendras à 0. Ce n'est pas un échec, c'est un nouveau départ.",
+    dashboardYouAreAt: "Tu es à",
+    dashboardWithoutAnyBet: "sans aucun pari",
+    dashboardCurrentRank: "Rang actuel",
+    dashboardNextRank: "Prochain rang",
+    dashboardMoreDays: "Plus que {n} jour(s) jusqu'au rang {rank}",
+    dashboardMotivation: "Motivation",
+    dashboardDailyChallenge: "Défi du jour",
+    dashboardTakeChallenge: "Relever le défi",
+    dashboardChallengeMarkDone: "J'ai réussi ce défi",
+    dashboardChallengeDoneTitle: "Défi réussi ! +{n} XP",
+    dashboardChallengeStreak: "Série : {n} jour(s)",
+    dashboardChallengeComeBack: "Nouveau défi demain !",
+    dashboardChallengeGo: "Faire maintenant",
+    dashboardPanicButton: "Bouton d'urgence",
+    dashboardPanicButtonDesc: "Envie de parier ? Tape ici. On respire ensemble.",
+    dashboardSeeAll: "Voir tout",
+    dashboardSearch: "Recherche",
+    dashboardNotifications: "Notifications",
+    dashboardAdminPanel: "Panneau Admin",
+    dashboardAdminStreak: "Jours de série",
+    dashboardAdminPlan: "Plan",
+    dashboardAdminScore: "Score d'addiction",
+    dashboardAdminAddJournal: "+ Entrée journal",
+    dashboardAdminSimulate: "Simuler jalon",
+    dashboardAdminResetAll: "Réinitialiser toutes les données",
+    dashboardAdminResetConfirm: "Réinitialiser TOUTES les données ?",
+    dashboardAdminClose: "Fermer",
+    dashboardChampion: "champion",
+    dashboardCher: "Cher",
+    dashboardChere: "Chère",
+    dashboardActionUrgence: "Urgence",
+    dashboardActionQuests: "Quêtes",
+    dashboardActionJournal: "Journal",
+    dashboardActionSavings: "Économies",
+    dashboardActionStats: "Stats",
+    dashboardActionMeditation: "Méditation",
+    dashboardActionAtlas: "Atlas AI",
+    dashboardActionBlocker: "Bloqueur",
+    dashboardActionCommunity: "Communauté",
+    dashboardActionChat: "Chat Live",
+    dashboardActionTrophies: "Trophées",
+    dashboardActionResources: "Ressources",
+    dashboardActionProfile: "Profil",
+    dashboardActionSOS: "SOS",
+    dashboardActionCalendar: "Calendrier",
+    dashboardActionHelp: "Aide",
+    dashboardActionProgram: "Programme",
+    dashboardActionMentor: "Mentor",
+    dashboardActionGoals: "Objectifs",
+    dashboardActionAffirmations: "Affirmations",
+    dashboardActionWithdrawal: "Sevrage",
+    dashboardActionTriggers: "Déclencheurs",
+    dashboardActionRelapse: "Rechute",
+    dashboardActionNotifications: "Notifications",
+    dashboardStreakMultiplier: "Multiplicateur de série",
+    dashboardDaysSinceStart: "{n} jours depuis le début",
+    // ---- Bottom Nav ----
+    navHome: "Accueil",
+    navTools: "Outils",
+    navCoach: "Coach",
+    navCommunity: "Communauté",
+    navProfile: "Profil",
+    // ---- Panic ----
+    panicTitle: "Tu vas y arriver",
+    panicSubtitle: "Mode urgence",
+    panicMode: "Mode urgence",
+    panicBreathe: "Inspire",
+    panicHold: "Retiens",
+    panicExhale: "Expire",
+    panicInhale: "Inspire",
+    panicKeepGoing: "Non, je continue de respirer",
+    panicDone: "L'envie est passée",
+    panicCravingPassed: "L'envie est passée",
+    panicContinueBreathing: "Non, je continue de respirer",
+    panicNeedSomethingElse: "J'ai besoin d'autre chose",
+    panicTriggerQuestion: "Que veux-tu faire ?",
+    panicBackHome: "Retour à l'accueil",
+    panicEncouragement: "Tu l'as fait !",
+    panicStats: "Tu viens de vaincre une envie. Chaque victoire compte.",
+    panicMessage1: "Tu as tenu {days} jour(s). Ne gâche pas ça.",
+    panicMessage2: "73% des envies passent en moins de 10 minutes.",
+    panicMessage3: "Tu es plus fort que cette envie.",
+    panicCallFriend: "Appeler un proche",
+    panicCallFriendDesc: "Quelqu'un de confiance qui peut t'écouter",
+    panicReadTestimony: "Lire un témoignage",
+    panicReadTestimonyDesc: "Histoires de ceux qui ont surmonté",
+    panicJournal: "Noter dans le journal",
+    panicJournalDesc: "Écris ce que tu ressens",
+    panicNotedTrigger: "Noter ce qui a déclenché l'envie",
+    panicStartBreathing: "Commencer la respiration",
+    panicBreatheTogether: "On respire ensemble",
+    panicWaveDesc: "L'envie de parier est comme une vague. Elle monte, puis elle redescend.",
+    panicStrongerThan: "Ne gâche pas ça. Cette envie va passer. Tu es plus fort qu'elle.",
+    panicYouDidIt: "Tu l'as fait !",
+    panicVictoryCount: "Tu viens de vaincre une envie. Chaque victoire compte.",
+    panicStreakIntact: "Ta série reste intacte : {n} jour(s) 🔥",
+    panicWhatDoYouWant: "Que veux-tu faire ?",
+    panicFollowRhythm: "Suis le rythme. Concentre-toi sur ta respiration.",
+    panicCycle: "Cycle {n} sur {total}",
+    panicCyclesRemaining: "{n} cycles restants",
+    panicPercent73: "73% des envies passent en moins de 10 minutes. Tu viens de tenir 1 minute. Continue.",
+    // ---- Journal ----
+    journalTitle: "Journal de pensées",
+    journalSubtitle: "Comment te sens-tu aujourd'hui ?",
+    journalNewEntry: "Nouvelle entrée",
+    journalEntryTitle: "Entrée",
+    journalContent: "Ce que tu ressens",
+    journalEmotion: "Émotion",
+    journalTrigger: "Déclencheur (optionnel)",
+    journalIntensity: "Intensité",
+    journalSave: "Enregistrer",
+    journalEmpty: "Aucune entrée. Commence à écrire ton histoire.",
+    journalEmptyTitle: "Aucune entrée",
+    journalEmptyDesc: "Commence à écrire ton histoire. Chaque jour, note comment tu te sens — c'est l'habitude qui change tout.",
+    journalPrompts: "Suggestions",
+    journalSuggestions: "Suggestions",
+    journalWeeklyAnalysis: "Analyse de la semaine",
+    journal7Days: "7 derniers jours",
+    journalEntryCount: "{n} entrée(s)",
+    journalTriggerLabel: "Déclencheur :",
+    journalFeelToday: "Comment te sens-tu ?",
+    journalWhatYouFeel: "Ce que tu ressens",
+    journalContentPlaceholder: "Aujourd'hui, je...",
+    journalTriggerPlaceholder: "Qu'est-ce qui a provoqué cette émotion ?",
+    journalIntensityLabel: "Intensité : {n}/5",
+    journalUpgradeToPremium: "Passer à Premium",
+    journalAddedEntry: "Entrée de journal ajoutée",
+    journalBack: "Retour",
+    journalHowFeel: "Comment te sens-tu aujourd'hui ?",
+    journalAnalysis: "Analyse de la semaine",
+    journalPrompt1: "Comment te sens-tu aujourd'hui ?",
+    journalPrompt2: "Qu'est-ce qui t'a le plus aidé cette semaine ?",
+    journalPrompt3: "Quelle est ta plus grande victoire récente ?",
+    // ---- Emotions ----
+    emotionFrustrated: "Frustré",
+    emotionStrong: "Fort",
+    emotionTempted: "Tenté",
+    emotionCalm: "Calme",
+    emotionProud: "Fier",
+    emotionAnxious: "Anxieux",
+    // ---- Finance ----
+    financeTitle: "Coffre de Récupération",
+    financeSubtitle: "Regarde ton argent sauvé grandir",
+    financeTotalSaved: "Total économisé",
+    financeWeeklyBet: "Mise hebdomadaire moyenne",
+    financeProjection: "Projections",
+    financeMonth: "Dans 1 mois",
+    financeYear: "Dans 1 an",
+    financeThisWeek: "Cette semaine",
+    financeGoal: "Objectif d'épargne",
+    financeCouldBuy: "Avec ça, tu pourrais",
+    financeCompareBefore: "Avant Zerobet",
+    financeCompareAfter: "Avec Zerobet",
+    financeGoals: "Objectifs",
+    financeAddGoal: "Ajouter un objectif",
+    financeGoalName: "Nom de l'objectif",
+    financeGoalAmount: "Montant",
+    financeCategoryNecessities: "Nécessités",
+    financeCategorySavings: "Épargne",
+    financeCategoryProjects: "Projets",
+    financeCategoryFood: "Nourriture",
+    financeCategoryTransport: "Transport",
+    financeCategoryOther: "Autres",
+    financeBudget: "Budget",
+    financeMilestones: "Jalons",
+    financeEducation: "Éducation financière",
+    financeSaved: "Total économisé",
+    financeProjectionDesc: "Projections",
+    financeAddCategory: "Ajouter une catégorie",
+    financeNoGoals: "Aucun objectif. Ajoute-en un pour visualiser tes projets.",
+    financeGoalReached: "Objectif atteint ! 🎉",
+    financeGoalProgress: "{pct}% de l'objectif",
+    // ---- Atlas AI ----
+    atlasTitle: "Atlas AI",
+    atlasSubtitle: "Ton coach personnel 24/7",
+    atlasOnline: "En ligne",
+    atlasOffline: "Hors ligne",
+    atlasTypeMessage: "Écris ton message...",
+    atlasSend: "Envoyer",
+    atlasSectionJournal: "Journal",
+    atlasSectionMotivation: "Motivation",
+    atlasSectionProgress: "Progrès",
+    atlasSectionCrisis: "Crise",
+    atlasAnalyzeJournal: "Analyser mon journal",
+    atlasAskMotivation: "Demander de la motivation",
+    atlasSeeProgress: "Voir mes progrès",
+    atlasPanicButton: "Bouton Panique",
+    atlasLocked: "Débloque avec Premium",
+    atlasLockedDesc: "Atlas AI est réservé aux membres Premium",
+    atlasEmergency: "Si tu es en crise, contacte un professionnel.",
+    atlasClear: "Effacer la conversation",
+    atlasContext: "Contexte",
+    atlasSuggested1: "Comment gérer une envie soudaine ?",
+    atlasSuggested2: "Analyse mon journal",
+    atlasSuggested3: "Donne-moi de la motivation",
+    atlasSuggested4: "Explique-moi la dopamine",
+    atlasSuggested5: "Comment parler à ma famille ?",
+    atlasSuggested6: "Je me sens faible aujourd'hui",
+    atlasJournal: "Journal",
+    atlasMotivation: "Motivation",
+    atlasProgress: "Progrès",
+    atlasCrisis: "Crise",
+    atlasThinking: "Atlas réfléchit...",
+    atlasError: "Désolé, je n'ai pas pu répondre. Réessaie.",
+    // ---- Betting Blocker ----
+    blockerTitle: "Bloqueur de Paris",
+    blockerSubtitle: "Protège-toi des tentations",
+    blockerActive: "Activé",
+    blockerInactive: "Désactivé",
+    blockerSitesBlocked: "sites bloqués",
+    blockerStrictMode: "Mode Fort (72h)",
+    blockerStrictDesc: "Impossible de désactiver pendant 72h",
+    blockerAddSite: "Ajouter un site",
+    blockerCategoryAll: "Tous",
+    blockerCategoryIntl: "International",
+    blockerCategoryAfrica: "Afrique",
+    blockerCategoryCrypto: "Crypto",
+    blockerCategoryFrance: "France",
+    blockerCategoryOther: "Autres",
+    blockerBlockAll: "Tout bloquer",
+    blockerUnblockAll: "Tout débloquer",
+    blockerLocked: "Débloque avec Premium",
+    blockerStrictRemaining: "Mode fort actif : {n}h restantes",
+    blockerCustomSite: "Site personnalisé",
+    blockerSiteName: "Nom du site",
+    blockerSiteUrl: "URL du site",
+    // ---- Community ----
+    communityTitle: "Communauté",
+    communitySubtitle: "Tu n'es pas seul dans cette aventure",
+    communityTestimonials: "Témoignages",
+    communityForum: "Forum",
+    communityMentors: "Mentors",
+    communityPsychologists: "Psychologues",
+    communityWriteTestimonial: "Écrire mon témoignage",
+    communityVerified: "Vérifié",
+    communityAnonymous: "Anonyme",
+    communityDaysClean: "jours sans pari",
+    communityBecomeMentor: "Devenir mentor",
+    communityMentorRequirement: "90 jours sans pari minimum",
+    communityBookSession: "Réserver une session",
+    communitySessionPrice: "FCFA / session",
+    communityNewPost: "Nouveau sujet",
+    communityCategorySuccess: "Succès",
+    communityCategoryStruggle: "Difficultés",
+    communityCategoryMotivation: "Motivation",
+    communityCategoryQuestion: "Question",
+    communityReply: "Répondre",
+    communityLike: "J'aime",
+    communityContact: "Contacter",
+    communityBook: "Réserver",
+    communityNoTestimonials: "Aucun témoignage pour l'instant. Sois le premier à partager ton histoire.",
+    communityNoPosts: "Aucun sujet. Sois le premier à lancer une discussion. Ton histoire peut inspirer d'autres personnes.",
+    communityStartDiscussion: "Lancer une discussion",
+    communityWriteTestimonialTitle: "Partage ton témoignage",
+    communityNewPostTitle: "Nouveau sujet",
+    communityPostTitle: "Titre",
+    communityPostContent: "Ton message",
+    communityPostCategory: "Catégorie",
+    communityPublish: "Publier",
+    communityReplyTo: "Répondre à {name}",
+    communityOnline: "En ligne",
+    communityOffline: "Hors ligne",
+    communityResponseTime: "Répond en {n}",
+    // ---- Community extras (Task 18-b) ----
+    communityMembers: "membres",
+    communityCumulativeDays: "jours cumulés",
+    communityVerifiedTestimonials: "témoignages vérifiés",
+    communityFilterAll: "Tous",
+    communityFilterVerified: "Vérifiés",
+    communityFilter100Days: "100+ jours",
+    communityFilter365Days: "365 jours",
+    communitySortRecent: "Récent",
+    communitySortPopular: "Populaire",
+    communitySortUnanswered: "Non répondu",
+    communityJustNow: "à l'instant",
+    communityDayAgo: "il y a 1 j",
+    communityQuickReplies: "Réponses rapides :",
+    communityMyTestimonial: "Mon témoignage",
+    communityTitleLabel: "Titre",
+    communityTestimonialTitlePlaceholder: "Ex : « 90 jours sans pari, je suis fier »",
+    communityYourStory: "Ton histoire",
+    communityYourStoryPlaceholder: "Raconte ton parcours, tes difficultés, tes victoires...",
+    communityPublishAnonymous: "Publier en anonyme",
+    communityPublishAnonymousDesc: "Ton nom ne sera pas visible publiquement",
+    communityAnonymousModeActive: "Le mode anonyme est actif — ton témoignage sera publié en anonyme.",
+    communityPublishMyTestimonial: "Publier mon témoignage",
+    communityNewTopic: "Nouveau sujet",
+    communityCategoryLabel: "Catégorie",
+    communityForumTitlePlaceholder: "Titre du sujet",
+    communityMessageLabel: "Message",
+    communityForumMessagePlaceholder: "Détails, contexte, question...",
+    communityPublishTopic: "Publier le sujet",
+    communityReplyPlaceholder: "Écris ta réponse...",
+    communityForumReplyPlaceholder: "Partage ton expérience ou tes conseils...",
+    communityUnlockWithPremium: "Débloque avec Premium",
+    communityUnlockTestimonialsDesc: "Accède à tous les témoignages vérifiés de la communauté.",
+    communityReplyPublishedToast: "Réponse publiée avec succès",
+    communityTestimonialPublishedToast: "Témoignage publié",
+    communityTestimonialPublishedToastDesc: "Merci pour ton partage. La communauté t'en remercie.",
+    communityForumPostedToast: "Sujet publié",
+    communityForumPostedToastDesc: "Ton sujet est maintenant visible par la communauté.",
+    communityMentorRequestToast: "Demande envoyée à {name}",
+    communityMentorRequestToastDesc: "Tu recevras une réponse sous 24h.",
+    communitySessionReservedToast: "Session réservée avec {name}",
+    communitySessionReservedToastDesc: "Prix : {price}. Confirmation envoyée par email.",
+    communityReserveSession: "Réserver une session",
+    communityLicense: "Licence",
+    communityCountry: "Pays",
+    communityDuration: "Durée",
+    communityDurationMinutes: "50 minutes",
+    communityFormat: "Format",
+    communitySecureVideo: "Vidéo sécurisée",
+    communityPaymentInfo: "Paiement sécurisé. Annulation gratuite jusqu'à 24h avant la session.",
+    communityConfirm: "Confirmer",
+    communityRating: "Note",
+    communitySessionTariff: "Tarif / session",
+    communityCertifiedSessions: "Sessions certifiées",
+    communityPsychologistsDesc: "Psychologues licenciés, spécialisés en addictions comportementales.",
+    communityNoTopicsTitle: "Aucun sujet",
+    communityNoTopicsDesc: "Sois le premier à lancer une discussion. Ton histoire peut inspirer d'autres personnes.",
+    communityBecomeMentorDesc: "Atteins 90 jours sans pari pour accompagner d'autres membres.",
+    communityMentorObjective: "Objectif",
+    communityMentorObjectiveDays: "90 jours",
+    communityYourProgress: "Ta progression",
+    communityEligibleMentor: "Tu es éligible pour devenir mentor !",
+    communityApplyNow: "Postuler maintenant",
+    communityDaysUntilMentor: "Plus que {days} jours avant de pouvoir devenir mentor.",
+    communityVerifiedMentors: "Mentors vérifiés",
+    communityForumLockDesc: "Le forum est réservé aux membres Premium. Rejoins la communauté pour échanger avec d'autres personnes en récupération.",
+    communityMentorsLockDesc: "Les mentors sont réservés aux membres Premium. Passe à Premium pour échanger avec des personnes qui ont réussi à arrêter.",
+    communityPsychologistsLockDesc: "Les psychologues sont réservés aux membres Premium. Passe à Premium pour réserver des sessions de thérapie.",
+    communityMoreTestimonialsPremium: "+{count} autres témoignages avec Premium",
+    communityLoadMore: "Voir plus de témoignages ({n})",
+    // Testimonial seed content (Task 18-b)
+    testimonialKoffiTitle: "Je suis redevenu un homme",
+    testimonialKoffiBody: "J'ai perdu {amount} en 3 ans sur 1xBet. Ma copine est partie. J'ai téléchargé Zerobet un soir où je voulais tout arrêter. Aujourd'hui, 234 jours sans pari. Ma copine est revenue. J'ai ouvert mon petit business. Zerobet m'a sauvé.",
+    testimonialMoussaTitle: "187 jours. Je suis libre.",
+    testimonialMoussaBody: "Je pariais tous les jours sur Betika. Je mentais à ma femme. Maintenant, je suis clean depuis 6 mois. Le bouton panique m'a aidé au moins 30 fois. Sans Zerobet, je serais endetté à vie.",
+    testimonialOmarTitle: "90 jours. Le cap fatidique.",
+    testimonialOmarBody: "Je pensais que je ne pourrais jamais arrêter. 90 jours plus tard, je n'ai plus aucune envie. Mon cerveau est réparé. Zerobet m'a montré que la récupération est possible.",
+    testimonialIbrahimTitle: "UN AN. Je suis une légende.",
+    testimonialIbrahimBody: "Un an sans pari. Un an. J'ai économisé {amount}. J'ai acheté un terrain. J'ai repris ma vie en main. Si je l'ai fait, tu peux le faire. Commence aujourd'hui.",
+    testimonialBoubacarTitle: "Le parcours de guérison m'a sauvé",
+    testimonialBoubacarBody: "Les badges, les niveaux... c'est devenu un jeu sain. Au lieu de parier, je veux débloquer le prochain rang. 45 jours. Je ne reviens jamais en arrière.",
+    testimonialAwaTitle: "Femme et accro aussi",
+    testimonialAwaBody: "On parle peu des femmes parieuses. J'ai perdu {amount} en 2 ans. Zerobet m'a accueillie sans jugement. 156 jours clean. Merci à la communauté.",
+    testimonialDjimieTitle: "Les envies passent vraiment",
+    testimonialDjimieBody: "12 jours. Les premières nuits étaient dures, mais chaque envie est passée en quelques minutes. Zerobet m'aide à tenir heure par heure.",
+    testimonialPatriceTitle: "J'ai remboursé mes dettes",
+    testimonialPatriceBody: "En 78 jours j'ai économisé {amount}. J'ai commencé à rembourser mes dettes et je dors normalement à nouveau.",
+    testimonialEssohanaTitle: "Une page se tourne",
+    testimonialEssohanaBody: "210 jours sans parier. J'ai repris mes études par correspondance. La honte s'est transformée en fierté.",
+    testimonialCheikhNTitle: "À 19 ans, j'ai stoppé net",
+    testimonialCheikhNBody: "J'ai commencé les paris à 17 ans avec l'argent de la cantine. 30 jours clean grâce au bouton panique et au groupe.",
+    testimonialYaoTitle: "Cinq cents jours",
+    testimonialYaoBody: "Cinq cents jours. {amount} économisés, un compte d'épargne ouvert, et mes enfants qui rient à nouveau. Si j'ai pu, tu peux.",
+    testimonialMarcAimeTitle: "Une semaine",
+    testimonialMarcAimeBody: "Sept jours seulement, mais c'est déjà la plus longue période depuis trois ans. Le quiz m'a ouvert les yeux sur mes symptômes.",
+    // Country names (ISO 3166-1 alpha-2 code lookup)
+    countryCI: "Côte d'Ivoire",
+    countrySN: "Sénégal",
+    countryML: "Mali",
+    countryCM: "Cameroun",
+    countryGN: "Guinée",
+    countryFR: "France",
+    countryBJ: "Bénin",
+    countryCD: "RD Congo",
+    countryTG: "Togo",
+    countryGA: "Gabon",
+    // Misc short labels used in community cards
+    dayShort: "j",
+    yearsOld: "ans",
+    cleanShort: "clean",
+    sessionsLabel: "sessions",
+    certifiedBadge: "Certifié",
+    mentorBadge: "Mentor",
+    psyBadge: "Psy",
+    me: "Moi",
+    // ---- Parcours (ranks) ----
+    parcoursTitle: "Parcours de Guérison",
+    parcoursSubtitle: "13 niveaux vers ta libération",
+    parcoursCurrentRank: "Rang actuel",
+    parcoursNextRank: "Prochain rang",
+    parcoursLocked: "Verrouillé",
+    parcoursUnlocked: "Débloqué",
+    parcoursCollection: "Collection",
+    parcoursEvolution: "Évolution",
+    parcoursAll: "Tous",
+    parcoursRanksUnlocked: "{n}/{total} rangs débloqués",
+    parcoursProgressToNext: "Progression vers {rank}",
+    parcoursMoreDays: "Plus que {n} jour(s) avant {rank}",
+    parcoursLegend: "Légende !",
+    parcoursLegendDesc: "Tu as débloqué tous les rangs. Tu es un maître de toi-même.",
+    parcoursFooterMotivation: "Chaque jour sans pari est une brique de plus dans ta nouvelle vie.",
+    parcoursFooterMotivation2: "Continue, tu construis quelque chose de grand.",
+    parcoursDaysShort: "{n}j",
+    parcoursUntilRank: "{n} jour(s) avant",
+    // ---- Settings ----
+    settingsTitle: "Paramètres",
+    settingsAccount: "Compte",
+    settingsPlan: "Mon plan",
+    settingsPreferences: "Préférences",
+    settingsLanguage: "Langue",
+    settingsGender: "Genre",
+    settingsName: "Nom",
+    settingsPrivacy: "Confidentialité & Protection des données",
+    settingsAnonymousMode: "Mode anonyme",
+    settingsAnonymousDesc: "Tes posts apparaissent comme 'Anonyme'",
+    settingsDataConsent: "Consentement aux données",
+    settingsDataConsentDesc: "J'accepte que mes données soient stockées",
+    settingsDataProtected: "Données protégées",
+    settingsResetApp: "Réinitialiser l'application",
+    settingsResetConfirm: "Toutes tes données seront effacées. Es-tu sûr ?",
+    settingsAdmin: "Mode Admin",
+    settingsAdminTitle: "Panneau Admin",
+    settingsAdminStreak: "Jours de série",
+    settingsAdminPlan: "Plan",
+    settingsAdminScore: "Score d'addiction",
+    settingsAdminLevel: "Niveau d'addiction",
+    settingsAdminReset: "Réinitialiser les données",
+    settingsAdminAddJournal: "Ajouter entrée journal",
+    settingsAdminMilestone: "Simuler jalon",
+    settingsAdminClose: "Fermer",
+    settingsAbout: "À propos",
+    settingsVersion: "Version",
+    settingsAppearance: "Apparence",
+    settingsNotifications: "Notifications",
+    settingsData: "Données",
+    settingsSound: "Sons",
+    settingsSoundDesc: "Effets sonores",
+    settingsHaptics: "Vibrations",
+    settingsHapticsDesc: "Retour haptique",
+    settingsTheme: "Thème",
+    settingsThemeLight: "Clair",
+    settingsThemeDark: "Sombre",
+    settingsThemeSystem: "Système",
+    settingsTerms: "Conditions d'utilisation",
+    settingsPolicy: "Politique de confidentialité",
+    settingsContact: "Contact",
+    settingsExportData: "Exporter mes données",
+    settingsImportData: "Importer des données",
+    settingsDeleteAccount: "Supprimer mon compte",
+    settingsPlanFree: "Gratuit",
+    settingsPlanPremium: "Premium",
+    settingsPlanMentor: "Mentor",
+    settingsPlanPsychologist: "Psychologue",
+    // ---- Meditation ----
+    meditationTitle: "Méditation",
+    meditationSubtitle: "Calme ton esprit, renforce ta volonté",
+    meditationStart: "Commencer",
+    meditationPause: "Pause",
+    meditationResume: "Reprendre",
+    meditationStop: "Arrêter",
+    meditationTechnique1: "4-7-8 Respiration",
+    meditationTechnique2: "Cohérence cardiaque",
+    meditationTechnique3: "Respiration alternée",
+    meditationTechnique4: "Box breathing",
+    meditationTechnique5: "Respiration profonde",
+    meditationDuration: "Durée",
+    meditationCycles: "Cycles",
+    meditationDifficulty: "Difficulté",
+    meditationEasy: "Facile",
+    meditationMedium: "Moyen",
+    meditationAdvanced: "Avancé",
+    meditationCategoryCrisis: "Crise",
+    meditationCategoryMotivation: "Motivation",
+    meditationCategoryRelaxation: "Relaxation",
+    meditationCategoryEnergy: "Énergie",
+    meditationGuided: "Méditations guidées",
+    meditationBreathing: "Techniques de respiration",
+    meditationSessionComplete: "Session complétée !",
+    meditationSessionCompleteDesc: "Tu as médité pendant {n} minutes. Continue !",
+    meditationInhale: "Inspire",
+    meditationExhale: "Expire",
+    meditationHold: "Retiens",
+    // ---- Stats ----
+    statsTitle: "Statistiques",
+    statsSubtitle: "Visualise ta progression",
+    statsStreak: "Série",
+    statsSavings: "Économies",
+    statsJournal: "Journal",
+    statsCrises: "Crises",
+    statsMoodTrend: "Tendance d'humeur",
+    statsSavingsGrowth: "Croissance des économies",
+    statsMoodDistribution: "Distribution d'humeur",
+    statsMoodTimeline: "Timeline d'humeur",
+    statsRegularity: "Régularité",
+    statsDominantMood: "Humeur dominante",
+    statsNoData: "Pas encore de données. Continue ton parcours et tes statistiques apparaîtront ici.",
+    statsOverview: "Vue d'ensemble",
+    statsProgress: "Progrès",
+    statsBestDay: "Meilleur jour",
+    statsWorstDay: "Jour le plus dur",
+    statsTotalEntries: "Entrées totales",
+    statsResolvedCravings: "Envies surmontées",
+    statsMeditationStreak: "Série de méditation",
+    statsNoDataShort: "Pas encore de données",
+    statsViewDashboard: "Voir le tableau de bord",
+    // ---- Resources ----
+    resourcesTitle: "Ressources",
+    resourcesSubtitle: "Articles, vidéos et contacts utiles",
+    resourcesCategoryAll: "Tous",
+    resourcesCategoryAddiction: "Addiction",
+    resourcesCategoryTechniques: "Techniques",
+    resourcesCategoryFinance: "Finance",
+    resourcesCategoryTestimonials: "Témoignages",
+    resourcesCategoryMeditation: "Méditation",
+    resourcesCategoryStories: "Histoires",
+    resourcesReadMore: "Lire la suite",
+    resourcesReadingTime: "{n} min de lecture",
+    resourcesFeatured: "À la une",
+    resourcesArticles: "Articles",
+    resourcesVideos: "Vidéos",
+    resourcesHotlines: "Lignes d'écoute",
+    resourcesApps: "Applications",
+    resourcesBooks: "Livres",
+    resourcesNoArticles: "Aucun article dans cette catégorie.",
+    // ---- SOS ----
+    sosTitle: "SOS",
+    sosSubtitle: "Numéros d'urgence et plan de sécurité",
+    sosEmergency: "Urgence",
+    sosCallEmergency: "Appeler",
+    sosHotline1: "Ligne d'écoute gambling",
+    sosHotline1Desc: "24/7 • Gratuit • Confidentiel",
+    sosHotline2: "Gambling Therapy International",
+    sosHotline2Desc: "Support en ligne mondial",
+    sosHotline3: "SOS Amitié",
+    sosHotline3Desc: "Écoute amicale 24/7",
+    sosHotline4: "Samu Social",
+    sosHotline4Desc: "Urgence sociale",
+    sosPanicButton: "Bouton Panique",
+    sosBreathing: "Exercice de respiration",
+    sosGrounding: "Ancrage",
+    sosSafetyPlan: "Plan de sécurité",
+    sosSafetyStep1: "Reconnaître les signes d'alerte",
+    sosSafetyStep2: "Identifier tes déclencheurs",
+    sosSafetyStep3: "Distraire ton esprit",
+    sosSafetyStep4: "Contacter un proche",
+    sosSafetyStep5: "Chercher de l'aide professionnelle",
+    sosPersonalContacts: "Contacts personnels",
+    sosAddContact: "Ajouter un contact",
+    sosContactName: "Nom",
+    sosContactPhone: "Téléphone",
+    sosContactRelation: "Relation",
+    sosNoContacts: "Aucun contact. Ajoute quelqu'un de confiance à appeler en cas de crise.",
+    // ---- Achievements ----
+    achievementsTitle: "Trophées",
+    achievementsSubtitle: "Chaque victoire mérite d'être célébrée",
+    achievementsHeaderTitle: "Réalisations",
+    achievementsYourExploits: "Tes exploits",
+    achievementsRecentUnlocks: "Déblocages récents",
+    achievementsNoItems: "Aucun exploit dans cette catégorie pour le moment.",
+    achievementsUnlocked: "Débloqués",
+    achievementsLocked: "Verrouillés",
+    achievementsProgress: "Progression",
+    achievementsTier: "Niveau",
+    achievementsTierAll: "Tous",
+    achievementsTierBronze: "Bronze",
+    achievementsTierSilver: "Argent",
+    achievementsTierGold: "Or",
+    achievementsTierDiamond: "Diamant",
+    achievementsTierLegendary: "Légendaire",
+    achievementsSpecial: "Trophées spéciaux",
+    achievementsRankBased: "Trophées de rang",
+    achievementsUnlockedCount: "{n}/{total} débloqués",
+    achievementsOfTarget: "{current}/{target}",
+    // ---- Profile ----
+    profileTitle: "Profil",
+    profileEdit: "Modifier",
+    profileStats: "Statistiques",
+    profileRecords: "Records",
+    profileLongestStreak: "Plus longue série",
+    profileMonthlySavings: "Économies mensuelles",
+    profileTotalSavings: "Économies totales",
+    profileHardestDay: "Jour le plus dur",
+    profileMember: "Membre depuis",
+    profilePlan: "Plan",
+    profileRank: "Rang",
+    profileLanguage: "Langue",
+    profileGender: "Genre",
+    profileName: "Nom",
+    profileGoals: "Objectifs",
+    profileBadges: "Badges",
+    profileJoined: "Inscrit le",
+    profileEditName: "Modifier ton nom",
+    profileNamePlaceholder: "Ton prénom",
+    profileSave: "Enregistrer",
+    // ---- Gamification ----
+    gamificationTitle: "Quêtes & Défis",
+    gamificationSubtitle: "Gagne de l'XP et débloque des récompenses",
+    gamificationLevel: "Niveau",
+    gamificationXP: "XP",
+    gamificationNextLevel: "Niveau suivant",
+    gamificationDailyQuests: "Quêtes quotidiennes",
+    gamificationWeeklyQuests: "Quêtes hebdomadaires",
+    gamificationClaimReward: "Réclamer",
+    gamificationClaimed: "Réclamé",
+    gamificationProgress: "Progression",
+    gamificationChallenges: "Défis",
+    gamificationLeaderboard: "Classement",
+    gamificationHistory: "Historique",
+    gamificationStreakMultiplier: "Multiplicateur de série",
+    gamificationWeeklyChallenge: "Défi hebdomadaire",
+    gamificationReward: "+{n} XP",
+    gamificationLevelUp: "Niveau supérieur !",
+    gamificationLevelUpDesc: "Tu as atteint le niveau {n}",
+    gamificationRank: "Rang {n}",
+    // ---- Calendar ----
+    calendarTitle: "Calendrier",
+    calendarSubtitle: "Ton parcours jour par jour",
+    calendarToday: "Aujourd'hui",
+    calendarSelectDate: "Sélectionne une date",
+    calendarMilestones: "Jalons",
+    calendarJournal: "Journal",
+    calendarMood: "Humeur",
+    calendarNotes: "Notes",
+    calendarWeekDays: "Lun,Mar,Mer,Jeu,Ven,Sam,Dim",
+    calendarMonths: "Janvier,Février,Mars,Avril,Mai,Juin,Juillet,Août,Septembre,Octobre,Novembre,Décembre",
+    calendarAddNote: "Ajouter une note",
+    calendarNoMilestone: "Aucun jalon ce jour.",
+    calendarDay: "Jour {n}",
+    calendarMoodFor: "Humeur du {date}",
+    calendarNoteFor: "Note du {date}",
+    calendarSaveNote: "Enregistrer la note",
+    // ---- Support ----
+    supportTitle: "Aide & Support",
+    supportSubtitle: "On est là pour t'aider",
+    supportFaq: "FAQ",
+    supportContact: "Contact",
+    supportBug: "Signaler un bug",
+    supportSuggestion: "Suggestion",
+    supportVideos: "Tutoriels vidéo",
+    supportTroubleshooting: "Dépannage",
+    supportEmergency: "Urgence",
+    supportQuickHelp: "Aide rapide",
+    supportSend: "Envoyer",
+    supportSent: "Message envoyé ! Merci.",
+    supportCategory: "Catégorie",
+    supportCategoryStart: "Démarrage",
+    supportCategoryAccount: "Compte",
+    supportCategoryFeatures: "Fonctionnalités",
+    supportCategoryTech: "Technique",
+    supportSearchFaq: "Rechercher dans la FAQ...",
+    supportNoResults: "Aucun résultat.",
+    supportMessage: "Ton message",
+    supportMessagePlaceholder: "Décris ton problème...",
+    // ---- Program ----
+    programTitle: "Programme 90 jours",
+    programSubtitle: "Ta feuille de route vers la guérison",
+    programDay: "Jour {n}",
+    programPhase: "Phase {n}",
+    programTasks: "Tâches du jour",
+    programClaimRewards: "Réclamer les récompenses",
+    programWeeks: "Semaines",
+    programMilestones: "Jalons",
+    programInspiration: "Inspiration",
+    programPhase1: "Phase 1 : Fondations",
+    programPhase2: "Phase 2 : Renforcement",
+    programPhase3: "Phase 3 : Transformation",
+    programDailyTasks: "Tâches quotidiennes",
+    programWeeklyTheme: "Thème de la semaine",
+    programCompleted: "Complété",
+    programLocked: "Verrouillé",
+    programDayComplete: "Jour {n} complété !",
+    programAllTasksDone: "Toutes les tâches du jour sont complétées !",
+    programKeepGoing: "Continue, tu gères !",
+    programShareProgress: "Partager ma progression",
+    programPhase1Desc: "Les fondations de ta récupération",
+    programPhase2Desc: "Renforce tes nouvelles habitudes",
+    programPhase3Desc: "Transforme durablement ta vie",
+    // ---- Mentorship ----
+    mentorshipTitle: "Mentorat",
+    mentorshipSubtitle: "Trouve un mentor ou deviens-en un",
+    mentorshipBecomeMentor: "Devenir mentor",
+    mentorshipRequirements: "Conditions",
+    mentorshipFindMentor: "Trouver un mentor",
+    mentorshipSessions: "Sessions",
+    mentorshipRating: "Note",
+    mentorshipSpecialties: "Spécialités",
+    mentorshipCountries: "Pays",
+    mentorshipLanguages: "Langues",
+    mentorshipApply: "Postuler",
+    mentorshipApplication: "Candidature mentor",
+    mentorshipBenefit1: "Badge Mentor vérifié",
+    mentorshipBenefit2: "Impact positif sur la communauté",
+    mentorshipBenefit3: "Accès à des outils de coaching",
+    mentorshipBenefit4: "Reconnaissance de ton parcours",
+    mentorshipRequiredStreak: "90 jours sans pari minimum",
+    mentorshipChooseSpecialty: "Choisis ta spécialité",
+    mentorshipChooseCountry: "Choisis ton pays",
+    mentorshipChooseLanguage: "Choisis tes langues",
+    mentorshipBio: "Présente-toi",
+    mentorshipBioPlaceholder: "Parle-nous de ton parcours...",
+    mentorshipSubmit: "Soumettre ma candidature",
+    mentorshipSubmitted: "Candidature soumise ! Nous te contacterons.",
+    mentorshipNotEligible: "Tu dois avoir au moins 90 jours sans pari pour devenir mentor.",
+    mentorshipBookSession: "Réserver une session",
+    mentorshipSessionWith: "Session avec {name}",
+    mentorshipAvailable: "Disponible",
+    mentorshipNotAvailable: "Non disponible",
+    // ---- Withdrawal ----
+    withdrawalTitle: "Suivi du sevrage",
+    withdrawalSubtitle: "Comprends et traverse les symptômes",
+    withdrawalSymptoms: "Symptômes",
+    withdrawalTracker: "Tracker",
+    withdrawalTimeline: "Timeline",
+    withdrawalTips: "Conseils",
+    withdrawalExercises: "Exercices",
+    withdrawalPhysical: "Physique",
+    withdrawalMental: "Mental",
+    withdrawalDay: "Jour {n}",
+    withdrawalIntensity: "Intensité",
+    withdrawalAddSymptom: "Ajouter un symptôme",
+    withdrawalNoData: "Aucun symptôme suivi. Ajoute-en pour voir ton évolution.",
+    withdrawalSymptomHeadache: "Maux de tête",
+    withdrawalSymptomInsomnia: "Insomnie",
+    withdrawalSymptomFatigue: "Fatigue",
+    withdrawalSymptomSweats: "Sueurs",
+    withdrawalSymptomDigestive: "Troubles digestifs",
+    withdrawalSymptomPalpitations: "Palpitations",
+    withdrawalSymptomAnxiety: "Anxiété",
+    withdrawalSymptomIrritability: "Irritabilité",
+    withdrawalSymptomDepression: "Déprime",
+    withdrawalSymptomBrainFog: "Brouillard mental",
+    withdrawalTip1: "Hydrate-toi régulièrement",
+    withdrawalTip2: "Évite la caféine après 14h",
+    withdrawalTip3: "Marche 20 minutes par jour",
+    withdrawalTip4: "Pratique la respiration 4-7-8",
+    withdrawalTip5: "Parle à un proche de ton état",
+    withdrawalTimelinePeak: "Le pic du sevrage arrive entre le jour 3 et 7.",
+    withdrawalTimelineImprove: "Tu devrais sentir une amélioration après 2 semaines.",
+    withdrawalTimelineFull: "La plupart des symptômes disparaissent en 90 jours.",
+    // ---- Triggers ----
+    triggersTitle: "Déclencheurs",
+    triggersSubtitle: "Identifie ce qui provoque tes envies",
+    triggersAdd: "Ajouter un déclencheur",
+    triggersCategory: "Catégorie",
+    triggersIntensity: "Intensité",
+    triggersSituation: "Situation",
+    triggersCoping: "Stratégie de coping",
+    triggersResisted: "Résisté",
+    triggersHistory: "Historique",
+    triggersInsights: "Insights",
+    triggersHeatmap: "Carte de chaleur",
+    triggersAIInsight: "Insight IA",
+    triggersCategoryStress: "Stress",
+    triggersCategoryLoneliness: "Solitude",
+    triggersCategoryPayday: "Jour de paie",
+    triggersCategoryAlcohol: "Alcool",
+    triggersCategoryBoredom: "Ennui",
+    triggersCategorySocial: "Pression sociale",
+    triggersCategoryInsomnia: "Insomnie",
+    triggersCategoryOther: "Autre",
+    triggersSituationPlaceholder: "Décris la situation...",
+    triggersCopingPlaceholder: "Qu'est-ce qui t'a aidé ?",
+    triggersNoTriggers: "Aucun déclencheur enregistré. Identifie-les pour mieux les gérer.",
+    triggersResistedCount: "{n} résisté(s)",
+    triggersSuccumbedCount: "{n} cédé(s)",
+    triggersAIInsightDesc: "Ton déclencheur le plus fréquent est : {category}",
+    triggersMostFrequentTime: "Tu es le plus vulnérable : {time}",
+    triggersResistRate: "Taux de résistance : {pct}%",
+    // ---- Goals ----
+    goalsTitle: "Objectifs de vie",
+    goalsSubtitle: "Construis la vie que tu mérites",
+    goalsNew: "Nouvel objectif",
+    goalsCategory: "Catégorie",
+    goalsTargetDate: "Date cible",
+    goalsMilestones: "Jalons",
+    goalsProgress: "Progression",
+    goalsDelete: "Supprimer",
+    goalsEdit: "Modifier",
+    goalsCompleted: "Complété",
+    goalsSuggested: "Suggérés",
+    goalsCategoryHealth: "Santé",
+    goalsCategoryFinance: "Argent",
+    goalsCategoryRelationship: "Relations",
+    goalsCategoryCareer: "Carrière",
+    goalsCategoryPersonal: "Développement personnel",
+    goalsAddMilestone: "Ajouter un jalon",
+    goalsNoGoals: "Aucun objectif. Crée le premier pas vers ta nouvelle vie.",
+    goalsTarget: "Cible : {n}",
+    goalsCurrent: "Actuel : {n}",
+    goalsTitlePlaceholder: "Ex : Courir un semi-marathon",
+    goalsTargetAmount: "Montant cible",
+    goalsCurrentAmount: "Montant actuel",
+    goalsCompletedDate: "Complété le {date}",
+    goalsMilestoneReached: "Jalon atteint ! 🎉",
+    goalsSuggestedTitle: "Objectifs suggérés",
+    // ---- Affirmations ----
+    affirmationsTitle: "Affirmations",
+    affirmationsSubtitle: "Reprogramme ton esprit au quotidien",
+    affirmationsDaily: "Affirmation du jour",
+    affirmationsFavorites: "Favoris",
+    affirmationsCreate: "Créer",
+    affirmationsCategory: "Catégorie",
+    affirmationsShare: "Partager",
+    affirmationsNew: "Nouvelle affirmation",
+    affirmationsTips: "Astuces",
+    affirmationsCategoryAll: "Toutes",
+    affirmationsCategoryConfidence: "Confiance",
+    affirmationsCategoryMotivation: "Motivation",
+    affirmationsCategoryRecovery: "Récupération",
+    affirmationsCategoryPeace: "Paix",
+    affirmationsCategoryStrength: "Force",
+    affirmationsPlay: "Écouter",
+    affirmationsStop: "Arrêter",
+    affirmationsNoFavorites: "Aucun favori. Ajoute tes affirmations préférées.",
+    affirmationsTextPlaceholder: "Écris ton affirmation...",
+    affirmationsCreateTitle: "Créer une affirmation",
+    affirmationsSaved: "Affirmation enregistrée !",
+    affirmationsTip1: "Répète tes affirmations à voix haute chaque matin.",
+    affirmationsTip2: "Respire profondément pendant la lecture.",
+    affirmationsTip3: "Visualise-toi en train de vivre cette réalité.",
+    // ---- Relapse Recovery ----
+    relapseTitle: "Récupération après rechute",
+    relapseSubtitle: "Ce n'est pas un échec, c'est un détour",
+    relapseAcknowledge: "Reconnaître",
+    relapseStart: "Commencer",
+    relapseProtocol: "Protocole",
+    relapseStep: "Étape {n}",
+    relapsePhase: "Phase",
+    relapseComplete: "Compléter",
+    relapseAbandon: "Abandonner",
+    relapseHistory: "Historique",
+    relapseResilience: "Résilience",
+    relapseQuotes: "Citations",
+    relapseEmotion: "Comment te sens-tu ?",
+    relapseTrigger: "Qu'est-ce qui a déclenché la rechute ?",
+    relapseWhatHappened: "Que s'est-il passé ?",
+    relapseGetBackUp: "Me relever",
+    relapseYouAreNotFailure: "Tu n'es pas un échec. Une rechute fait partie du parcours.",
+    relapseBackHome: "Retour à l'accueil",
+    relapseContinue: "Continuer",
+    relapseProtocolComplete: "Protocole complété !",
+    relapseProtocolCompleteDesc: "Tu t'es relevé. C'est ce qui compte. Ta série repart de aujourd'hui.",
+    relapsePreviousStreak: "Ta série précédente : {n} jours",
+    relapseNewStreak: "Nouvelle série : jour 1",
+    relapseQuote1: "Tomber est permis, se relever est obligatoire.",
+    relapseQuote2: "Ce n'est pas la chute qui compte, c'est le relever.",
+    relapseQuote3: "Chaque rechute t'apprend quelque chose sur toi.",
+    relapseNoHistory: "Aucune rechute enregistrée. Continue comme ça !",
+    relapseAcknowledgeTitle: "Reconnaître ce qui s'est passé",
+    relapseAcknowledgeDesc: "Prends un instant pour comprendre. Pas de jugement.",
+    // ---- Community Chat ----
+    chatTitle: "Chat communautaire",
+    chatSubtitle: "Échange en temps réel avec la communauté",
+    chatNickname: "Pseudonyme",
+    chatJoin: "Rejoindre",
+    chatSend: "Envoyer",
+    chatTyping: "{name} écrit...",
+    chatOnline: "En ligne",
+    chatRoomGeneral: "Général",
+    chatRoomCrisis: "Soutien crise",
+    chatRoomVeterans: "Vétérans (90j+)",
+    chatGuidelines: "Règles de la communauté",
+    chatDisconnected: "Déconnecté",
+    chatConnecting: "Connexion...",
+    chatReconnect: "Reconnecter",
+    chatConnected: "Connecté",
+    chatPremiumOnly: "Chat Premium",
+    chatUpgrade: "Passer à Premium",
+    chatPremiumOnlyDesc: "Le chat en temps réel est réservé aux membres Premium.",
+    chatMessagePlaceholder: "Écris ton message...",
+    chatUsersOnline: "{n} en ligne",
+    chatSendFailed: "Échec de l'envoi. Réessaie.",
+    chatMessages: "Messages",
+    chatRules: "Règles",
+    chatRules1: "Respecte chaque membre. Aucun jugement.",
+    chatRules2: "Pas de promotion de paris ou d'opérateurs.",
+    chatRules3: "Protège ton anonymat. Pas de données personnelles.",
+    chatRules4: "En cas de crise, utilise le bouton SOS.",
+    chatFlag: "Signaler",
+    chatFlagged: "Message signalé. Merci.",
+    chatSystemWelcome: "Bienvenue dans le chat !",
+    chatNicknamePlaceholder: "Choisis un pseudo...",
+    chatNicknameSet: "C'est parti",
+    chatRoomInfo: "Salon",
+    chatReconnecting: "Reconnexion...",
+    // ---- Notifications ----
+    notificationsTitle: "Notifications",
+    notificationsSubtitle: "Choisis ce que Zerobet peut t'envoyer",
+    notificationsPermission: "Autorisation",
+    notificationsAllow: "Autoriser",
+    notificationsPrefs: "Préférences",
+    notificationsDailyReminder: "Rappel quotidien",
+    notificationsDailyReminderDesc: "Rappel pour ton check-in du jour",
+    notificationsCravingCheckin: "Vérification d'envie",
+    notificationsCravingCheckinDesc: "On vérifie que tu vas bien",
+    notificationsMilestones: "Alertes de jalons",
+    notificationsMilestonesDesc: "Célèbre tes victoires",
+    notificationsCommunity: "Activité communauté",
+    notificationsCommunityDesc: "Réponses, mentions, etc.",
+    notificationsWeekly: "Rapport hebdomadaire",
+    notificationsWeeklyDesc: "Bilan de ta semaine chaque dimanche",
+    notificationsQuotes: "Citations motivantes",
+    notificationsQuotesDesc: "Une citation par jour",
+    notificationsSilentHours: "Heures silencieuses",
+    notificationsSilentHoursDesc: "Pas de notifications la nuit",
+    notificationsTest: "Tester",
+    notificationsSchedule: "Programmer",
+    notificationsPWA: "Installer l'app",
+    notificationsInstall: "Installer",
+    notificationsEnabled: "Activé",
+    notificationsDisabled: "Désactivé",
+    notificationsTestSent: "Notification envoyée !",
+    notificationsInstallPrompt: "Installe Zerobet pour des notifications fiables",
+    notificationsInstallNow: "Installer maintenant",
+    notificationsNotSupported: "Notifications non supportées sur cet appareil",
+    notificationsPermissionGranted: "Autorisation accordée",
+    notificationsPermissionDenied: "Autorisation refusée",
+    notificationsSilentStart: "Début",
+    notificationsSilentEnd: "Fin",
+    notificationsTimeFormat: "{h}:{m}",
+    // ---- Common feedback / toasts ----
+    successSaved: "Enregistré !",
+    successDeleted: "Supprimé !",
+    successCreated: "Créé !",
+    successCompleted: "Complété !",
+    successUpdated: "Mis à jour !",
+    successXp: "+{n} XP",
+    successCheckin: "Check-in du jour complété",
+    successJournal: "Entrée de journal ajoutée",
+    errorRequired: "Ce champ est requis",
+    errorMinChars: "Minimum {n} caractères",
+    errorMaxChars: "Maximum {n} caractères",
+    errorInvalid: "Valeur invalide",
+    errorNetwork: "Erreur réseau. Réessaie.",
+    errorPermission: "Permission refusée",
+    confirmDelete: "Es-tu sûr de vouloir supprimer ?",
+    confirmReset: "Es-tu sûr de vouloir réinitialiser ?",
+    confirmAbandon: "Es-tu sûr de vouloir abandonner ?",
+    confirmLogout: "Te déconnecter ?",
+    copied: "Copié !",
+    shared: "Partagé !",
+    comingSoonDesc: "Cette fonctionnalité arrive bientôt.",
+    betaDesc: "Cette fonctionnalité est en bêta. Merci de ta patience.",
+    // ---- Misc ----
+    symptomsSelectedCount: "{n} symptôme(s) sélectionné(s)",
+    goalsSelectedCount: "{n} objectif(s) sélectionné(s)",
+    entriesCount: "{n} entrée(s)",
+    daysClean: "{n} jours sans pari",
+    progressPercent: "{n}%",
+    ofTotal: "{current}/{total}",
+    fcfaAmount: "{n} FCFA",
+    fcfaPerMonth: "{n} FCFA/mois",
+    daysRemaining: "{n} jour(s) restant(s)",
+    hoursRemaining: "{n}h restantes",
+    minutesRemaining: "{n} min restantes",
+    levelN: "Niveau {n}",
+    dayN: "Jour {n}",
+    weekN: "Semaine {n}",
+    monthN: "Mois {n}",
+    rankN: "Rang {n}",
+    stepN: "Étape {n}",
+    phaseN: "Phase {n}",
+    questionN: "Question {n}",
+    challengeN: "Défi {n}",
+    sessionN: "Session {n}",
+    outOf: "{n} sur {total}",
+    outOf100: "/ 100",
+    outOf5: "/ 5",
+    welcomeName: "{name}",
+    hiName: "Salut, {name}",
+    dearName: "Cher {name}",
+    dearNameF: "Chère {name}",
+    // ---- Task 14-c additional keys ----
+    welcomeTermsNotice: "En continuant, tu acceptes nos Conditions d'utilisation et notre Politique de protection des données.",
+    resultsYourScore: "Ton score",
+    resultsGoodNewsTitle: "Bonne nouvelle",
+    resultsRecovery90: "90% des personnes qui suivent un programme structuré récupèrent durablement.",
+    symptomsCount: "{n} sélectionné(s)",
+    symptomsHelpPersonalize: "Cela nous aide à personnaliser ton parcours",
+    carouselCommit: "Je m'engage",
+    engagementChooseGoals: "Choisis tes objectifs",
+    engagementGoalsCount: "{n} objectif(s) sélectionné(s)",
+    engagementPlan1: "Tu auras un coach IA 24/7 dans ta poche",
+    engagementPlan2: "Tu bloqueras tous les sites de paris",
+    engagementPlan3: "Tu suivras tes économies au franc près",
+    engagementPlan4: "Tu auras une communauté qui te soutient",
+    engagementPlan5: "Tu apprendras à gérer tes envies",
+    engagementPlan6: "Tu construiras une vie qui vaut plus qu'un pari",
+    engagementWhatZerobetDoes: "Ce que Zerobet fait pour toi",
+    engagementStepSignature: "Signe ton engagement",
+    engagementSignHereTitle: "Signe ici",
+    engagementSignHereHint: "Trace ta signature avec ton doigt",
+    paywallHero1: "Débloque tout ce dont tu as besoin pour récupérer",
+    paywallBestValueBadge: "Meilleure valeur",
+    paywallPopularBadge: "Populaire",
+    paywallMoreFeatures: "et bien plus encore...",
+    paywallDataProtection: "Tes données sont protégées. Annule quand tu veux.",
+    paywallSubscribeMonthly: "S'abonner — {amount}/mois",
+    paywallSubscribeAnnual: "S'abonner — {amount}/an",
+    // ---- Mobile Money payment (Zerobet 2.0.4) ----
+    paymentTitle: "Paiement Mobile Money",
+    paymentSubtitle: "Choisis ton opérateur pour régler ton abonnement",
+    paymentOperatorLabel: "Choisir un opérateur",
+    paymentPhoneTitle: "Ton numéro",
+    paymentPhoneLabel: "Numéro Mobile Money",
+    paymentPhoneHint: "Format local (ex : 07 00 00 00 00). Une demande de confirmation sera envoyée sur ce numéro.",
+    paymentPhoneInvalid: "Numéro invalide (8 à 15 chiffres)",
+    paymentContinue: "Continuer",
+    paymentConfirmTitle: "Confirmer le paiement",
+    paymentSummaryPlan: "Plan",
+    paymentSummaryCycle: "Période",
+    paymentSummaryOperator: "Opérateur",
+    paymentSummaryPhone: "Numéro",
+    paymentTotal: "Total à payer",
+    paymentPayNow: "Payer maintenant",
+    paymentCancelAnytime: "Sans engagement. Annule quand tu veux.",
+    paymentProcessingTitle: "En cours…",
+    paymentProcessingCheckPhone: "Regarde ton téléphone",
+    paymentProcessingEnterCode: "Une demande {operator} a été envoyée. Valide la transaction avec ton code secret.",
+    paymentStepRequest: "Demande envoyée",
+    paymentStepUssd: "En attente de ta confirmation",
+    paymentStepDebit: "Débit du compte",
+    paymentSuccessTitle: "Paiement réussi",
+    paymentSuccessDesc: "Bienvenue dans {plan} !",
+    paymentSuccessReceipt: "Reçu : {amount} payés via Mobile Money.",
+    paymentSuccessCta: "Commencer maintenant",
+    paymentFailedTitle: "Paiement échoué",
+    paymentFailedDesc: "Le paiement n'a pas abouti",
+    paymentFailedFunds: "Fonds insuffisants sur le compte. Vérifie ton solde puis réessaie.",
+    paymentFailedGeneric: "Une erreur est survenue. Réessaie dans quelques instants.",
+    paymentRetry: "Réessayer",
+    paymentBack: "Retour",
+    paymentSecure: "Paiement chiffré et sécurisé",
+    paymentCycleMonthly: "Mensuel",
+    paymentCycleAnnual: "Annuel",
+    atlasRateLimited: "Tu envoies des messages très vite. Attends un instant, je suis là.",
+    dashboardYouAt: "Tu es à",
+    dashboardDaysToRank: "Plus que {days} jours avant {rank}",
+    dashboardDearMale: "Cher champion,",
+    dashboardDearFemale: "Chère championne,",
+    dashboardPanicDesc: "Envie de parier ? Tape ici. On respire ensemble.",
+    dashboardViewAll: "Voir tout",
+    onboardingStep: "Étape",
+    onboardingOf: "sur",
+    onboardingSkipTitle: "Tu peux revenir plus tard",
+    onboardingSkipDesc: "Veux-tu vraiment passer l'onboarding ? Tu pourras le reprendre à tout moment dans les réglages, mais ton plan sera limité au mode gratuit.",
+    onboardingContinue: "Continuer l'onboarding",
+    onboardingGoDashboard: "Aller au tableau de bord",
+    // ---- DailyCheckIn ----
+    checkinTitle: "Check-in du jour",
+    checkinMoodQuestion: "Comment te sens-tu aujourd'hui ?",
+    checkinMoodSuper: "Super",
+    checkinMoodBien: "Bien",
+    checkinMoodNeutre: "Neutre",
+    checkinMoodDifficile: "Difficile",
+    checkinMoodCritique: "Critique",
+    checkinCravingQuestion: "As-tu ressenti l'envie de parier aujourd'hui ?",
+    checkinResistanceQuestion: "Comment as-tu résisté ?",
+    checkinResistanceRespiration: "Respiration",
+    checkinResistanceJournal: "Journal",
+    checkinResistanceAtlas: "Atlas AI",
+    checkinResistanceAppel: "Appel proche",
+    checkinResistanceAutre: "Autre",
+    checkinCompleted: "Check-in du jour complété",
+    checkinMotivHard30: "Tu es fort, tu as déjà prouvé ta résilience. Ce moment va passer.",
+    checkinMotivHard7: "Chaque jour sans pari est une victoire. Tu n'es pas seul.",
+    checkinMotivHard0: "C'est normal de trouver ça dur. Respire, tu vas y arriver.",
+    checkinMotivNeutre30: "La constance est ta plus grande force. Continue.",
+    checkinMotivNeutre0: "Un jour de plus, un pas de plus vers la liberté.",
+    checkinMotivGood90: "Tu es une légende vivante. Ta détermination inspire tout le monde.",
+    checkinMotivGood30: "Un mois et plus ! Tu fais partie de l'élite.",
+    checkinMotivGood7: "Une semaine et plus ! Tu es sur la bonne voie.",
+    checkinMotivGood0: "Chaque jour compte. Tu es plus fort que l'envie.",
+    // ---- TutorialTooltips ----
+    tutorialSkip: "Passer",
+    tutorialNext: "Suivant",
+    tutorialStart: "Commencer",
+    tutorialStep1Title: "Ta série de jours",
+    tutorialStep1Desc: "C'est le cœur de ta guérison. Chaque jour sans pari fait grandir cette flamme. Plus tu avances, plus ton rang évolue.",
+    tutorialStep2Title: "Bouton d'urgence",
+    tutorialStep2Desc: "L'envie de parier arrive ? Tape ici. On respire ensemble avec la technique 4-7-8. Tu n'es jamais seul.",
+    tutorialStep3Title: "Actions rapides",
+    tutorialStep3Desc: "Tous tes outils essentiels réunis : journal, méditation, économies, communauté, et bien plus.",
+    tutorialStep4Title: "Coach Atlas AI",
+    tutorialStep4Desc: "Ton coach personnel disponible 24/7. Pose tes questions, partage tes doutes, reçois des conseils sur mesure.",
+    tutorialStep5Title: "Communauté",
+    tutorialStep5Desc: "Des milliers de personnes comme toi. Témoignages, forum, mentors. Ta guérison se construit avec les autres.",
+    tutorialStep6Title: "C'est parti !",
+    tutorialStep6Desc: "Tu es prêt à commencer ton voyage. Reviens chaque jour pour ton check-in, et n'oublie pas : un jour à la fois.",
+    refreshing: "Actualisation...",
+    refreshingData: "Actualisation des données...",
+    achievementNewRank: "Nouveau rang débloqué !",
+    tapToClose: "Tape pour fermer",
+    // ---- Quick Actions ----
+    qaPanic: "Urgence",
+    qaQuests: "Quêtes",
+    qaJournal: "Journal",
+    qaSavings: "Économies",
+    qaStats: "Stats",
+    qaMeditation: "Méditation",
+    qaAtlas: "Atlas AI",
+    qaBlocker: "Bloqueur",
+    qaCommunity: "Communauté",
+    qaChat: "Chat Live",
+    qaTrophies: "Trophées",
+    qaResources: "Ressources",
+    qaProfile: "Profil",
+    qaSOS: "SOS",
+    qaCalendar: "Calendrier",
+    qaHelp: "Aide",
+    qaProgram: "Programme",
+    qaMentor: "Mentor",
+    qaGoals: "Objectifs",
+    qaAffirmations: "Affirmations",
+    qaWithdrawal: "Sevrage",
+    qaTriggers: "Déclencheurs",
+    qaRelapse: "Rechute",
+    qaNotifications: "Notifications",
+    // ---- MoodTracker ----
+    moodFrustrated: "Frustré",
+    moodAnxious: "Anxieux",
+    moodTempted: "Tenté",
+    moodCalm: "Calme",
+    moodProud: "Fier",
+    moodStrong: "Fort",
+    moodQuestion: "Comment te sens-tu maintenant ?",
+    moodHint: "Tape une émotion pour l'enregistrer",
+    moodEntryPrefix: "Humeur du jour :",
+    moodSaved: "Merci ! Ton humeur est enregistrée.",
+    moodNoneToday: "Aucune humeur enregistrée aujourd'hui",
+    moodCountToday: "{count} humeur(s) aujourd'hui",
+    moodViewJournal: "Voir le journal",
+    // ---- Motivational messages ----
+    motiv0: "Aujourd'hui est le premier jour de ta nouvelle vie.",
+    motiv3: "Les premiers jours sont les plus durs. Tu tiens bon.",
+    motiv7: "Une semaine sans pari, c'est déjà une victoire.",
+    motiv30: "Tu reprends le contrôle. Chaque jour compte.",
+    motiv90: "Ton cerveau se répare. Ne lâche rien.",
+    motiv90plus: "Tu es une inspiration pour les autres.",
+    // ---- Daily challenges ----
+    challenge1: "Note 3 choses pour lesquelles tu es reconnaissant",
+    challenge2: "Appelle un proche et dis-lui que tu l'apprécies",
+    challenge3: "Fais 10 minutes de méditation",
+    challenge4: "Écris dans ton journal comment tu te sens",
+    challenge5: "Vérifie tes économies et félicite-toi",
+    challenge6: "Partage ton témoignage avec la communauté",
+    challenge7: "Lis un article sur la récupération",
+    challenge8: "Fais une activité physique pendant 20 min",
+    challenge9: "Identifie ton plus grand déclencheur aujourd'hui",
+    challenge10: "Pratique la respiration 4-7-8 pendant 5 minutes",
+    challenge11: "Visualise ton avenir sans pari pendant 3 minutes",
+    challenge12: "Écris une lettre à ton futur toi",
+    dayLabel: "Jour",
+    // ---- Task 15-c additional keys (FR) ----
+    backToDashboard: "Retour au tableau de bord",
+    guestName: "Invité",
+    version: "Version",
+    export: "Exporter",
+    import: "Importer",
+    genderMale: "Homme",
+    genderFemale: "Femme",
+    genderUndefined: "Non défini",
+    planLabel: "Plan",
+    planFreeDesc: "Accès aux fonctionnalités de base",
+    planPremiumDesc: "Récupération complète débloquée",
+    planMentorDesc: "Tu guides la communauté",
+    planPsychologistDesc: "Profil professionnel certifié",
+    planDiscovery: "Découverte",
+    upgradeToPremium: "Passer à Premium",
+    manageSubscription: "Gérer mon abonnement",
+    // Zerobet 2.0.5 — Subscription management
+    backToSettings: "Retour aux paramètres",
+    subscriptionTitle: "Mon abonnement",
+    subscriptionActiveBadge: "Actif",
+    subscriptionCycleMonthly: "Facturé chaque mois via Mobile Money",
+    subscriptionCycleAnnual: "Facturé chaque année via Mobile Money",
+    subscriptionCycleMonthlyShort: "par mois",
+    subscriptionCycleAnnualShort: "par an",
+    subscriptionActiveSince: "Abonné depuis le {date}",
+    subscriptionActiveSinceUnknown: "Abonnement actif",
+    subscriptionNextRenewal: "Prochain renouvellement : {date}",
+    subscriptionCancel: "Annuler mon abonnement",
+    subscriptionCancelConfirmTitle: "Annuler l'abonnement ?",
+    subscriptionCancelConfirmDesc: "Tu garderas l'accès Premium jusqu'à la fin de la période en cours. Ensuite, ton compte repassera au plan gratuit et certaines fonctionnalités seront à nouveau limitées. Ta progression et ta série ne seront jamais perdues.",
+    subscriptionCancelKeep: "Garder mon abonnement",
+    subscriptionCancelYes: "Oui, annuler",
+    subscriptionCancelledToast: "Abonnement annulé. Ta progression reste intacte 💚",
+    subscriptionHistoryTitle: "Historique de paiements",
+    subscriptionSuccessCount: "{n} paiement(s) réussi(s)",
+    subscriptionNoPayments: "Aucun paiement pour le moment",
+    subscriptionNoPaymentsDesc: "Tes transactions Mobile Money apparaîtront ici après ton premier abonnement.",
+    subscriptionLoadError: "Impossible de charger l'historique des paiements.",
+    subscriptionStatus_success: "Réussi",
+    subscriptionStatus_failed: "Échoué",
+    subscriptionStatus_pending: "En attente",
+    subscriptionStatus_processing: "En cours",
+    subscriptionFailReason: "Motif : {reason}",
+    subscriptionFail_insufficient_funds: "Fonds insuffisants",
+    subscriptionFail_unknown: "Transaction refusée par l'opérateur",
+    subscriptionServerVerified: "Confirmé serveur",
+    subscriptionStatus_expired: "Expiré",
+    subscriptionSurveyTitle: "D'accord. On est tristes de te voir partir 🥲",
+    subscriptionSurveyDesc: "Ton retour nous aide à rendre Zerobet plus utile pour toi et pour les autres. C'est optionnel et anonyme.",
+    surveyReasonPrice: "C'est trop cher",
+    surveyReasonUnused: "Je n'utilise pas assez les fonctions Premium",
+    surveyReasonBreak: "Je fais juste une pause",
+    surveyReasonTechnical: "Problème technique",
+    surveyReasonOther: "Autre raison",
+    surveyCommentPlaceholder: "Un mot pour nous ? (optionnel)",
+    surveySend: "Envoyer",
+    surveySkip: "Passer",
+    surveyThanksToast: "Merci, ton avis compte 🙏",
+    chatLoadOlder: "Messages plus anciens",
+    chatLoadingOlder: "Chargement…",
+    chatHistoryStart: "Début de la conversation",
+    subscriptionTrustNote: "Paiements sécurisés via opérateurs Mobile Money agréés. Zerobet ne stocke jamais ton numéro complet.",
+    // Zerobet 2.0.9 — Mes données (RGPD hub)
+    dataRightsTitle: "Mes données",
+    dataRightsSubtitle: "Transparence totale : vois ce que Zerobet conserve, télécharge-le ou supprime-le en un instant.",
+    dataRightsInventoryTitle: "Ce que nous conservons",
+    dataRightsLocalTitle: "Sur ton appareil",
+    dataRightsLocalDesc: "Ta progression vit d'abord sur ton téléphone : série, XP, journal. Rien n'est obligatoirement envoyé.",
+    dataRightsChipStreak: "{n} jour(s) de série",
+    dataRightsChipLevel: "Niveau {level}",
+    dataRightsChipJournal: "{n} entrée(s) de journal",
+    dataRightsChipPlan: "Plan : {plan}",
+    dataRightsCloudTitle: "Sauvegarde cloud",
+    dataRightsCloudDesc: "Une copie de secours liée à ton identifiant anonyme, pour restaurer après une réinstallation.",
+    dataRightsSyncedAt: "Synchro : {date}",
+    dataRightsNoCloud: "Jamais synchronisé",
+    dataRightsPaymentsTitle: "Paiements",
+    dataRightsPaymentsDesc: "Historique de tes transactions Mobile Money — numéro toujours masqué.",
+    dataRightsPaymentsCount: "{n} transaction(s)",
+    dataRightsSpentTotal: "{amount} FCFA dépensés",
+    dataRightsExportTitle: "Exporter mes données",
+    dataRightsExportDesc: "Droit d'accès et de portabilité : une archive JSON complète — progression locale, sauvegarde serveur et paiements.",
+    dataRightsExportBtn: "Télécharger mon archive (JSON)",
+    dataRightsExporting: "Préparation de l'archive…",
+    dataRightsExportDone: "Archive téléchargée 📥",
+    dataRightsExportError: "Échec de l'export. Vérifie ta connexion et réessaie.",
+    dataRightsEraseTitle: "Droit à l'effacement",
+    dataRightsEraseDesc: "Supprime la sauvegarde cloud et l'historique de paiements de nos serveurs. Ta progression locale et ta série sont conservées.",
+    dataRightsEraseBtn: "Supprimer les données du cloud",
+    dataRightsEraseConfirmTitle: "Effacer tes données serveur ?",
+    dataRightsEraseConfirmDesc: "Cette action est définitive : la sauvegarde cloud et tout l'historique de paiements seront supprimés de nos serveurs. Tu pourras recréer une sauvegarde depuis cet appareil quand tu veux.",
+    dataRightsEraseAck: "Je comprends que cette action est définitive.",
+    dataRightsEraseConfirmBtn: "Oui, tout effacer",
+    dataRightsEraseCancel: "Annuler",
+    dataRightsEraseDone: "Données serveur supprimées 🗑️",
+    dataRightsEraseError: "Échec de la suppression. Réessaie.",
+    dataRightsLoadError: "Impossible de charger l'inventaire de tes données.",
+    dataRightsNote: "Zerobet est local-first : effacer tes données serveur n'effacera jamais ta série ni ton journal sur cet appareil.",
+    settingsDataRightsRow: "Mes données & RGPD",
+    settingsDataRightsRowDesc: "Inventaire, export complet et droit à l'effacement.",
+    // Zerobet 2.0.6 — Smart reminders (local notifications)
+    reminderCheckinTitle: "Ton check-in t'attend 💚",
+    reminderCheckinBody: "Prends 30 secondes pour toi. Ta série de {n} jour(s) continue avec toi.",
+    reminderCravingTitle: "Comment te sens-tu ?",
+    reminderCravingBody: "C'est l'heure où l'envie peut se faire sentir. Respire — tu as le contrôle.",
+    reminderQuoteTitle: "Ta citation du jour ✨",
+    reminderWeeklyTitle: "Ton rapport de la semaine est prêt 📊",
+    reminderWeeklyBody: "Découvre ton bilan : jours clean, écritures, crises gérées et XP gagnés.",
+    // Zerobet 2.0.6 — Notification settings screen i18n
+    notifDaily: "Rappel quotidien",
+    notifDailyDesc: "Un rappel quotidien pour ton check-in.",
+    notifCraving: "Check-in envie",
+    notifCravingDesc: "Vérifie comment tu vas pendant les heures critiques.",
+    notifMilestones: "Alertes de jalons",
+    notifMilestonesDesc: "Célèbre chaque jalon franchi (7, 14, 30 jours…).",
+    notifCommunity: "Activité communauté",
+    notifCommunityDesc: "Réponses, mentions et citations de la communauté.",
+    notifWeekly: "Rapport hebdomadaire",
+    notifWeeklyDesc: "Un résumé de ta semaine chaque dimanche.",
+    notifQuotes: "Citations motivation",
+    notifQuotesDesc: "Une citation motivante chaque jour à partir de 18h.",
+    notifSilent: "Heures silencieuses",
+    notifSilentDesc: "Aucune notification pendant tes heures de sommeil.",
+    notifSchedCraving: "Check-in envie (si activé)",
+    notifSchedQuote: "Citation de motivation",
+    notifSchedTimeSunday: "Dim. 09:00",
+    notifSchedTimeAnytime: "À tout moment",
+    notifTimeHeading: "Heure du rappel quotidien",
+    notifTimeSub: "Quand tu recevras ton check-in",
+    notifTimeAria: "Heure du rappel quotidien",
+    notifTimeNote: "Tu recevras un rappel chaque jour à {time}",
+    notifSilentHeading: "Heures silencieuses",
+    notifSilentSub: "Paix pendant ton sommeil",
+    notifSilentStart: "Début",
+    notifSilentEnd: "Fin",
+    notifSilentStartAria: "Début des heures silencieuses",
+    notifSilentEndAria: "Fin des heures silencieuses",
+    notifSilentNote: "Aucune notification ne sera envoyée entre {start} et {end} (sauf urgences).",
+    notifTestHeading: "Tester les notifications",
+    notifTestSub: "Vérifie que tout fonctionne",
+    notifTestSend: "Envoyer une notification de test",
+    notifTestEnableFirst: "Active les notifications d'abord",
+    notifTestTitle: "Zerobet",
+    notifTestBody: "Ceci est une notification de test. Tu es fort ! 💪",
+    notifTestSentToast: "Notification de test envoyée ! 👍",
+    notifLocalScopeNote: "Les rappels s'envoient tant que l'application est ouverte sur ton appareil.",
+    notifScheduleHeading: "Ton programme de notifications",
+    notifScheduleSub: "Aperçu de ta semaine",
+    notifPrivacyHeading: "Tes notifications sont privées",
+    notifPrivacyDesc: "Nous n'avons pas accès au contenu de tes notifications. Elles sont générées localement sur ton appareil.",
+    notifFooterBadge: "Rappel bienveillant",
+    notifFooterText: "Les notifications t'aident à rester sur le chemin de la récupération. Mais n'oublie pas : tu es le maître de ton téléphone, pas l'inverse.",
+    notifStatusGranted: "Notifications activées",
+    notifStatusBlocked: "Notifications bloquées",
+    notifStatusEnable: "Active les notifications",
+    notifStatusDescGranted: "Tu recevras les rappels importants. Pour désactiver, ouvre les paramètres de ton navigateur.",
+    notifStatusDescBlocked: "Autorise les notifications dans les paramètres de ton navigateur pour recevoir les rappels.",
+    notifStatusDescEnable: "Reçois des rappels bienveillants pour rester sur le chemin de la récupération.",
+    notifAllowButton: "Autoriser les notifications",
+    notifGrantedTip: "Astuce : pour les désactiver plus tard, ouvre les paramètres du site dans ton navigateur.",
+    notifReenableTitle: "Comment réactiver :",
+    notifReenableDesc: "Clique sur l'icône cadenas/verrou dans la barre d'adresse → Autorise les notifications → Recharge la page.",
+    notifRecheckButton: "J'ai réactivé — revérifier",
+    notifReloadHint: "Recharge la page après avoir changé l'autorisation.",
+    notifInstallHeading: "Installer l'application",
+    notifInstallSub: "Accès rapide + notifications natives",
+    notifInstalledBadge: "Application installée ✓",
+    notifInstallDesc: "Installe Zerobet sur ton téléphone pour un accès rapide et des notifications.",
+    notifInstallButton: "Installer",
+    notifIosLabel: "iOS :",
+    notifIosSteps: "Safari → Partager → « Sur l'écran d'accueil »",
+    notifAndroidLabel: "Android :",
+    notifAndroidSteps: "Chrome → menu ⋮ → « Installer l'application »",
+    notifPrefsHeading: "Mes préférences",
+    notifPrefsSub: "Choisis ce qui te parle",
+    notifInstalledToast: "Zerobet est installé ! 🎉",
+    notifInstallHint: "Pour installer : ouvre le menu de ton navigateur et choisis « Installer l'application » ou « Ajouter à l'écran d'accueil ».",
+    notifInstallStartedToast: "Installation démarrée ! 📲",
+    notifInstallCancelledToast: "Installation annulée. Tu pourras réessayer plus tard.",
+    notifInstallErrorToast: "Impossible d'installer l'application pour le moment.",
+    settingsLanguageLabel: "Langue de l'application",
+    chooseLanguage: "Choisir une langue",
+    chooseGender: "Choisir un genre",
+    chooseTheme: "Choisir un thème",
+    settingsYourName: "Ton nom",
+    settingsNamePlaceholder: "Entre ton prénom...",
+    settingsDataProtectedDesc: "Tes données restent confidentielles et ne sont jamais vendues. Stockage local sécurisé.",
+    // ---- Zerobet 2.0 : sauvegarde cloud & export RGPD ----
+    settingsBackupTitle: "Sauvegarde & Données",
+    settingsBackupSync: "Sauvegarde automatique",
+    settingsBackupSyncDesc: "Ta progression (série, XP, objectifs) est sauvegardée de façon anonyme dans le cloud. Aucun contenu de journal ni de chat n'est envoyé.",
+    settingsBackupLastSync: "Dernière sauvegarde : {date}",
+    settingsBackupNever: "Jamais sauvegardé pour le moment",
+    settingsBackupSyncNow: "Synchroniser",
+    settingsBackupSyncing: "Synchro…",
+    settingsBackupRetry: "Réessayer",
+    settingsBackupStarted: "Sauvegarde en cours…",
+    settingsExportDesc: "Télécharge toutes tes données au format JSON (RGPD)",
+    settingsExportDone: "Export téléchargé",
+    settingsExportError: "Échec de l'export",
+    settingsThemeAuto: "Automatique",
+    themeLockNote: "Le thème sombre est actuellement verrouillé. Le mode automatique suit le système.",
+    starfieldIntensity: "Intensité du ciel étoilé",
+    glassEffect: "Effet de verre",
+    glassEffectDesc: "Active le flou translucent sur les cartes",
+    notificationPrefs: "Préférences de notification",
+    streakReminders: "Rappels de série",
+    streakRemindersDesc: "Rappel quotidien pour préserver ta série",
+    dailyMotivation: "Motivation quotidienne",
+    dailyMotivationDesc: "Reçois une citation motivante chaque jour",
+    newMilestones: "Nouveaux jalons",
+    newMilestonesDesc: "Sois notifié quand tu débloques un rang",
+    verification: "Vérification",
+    verificationDesc: "Rappel pour ton check-in quotidien",
+    weeklySummary: "Résumé hebdomadaire",
+    weeklySummaryDesc: "Tes stats de la semaine chaque dimanche",
+    preferredNotificationTime: "Heure de notification préférée",
+    dataManagement: "Gestion des données",
+    dataSize: "Taille des données",
+    clearCache: "Effacer le cache",
+    exportImportDesc: "L'export contient toutes tes données locales (série, journal, badges, paramètres). L'import remplace les données existantes.",
+    privacySecurity: "Confidentialité & Sécurité",
+    appLock: "Verrouillage de l'app",
+    appLockDesc: "Protège l'accès avec un code PIN",
+    discreteMode: "Mode discret",
+    discreteModeDesc: "Masque le nom de l'app dans les apps récentes",
+    autoLockSession: "Session automatique",
+    autoLockDesc: "Verrouille automatiquement l'app après {n} minute(s) d'inactivité",
+    soundHaptics: "Son & Haptiques",
+    soundDescFull: "Sons de boutons et de réussites",
+    hapticsDescFull: "Retours haptiques sur les interactions",
+    appVersion: "Version de l'application",
+    contactUs: "Nous contacter",
+    aboutMission: "Zerobet aide les parieurs africains à se libérer de l'addiction",
+    designedWithCare: "Conçu avec soin pour notre communauté",
+    resetDesc: "Cette action effacera toutes tes données (série, journal, badges, paramètres...). Action irréversible.",
+    resetAppConfirmTitle: "Réinitialiser l'application ?",
+    resetAppConfirmDesc: "Toutes tes données seront définitivement effacées : série de jours, journal, badges, témoignages, paramètres. Tu reviendras à zéro. Cette action est irréversible.",
+    dataExportedToast: "Données exportées avec succès 📤",
+    dataExportError: "Erreur lors de l'export",
+    dataImportedToast: "Données importées. Redémarrage… 📥",
+    dataImportError: "Fichier invalide — importation annulée",
+    fileReadError: "Lecture du fichier échouée",
+    cacheClearedToast: "Cache effacé 🧹",
+    cacheClearError: "Erreur lors du nettoyage",
+    profileTitleMain: "Mon Profil",
+    profileStatDaysClean: "Jours sans pari",
+    profileStatSaved: "Économisé",
+    profileStatBadges: "Badges",
+    profileStatCrises: "Crises gérées",
+    profileDaysCount: "{n} jours",
+    profileNoCrisis: "Aucune crise",
+    profileMemberSince: "Membre depuis le",
+    profileMyGoals: "Mes objectifs",
+    profileNoGoals: "Aucun objectif sélectionné. Tu peux en ajouter lors de l'onboarding.",
+    profileSignature: "Ta signature d'engagement",
+    profileSignatureAlt: "Signature d'engagement",
+    profileRecoveryStats: "Statistiques de récupération",
+    profileActivity: "Activité ({n} semaines)",
+    profileActivitiesCount: "{n} activité(s)",
+    profileHeatmapLess: "Moins",
+    profileHeatmapMore: "Plus",
+    profileHeatmapDesc: "Chaque case représente un jour. Plus c'est vert, plus tu as été actif (journal, méditation, check-ins, crises gérées).",
+    profileDataPrivate: "Tes données restent privées et stockées localement sur ton appareil.",
+    profileAccessSettings: "Accéder aux paramètres",
+    profileAvatarColor: "Couleur de l'avatar",
+    profilePhotoAdd: "Ajouter une photo de profil",
+    profilePhotoChange: "Changer la photo de profil",
+    profilePhotoRemove: "Supprimer la photo de profil",
+    profilePhotoUpdated: "Photo de profil mise à jour",
+    profilePhotoRemoved: "Photo de profil supprimée",
+    profilePhotoErrorType: "Le fichier doit être une image",
+    profilePhotoErrorSize: "L'image dépasse 8 Mo",
+    profilePhotoErrorRead: "Impossible de lire l'image",
+    atlasContextSummary: "{days} jours, plan {plan}",
+    atlasMessagesCount: "{n} message(s)",
+    atlasContextPrefix: "Atlas connaît ton contexte :",
+    atlasAnalyzeJournalPrompt: "Analyse mon journal et dis-moi quels patterns tu vois.",
+    atlasAskMotivationPrompt: "J'ai besoin de motivation pour continuer.",
+    atlasSeeProgressPrompt: "Montre-moi mes progrès et ce que j'ai accompli.",
+    atlasCrisisPrompt: "J'ai une envie de parier, aide-moi.",
+    atlasCurrentStreak: "Ta série actuelle",
+    atlasDays: "jours",
+    atlasScore: "Score",
+    atlasCrisisDesc: "Si tu ressens une envie forte de parier, utilise le bouton d'urgence. Atlas est aussi là pour t'aider à verbaliser.",
+    atlasTalkToAtlas: "Parler à Atlas",
+    atlasGreeting: "Salut, je suis Atlas",
+    atlasGreetingDesc: "Ton coach personnel. Choisis une question ci-dessous pour commencer, ou écris ton propre message.",
+    atlasClearConfirmDesc: "Tous les {n} messages seront définitivement supprimés. Cette action est irréversible.",
+    atlasClearAction: "Effacer",
+    atlasFallbackMessage: "Je suis là pour toi. Dis-moi ce qui se passe.",
+    atlasLockedTitle: "Atlas AI Coach",
+    atlasCanDo: "Atlas peut :",
+    atlasCanDo1: "Analyser ton journal et identifier tes patterns",
+    atlasCanDo2: "Te donner de la motivation sur mesure",
+    atlasCanDo3: "Célébrer tes jalons avec des messages personnalisés",
+    atlasCanDo4: "T'aider en cas de crise avec des techniques",
+    atlasUnlock: "Débloquer Atlas AI",
+    // ---- Zerobet 2.0 : quotas freemium (Atlas AI + Journal) ----
+    atlasQuotaTitle: "Quota gratuit atteint",
+    atlasQuotaDesc: "Tu as utilisé tes {n} messages gratuits du jour avec Atlas. Passe Premium pour un coaching illimité.",
+    atlasQuotaUsedToday: "Messages utilisés aujourd'hui",
+    atlasQuotaCount: "{used} / {total}",
+    atlasQuotaReset: "Ton quota se réinitialise à minuit. Reviens demain !",
+    atlasQuotaChip: "{n} restants",
+    journalQuotaTitle: "Journal gratuit épuisé",
+    journalQuotaDesc: "Tu as utilisé tes {n} entrées gratuites de la semaine. Passe Premium pour écrire sans limite.",
+    journalQuotaUsedThisWeek: "Entrées utilisées cette semaine",
+    journalQuotaReset: "Ton quota se réinitialise lundi. À très vite !",
+    journalQuotaChip: "{n} / 3 cette sem.",
+    // ---- Zerobet 2.0 : chat live + restauration cloud ----
+    communityTabChat: "Chat live",
+    chatQuotaRemaining: "{n} messages gratuits restants aujourd'hui",
+    chatQuotaEmpty: "Quota du jour atteint — la lecture reste libre",
+    chatQuotaToast: "Limite de {n} messages/jour atteinte. Passe Premium pour chatter sans limite !",
+    chatQuotaUpgrade: "Passer Premium",
+    settingsRestoreData: "Restaurer depuis le cloud",
+    settingsRestoreDesc: "Récupère ta progression sauvegardée (après réinstallation)",
+    settingsRestoreDone: "Progression restaurée avec succès !",
+    settingsRestoreNone: "Aucune sauvegarde trouvée pour cet appareil",
+    settingsRestoreError: "Échec de la restauration",
+    // ---- Zerobet 2.0 : rapport hebdomadaire ----
+    weeklyReportTitle: "Rapport de la semaine",
+    weeklyReportPeriod: "Du {from} au {to}",
+    weeklyReportClean: "Jours sans pari",
+    weeklyReportJournal: "Écritures",
+    weeklyReportPanic: "Crises gérées",
+    weeklyReportXP: "XP gagnés",
+    weeklyReportVerdictEmpty: "À découvrir",
+    weeklyReportVerdictStart: "Premiers pas",
+    weeklyReportVerdictGreat: "Excellente",
+    weeklyReportVerdictGood: "Solide",
+    weeklyReportVerdictTough: "Courage",
+    weeklyReportVerdictEmptyDesc: "Fais ton premier check-in et tes stats de la semaine apparaîtront ici.",
+    weeklyReportVerdictStartDesc: "Ta première semaine est lancée. Chaque jour sans pari construit la suivante.",
+    weeklyReportVerdictGreatDesc: "Semaine remarquable ! Ta constance cette semaine prouve que le changement est durable.",
+    weeklyReportVerdictGoodDesc: "Tu tiens bon. La régularité compte plus que la perfection — continue comme ça.",
+    weeklyReportVerdictToughDesc: "Cette semaine était rude, mais tu es resté(e). C'est exactement comme ça qu'on guérit.",
+    blockerProtection247: "Protection active 24/7",
+    blockerProtectionActive: "Protection active",
+    blockerAllSitesBlocked: "Tous les sites dangereux sont bloqués",
+    blockerHowItWorks: "Comment ça marche",
+    blockerHowItWorksDesc: "Active le bloqueur pour couper l'accès à +50 sites de paris. Le Mode Fort verrouille tout pendant 72h sans possibilité de désactiver. Ta volonté devient une technologie.",
+    blockerStatus: "Statut du bloqueur",
+    blockerProtected: "Protégé",
+    blockerSitesBlockedStatus: "Les sites sont bloqués",
+    blockerVulnerable: "Tu es vulnérable",
+    blockerBlocked: "Bloqués",
+    blockerStrictModeShort: "Mode Fort",
+    blockerStrict72h: "Verrouillage 72h",
+    blockerBypassAttempts: "Tentatives bloquées",
+    blockerBypassAttemptsDesc: "Depuis le début de ton parcours",
+    blockerStrictActiveBanner: "Mode Fort actif. Aucun déblocage possible avant la fin du compte à rebours.",
+    blockerMostDangerous: "Sites les plus dangereux",
+    blockerSiteAdded: "Site ajouté",
+    blockerSiteAddedDesc: "{name} est maintenant bloqué",
+    blockerSiteUrlPlaceholder: "Ex: monsite.com",
+    blockerAddButton: "Ajouter",
+    blockerFooterReassurance: "Nouveaux sites ajoutés automatiquement à la liste. Tu peux te concentrer sur ta guérison, on s'occupe du reste.",
+    blockerPremiumFeature: "Fonctionnalité Premium",
+    blockerPremiumDesc: "Coupe l'accès à +50 sites de paris, active le Mode Fort 72h, et reprends le contrôle total de tes impulsions.",
+    blockerPremiumFeature1: "Blocage instantané de 50+ sites",
+    blockerPremiumFeature2: "Mode Fort verrouillé 72h",
+    blockerPremiumFeature3: "Mises à jour automatiques",
+    blockerPremiumFeature4: "Catégories : International, Afrique, Crypto, France",
+    blockerUnlockWithPremium: "Débloquer avec Premium",
+    blockerLater: "Plus tard",
+    meditationTitleFull: "Méditation & Respiration",
+    meditationDaysConsecutive: "jours consécutifs",
+    meditationDay: "jour",
+    meditationStreak0: "Commence ta série aujourd'hui 🌱",
+    meditationStreak7: "Continue, chaque jour compte 💪",
+    meditationStreak30: "Ta routine s'installe, bravo 🔥",
+    meditationStreak30plus: "Tu es un exemple de régularité 🌟",
+    meditationSwipeHint: "Glisse pour explorer →",
+    meditationSessions: "sessions",
+    meditationSessionDone: "Séance de méditation terminée",
+    statsTitleMain: "Mes Statistiques",
+    statsScoreLabel: "Score",
+    // ---- Quiz questions (Task 16-b) ----
+    quizQ1: "Combien dépensez-vous en paris par semaine ?",
+    quizQ1Opt0: "< 2 000 FCFA",
+    quizQ1Opt1: "2 000 - 10 000 FCFA",
+    quizQ1Opt2: "10 000 - 50 000 FCFA",
+    quizQ1Opt3: "> 50 000 FCFA",
+    // Dynamic Q1 options that adapt to the user's selected currency (Task 17-a)
+    quizQ1LessThan: "Moins de {amount}",
+    quizQ1Range: "{min} - {max}",
+    quizQ1MoreThan: "Plus de {amount}",
+    quizQ2: "Pariez-vous même quand vous avez déjà perdu ce jour-là ?",
+    quizQ2Opt0: "Jamais",
+    quizQ2Opt1: "Parfois",
+    quizQ2Opt2: "Souvent",
+    quizQ2Opt3: "Toujours",
+    quizQ3: "Avez-vous déjà menti à un proche sur vos paris ou vos pertes ?",
+    quizQ3Opt0: "Non",
+    quizQ3Opt1: "Une fois",
+    quizQ3Opt2: "Parfois",
+    quizQ3Opt3: "Régulièrement",
+    quizQ4: "Pariez-vous pour « récupérer » vos pertes précédentes ?",
+    quizQ4Opt0: "Jamais",
+    quizQ4Opt1: "Parfois",
+    quizQ4Opt2: "Souvent",
+    quizQ4Opt3: "Presque toujours",
+    quizQ5: "Pensez-vous aux paris pendant votre travail ou vos études ?",
+    quizQ5Opt0: "Rarement",
+    quizQ5Opt1: "Parfois",
+    quizQ5Opt2: "Souvent",
+    quizQ5Opt3: "Très souvent",
+    quizQ6: "Avez-vous essayé d'arrêter et n'avez pas réussi ?",
+    quizQ6Opt0: "Non",
+    quizQ6Opt1: "1-2 fois",
+    quizQ6Opt2: "Plusieurs fois",
+    quizQ6Opt3: "Impossible",
+    quizQ7: "Ressentez-vous anxiété ou irritabilité quand vous ne pariez pas ?",
+    quizQ7Opt0: "Jamais",
+    quizQ7Opt1: "Légèrement",
+    quizQ7Opt2: "Souvent",
+    quizQ7Opt3: "Toujours",
+    quizQ8: "Avez-vous utilisé de l'argent prévu pour autre chose pour parier ?",
+    quizQ8Opt0: "Non",
+    quizQ8Opt1: "Rarement",
+    quizQ8Opt2: "Parfois",
+    quizQ8Opt3: "Régulièrement",
+    quizQ9: "Des proches vous ont-ils parlé de vos paris ?",
+    quizQ9Opt0: "Non",
+    quizQ9Opt1: "Oui une fois",
+    quizQ9Opt2: "Plusieurs fois",
+    quizQ9Opt3: "Conflits",
+    quizQ10: "Ressentez-vous une montée d'adrénaline quand vous placez un pari ?",
+    quizQ10Opt0: "Non",
+    quizQ10Opt1: "Un peu",
+    quizQ10Opt2: "Oui beaucoup",
+    quizQ10Opt3: "Besoin vital",
+    quizQ11: "Avez-vous des dettes liées aux paris ?",
+    quizQ11Opt0: "Non",
+    quizQ11Opt1: "Petites dettes",
+    quizQ11Opt2: "Dettes importantes",
+    quizQ11Opt3: "Très endetté",
+    quizQ12: "Pariez-vous la nuit ou très tôt le matin ?",
+    quizQ12Opt0: "Jamais",
+    quizQ12Opt1: "Rarement",
+    quizQ12Opt2: "Parfois",
+    quizQ12Opt3: "Souvent",
+    quizQ13: "Avez-vous sacrifié un repas ou des besoins essentiels pour parier ?",
+    quizQ13Opt0: "Non",
+    quizQ13Opt1: "Rarement",
+    quizQ13Opt2: "Parfois",
+    quizQ13Opt3: "Souvent",
+    quizQ14: "Vous êtes-vous senti honteux ou coupable après avoir parié ?",
+    quizQ14Opt0: "Jamais",
+    quizQ14Opt1: "Parfois",
+    quizQ14Opt2: "Souvent",
+    quizQ14Opt3: "À chaque fois",
+    quizQ15: "Pensez-vous que vous avez un problème avec les paris ?",
+    quizQ15Opt0: "Non",
+    quizQ15Opt1: "Peut-être",
+    quizQ15Opt2: "Probablement",
+    quizQ15Opt3: "Définitivement",
+    // ---- Tutorial accessibility + Parcours artifacts (Task 16-d) ----
+    tutorialAriaLabel: "Tutoriel interactif",
+    artifactSectionLabel: "Histoire",
+    artifact1Desc: "Posé sur ton chemin au premier lever du soleil, ce cristal brille de l'espoir des recommencements. Il éclaire la sortie de l'ombre.",
+    artifact1Story: "Posé sur ton chemin au premier lever du soleil, ce cristal brille de l'espoir des recommencements.",
+    artifact2Desc: "Forgée dans les brumes du réveil, elle protège ton esprit des illusions du jeu et dissipe le brouillard mental du sevrage précoce.",
+    artifact2Story: "Forgée dans les brumes du réveil, elle protège ton esprit des illusions du jeu.",
+    artifact3Desc: "Ta première vraie défense. Sept jours de forge l'ont rendu incassable. Les envies rebondissent désormais sur sa surface.",
+    artifact3Story: "Ta première vraie défense. Sept jours de forge l'ont rendu incassable.",
+    artifact4Desc: "Gravées par les anciens récupérateurs, ces runes portent leur sagesse et fortifient les voies neuronales endommagées par le jeu.",
+    artifact4Story: "Gravées par les anciens récupérateurs, ces runes portent leur sagesse.",
+    artifact5Desc: "Un mois de conquête. Ce sceptre couronne ta détermination et bannit le doute de ton esprit. Tu règnes sur ton propre royaume.",
+    artifact5Story: "Un mois de conquête. Ce sceptre couronne ta détermination.",
+    artifact6Desc: "Sphère de lumière pure, elle absorbe les tensions et renvoie la paix. Les tempêtes émotionnelles s'apaisent dans son halo.",
+    artifact6Story: "Sphère de lumière pure, elle absorbe les tensions et renvoie la paix.",
+    artifact7Desc: "Deux mois de pression l'ont cristallisé. Rien ne peut le briser. Ta volonté est devenue un cristal indestructible au cœur de ta poitrine.",
+    artifact7Story: "Deux mois de pression l'ont cristallisé. Rien ne peut le briser.",
+    artifact8Desc: "Le cap des 90 jours. Ton cerveau est né de nouveau. Tu es devenu quelqu'un d'autre, façonné par trois mois de guérison neuronale.",
+    artifact8Story: "Le cap des 90 jours. Ton cerveau est né de nouveau. Tu es devenu quelqu'un d'autre.",
+    artifact9Desc: "Quatre mois de méditation ont poli cette pierre. Elle révèle les vérités cachées et te fait voir les déclencheurs avant qu'ils n'apparaissent.",
+    artifact9Story: "Quatre mois de méditation ont poli cette pierre. Elle révèle les vérités cachées.",
+    artifact10Desc: "Six mois. Le feu qui te détruisait devient celui qui te motive. Le faux frisson du jeu est remplacé par la passion vraie pour la vie.",
+    artifact10Story: "Six mois. Le feu qui te détruisait devient celui qui te motive.",
+    artifact11Desc: "Neuf mois. Tu danses avec tes envies sans plus jamais trembler. La maîtrise totale de tes impulsions est enfin tienne.",
+    artifact11Story: "Neuf mois. Tu danses avec tes envies sans plus jamais trembler.",
+    artifact12Desc: "UN AN. Tu as conquis ta liberté. Les générations futures chanteront ton nom. Tu es désormais une légende vivante de la guérison.",
+    artifact12Story: "UN AN. Tu as conquis ta liberté. Les générations futures chanteront ton nom.",
+    artifact13Desc: "Deux ans. Tu ne te rétablis plus. Tu ES la lumière qui guide les autres. Au-delà de la guérison, tu deviens le phare des chercheurs à venir.",
+    artifact13Story: "Deux ans. Tu ne te rétablis plus. Tu ES la lumière qui guide les autres.",
+    // ---- Parcours screen labels (Task 16-d) ----
+    parcoursQuestTitle: "La Quête des Artéfacts",
+    parcoursArtifactsCount: "Parcours de Guérison · {n}/{total} artéfacts",
+    parcoursEachArtifactCloser: "Chaque artéfact te rapproche de ta liberté.",
+    parcoursCurrentArtifact: "Artéfact actuel",
+    parcoursNextArtifact: "Prochain artéfact : {name}",
+    parcoursNextArtifactLabel: "Prochain artéfact",
+    parcoursDaysUntilRank: "Plus que {n} jour(s) avant",
+    parcoursUpcomingPower: "Pouvoir à venir : {name}",
+    parcoursThreshold: "Seuil",
+    parcoursBackToArtifacts: "Retour aux artéfacts",
+    parcoursContinueQuest: "Continue ta quête",
+    parcoursPowerLabel: "Pouvoir · {name}",
+    parcoursPowerNameLabel: "Pouvoir : {name}",
+    parcoursYourEvolution: "Ton évolution",
+    parcoursVoyage: "Voyage des Artéfacts",
+    parcoursTierLabel: "Artéfact {tier} / 13 · {type}",
+    parcoursCurrentBadge: "Actuel",
+    parcoursConquered: "Conquis",
+    parcoursUnknownArtifact: "Artéfact {tier}",
+    parcoursUnknownPower: "Pouvoir mystérieux · {type}",
+    parcoursLockedCardDesc: "Cet artéfact sommeille encore. Continue ton chemin pour le révéler.",
+    parcoursAllUnlockedDesc: "Tu as débloqué tous les artéfacts. Tu es un maître de toi-même.",
+    parcoursFooterMotivationNew1: "Chaque jour sans pari rapproche d'un nouvel artéfact.",
+    parcoursFooterMotivationNew2: "Continue, ta quête est noble.",
+    parcoursMotivTier1: "Le début est toujours le plus dur. Mais tu es là, et c'est tout ce qui compte. Continue.",
+    parcoursMotivTier3: "Tu prends le rythme. Chaque jour t'éloigne un peu plus de l'ancien toi.",
+    parcoursMotivTier5: "Tu deviens fort. Les envies passent comme des nuages — elles ne t'arrêtent plus.",
+    parcoursMotivTier7: "Tu fais partie de l'élite. Ton cerveau se répare. Tu redeviens toi-même.",
+    parcoursMotivTier9: "Tu es une inspiration. Les autres te regardent et se disent : c'est possible.",
+    parcoursMotivTier12: "UN AN. Tu as gagné ta vie. Tu es une légende vivante.",
+    parcoursMotivTier13: "Tu es un maître de toi-même. Libre pour toujours. Cette liberté, personne ne pourra te l'enlever.",
+    // ---- Daily Insights (Task 18-a) ----
+    dailyInsightTitle: "Insight du jour",
+    dailyInsightGenerated: "Généré à partir de tes données",
+    dailyInsightViewMore: "Voir plus",
+    dailyInsightAriaRefresh: "Nouvel insight",
+    dailyInsightAriaDot: "Insight {n}",
+    dailyInsightEarly: "Tu es dans la phase la plus difficile. Chaque jour compte double.",
+    dailyInsightRepair: "Ton cerveau commence à se réparer. Les envies vont diminuer.",
+    dailyInsightControl: "Tu reprends le contrôle. La neuroplasticité travaille pour toi.",
+    dailyInsightInspiration: "Tu es une inspiration. Partage ton histoire avec la communauté.",
+    dailyInsightJournalPositive: "Tes entrées récentes montrent une humeur positive. Cette dynamique est précieuse — continue à la nourrir.",
+    dailyInsightJournalTension: "Tes écrits révèlent des tensions. Identifie tes déclencheurs et utilise le bouton d'urgence avant que l'envie n'augmente.",
+    dailyInsightJournalDefault: "Ton journal te donne un miroir sur tes émotions. Écrire régulièrement accélère ta guérison.",
+    dailyInsightPanic: "Tu as résisté à {count} envie(s) cette semaine. Sois fier de toi.",
+    dailyInsightDefault: "Continue ton parcours. Chaque jour t'amène plus près de la liberté.",
+    // ---- Heatmap Calendar (Task 18-a) ----
+    heatmapTitle: "Ton année de récupération",
+    heatmapSubtitle: "{clean} jours propres sur les {total} derniers jours",
+    heatmapCurrentStreak: "Série actuelle",
+    heatmapLongestStreak: "Plus longue série",
+    heatmapCleanDays: "Jours propres",
+    heatmapRecoveryRate: "Taux de récup.",
+    heatmapLess: "Moins",
+    heatmapMore: "Plus",
+    heatmapRelapse: "Rechute",
+    heatmapTapToRate: "Tape la case d'aujourd'hui pour noter ta journée",
+    heatmapDayUnitShort: "j",
+    heatmapCellFuture: "Jour à venir",
+    heatmapCellNoData: "Pas de données",
+    heatmapCellRelapse: "Rechute",
+    heatmapCellDifficult: "Journée difficile",
+    heatmapCellCorrect: "Journée correcte",
+    heatmapCellExcellent: "Journée excellente",
+    heatmapCellClean: "Journée propre",
+    heatmapCellUpcoming: "À venir",
+    heatmapTodayAria: "Aujourd'hui — {tooltip}. Tape pour noter ta journée.",
+    heatmapRatingTitle: "Comment s'est passée ta journée ?",
+    heatmapRatingDesc: "Sois honnête — chaque journée compte.",
+    heatmapDifficult: "Difficile",
+    heatmapDifficultDesc: "Journée dure, mais tu n'as pas craqué",
+    heatmapCorrect: "Correcte",
+    heatmapCorrectDesc: "Quelques envies, mais tu as tenu",
+    heatmapExcellent: "Excellente",
+    heatmapExcellentDesc: "Tu te sens fort, aucune envie",
+    heatmapCracked: "J'ai craqué",
+    heatmapCrackedDesc: "Ce n'est pas fini — on démarre le protocole",
+    heatmapDayRecorded: "Journée enregistrée",
+    heatmapDayRecordedDesc: "{label} • Merci d'avoir partagé.",
+    heatmapRelapseTitle: "On est là pour toi.",
+    heatmapRelapseDesc: "Protocole de 24h activé. Respire, on y va ensemble.",
+    heatmapClose: "Fermer",
+    // ---- Daily Quotes (Task 18-a) ----
+    quote1Text: "La douleur de la discipline pèse des grammes. La douleur du regret pèse des tonnes.",
+    quote1Author: "Jim Rohn",
+    quote2Text: "Tu n'as pas échoué tant que tu n'as pas arrêté d'essayer.",
+    quote2Author: "Proverbe",
+    quote3Text: "Le plus grand honneur d'un homme est de tenir sa parole.",
+    quote3Author: "Proverbe africain",
+    quote4Text: "Un homme qui se maîtrise vaut plus qu'un homme qui conquiert une ville.",
+    quote4Author: "Proverbe",
+    quote5Text: "Chaque jour sans pari est une victoire sur toi-même.",
+    quote5Author: "Zerobet",
+    quote6Text: "Ce qui ne te tue pas te rend plus fort. Mais ce qui t'enrichit te rend libre.",
+    quote6Author: "Zerobet",
+    quote7Text: "Le courage n'est pas l'absence de peur, mais la décision que quelque chose est plus important.",
+    quote7Author: "Ambrose Redmoon",
+    quote8Text: "Tu es le héros de ta propre histoire.",
+    quote8Author: "Zerobet",
+    quote9Text: "L'addiction ment. La récupération dit la vérité.",
+    quote9Author: "Zerobet",
+    quote10Text: "Ton avenir est créé par ce que tu fais aujourd'hui, pas demain.",
+    quote10Author: "Proverbe",
+    quote11Text: "L'argent économisé est de l'argent gagné.",
+    quote11Author: "Benjamin Franklin",
+    quote12Text: "Tu ne peux pas revenir en arrière. Mais tu peux commencer maintenant.",
+    quote12Author: "Zerobet",
+    // ---- Task 18-b: Community + Journal i18n key aliases + seed forum posts ----
+    // (These mirror existing equivalents so the task-spec'd key names resolve.
+    //   communityWriteTestimony  ≡ communityWriteTestimonial
+    //   community1DayAgo         ≡ communityDayAgo
+    //   communityDaysAgo         ≡ daysAgo (generic)
+    //   communityTab*            ≡ community*  (testimonials / forum / mentors / psychologists)
+    //   journalEntries           ≡ journalEntryCount
+    //   journalLast7Days         ≡ journal7Days
+    //   journalMood*             ≡ emotion*   (frustrated / anxious / calm / proud / strong)
+    //   )
+    community100Days: "100+ jours",
+    communityWriteTestimony: "Écrire mon témoignage",
+    community1DayAgo: "il y a 1 j",
+    communityDaysAgo: "il y a {n} j",
+    communityTabTestimonials: "Témoignages",
+    communityTabForum: "Forum",
+    communityTabMentors: "Mentors",
+    communityTabPsychologists: "Psychologues",
+    journalEntries: "{n} entrée(s)",
+    journalLast7Days: "Derniers 7 jours",
+    journalMoodFrustrated: "Frustré",
+    journalMoodAnxious: "Anxieux",
+    journalMoodCalm: "Calme",
+    journalMoodProud: "Fier",
+    journalMoodStrong: "Fort",
+    communityZerobetTeam: "Équipe Zerobet",
+    forumSeed0Title: "Une semaine de plus, je n'y croyais plus",
+    forumSeed0Content: "Jour 7 sans pari. Je pensais que c'était impossible. Le bouton panique m'a sauvé deux fois cette semaine. Merci la communauté, on tient ensemble.",
+    forumSeed0Reply0: "Continue frère, le cap des 30 jours arrive vite. Sois fier de chaque jour.",
+    forumSeed1Title: "Difficile aujourd'hui, je veux recharger mon compte",
+    forumSeed1Content: "Je ne l'ai pas fait mais l'envie est forte. J'ai gardé mon téléphone loin de moi pendant 1 heure. Vous faites quoi quand l'envie monte ?",
+    forumSeed2Title: "Les maths des paris : pourquoi tu perds TOUJOURS",
+    forumSeed2Content: "1xBet prend 7% de marge sur chaque pari. Sur 100 paris à 10 000 FCFA, tu perds en moyenne 70 000 FCFA, peu importe ton « feeling ». La maison gagne toujours. Reprends le contrôle.",
+    // ---- Task 18-c: Goals, Affirmations, Triggers, Withdrawal, Mentorship, Program, Artifact names ----
+    // Goals screen — new full set
+    goalsTransformation: "Ta transformation",
+    goalsTotal: "TOTAL",
+    goalsInProgress: "EN COURS",
+    goalsCompletedLabel: "COMPLÉTÉS",
+    goalsAll: "Tous",
+    goalCategoryHealth: "Santé",
+    goalCategoryFinance: "Argent",
+    goalCategoryRelationship: "Relations",
+    goalCategoryCareer: "Carrière",
+    goalCategoryPersonal: "Personnel",
+    goalCategorySpiritual: "Spirituel",
+    goalsNewLifeGoal: "Nouvel objectif de vie",
+    goalsEmpty: "Aucun objectif",
+    goalsEmptyDesc: "Pose ta première pierre. Quel rêve veux-tu accomplir ?",
+    goalsCreate: "Créer un objectif",
+    goalsSuggestedDesc: "Inspirés des parcours de récupération les plus efficaces.",
+    goalsUse: "Utiliser",
+    goalsFooterQuote: "Le jeu t'a pris quelque chose. Maintenant, reconstruis quelque chose de plus grand.",
+    goalsModalTitle: "Quel est ton rêve ?",
+    goalsFieldTitle: "Titre",
+    goalsFieldDescription: "Description (optionnel)",
+    goalsFieldCategory: "Catégorie",
+    goalsFieldTargetDate: "Date cible",
+    goalsFieldMilestones: "Sous-étapes",
+    goalsCreateButton: "Créer l'objectif",
+    goalsTitlePlaceholder2: "Ex : Rembourser mes dettes",
+    goalsDescPlaceholder: "Pourquoi cet objectif est important pour toi ?",
+    goalsMilestonePlaceholder: "Ex : Première étape…",
+    goalsMilestoneAdd: "Ajouter",
+    goalsMilestoneEmpty: "Ajoute au moins une sous-étape pour structurer ton objectif.",
+    goalsDeleteTitle: "Supprimer cet objectif ?",
+    goalsDeleteDesc: "« {title} » sera définitivement supprimé. Cette action est irréversible.",
+    goalsToastCreated: "Objectif créé ! 🎯",
+    goalsToastCompleted: "Objectif complété ! 🎉",
+    goalsToastDeleted: "Objectif « {title} » supprimé",
+    goalsToastUpdated: "Objectif mis à jour",
+    goalsErrTitleMin: "Le titre doit faire au moins 3 caractères",
+    goalsErrMilestone: "Ajoute au moins une sous-étape",
+    goalsEditTitle: "Modifier l'objectif",
+    goalsEditButton: "Modifier",
+    goalsSaveButton: "Enregistrer",
+    goalsDetailSteps: "étapes",
+    goalsDetailPast: "Échéance dépassée",
+    goalsDetailToday: "Aujourd'hui",
+    goalsDetailTomorrow: "Demain",
+    goalsDetailMoreSteps: "+ {n} sous-étapes…",
+    goalsPremiumLocked: "Débloque des objectifs personnalisés et bien plus avec Premium.",
+    goalsPremiumCta: "Débloquer avec Premium",
+    goalsSuggestion1Title: "Économiser {amount} en 6 mois",
+    goalsSuggestion1Desc: "Mets de côté chaque semaine ce que tu aurais parié. Tu verras ton compte grandir.",
+    goalsSuggestion1Milestone1: "Ouvrir un compte épargne séparé",
+    goalsSuggestion1Milestone2: "Économiser les premiers {amount}",
+    goalsSuggestion1Milestone3: "Atteindre {amount}",
+    goalsSuggestion1Milestone4: "Atteindre {amount}",
+    goalsSuggestion2Title: "Courir 5 km sans s'arrêter",
+    goalsSuggestion2Desc: "Un corps fort abrite un esprit fort. Construis ton endurance pas à pas.",
+    goalsSuggestion2Milestone1: "Marcher 30 min sans s'arrêter",
+    goalsSuggestion2Milestone2: "Alterner 1 min course / 2 min marche",
+    goalsSuggestion2Milestone3: "Courir 2 km en continu",
+    goalsSuggestion2Milestone4: "Courir 5 km sans s'arrêter",
+    goalsSuggestion3Title: "Recontacter un proche",
+    goalsSuggestion3Desc: "Les liens brisés se réparent. Le premier pas suffit parfois à tout changer.",
+    goalsSuggestion3Milestone1: "Identifier la personne à recontacter",
+    goalsSuggestion3Milestone2: "Envoyer un premier message",
+    goalsSuggestion3Milestone3: "Proposer un appel ou une rencontre",
+    goalsSuggestion3Milestone4: "Avoir une vraie conversation",
+    // Affirmations screen — visible strings
+    affirmationsHeroLabel: "AffIRMATION DU JOUR",
+    affirmationsFavorite: "Favori",
+    affirmationsNewBtn: "Nouvelle",
+    affirmationsAll: "Tout",
+    affirmationsCreateMine: "Créer mon affirmation",
+    affirmationsEmptyTitle: "Aucune affirmation",
+    affirmationsEmptyDesc: "Aucune affirmation dans cette catégorie pour l'instant. Crée la tienne !",
+    affirmationsMyFavorites: "Mes favoris",
+    affirmationsDailyReminder: "Rappel quotidien",
+    affirmationsReminderToggle: "Recevoir l'affirmation du jour chaque matin à 7h",
+    affirmationsReminderSoon: "Bientôt disponible — notifications natives",
+    affirmationsReminderTime: "Heure :",
+    affirmationsReminderDesc: "Commence ta journée avec une pensée positive. L'affirmation du jour t'aidera à rester focus sur tes objectifs.",
+    affirmationsPremiumLock: "Débloque les rappels quotidiens d'affirmations avec Premium.",
+    affirmationsTipsTitle: "Comment utiliser les affirmations",
+    affirmationsTipA: "Répète-les à voix haute, lentement, 3 fois.",
+    affirmationsTipB: "Respire profondément entre chaque répétition.",
+    affirmationsTipC: "Visualise-toi vivant cette affirmation.",
+    affirmationsFooterQuote: "Tes mots deviennent tes actions. Tes actions deviennent ton destin.",
+    affirmationsModalTitle: "Ton affirmation personnelle",
+    affirmationsFieldText: "Ton affirmation",
+    affirmationsFieldCategory: "Catégorie",
+    affirmationsPlaceholder: "Ex : Je suis plus fort que mes envies, chaque jour un peu plus.",
+    affirmationsCharMin: "Minimum 10 caractères ({n})",
+    affirmationsCustom: "✨ Personnalisée",
+    affirmationsFavoriteLabel: "Favori",
+    affirmationsAriaRemoveFav: "Retirer des favoris",
+    affirmationsAriaAddFav: "Ajouter aux favoris",
+    affirmationsAriaDelete: "Supprimer cette affirmation",
+    affirmationsConfirm: "Confirmer",
+    affirmationsDeleteBtn: "Supprimer",
+    affirmationsToastCopied: "Affirmation copiée dans le presse-papier",
+    affirmationsToastShareErr: "Impossible de partager pour le moment",
+    affirmationsToastRemoved: "Retiré des favoris",
+    affirmationsToastAdded: "Ajouté aux favoris ❤️",
+    affirmationsToastErrLen: "L'affirmation doit faire entre 10 et 200 caractères",
+    affirmationsToastErrCat: "Choisis une catégorie",
+    affirmationsToastCreated: "Affirmation créée ! ✨",
+    affirmationsToastDeleted: "Affirmation supprimée",
+    affirmationsSaveBtn: "Enregistrer",
+    affirmationsCatMorning: "Matin",
+    affirmationsCatCrisis: "Crise",
+    affirmationsCatSelfWorth: "Valeur personnelle",
+    affirmationsCatFuture: "Avenir",
+    affirmationsCatGratitude: "Gratitude",
+    affirmationsCatStrength: "Force",
+    // Triggers screen — visible strings
+    triggersMyTitle: "Mes Déclencheurs",
+    triggersReport: "Signaler un déclencheur",
+    triggersThisWeek: "Cette semaine",
+    triggersTopCat: "Top cat.",
+    triggersResistance: "Résistance",
+    triggersEmptyTitle: "Aucun déclencheur",
+    triggersEmptyDesc: "Signale ton premier déclencheur pour commencer à identifier tes patterns. Chaque déclencheur identifié est une victoire.",
+    triggersEmptyCta: "Signaler un déclencheur",
+    triggersNoPeriod: "Aucun déclencheur sur cette période.",
+    triggersNoPeriodHint: "Change de filtre pour voir plus.",
+    triggersSuccumbed: "Cédé",
+    triggersInsightsTitle: "Insights de la semaine",
+    triggersInsightTopCat: "{cat} : {pct}% de tes déclencheurs",
+    triggersInsightTopTod: "Moment le plus vulnérable : {time}",
+    triggersInsightTopCoping: "{method} : {rate}% de réussite",
+    triggersInsightsEmpty: "Continue à enregistrer tes déclencheurs pour débloquer plus d'insights.",
+    triggersHeatmapTitle: "30 derniers jours",
+    triggersHeatmapLegendLess: "Moins",
+    triggersHeatmapLegendMore: "Plus",
+    triggersAtlasTitle: "Insight Atlas AI",
+    triggersAtlasAsk: "Demander à Atlas",
+    triggersAtlasLocked: "Insight verrouillé",
+    triggersAtlasBlurb: "Tu es particulièrement vulnérable à certains déclencheurs à des moments précis de la journée. Atlas peut t'aider à comprendre ces patterns et te proposer des stratégies adaptées.",
+    triggersPremiumCta: "Débloquer avec Premium",
+    triggersFooterQuote: "Chaque déclencheur identifié est une victoire. Tu apprends à te connaître.",
+    triggersModalTitle: "Que s'est-il passé ?",
+    triggersFieldCategory: "Catégorie",
+    triggersFieldIntensity: "Intensité",
+    triggersIntensityLow: "Faible",
+    triggersIntensityHigh: "Très forte",
+    triggersFieldSituation: "Décris la situation",
+    triggersFieldSituationPlaceholder: "Décris la situation...",
+    triggersFieldCoping: "Méthode de coping",
+    triggersResistedToggle: "J'ai résisté à l'envie",
+    triggersSaveBtn: "Enregistrer",
+    triggersSituationMin: "Min 5 caractères ({n})",
+    triggersCatStress: "Stress",
+    triggersCatSolitude: "Solitude",
+    triggersCatPayday: "Jour de paie",
+    triggersCatAlcohol: "Alcool",
+    triggersCatBoredom: "Ennui",
+    triggersCatSocial: "Pression sociale",
+    triggersCatInsomnia: "Insomnie",
+    triggersCatAnger: "Colère",
+    triggersCatAds: "Publicités",
+    triggersCatOther: "Autre",
+    triggersFilter7d: "7 Jours",
+    triggersFilter30d: "30 Jours",
+    triggersFilterAll: "Tout",
+    triggersConfirmDelete: "Confirmer",
+    triggersAriaDeleteConfirm: "Confirmer la suppression",
+    triggersAriaDelete: "Supprimer le déclencheur",
+    triggersCopingBreathing: "Respiration 4-7-8",
+    triggersCopingCall: "Appel à un proche",
+    triggersCopingJournal: "Journal",
+    triggersCopingExercise: "Exercice",
+    triggersCopingMeditation: "Méditation",
+    triggersCopingDistraction: "Distraction",
+    triggersCopingNone: "Aucune",
+    triggersTimeJustNow: "à l'instant",
+    triggersTimeMinAgo: "il y a {n} min",
+    triggersTimeHoursAgo: "il y a {n}h",
+    triggersTimeYesterday: "hier",
+    triggersTimeDaysAgo: "il y a {n}j",
+    triggersTimeMorning: "Matin (5h-12h)",
+    triggersTimeAfternoon: "Après-midi (12h-18h)",
+    triggersTimeEvening: "Soir (18h-23h)",
+    triggersTimeNight: "Nuit (0h-5h)",
+    // Withdrawal screen — visible strings
+    withdrawalBannerTitle: "Le sevrage est normal et temporaire",
+    withdrawalBannerDesc: "Quand tu arrêtes de parier, ton cerveau doit se réadapter. Ces symptômes sont le signe que tu guéris.",
+    withdrawalBannerInfo: "La plupart des symptômes disparaissent en 4-6 semaines",
+    withdrawalSymptomsTitle: "Suivi des symptômes",
+    withdrawalSelectedCount: "{n} sélectionné(s)",
+    withdrawalActiveCount: "{n} actif(s)",
+    withdrawalNone: "Aucun",
+    withdrawalSaveBtn: "Enregistrer mes symptômes",
+    withdrawalTimelineTitle: "Chronologie du sevrage",
+    withdrawalYouAreHere: "TU ES ICI",
+    withdrawalSymptomsLabel: "Symptômes:",
+    withdrawalCurveTitle: "Courbe typique d'intensité (90 jours)",
+    withdrawalCurrentDay: "Jour actuel :",
+    withdrawalCopingTitle: "Stratégies pour faire face",
+    withdrawalDoNow: "Faire maintenant",
+    withdrawalTodaySummaryTitle: "Résumé du jour",
+    withdrawalTodayNone: "Aucun symptôme enregistré aujourd'hui",
+    withdrawalTodayNoneHint: "Coche tes symptômes ci-dessus pour suivre ton évolution.",
+    withdrawalTodayCount: "{n} symptôme(s) aujourd'hui",
+    withdrawalSavedToday: "Enregistré aujourd'hui",
+    withdrawalWarningTitle: "Quand consulter un professionnel",
+    withdrawalWarningDesc: "Si tu ressens un de ces signes, ne reste pas seul:",
+    withdrawalWarningContact: "Contacter un pro",
+    withdrawalWarningSos: "Appeler SOS",
+    withdrawalWarningSign1: "Pensées suicidaires",
+    withdrawalWarningSign2: "Symptômes qui s'aggravent après 30 jours",
+    withdrawalWarningSign3: "Incapacité de fonctionner normalement",
+    withdrawalWarningSign4: "Addiction de substitution",
+    withdrawalPhaseAcuteTitle: "Phase aiguë",
+    withdrawalPhaseAcuteRange: "Jours 1-7",
+    withdrawalPhaseAcuteDesc: "Symptômes les plus intenses",
+    withdrawalPhaseAcuteSymptoms: "Envies fortes, irritabilité, insomnie, anxiété",
+    withdrawalPhaseAcuteTip: "💡 Utilise le bouton panique et respire. Tu tiens le coup.",
+    withdrawalPhaseStabTitle: "Phase de stabilisation",
+    withdrawalPhaseStabRange: "Jours 8-30",
+    withdrawalPhaseStabDesc: "Diminution progressive",
+    withdrawalPhaseStabSymptoms: "Envies plus rares, mieux de sommeil, humeur variable",
+    withdrawalPhaseStabTip: "💡 Continue le journal et la méditation pour ancrer tes gains.",
+    withdrawalPhaseRecTitle: "Phase de récupération",
+    withdrawalPhaseRecRange: "Jours 31-90",
+    withdrawalPhaseRecDesc: "Symptômes résiduels",
+    withdrawalPhaseRecSymptoms: "Pic d'émotions par moments, mais retour d'énergie",
+    withdrawalPhaseRecTip: "💡 Partage ton histoire. Aider les autres renforce ta guérison.",
+    withdrawalPhaseHealTitle: "Phase de guérison",
+    withdrawalPhaseHealRange: "Jours 90+",
+    withdrawalPhaseHealDesc: "Retour à la normale",
+    withdrawalPhaseHealSymptoms: "Pensées rares, confiance retrouvée, projets de vie",
+    withdrawalPhaseHealTip: "💡 Maintiens tes routines. Tu peux maintenant devenir mentor.",
+    withdrawalSymptomConcentration: "Difficulté de concentration",
+    withdrawalSymptomCravings: "Envies intenses",
+    withdrawalSymptomAgitation: "Agitation",
+    withdrawalCopingInsomnia: "Insomnie",
+    withdrawalCopingAnxiety: "Anxiété",
+    withdrawalCopingCravings: "Envies intenses",
+    withdrawalCopingIrritability: "Irritabilité",
+    withdrawalCopingScreenMeditation: "Méditation",
+    withdrawalCopingScreenBreathing: "Respiration",
+    withdrawalCopingScreenJournal: "Journal",
+    withdrawalCopingScreenBouger: "Bouger",
+    withdrawalCopingScreenPanic: "Panic",
+    withdrawalCopingScreenBlocker: "Bloqueur",
+    withdrawalCopingScreenMentor: "Mentor",
+    withdrawalCopingScreenSos: "Contacter",
+    withdrawalCopingScreenMeditate: "Méditer",
+    // Mentorship screen — visible strings
+    mentorshipHeroTitle: "Partage ton expérience",
+    mentorshipHeroDesc: "Les mentors sont des récupérateurs avec 90+ jours sans pari qui guident les nouveaux membres.",
+    mentorshipBenefitBadge: "Badge Mentor vérifié",
+    mentorshipBenefitImpact: "Impact positif sur la communauté",
+    mentorshipBenefitTools: "Accès à des outils de coaching",
+    mentorshipBenefitRecognition: "Reconnaissance de ton parcours",
+    mentorshipJourneyTitle: "Ton parcours: {current} / {target} jours",
+    mentorshipEligible: "ÉLIGIBLE",
+    mentorshipDaysLeft: "{n}J RESTANTS",
+    mentorshipEligibleTitle: "Félicitations ! Tu es éligible pour devenir mentor.",
+    mentorshipEligibleDesc: "Remplis le formulaire ci-dessous pour postuler.",
+    mentorshipApplyBtn: "Postuler",
+    mentorshipNotEligibleTitle: "Plus que {n} jours avant de pouvoir devenir mentor",
+    mentorshipNotEligibleDesc: "Continue ta série — chaque jour compte.",
+    mentorshipMenteesTitle: "Tes mentorés",
+    mentorshipMenteesActive: "{n} actifs",
+    mentorshipMenteesSessions: "18 sessions",
+    mentorshipMenteesMessages: "Voir les messages",
+    mentorshipFormTitle: "Candidature mentor",
+    mentorshipFormSubmit: "Soumettre pour vérification",
+    mentorshipPsyToggle: "Je suis psychologue",
+    mentorshipPsyToggleDesc: "Vérification licence & consultations",
+    mentorshipPsyTitle: "Vérification psychologue",
+    mentorshipPsyName: "Nom complet avec titre",
+    mentorshipPsyNameHint: "Ex: Dr. Aminata Koné",
+    mentorshipPsyLicense: "Numéro de licence",
+    mentorshipPsySpecialty: "Spécialité",
+    mentorshipPsyCountry: "Pays d'exercice",
+    mentorshipPsyPrice: "Prix d'une séance (FCFA)",
+    mentorshipPsyDoc: "Document de vérification (licence ou diplôme)",
+    mentorshipPsyDocUploaded: "Téléversé (simulation)",
+    mentorshipPsyDocUpload: "Appuie pour téléverser",
+    mentorshipPsyDocHint: "PDF, JPG, PNG (5 Mo max)",
+    mentorshipPsyBio: "Bio",
+    mentorshipPsyBioHint: "{n} / 50 caractères minimum",
+    mentorshipPsyAlert: "Vérification sous 48h. Votre licence sera vérifiée auprès des autorités compétentes.",
+    mentorshipSuccessMentor: "Candidature envoyée !",
+    mentorshipSuccessPsy: "Vérification envoyée !",
+    mentorshipSuccessMsgPsy: "Ta licence sera vérifiée auprès des autorités compétentes. Réponse sous 48h.",
+    mentorshipSuccessMsgMentor: "Vérification sous 48h. Merci de vouloir aider la communauté.",
+    mentorshipAriaMessages: "Voir les messages de {name}",
+    // Program screen — visible strings
+    programOverviewLabel: "Programme de récupération",
+    programOverviewTitle: "90 jours pour changer ta vie",
+    programDayOn90: "Jour sur 90",
+    programDaysRemaining: "{n} jours restants",
+    programCompletedShort: "complété",
+    programPhase1Short: "Fondations",
+    programPhase2Short: "Consolidation",
+    programPhase3Short: "Transformation",
+    programPhaseComplete: "Phase complète",
+    programDaysLeftInPhase: "{n}j restants",
+    programPhaseProgressLabel: "Progression phase",
+    programPhaseGoalsLabel: "Objectifs de la phase",
+    programTipsLabel: "Conseils",
+    programTasksTitle: "Tâches du jour",
+    programTaskDone: "Tâche marquée comme faite",
+    programClaimBtn: "Réclamer les récompenses (+{n} XP)",
+    programClaimLocked: "Complète toutes les tâches pour réclamer",
+    programWeeklyTitle: "Thèmes hebdomadaires",
+    programMilestonesTitle: "Étapes clés",
+    programMilestoneNow: "Maintenant",
+    programMilestoneReached: "Atteint",
+    programInspirationLabel: "Message du jour • Jour {n}",
+    programShareBtn: "Partager",
+    programCompletedTitle: "Programme complété !",
+    programCompletedDesc: "Tu as transformé ta vie. Sois fier de toi. Continue d'inspirer les autres.",
+    programWeekLabel: "SEMAINE {n}",
+    programWeekCurrent: "En cours",
+    programPhase1Name: "Phase 1: Fondations",
+    programPhase1Subtitle: "Reprendre le contrôle",
+    programPhase2Name: "Phase 2: Consolidation",
+    programPhase2Subtitle: "Ancrer les nouvelles habitudes",
+    programPhase3Name: "Phase 3: Transformation",
+    programPhase3Subtitle: "Devenir une nouvelle personne",
+    // Artifact names + subtitles (13 × 2)
+    artifact1Name: "Le Cristal d'Aube",
+    artifact1Subtitle: "Jour 1",
+    artifact2Name: "L'Amulette de Brume",
+    artifact2Subtitle: "Jour 3",
+    artifact3Name: "Le Bouclier de Bronze",
+    artifact3Subtitle: "Jour 7 — Une semaine !",
+    artifact4Name: "Les Runes d'Argent",
+    artifact4Subtitle: "Jour 14 — Deux semaines",
+    artifact5Name: "Le Sceptre d'Or",
+    artifact5Subtitle: "Jour 30 — Un mois !",
+    artifact6Name: "L'Orbe de Platine",
+    artifact6Subtitle: "Jour 45",
+    artifact7Name: "Le Cœur de Diamant",
+    artifact7Subtitle: "Jour 60",
+    artifact8Name: "L'Émeraude de Renaissance",
+    artifact8Subtitle: "Jour 90 — Le cap critique",
+    artifact9Name: "Le Saphir de Sagesse",
+    artifact9Subtitle: "Jour 120",
+    artifact10Name: "Le Rubis de Passion",
+    artifact10Subtitle: "Jour 180 — Six mois",
+    artifact11Name: "L'Améthyste de Maîtrise",
+    artifact11Subtitle: "Jour 270",
+    artifact12Name: "La Couronne de Légende",
+    artifact12Subtitle: "Jour 365 — UN AN !",
+    artifact13Name: "L'Étoile de Maîtrise",
+    artifact13Subtitle: "Jour 730 — Deux ans",
+    // ---- Task 19-b: NotificationCenter ----
+    notifTitle: "Notifications",
+    notifMarkAllRead: "Tout marquer comme lu",
+    notifCloseAria: "Fermer les notifications",
+    notifEmpty: "Aucune notification",
+    notifEmptyHint: "Tes rappels et messages apparaîtront ici",
+    notifFooter: "🔔 Rappels et encouragements pour t'accompagner",
+    notifStreakTitle: "Rappel de série",
+    notifStreakMessage1: "Ta série est en jeu ! Ouvre l'app pour la maintenir.",
+    notifStreakMessage2: "N'oublie pas de vérifier ta série aujourd'hui. Chaque jour compte !",
+    notifMotivationTitle: "Motivation quotidienne",
+    notifMotivationMessage1: "Chaque jour sans pari est une victoire. Tu es plus fort que tu ne le penses.",
+    notifMotivationMessage2: "Le courage n'est pas l'absence de peur, c'est la décision d'aller de l'avant malgré tout.",
+    notifMilestoneTitle: "Jalon débloqué",
+    notifMilestoneMessage: "Tu as débloqué le rang Nouvelle Aube ! 🌅",
+    notifWeeklyTitle: "Résumé hebdomadaire",
+    notifWeeklyMessage: "Cette semaine : 5 jours sans pari, 7 143 FCFA économisés. Continue !",
+    notifCheckinTitle: "Vérification",
+    notifCheckinMessage: "Comment vas-tu ? Ton parcours compte. Prends un moment pour réfléchir.",
+    notifTimeNow: "À l'instant",
+    notifTimeMinAgo: "il y a {n} min",
+    notifTimeHoursAgo: "il y a {n}h",
+    notifTimeYesterday: "hier",
+    notifTimeDaysAgo: "il y a {n}j",
+    // ---- Task 19-b: MilestoneCelebration ----
+    milestoneReached: "Jalon atteint",
+    milestoneDays: "jours",
+    milestoneStatDays: "Jours",
+    milestoneStatSaved: "Économisé",
+    milestoneStatBadges: "Badges",
+    milestoneTrendMentor: "Tu peux désormais aider d'autres personnes en devenant mentor.",
+    milestoneTrendNext: "Plus que {n} jours jusqu'au prochain jalon.",
+    milestoneShareBtn: "Partager",
+    milestoneContinueBtn: "Continuer",
+    milestoneCloseAria: "Fermer",
+    milestoneCelebrationAria: "Célébration : {n} jours sans parier",
+    milestoneShareText: "🔥 J'ai atteint {n} jours sans parier avec Zerobet ! {emoji} #Récupération #Zerobet",
+    milestoneShareTitle: "Zerobet — Milestone atteint",
+    milestoneShareToast: "Partagé avec succès",
+    milestoneCopyToast: "Message copié dans le presse-papier",
+    milestoneShareUnavailable: "Partage non disponible sur cet appareil",
+    // Zerobet 2.0.7 — pride card (canvas share)
+    milestoneCardBtn: "Générer une carte à partager",
+    milestoneCardToast: "Carte partagée ! 🎉",
+    milestoneCardCopiedToast: "Carte copiée dans le presse-papiers 📋",
+    milestoneCardSavedToast: "Carte téléchargée dans tes images 🖼️",
+    milestoneCardError: "Impossible de générer la carte.",
+    milestoneCardSavedLine: "≈ {n} économisés",
+    milestoneCardTagline: "30 secondes de plus qu'hier loin des paris. Zerobet m'accompagne.",
+    // Zerobet 2.0.8 — journey recap card (canvas share)
+    journeyCardHeader: "Mon parcours Zerobet",
+    journeyCardDaysLabel: "jours sans parier",
+    journeyCardSavedLine: "≈ {n} économisés",
+    journeyCardTagline: "Chaque jour compte. Zerobet m'accompagne.",
+    journeyCardBtn: "Créer ma carte de parcours",
+    journeyStatRank: "Rang",
+    journeyStatLevel: "Niveau",
+    journeyStatLevelValue: "Niv. {level} · {xp} XP",
+    journeyStatJournal: "Journal",
+    journeyStatJournalValue: "{n} entrée(s)",
+    journeyShareTitle: "Ta carte de parcours",
+    journeyShareSubtitle: "Ton parcours en une image, prête à partager",
+    journeyShareShare: "Partager",
+    journeyShareDownload: "Télécharger",
+    journeyShareGenerating: "Création de ta carte…",
+    journeyShareError: "Impossible de générer la carte.",
+    journeyShareRetry: "Réessayer",
+    journeyShareClose: "Fermer",
+    journeyShareSharedToast: "Carte partagée ! 🎉",
+    journeyShareCopiedToast: "Carte copiée dans le presse-papiers 📋",
+    journeyShareSavedToast: "Carte téléchargée dans tes images 🖼️",
+    journeyBannerTitle: "Fier de ton parcours ?",
+    journeyBannerSubtitle: "Transforme ta série en une belle carte à partager avec la communauté.",
+    journeyBannerCta: "Créer ma carte",
+    milestoneTitle7: "Une semaine !",
+    milestoneMessage7: "La première semaine est la plus dure. Tu l'as fait. Ton cerveau commence déjà à se réparer.",
+    milestoneTitle14: "Deux semaines !",
+    milestoneMessage14: "Le brouillard se lève. Tu retrouves ta clarté. Continue.",
+    milestoneTitle30: "Un mois !",
+    milestoneMessage30: "Un mois complet. Tu fais désormais partie de l'élite. Les envies deviennent rares.",
+    milestoneTitle60: "Deux mois !",
+    milestoneMessage60: "Le diamant. Ta détermination brille plus fort que jamais.",
+    milestoneTitle90: "Trois mois !",
+    milestoneMessage90: "90 jours. Tu as repris le contrôle. Tu peux maintenant devenir mentor pour d'autres.",
+    milestoneTitle180: "Six mois !",
+    milestoneMessage180: "Une inspiration pour les autres. Tu es une légende vivante.",
+    milestoneTitle365: "Un an !",
+    milestoneMessage365: "Un an complet. Tu es libre. Tu as transformé ta vie.",
+    // ---- Task 19-b: RelapseModal ----
+    relapseModalTitle: "Ce n'est pas un échec",
+    relapseModalSubtitle: "C'est un nouveau départ",
+    relapseModalCompassionate: "Tu as fait {n} jours avant. Tu peux le refaire. Et cette fois, tu seras plus fort.",
+    relapseModalCompassionateDays: "{n} jour{s}",
+    relapseModalCompassionateRest: " avant. Tu peux le refaire. Et cette fois, tu seras plus fort.",
+    relapseModalTriggerLabel: "Qu'est-ce qui t'a fait craquer ?",
+    relapseModalTriggerOptional: "(optionnel)",
+    relapseModalTriggerPlaceholder: "Ex : solitude, stress après le travail, publicité sur les réseaux…",
+    relapseModalLessonLabel: "Qu'apprends-tu de cette expérience ?",
+    relapseModalLessonPlaceholder: "Ex : la prochaine fois, j'appellerai un ami avant d'agir…",
+    relapseModalResumeTitle: "Je veux reprendre maintenant",
+    relapseModalResumeDesc: "Recommence ta série dès aujourd'hui",
+    relapseModalConfirmBtn: "Reprendre mon parcours",
+    relapseModalHelpBtn: "J'ai besoin d'aide",
+    relapseModalLaterBtn: "Pas maintenant",
+    relapseModalFooter: "Tu n'es pas seul(e). Chaque jour sans pari est une victoire, peu importe où tu en es.",
+    relapseModalReflectionStart: "🌿 Nouveau départ — réinitialisation de ma série.",
+    relapseModalReflectionStreak: "J'avais tenu {n} jour(s) avant. Je peux le refaire.",
+    relapseModalReflectionTrigger: "Ce qui m'a fait craquer : {text}",
+    relapseModalReflectionLesson: "Ce que j'apprends : {text}",
+    // ---- Task 19-b: ErrorBoundary ----
+    errorBoundaryTitle: "Une erreur est survenue",
+    errorBoundarySubtitle: "Ne t'inquiète pas, ce n'est pas de ta faute. Une erreur inattendue est survenue. Tu peux réessayer ou revenir à l'accueil.",
+    errorBoundaryRetry: "Réessayer",
+    errorBoundaryHome: "Retour à l'accueil",
+    errorBoundaryHide: "Masquer les détails techniques",
+    errorBoundaryShow: "Afficher les détails techniques",
+    errorBoundaryErrorLabel: "Erreur",
+    errorBoundaryQuote: "« Tomber sept fois, se relever huit. » — Proverbe japonais",
+    // ---- Task 19-b: DailyQuests ----
+    dailyQuestsTitle: "Quêtes du jour",
+    dailyQuestsProgress: "Progression quotidienne",
+    dailyQuestsClaimed: "Réclamé",
+    dailyQuestsMultiplierHint: "×{mult} multiplicateur → +{xp} XP",
+    dailyQuestsToastDesc: "Quête « {title} » complétée",
+    dailyQuestsCheckinTitle: "Check-in du jour",
+    dailyQuestsCheckinDesc: "Complète ton check-in quotidien",
+    dailyQuestsJournalTitle: "Journal de 50 mots",
+    dailyQuestsJournalDesc: "Écris une entrée dans ton journal",
+    dailyQuestsMeditationTitle: "5 min de méditation",
+    dailyQuestsMeditationDesc: "Termine une séance de méditation",
+    dailyQuestsStreakTitle: "Reste sans pari",
+    dailyQuestsStreakDesc: "Maintiens ta série aujourd'hui",
+    dailyQuestsArticleTitle: "Lis un article",
+    dailyQuestsArticleDesc: "Lis un article de ressource",
+    // ---- Task 19-b: EmptyState ----
+    emptyStateJournalTitle: "Aucune entrée",
+    emptyStateJournalDesc: "Commence à écrire ton histoire. Chaque jour, note comment tu te sens — c'est l'habitude qui change tout.",
+    emptyStateJournalCta: "Nouvelle entrée",
+    emptyStateCommunityTitle: "Aucun sujet",
+    emptyStateCommunityDesc: "Sois le premier à lancer une discussion. Ton histoire peut inspirer d'autres personnes.",
+    emptyStateCommunityCta: "Lancer une discussion",
+    emptyStateStatsTitle: "Pas encore de données",
+    emptyStateStatsDesc: "Continue ton parcours et tes statistiques apparaîtront ici. Chaque jour compte.",
+    emptyStateStatsCta: "Voir le tableau de bord",
+    emptyStateDefaultTitle: "Rien à afficher",
+    emptyStateDefaultDesc: "Reviens plus tard, du contenu arrive bientôt.",
+    emptyStateDefaultCta: "Continuer",
+    // ---- Task 19-a: Affirmation data (60 seed affirmations) ----
+    affirmation1Text: "Aujourd'hui est une nouvelle chance. Je choisis la liberté.",
+    affirmation2Text: "Je me réveille plus fort qu'hier, plus libre qu'avant.",
+    affirmation3Text: "Chaque matin sans pari est une victoire que je célèbre.",
+    affirmation4Text: "Aujourd'hui, je bâtis l'homme que je serai demain.",
+    affirmation5Text: "Mon premier pari du jour, c'est de croire en moi.",
+    affirmation6Text: "Le soleil se lève sur une version nouvelle de moi. Aucun jeu ne m'appartient.",
+    affirmation7Text: "Je commence cette journée en alignement avec mes valeurs, pas avec mes envies.",
+    affirmation8Text: "Ce matin, je choisis la patience. Je choisis la vie.",
+    affirmation9Text: "Aujourd'hui, mon énergie va à ma famille, à mes rêves, à ma liberté.",
+    affirmation10Text: "Je n'ai pas besoin d'un pari pour sentir mon sang vivre. Le matin me suffit.",
+    affirmation11Text: "Cette envie va passer. Elle n'est pas permanente. Je tiens bon.",
+    affirmation12Text: "Je suis plus fort que mon envie. Mon avenir vaut plus qu'un pari.",
+    affirmation13Text: "L'envie n'est qu'une vague. Je sais nager. Je ne coulerai pas.",
+    affirmation14Text: "Respirer. Le pari peut attendre — moi, je ne peux pas me perdre.",
+    affirmation15Text: "Je n'ai pas besoin d'agir sur cette envie. Je peux juste la regarder passer.",
+    affirmation16Text: "Si je tiens 10 minutes de plus, la crise recule. J'ai déjà gagné.",
+    affirmation17Text: "Mon cerveau me ment. La vérité, c'est que ce pari me détruirait.",
+    affirmation18Text: "Je suis à 24h de plus de ma série. Aucun gain ne vaut cette fierté.",
+    affirmation19Text: "Cette envie n'est pas moi. Je suis celui qui la regarde.",
+    affirmation20Text: "Je pose mon téléphone. Je respire. Je reviens à moi.",
+    affirmation21Text: "Je vaux bien plus que ce que les jeux ont voulu me faire croire.",
+    affirmation22Text: "Ma dignité ne se joue pas sur un coup de hasard.",
+    affirmation23Text: "Je ne suis pas mes erreurs. Je suis la personne qui se relève.",
+    affirmation24Text: "Mes enfants, ma famille, mes amis méritent la meilleure version de moi.",
+    affirmation25Text: "Je suis digne de respect — d'abord le mien.",
+    affirmation26Text: "Mes dettes ne définissent pas ma valeur. Ma reprise, si.",
+    affirmation27Text: "Je suis entier, même brisé. Je me reconstruis chaque jour.",
+    affirmation28Text: "Même si personne ne le voit, ma transformation est réelle.",
+    affirmation29Text: "Je n'ai plus besoin de prouver ma valeur par un gain. Je vaux déjà.",
+    affirmation30Text: "Celui que je vois dans le miroir mérite toute ma fierté.",
+    affirmation31Text: "Mon avenir se construit aujourd'hui, dans chaque choix que je fais.",
+    affirmation32Text: "Dans 6 mois, je serai cet homme libre. Aujourd'hui j'en pose la première pierre.",
+    affirmation33Text: "Le moi de demain me remercie de tenir aujourd'hui.",
+    affirmation34Text: "Je vois une maison, une famille stable, un compte épargne. Je les construis.",
+    affirmation35Text: "Chaque FCFA non parié est une brique de la vie que je rêve.",
+    affirmation36Text: "Mon futur, c'est moi qui le décide. Pas une machine à sous.",
+    affirmation37Text: "Je marche vers un avenir où le jeu n'a plus de place dans ma vie.",
+    affirmation38Text: "Bientôt, je raconterai cette période comme un combat que j'ai gagné.",
+    affirmation39Text: "Je me vois rire avec mes proches, sans dette, sans honte. Ce jour vient.",
+    affirmation40Text: "Demain sera fier d'aujourd'hui. Je le sais.",
+    affirmation41Text: "Je suis reconnaissant pour chaque jour sans pari. C'est un cadeau.",
+    affirmation42Text: "Merci à moi-même de tenir. Peu de gens comprennent ce que ça coûte.",
+    affirmation43Text: "Je remercie ceux qui croient en moi. Je ne les décevrai plus.",
+    affirmation44Text: "Mon souffle, ma santé, ma lucidité — ce sont mes vraies richesses.",
+    affirmation45Text: "Je suis reconnaissant pour les petites victoires. Elles composent ma liberté.",
+    affirmation46Text: "Merci à la vie de m'avoir réveillé avant qu'il ne soit trop tard.",
+    affirmation47Text: "Je vois le bleu du ciel, le sourire d'un enfant — ces choses qu'aucun gain n'achète.",
+    affirmation48Text: "Aujourd'hui je dis merci pour ma série. Elle est ma plus belle conquête.",
+    affirmation49Text: "Je suis reconnaissant pour cette communauté qui marche avec moi.",
+    affirmation50Text: "Merci d'être encore là, debout, à essayer. C'est immense.",
+    affirmation51Text: "Ma force vient de mon endurance. Chaque jour me rend plus puissant.",
+    affirmation52Text: "J'ai déjà surmonté pire. Cette tentation n'est rien devant ma volonté.",
+    affirmation53Text: "La volonté est un muscle. Je l'entraîne en disant non aujourd'hui.",
+    affirmation54Text: "Je suis un guerrier. Les guerriers ne plient pas devant une envie.",
+    affirmation55Text: "Mon courage dépasse ma peur. Mon avenir mérite ma force.",
+    affirmation56Text: "Quand je tombe, je me relève plus grand. Toujours.",
+    affirmation57Text: "Aucun pari ne pourra briser ce que je suis en train de devenir.",
+    affirmation58Text: "Je suis plus dur que la vie. La vie me pousse, je pousse plus fort.",
+    affirmation59Text: "Ma force vient de mes racines, de mon sang, de mes ancêtres. Je les honore.",
+    affirmation60Text: "Je suis invincible quand je choisis. Aujourd'hui, je choisis la liberté.",
+    // ---- Task 19-a: Relapse protocol steps (8 × 3 fields) ----
+    relapseStep1Title: "Respire et recentre-toi",
+    relapseStep1Desc: "Tu as craqué. Ce n'est pas la fin. Respire avec moi.",
+    relapseStep1Action: "Fais 3 cycles de respiration 4-7-8. Inspire 4s, retiens 7s, expire 8s.",
+    relapseStep2Title: "Pas de honte",
+    relapseStep2Desc: "La honte te ramènera au jeu. Remplace-la par la compassion.",
+    relapseStep2Action: "Dis-toi : 'J'ai craqué, mais je ne suis pas un échec. Je me relève.'",
+    relapseStep3Title: "Identifie le déclencheur",
+    relapseStep3Desc: "Comprendre pourquoi tu as craqué t'aidera à prévenir la prochaine fois.",
+    relapseStep3Action: "Écris ce qui s'est passé juste avant : émotion, situation, pensée.",
+    relapseStep4Title: "Appelle quelqu'un",
+    relapseStep4Desc: "Tu n'es pas seul. Parler brise le cycle.",
+    relapseStep4Action: "Contacte un ami, un proche, ou un mentor de la communauté Zerobet.",
+    relapseStep5Title: "Bouge ton corps",
+    relapseStep5Desc: "L'exercice libère de la dopamine saine et réduit les envies.",
+    relapseStep5Action: "Fais 30 min de marche, course, ou exercice. Bouge ton corps.",
+    relapseStep6Title: "Réactive ton bloqueur",
+    relapseStep6Desc: "Si tu as contourné le bloqueur, réactive-le maintenant.",
+    relapseStep6Action: "Vérifie que ton bloqueur est actif. Active le mode strict si possible.",
+    relapseStep7Title: "Écris ta leçon",
+    relapseStep7Desc: "Chaque rechute contient une leçon. Quelle est la tienne ?",
+    relapseStep7Action: "Écris 3 choses que tu as apprises et 1 chose que tu feras différemment.",
+    relapseStep8Title: "Recommence ta série",
+    relapseStep8Desc: "Jour 1. Pas Jour 0. Tu repartis avec l'expérience.",
+    relapseStep8Action: "Réinitialise ta série. Tu n'as pas perdu ce que tu as appris.",
+    // ---- Task 19-a: Relapse quotes (4 × 2 fields) ----
+    relapseQuote1Text: "Tomber n'est pas échouer. Rester à terre, c'est échouer.",
+    relapseQuote1Author: "Proverbe",
+    relapseQuote2Text: "La rechute fait partie de la guérison. Ce n'est pas un retour à zéro.",
+    relapseQuote2Author: "Psychologie de l'addiction",
+    relapseQuote3Text: "Tu n'as pas perdu tes progrès. Tu as gagné de l'expérience.",
+    relapseQuote3Author: "Zerobet",
+    relapseQuote4Text: "Chaque chute t'apprend à te relever plus fort.",
+    relapseQuote4Author: "Sagesse",
+    // ---- Task 19-a: Relapse phase labels ----
+    relapsePhaseImmediate: "Immédiat",
+    relapsePhaseHour1: "1ère heure",
+    relapsePhaseHour6: "6 heures",
+    relapsePhaseHour24: "24 heures",
+    // ---- Task 19-a: Symptom categories (5 labels + 30 symptoms) ----
+    symptomCatFinancialLabel: "Financier",
+    symptomCatMentalLabel: "Mental",
+    symptomCatSocialLabel: "Social",
+    symptomCatPhysicalLabel: "Physique",
+    symptomCatFamilyLabel: "Familial",
+    symptomFinancial1: "Dettes accumulées",
+    symptomFinancial2: "Emprunts non remboursés",
+    symptomFinancial3: "Argent du loyer utilisé",
+    symptomFinancial4: "Vente d'objets pour parier",
+    symptomFinancial5: "Mensonges sur l'argent",
+    symptomFinancial6: "Compte à découvert",
+    symptomMental1: "Insomnie",
+    symptomMental2: "Anxiété constante",
+    symptomMental3: "Pensées obsessionnelles",
+    symptomMental4: "Irritabilité",
+    symptomMental5: "Dépression",
+    symptomMental6: "Perte de concentration",
+    symptomSocial1: "Isolement",
+    symptomSocial2: "Mensonges aux amis",
+    symptomSocial3: "Évitement social",
+    symptomSocial4: "Perte d'amis",
+    symptomSocial5: "Honte",
+    symptomSocial6: "Comportement secret",
+    symptomPhysical1: "Palpitations",
+    symptomPhysical2: "Sueurs",
+    symptomPhysical3: "Tremblements",
+    symptomPhysical4: "Perte d'appétit",
+    symptomPhysical5: "Fatigue chronique",
+    symptomPhysical6: "Maux de tête",
+    symptomFamily1: "Disputes fréquentes",
+    symptomFamily2: "Confiance brisée",
+    symptomFamily3: "Menaces de rupture",
+    symptomFamily4: "Enfants témoins",
+    symptomFamily5: "Violence",
+    symptomFamily6: "Procédures de divorce",
+    // ---- Task 19-a: Engagement goals (6 goals × 2 fields) ----
+    goalFamilyLabel: "Retrouver ma famille",
+    goalFamilyDesc: "Reconstruire la confiance avec les miens",
+    goalMoneyLabel: "Reprendre le contrôle financier",
+    goalMoneyDesc: "Sortir des dettes et épargner",
+    goalHealthLabel: "Sauver ma santé mentale",
+    goalHealthDesc: "Voir la vie sans anxiété",
+    goalDignityLabel: "Retrouver ma dignité",
+    goalDignityDesc: "Ne plus mentir, ne plus avoir honte",
+    goalFutureLabel: "Bâtir mon avenir",
+    goalFutureDesc: "Investir dans un projet de vie",
+    goalFreedomLabel: "Être libre",
+    goalFreedomDesc: "Plus jamais esclave du pari",
+    // ---- Task 19-c: ProgramScreen / SupportScreen / MentorshipScreen / ResourcesScreen ----
+    programTaskCheckinTitle: "Fais ton check-in",
+    programTaskCheckinDesc: "Enregistre ton humeur du jour",
+    programTaskJournalTitle: "Écris dans ton journal",
+    programTaskJournalDesc: "Note tes pensées et ressentis",
+    programTaskBreathingTitle: "Pratique la respiration 4-7-8",
+    programTaskBreathingDesc: "5 minutes de respiration consciente",
+    programTaskArticleTitle: "Lis un article éducatif",
+    programTaskArticleDesc: "Apprends-en plus sur l'addiction",
+    programTaskMeditateTitle: "Médite 5 minutes",
+    programTaskMeditateDesc: "Une session de méditation guidée",
+    programTaskSavingsTitle: "Vérifie tes économies",
+    programTaskSavingsDesc: "Regarde tes progrès financiers",
+    programTaskShareTitle: "Partage avec la communauté",
+    programTaskShareDesc: "Échange avec d'autres membres",
+    programTaskHelpTitle: "Aide un autre membre",
+    programTaskHelpDesc: "Soutiens quelqu'un en difficulté",
+    programTaskMentorTitle: "Deviens mentor",
+    programTaskMentorDesc: "Accompagne un nouveau membre",
+    programTaskTestimonyTitle: "Partage ton témoignage",
+    programTaskTestimonyDesc: "Inspire d'autres personnes",
+    programWeek1Title: "Premiers pas",
+    programWeek1Focus: "Acceptation et engagement",
+    programWeek1Desc: "Reconnaître l'addiction et s'engager à changer.",
+    programWeek2Title: "Comprendre l'addiction",
+    programWeek2Focus: "Éducation",
+    programWeek2Desc: "Apprendre comment fonctionne le cerveau addictif.",
+    programWeek3Title: "Identifier les déclencheurs",
+    programWeek3Focus: "Conscience de soi",
+    programWeek3Desc: "Reconnaître les situations qui déclenchent l'envie.",
+    programWeek4Title: "Stratégies de coping",
+    programWeek4Focus: "Outils",
+    programWeek4Desc: "Construire ta boîte à outils anti-envie.",
+    programWeek5Title: "Respiration et méditation",
+    programWeek5Focus: "Calme",
+    programWeek5Desc: "Maîtriser ton système nerveux.",
+    programWeek6Title: "Reconstruction financière",
+    programWeek6Focus: "Gestion de l'argent",
+    programWeek6Desc: "Reprendre le contrôle de tes finances.",
+    programWeek7Title: "Relations familiales",
+    programWeek7Focus: "Réparation sociale",
+    programWeek7Desc: "Reconstruire la confiance avec tes proches.",
+    programWeek8Title: "Estime de soi",
+    programWeek8Focus: "Valeur personnelle",
+    programWeek8Desc: "Te redécouvrir et t'aimer à nouveau.",
+    programWeek9Title: "Fixer de nouveaux objectifs",
+    programWeek9Focus: "Planification",
+    programWeek9Desc: "Bâtir l'avenir que tu mérites.",
+    programWeek10Title: "Aider les autres",
+    programWeek10Focus: "Communauté",
+    programWeek10Desc: "Transformer ton épreuve en don.",
+    programWeek11Title: "Mode de vie sain",
+    programWeek11Focus: "Santé globale",
+    programWeek11Desc: "Corps, esprit et âme en harmonie.",
+    programWeek12Title: "Consolidation",
+    programWeek12Focus: "Maintenance",
+    programWeek12Desc: "Ancrer tes nouvelles habitudes.",
+    programWeek13Title: "Célébration et au-delà",
+    programWeek13Focus: "Long terme",
+    programWeek13Desc: "Préparer la suite de ton parcours.",
+    programMilestone1Label: "Le premier pas",
+    programMilestone1Desc: "Tu as osé commencer. C'est le plus dur.",
+    programMilestone7Label: "Une semaine",
+    programMilestone7Desc: "7 jours sans pari. Ton cerveau commence à se réparer.",
+    programMilestone14Label: "Deux semaines",
+    programMilestone14Desc: "Les envies deviennent plus rares.",
+    programMilestone30Label: "Un mois",
+    programMilestone30Desc: "Tu fais partie de l'élite des recoverers.",
+    programMilestone45Label: "Mi-parcours",
+    programMilestone45Desc: "Tu as passé le cap du milieu. Continuons.",
+    programMilestone60Label: "Deux mois",
+    programMilestone60Desc: "Tu reprends vraiment le contrôle de ta vie.",
+    programMilestone90Label: "Programme complété",
+    programMilestone90Desc: "Tu as transformé ta vie. Sois fier.",
+    programPhase1Goal1: "Atteindre 7 jours sans pari",
+    programPhase1Goal2: "Identifier tes 3 principaux déclencheurs",
+    programPhase1Goal3: "Écrire dans ton journal chaque jour",
+    programPhase1Goal4: "Apprendre la respiration 4-7-8",
+    programPhase1Tip1: "Utilise le bouton panique dès que l'envie monte",
+    programPhase1Tip2: "Écris au moins 3 lignes par jour dans ton journal",
+    programPhase1Tip3: "Active le bloqueur de sites pour t'aider",
+    programPhase2Goal1: "Atteindre 45 jours sans pari",
+    programPhase2Goal2: "Créer un budget mensuel",
+    programPhase2Goal3: "Recontacter un proche",
+    programPhase2Goal4: "Fixer 3 objectifs à 6 mois",
+    programPhase2Tip1: "Partage ton parcours avec la communauté",
+    programPhase2Tip2: "Vérifie tes économies chaque semaine",
+    programPhase2Tip3: "Aide un autre membre quand tu peux",
+    programPhase3Goal1: "Compléter le programme 90 jours",
+    programPhase3Goal2: "Devenir mentor si tu le souhaites",
+    programPhase3Goal3: "Partager ton témoignage",
+    programPhase3Goal4: "Adopter un mode de vie sain durable",
+    programPhase3Tip1: "Deviens mentor pour aider les nouveaux",
+    programPhase3Tip2: "Partage ton histoire pour inspirer",
+    programPhase3Tip3: "Maintiens tes habitudes saines",
+    supportFaqTitle: "Questions fréquentes",
+    supportSearchFaqQuestion: "Rechercher une question...",
+    supportNoFaqResults: "Aucune question ne correspond à ta recherche.",
+    supportFaqDesc: "Questions fréquentes",
+    supportContactDesc: "Formulaire de contact",
+    supportBugDesc: "Problème technique",
+    supportSuggestionDesc: "Idées d'amélioration",
+    supportSubject: "Sujet",
+    supportSubjectQuestion: "Question",
+    supportSubjectBug: "Bug",
+    supportSubjectSuggestion: "Suggestion",
+    supportSubjectOther: "Autre",
+    supportEmailOptional: "Email (optionnel)",
+    supportEmailPlaceholder: "ton@email.com (pour recevoir une réponse)",
+    supportMessageMin: "Minimum 10 caractères ({n}/10)",
+    supportMessageValid: "Message valide",
+    supportMessageTooShort: "Le message doit contenir au moins 10 caractères",
+    supportResponseTime: "Réponse sous 48h en moyenne",
+    supportUsePanicBtn: "Utiliser le bouton panique",
+    supportResolveBtn: "Résoudre",
+    supportVideoPlaying: "Lecture : « {title} »",
+    supportVideoDuration: "Durée : {duration}",
+    supportEmergencyTitle: "Crise immédiate ?",
+    supportEmergencyDesc: "Si tu ressens des pensées graves, contacte immédiatement :",
+    supportCategoryAll: "Toutes",
+    supportFaqQ1: "Comment commencer ?",
+    supportFaqA1: "Bienvenue sur Zerobet ! Après l'onboarding, tu accèdes à ton tableau de bord. Commence par faire ton check-in quotidien, écris dans ton journal, et explore les actions rapides. Le parcours de 90 jours te guide étape par étape.",
+    supportFaqQ2: "Comment utiliser le bouton panique ?",
+    supportFaqA2: "Le bouton panique est disponible sur le tableau de bord et en bas de l'écran. Quand tu ressens une envie de parier, appuie dessus : tu seras guidé à travers un exercice de respiration 4-7-8 puis des messages de motivation. Tu peux aussi journaliser l'événement après.",
+    supportFaqQ3: "Comment fonctionne le parcours ?",
+    supportFaqA3: "Le Parcours de Guérison compte 13 rangs, du Premier Jour à la Légende. Chaque jour sans pari fait progresser ta série (streak). Plus ta série est longue, plus tu débloques de badges, d'XP et de multiplicateurs. Va dans l'écran Parcours pour voir ton rang actuel.",
+    supportFaqQ4: "Comment changer mon plan ?",
+    supportFaqA4: "Rends-toi dans Paramètres > Plan. Tu peux choisir entre Gratuit, Premium, Mentor et Psychologue. Les plans payants débloquent des fonctionnalités avancées comme Atlas AI, le bloqueur de sites et l'accès aux psychologues.",
+    supportFaqQ5: "Comment réinitialiser mes données ?",
+    supportFaqA5: "Dans Paramètres > Gestion des données, tu peux exporter tes données puis réinitialiser l'application. Attention : cette action est irréversible et efface ton compte, ton journal, tes progrès et toutes tes données.",
+    supportFaqQ6: "Mes données sont-elles sécurisées ?",
+    supportFaqA6: "Oui. Toutes tes données sont stockées localement sur ton appareil (localStorage). Nous n'avons aucun serveur qui conserve tes informations personnelles. Tu peux activer le verrouillage de l'app et le mode discret dans Paramètres > Confidentialité.",
+    supportFaqQ7: "Comment utiliser Atlas AI ?",
+    supportFaqA7: "Atlas AI est ton coach personnel. Appuie sur l'icône Atlas AI dans les actions rapides. Tu peux discuter avec lui dans 4 sections : Journal (analyse tes entrées), Motivation (messages personnalisés), Progrès (statistiques), et Crise (urgence). Plus tu écris dans ton journal, plus Atlas te connaît.",
+    supportFaqQ8: "Comment ajouter un site à bloquer ?",
+    supportFaqA8: "Va dans Bloqueur > Ajouter un site. Saisis l'URL et le nom du site. Tu peux aussi activer le mode strict qui bloque tous les sites pendant 72 heures sans possibilité de désactiver. Le bloqueur t'aide à créer une barrière physique contre la tentation.",
+    supportFaqQ9: "Comment contacter un mentor ?",
+    supportFaqA9: "Rends-toi dans Communauté > Mentors. Tu verras la liste des mentors disponibles avec leur spécialité, leur pays et leur note. Tu peux les contacter directement. Les mentors sont d'anciens joueurs en récupération qui t'accompagnent gratuitement.",
+    supportFaqQ10: "L'app ne se lance pas",
+    supportFaqA10: "1) Vérifie ta connexion internet. 2) Force la fermeture et relance l'app. 3) Vide le cache de ton navigateur. 4) Désactive les extensions qui pourraient bloquer JavaScript. Si le problème persiste, signale un bug via le formulaire ci-dessous.",
+    supportFaqQ11: "Comment exporter mes données ?",
+    supportFaqA11: "Va dans Paramètres > Gestion des données > Exporter. Tu recevras un fichier JSON contenant ton journal, tes progrès, tes contacts et tes paramètres. Tu peux l'importer sur un autre appareil pour ne pas perdre ton historique.",
+    supportFaqQ12: "Puis-je utiliser l'app hors ligne ?",
+    supportFaqA12: "Oui, la plupart des fonctionnalités fonctionnent hors ligne : check-in, journal, méditation, parcours. Seuls Atlas AI et les notifications nécessitent une connexion. Tes données sont stockées localement, donc tu n'as rien à craindre.",
+    supportVideo1Title: "Bien démarrer avec Zerobet",
+    supportVideo2Title: "Maîtriser le bouton panique",
+    supportVideo3Title: "Utiliser Atlas AI efficacement",
+    supportVideo4Title: "Tirer parti de la communauté",
+    supportTrouble1Issue: "L'app est lente",
+    supportTrouble1Solution: "Vide le cache dans les paramètres de ton navigateur, ou désactive le starfield dans Apparence.",
+    supportTrouble2Issue: "Le son ne fonctionne pas",
+    supportTrouble2Solution: "Vérifie le volume de ton appareil et active les sons dans Paramètres > Son & Haptics.",
+    supportTrouble3Issue: "Je ne reçois pas de notifications",
+    supportTrouble3Solution: "Active les notifications dans Paramètres > Préférences et autorise-les dans ton navigateur.",
+    supportTrouble4Issue: "Mes données ont disparu",
+    supportTrouble4Solution: "Si tu as exporté tes données, utilise Importer dans Paramètres > Gestion des données.",
+    supportEmergency1Name: "Ligne d'écoute gambling",
+    supportEmergency1Desc: "24/7 • Gratuit • Confidentiel",
+    supportEmergency2Name: "SOS Amitié",
+    supportEmergency2Desc: "Écoute amicale 24/7",
+    supportEmergency3Name: "Samu Social",
+    supportEmergency3Desc: "Urgence sociale",
+    supportEmergency4Name: "Urgences",
+    supportEmergency4Desc: "Numéro d'urgence européen",
+    mentorshipSpecYouth: "Jeunes 18-25",
+    mentorshipSpecFathers: "Pères de famille",
+    mentorshipSpecStudents: "Étudiants",
+    mentorshipSpecAthletes: "Sportifs",
+    mentorshipSpecWomen: "Femmes parieuses",
+    mentorshipSpecDiaspora: "Diaspora",
+    mentorshipSpecGeneral: "Général",
+    mentorshipCountryCI: "Côte d'Ivoire",
+    mentorshipCountrySN: "Sénégal",
+    mentorshipCountryML: "Mali",
+    mentorshipCountryCM: "Cameroun",
+    mentorshipCountryGN: "Guinée",
+    mentorshipCountryTG: "Togo",
+    mentorshipCountryBJ: "Bénin",
+    mentorshipCountryFR: "France",
+    mentorshipCountryBE: "Belgique",
+    mentorshipCountryCA: "Canada",
+    mentorshipCountryOther: "Autre",
+    mentorshipLangFr: "Français",
+    mentorshipLangWo: "Wolof",
+    mentorshipLangBm: "Bambara",
+    mentorshipLangLn: "Lingala",
+    mentorshipLangEn: "Anglais",
+    mentorshipLangAr: "Arabe",
+    mentorshipLangPt: "Portugais",
+    mentorshipLangEs: "Espagnol",
+    mentorshipLangDyu: "Dioula",
+    mentorshipLangFon: "Fon",
+    mentorshipAvailFewHours: "Quelques heures/semaine",
+    mentorshipAvail12h: "1-2h/jour",
+    mentorshipAvail247: "Disponible 24/7",
+    mentorshipCode1: "Respect absolu de tous les membres",
+    mentorshipCode2: "Confidentialité totale des échanges",
+    mentorshipCode3: "Pas de jugement, seulement du soutien",
+    mentorshipCode4: "Recommander des professionnels pour les cas graves",
+    mentorshipCode5: "Partager seulement ton expérience personnelle",
+    mentorshipCode6: "Ne jamais encourager le jeu 'modéré'",
+    mentorshipCode7: "Répondre dans les 24h",
+    mentorshipCode8: "Signaler tout comportement inapproprié",
+    mentorshipRes1Title: "Guide du mentor",
+    mentorshipRes1Desc: "Le manuel complet pour accompagner les nouveaux membres.",
+    mentorshipRes2Title: "Techniques d'écoute active",
+    mentorshipRes2Desc: "Apprends à écouter vraiment, sans interrompre ni juger.",
+    mentorshipRes3Title: "Gérer les situations difficiles",
+    mentorshipRes3Desc: "Comment réagir face à un membre en crise ou en rechute.",
+    mentorshipResTypePdf: "PDF",
+    mentorshipResTypeArticle: "Article",
+    mentorshipResTypeVideo: "Vidéo",
+    mentorshipPsySpec1: "Addictologie",
+    mentorshipPsySpec2: "Thérapie cognitivo-comportementale",
+    mentorshipPsySpec3: "Psychologie clinique",
+    mentorshipPsySpec4: "Soutien familial",
+    mentorshipLastContact2hAgo: "Il y a 2h",
+    mentorshipLastContactYesterday: "Hier",
+    mentorshipLastContact3DaysAgo: "Il y a 3 jours",
+    mentorshipLastContactToday: "Aujourd'hui",
+    mentorshipStatusActive: "actif",
+    mentorshipStatusToContact: "à contacter",
+    mentorshipSelectPlaceholder: "Sélectionner...",
+    mentorshipFormDisplayName: "Nom public (ton nom de mentor)",
+    mentorshipFormDisplayNamePlaceholder: "Ex: Awa la Courageuse",
+    mentorshipFormBioLabel: "Bio — raconte ton histoire",
+    mentorshipFormBioHint: "{n} / 100 caractères minimum",
+    mentorshipFormBioPlaceholder: "Comment tu es tombé dans le jeu, comment tu t'en es sorti, ce qui t'a aidé...",
+    mentorshipFormSpecialtyLabel: "Spécialité",
+    mentorshipFormSpecialtyPlaceholder: "Choisis ta spécialité",
+    mentorshipFormCountryLabel: "Pays",
+    mentorshipFormCountryPlaceholder: "Choisis ton pays",
+    mentorshipFormLanguagesLabel: "Langues parlées",
+    mentorshipFormLanguagesHint: "Sélectionne toutes celles qui s'appliquent",
+    mentorshipFormAvailabilityLabel: "Disponibilité",
+    mentorshipFormAvailabilityPlaceholder: "Choisis ta disponibilité",
+    mentorshipFormMotivationLabel: "Motivation — pourquoi devenir mentor ?",
+    mentorshipFormMotivationHint: "{n} / 50 caractères minimum",
+    mentorshipFormMotivationPlaceholder: "Qu'est-ce qui te pousse à accompagner les autres ?",
+    mentorshipAgreePrefix: "J'accepte le",
+    mentorshipCodeLink: "code de conduite des mentors",
+    mentorshipCodeHeader: "Code de conduite des mentors",
+    mentorshipResourcesTitle: "Ressources mentor",
+    mentorshipResAccess: "Accéder",
+    mentorshipResSoon: "{title} — bientôt disponible",
+    mentorshipSuccessContinue: "Continuer",
+    mentorshipPsyBioPlaceholder: "Présente ton approche thérapeutique, ton expérience avec l'addiction...",
+    resourcesCategoriesLabel: "Catégories",
+    resourcesArticleCount: "{n} article(s)",
+    resourcesVideoCount: "{n} vidéos",
+    resourcesBooksAppsTitle: "Livres & Apps recommandés",
+    resourcesFooter: "La connaissance est ton premier pas vers la guérison. 🌱",
+    resourcesReadArticle: "Lire l'article",
+    resourcesArticleRead: "Article lu",
+    resourcesArticleExpanded: "Cet article explore en profondeur les mécanismes psychologiques et propose des exercices concrets. Prends le temps de le lire attentivement, idéalement dans un moment calme.",
+    resourcesEmergencyTitle: "Besoin d'aide urgente ?",
+    resourcesEmergencySubtitle: "Tu n'es pas seul. Appelle.",
+    resourcesCallBtn: "Appeler",
+    resourcesOpen: "Ouvrir",
+    resourcesTypeApp: "App",
+    resourcesTypeBook: "Livre",
+    resourcesFeatured1Title: "Pourquoi ton cerveau te trahit quand tu paris",
+    resourcesFeatured1Excerpt: "Comprends le mécanisme de la dopamine et pourquoi chaque pari renforce le cycle addictif — même quand tu perds.",
+    resourcesFeatured2Title: "Surmonter une envie soudaine en 90 secondes",
+    resourcesFeatured2Excerpt: "La méthode U.R.G.E. pour désamorcer une envie de parier sans céder. Une technique simple, prouvée, accessible à tous.",
+    resourcesFeatured3Title: "Moussa, 32 ans : « J'ai tout perdu, puis tout reconstruit »",
+    resourcesFeatured3Excerpt: "Récit authentique d'un ancien parieur de Dakar qui a surmonté 8 ans d'addiction et retrouvé sa famille.",
+    resourcesFeatured4Title: "Reconstruire ses finances après les paris",
+    resourcesFeatured4Excerpt: "Un plan concret en 4 étapes pour rembourser tes dettes, reprendre le contrôle et économiser à nouveau.",
+    resourcesFeatured5Title: "La respiration 4-7-8 : ton arme secrète anti-envie",
+    resourcesFeatured5Excerpt: "Cette technique de respiration calme le système nerveux en moins de 2 minutes. Apprends-la une fois, utilise-la à vie.",
+    resourcesArticle1Title: "La dopamine et les paris",
+    resourcesArticle1Excerpt: "Comment les jeux d'argent détournent le système de récompense naturel de ton cerveau et créent une dépendance puissante.",
+    resourcesArticle2Title: "Comment gérer une envie soudaine",
+    resourcesArticle2Excerpt: "5 techniques pratiques pour faire face à une envie intense de parier sans céder. À appliquer immédiatement.",
+    resourcesArticle3Title: "Reconstruire la confiance familiale",
+    resourcesArticle3Excerpt: "L'addiction détruit les relations. Voici les étapes concrètes pour regagner la confiance de tes proches, jour après jour.",
+    resourcesArticle4Title: "L'économie que tu sauves",
+    resourcesArticle4Excerpt: "Calcule combien tu économises réellement chaque jour sans pari. Les chiffres vont te surprendre et te motiver.",
+    resourcesArticle5Title: "Pourquoi tu perds toujours",
+    resourcesArticle5Excerpt: "La vérité mathématique derrière les paris sportifs : pourquoi la maison gagne toujours et pourquoi tu ne peux pas gagner.",
+    resourcesArticle6Title: "La respiration 4-7-8 expliquée",
+    resourcesArticle6Excerpt: "Inspire 4 secondes, retiens 7, expire 8. Découvre la science derrière cette technique anti-stress puissante.",
+    resourcesArticle7Title: "Témoignage : Moussa de Dakar",
+    resourcesArticle7Excerpt: "« J'ai commencé par 1000 FCFA, j'ai fini par perdre ma maison. » L'histoire vraie d'une renaissance.",
+    resourcesArticle8Title: "Reconnaître les déclencheurs",
+    resourcesArticle8Excerpt: "Apprends à identifier les situations, émotions et personnes qui déclenchent ton envie de parier pour mieux les éviter.",
+    resourcesArticle9Title: "Le rôle du sommeil",
+    resourcesArticle9Excerpt: "Le manque de sommeil augmente les envies de parier de 40%. Découvre comment mieux dormir pour mieux résister.",
+    resourcesArticle10Title: "Reprendre sa virilité",
+    resourcesArticle10Excerpt: "L'addiction aux paris touche profondément la confiance en soi et la masculinité. Voici comment se reconstruire.",
+    resourcesAuthorKone: "Dr. Aïssata Koné",
+    resourcesAuthorAllard: "Marc Allard, thérapeute",
+    resourcesAuthorNdiaye: "Moussa Ndiaye",
+    resourcesAuthorDiallo: "Awa Diallo, conseillère",
+    resourcesAuthorZerobet: "Finance Zerobet",
+    resourcesAuthorYoga: "Yoga & Mindfulness",
+    resourcesVideo1Title: "Respiration guidée 10 min",
+    resourcesVideo2Title: "Témoignage de Koffi",
+    resourcesVideo3Title: "Comprendre la dopamine",
+    resourcesVideo4Title: "Méditation anti-envie",
+    resourcesVideoCatMeditation: "Méditation",
+    resourcesVideoCatTestimony: "Témoignage",
+    resourcesVideoCatScience: "Science",
+    resourcesHotline1Name: "Ligne d'écoute nationale",
+    resourcesHotline1Desc: "Gratuit • 24/7",
+    resourcesHotline2Name: "Gambling Therapy (en ligne)",
+    resourcesHotline2Desc: "Support international gratuit",
+    resourcesHotline3Name: "Samu social",
+    resourcesHotline3Desc: "Urgence sociale • 24/7",
+    resourcesBook1Desc: "App de sevrage des paris avec suivi quotidien",
+    resourcesBook2Desc: "James Clear — changer ses habitudes durablement",
+    resourcesBook3Desc: "Allen Carr — méthode classique pour arrêter",
+    // ---- Task 20-a: CalendarScreen ----
+    calendarMilestone1Label: "Premier Pas",
+    calendarMilestone1Desc: "Le premier jour est le plus dur.",
+    calendarMilestone3Label: "L'Éveil",
+    calendarMilestone3Desc: "Le brouillard commence à se dissiper.",
+    calendarMilestone7Label: "Bronze",
+    calendarMilestone7Desc: "Une semaine complète sans pari.",
+    calendarMilestone14Label: "Argent",
+    calendarMilestone14Desc: "Deux semaines — ton cerveau se répare.",
+    calendarMilestone30Label: "Or",
+    calendarMilestone30Desc: "Un mois ! Tu fais partie de l'élite.",
+    calendarMilestone60Label: "Diamant",
+    calendarMilestone60Desc: "Deux mois — les envies deviennent rares.",
+    calendarMilestone90Label: "Triple XP",
+    calendarMilestone90Desc: "Trois mois — tu reprends le contrôle.",
+    calendarMilestone180Label: "Légende",
+    calendarMilestone180Desc: "Six mois — une inspiration pour les autres.",
+    calendarMilestone365Label: "Une Année",
+    calendarMilestone365Desc: "Un an complet. Tu es libre.",
+    calendarEmotionFrustrated: "Frustré",
+    calendarEmotionAnxious: "Anxieux",
+    calendarEmotionTempted: "Tenté",
+    calendarEmotionCalm: "Calme",
+    calendarEmotionProud: "Fier",
+    calendarEmotionStrong: "Fort",
+    calendarNoBetDaysMany: "{n} jours ce mois-ci sans pari",
+    calendarNoBetDaysOne: "{n} jour ce mois-ci sans pari",
+    calendarNoBetDaysNone: "Aucun jour sans pari ce mois-ci",
+    calendarSavedThisMonth: "économisés ce mois",
+    calendarLegendNoBet: "Sans pari",
+    calendarLegendCrisis: "Crise",
+    calendarLegendNoData: "Pas de données",
+    calendarLegendMilestone: "Jalon",
+    calendarStatsTitle: "Statistiques de série",
+    calendarBestStreak: "Plus longue série",
+    calendarCurrentStreak: "Série actuelle",
+    calendarTotalNoBetDays: "Total jours sans pari",
+    calendarMonthlyAverage: "Moyenne mensuelle",
+    calendarUnitDays: "jours",
+    calendarUnitDaysPerMonth: "j/mois",
+    calendarMilestonesTitle: "Jalons de parcours",
+    calendarDayNumber: "Jour {n}",
+    calendarReached: "Atteint",
+    calendarDaysBefore: "J-{n}",
+    calendarAchievedOn: "Atteint le {date}",
+    calendarUpcoming: "À venir",
+    calendarDaysSinceStart: "{n} jour(s) depuis le début",
+    calendarInsightsTitle: "Insights",
+    calendarInsightNoBetDays: "Jours sans pari",
+    calendarInsightCrisesAvoided: "Crises évitées",
+    calendarInsightJournalEntries: "Entrées de journal",
+    calendarInsightFcfASaved: "FCFA économisés",
+    calendarDailyActivity: "Activité quotidienne",
+    calendarDayActivityTitle: "Jour {n}{suffix}",
+    calendarMilestonesUnlocked: "{n} jalon(s) débloqué(s)",
+    calendarDayWithCrisis: "Jour avec crise",
+    calendarDayNoBet: "Jour sans pari",
+    calendarNoData: "Aucune donnée",
+    calendarMilestoneBadge: "Jalon J-{n}",
+    calendarStreakThatDay: "Série ce jour-là",
+    calendarDaysCount: "{n} jour(s)",
+    calendarEmotion: "Émotion",
+    calendarNoEntry: "Aucune entrée",
+    calendarMeditation: "Méditation",
+    calendarCompleted: "Complétée",
+    calendarNotDone: "Non faite",
+    calendarCrisisIntensity: "Crise (intensité)",
+    calendarXpEarned: "XP gagné ce jour",
+    calendarNotePlaceholder: "Écris ce que tu veux retenir de ce jour...",
+    // ---- Task 20-a: FinanceScreen ----
+    financeCategoryInvestment: "Investissement",
+    financeCategoryPleasures: "Plaisirs sains",
+    financeSavingCatNecessitiesDesc: "Nourriture, loyer, factures — l'essentiel pour vivre dignement.",
+    financeSavingCatSavingsDesc: "Compte d'épargne sécurisé pour tes projets et ton fonds d'urgence.",
+    financeSavingCatInvestmentDesc: "Business, éducation, formation — fais travailler ton argent pour toi.",
+    financeSavingCatPleasuresDesc: "Loisirs, divertissement sain — se faire plaisir sans parier.",
+    financeTip1Title: "La règle 50/30/20",
+    financeTip1Short: "50% nécessités, 30% plaisirs, 20% épargne",
+    financeTip1Details: "Une règle simple pour organiser ton budget : 50% de tes revenus pour les nécessités (loyer, nourriture, factures), 30% pour les plaisirs sains, et 20% minimum pour l'épargne. Cette méthode t'évite de tomber dans la précarité tout en te permettant de te faire plaisir raisonnablement.",
+    financeTip2Title: "Fonds d'urgence",
+    financeTip2Short: "Économise 3 à 6 mois de dépenses",
+    financeTip2Details: "Construis un fonds d'urgence égal à 3-6 mois de tes dépenses courantes. Cette réserve te protège des imprévus (maladie, perte d'emploi, panne) sans devoir emprunter ni revenir au pari. C'est la première étape de toute indépendance financière.",
+    financeTip3Title: "L'effet des petits montants",
+    financeTip3Short: "1 000 FCFA/jour = 365 000 FCFA/an",
+    financeTip3Details: "Ne sous-estime jamais les petites sommes. Épargner seulement 1 000 FCFA par jour te donne 365 000 FCFA en un an — assez pour un téléphone, un business, ou des études. La régularité compte plus que le montant. C'est l'effet boule de neige.",
+    financeTip4Title: "Mobile Money",
+    financeTip4Short: "Utilise Orange Money pour épargner automatiquement",
+    financeTip4Details: "Avec Orange Money, Wave, MTN MoMo ou Moov Money, tu peux configurer une épargne automatique : un montant fixe est transféré vers ton compte d'épargne dès que tu reçois de l'argent. Tu épargnes sans y penser — c'est la méthode la plus efficace pour bâtir un capital.",
+    financePresetPhone: "Téléphone",
+    financePresetMoto: "Moto",
+    financePresetBusiness: "Business",
+    financePresetEducation: "Éducation",
+    financePresetEmergency: "Fonds d'urgence",
+    financePresetLand: "Terrain",
+    financeMilestone10k: "10 000 FCFA économisés",
+    financeMilestone50k: "50 000 FCFA économisés",
+    financeMilestone100k: "100 000 FCFA économisés",
+    financeMilestone500k: "500 000 FCFA économisés",
+    financeMilestone1M: "1 000 000 FCFA économisés",
+    financeSavedOverDays: "Sur {n} jours sans pari",
+    financeFCFAperWeek: "FCFA/semaine",
+    financeSavedPerDay: "≈ {n} FCFA économisés par jour",
+    financeSavingsDistributionDesc: "Voici comment répartir intelligemment ton argent sauvé.",
+    financeIncomeWeekly: "Revenu hebdo",
+    financeBeforeZerobet: "Avant Zerobet",
+    financeWithZerobet: "Avec Zerobet",
+    financeRemainingPerWeek: "FCFA restants / semaine",
+    financeLostToBets: "FCFA perdus au pari",
+    financeGained: "FCFA gagnés",
+    financeSaveForThisGoal: "Économiser pour cet objectif",
+    financeDeleteGoal: "Supprimer l'objectif",
+    financeRemainingAmount: "Encore {n} FCFA",
+    financeQuickSuggestions: "Suggestions rapides :",
+    financeXpBonus: "XP bonus",
+    financeSavingsWeeksConsecutive: "{n} semaine(s) d'épargne consécutive",
+    financeLast8Weeks: "8 dernières semaines",
+    financeSavingsWeek: "Semaine d'épargne",
+    financeNotYet: "Pas encore",
+    finance8WeeksAgo: "Il y a 8 sem.",
+    financeSavingStreakMsg: "Tu économises depuis {n} semaine(s) sans interruption !",
+    financeLast6Months: "6 derniers mois",
+    financeBeforeLosses: "Avant (pertes)",
+    financeNowSavings: "Maintenant (épargne)",
+    financeNetGain6Months: "Gain net sur 6 mois",
+    financeSavingsLabel: "Épargne",
+    financeLossesAvoidedLabel: "Pertes évitées",
+    financeLearnMore: "En savoir plus",
+    financeTipNumber: "Astuce {n}",
+    financeTipApplyRule: "Astuce : applique cette règle dès cette semaine pour voir tes économies décoller.",
+    financeGoalNamePlaceholder: "Ex : Moto, Études, Fonds d'urgence",
+    financeAmountPlaceholder: "Ex : 75000",
+    financeProjectionBarDesc: "Projection : si tu continues à économiser, voici ce que tu gagnes (et évites de perdre) chaque mois.",
+    // ---- Task 20-a: CommunityChatScreen (new keys) ----
+    chatRoomGeneralLabel: "Général",
+    chatRoomGeneralDesc: "Pour tout le monde. Présente-toi et échange librement.",
+    chatRoomCrisisLabel: "Soutien Crise",
+    chatRoomCrisisDesc: "Pour les moments difficiles. Sois bienveillant.",
+    chatRoomVeteransLabel: "Vétérans",
+    chatRoomVeteransDesc: "Réservé aux membres avec 90+ jours d'abstinence.",
+    chatRule1: "Respecte chacun, quel que soit son stade de récupération.",
+    chatRule2: "Pas de promotion de jeux d'argent ou de paris.",
+    chatRule3: "Pas de conseils financiers ou médicaux.",
+    chatRule4: "Si quelqu'un est en crise, redirige-le vers le SOS.",
+    chatRule5: "Tes messages sont visibles par tous les membres.",
+    chatOffline: "Hors-ligne",
+    chatYou: "Toi",
+    chatReactWith: "Réagir avec {emoji}",
+    chatPremiumReactions: "Réactions Premium",
+    chatNicknameError: "Le pseudo doit faire entre {min} et {max} caractères.",
+    chatChooseNickname: "Choisis ton pseudo",
+    chatNicknameHelp: "Les autres membres verront ce nom. Sois toi-même ou reste anonyme.",
+    chatRandomNickname: "Pseudo aléatoire",
+    chatNicknameRange: "Entre {min} et {max} caractères",
+    chatJoinBtn: "Rejoindre le chat",
+    chatWelcome: "Bienvenue {nickname} ! 🎉",
+    chatRoomLockedMsg: "Le salon {label} est réservé aux membres avec {n}+ jours d'abstinence.",
+    chatOfflineRetry: "Tu es hors-ligne. Réessaie dans un instant.",
+    chatReactionSent: "{emoji} réaction envoyée à {nickname}",
+    chatTypingOne: "écrit",
+    chatTypingMany: "écrivent",
+    chatCrisisRoomBanner: "Ce salon est pour les moments difficiles. Sois bienveillant. En cas d'urgence, appelle le SOS.",
+    chatCallSos: "Appeler le SOS",
+    chatConnectionLost: "Connexion perdue. Tentative de reconnexion…",
+    chatRetry: "Réessayer",
+    chatEmptyState: "Sois le premier à dire bonjour 👋",
+    chatRulesTitle: "Règles de la communauté",
+    chatReportHint: "Utilise le bouton signalement sur le message concerné.",
+    chatReportBtn: "Signaler un contenu",
+    chatInputPlaceholder: "Écrire dans {room}…",
+    chatMessage: "Message",
+    chatConnectedMembers: "Connecté · {n} membres",
+    chatConnectedMemberOne: "Connecté · 1 membre",
+    chatRateLimited: "Doucement 🙏 Trop de messages d'affilée. Réessaie dans {n} s.",
+    // ---- Task 20-a: MeditationScreen ----
+    meditationTech478Name: "4-7-8 Respiration",
+    meditationTech478Desc: "Apaisant · Idéal en cas d'envie",
+    meditationTech478Duration: "3 cycles · ~1 min",
+    meditationTechSquareName: "Carré 4-4-4-4",
+    meditationTechSquareDesc: "Focus · Concentration",
+    meditationTechSquareDuration: "4 cycles · ~1 min",
+    meditationTech246Name: "2-4-6 Respiration",
+    meditationTech246Desc: "Calme rapide · Anti-stress",
+    meditationTech246Duration: "5 cycles · ~1 min",
+    meditationTech55Name: "Respiration profonde 5-5",
+    meditationTech55Desc: "Relaxation · Avant sommeil",
+    meditationTech55Duration: "4 cycles · ~1 min",
+    meditationPhaseInspire: "Inspire",
+    meditationPhaseHold: "Retiens",
+    meditationPhaseExhale: "Expire",
+    meditationGuided1Title: "Calmer une envie de parier",
+    meditationGuided1Desc: "Une session courte pour faire redescendre la pression quand l'envie monte. Respiration guidée + visualisation apaisante.",
+    meditationGuided2Title: "Confiance en soi",
+    meditationGuided2Desc: "Reconnecte-toi à ta force intérieure. Des affirmations positives pour reconstruire l'estime de soi.",
+    meditationGuided3Title: "Lâcher prise",
+    meditationGuided3Desc: "Relâche les tensions du corps et du mental. Une invitation à accueillir l'instant présent sans jugement.",
+    meditationGuided4Title: "Visualisation du succès",
+    meditationGuided4Desc: "Imagine ton avenir sans pari. Visualise la fierté, les projets réalisés, les proches retrouvés.",
+    meditationGuided5Title: "Scan corporel anti-stress",
+    meditationGuided5Desc: "Parcours ton corps de la tête aux pieds pour relâcher chaque tension. Idéal avant de dormir.",
+    meditationGuided6Title: "Méditation du matin",
+    meditationGuided6Desc: "Commence ta journée avec intention. Active ton énergie et fixes-toi un cap clair pour les prochaines heures.",
+    meditationDuration5min: "5 min",
+    meditationDuration7min: "7 min",
+    meditationDuration8min: "8 min",
+    meditationDuration10min: "10 min",
+    meditationDuration12min: "12 min",
+    meditationNarratorAissata: "Aïssata · Thérapeute",
+    meditationNarratorMarc: "Marc · Coach",
+    meditationNarratorLea: "Léa · Sophrologue",
+    meditationNarratorKarim: "Karim · Mentor",
+    meditationCatCrisis: "Crise",
+    meditationCatMotivation: "Motivation",
+    meditationCatRelaxation: "Relaxation",
+    meditationCatEnergy: "Énergie",
+    meditationBenefit1Title: "Réduit l'anxiété",
+    meditationBenefit1Value: "de 40%",
+    meditationBenefit2Title: "Contrôle des impulsions",
+    meditationBenefit2Value: "renforcé",
+    meditationBenefit3Title: "Résilience face aux envies",
+    meditationBenefit3Value: "accentuée",
+    meditationBenefit4Title: "Qualité du sommeil",
+    meditationBenefit4Value: "améliorée",
+    // ---- Task 20-a: ProgramScreen 93 daily quotes + share ----
+    programShareTitle: "Message du jour",
+    programShareTemplate: "Jour {n}/90 sur Zerobet",
+    programQuote1Text: "Le premier pas est le plus dur. Tu viens de le faire.",
+    programQuote1Author: "Zerobet",
+    programQuote2Text: "La douleur de la discipline pèse des grammes. Celle du regret pèse des tonnes.",
+    programQuote2Author: "Jim Rohn",
+    programQuote3Text: "Chaque jour sans pari est une victoire sur toi-même.",
+    programQuote3Author: "Zerobet",
+    programQuote4Text: "Tu n'as pas échoué tant que tu n'as pas arrêté d'essayer.",
+    programQuote4Author: "Proverbe",
+    programQuote5Text: "Le courage n'est pas l'absence de peur, mais la décision que quelque chose est plus important.",
+    programQuote5Author: "Ambrose Redmoon",
+    programQuote6Text: "L'argent économisé est de l'argent gagné.",
+    programQuote6Author: "Benjamin Franklin",
+    programQuote7Text: "Tu es le héros de ta propre histoire.",
+    programQuote7Author: "Zerobet",
+    programQuote8Text: "L'addiction ment. La récupération dit la vérité.",
+    programQuote8Author: "Zerobet",
+    programQuote9Text: "Le plus grand honneur d'un homme est de tenir sa parole.",
+    programQuote9Author: "Proverbe africain",
+    programQuote10Text: "Un homme qui se maîtrise vaut plus qu'un homme qui conquiert une ville.",
+    programQuote10Author: "Proverbe",
+    programQuote11Text: "Ton avenir est créé par ce que tu fais aujourd'hui, pas demain.",
+    programQuote11Author: "Proverbe",
+    programQuote12Text: "Ce qui ne te tue pas te rend plus fort.",
+    programQuote12Author: "Friedrich Nietzsche",
+    programQuote13Text: "La liberté n'est pas l'absence de contraintes, mais la maîtrise de soi.",
+    programQuote13Author: "Zerobet",
+    programQuote14Text: "Tu ne peux pas revenir en arrière. Mais tu peux commencer maintenant.",
+    programQuote14Author: "Zerobet",
+    programQuote15Text: "Le succès est la somme de petits efforts répétés jour après jour.",
+    programQuote15Author: "Robert Collier",
+    programQuote16Text: "Tomber est permis. Se relever est un devoir.",
+    programQuote16Author: "Proverbe",
+    programQuote17Text: "Le changement commence quand tu décides que rester pareil fait plus mal que de bouger.",
+    programQuote17Author: "Zerobet",
+    programQuote18Text: "Ta plus grande force se cache dans ta plus grande faiblesse vaincue.",
+    programQuote18Author: "Zerobet",
+    programQuote19Text: "La patience est amère, mais son fruit est doux.",
+    programQuote19Author: "Jean-Jacques Rousseau",
+    programQuote20Text: "On ne voit bien qu'avec le cœur. L'essentiel est invisible pour les yeux.",
+    programQuote20Author: "Saint-Exupéry",
+    programQuote21Text: "Qui veut aller loin ménage sa monture.",
+    programQuote21Author: "Proverbe français",
+    programQuote22Text: "Le bonheur n'est pas une destination, c'est une façon de voyager.",
+    programQuote22Author: "Margaret Lee Runbeck",
+    programQuote23Text: "Le secret du succès est la constance dans le but.",
+    programQuote23Author: "Benjamin Disraeli",
+    programQuote24Text: "Ce n'est pas la montagne qu'on conquiert, mais soi-même.",
+    programQuote24Author: "Edmund Hillary",
+    programQuote25Text: "Tu deviens ce que tu crois être.",
+    programQuote25Author: "Proverbe",
+    programQuote26Text: "Le passé ne définit pas ton avenir.",
+    programQuote26Author: "Zerobet",
+    programQuote27Text: "La seule façon de faire du bon travail est d'aimer ce que tu fais.",
+    programQuote27Author: "Steve Jobs",
+    programQuote28Text: "L'espoir est le rêve de l'homme éveillé.",
+    programQuote28Author: "Aristote",
+    programQuote29Text: "Un voyage de mille lieues commence toujours par un premier pas.",
+    programQuote29Author: "Lao Tseu",
+    programQuote30Text: "La victoire la plus difficile est celle sur soi-même.",
+    programQuote30Author: "Platon",
+    programQuote31Text: "Ta vie vaut ce que tu en fais. Fais-en un chef-d'œuvre.",
+    programQuote31Author: "Zerobet",
+    programQuote32Text: "Le talent fait ce qu'il peut. Le génie fait ce qu'il doit.",
+    programQuote32Author: "Proverbe",
+    programQuote33Text: "Les obstacles sont ces choses effrayantes qu'on voit quand on quitte des yeux son but.",
+    programQuote33Author: "Henry Ford",
+    programQuote34Text: "Quand on veut, on peut. Quand on peut, on doit.",
+    programQuote34Author: "Proverbe",
+    programQuote35Text: "Là où il y a une volonté, il y a un chemin.",
+    programQuote35Author: "Proverbe anglais",
+    programQuote36Text: "Le meilleur moment pour commencer était hier. Le deuxième meilleur moment, c'est maintenant.",
+    programQuote36Author: "Proverbe",
+    programQuote37Text: "Sois le changement que tu veux voir dans le monde.",
+    programQuote37Author: "Gandhi",
+    programQuote38Text: "Le succès, c'est tomber sept fois et se relever huit.",
+    programQuote38Author: "Proverbe japonais",
+    programQuote39Text: "Rien de grand ne s'est fait sans passion.",
+    programQuote39Author: "Hegel",
+    programQuote40Text: "Le bonheur est parfois un courage.",
+    programQuote40Author: "Charles Péguy",
+    programQuote41Text: "La vie, c'est comme une bicyclette. Il faut avancer pour ne pas perdre l'équilibre.",
+    programQuote41Author: "Albert Einstein",
+    programQuote42Text: "Le bonheur n'est réel que lorsqu'il est partagé.",
+    programQuote42Author: "Christopher McCandless",
+    programQuote43Text: "Le plus beau voyage est celui qu'on n'a pas encore fait.",
+    programQuote43Author: "Loïck Peyron",
+    programQuote44Text: "Quand tu cesses de rêver, tu cesses de vivre.",
+    programQuote44Author: "Malcolm Forbes",
+    programQuote45Text: "On ne hérite pas de la terre de nos ancêtres, on l'emprunte à nos enfants.",
+    programQuote45Author: "Proverbe africain",
+    programQuote46Text: "Le temps est le plus sage de tous les conseillers.",
+    programQuote46Author: "Périclès",
+    programQuote47Text: "Une mauvaise herbe n'est qu'une plante dont on n'a pas encore trouvé la vertu.",
+    programQuote47Author: "Ralph Waldo Emerson",
+    programQuote48Text: "L'échec est simplement l'opportunité de recommencer, cette fois plus intelligemment.",
+    programQuote48Author: "Henry Ford",
+    programQuote49Text: "La foi, c'est l'oiseau qui sent la lumière et chante quand l'aube est encore obscure.",
+    programQuote49Author: "Rabindranath Tagore",
+    programQuote50Text: "Le mieux est l'ennemi du bien.",
+    programQuote50Author: "Voltaire",
+    programQuote51Text: "Tout ce que l'esprit peut concevoir et croire, il peut l'accomplir.",
+    programQuote51Author: "Napoleon Hill",
+    programQuote52Text: "On n'éclaire pas les autres en soufflant sur leur lumière.",
+    programQuote52Author: "Proverbe",
+    programQuote53Text: "Là où il y a de la gêne, il n'y a pas de plaisir.",
+    programQuote53Author: "Proverbe",
+    programQuote54Text: "Petit à petit, l'oiseau fait son nid.",
+    programQuote54Author: "Proverbe",
+    programQuote55Text: "Mieux vaut faire que dire.",
+    programQuote55Author: "Proverbe",
+    programQuote56Text: "Aide-toi, le ciel t'aidera.",
+    programQuote56Author: "Jean de La Fontaine",
+    programQuote57Text: "Le savoir est une arme. La sagesse est son fourreau.",
+    programQuote57Author: "Zerobet",
+    programQuote58Text: "Chaque matin est une nouvelle chance.",
+    programQuote58Author: "Zerobet",
+    programQuote59Text: "Quand la porte du bonheur se ferme, une autre s'ouvre.",
+    programQuote59Author: "Helen Keller",
+    programQuote60Text: "Le bonheur de ta vie dépend de la qualité de tes pensées.",
+    programQuote60Author: "Marc Aurèle",
+    programQuote61Text: "La véritable richesse, c'est de n'avoir besoin de rien.",
+    programQuote61Author: "Sénèque",
+    programQuote62Text: "Ce n'est pas parce que les choses sont difficiles que nous n'osons pas.",
+    programQuote62Author: "Sénèque",
+    programQuote63Text: "On mesure la profondeur d'un cœur à l'étendue de ses blessures.",
+    programQuote63Author: "Proverbe",
+    programQuote64Text: "Le feu qui éclaire réchauffe aussi.",
+    programQuote64Author: "Proverbe",
+    programQuote65Text: "La plus grande gloire n'est pas de ne jamais tomber, mais de se relever à chaque chute.",
+    programQuote65Author: "Confucius",
+    programQuote66Text: "Le bonheur est la seule chose qui se double quand on le partage.",
+    programQuote66Author: "Albert Schweitzer",
+    programQuote67Text: "Tu es libre. Libre comme l'air. Libre comme tu n'as jamais été.",
+    programQuote67Author: "Zerobet",
+    programQuote68Text: "Aujourd'hui est le premier jour du reste de ta vie.",
+    programQuote68Author: "Proverbe",
+    programQuote69Text: "L'important n'est pas la destination, c'est le voyage.",
+    programQuote69Author: "Proverbe",
+    programQuote70Text: "Le succès n'est pas final, l'échec n'est pas fatal. C'est le courage de continuer qui compte.",
+    programQuote70Author: "Winston Churchill",
+    programQuote71Text: "On ne voit pas le bout du tunnel, mais on sait que la lumière existe.",
+    programQuote71Author: "Zerobet",
+    programQuote72Text: "Ta série de jours est ta médaille. Porte-la avec fierté.",
+    programQuote72Author: "Zerobet",
+    programQuote73Text: "Un pas après l'autre, on arrive au sommet.",
+    programQuote73Author: "Proverbe",
+    programQuote74Text: "Tu n'es pas seul. Des milliers marchent avec toi.",
+    programQuote74Author: "Zerobet",
+    programQuote75Text: "Le mot impossible n'est pas français.",
+    programQuote75Author: "Napoléon Bonaparte",
+    programQuote76Text: "Le cœur a ses raisons que la raison ne connaît pas.",
+    programQuote76Author: "Blaise Pascal",
+    programQuote77Text: "Quand on aime, on ne compte pas.",
+    programQuote77Author: "Proverbe",
+    programQuote78Text: "Le paradis terrestre est là où tu es.",
+    programQuote78Author: "Proverbe",
+    programQuote79Text: "La persévérance est la mère de toutes les réussites.",
+    programQuote79Author: "Proverbe",
+    programQuote80Text: "Tu as fait le plus dur en commençant. Maintenant, continue.",
+    programQuote80Author: "Zerobet",
+    programQuote81Text: "Le futur t'appartient. Saisis-le.",
+    programQuote81Author: "Zerobet",
+    programQuote82Text: "Tu n'es plus le joueur que tu étais. Tu es libre.",
+    programQuote82Author: "Zerobet",
+    programQuote83Text: "Chaque jour est une nouvelle page. Écris-la avec fierté.",
+    programQuote83Author: "Zerobet",
+    programQuote84Text: "Le plus grand des voyages commence par un seul pas. Aujourd'hui, c'est le jour 90.",
+    programQuote84Author: "Zerobet",
+    programQuote85Text: "Tu as transformé ta vie. Tu es une inspiration.",
+    programQuote85Author: "Zerobet",
+    programQuote86Text: "Le programme est terminé, mais ton parcours continue. Bravo.",
+    programQuote86Author: "Zerobet",
+    programQuote87Text: "Sois fier de toi. Tu as accompli quelque chose d'extraordinaire.",
+    programQuote87Author: "Zerobet",
+    programQuote88Text: "Tu es maintenant un mentor pour les autres. Partage ton histoire.",
+    programQuote88Author: "Zerobet",
+    programQuote89Text: "La liberté n'est pas un don, c'est une conquête. Tu as conquis la tienne.",
+    programQuote89Author: "Zerobet",
+    programQuote90Text: "Tu es la preuve vivante que le changement est possible.",
+    programQuote90Author: "Zerobet",
+    programQuote91Text: "Continue d'avancer. Le meilleur est encore à venir.",
+    programQuote91Author: "Zerobet",
+    programQuote92Text: "Ta transformation inspire. Sois-en fier.",
+    programQuote92Author: "Zerobet",
+    programQuote93Text: "Tu es une légende. Maintenant, aide les autres à le devenir.",
+    programQuote93Author: "Zerobet",
+    authSignInTitle: "Connexion",
+    authSignInSubtitle: "Reprends le contrôle de ta vie",
+    authSignUpTitle: "Créer un compte",
+    authSignUpSubtitle: "Commence ton voyage vers la liberté",
+    authGoogle: "Continuer avec Google",
+    authOr: "ou",
+    authEmail: "Adresse email",
+    authPassword: "Mot de passe",
+    authName: "Nom (optionnel)",
+    authSignIn: "Se connecter",
+    authSignUp: "S'inscrire",
+    authCreateAccount: "Créer mon compte",
+    authNoAccount: "Pas encore de compte ?",
+    authHaveAccount: "Déjà un compte ?",
+    authPasswordTooShort: "Le mot de passe doit contenir au moins 6 caractères",
+    authErrorInvalid: "Email ou mot de passe incorrect",
+    authErrorGeneric: "Une erreur est survenue. Réessaye.",
+    authErrorSignInAfter: "Compte créé mais connexion échouée. Essaie de te connecter.",
+    authTermsNotice: "En continuant, tu acceptes nos Conditions d'utilisation et notre Politique de confidentialité.",
+    authErrorTitle: "Oups, un problème",
+    authErrorConfig: "Erreur de configuration. Contacte le support.",
+    authErrorDenied: "Accès refusé. Tu as annulé la connexion.",
+    authErrorVerification: "Vérification échouée. Réessaye.",
+    authErrorOAuth: "Erreur de connexion Google. Réessaye.",
+    authErrorOAuthCreate: "Impossible de créer le compte. Réessaye.",
+    authErrorCallback: "Erreur de redirection. Réessaye.",
+    authErrorDefault: "Une erreur est survenue pendant la connexion.",
+    authTryAgain: "Réessayer"
+};
+/* ============================================================
+ * ENGLISH
+ * ============================================================ */ const en = {
+    // ---- App & General ----
+    appName: "Zerobet",
+    tagline: "Take back control of your life",
+    continue: "Continue",
+    back: "Back",
+    skip: "Skip",
+    next: "Next",
+    finish: "Finish",
+    save: "Save",
+    cancel: "Cancel",
+    delete: "Delete",
+    edit: "Edit",
+    close: "Close",
+    confirm: "Confirm",
+    loading: "Loading...",
+    retry: "Retry",
+    send: "Send",
+    publish: "Publish",
+    reply: "Reply",
+    like: "Like",
+    share: "Share",
+    unlock: "Unlock",
+    locked: "Locked",
+    premium: "Premium",
+    free: "Free",
+    upgrade: "Upgrade to Premium",
+    yes: "Yes",
+    no: "No",
+    or: "or",
+    search: "Search",
+    filter: "Filter",
+    all: "All",
+    none: "None",
+    select: "Select",
+    selected: "selected",
+    done: "Done",
+    today: "Today",
+    yesterday: "Yesterday",
+    tomorrow: "Tomorrow",
+    days: "days",
+    day: "day",
+    hours: "hours",
+    hour: "hour",
+    minutes: "min",
+    minute: "min",
+    seconds: "sec",
+    second: "sec",
+    weeks: "weeks",
+    week: "week",
+    months: "months",
+    month: "month",
+    years: "years",
+    year: "year",
+    seeAll: "See all",
+    seeMore: "See more",
+    seeLess: "See less",
+    add: "Add",
+    remove: "Remove",
+    clear: "Clear",
+    reset: "Reset",
+    apply: "Apply",
+    view: "View",
+    hide: "Hide",
+    show: "Show",
+    enable: "Enable",
+    disable: "Disable",
+    on: "On",
+    off: "Off",
+    fcfa: "FCFA",
+    perWeek: "/week",
+    perMonth: "/month",
+    perYear: "/year",
+    backHome: "Back to home",
+    refresh: "Refresh",
+    justNow: "just now",
+    minutesAgo: "{n} min ago",
+    hoursAgo: "{n}h ago",
+    daysAgo: "{n}d ago",
+    loadMore: "Load more",
+    thisWeek: "This week",
+    thisMonth: "This month",
+    thisYear: "This year",
+    lastWeek: "Last week",
+    lastMonth: "Last month",
+    comingSoon: "Coming soon",
+    beta: "Beta",
+    new: "New",
+    updated: "Updated",
+    optional: "optional",
+    required: "required",
+    // ---- Splash ----
+    splashTitle: "Zerobet",
+    splashSubtitle: "Stop betting. Rebuild yourself.",
+    splashLoading: "Loading...",
+    // ---- Gender ----
+    genderTitle: "Choose your gender",
+    genderSubtitle: "To personalize your experience",
+    male: "Male",
+    female: "Female",
+    // ---- Language ----
+    languageTitle: "Choose your language",
+    languageSubtitle: "The app will adapt to your choice",
+    // ---- Currency ----
+    currencyTitle: "Choose your currency",
+    currencySubtitle: "To display your savings in your currency",
+    currencyPreview: "Preview",
+    // ---- Welcome ----
+    welcomeTitle: "You can stop.",
+    welcomeSubtitle: "Thousands have done it before you.",
+    welcomeCta: "Start my assessment",
+    welcomeHaveAccount: "I already have an account",
+    welcomeTagline: "Free assessment in 3 minutes",
+    welcomeTerms: "By continuing, you accept our terms of use and our data protection policy. Your data stays on your device.",
+    // ---- Quiz ----
+    quizTitle: "Addiction Assessment",
+    quizProgress: "Question {n} of {total}",
+    quizAnswer: "Answer honestly",
+    quizCategoryBehavior: "Behavior",
+    quizCategoryFinance: "Finance",
+    quizCategoryEmotions: "Emotions",
+    quizCategorySocial: "Social",
+    quizPrivacy: "Your answers are private and stored locally",
+    quizStep: "Step",
+    // ---- Results ----
+    resultsTitle: "Your analysis",
+    resultsSubtitle: "Here is your score",
+    resultsScore: "Addiction score",
+    resultsLevelLow: "Low",
+    resultsLevelModerate: "Moderate",
+    resultsLevelSevere: "Severe",
+    resultsLevelCritical: "Critical",
+    resultsComparison: "Your score is higher than {pct}% of bettors",
+    resultsCta: "See my symptoms",
+    resultsGoodNews: "Good news",
+    resultsGoodNewsDesc: "Recovery is possible. Your brain can heal in 90 days of abstinence. Thousands have done it before you.",
+    resultsMessageLow: "You're in the green zone. Don't let gambling take root. Act now.",
+    resultsMessageModerate: "You're on the slippery slope. Now is the time to act before it gets worse.",
+    resultsMessageSevere: "Gambling has taken root. But recovery is possible. You're not alone.",
+    resultsMessageCritical: "You're in the critical zone. But thousands have made it out. You can do this.",
+    // ---- Symptoms ----
+    symptomsTitle: "Symptom checker",
+    symptomsSubtitle: "Select what you feel. This will help us personalize your plan.",
+    symptomsFinancial: "Financial",
+    symptomsMental: "Mental",
+    symptomsSocial: "Social",
+    symptomsPhysical: "Physical",
+    symptomsFamily: "Family",
+    symptomsSelected: "{n} symptom(s) selected",
+    symptomsStep: "Step {n} of {total}",
+    symptomsContinue: "Continue",
+    // ---- Carousel ----
+    carouselTitle: "Understand addiction",
+    carouselSubtitle: "8 truths operators hide",
+    carouselSkip: "Skip",
+    carouselEngage: "I want to commit",
+    carouselSlide: "Slide {n}",
+    // ---- Carousel slides (Task 17-b) ----
+    carousel1Title: "Your brain is hacked",
+    carousel1Body: "Every bet triggers a dopamine release identical to cocaine. The operator designs its products to maximize this effect. It's not a weakness — it's biology.",
+    carousel1Stat: "+200% dopamine",
+    carousel2Title: "The operator ALWAYS wins",
+    carousel2Body: "An operator's margin = 5 to 12%. On {weeklyBet} wagered each week for a year, you statistically lose between {minLoss} and {maxLoss} — guaranteed. There is no winning system.",
+    carousel2Stat: "-{amount}/year",
+    carousel3Title: "You don't have a system. You have a cognitive bias.",
+    carousel3Body: "The human brain detects patterns even where none exist. Odds change in real time according to algorithms. The 'tip' you analyze has already been priced in by entire teams of data scientists paid to make you lose.",
+    carousel3Stat: "0% control",
+    carousel4Title: "Your brain under addiction",
+    carousel4Body: "An MRI of an addict's brain shows alteration of the prefrontal cortex — the area that controls impulses. The more you gamble, the less you control. Good news: neuroplasticity allows you to repair it all in 90 days of abstinence.",
+    carousel4Stat: "90 days to heal",
+    carousel5Title: "What you really lose",
+    carousel5Body: "Money is nothing compared to lost time, destroyed relationships, and shattered trust. An average gambler loses 5 years of their life between betting, obsession, and recovery. Your life is worth more than that.",
+    carousel5Stat: "5 years of life lost",
+    carousel6Title: "Recovery is possible",
+    carousel6Body: "Your brain can repair itself. Dopamine receptors rebalance. Sleep returns. Anxiety decreases. Self-confidence comes back. Thousands have succeeded. You are next.",
+    carousel6Stat: "Thousands have succeeded",
+    carousel7Title: "True story: {name}, {age}, {city}",
+    carousel7Body: "« I lost {amountLost} in 2 years. My wife almost left me. I downloaded Zerobet. Today, I'm {days} days without gambling. I bought back {achievement}. My wife trusts me again. I'm a free man. »",
+    carousel7Stat: "{days} days",
+    carousel8Title: "Your move",
+    carousel8Body: "You understand now. You know that gambling is designed to destroy you. You have the power to say no. Thousands are waiting on the other side. Take the first step. Now.",
+    carousel8Stat: "Your turn",
+    // ---- Engagement ----
+    engagementTitle: "Your commitment",
+    engagementSubtitle: "Choose the goals that matter to you. You can change them later.",
+    engagementSignHere: "Sign your commitment here",
+    engagementSigned: "Commitment signed",
+    engagementCta: "See my personalized plan",
+    engagementStep: "Step {n} of {total}",
+    engagementSelectedGoals: "{n} goal(s) selected",
+    engagementSignatureTitle: "Commitment signature",
+    engagementSignTitle: "Sign your commitment",
+    engagementPledge: "I commit, by my signature, to do everything in my power to stop gambling and take back control of my life.",
+    engagementSignHint: "Sign here with your finger",
+    engagementClearResign: "Clear and re-sign",
+    engagementPlanTitle: "Your personalized plan",
+    engagementYourGoals: "Your goals",
+    engagementWillDoTitle: "What Zerobet will do for you:",
+    engagementWillDo1: "Track your streak of days without gambling",
+    engagementWillDo2: "Give you an emergency button for cravings",
+    engagementWillDo3: "Help you visualize the money you save",
+    engagementWillDo4: "Provide a 24/7 AI coach (Premium)",
+    engagementWillDo5: "Block gambling sites (Premium)",
+    engagementWillDo6: "Connect you to a community of people in recovery",
+    // ---- Paywall ----
+    paywallTitle: "Choose your plan",
+    paywallSubtitle: "Invest in your recovery",
+    paywallHero: "You've done the hardest part. Now choose the tool that will support you every day toward your freedom.",
+    paywallMonthly: "Monthly",
+    paywallAnnual: "Annual",
+    paywallLastStep: "Last step",
+    paywallPopular: "POPULAR",
+    paywallBestValue: "BEST VALUE",
+    paywallOtherBenefits: "+ {n} more benefits",
+    paywallDataProtected: "Protected data • Local storage • Total privacy",
+    paywallStartFree: "Start for free",
+    paywallStartRecovery: "Start my recovery",
+    paywallConsentTitle: "Protecting your data",
+    paywallConsentDesc: "By upgrading to a paid plan, you agree that Zerobet stores your progress data (streak, journal, badges) to provide the service. Your data stays confidential and is never sold.",
+    paywallConsentLabel: "I agree to Zerobet storing and processing my data",
+    paywallPerMonth: "FCFA/month",
+    planFree: "Free",
+    planPremium: "Premium",
+    planMentor: "Mentor",
+    planPsychologist: "Psychologist",
+    planPerMonth: "/month",
+    // Plan taglines
+    planFreeTagline: "To start your journey",
+    planPremiumTagline: "Most popular — full recovery",
+    planMentorTagline: "Become a guide for others",
+    planPsychologistTagline: "For certified professionals",
+    // Plan features — Free (8)
+    planFreeFeature1: "Full quiz (15 questions)",
+    planFreeFeature2: "Score and addiction level",
+    planFreeFeature3: "Educational carousel (8 slides)",
+    planFreeFeature4: "Symptom checker",
+    planFreeFeature5: "3 testimonials per day",
+    planFreeFeature6: "Basic streak counter",
+    planFreeFeature7: "Recovery vault (visualization)",
+    planFreeFeature8: "Reminder notifications",
+    // Plan features — Premium (11)
+    planPremiumFeature1: "Everything in Free",
+    planPremiumFeature2: "Full Panic Button (4-7-8)",
+    planPremiumFeature3: "Unlimited Atlas AI Coach",
+    planPremiumFeature4: "Unlimited journal + AI analysis",
+    planPremiumFeature5: "Betting blocker (50+ sites)",
+    planPremiumFeature6: "Hard Mode 72h",
+    planPremiumFeature7: "Detailed stats (30/60/90 days)",
+    planPremiumFeature8: "Full community (forum, testimonials)",
+    planPremiumFeature9: "Exclusive Premium content",
+    planPremiumFeature10: "Ad-free experience",
+    planPremiumFeature11: "Priority support",
+    // Plan features — Mentor (7)
+    planMentorFeature1: "Everything in Premium",
+    planMentorFeature2: "Verified Mentor badge",
+    planMentorFeature3: "Reply as a mentor",
+    planMentorFeature4: "Mentor directory",
+    planMentorFeature5: "Mentoring statistics",
+    planMentorFeature6: "Coaching tools",
+    planMentorFeature7: "Requirement: 90 days bet-free minimum",
+    // Plan features — Psychologist (7)
+    planPsychologistFeature1: "Everything in Premium",
+    planPsychologistFeature2: "Certified professional profile",
+    planPsychologistFeature3: "Chat with members",
+    planPsychologistFeature4: "Certified professional badge",
+    planPsychologistFeature5: "Session management",
+    planPsychologistFeature6: "Customizable session rate",
+    planPsychologistFeature7: "Verification within 48h",
+    choosePlan: "Choose this plan",
+    currentPlan: "Current plan",
+    bestValue: "Best value",
+    mostPopular: "Most popular",
+    // ---- Dashboard ----
+    dashboardHello: "Hi",
+    dashboardDay: "Day",
+    dashboardWithoutBetting: "without betting",
+    homeSoberSince: "You've been bet-free for:",
+    homePledge: "Pledge",
+    homeMeditate: "Meditate",
+    homeReset: "Reset",
+    homeMore: "More",
+    homeRewire: "Brain Rewiring",
+    homeSoberOn: "Sober since {date}",
+    homeBadgeDays: "d",
+    homePanicCta: "Panic Button",
+    homePanicCtaDesc: "Urgent craving? Breathe with us",
+    homeTodaySection: "Today",
+    homeStreakStable: "Your streak is running",
+    dashboardStreak: "Streak",
+    dashboardSaved: "Saved",
+    dashboardDays: "days",
+    dashboardQuote: "Quote of the day",
+    dashboardQuickActions: "Quick actions",
+    dashboardBadges: "My badges",
+    dashboardTodayProgress: "Today's progress",
+    dashboardKeepGoing: "Keep it up!",
+    dashboardFirstDay: "It's your first day. Well done!",
+    dashboardResetStreak: "Reset my streak",
+    dashboardResetConfirm: "Are you sure? You'll go back to 0. It's not a failure, it's a fresh start.",
+    dashboardYouAreAt: "You're at",
+    dashboardWithoutAnyBet: "without any bet",
+    dashboardCurrentRank: "Current rank",
+    dashboardNextRank: "Next rank",
+    dashboardMoreDays: "Only {n} day(s) until rank {rank}",
+    dashboardMotivation: "Motivation",
+    dashboardDailyChallenge: "Daily challenge",
+    dashboardTakeChallenge: "Take the challenge",
+    dashboardChallengeMarkDone: "I completed this challenge",
+    dashboardChallengeDoneTitle: "Challenge completed! +{n} XP",
+    dashboardChallengeStreak: "Streak: {n} day(s)",
+    dashboardChallengeComeBack: "New challenge tomorrow!",
+    dashboardChallengeGo: "Do it now",
+    dashboardPanicButton: "Emergency button",
+    dashboardPanicButtonDesc: "Craving? Tap here. Let's breathe together.",
+    dashboardSeeAll: "See all",
+    dashboardSearch: "Search",
+    dashboardNotifications: "Notifications",
+    dashboardAdminPanel: "Admin panel",
+    dashboardAdminStreak: "Streak days",
+    dashboardAdminPlan: "Plan",
+    dashboardAdminScore: "Addiction score",
+    dashboardAdminAddJournal: "+ Journal entry",
+    dashboardAdminSimulate: "Simulate milestone",
+    dashboardAdminResetAll: "Reset all data",
+    dashboardAdminResetConfirm: "Reset ALL data?",
+    dashboardAdminClose: "Close",
+    dashboardChampion: "champion",
+    dashboardCher: "Dear",
+    dashboardChere: "Dear",
+    dashboardActionUrgence: "Emergency",
+    dashboardActionQuests: "Quests",
+    dashboardActionJournal: "Journal",
+    dashboardActionSavings: "Savings",
+    dashboardActionStats: "Stats",
+    dashboardActionMeditation: "Meditation",
+    dashboardActionAtlas: "Atlas AI",
+    dashboardActionBlocker: "Blocker",
+    dashboardActionCommunity: "Community",
+    dashboardActionChat: "Live Chat",
+    dashboardActionTrophies: "Trophies",
+    dashboardActionResources: "Resources",
+    dashboardActionProfile: "Profile",
+    dashboardActionSOS: "SOS",
+    dashboardActionCalendar: "Calendar",
+    dashboardActionHelp: "Help",
+    dashboardActionProgram: "Program",
+    dashboardActionMentor: "Mentor",
+    dashboardActionGoals: "Goals",
+    dashboardActionAffirmations: "Affirmations",
+    dashboardActionWithdrawal: "Withdrawal",
+    dashboardActionTriggers: "Triggers",
+    dashboardActionRelapse: "Relapse",
+    dashboardActionNotifications: "Notifications",
+    dashboardStreakMultiplier: "Streak multiplier",
+    dashboardDaysSinceStart: "{n} days since start",
+    // ---- Bottom Nav ----
+    navHome: "Home",
+    navTools: "Tools",
+    navCoach: "Coach",
+    navCommunity: "Community",
+    navProfile: "Profile",
+    // ---- Panic ----
+    panicTitle: "You can do this",
+    panicSubtitle: "Emergency mode",
+    panicMode: "Emergency mode",
+    panicBreathe: "Breathe in",
+    panicHold: "Hold",
+    panicExhale: "Breathe out",
+    panicInhale: "Breathe in",
+    panicKeepGoing: "No, I'll keep breathing",
+    panicDone: "The craving has passed",
+    panicCravingPassed: "The craving has passed",
+    panicContinueBreathing: "No, I'll keep breathing",
+    panicNeedSomethingElse: "I need something else",
+    panicTriggerQuestion: "What do you want to do?",
+    panicBackHome: "Back to home",
+    panicEncouragement: "You did it!",
+    panicStats: "You just beat a craving. Every victory counts.",
+    panicMessage1: "You've held on for {days} day(s). Don't waste it.",
+    panicMessage2: "73% of cravings pass in less than 10 minutes.",
+    panicMessage3: "You're stronger than this craving.",
+    panicCallFriend: "Call a loved one",
+    panicCallFriendDesc: "Someone you trust who can listen",
+    panicReadTestimony: "Read a testimony",
+    panicReadTestimonyDesc: "Stories from those who overcame",
+    panicJournal: "Note in journal",
+    panicJournalDesc: "Write what you feel",
+    panicNotedTrigger: "Note what triggered the craving",
+    panicStartBreathing: "Start breathing",
+    panicBreatheTogether: "Let's breathe together",
+    panicWaveDesc: "The urge to gamble is like a wave. It rises, then it falls.",
+    panicStrongerThan: "Don't waste it. This craving will pass. You're stronger than it.",
+    panicYouDidIt: "You did it!",
+    panicVictoryCount: "You just beat a craving. Every victory counts.",
+    panicStreakIntact: "Your streak stays intact: {n} day(s) 🔥",
+    panicWhatDoYouWant: "What do you want to do?",
+    panicFollowRhythm: "Follow the rhythm. Focus on your breathing.",
+    panicCycle: "Cycle {n} of {total}",
+    panicCyclesRemaining: "{n} cycles remaining",
+    panicPercent73: "73% of cravings pass in less than 10 minutes. You just held on for 1 minute. Keep going.",
+    // ---- Journal ----
+    journalTitle: "Thought journal",
+    journalSubtitle: "How do you feel today?",
+    journalNewEntry: "New entry",
+    journalEntryTitle: "Entry",
+    journalContent: "What you feel",
+    journalEmotion: "Emotion",
+    journalTrigger: "Trigger (optional)",
+    journalIntensity: "Intensity",
+    journalSave: "Save",
+    journalEmpty: "No entries. Start writing your story.",
+    journalEmptyTitle: "No entries",
+    journalEmptyDesc: "Start writing your story. Each day, note how you feel — that's the habit that changes everything.",
+    journalPrompts: "Suggestions",
+    journalSuggestions: "Suggestions",
+    journalWeeklyAnalysis: "Weekly analysis",
+    journal7Days: "Last 7 days",
+    journalEntryCount: "{n} entries",
+    journalTriggerLabel: "Trigger:",
+    journalFeelToday: "How do you feel?",
+    journalWhatYouFeel: "What you feel",
+    journalContentPlaceholder: "Today, I...",
+    journalTriggerPlaceholder: "What triggered this emotion?",
+    journalIntensityLabel: "Intensity: {n}/5",
+    journalUpgradeToPremium: "Upgrade to Premium",
+    journalAddedEntry: "Journal entry added",
+    journalBack: "Back",
+    journalHowFeel: "How do you feel today?",
+    journalAnalysis: "Weekly analysis",
+    journalPrompt1: "How do you feel today?",
+    journalPrompt2: "What helped you the most this week?",
+    journalPrompt3: "What's your biggest recent victory?",
+    // ---- Emotions ----
+    emotionFrustrated: "Frustrated",
+    emotionStrong: "Strong",
+    emotionTempted: "Tempted",
+    emotionCalm: "Calm",
+    emotionProud: "Proud",
+    emotionAnxious: "Anxious",
+    // ---- Finance ----
+    financeTitle: "Recovery Vault",
+    financeSubtitle: "Watch your saved money grow",
+    financeTotalSaved: "Total saved",
+    financeWeeklyBet: "Average weekly bet",
+    financeProjection: "Projections",
+    financeMonth: "In 1 month",
+    financeYear: "In 1 year",
+    financeThisWeek: "This week",
+    financeGoal: "Savings goal",
+    financeCouldBuy: "With this, you could",
+    financeCompareBefore: "Before Zerobet",
+    financeCompareAfter: "With Zerobet",
+    financeGoals: "Goals",
+    financeAddGoal: "Add a goal",
+    financeGoalName: "Goal name",
+    financeGoalAmount: "Amount",
+    financeCategoryNecessities: "Necessities",
+    financeCategorySavings: "Savings",
+    financeCategoryProjects: "Projects",
+    financeCategoryFood: "Food",
+    financeCategoryTransport: "Transport",
+    financeCategoryOther: "Other",
+    financeBudget: "Budget",
+    financeMilestones: "Milestones",
+    financeEducation: "Financial education",
+    financeSaved: "Total saved",
+    financeProjectionDesc: "Projections",
+    financeAddCategory: "Add a category",
+    financeNoGoals: "No goals. Add one to visualize your projects.",
+    financeGoalReached: "Goal reached! 🎉",
+    financeGoalProgress: "{pct}% of goal",
+    // ---- Atlas AI ----
+    atlasTitle: "Atlas AI",
+    atlasSubtitle: "Your personal coach 24/7",
+    atlasOnline: "Online",
+    atlasOffline: "Offline",
+    atlasTypeMessage: "Type your message...",
+    atlasSend: "Send",
+    atlasSectionJournal: "Journal",
+    atlasSectionMotivation: "Motivation",
+    atlasSectionProgress: "Progress",
+    atlasSectionCrisis: "Crisis",
+    atlasAnalyzeJournal: "Analyze my journal",
+    atlasAskMotivation: "Ask for motivation",
+    atlasSeeProgress: "See my progress",
+    atlasPanicButton: "Panic Button",
+    atlasLocked: "Unlock with Premium",
+    atlasLockedDesc: "Atlas AI is for Premium members only",
+    atlasEmergency: "If you're in crisis, contact a professional.",
+    atlasClear: "Clear conversation",
+    atlasContext: "Context",
+    atlasSuggested1: "How do I handle a sudden craving?",
+    atlasSuggested2: "Analyze my journal",
+    atlasSuggested3: "Give me motivation",
+    atlasSuggested4: "Explain dopamine to me",
+    atlasSuggested5: "How do I talk to my family?",
+    atlasSuggested6: "I feel weak today",
+    atlasJournal: "Journal",
+    atlasMotivation: "Motivation",
+    atlasProgress: "Progress",
+    atlasCrisis: "Crisis",
+    atlasThinking: "Atlas is thinking...",
+    atlasError: "Sorry, I couldn't reply. Try again.",
+    // ---- Betting Blocker ----
+    blockerTitle: "Betting Blocker",
+    blockerSubtitle: "Protect yourself from temptation",
+    blockerActive: "Active",
+    blockerInactive: "Inactive",
+    blockerSitesBlocked: "sites blocked",
+    blockerStrictMode: "Strong Mode (72h)",
+    blockerStrictDesc: "Cannot disable for 72h",
+    blockerAddSite: "Add a site",
+    blockerCategoryAll: "All",
+    blockerCategoryIntl: "International",
+    blockerCategoryAfrica: "Africa",
+    blockerCategoryCrypto: "Crypto",
+    blockerCategoryFrance: "France",
+    blockerCategoryOther: "Other",
+    blockerBlockAll: "Block all",
+    blockerUnblockAll: "Unblock all",
+    blockerLocked: "Unlock with Premium",
+    blockerStrictRemaining: "Strong mode active: {n}h remaining",
+    blockerCustomSite: "Custom site",
+    blockerSiteName: "Site name",
+    blockerSiteUrl: "Site URL",
+    // ---- Community ----
+    communityTitle: "Community",
+    communitySubtitle: "You're not alone in this journey",
+    communityTestimonials: "Testimonials",
+    communityForum: "Forum",
+    communityMentors: "Mentors",
+    communityPsychologists: "Psychologists",
+    communityWriteTestimonial: "Write my testimony",
+    communityVerified: "Verified",
+    communityAnonymous: "Anonymous",
+    communityDaysClean: "days without betting",
+    communityBecomeMentor: "Become a mentor",
+    communityMentorRequirement: "90 days without betting minimum",
+    communityBookSession: "Book a session",
+    communitySessionPrice: "FCFA / session",
+    communityNewPost: "New topic",
+    communityCategorySuccess: "Success",
+    communityCategoryStruggle: "Struggles",
+    communityCategoryMotivation: "Motivation",
+    communityCategoryQuestion: "Question",
+    communityReply: "Reply",
+    communityLike: "Like",
+    communityContact: "Contact",
+    communityBook: "Book",
+    communityNoTestimonials: "No testimonials yet. Be the first to share your story.",
+    communityNoPosts: "No topics. Be the first to start a discussion. Your story can inspire others.",
+    communityStartDiscussion: "Start a discussion",
+    communityWriteTestimonialTitle: "Share your testimony",
+    communityNewPostTitle: "New topic",
+    communityPostTitle: "Title",
+    communityPostContent: "Your message",
+    communityPostCategory: "Category",
+    communityPublish: "Publish",
+    communityReplyTo: "Reply to {name}",
+    communityOnline: "Online",
+    communityOffline: "Offline",
+    communityResponseTime: "Replies in {n}",
+    // ---- Community extras (Task 18-b) ----
+    communityMembers: "members",
+    communityCumulativeDays: "cumulative days",
+    communityVerifiedTestimonials: "verified testimonials",
+    communityFilterAll: "All",
+    communityFilterVerified: "Verified",
+    communityFilter100Days: "100+ days",
+    communityFilter365Days: "365 days",
+    communitySortRecent: "Recent",
+    communitySortPopular: "Popular",
+    communitySortUnanswered: "Unanswered",
+    communityJustNow: "just now",
+    communityDayAgo: "1 day ago",
+    communityQuickReplies: "Quick replies:",
+    communityMyTestimonial: "My testimonial",
+    communityTitleLabel: "Title",
+    communityTestimonialTitlePlaceholder: "e.g. « 90 days clean, I'm proud »",
+    communityYourStory: "Your story",
+    communityYourStoryPlaceholder: "Tell us about your journey, your struggles, your wins...",
+    communityPublishAnonymous: "Publish anonymously",
+    communityPublishAnonymousDesc: "Your name won't be visible publicly",
+    communityAnonymousModeActive: "Anonymous mode is on — your testimonial will be published as Anonymous.",
+    communityPublishMyTestimonial: "Publish my testimonial",
+    communityNewTopic: "New topic",
+    communityCategoryLabel: "Category",
+    communityForumTitlePlaceholder: "Topic title",
+    communityMessageLabel: "Message",
+    communityForumMessagePlaceholder: "Details, context, question...",
+    communityPublishTopic: "Publish topic",
+    communityReplyPlaceholder: "Write your reply...",
+    communityForumReplyPlaceholder: "Share your experience or advice...",
+    communityUnlockWithPremium: "Unlock with Premium",
+    communityUnlockTestimonialsDesc: "Access all verified testimonials from the community.",
+    communityReplyPublishedToast: "Reply published",
+    communityTestimonialPublishedToast: "Testimonial published",
+    communityTestimonialPublishedToastDesc: "Thank you for sharing. The community appreciates it.",
+    communityForumPostedToast: "Topic posted",
+    communityForumPostedToastDesc: "Your topic is now visible to the community.",
+    communityMentorRequestToast: "Request sent to {name}",
+    communityMentorRequestToastDesc: "You'll get a reply within 24h.",
+    communitySessionReservedToast: "Session booked with {name}",
+    communitySessionReservedToastDesc: "Price: {price}. Confirmation sent by email.",
+    communityReserveSession: "Book a session",
+    communityLicense: "License",
+    communityCountry: "Country",
+    communityDuration: "Duration",
+    communityDurationMinutes: "50 minutes",
+    communityFormat: "Format",
+    communitySecureVideo: "Secure video",
+    communityPaymentInfo: "Secure payment. Free cancellation up to 24h before the session.",
+    communityConfirm: "Confirm",
+    communityRating: "Rating",
+    communitySessionTariff: "Rate / session",
+    communityCertifiedSessions: "Certified sessions",
+    communityPsychologistsDesc: "Licensed psychologists, specialized in behavioral addictions.",
+    communityNoTopicsTitle: "No topics yet",
+    communityNoTopicsDesc: "Be the first to start a discussion. Your story can inspire others.",
+    communityBecomeMentorDesc: "Reach 90 days without betting to support other members.",
+    communityMentorObjective: "Goal",
+    communityMentorObjectiveDays: "90 days",
+    communityYourProgress: "Your progress",
+    communityEligibleMentor: "You're eligible to become a mentor!",
+    communityApplyNow: "Apply now",
+    communityDaysUntilMentor: "Only {days} days until you can become a mentor.",
+    communityVerifiedMentors: "Verified mentors",
+    communityForumLockDesc: "The forum is for Premium members. Join the community to talk with others in recovery.",
+    communityMentorsLockDesc: "Mentors are for Premium members. Upgrade to talk with people who successfully quit.",
+    communityPsychologistsLockDesc: "Psychologists are for Premium members. Upgrade to book therapy sessions.",
+    communityMoreTestimonialsPremium: "+{count} more testimonials with Premium",
+    communityLoadMore: "Load more testimonials ({n})",
+    // Testimonial seed content (Task 18-b)
+    testimonialKoffiTitle: "I'm a man again",
+    testimonialKoffiBody: "I lost {amount} in 3 years on 1xBet. My girlfriend left. I downloaded Zerobet one night when I wanted to end it all. Today, 234 days without betting. She came back. I started my own small business. Zerobet saved me.",
+    testimonialMoussaTitle: "187 days. I'm free.",
+    testimonialMoussaBody: "I bet every day on Betika. I lied to my wife. Now I'm 6 months clean. The panic button helped me at least 30 times. Without Zerobet, I'd be in debt for life.",
+    testimonialOmarTitle: "90 days. The turning point.",
+    testimonialOmarBody: "I thought I could never stop. 90 days later, I have no urge left. My brain is repaired. Zerobet showed me recovery is possible.",
+    testimonialIbrahimTitle: "ONE YEAR. I'm a legend.",
+    testimonialIbrahimBody: "One year without betting. One year. I saved {amount}. I bought land. I took my life back. If I did it, you can do it. Start today.",
+    testimonialBoubacarTitle: "The healing journey saved me",
+    testimonialBoubacarBody: "Badges, levels... it became a healthy game. Instead of betting, I want to unlock the next rank. 45 days. I never go back.",
+    testimonialAwaTitle: "A woman, and addicted too",
+    testimonialAwaBody: "We don't talk much about women who bet. I lost {amount} in 2 years. Zerobet welcomed me without judgment. 156 days clean. Thanks to the community.",
+    testimonialDjimieTitle: "Cravings really do pass",
+    testimonialDjimieBody: "12 days. The first nights were hard, but every craving passed within minutes. Zerobet helps me take it hour by hour.",
+    testimonialPatriceTitle: "I paid off my debts",
+    testimonialPatriceBody: "In 78 days I saved {amount}. I started paying back what I owed, and I sleep normally again.",
+    testimonialEssohanaTitle: "A new chapter",
+    testimonialEssohanaBody: "210 days without betting. I resumed my studies by correspondence. Shame has turned into pride.",
+    testimonialCheikhNTitle: "At 19, I stopped for good",
+    testimonialCheikhNBody: "I started betting at 17 with my lunch money. 30 days clean thanks to the panic button and the group.",
+    testimonialYaoTitle: "Five hundred days",
+    testimonialYaoBody: "Five hundred days. {amount} saved, a savings account opened, and my kids laughing again. If I could, you can.",
+    testimonialMarcAimeTitle: "One week",
+    testimonialMarcAimeBody: "Only seven days, but it's already the longest streak in three years. The quiz opened my eyes to my symptoms.",
+    // Country names (ISO 3166-1 alpha-2 code lookup)
+    countryCI: "Ivory Coast",
+    countrySN: "Senegal",
+    countryML: "Mali",
+    countryCM: "Cameroon",
+    countryGN: "Guinea",
+    countryFR: "France",
+    countryBJ: "Benin",
+    countryCD: "DR Congo",
+    countryTG: "Togo",
+    countryGA: "Gabon",
+    // Misc short labels used in community cards
+    dayShort: "d",
+    yearsOld: "yrs",
+    cleanShort: "clean",
+    sessionsLabel: "sessions",
+    certifiedBadge: "Certified",
+    mentorBadge: "Mentor",
+    psyBadge: "Psy",
+    me: "Me",
+    // ---- Parcours (ranks) ----
+    parcoursTitle: "Healing Path",
+    parcoursSubtitle: "13 levels to your freedom",
+    parcoursCurrentRank: "Current rank",
+    parcoursNextRank: "Next rank",
+    parcoursLocked: "Locked",
+    parcoursUnlocked: "Unlocked",
+    parcoursCollection: "Collection",
+    parcoursEvolution: "Evolution",
+    parcoursAll: "All",
+    parcoursRanksUnlocked: "{n}/{total} ranks unlocked",
+    parcoursProgressToNext: "Progress toward {rank}",
+    parcoursMoreDays: "Only {n} day(s) before {rank}",
+    parcoursLegend: "Legend!",
+    parcoursLegendDesc: "You've unlocked all ranks. You're a master of yourself.",
+    parcoursFooterMotivation: "Every day without gambling is another brick in your new life.",
+    parcoursFooterMotivation2: "Keep going, you're building something great.",
+    parcoursDaysShort: "{n}d",
+    parcoursUntilRank: "{n} day(s) before",
+    // ---- Settings ----
+    settingsTitle: "Settings",
+    settingsAccount: "Account",
+    settingsPlan: "My plan",
+    settingsPreferences: "Preferences",
+    settingsLanguage: "Language",
+    settingsGender: "Gender",
+    settingsName: "Name",
+    settingsPrivacy: "Privacy & Data Protection",
+    settingsAnonymousMode: "Anonymous mode",
+    settingsAnonymousDesc: "Your posts appear as 'Anonymous'",
+    settingsDataConsent: "Data consent",
+    settingsDataConsentDesc: "I agree to my data being stored",
+    settingsDataProtected: "Data protected",
+    settingsResetApp: "Reset app",
+    settingsResetConfirm: "All your data will be erased. Are you sure?",
+    settingsAdmin: "Admin mode",
+    settingsAdminTitle: "Admin panel",
+    settingsAdminStreak: "Streak days",
+    settingsAdminPlan: "Plan",
+    settingsAdminScore: "Addiction score",
+    settingsAdminLevel: "Addiction level",
+    settingsAdminReset: "Reset data",
+    settingsAdminAddJournal: "Add journal entry",
+    settingsAdminMilestone: "Simulate milestone",
+    settingsAdminClose: "Close",
+    settingsAbout: "About",
+    settingsVersion: "Version",
+    settingsAppearance: "Appearance",
+    settingsNotifications: "Notifications",
+    settingsData: "Data",
+    settingsSound: "Sounds",
+    settingsSoundDesc: "Sound effects",
+    settingsHaptics: "Haptics",
+    settingsHapticsDesc: "Haptic feedback",
+    settingsTheme: "Theme",
+    settingsThemeLight: "Light",
+    settingsThemeDark: "Dark",
+    settingsThemeSystem: "System",
+    settingsTerms: "Terms of use",
+    settingsPolicy: "Privacy policy",
+    settingsContact: "Contact",
+    settingsExportData: "Export my data",
+    settingsImportData: "Import data",
+    settingsDeleteAccount: "Delete my account",
+    settingsPlanFree: "Free",
+    settingsPlanPremium: "Premium",
+    settingsPlanMentor: "Mentor",
+    settingsPlanPsychologist: "Psychologist",
+    // ---- Meditation ----
+    meditationTitle: "Meditation",
+    meditationSubtitle: "Calm your mind, strengthen your will",
+    meditationStart: "Start",
+    meditationPause: "Pause",
+    meditationResume: "Resume",
+    meditationStop: "Stop",
+    meditationTechnique1: "4-7-8 Breathing",
+    meditationTechnique2: "Cardiac coherence",
+    meditationTechnique3: "Alternate nostril breathing",
+    meditationTechnique4: "Box breathing",
+    meditationTechnique5: "Deep breathing",
+    meditationDuration: "Duration",
+    meditationCycles: "Cycles",
+    meditationDifficulty: "Difficulty",
+    meditationEasy: "Easy",
+    meditationMedium: "Medium",
+    meditationAdvanced: "Advanced",
+    meditationCategoryCrisis: "Crisis",
+    meditationCategoryMotivation: "Motivation",
+    meditationCategoryRelaxation: "Relaxation",
+    meditationCategoryEnergy: "Energy",
+    meditationGuided: "Guided meditations",
+    meditationBreathing: "Breathing techniques",
+    meditationSessionComplete: "Session complete!",
+    meditationSessionCompleteDesc: "You meditated for {n} minutes. Keep it up!",
+    meditationInhale: "Breathe in",
+    meditationExhale: "Breathe out",
+    meditationHold: "Hold",
+    // ---- Stats ----
+    statsTitle: "Statistics",
+    statsSubtitle: "Visualize your progress",
+    statsStreak: "Streak",
+    statsSavings: "Savings",
+    statsJournal: "Journal",
+    statsCrises: "Crises",
+    statsMoodTrend: "Mood trend",
+    statsSavingsGrowth: "Savings growth",
+    statsMoodDistribution: "Mood distribution",
+    statsMoodTimeline: "Mood timeline",
+    statsRegularity: "Regularity",
+    statsDominantMood: "Dominant mood",
+    statsNoData: "No data yet. Keep going and your stats will appear here.",
+    statsOverview: "Overview",
+    statsProgress: "Progress",
+    statsBestDay: "Best day",
+    statsWorstDay: "Hardest day",
+    statsTotalEntries: "Total entries",
+    statsResolvedCravings: "Cravings overcome",
+    statsMeditationStreak: "Meditation streak",
+    statsNoDataShort: "No data yet",
+    statsViewDashboard: "View dashboard",
+    // ---- Resources ----
+    resourcesTitle: "Resources",
+    resourcesSubtitle: "Articles, videos and useful contacts",
+    resourcesCategoryAll: "All",
+    resourcesCategoryAddiction: "Addiction",
+    resourcesCategoryTechniques: "Techniques",
+    resourcesCategoryFinance: "Finance",
+    resourcesCategoryTestimonials: "Testimonials",
+    resourcesCategoryMeditation: "Meditation",
+    resourcesCategoryStories: "Stories",
+    resourcesReadMore: "Read more",
+    resourcesReadingTime: "{n} min read",
+    resourcesFeatured: "Featured",
+    resourcesArticles: "Articles",
+    resourcesVideos: "Videos",
+    resourcesHotlines: "Hotlines",
+    resourcesApps: "Apps",
+    resourcesBooks: "Books",
+    resourcesNoArticles: "No articles in this category.",
+    // ---- SOS ----
+    sosTitle: "SOS",
+    sosSubtitle: "Emergency numbers and safety plan",
+    sosEmergency: "Emergency",
+    sosCallEmergency: "Call",
+    sosHotline1: "Gambling helpline",
+    sosHotline1Desc: "24/7 • Free • Confidential",
+    sosHotline2: "Gambling Therapy International",
+    sosHotline2Desc: "Global online support",
+    sosHotline3: "SOS Friendship",
+    sosHotline3Desc: "Friendly listening 24/7",
+    sosHotline4: "Social Emergency",
+    sosHotline4Desc: "Social emergency",
+    sosPanicButton: "Panic Button",
+    sosBreathing: "Breathing exercise",
+    sosGrounding: "Grounding",
+    sosSafetyPlan: "Safety plan",
+    sosSafetyStep1: "Recognize warning signs",
+    sosSafetyStep2: "Identify your triggers",
+    sosSafetyStep3: "Distract your mind",
+    sosSafetyStep4: "Contact a loved one",
+    sosSafetyStep5: "Seek professional help",
+    sosPersonalContacts: "Personal contacts",
+    sosAddContact: "Add a contact",
+    sosContactName: "Name",
+    sosContactPhone: "Phone",
+    sosContactRelation: "Relationship",
+    sosNoContacts: "No contacts. Add someone you trust to call during a crisis.",
+    // ---- Achievements ----
+    achievementsTitle: "Trophies",
+    achievementsSubtitle: "Every victory deserves to be celebrated",
+    achievementsHeaderTitle: "Achievements",
+    achievementsYourExploits: "Your exploits",
+    achievementsRecentUnlocks: "Recent unlocks",
+    achievementsNoItems: "No achievement in this category yet.",
+    achievementsUnlocked: "Unlocked",
+    achievementsLocked: "Locked",
+    achievementsProgress: "Progress",
+    achievementsTier: "Tier",
+    achievementsTierAll: "All",
+    achievementsTierBronze: "Bronze",
+    achievementsTierSilver: "Silver",
+    achievementsTierGold: "Gold",
+    achievementsTierDiamond: "Diamond",
+    achievementsTierLegendary: "Legendary",
+    achievementsSpecial: "Special trophies",
+    achievementsRankBased: "Rank trophies",
+    achievementsUnlockedCount: "{n}/{total} unlocked",
+    achievementsOfTarget: "{current}/{target}",
+    // ---- Profile ----
+    profileTitle: "Profile",
+    profileEdit: "Edit",
+    profileStats: "Statistics",
+    profileRecords: "Records",
+    profileLongestStreak: "Longest streak",
+    profileMonthlySavings: "Monthly savings",
+    profileTotalSavings: "Total savings",
+    profileHardestDay: "Hardest day",
+    profileMember: "Member since",
+    profilePlan: "Plan",
+    profileRank: "Rank",
+    profileLanguage: "Language",
+    profileGender: "Gender",
+    profileName: "Name",
+    profileGoals: "Goals",
+    profileBadges: "Badges",
+    profileJoined: "Joined on",
+    profileEditName: "Edit your name",
+    profileNamePlaceholder: "Your first name",
+    profileSave: "Save",
+    // ---- Gamification ----
+    gamificationTitle: "Quests & Challenges",
+    gamificationSubtitle: "Earn XP and unlock rewards",
+    gamificationLevel: "Level",
+    gamificationXP: "XP",
+    gamificationNextLevel: "Next level",
+    gamificationDailyQuests: "Daily quests",
+    gamificationWeeklyQuests: "Weekly quests",
+    gamificationClaimReward: "Claim",
+    gamificationClaimed: "Claimed",
+    gamificationProgress: "Progress",
+    gamificationChallenges: "Challenges",
+    gamificationLeaderboard: "Leaderboard",
+    gamificationHistory: "History",
+    gamificationStreakMultiplier: "Streak multiplier",
+    gamificationWeeklyChallenge: "Weekly challenge",
+    gamificationReward: "+{n} XP",
+    gamificationLevelUp: "Level up!",
+    gamificationLevelUpDesc: "You reached level {n}",
+    gamificationRank: "Rank {n}",
+    // ---- Calendar ----
+    calendarTitle: "Calendar",
+    calendarSubtitle: "Your journey day by day",
+    calendarToday: "Today",
+    calendarSelectDate: "Select a date",
+    calendarMilestones: "Milestones",
+    calendarJournal: "Journal",
+    calendarMood: "Mood",
+    calendarNotes: "Notes",
+    calendarWeekDays: "Mon,Tue,Wed,Thu,Fri,Sat,Sun",
+    calendarMonths: "January,February,March,April,May,June,July,August,September,October,November,December",
+    calendarAddNote: "Add a note",
+    calendarNoMilestone: "No milestone this day.",
+    calendarDay: "Day {n}",
+    calendarMoodFor: "Mood for {date}",
+    calendarNoteFor: "Note for {date}",
+    calendarSaveNote: "Save note",
+    // ---- Support ----
+    supportTitle: "Help & Support",
+    supportSubtitle: "We're here to help",
+    supportFaq: "FAQ",
+    supportContact: "Contact",
+    supportBug: "Report a bug",
+    supportSuggestion: "Suggestion",
+    supportVideos: "Video tutorials",
+    supportTroubleshooting: "Troubleshooting",
+    supportEmergency: "Emergency",
+    supportQuickHelp: "Quick help",
+    supportSend: "Send",
+    supportSent: "Message sent! Thank you.",
+    supportCategory: "Category",
+    supportCategoryStart: "Getting started",
+    supportCategoryAccount: "Account",
+    supportCategoryFeatures: "Features",
+    supportCategoryTech: "Technical",
+    supportSearchFaq: "Search the FAQ...",
+    supportNoResults: "No results.",
+    supportMessage: "Your message",
+    supportMessagePlaceholder: "Describe your issue...",
+    // ---- Program ----
+    programTitle: "90-day program",
+    programSubtitle: "Your roadmap to healing",
+    programDay: "Day {n}",
+    programPhase: "Phase {n}",
+    programTasks: "Today's tasks",
+    programClaimRewards: "Claim rewards",
+    programWeeks: "Weeks",
+    programMilestones: "Milestones",
+    programInspiration: "Inspiration",
+    programPhase1: "Phase 1: Foundations",
+    programPhase2: "Phase 2: Strengthening",
+    programPhase3: "Phase 3: Transformation",
+    programDailyTasks: "Daily tasks",
+    programWeeklyTheme: "Weekly theme",
+    programCompleted: "Completed",
+    programLocked: "Locked",
+    programDayComplete: "Day {n} complete!",
+    programAllTasksDone: "All tasks for today are done!",
+    programKeepGoing: "Keep going, you got this!",
+    programShareProgress: "Share my progress",
+    programPhase1Desc: "The foundations of your recovery",
+    programPhase2Desc: "Strengthen your new habits",
+    programPhase3Desc: "Lasting transformation of your life",
+    // ---- Mentorship ----
+    mentorshipTitle: "Mentorship",
+    mentorshipSubtitle: "Find a mentor or become one",
+    mentorshipBecomeMentor: "Become a mentor",
+    mentorshipRequirements: "Requirements",
+    mentorshipFindMentor: "Find a mentor",
+    mentorshipSessions: "Sessions",
+    mentorshipRating: "Rating",
+    mentorshipSpecialties: "Specialties",
+    mentorshipCountries: "Countries",
+    mentorshipLanguages: "Languages",
+    mentorshipApply: "Apply",
+    mentorshipApplication: "Mentor application",
+    mentorshipBenefit1: "Verified Mentor badge",
+    mentorshipBenefit2: "Positive impact on the community",
+    mentorshipBenefit3: "Access to coaching tools",
+    mentorshipBenefit4: "Recognition of your journey",
+    mentorshipRequiredStreak: "90 days without betting minimum",
+    mentorshipChooseSpecialty: "Choose your specialty",
+    mentorshipChooseCountry: "Choose your country",
+    mentorshipChooseLanguage: "Choose your languages",
+    mentorshipBio: "Introduce yourself",
+    mentorshipBioPlaceholder: "Tell us about your journey...",
+    mentorshipSubmit: "Submit my application",
+    mentorshipSubmitted: "Application submitted! We'll contact you.",
+    mentorshipNotEligible: "You need at least 90 days without betting to become a mentor.",
+    mentorshipBookSession: "Book a session",
+    mentorshipSessionWith: "Session with {name}",
+    mentorshipAvailable: "Available",
+    mentorshipNotAvailable: "Not available",
+    // ---- Withdrawal ----
+    withdrawalTitle: "Withdrawal tracker",
+    withdrawalSubtitle: "Understand and move through symptoms",
+    withdrawalSymptoms: "Symptoms",
+    withdrawalTracker: "Tracker",
+    withdrawalTimeline: "Timeline",
+    withdrawalTips: "Tips",
+    withdrawalExercises: "Exercises",
+    withdrawalPhysical: "Physical",
+    withdrawalMental: "Mental",
+    withdrawalDay: "Day {n}",
+    withdrawalIntensity: "Intensity",
+    withdrawalAddSymptom: "Add a symptom",
+    withdrawalNoData: "No symptoms tracked. Add some to see your progress.",
+    withdrawalSymptomHeadache: "Headache",
+    withdrawalSymptomInsomnia: "Insomnia",
+    withdrawalSymptomFatigue: "Fatigue",
+    withdrawalSymptomSweats: "Sweats",
+    withdrawalSymptomDigestive: "Digestive issues",
+    withdrawalSymptomPalpitations: "Palpitations",
+    withdrawalSymptomAnxiety: "Anxiety",
+    withdrawalSymptomIrritability: "Irritability",
+    withdrawalSymptomDepression: "Low mood",
+    withdrawalSymptomBrainFog: "Brain fog",
+    withdrawalTip1: "Stay hydrated regularly",
+    withdrawalTip2: "Avoid caffeine after 2pm",
+    withdrawalTip3: "Walk 20 minutes a day",
+    withdrawalTip4: "Practice 4-7-8 breathing",
+    withdrawalTip5: "Talk to a loved one about how you feel",
+    withdrawalTimelinePeak: "Peak withdrawal hits between day 3 and 7.",
+    withdrawalTimelineImprove: "You should feel improvement after 2 weeks.",
+    withdrawalTimelineFull: "Most symptoms disappear within 90 days.",
+    // ---- Triggers ----
+    triggersTitle: "Triggers",
+    triggersSubtitle: "Identify what causes your cravings",
+    triggersAdd: "Add a trigger",
+    triggersCategory: "Category",
+    triggersIntensity: "Intensity",
+    triggersSituation: "Situation",
+    triggersCoping: "Coping strategy",
+    triggersResisted: "Resisted",
+    triggersHistory: "History",
+    triggersInsights: "Insights",
+    triggersHeatmap: "Heatmap",
+    triggersAIInsight: "AI insight",
+    triggersCategoryStress: "Stress",
+    triggersCategoryLoneliness: "Loneliness",
+    triggersCategoryPayday: "Payday",
+    triggersCategoryAlcohol: "Alcohol",
+    triggersCategoryBoredom: "Boredom",
+    triggersCategorySocial: "Social pressure",
+    triggersCategoryInsomnia: "Insomnia",
+    triggersCategoryOther: "Other",
+    triggersSituationPlaceholder: "Describe the situation...",
+    triggersCopingPlaceholder: "What helped you?",
+    triggersNoTriggers: "No triggers recorded. Identify them to better manage them.",
+    triggersResistedCount: "{n} resisted",
+    triggersSuccumbedCount: "{n} succumbed",
+    triggersAIInsightDesc: "Your most frequent trigger is: {category}",
+    triggersMostFrequentTime: "You're most vulnerable: {time}",
+    triggersResistRate: "Resistance rate: {pct}%",
+    // ---- Goals ----
+    goalsTitle: "Life goals",
+    goalsSubtitle: "Build the life you deserve",
+    goalsNew: "New goal",
+    goalsCategory: "Category",
+    goalsTargetDate: "Target date",
+    goalsMilestones: "Milestones",
+    goalsProgress: "Progress",
+    goalsDelete: "Delete",
+    goalsEdit: "Edit",
+    goalsCompleted: "Completed",
+    goalsSuggested: "Suggested",
+    goalsCategoryHealth: "Health",
+    goalsCategoryFinance: "Money",
+    goalsCategoryRelationship: "Relationships",
+    goalsCategoryCareer: "Career",
+    goalsCategoryPersonal: "Personal growth",
+    goalsAddMilestone: "Add a milestone",
+    goalsNoGoals: "No goals. Create the first step toward your new life.",
+    goalsTarget: "Target: {n}",
+    goalsCurrent: "Current: {n}",
+    goalsTitlePlaceholder: "e.g., Run a half-marathon",
+    goalsTargetAmount: "Target amount",
+    goalsCurrentAmount: "Current amount",
+    goalsCompletedDate: "Completed on {date}",
+    goalsMilestoneReached: "Milestone reached! 🎉",
+    goalsSuggestedTitle: "Suggested goals",
+    // ---- Affirmations ----
+    affirmationsTitle: "Affirmations",
+    affirmationsSubtitle: "Reprogram your mind daily",
+    affirmationsDaily: "Daily affirmation",
+    affirmationsFavorites: "Favorites",
+    affirmationsCreate: "Create",
+    affirmationsCategory: "Category",
+    affirmationsShare: "Share",
+    affirmationsNew: "New affirmation",
+    affirmationsTips: "Tips",
+    affirmationsCategoryAll: "All",
+    affirmationsCategoryConfidence: "Confidence",
+    affirmationsCategoryMotivation: "Motivation",
+    affirmationsCategoryRecovery: "Recovery",
+    affirmationsCategoryPeace: "Peace",
+    affirmationsCategoryStrength: "Strength",
+    affirmationsPlay: "Listen",
+    affirmationsStop: "Stop",
+    affirmationsNoFavorites: "No favorites. Add your preferred affirmations.",
+    affirmationsTextPlaceholder: "Write your affirmation...",
+    affirmationsCreateTitle: "Create an affirmation",
+    affirmationsSaved: "Affirmation saved!",
+    affirmationsTip1: "Repeat your affirmations out loud every morning.",
+    affirmationsTip2: "Breathe deeply while reading.",
+    affirmationsTip3: "Visualize yourself living this reality.",
+    // ---- Relapse Recovery ----
+    relapseTitle: "Relapse recovery",
+    relapseSubtitle: "It's not a failure, it's a detour",
+    relapseAcknowledge: "Acknowledge",
+    relapseStart: "Start",
+    relapseProtocol: "Protocol",
+    relapseStep: "Step {n}",
+    relapsePhase: "Phase",
+    relapseComplete: "Complete",
+    relapseAbandon: "Abandon",
+    relapseHistory: "History",
+    relapseResilience: "Resilience",
+    relapseQuotes: "Quotes",
+    relapseEmotion: "How do you feel?",
+    relapseTrigger: "What triggered the relapse?",
+    relapseWhatHappened: "What happened?",
+    relapseGetBackUp: "Get back up",
+    relapseYouAreNotFailure: "You're not a failure. A relapse is part of the journey.",
+    relapseBackHome: "Back to home",
+    relapseContinue: "Continue",
+    relapseProtocolComplete: "Protocol complete!",
+    relapseProtocolCompleteDesc: "You got back up. That's what matters. Your streak restarts today.",
+    relapsePreviousStreak: "Your previous streak: {n} days",
+    relapseNewStreak: "New streak: day 1",
+    relapseQuote1: "Falling is allowed, getting back up is mandatory.",
+    relapseQuote2: "It's not the fall that matters, it's the getting back up.",
+    relapseQuote3: "Every relapse teaches you something about yourself.",
+    relapseNoHistory: "No relapse recorded. Keep it up!",
+    relapseAcknowledgeTitle: "Acknowledge what happened",
+    relapseAcknowledgeDesc: "Take a moment to understand. No judgment.",
+    // ---- Community Chat ----
+    chatTitle: "Community chat",
+    chatSubtitle: "Chat in real time with the community",
+    chatNickname: "Nickname",
+    chatJoin: "Join",
+    chatSend: "Send",
+    chatTyping: "{name} is typing...",
+    chatOnline: "Online",
+    chatRoomGeneral: "General",
+    chatRoomCrisis: "Crisis support",
+    chatRoomVeterans: "Veterans (90d+)",
+    chatGuidelines: "Community guidelines",
+    chatDisconnected: "Disconnected",
+    chatConnecting: "Connecting...",
+    chatReconnect: "Reconnect",
+    chatConnected: "Connected",
+    chatPremiumOnly: "Premium chat",
+    chatUpgrade: "Upgrade to Premium",
+    chatPremiumOnlyDesc: "Real-time chat is for Premium members only.",
+    chatMessagePlaceholder: "Type your message...",
+    chatUsersOnline: "{n} online",
+    chatSendFailed: "Send failed. Try again.",
+    chatMessages: "Messages",
+    chatRules: "Rules",
+    chatRules1: "Respect every member. No judgment.",
+    chatRules2: "No promoting gambling or operators.",
+    chatRules3: "Protect your anonymity. No personal data.",
+    chatRules4: "In a crisis, use the SOS button.",
+    chatFlag: "Report",
+    chatFlagged: "Message reported. Thank you.",
+    chatSystemWelcome: "Welcome to the chat!",
+    chatNicknamePlaceholder: "Choose a nickname...",
+    chatNicknameSet: "Let's go",
+    chatRoomInfo: "Room",
+    chatReconnecting: "Reconnecting...",
+    // ---- Notifications ----
+    notificationsTitle: "Notifications",
+    notificationsSubtitle: "Choose what Zerobet can send you",
+    notificationsPermission: "Permission",
+    notificationsAllow: "Allow",
+    notificationsPrefs: "Preferences",
+    notificationsDailyReminder: "Daily reminder",
+    notificationsDailyReminderDesc: "Reminder for your daily check-in",
+    notificationsCravingCheckin: "Craving check-in",
+    notificationsCravingCheckinDesc: "We check in to see how you're doing",
+    notificationsMilestones: "Milestone alerts",
+    notificationsMilestonesDesc: "Celebrate your victories",
+    notificationsCommunity: "Community activity",
+    notificationsCommunityDesc: "Replies, mentions, etc.",
+    notificationsWeekly: "Weekly report",
+    notificationsWeeklyDesc: "Your weekly summary every Sunday",
+    notificationsQuotes: "Motivational quotes",
+    notificationsQuotesDesc: "One quote per day",
+    notificationsSilentHours: "Silent hours",
+    notificationsSilentHoursDesc: "No notifications at night",
+    notificationsTest: "Test",
+    notificationsSchedule: "Schedule",
+    notificationsPWA: "Install app",
+    notificationsInstall: "Install",
+    notificationsEnabled: "Enabled",
+    notificationsDisabled: "Disabled",
+    notificationsTestSent: "Notification sent!",
+    notificationsInstallPrompt: "Install Zerobet for reliable notifications",
+    notificationsInstallNow: "Install now",
+    notificationsNotSupported: "Notifications not supported on this device",
+    notificationsPermissionGranted: "Permission granted",
+    notificationsPermissionDenied: "Permission denied",
+    notificationsSilentStart: "Start",
+    notificationsSilentEnd: "End",
+    notificationsTimeFormat: "{h}:{m}",
+    // ---- Common feedback / toasts ----
+    successSaved: "Saved!",
+    successDeleted: "Deleted!",
+    successCreated: "Created!",
+    successCompleted: "Completed!",
+    successUpdated: "Updated!",
+    successXp: "+{n} XP",
+    successCheckin: "Daily check-in completed",
+    successJournal: "Journal entry added",
+    errorRequired: "This field is required",
+    errorMinChars: "Minimum {n} characters",
+    errorMaxChars: "Maximum {n} characters",
+    errorInvalid: "Invalid value",
+    errorNetwork: "Network error. Try again.",
+    errorPermission: "Permission denied",
+    confirmDelete: "Are you sure you want to delete?",
+    confirmReset: "Are you sure you want to reset?",
+    confirmAbandon: "Are you sure you want to abandon?",
+    confirmLogout: "Log out?",
+    copied: "Copied!",
+    shared: "Shared!",
+    comingSoonDesc: "This feature is coming soon.",
+    betaDesc: "This feature is in beta. Thanks for your patience.",
+    // ---- Misc ----
+    symptomsSelectedCount: "{n} symptom(s) selected",
+    goalsSelectedCount: "{n} goal(s) selected",
+    entriesCount: "{n} entry(ies)",
+    daysClean: "{n} days without betting",
+    progressPercent: "{n}%",
+    ofTotal: "{current}/{total}",
+    fcfaAmount: "{n} FCFA",
+    fcfaPerMonth: "{n} FCFA/month",
+    daysRemaining: "{n} day(s) remaining",
+    hoursRemaining: "{n}h remaining",
+    minutesRemaining: "{n} min remaining",
+    levelN: "Level {n}",
+    dayN: "Day {n}",
+    weekN: "Week {n}",
+    monthN: "Month {n}",
+    rankN: "Rank {n}",
+    stepN: "Step {n}",
+    phaseN: "Phase {n}",
+    questionN: "Question {n}",
+    challengeN: "Challenge {n}",
+    sessionN: "Session {n}",
+    outOf: "{n} of {total}",
+    outOf100: "/ 100",
+    outOf5: "/ 5",
+    welcomeName: "{name}",
+    hiName: "Hi, {name}",
+    dearName: "Dear {name}",
+    dearNameF: "Dear {name}",
+    // ---- Task 14-c additional keys ----
+    welcomeTermsNotice: "By continuing, you agree to our Terms of Service and Privacy Policy.",
+    resultsYourScore: "Your score",
+    resultsGoodNewsTitle: "Good news",
+    resultsRecovery90: "90% of people who follow a structured program recover permanently.",
+    symptomsCount: "{n} selected",
+    symptomsHelpPersonalize: "This helps us personalize your journey",
+    carouselCommit: "I commit",
+    engagementChooseGoals: "Choose your goals",
+    engagementGoalsCount: "{n} goal(s) selected",
+    engagementPlan1: "You'll have a 24/7 AI coach in your pocket",
+    engagementPlan2: "You'll block all gambling sites",
+    engagementPlan3: "You'll track your savings to the franc",
+    engagementPlan4: "You'll have a community that supports you",
+    engagementPlan5: "You'll learn to manage your cravings",
+    engagementPlan6: "You'll build a life worth more than a bet",
+    engagementWhatZerobetDoes: "What Zerobet does for you",
+    engagementStepSignature: "Sign your commitment",
+    engagementSignHereTitle: "Sign here",
+    engagementSignHereHint: "Trace your signature with your finger",
+    paywallHero1: "Unlock everything you need to recover",
+    paywallBestValueBadge: "Best value",
+    paywallPopularBadge: "Popular",
+    paywallMoreFeatures: "and much more...",
+    paywallDataProtection: "Your data is protected. Cancel anytime.",
+    paywallSubscribeMonthly: "Subscribe — {amount}/month",
+    paywallSubscribeAnnual: "Subscribe — {amount}/year",
+    // ---- Mobile Money payment (Zerobet 2.0.4) ----
+    paymentTitle: "Mobile Money payment",
+    paymentSubtitle: "Choose your operator to pay for your subscription",
+    paymentOperatorLabel: "Choose an operator",
+    paymentPhoneTitle: "Your number",
+    paymentPhoneLabel: "Mobile Money number",
+    paymentPhoneHint: "Local format (e.g. 07 00 00 00 00). A confirmation request will be sent to this number.",
+    paymentPhoneInvalid: "Invalid number (8 to 15 digits)",
+    paymentContinue: "Continue",
+    paymentConfirmTitle: "Confirm payment",
+    paymentSummaryPlan: "Plan",
+    paymentSummaryCycle: "Period",
+    paymentSummaryOperator: "Operator",
+    paymentSummaryPhone: "Number",
+    paymentTotal: "Total to pay",
+    paymentPayNow: "Pay now",
+    paymentCancelAnytime: "No commitment. Cancel anytime.",
+    paymentProcessingTitle: "In progress…",
+    paymentProcessingCheckPhone: "Check your phone",
+    paymentProcessingEnterCode: "A {operator} request has been sent. Confirm the transaction with your secret code.",
+    paymentStepRequest: "Request sent",
+    paymentStepUssd: "Waiting for your confirmation",
+    paymentStepDebit: "Debiting account",
+    paymentSuccessTitle: "Payment successful",
+    paymentSuccessDesc: "Welcome to {plan}!",
+    paymentSuccessReceipt: "Receipt: {amount} paid via Mobile Money.",
+    paymentSuccessCta: "Start now",
+    paymentFailedTitle: "Payment failed",
+    paymentFailedDesc: "The payment did not go through",
+    paymentFailedFunds: "Insufficient funds in the account. Check your balance and try again.",
+    paymentFailedGeneric: "Something went wrong. Try again in a few moments.",
+    paymentRetry: "Retry",
+    paymentBack: "Back",
+    paymentSecure: "Encrypted and secure payment",
+    paymentCycleMonthly: "Monthly",
+    paymentCycleAnnual: "Annual",
+    atlasRateLimited: "You're sending messages very fast. Wait a moment, I'm here.",
+    dashboardYouAt: "You are at",
+    dashboardDaysToRank: "Only {days} days until {rank}",
+    dashboardDearMale: "Dear champion,",
+    dashboardDearFemale: "Dear champion,",
+    dashboardPanicDesc: "Want to gamble? Tap here. Let's breathe together.",
+    dashboardViewAll: "View all",
+    onboardingStep: "Step",
+    onboardingOf: "of",
+    onboardingSkipTitle: "You can come back later",
+    onboardingSkipDesc: "Do you really want to skip onboarding? You can resume it anytime in settings, but your plan will be limited to free mode.",
+    onboardingContinue: "Continue onboarding",
+    onboardingGoDashboard: "Go to dashboard",
+    // ---- DailyCheckIn ----
+    checkinTitle: "Daily check-in",
+    checkinMoodQuestion: "How do you feel today?",
+    checkinMoodSuper: "Great",
+    checkinMoodBien: "Good",
+    checkinMoodNeutre: "Neutral",
+    checkinMoodDifficile: "Hard",
+    checkinMoodCritique: "Critical",
+    checkinCravingQuestion: "Did you feel the urge to gamble today?",
+    checkinResistanceQuestion: "How did you resist?",
+    checkinResistanceRespiration: "Breathing",
+    checkinResistanceJournal: "Journal",
+    checkinResistanceAtlas: "Atlas AI",
+    checkinResistanceAppel: "Called someone",
+    checkinResistanceAutre: "Other",
+    checkinCompleted: "Daily check-in completed",
+    checkinMotivHard30: "You are strong, you have already proven your resilience. This moment will pass.",
+    checkinMotivHard7: "Every day without gambling is a victory. You are not alone.",
+    checkinMotivHard0: "It's normal to find this hard. Breathe, you can do this.",
+    checkinMotivNeutre30: "Consistency is your greatest strength. Keep going.",
+    checkinMotivNeutre0: "One more day, one more step toward freedom.",
+    checkinMotivGood90: "You are a living legend. Your determination inspires everyone.",
+    checkinMotivGood30: "A month and more! You are part of the elite.",
+    checkinMotivGood7: "A week and more! You are on the right track.",
+    checkinMotivGood0: "Every day counts. You are stronger than the urge.",
+    // ---- TutorialTooltips ----
+    tutorialSkip: "Skip",
+    tutorialNext: "Next",
+    tutorialStart: "Start",
+    tutorialStep1Title: "Your day streak",
+    tutorialStep1Desc: "This is the heart of your recovery. Every day without gambling grows this flame. The further you go, the more your rank evolves.",
+    tutorialStep2Title: "Emergency button",
+    tutorialStep2Desc: "Urge to gamble? Tap here. Let's breathe together with the 4-7-8 technique. You are never alone.",
+    tutorialStep3Title: "Quick actions",
+    tutorialStep3Desc: "All your essential tools in one place: journal, meditation, savings, community, and much more.",
+    tutorialStep4Title: "Coach Atlas AI",
+    tutorialStep4Desc: "Your personal coach available 24/7. Ask questions, share doubts, get tailored advice.",
+    tutorialStep5Title: "Community",
+    tutorialStep5Desc: "Thousands of people like you. Testimonials, forum, mentors. Your recovery is built with others.",
+    tutorialStep6Title: "Let's go!",
+    tutorialStep6Desc: "You are ready to start your journey. Come back every day for your check-in, and remember: one day at a time.",
+    refreshing: "Refreshing...",
+    refreshingData: "Refreshing data...",
+    achievementNewRank: "New rank unlocked!",
+    tapToClose: "Tap to close",
+    // ---- Quick Actions ----
+    qaPanic: "Emergency",
+    qaQuests: "Quests",
+    qaJournal: "Journal",
+    qaSavings: "Savings",
+    qaStats: "Stats",
+    qaMeditation: "Meditation",
+    qaAtlas: "Atlas AI",
+    qaBlocker: "Blocker",
+    qaCommunity: "Community",
+    qaChat: "Live Chat",
+    qaTrophies: "Trophies",
+    qaResources: "Resources",
+    qaProfile: "Profile",
+    qaSOS: "SOS",
+    qaCalendar: "Calendar",
+    qaHelp: "Help",
+    qaProgram: "Program",
+    qaMentor: "Mentor",
+    qaGoals: "Goals",
+    qaAffirmations: "Affirmations",
+    qaWithdrawal: "Withdrawal",
+    qaTriggers: "Triggers",
+    qaRelapse: "Relapse",
+    qaNotifications: "Notifications",
+    // ---- MoodTracker ----
+    moodFrustrated: "Frustrated",
+    moodAnxious: "Anxious",
+    moodTempted: "Tempted",
+    moodCalm: "Calm",
+    moodProud: "Proud",
+    moodStrong: "Strong",
+    moodQuestion: "How do you feel right now?",
+    moodHint: "Tap an emotion to log it",
+    moodEntryPrefix: "Today's mood:",
+    moodSaved: "Thanks! Your mood is saved.",
+    moodNoneToday: "No mood logged today",
+    moodCountToday: "{count} mood(s) today",
+    moodViewJournal: "View journal",
+    // ---- Motivational messages ----
+    motiv0: "Today is the first day of your new life.",
+    motiv3: "The first days are the hardest. You're holding on.",
+    motiv7: "A week without gambling is already a victory.",
+    motiv30: "You're taking back control. Every day counts.",
+    motiv90: "Your brain is healing. Don't give up.",
+    motiv90plus: "You are an inspiration to others.",
+    // ---- Daily challenges ----
+    challenge1: "Note 3 things you're grateful for",
+    challenge2: "Call a loved one and tell them you appreciate them",
+    challenge3: "Do 10 minutes of meditation",
+    challenge4: "Write in your journal how you feel",
+    challenge5: "Check your savings and congratulate yourself",
+    challenge6: "Share your testimony with the community",
+    challenge7: "Read an article about recovery",
+    challenge8: "Do physical activity for 20 min",
+    challenge9: "Identify your biggest trigger today",
+    challenge10: "Practice 4-7-8 breathing for 5 minutes",
+    challenge11: "Visualize your gambling-free future for 3 minutes",
+    challenge12: "Write a letter to your future self",
+    dayLabel: "Day",
+    // ---- Task 15-c additional keys (EN) ----
+    backToDashboard: "Back to dashboard",
+    guestName: "Guest",
+    version: "Version",
+    export: "Export",
+    import: "Import",
+    genderMale: "Male",
+    genderFemale: "Female",
+    genderUndefined: "Not set",
+    planLabel: "Plan",
+    planFreeDesc: "Access to basic features",
+    planPremiumDesc: "Full recovery unlocked",
+    planMentorDesc: "You guide the community",
+    planPsychologistDesc: "Certified professional profile",
+    planDiscovery: "Discovery",
+    upgradeToPremium: "Upgrade to Premium",
+    manageSubscription: "Manage my subscription",
+    // Zerobet 2.0.5 — Subscription management
+    backToSettings: "Back to settings",
+    subscriptionTitle: "My subscription",
+    subscriptionActiveBadge: "Active",
+    subscriptionCycleMonthly: "Billed monthly via Mobile Money",
+    subscriptionCycleAnnual: "Billed yearly via Mobile Money",
+    subscriptionCycleMonthlyShort: "per month",
+    subscriptionCycleAnnualShort: "per year",
+    subscriptionActiveSince: "Subscribed since {date}",
+    subscriptionActiveSinceUnknown: "Active subscription",
+    subscriptionNextRenewal: "Next renewal: {date}",
+    subscriptionCancel: "Cancel my subscription",
+    subscriptionCancelConfirmTitle: "Cancel subscription?",
+    subscriptionCancelConfirmDesc: "You'll keep Premium access until the end of the current period. After that your account returns to the free plan and some features will be limited again. Your progress and streak are never lost.",
+    subscriptionCancelKeep: "Keep my subscription",
+    subscriptionCancelYes: "Yes, cancel",
+    subscriptionCancelledToast: "Subscription cancelled. Your progress stays intact 💚",
+    subscriptionHistoryTitle: "Payment history",
+    subscriptionSuccessCount: "{n} successful payment(s)",
+    subscriptionNoPayments: "No payments yet",
+    subscriptionNoPaymentsDesc: "Your Mobile Money transactions will appear here after your first subscription.",
+    subscriptionLoadError: "Couldn't load the payment history.",
+    subscriptionStatus_success: "Success",
+    subscriptionStatus_failed: "Failed",
+    subscriptionStatus_pending: "Pending",
+    subscriptionStatus_processing: "Processing",
+    subscriptionFailReason: "Reason: {reason}",
+    subscriptionFail_insufficient_funds: "Insufficient funds",
+    subscriptionFail_unknown: "Transaction declined by operator",
+    subscriptionServerVerified: "Server-confirmed",
+    subscriptionStatus_expired: "Expired",
+    subscriptionSurveyTitle: "Understood. We're sad to see you go 🥲",
+    subscriptionSurveyDesc: "Your feedback helps us make Zerobet more useful for you and for others. It's optional and anonymous.",
+    surveyReasonPrice: "It's too expensive",
+    surveyReasonUnused: "I don't use the Premium features enough",
+    surveyReasonBreak: "I'm just taking a break",
+    surveyReasonTechnical: "Technical issue",
+    surveyReasonOther: "Another reason",
+    surveyCommentPlaceholder: "A word for us? (optional)",
+    surveySend: "Send",
+    surveySkip: "Skip",
+    surveyThanksToast: "Thank you, your feedback matters 🙏",
+    chatLoadOlder: "Older messages",
+    chatLoadingOlder: "Loading…",
+    chatHistoryStart: "Start of the conversation",
+    subscriptionTrustNote: "Secure payments via licensed Mobile Money operators. Zerobet never stores your full phone number.",
+    // Zerobet 2.0.9 — My data (GDPR hub)
+    dataRightsTitle: "My data",
+    dataRightsSubtitle: "Full transparency: see what Zerobet keeps, download it or delete it in seconds.",
+    dataRightsInventoryTitle: "What we keep",
+    dataRightsLocalTitle: "On your device",
+    dataRightsLocalDesc: "Your progress lives on your phone first: streak, XP, journal. Nothing is ever sent without your say-so.",
+    dataRightsChipStreak: "{n}-day streak",
+    dataRightsChipLevel: "Level {level}",
+    dataRightsChipJournal: "{n} journal entr(ies)",
+    dataRightsChipPlan: "Plan: {plan}",
+    dataRightsCloudTitle: "Cloud backup",
+    dataRightsCloudDesc: "A safety copy tied to your anonymous ID, to restore after a reinstall.",
+    dataRightsSyncedAt: "Synced: {date}",
+    dataRightsNoCloud: "Never synced",
+    dataRightsPaymentsTitle: "Payments",
+    dataRightsPaymentsDesc: "Your Mobile Money transaction history — phone number always masked.",
+    dataRightsPaymentsCount: "{n} transaction(s)",
+    dataRightsSpentTotal: "{amount} FCFA spent",
+    dataRightsExportTitle: "Export my data",
+    dataRightsExportDesc: "Right of access & portability: one complete JSON archive — local progress, server backup and payments.",
+    dataRightsExportBtn: "Download my archive (JSON)",
+    dataRightsExporting: "Preparing your archive…",
+    dataRightsExportDone: "Archive downloaded 📥",
+    dataRightsExportError: "Export failed. Check your connection and try again.",
+    dataRightsEraseTitle: "Right to erasure",
+    dataRightsEraseDesc: "Delete the cloud backup and payment history from our servers. Your local progress and streak are preserved.",
+    dataRightsEraseBtn: "Delete cloud data",
+    dataRightsEraseConfirmTitle: "Erase your server data?",
+    dataRightsEraseConfirmDesc: "This action is permanent: the cloud backup and the entire payment history will be deleted from our servers. You can always create a fresh backup from this device later.",
+    dataRightsEraseAck: "I understand this action is permanent.",
+    dataRightsEraseConfirmBtn: "Yes, erase everything",
+    dataRightsEraseCancel: "Cancel",
+    dataRightsEraseDone: "Server data deleted 🗑️",
+    dataRightsEraseError: "Deletion failed. Try again.",
+    dataRightsLoadError: "Could not load your data inventory.",
+    dataRightsNote: "Zerobet is local-first: erasing your server data will never touch your streak or journal on this device.",
+    settingsDataRightsRow: "My data & GDPR",
+    settingsDataRightsRowDesc: "Inventory, full export and right to erasure.",
+    // Zerobet 2.0.6 — Smart reminders (local notifications)
+    reminderCheckinTitle: "Your check-in is waiting 💚",
+    reminderCheckinBody: "Take 30 seconds for yourself. Your {n}-day streak continues with you.",
+    reminderCravingTitle: "How are you feeling?",
+    reminderCravingBody: "This is the hour when cravings can creep in. Breathe — you're in control.",
+    reminderQuoteTitle: "Your quote of the day ✨",
+    reminderWeeklyTitle: "Your weekly report is ready 📊",
+    reminderWeeklyBody: "See your summary: clean days, journal entries, cravings beaten and XP earned.",
+    // Zerobet 2.0.6 — Notification settings screen i18n
+    notifDaily: "Daily reminder",
+    notifDailyDesc: "A daily nudge for your check-in.",
+    notifCraving: "Craving check-in",
+    notifCravingDesc: "Checks in on you during critical hours.",
+    notifMilestones: "Milestone alerts",
+    notifMilestonesDesc: "Celebrate every milestone reached (7, 14, 30 days…).",
+    notifCommunity: "Community activity",
+    notifCommunityDesc: "Replies, mentions and quotes from the community.",
+    notifWeekly: "Weekly report",
+    notifWeeklyDesc: "A summary of your week every Sunday.",
+    notifQuotes: "Motivation quotes",
+    notifQuotesDesc: "A motivating quote every day from 6pm.",
+    notifSilent: "Silent hours",
+    notifSilentDesc: "No notifications during your sleep hours.",
+    notifSchedCraving: "Craving check-in (if enabled)",
+    notifSchedQuote: "Motivation quote",
+    notifSchedTimeSunday: "Sun. 09:00",
+    notifSchedTimeAnytime: "Anytime",
+    notifTimeHeading: "Daily reminder time",
+    notifTimeSub: "When you'll get your check-in",
+    notifTimeAria: "Daily reminder time",
+    notifTimeNote: "You'll get a reminder every day at {time}",
+    notifSilentHeading: "Silent hours",
+    notifSilentSub: "Peace while you sleep",
+    notifSilentStart: "Start",
+    notifSilentEnd: "End",
+    notifSilentStartAria: "Silent hours start",
+    notifSilentEndAria: "Silent hours end",
+    notifSilentNote: "No notifications will be sent between {start} and {end} (except emergencies).",
+    notifTestHeading: "Test notifications",
+    notifTestSub: "Make sure everything works",
+    notifTestSend: "Send a test notification",
+    notifTestEnableFirst: "Enable notifications first",
+    notifTestTitle: "Zerobet",
+    notifTestBody: "This is a test notification. You're strong! 💪",
+    notifTestSentToast: "Test notification sent! 👍",
+    notifLocalScopeNote: "Reminders are delivered while the app is open on your device.",
+    notifScheduleHeading: "Your notification schedule",
+    notifScheduleSub: "A preview of your week",
+    notifPrivacyHeading: "Your notifications are private",
+    notifPrivacyDesc: "We can't see the content of your notifications. They are generated locally on your device.",
+    notifFooterBadge: "A gentle reminder",
+    notifFooterText: "Notifications help you stay on the recovery path. But remember: you master your phone, not the other way around.",
+    notifStatusGranted: "Notifications enabled",
+    notifStatusBlocked: "Notifications blocked",
+    notifStatusEnable: "Enable notifications",
+    notifStatusDescGranted: "You'll receive the important reminders. To turn them off, open your browser settings.",
+    notifStatusDescBlocked: "Allow notifications in your browser settings to receive reminders.",
+    notifStatusDescEnable: "Get gentle reminders to stay on the recovery path.",
+    notifAllowButton: "Allow notifications",
+    notifGrantedTip: "Tip: to turn them off later, open the site settings in your browser.",
+    notifReenableTitle: "How to re-enable:",
+    notifReenableDesc: "Click the padlock/lock icon in the address bar → Allow notifications → Reload the page.",
+    notifRecheckButton: "I've re-enabled — check again",
+    notifReloadHint: "Reload the page after changing the permission.",
+    notifInstallHeading: "Install the app",
+    notifInstallSub: "Quick access + native notifications",
+    notifInstalledBadge: "App installed ✓",
+    notifInstallDesc: "Install Zerobet on your phone for quick access and notifications.",
+    notifInstallButton: "Install",
+    notifIosLabel: "iOS:",
+    notifIosSteps: "Safari → Share → “Add to Home Screen”",
+    notifAndroidLabel: "Android:",
+    notifAndroidSteps: "Chrome → ⋮ menu → “Install app”",
+    notifPrefsHeading: "My preferences",
+    notifPrefsSub: "Choose what speaks to you",
+    notifInstalledToast: "Zerobet is installed! 🎉",
+    notifInstallHint: "To install: open your browser menu and choose “Install app” or “Add to Home Screen”.",
+    notifInstallStartedToast: "Installation started! 📲",
+    notifInstallCancelledToast: "Installation cancelled. You can try again later.",
+    notifInstallErrorToast: "Couldn't install the app right now.",
+    settingsLanguageLabel: "App language",
+    chooseLanguage: "Choose a language",
+    chooseGender: "Choose a gender",
+    chooseTheme: "Choose a theme",
+    settingsYourName: "Your name",
+    settingsNamePlaceholder: "Enter your first name...",
+    settingsDataProtectedDesc: "Your data stays confidential and is never sold. Secure local storage.",
+    // ---- Zerobet 2.0: cloud backup & GDPR export ----
+    settingsBackupTitle: "Backup & Data",
+    settingsBackupSync: "Automatic backup",
+    settingsBackupSyncDesc: "Your progress (streak, XP, goals) is anonymously backed up to the cloud. No journal or chat content is ever sent.",
+    settingsBackupLastSync: "Last backup: {date}",
+    settingsBackupNever: "Not backed up yet",
+    settingsBackupSyncNow: "Sync now",
+    settingsBackupSyncing: "Syncing…",
+    settingsBackupRetry: "Retry",
+    settingsBackupStarted: "Backup started…",
+    settingsExportDesc: "Download all your data as JSON (GDPR)",
+    settingsExportDone: "Export downloaded",
+    settingsExportError: "Export failed",
+    settingsThemeAuto: "Automatic",
+    themeLockNote: "Dark theme is currently locked. Automatic mode follows the system.",
+    starfieldIntensity: "Starfield intensity",
+    glassEffect: "Glass effect",
+    glassEffectDesc: "Enable translucent blur on cards",
+    notificationPrefs: "Notification preferences",
+    streakReminders: "Streak reminders",
+    streakRemindersDesc: "Daily reminder to preserve your streak",
+    dailyMotivation: "Daily motivation",
+    dailyMotivationDesc: "Receive a motivational quote every day",
+    newMilestones: "New milestones",
+    newMilestonesDesc: "Get notified when you unlock a rank",
+    verification: "Check-in",
+    verificationDesc: "Reminder for your daily check-in",
+    weeklySummary: "Weekly summary",
+    weeklySummaryDesc: "Your weekly stats every Sunday",
+    preferredNotificationTime: "Preferred notification time",
+    dataManagement: "Data management",
+    dataSize: "Data size",
+    clearCache: "Clear cache",
+    exportImportDesc: "The export contains all your local data (streak, journal, badges, settings). Import replaces existing data.",
+    privacySecurity: "Privacy & Security",
+    appLock: "App lock",
+    appLockDesc: "Protect access with a PIN code",
+    discreteMode: "Discrete mode",
+    discreteModeDesc: "Hides app name in recent apps",
+    autoLockSession: "Auto session",
+    autoLockDesc: "Automatically locks the app after {n} minute(s) of inactivity",
+    soundHaptics: "Sound & Haptics",
+    soundDescFull: "Button and success sounds",
+    hapticsDescFull: "Haptic feedback on interactions",
+    appVersion: "App version",
+    contactUs: "Contact us",
+    aboutMission: "Zerobet helps African gamblers break free from addiction",
+    designedWithCare: "Crafted with care for our community",
+    resetDesc: "This action will erase all your data (streak, journal, badges, settings...). Irreversible.",
+    resetAppConfirmTitle: "Reset the app?",
+    resetAppConfirmDesc: "All your data will be permanently erased: streak days, journal, badges, testimonials, settings. You'll be back to zero. This action is irreversible.",
+    dataExportedToast: "Data exported successfully 📤",
+    dataExportError: "Export failed",
+    dataImportedToast: "Data imported. Restarting… 📥",
+    dataImportError: "Invalid file — import cancelled",
+    fileReadError: "File read failed",
+    cacheClearedToast: "Cache cleared 🧹",
+    cacheClearError: "Cleanup failed",
+    profileTitleMain: "My Profile",
+    profileStatDaysClean: "Days clean",
+    profileStatSaved: "Saved",
+    profileStatBadges: "Badges",
+    profileStatCrises: "Crises managed",
+    profileDaysCount: "{n} days",
+    profileNoCrisis: "No crisis",
+    profileMemberSince: "Member since",
+    profileMyGoals: "My goals",
+    profileNoGoals: "No goal selected. You can add some during onboarding.",
+    profileSignature: "Your commitment signature",
+    profileSignatureAlt: "Commitment signature",
+    profileRecoveryStats: "Recovery statistics",
+    profileActivity: "Activity ({n} weeks)",
+    profileActivitiesCount: "{n} activity(ies)",
+    profileHeatmapLess: "Less",
+    profileHeatmapMore: "More",
+    profileHeatmapDesc: "Each cell represents a day. The greener it is, the more active you were (journal, meditation, check-ins, crises managed).",
+    profileDataPrivate: "Your data stays private and stored locally on your device.",
+    profileAccessSettings: "Go to settings",
+    profileAvatarColor: "Avatar color",
+    profilePhotoAdd: "Add a profile photo",
+    profilePhotoChange: "Change profile photo",
+    profilePhotoRemove: "Remove profile photo",
+    profilePhotoUpdated: "Profile photo updated",
+    profilePhotoRemoved: "Profile photo removed",
+    profilePhotoErrorType: "The file must be an image",
+    profilePhotoErrorSize: "Image exceeds 8 MB",
+    profilePhotoErrorRead: "Could not read the image",
+    atlasContextSummary: "{days} days, {plan} plan",
+    atlasMessagesCount: "{n} message(s)",
+    atlasContextPrefix: "Atlas knows your context:",
+    atlasAnalyzeJournalPrompt: "Analyze my journal and tell me what patterns you see.",
+    atlasAskMotivationPrompt: "I need motivation to keep going.",
+    atlasSeeProgressPrompt: "Show me my progress and what I've accomplished.",
+    atlasCrisisPrompt: "I have an urge to gamble, help me.",
+    atlasCurrentStreak: "Your current streak",
+    atlasDays: "days",
+    atlasScore: "Score",
+    atlasCrisisDesc: "If you feel a strong urge to gamble, use the emergency button. Atlas is also here to help you put it into words.",
+    atlasTalkToAtlas: "Talk to Atlas",
+    atlasGreeting: "Hi, I'm Atlas",
+    atlasGreetingDesc: "Your personal coach. Pick a question below to get started, or write your own message.",
+    atlasClearConfirmDesc: "All {n} messages will be permanently deleted. This action is irreversible.",
+    atlasClearAction: "Clear",
+    atlasFallbackMessage: "I'm here for you. Tell me what's going on.",
+    atlasLockedTitle: "Atlas AI Coach",
+    atlasCanDo: "Atlas can:",
+    atlasCanDo1: "Analyze your journal and identify your patterns",
+    atlasCanDo2: "Give you tailored motivation",
+    atlasCanDo3: "Celebrate your milestones with personalized messages",
+    atlasCanDo4: "Help you in a crisis with techniques",
+    atlasUnlock: "Unlock Atlas AI",
+    // ---- Zerobet 2.0: freemium quotas (Atlas AI + Journal) ----
+    atlasQuotaTitle: "Free quota reached",
+    atlasQuotaDesc: "You've used your {n} free messages with Atlas today. Go Premium for unlimited coaching.",
+    atlasQuotaUsedToday: "Messages used today",
+    atlasQuotaCount: "{used} / {total}",
+    atlasQuotaReset: "Your quota resets at midnight. Come back tomorrow!",
+    atlasQuotaChip: "{n} left",
+    journalQuotaTitle: "Free journal used up",
+    journalQuotaDesc: "You've used your {n} free entries this week. Go Premium to write without limits.",
+    journalQuotaUsedThisWeek: "Entries used this week",
+    journalQuotaReset: "Your quota resets on Monday. See you soon!",
+    journalQuotaChip: "{n} / 3 this week",
+    // ---- Zerobet 2.0: live chat + cloud restore ----
+    communityTabChat: "Live chat",
+    chatQuotaRemaining: "{n} free messages left today",
+    chatQuotaEmpty: "Daily quota reached — reading stays free",
+    chatQuotaToast: "Daily limit of {n} messages reached. Go Premium to chat without limits!",
+    chatQuotaUpgrade: "Go Premium",
+    settingsRestoreData: "Restore from cloud",
+    settingsRestoreDesc: "Recover your backed-up progress (after reinstall)",
+    settingsRestoreDone: "Progress restored successfully!",
+    settingsRestoreNone: "No backup found for this device",
+    settingsRestoreError: "Restore failed",
+    // ---- Zerobet 2.0: weekly report ----
+    weeklyReportTitle: "Weekly report",
+    weeklyReportPeriod: "From {from} to {to}",
+    weeklyReportClean: "Clean days",
+    weeklyReportJournal: "Entries",
+    weeklyReportPanic: "Crises managed",
+    weeklyReportXP: "XP earned",
+    weeklyReportVerdictEmpty: "Discover",
+    weeklyReportVerdictStart: "First steps",
+    weeklyReportVerdictGreat: "Excellent",
+    weeklyReportVerdictGood: "Solid",
+    weeklyReportVerdictTough: "Courage",
+    weeklyReportVerdictEmptyDesc: "Do your first check-in and your weekly stats will appear here.",
+    weeklyReportVerdictStartDesc: "Your first week is underway. Every bet-free day builds the next one.",
+    weeklyReportVerdictGreatDesc: "Outstanding week! Your consistency proves change can last.",
+    weeklyReportVerdictGoodDesc: "You're holding on. Consistency matters more than perfection — keep going.",
+    weeklyReportVerdictToughDesc: "This week was rough, but you stayed. That's exactly how healing works.",
+    blockerProtection247: "24/7 active protection",
+    blockerProtectionActive: "Protection active",
+    blockerAllSitesBlocked: "All dangerous sites are blocked",
+    blockerHowItWorks: "How it works",
+    blockerHowItWorksDesc: "Turn on the blocker to cut access to 50+ gambling sites. Strong Mode locks everything for 72h with no way to disable. Your willpower becomes technology.",
+    blockerStatus: "Blocker status",
+    blockerProtected: "Protected",
+    blockerSitesBlockedStatus: "Sites are blocked",
+    blockerVulnerable: "You're vulnerable",
+    blockerBlocked: "Blocked",
+    blockerStrictModeShort: "Strong Mode",
+    blockerStrict72h: "72h lock",
+    blockerBypassAttempts: "Blocked attempts",
+    blockerBypassAttemptsDesc: "Since the start of your journey",
+    blockerStrictActiveBanner: "Strong Mode active. No unblocking possible until the countdown ends.",
+    blockerMostDangerous: "Most dangerous sites",
+    blockerSiteAdded: "Site added",
+    blockerSiteAddedDesc: "{name} is now blocked",
+    blockerSiteUrlPlaceholder: "e.g. mysite.com",
+    blockerAddButton: "Add",
+    blockerFooterReassurance: "New sites are automatically added to the list. You can focus on your recovery, we handle the rest.",
+    blockerPremiumFeature: "Premium feature",
+    blockerPremiumDesc: "Cut access to 50+ gambling sites, activate 72h Strong Mode, and regain total control of your impulses.",
+    blockerPremiumFeature1: "Instant blocking of 50+ sites",
+    blockerPremiumFeature2: "Strong Mode locked 72h",
+    blockerPremiumFeature3: "Automatic updates",
+    blockerPremiumFeature4: "Categories: International, Africa, Crypto, France",
+    blockerUnlockWithPremium: "Unlock with Premium",
+    blockerLater: "Later",
+    meditationTitleFull: "Meditation & Breathing",
+    meditationDaysConsecutive: "consecutive days",
+    meditationDay: "day",
+    meditationStreak0: "Start your streak today 🌱",
+    meditationStreak7: "Keep going, every day counts 💪",
+    meditationStreak30: "Your routine is settling in, bravo 🔥",
+    meditationStreak30plus: "You're a model of consistency 🌟",
+    meditationSwipeHint: "Swipe to explore →",
+    meditationSessions: "sessions",
+    meditationSessionDone: "Meditation session completed",
+    statsTitleMain: "My Statistics",
+    statsScoreLabel: "Score",
+    // ---- Quiz questions (Task 16-b) ----
+    quizQ1: "How much do you spend on betting per week?",
+    quizQ1Opt0: "< 2,000 FCFA",
+    quizQ1Opt1: "2,000 - 10,000 FCFA",
+    quizQ1Opt2: "10,000 - 50,000 FCFA",
+    quizQ1Opt3: "> 50,000 FCFA",
+    // Dynamic Q1 options that adapt to the user's selected currency (Task 17-a)
+    quizQ1LessThan: "Less than {amount}",
+    quizQ1Range: "{min} - {max}",
+    quizQ1MoreThan: "More than {amount}",
+    quizQ2: "Do you bet even when you have already lost that day?",
+    quizQ2Opt0: "Never",
+    quizQ2Opt1: "Sometimes",
+    quizQ2Opt2: "Often",
+    quizQ2Opt3: "Always",
+    quizQ3: "Have you ever lied to a loved one about your bets or losses?",
+    quizQ3Opt0: "No",
+    quizQ3Opt1: "Once",
+    quizQ3Opt2: "Sometimes",
+    quizQ3Opt3: "Regularly",
+    quizQ4: "Do you bet to 'recover' your previous losses?",
+    quizQ4Opt0: "Never",
+    quizQ4Opt1: "Sometimes",
+    quizQ4Opt2: "Often",
+    quizQ4Opt3: "Almost always",
+    quizQ5: "Do you think about betting during work or school?",
+    quizQ5Opt0: "Rarely",
+    quizQ5Opt1: "Sometimes",
+    quizQ5Opt2: "Often",
+    quizQ5Opt3: "Very often",
+    quizQ6: "Have you tried to stop and been unable to?",
+    quizQ6Opt0: "No",
+    quizQ6Opt1: "1-2 times",
+    quizQ6Opt2: "Several times",
+    quizQ6Opt3: "Impossible",
+    quizQ7: "Do you feel anxiety or irritability when you don't bet?",
+    quizQ7Opt0: "Never",
+    quizQ7Opt1: "Slightly",
+    quizQ7Opt2: "Often",
+    quizQ7Opt3: "Always",
+    quizQ8: "Have you used money meant for something else to bet?",
+    quizQ8Opt0: "No",
+    quizQ8Opt1: "Rarely",
+    quizQ8Opt2: "Sometimes",
+    quizQ8Opt3: "Regularly",
+    quizQ9: "Have loved ones spoken to you about your betting?",
+    quizQ9Opt0: "No",
+    quizQ9Opt1: "Yes, once",
+    quizQ9Opt2: "Several times",
+    quizQ9Opt3: "Conflicts",
+    quizQ10: "Do you feel an adrenaline rush when you place a bet?",
+    quizQ10Opt0: "No",
+    quizQ10Opt1: "A little",
+    quizQ10Opt2: "Yes, a lot",
+    quizQ10Opt3: "Vital need",
+    quizQ11: "Do you have debts related to betting?",
+    quizQ11Opt0: "No",
+    quizQ11Opt1: "Small debts",
+    quizQ11Opt2: "Significant debts",
+    quizQ11Opt3: "Heavily in debt",
+    quizQ12: "Do you bet at night or very early in the morning?",
+    quizQ12Opt0: "Never",
+    quizQ12Opt1: "Rarely",
+    quizQ12Opt2: "Sometimes",
+    quizQ12Opt3: "Often",
+    quizQ13: "Have you sacrificed a meal or essential needs to bet?",
+    quizQ13Opt0: "No",
+    quizQ13Opt1: "Rarely",
+    quizQ13Opt2: "Sometimes",
+    quizQ13Opt3: "Often",
+    quizQ14: "Have you felt ashamed or guilty after betting?",
+    quizQ14Opt0: "Never",
+    quizQ14Opt1: "Sometimes",
+    quizQ14Opt2: "Often",
+    quizQ14Opt3: "Every time",
+    quizQ15: "Do you think you have a problem with betting?",
+    quizQ15Opt0: "No",
+    quizQ15Opt1: "Maybe",
+    quizQ15Opt2: "Probably",
+    quizQ15Opt3: "Definitely",
+    // ---- Tutorial accessibility + Parcours artifacts (Task 16-d) ----
+    tutorialAriaLabel: "Interactive tutorial",
+    artifactSectionLabel: "Story",
+    artifact1Desc: "Placed on your path at the first sunrise, this crystal shines with the hope of new beginnings. It lights the way out of the shadows.",
+    artifact1Story: "Placed on your path at the first sunrise, this crystal shines with the hope of new beginnings.",
+    artifact2Desc: "Forged in the mists of awakening, it shields your mind from gambling's illusions and clears the early-withdrawal brain fog.",
+    artifact2Story: "Forged in the mists of awakening, it shields your mind from gambling's illusions.",
+    artifact3Desc: "Your first true defense. Seven days of forging have made it unbreakable. Urges now bounce off its surface.",
+    artifact3Story: "Your first true defense. Seven days of forging have made it unbreakable.",
+    artifact4Desc: "Engraved by former recoverers, these runes carry their wisdom and strengthen the neural pathways damaged by gambling.",
+    artifact4Story: "Engraved by former recoverers, these runes carry their wisdom.",
+    artifact5Desc: "A month of conquest. This scepter crowns your determination and banishes self-doubt. You reign over your own kingdom.",
+    artifact5Story: "A month of conquest. This scepter crowns your determination.",
+    artifact6Desc: "A sphere of pure light, it absorbs tension and returns peace. Emotional storms calm within its halo.",
+    artifact6Story: "A sphere of pure light, it absorbs tension and returns peace.",
+    artifact7Desc: "Two months of pressure have crystallized it. Nothing can break it. Your will has become an indestructible crystal at the core of your chest.",
+    artifact7Story: "Two months of pressure have crystallized it. Nothing can break it.",
+    artifact8Desc: "The 90-day milestone. Your brain is born anew. You have become someone else, shaped by three months of neural healing.",
+    artifact8Story: "The 90-day milestone. Your brain is born anew. You have become someone else.",
+    artifact9Desc: "Four months of meditation have polished this stone. It reveals hidden truths and lets you see triggers before they appear.",
+    artifact9Story: "Four months of meditation have polished this stone. It reveals hidden truths.",
+    artifact10Desc: "Six months. The fire that once destroyed you now drives you. The false thrill of gambling is replaced by a true passion for life.",
+    artifact10Story: "Six months. The fire that once destroyed you now drives you.",
+    artifact11Desc: "Nine months. You dance with your urges without ever trembling again. Total mastery of your impulses is finally yours.",
+    artifact11Story: "Nine months. You dance with your urges without ever trembling again.",
+    artifact12Desc: "ONE YEAR. You have conquered your freedom. Future generations will sing your name. You are now a living legend of recovery.",
+    artifact12Story: "ONE YEAR. You have conquered your freedom. Future generations will sing your name.",
+    artifact13Desc: "Two years. You are no longer recovering. You ARE the light that guides others. Beyond healing, you become the beacon for seekers to come.",
+    artifact13Story: "Two years. You are no longer recovering. You ARE the light that guides others.",
+    // ---- Parcours screen labels (Task 16-d) ----
+    parcoursQuestTitle: "The Quest for Artifacts",
+    parcoursArtifactsCount: "Healing Path · {n}/{total} artifacts",
+    parcoursEachArtifactCloser: "Each artifact brings you closer to your freedom.",
+    parcoursCurrentArtifact: "Current artifact",
+    parcoursNextArtifact: "Next artifact: {name}",
+    parcoursNextArtifactLabel: "Next artifact",
+    parcoursDaysUntilRank: "Only {n} day(s) before",
+    parcoursUpcomingPower: "Upcoming power: {name}",
+    parcoursThreshold: "Threshold",
+    parcoursBackToArtifacts: "Back to artifacts",
+    parcoursContinueQuest: "Continue your quest",
+    parcoursPowerLabel: "Power · {name}",
+    parcoursPowerNameLabel: "Power: {name}",
+    parcoursYourEvolution: "Your evolution",
+    parcoursVoyage: "Voyage of the Artifacts",
+    parcoursTierLabel: "Artifact {tier} / 13 · {type}",
+    parcoursCurrentBadge: "Current",
+    parcoursConquered: "Conquered",
+    parcoursUnknownArtifact: "Artifact {tier}",
+    parcoursUnknownPower: "Mysterious power · {type}",
+    parcoursLockedCardDesc: "This artifact still slumbers. Keep going to reveal it.",
+    parcoursAllUnlockedDesc: "You've unlocked all artifacts. You're a master of yourself.",
+    parcoursFooterMotivationNew1: "Every day without betting brings you closer to a new artifact.",
+    parcoursFooterMotivationNew2: "Keep going, your quest is noble.",
+    parcoursMotivTier1: "The start is always the hardest. But you're here, and that's all that matters. Keep going.",
+    parcoursMotivTier3: "You're finding your rhythm. Every day takes you further from your old self.",
+    parcoursMotivTier5: "You're getting strong. Urges pass like clouds — they no longer stop you.",
+    parcoursMotivTier7: "You're part of the elite. Your brain is healing. You're becoming yourself again.",
+    parcoursMotivTier9: "You're an inspiration. Others watch you and think: it's possible.",
+    parcoursMotivTier12: "ONE YEAR. You've earned your life. You're a living legend.",
+    parcoursMotivTier13: "You're a master of yourself. Free forever. This freedom, no one can take from you.",
+    // ---- Daily Insights (Task 18-a) ----
+    dailyInsightTitle: "Daily Insight",
+    dailyInsightGenerated: "Generated from your data",
+    dailyInsightViewMore: "View more",
+    dailyInsightAriaRefresh: "New insight",
+    dailyInsightAriaDot: "Insight {n}",
+    dailyInsightEarly: "You're in the hardest phase. Every day counts double.",
+    dailyInsightRepair: "Your brain is starting to heal. The urges will fade.",
+    dailyInsightControl: "You're regaining control. Neuroplasticity is working for you.",
+    dailyInsightInspiration: "You're an inspiration. Share your story with the community.",
+    dailyInsightJournalPositive: "Your recent entries show a positive mood. This momentum is precious — keep feeding it.",
+    dailyInsightJournalTension: "Your writings reveal tension. Identify your triggers and use the emergency button before the urge grows.",
+    dailyInsightJournalDefault: "Your journal gives you a mirror on your emotions. Writing regularly accelerates your healing.",
+    dailyInsightPanic: "You resisted {count} urge(s) this week. Be proud of yourself.",
+    dailyInsightDefault: "Keep going on your journey. Every day brings you closer to freedom.",
+    // ---- Heatmap Calendar (Task 18-a) ----
+    heatmapTitle: "Your recovery year",
+    heatmapSubtitle: "{clean} clean days out of the last {total}",
+    heatmapCurrentStreak: "Current streak",
+    heatmapLongestStreak: "Longest streak",
+    heatmapCleanDays: "Clean days",
+    heatmapRecoveryRate: "Recovery rate",
+    heatmapLess: "Less",
+    heatmapMore: "More",
+    heatmapRelapse: "Relapse",
+    heatmapTapToRate: "Tap today's box to rate your day",
+    heatmapDayUnitShort: "d",
+    heatmapCellFuture: "Upcoming day",
+    heatmapCellNoData: "No data",
+    heatmapCellRelapse: "Relapse",
+    heatmapCellDifficult: "Hard day",
+    heatmapCellCorrect: "Decent day",
+    heatmapCellExcellent: "Excellent day",
+    heatmapCellClean: "Clean day",
+    heatmapCellUpcoming: "Upcoming",
+    heatmapTodayAria: "Today — {tooltip}. Tap to rate your day.",
+    heatmapRatingTitle: "How was your day?",
+    heatmapRatingDesc: "Be honest — every day counts.",
+    heatmapDifficult: "Hard",
+    heatmapDifficultDesc: "Rough day, but you didn't crack",
+    heatmapCorrect: "OK",
+    heatmapCorrectDesc: "Some urges, but you held on",
+    heatmapExcellent: "Excellent",
+    heatmapExcellentDesc: "You feel strong, no urges",
+    heatmapCracked: "I cracked",
+    heatmapCrackedDesc: "It's not over — let's start the protocol",
+    heatmapDayRecorded: "Day recorded",
+    heatmapDayRecordedDesc: "{label} • Thanks for sharing.",
+    heatmapRelapseTitle: "We're here for you.",
+    heatmapRelapseDesc: "24-hour protocol activated. Breathe, let's go together.",
+    heatmapClose: "Close",
+    // ---- Daily Quotes (Task 18-a) ----
+    quote1Text: "The pain of discipline weighs grams. The pain of regret weighs tons.",
+    quote1Author: "Jim Rohn",
+    quote2Text: "You haven't failed as long as you haven't stopped trying.",
+    quote2Author: "Proverb",
+    quote3Text: "The greatest honor of a man is to keep his word.",
+    quote3Author: "African proverb",
+    quote4Text: "A man who masters himself is worth more than a man who conquers a city.",
+    quote4Author: "Proverb",
+    quote5Text: "Every day without gambling is a victory over yourself.",
+    quote5Author: "Zerobet",
+    quote6Text: "What doesn't kill you makes you stronger. But what enriches you makes you free.",
+    quote6Author: "Zerobet",
+    quote7Text: "Courage is not the absence of fear, but the decision that something is more important.",
+    quote7Author: "Ambrose Redmoon",
+    quote8Text: "You are the hero of your own story.",
+    quote8Author: "Zerobet",
+    quote9Text: "Addiction lies. Recovery tells the truth.",
+    quote9Author: "Zerobet",
+    quote10Text: "Your future is created by what you do today, not tomorrow.",
+    quote10Author: "Proverb",
+    quote11Text: "Money saved is money earned.",
+    quote11Author: "Benjamin Franklin",
+    quote12Text: "You can't go back. But you can start now.",
+    quote12Author: "Zerobet",
+    // ---- Task 18-b: Community + Journal i18n key aliases + seed forum posts ----
+    community100Days: "100+ days",
+    communityWriteTestimony: "Write my testimony",
+    community1DayAgo: "1 day ago",
+    communityDaysAgo: "{n} days ago",
+    communityTabTestimonials: "Testimonials",
+    communityTabForum: "Forum",
+    communityTabMentors: "Mentors",
+    communityTabPsychologists: "Psychologists",
+    journalEntries: "{n} entries",
+    journalLast7Days: "Last 7 days",
+    journalMoodFrustrated: "Frustrated",
+    journalMoodAnxious: "Anxious",
+    journalMoodCalm: "Calm",
+    journalMoodProud: "Proud",
+    journalMoodStrong: "Strong",
+    communityZerobetTeam: "Zerobet Team",
+    forumSeed0Title: "Another week, I didn't believe it anymore",
+    forumSeed0Content: "Day 7 without betting. I thought it was impossible. The panic button saved me twice this week. Thanks community, we're holding on together.",
+    forumSeed0Reply0: "Keep going brother, the 30-day mark comes fast. Be proud of every day.",
+    forumSeed1Title: "Hard today, I want to top up my account",
+    forumSeed1Content: "I didn't do it but the urge is strong. I kept my phone away for 1 hour. What do you do when the urge rises?",
+    forumSeed2Title: "The math of betting: why you ALWAYS lose",
+    forumSeed2Content: "1xBet takes a 7% margin on every bet. Over 100 bets at 10,000 FCFA, you lose on average 70,000 FCFA, no matter your \"feeling\". The house always wins. Take back control.",
+    // ---- Task 18-c: Goals, Affirmations, Triggers, Withdrawal, Mentorship, Program, Artifact names ----
+    // Goals screen — new full set
+    goalsTransformation: "Your transformation",
+    goalsTotal: "TOTAL",
+    goalsInProgress: "IN PROGRESS",
+    goalsCompletedLabel: "COMPLETED",
+    goalsAll: "All",
+    goalCategoryHealth: "Health",
+    goalCategoryFinance: "Money",
+    goalCategoryRelationship: "Relationships",
+    goalCategoryCareer: "Career",
+    goalCategoryPersonal: "Personal",
+    goalCategorySpiritual: "Spiritual",
+    goalsNewLifeGoal: "New life goal",
+    goalsEmpty: "No goals yet",
+    goalsEmptyDesc: "Lay your first stone. What dream do you want to accomplish?",
+    goalsCreate: "Create a goal",
+    goalsSuggestedDesc: "Inspired by the most effective recovery journeys.",
+    goalsUse: "Use",
+    goalsFooterQuote: "Gambling took something from you. Now rebuild something greater.",
+    goalsModalTitle: "What is your dream?",
+    goalsFieldTitle: "Title",
+    goalsFieldDescription: "Description (optional)",
+    goalsFieldCategory: "Category",
+    goalsFieldTargetDate: "Target date",
+    goalsFieldMilestones: "Sub-steps",
+    goalsCreateButton: "Create goal",
+    goalsTitlePlaceholder2: "e.g., Pay off my debts",
+    goalsDescPlaceholder: "Why is this goal important to you?",
+    goalsMilestonePlaceholder: "e.g., First step…",
+    goalsMilestoneAdd: "Add",
+    goalsMilestoneEmpty: "Add at least one sub-step to structure your goal.",
+    goalsDeleteTitle: "Delete this goal?",
+    goalsDeleteDesc: "\"{title}\" will be permanently deleted. This action is irreversible.",
+    goalsToastCreated: "Goal created! 🎯",
+    goalsToastCompleted: "Goal completed! 🎉",
+    goalsToastDeleted: "Goal \"{title}\" deleted",
+    goalsToastUpdated: "Goal updated",
+    goalsErrTitleMin: "Title must be at least 3 characters long",
+    goalsErrMilestone: "Add at least one sub-step",
+    goalsEditTitle: "Edit goal",
+    goalsEditButton: "Edit",
+    goalsSaveButton: "Save",
+    goalsDetailSteps: "steps",
+    goalsDetailPast: "Deadline passed",
+    goalsDetailToday: "Today",
+    goalsDetailTomorrow: "Tomorrow",
+    goalsDetailMoreSteps: "+ {n} sub-steps…",
+    goalsPremiumLocked: "Unlock personalized goals and much more with Premium.",
+    goalsPremiumCta: "Unlock with Premium",
+    goalsSuggestion1Title: "Save {amount} in 6 months",
+    goalsSuggestion1Desc: "Set aside each week what you would have bet. Watch your savings grow.",
+    goalsSuggestion1Milestone1: "Open a separate savings account",
+    goalsSuggestion1Milestone2: "Save the first {amount}",
+    goalsSuggestion1Milestone3: "Reach {amount}",
+    goalsSuggestion1Milestone4: "Reach {amount}",
+    goalsSuggestion2Title: "Run 5 km without stopping",
+    goalsSuggestion2Desc: "A strong body houses a strong mind. Build your endurance step by step.",
+    goalsSuggestion2Milestone1: "Walk 30 min without stopping",
+    goalsSuggestion2Milestone2: "Alternate 1 min run / 2 min walk",
+    goalsSuggestion2Milestone3: "Run 2 km continuously",
+    goalsSuggestion2Milestone4: "Run 5 km without stopping",
+    goalsSuggestion3Title: "Reach out to a loved one",
+    goalsSuggestion3Desc: "Broken bonds can be repaired. Sometimes the first step is enough to change everything.",
+    goalsSuggestion3Milestone1: "Identify the person to reach out to",
+    goalsSuggestion3Milestone2: "Send a first message",
+    goalsSuggestion3Milestone3: "Suggest a call or a meet-up",
+    goalsSuggestion3Milestone4: "Have a real conversation",
+    // Affirmations screen — visible strings
+    affirmationsHeroLabel: "AFFIRMATION OF THE DAY",
+    affirmationsFavorite: "Favorite",
+    affirmationsNewBtn: "New",
+    affirmationsAll: "All",
+    affirmationsCreateMine: "Create my affirmation",
+    affirmationsEmptyTitle: "No affirmation",
+    affirmationsEmptyDesc: "No affirmation in this category yet. Create your own!",
+    affirmationsMyFavorites: "My favorites",
+    affirmationsDailyReminder: "Daily reminder",
+    affirmationsReminderToggle: "Receive the affirmation of the day every morning at 7 AM",
+    affirmationsReminderSoon: "Coming soon — native notifications",
+    affirmationsReminderTime: "Time:",
+    affirmationsReminderDesc: "Start your day with a positive thought. The affirmation of the day will help you stay focused on your goals.",
+    affirmationsPremiumLock: "Unlock daily affirmation reminders with Premium.",
+    affirmationsTipsTitle: "How to use affirmations",
+    affirmationsTipA: "Repeat them out loud, slowly, 3 times.",
+    affirmationsTipB: "Breathe deeply between each repetition.",
+    affirmationsTipC: "Visualize yourself living this affirmation.",
+    affirmationsFooterQuote: "Your words become your actions. Your actions become your destiny.",
+    affirmationsModalTitle: "Your personal affirmation",
+    affirmationsFieldText: "Your affirmation",
+    affirmationsFieldCategory: "Category",
+    affirmationsPlaceholder: "e.g., I am stronger than my urges, a little more every day.",
+    affirmationsCharMin: "Minimum 10 characters ({n})",
+    affirmationsCustom: "✨ Custom",
+    affirmationsFavoriteLabel: "Favorite",
+    affirmationsAriaRemoveFav: "Remove from favorites",
+    affirmationsAriaAddFav: "Add to favorites",
+    affirmationsAriaDelete: "Delete this affirmation",
+    affirmationsConfirm: "Confirm",
+    affirmationsDeleteBtn: "Delete",
+    affirmationsToastCopied: "Affirmation copied to clipboard",
+    affirmationsToastShareErr: "Unable to share at the moment",
+    affirmationsToastRemoved: "Removed from favorites",
+    affirmationsToastAdded: "Added to favorites ❤️",
+    affirmationsToastErrLen: "Affirmation must be between 10 and 200 characters",
+    affirmationsToastErrCat: "Choose a category",
+    affirmationsToastCreated: "Affirmation created! ✨",
+    affirmationsToastDeleted: "Affirmation deleted",
+    affirmationsSaveBtn: "Save",
+    affirmationsCatMorning: "Morning",
+    affirmationsCatCrisis: "Crisis",
+    affirmationsCatSelfWorth: "Self-worth",
+    affirmationsCatFuture: "Future",
+    affirmationsCatGratitude: "Gratitude",
+    affirmationsCatStrength: "Strength",
+    // Triggers screen — visible strings
+    triggersMyTitle: "My Triggers",
+    triggersReport: "Log a trigger",
+    triggersThisWeek: "This week",
+    triggersTopCat: "Top cat.",
+    triggersResistance: "Resistance",
+    triggersEmptyTitle: "No triggers yet",
+    triggersEmptyDesc: "Log your first trigger to start identifying your patterns. Every trigger identified is a victory.",
+    triggersEmptyCta: "Log a trigger",
+    triggersNoPeriod: "No triggers in this period.",
+    triggersNoPeriodHint: "Change the filter to see more.",
+    triggersSuccumbed: "Relapsed",
+    triggersInsightsTitle: "This week's insights",
+    triggersInsightTopCat: "{cat}: {pct}% of your triggers",
+    triggersInsightTopTod: "Most vulnerable moment: {time}",
+    triggersInsightTopCoping: "{method}: {rate}% success rate",
+    triggersInsightsEmpty: "Keep logging your triggers to unlock more insights.",
+    triggersHeatmapTitle: "Last 30 days",
+    triggersHeatmapLegendLess: "Less",
+    triggersHeatmapLegendMore: "More",
+    triggersAtlasTitle: "Atlas AI Insight",
+    triggersAtlasAsk: "Ask Atlas",
+    triggersAtlasLocked: "Insight locked",
+    triggersAtlasBlurb: "You are particularly vulnerable to certain triggers at specific times of day. Atlas can help you understand these patterns and offer tailored strategies.",
+    triggersPremiumCta: "Unlock with Premium",
+    triggersFooterQuote: "Every trigger identified is a victory. You are learning to know yourself.",
+    triggersModalTitle: "What happened?",
+    triggersFieldCategory: "Category",
+    triggersFieldIntensity: "Intensity",
+    triggersIntensityLow: "Low",
+    triggersIntensityHigh: "Very high",
+    triggersFieldSituation: "Describe the situation",
+    triggersFieldSituationPlaceholder: "Describe the situation...",
+    triggersFieldCoping: "Coping method",
+    triggersResistedToggle: "I resisted the urge",
+    triggersSaveBtn: "Save",
+    triggersSituationMin: "Min 5 characters ({n})",
+    triggersCatStress: "Stress",
+    triggersCatSolitude: "Loneliness",
+    triggersCatPayday: "Payday",
+    triggersCatAlcohol: "Alcohol",
+    triggersCatBoredom: "Boredom",
+    triggersCatSocial: "Social pressure",
+    triggersCatInsomnia: "Insomnia",
+    triggersCatAnger: "Anger",
+    triggersCatAds: "Ads",
+    triggersCatOther: "Other",
+    triggersFilter7d: "7 Days",
+    triggersFilter30d: "30 Days",
+    triggersFilterAll: "All",
+    triggersConfirmDelete: "Confirm",
+    triggersAriaDeleteConfirm: "Confirm deletion",
+    triggersAriaDelete: "Delete the trigger",
+    triggersCopingBreathing: "4-7-8 Breathing",
+    triggersCopingCall: "Call a loved one",
+    triggersCopingJournal: "Journal",
+    triggersCopingExercise: "Exercise",
+    triggersCopingMeditation: "Meditation",
+    triggersCopingDistraction: "Distraction",
+    triggersCopingNone: "None",
+    triggersTimeJustNow: "just now",
+    triggersTimeMinAgo: "{n} min ago",
+    triggersTimeHoursAgo: "{n}h ago",
+    triggersTimeYesterday: "yesterday",
+    triggersTimeDaysAgo: "{n}d ago",
+    triggersTimeMorning: "Morning (5AM-12PM)",
+    triggersTimeAfternoon: "Afternoon (12PM-6PM)",
+    triggersTimeEvening: "Evening (6PM-11PM)",
+    triggersTimeNight: "Night (12AM-5AM)",
+    // Withdrawal screen — visible strings
+    withdrawalBannerTitle: "Withdrawal is normal and temporary",
+    withdrawalBannerDesc: "When you stop gambling, your brain has to readapt. These symptoms are a sign that you are healing.",
+    withdrawalBannerInfo: "Most symptoms disappear within 4-6 weeks",
+    withdrawalSymptomsTitle: "Symptom tracking",
+    withdrawalSelectedCount: "{n} selected",
+    withdrawalActiveCount: "{n} active",
+    withdrawalNone: "None",
+    withdrawalSaveBtn: "Save my symptoms",
+    withdrawalTimelineTitle: "Withdrawal timeline",
+    withdrawalYouAreHere: "YOU ARE HERE",
+    withdrawalSymptomsLabel: "Symptoms:",
+    withdrawalCurveTitle: "Typical intensity curve (90 days)",
+    withdrawalCurrentDay: "Current day:",
+    withdrawalCopingTitle: "Coping strategies",
+    withdrawalDoNow: "Do it now",
+    withdrawalTodaySummaryTitle: "Today's summary",
+    withdrawalTodayNone: "No symptoms logged today",
+    withdrawalTodayNoneHint: "Check your symptoms above to track your progress.",
+    withdrawalTodayCount: "{n} symptom(s) today",
+    withdrawalSavedToday: "Saved today",
+    withdrawalWarningTitle: "When to seek a professional",
+    withdrawalWarningDesc: "If you experience any of these signs, don't stay alone:",
+    withdrawalWarningContact: "Contact a pro",
+    withdrawalWarningSos: "Call SOS",
+    withdrawalWarningSign1: "Suicidal thoughts",
+    withdrawalWarningSign2: "Symptoms worsening after 30 days",
+    withdrawalWarningSign3: "Inability to function normally",
+    withdrawalWarningSign4: "Substitute addiction",
+    withdrawalPhaseAcuteTitle: "Acute phase",
+    withdrawalPhaseAcuteRange: "Days 1-7",
+    withdrawalPhaseAcuteDesc: "Most intense symptoms",
+    withdrawalPhaseAcuteSymptoms: "Strong urges, irritability, insomnia, anxiety",
+    withdrawalPhaseAcuteTip: "💡 Use the panic button and breathe. You're holding on.",
+    withdrawalPhaseStabTitle: "Stabilization phase",
+    withdrawalPhaseStabRange: "Days 8-30",
+    withdrawalPhaseStabDesc: "Gradual improvement",
+    withdrawalPhaseStabSymptoms: "Rarer urges, better sleep, variable mood",
+    withdrawalPhaseStabTip: "💡 Keep journaling and meditating to anchor your gains.",
+    withdrawalPhaseRecTitle: "Recovery phase",
+    withdrawalPhaseRecRange: "Days 31-90",
+    withdrawalPhaseRecDesc: "Residual symptoms",
+    withdrawalPhaseRecSymptoms: "Emotional spikes at times, but energy returns",
+    withdrawalPhaseRecTip: "💡 Share your story. Helping others strengthens your healing.",
+    withdrawalPhaseHealTitle: "Healing phase",
+    withdrawalPhaseHealRange: "Days 90+",
+    withdrawalPhaseHealDesc: "Return to normal",
+    withdrawalPhaseHealSymptoms: "Rare thoughts, restored confidence, life projects",
+    withdrawalPhaseHealTip: "💡 Maintain your routines. You can now become a mentor.",
+    withdrawalSymptomConcentration: "Difficulty concentrating",
+    withdrawalSymptomCravings: "Intense cravings",
+    withdrawalSymptomAgitation: "Agitation",
+    withdrawalCopingInsomnia: "Insomnia",
+    withdrawalCopingAnxiety: "Anxiety",
+    withdrawalCopingCravings: "Intense cravings",
+    withdrawalCopingIrritability: "Irritability",
+    withdrawalCopingScreenMeditation: "Meditation",
+    withdrawalCopingScreenBreathing: "Breathing",
+    withdrawalCopingScreenJournal: "Journal",
+    withdrawalCopingScreenBouger: "Move",
+    withdrawalCopingScreenPanic: "Panic",
+    withdrawalCopingScreenBlocker: "Blocker",
+    withdrawalCopingScreenMentor: "Mentor",
+    withdrawalCopingScreenSos: "Contact",
+    withdrawalCopingScreenMeditate: "Meditate",
+    // Mentorship screen — visible strings
+    mentorshipHeroTitle: "Share your experience",
+    mentorshipHeroDesc: "Mentors are recoverers with 90+ days without betting who guide new members.",
+    mentorshipBenefitBadge: "Verified Mentor badge",
+    mentorshipBenefitImpact: "Positive impact on the community",
+    mentorshipBenefitTools: "Access to coaching tools",
+    mentorshipBenefitRecognition: "Recognition of your journey",
+    mentorshipJourneyTitle: "Your journey: {current} / {target} days",
+    mentorshipEligible: "ELIGIBLE",
+    mentorshipDaysLeft: "{n}D LEFT",
+    mentorshipEligibleTitle: "Congratulations! You're eligible to become a mentor.",
+    mentorshipEligibleDesc: "Fill out the form below to apply.",
+    mentorshipApplyBtn: "Apply",
+    mentorshipNotEligibleTitle: "Only {n} days until you can become a mentor",
+    mentorshipNotEligibleDesc: "Keep your streak going — every day counts.",
+    mentorshipMenteesTitle: "Your mentees",
+    mentorshipMenteesActive: "{n} active",
+    mentorshipMenteesSessions: "18 sessions",
+    mentorshipMenteesMessages: "View messages",
+    mentorshipFormTitle: "Mentor application",
+    mentorshipFormSubmit: "Submit for verification",
+    mentorshipPsyToggle: "I am a psychologist",
+    mentorshipPsyToggleDesc: "License verification & consultations",
+    mentorshipPsyTitle: "Psychologist verification",
+    mentorshipPsyName: "Full name with title",
+    mentorshipPsyNameHint: "e.g., Dr. Aminata Koné",
+    mentorshipPsyLicense: "License number",
+    mentorshipPsySpecialty: "Specialty",
+    mentorshipPsyCountry: "Country of practice",
+    mentorshipPsyPrice: "Session price (FCFA)",
+    mentorshipPsyDoc: "Verification document (license or diploma)",
+    mentorshipPsyDocUploaded: "Uploaded (simulation)",
+    mentorshipPsyDocUpload: "Tap to upload",
+    mentorshipPsyDocHint: "PDF, JPG, PNG (5 MB max)",
+    mentorshipPsyBio: "Bio",
+    mentorshipPsyBioHint: "{n} / 50 characters minimum",
+    mentorshipPsyAlert: "Verification within 48h. Your license will be verified with the relevant authorities.",
+    mentorshipSuccessMentor: "Application sent!",
+    mentorshipSuccessPsy: "Verification sent!",
+    mentorshipSuccessMsgPsy: "Your license will be verified with the relevant authorities. Reply within 48h.",
+    mentorshipSuccessMsgMentor: "Verification within 48h. Thank you for wanting to help the community.",
+    mentorshipAriaMessages: "View {name}'s messages",
+    // Program screen — visible strings
+    programOverviewLabel: "Recovery program",
+    programOverviewTitle: "90 days to change your life",
+    programDayOn90: "Day out of 90",
+    programDaysRemaining: "{n} days left",
+    programCompletedShort: "completed",
+    programPhase1Short: "Foundations",
+    programPhase2Short: "Consolidation",
+    programPhase3Short: "Transformation",
+    programPhaseComplete: "Phase complete",
+    programDaysLeftInPhase: "{n}d left",
+    programPhaseProgressLabel: "Phase progress",
+    programPhaseGoalsLabel: "Phase goals",
+    programTipsLabel: "Tips",
+    programTasksTitle: "Today's tasks",
+    programTaskDone: "Task marked as done",
+    programClaimBtn: "Claim rewards (+{n} XP)",
+    programClaimLocked: "Complete all tasks to claim",
+    programWeeklyTitle: "Weekly themes",
+    programMilestonesTitle: "Key milestones",
+    programMilestoneNow: "Now",
+    programMilestoneReached: "Reached",
+    programInspirationLabel: "Message of the day • Day {n}",
+    programShareBtn: "Share",
+    programCompletedTitle: "Program completed!",
+    programCompletedDesc: "You have transformed your life. Be proud of yourself. Keep inspiring others.",
+    programWeekLabel: "WEEK {n}",
+    programWeekCurrent: "Current",
+    programPhase1Name: "Phase 1: Foundations",
+    programPhase1Subtitle: "Taking back control",
+    programPhase2Name: "Phase 2: Consolidation",
+    programPhase2Subtitle: "Anchoring new habits",
+    programPhase3Name: "Phase 3: Transformation",
+    programPhase3Subtitle: "Becoming a new person",
+    // Artifact names + subtitles (13 × 2)
+    artifact1Name: "The Dawn Crystal",
+    artifact1Subtitle: "Day 1",
+    artifact2Name: "The Mist Amulet",
+    artifact2Subtitle: "Day 3",
+    artifact3Name: "The Bronze Shield",
+    artifact3Subtitle: "Day 7 — One week!",
+    artifact4Name: "The Silver Runes",
+    artifact4Subtitle: "Day 14 — Two weeks",
+    artifact5Name: "The Gold Scepter",
+    artifact5Subtitle: "Day 30 — One month!",
+    artifact6Name: "The Platinum Orb",
+    artifact6Subtitle: "Day 45",
+    artifact7Name: "The Diamond Heart",
+    artifact7Subtitle: "Day 60",
+    artifact8Name: "The Emerald of Rebirth",
+    artifact8Subtitle: "Day 90 — The critical milestone",
+    artifact9Name: "The Sapphire of Wisdom",
+    artifact9Subtitle: "Day 120",
+    artifact10Name: "The Ruby of Passion",
+    artifact10Subtitle: "Day 180 — Six months",
+    artifact11Name: "The Amethyst of Mastery",
+    artifact11Subtitle: "Day 270",
+    artifact12Name: "The Crown of Legend",
+    artifact12Subtitle: "Day 365 — ONE YEAR!",
+    artifact13Name: "The Star of Mastery",
+    artifact13Subtitle: "Day 730 — Two years",
+    // ---- Task 19-b: NotificationCenter ----
+    notifTitle: "Notifications",
+    notifMarkAllRead: "Mark all as read",
+    notifCloseAria: "Close notifications",
+    notifEmpty: "No notifications",
+    notifEmptyHint: "Your reminders and messages will appear here",
+    notifFooter: "🔔 Reminders and encouragement to support you",
+    notifStreakTitle: "Streak reminder",
+    notifStreakMessage1: "Your streak is on the line! Open the app to keep it going.",
+    notifStreakMessage2: "Don't forget to check your streak today. Every day counts!",
+    notifMotivationTitle: "Daily motivation",
+    notifMotivationMessage1: "Every day without a bet is a victory. You are stronger than you think.",
+    notifMotivationMessage2: "Courage is not the absence of fear, it's the decision to move forward anyway.",
+    notifMilestoneTitle: "Milestone unlocked",
+    notifMilestoneMessage: "You unlocked the New Dawn rank! 🌅",
+    notifWeeklyTitle: "Weekly summary",
+    notifWeeklyMessage: "This week: 5 days without betting, 7,143 FCFA saved. Keep it up!",
+    notifCheckinTitle: "Check-in",
+    notifCheckinMessage: "How are you? Your journey matters. Take a moment to reflect.",
+    notifTimeNow: "Just now",
+    notifTimeMinAgo: "{n} min ago",
+    notifTimeHoursAgo: "{n}h ago",
+    notifTimeYesterday: "yesterday",
+    notifTimeDaysAgo: "{n}d ago",
+    // ---- Task 19-b: MilestoneCelebration ----
+    milestoneReached: "Milestone reached",
+    milestoneDays: "days",
+    milestoneStatDays: "Days",
+    milestoneStatSaved: "Saved",
+    milestoneStatBadges: "Badges",
+    milestoneTrendMentor: "You can now help others by becoming a mentor.",
+    milestoneTrendNext: "Only {n} days until the next milestone.",
+    milestoneShareBtn: "Share",
+    milestoneContinueBtn: "Continue",
+    milestoneCloseAria: "Close",
+    milestoneCelebrationAria: "Celebration: {n} days without betting",
+    milestoneShareText: "🔥 I reached {n} days without betting with Zerobet! {emoji} #Recovery #Zerobet",
+    milestoneShareTitle: "Zerobet — Milestone reached",
+    milestoneShareToast: "Shared successfully",
+    milestoneCopyToast: "Message copied to clipboard",
+    milestoneShareUnavailable: "Sharing not available on this device",
+    // Zerobet 2.0.7 — pride card (canvas share)
+    milestoneCardBtn: "Generate a shareable card",
+    milestoneCardToast: "Card shared! 🎉",
+    milestoneCardCopiedToast: "Card copied to clipboard 📋",
+    milestoneCardSavedToast: "Card downloaded to your images 🖼️",
+    milestoneCardError: "Couldn't generate the card.",
+    milestoneCardSavedLine: "≈ {n} saved",
+    milestoneCardTagline: "30 seconds further from betting than yesterday. Zerobet walks with me.",
+    // Zerobet 2.0.8 — journey recap card (canvas share)
+    journeyCardHeader: "My Zerobet journey",
+    journeyCardDaysLabel: "days without betting",
+    journeyCardSavedLine: "≈ {n} saved",
+    journeyCardTagline: "Every day counts. Zerobet walks with me.",
+    journeyCardBtn: "Create my journey card",
+    journeyStatRank: "Rank",
+    journeyStatLevel: "Level",
+    journeyStatLevelValue: "Lv. {level} · {xp} XP",
+    journeyStatJournal: "Journal",
+    journeyStatJournalValue: "{n} entries",
+    journeyShareTitle: "Your journey card",
+    journeyShareSubtitle: "Your whole journey in one share-ready image",
+    journeyShareShare: "Share",
+    journeyShareDownload: "Download",
+    journeyShareGenerating: "Creating your card…",
+    journeyShareError: "Couldn't generate the card.",
+    journeyShareRetry: "Retry",
+    journeyShareClose: "Close",
+    journeyShareSharedToast: "Card shared! 🎉",
+    journeyShareCopiedToast: "Card copied to clipboard 📋",
+    journeyShareSavedToast: "Card downloaded to your images 🖼️",
+    journeyBannerTitle: "Proud of your journey?",
+    journeyBannerSubtitle: "Turn your streak into a beautiful card to share with the community.",
+    journeyBannerCta: "Create my card",
+    milestoneTitle7: "One week!",
+    milestoneMessage7: "The first week is the hardest. You did it. Your brain is already starting to heal.",
+    milestoneTitle14: "Two weeks!",
+    milestoneMessage14: "The fog is lifting. You're getting your clarity back. Keep going.",
+    milestoneTitle30: "One month!",
+    milestoneMessage30: "A full month. You're now part of the elite. Cravings are becoming rare.",
+    milestoneTitle60: "Two months!",
+    milestoneMessage60: "The diamond. Your determination shines brighter than ever.",
+    milestoneTitle90: "Three months!",
+    milestoneMessage90: "90 days. You've taken back control. You can now become a mentor to others.",
+    milestoneTitle180: "Six months!",
+    milestoneMessage180: "An inspiration to others. You're a living legend.",
+    milestoneTitle365: "One year!",
+    milestoneMessage365: "A full year. You're free. You've transformed your life.",
+    // ---- Task 19-b: RelapseModal ----
+    relapseModalTitle: "It's not a failure",
+    relapseModalSubtitle: "It's a fresh start",
+    relapseModalCompassionate: "You made it {n} days before. You can do it again. And this time, you'll be stronger.",
+    relapseModalCompassionateDays: "{n} day{s}",
+    relapseModalCompassionateRest: " before. You can do it again. And this time, you'll be stronger.",
+    relapseModalTriggerLabel: "What made you slip?",
+    relapseModalTriggerOptional: "(optional)",
+    relapseModalTriggerPlaceholder: "e.g. loneliness, stress after work, social media ads…",
+    relapseModalLessonLabel: "What do you learn from this experience?",
+    relapseModalLessonPlaceholder: "e.g. next time, I'll call a friend before acting…",
+    relapseModalResumeTitle: "I want to resume now",
+    relapseModalResumeDesc: "Restart your streak today",
+    relapseModalConfirmBtn: "Resume my journey",
+    relapseModalHelpBtn: "I need help",
+    relapseModalLaterBtn: "Not now",
+    relapseModalFooter: "You're not alone. Every day without a bet is a victory, no matter where you are.",
+    relapseModalReflectionStart: "🌿 Fresh start — resetting my streak.",
+    relapseModalReflectionStreak: "I had held on for {n} day(s) before. I can do it again.",
+    relapseModalReflectionTrigger: "What made me slip: {text}",
+    relapseModalReflectionLesson: "What I'm learning: {text}",
+    // ---- Task 19-b: ErrorBoundary ----
+    errorBoundaryTitle: "Something went wrong",
+    errorBoundarySubtitle: "Don't worry, it's not your fault. An unexpected error occurred. You can try again or go back home.",
+    errorBoundaryRetry: "Try again",
+    errorBoundaryHome: "Back to home",
+    errorBoundaryHide: "Hide technical details",
+    errorBoundaryShow: "Show technical details",
+    errorBoundaryErrorLabel: "Error",
+    errorBoundaryQuote: "“Fall seven times, stand up eight.” — Japanese proverb",
+    // ---- Task 19-b: DailyQuests ----
+    dailyQuestsTitle: "Daily quests",
+    dailyQuestsProgress: "Daily progress",
+    dailyQuestsClaimed: "Claimed",
+    dailyQuestsMultiplierHint: "×{mult} multiplier → +{xp} XP",
+    dailyQuestsToastDesc: "Quest “{title}” completed",
+    dailyQuestsCheckinTitle: "Daily check-in",
+    dailyQuestsCheckinDesc: "Complete your daily check-in",
+    dailyQuestsJournalTitle: "50-word journal",
+    dailyQuestsJournalDesc: "Write a journal entry",
+    dailyQuestsMeditationTitle: "5 min meditation",
+    dailyQuestsMeditationDesc: "Finish a meditation session",
+    dailyQuestsStreakTitle: "Stay bet-free",
+    dailyQuestsStreakDesc: "Keep your streak today",
+    dailyQuestsArticleTitle: "Read an article",
+    dailyQuestsArticleDesc: "Read a resource article",
+    // ---- Task 19-b: EmptyState ----
+    emptyStateJournalTitle: "No entries",
+    emptyStateJournalDesc: "Start writing your story. Every day, note how you feel — it's the habit that changes everything.",
+    emptyStateJournalCta: "New entry",
+    emptyStateCommunityTitle: "No topics",
+    emptyStateCommunityDesc: "Be the first to start a discussion. Your story can inspire others.",
+    emptyStateCommunityCta: "Start a discussion",
+    emptyStateStatsTitle: "No data yet",
+    emptyStateStatsDesc: "Keep going on your journey and your stats will show up here. Every day counts.",
+    emptyStateStatsCta: "View dashboard",
+    emptyStateDefaultTitle: "Nothing to show",
+    emptyStateDefaultDesc: "Come back later, content is coming soon.",
+    emptyStateDefaultCta: "Continue",
+    // ---- Task 19-a: Affirmation data (60 seed affirmations) ----
+    affirmation1Text: "Today is a new chance. I choose freedom.",
+    affirmation2Text: "I wake up stronger than yesterday, freer than before.",
+    affirmation3Text: "Every morning without a bet is a victory I celebrate.",
+    affirmation4Text: "Today, I build the person I will be tomorrow.",
+    affirmation5Text: "My first bet of the day is to believe in myself.",
+    affirmation6Text: "The sun rises on a new version of me. No game owns me.",
+    affirmation7Text: "I start this day aligned with my values, not my urges.",
+    affirmation8Text: "This morning, I choose patience. I choose life.",
+    affirmation9Text: "Today, my energy goes to my family, my dreams, my freedom.",
+    affirmation10Text: "I don't need a bet to feel my blood alive. The morning is enough.",
+    affirmation11Text: "This urge will pass. It's not permanent. I hold on.",
+    affirmation12Text: "I'm stronger than my urge. My future is worth more than a bet.",
+    affirmation13Text: "The urge is just a wave. I know how to swim. I won't sink.",
+    affirmation14Text: "Breathe. The bet can wait — I cannot lose myself.",
+    affirmation15Text: "I don't need to act on this urge. I can just watch it pass.",
+    affirmation16Text: "If I hold on 10 more minutes, the crisis retreats. I've already won.",
+    affirmation17Text: "My brain is lying. The truth is, this bet would destroy me.",
+    affirmation18Text: "I'm 24h deeper into my streak. No winnings are worth this pride.",
+    affirmation19Text: "This urge is not me. I am the one watching it.",
+    affirmation20Text: "I put down my phone. I breathe. I come back to myself.",
+    affirmation21Text: "I'm worth far more than what gambling tried to make me believe.",
+    affirmation22Text: "My dignity isn't wagered on a stroke of luck.",
+    affirmation23Text: "I'm not my mistakes. I'm the person who gets back up.",
+    affirmation24Text: "My children, my family, my friends deserve the best version of me.",
+    affirmation25Text: "I deserve respect — mine first.",
+    affirmation26Text: "My debts don't define my worth. My recovery does.",
+    affirmation27Text: "I'm whole, even broken. I rebuild myself every day.",
+    affirmation28Text: "Even if no one sees it, my transformation is real.",
+    affirmation29Text: "I no longer need to prove my worth through a win. I'm already enough.",
+    affirmation30Text: "The person I see in the mirror deserves all my pride.",
+    affirmation31Text: "My future is built today, in every choice I make.",
+    affirmation32Text: "In 6 months, I'll be that free person. Today I lay the first stone.",
+    affirmation33Text: "Tomorrow's me thanks me for holding on today.",
+    affirmation34Text: "I see a home, a stable family, a savings account. I'm building them.",
+    affirmation35Text: "Every FCFA not bet is a brick in the life I dream of.",
+    affirmation36Text: "My future is mine to decide. Not a slot machine.",
+    affirmation37Text: "I walk toward a future where gambling has no place in my life.",
+    affirmation38Text: "Soon, I'll tell this period as a battle I won.",
+    affirmation39Text: "I see myself laughing with my loved ones, debt-free, shame-free. That day is coming.",
+    affirmation40Text: "Tomorrow will be proud of today. I know it.",
+    affirmation41Text: "I'm grateful for every day without a bet. It's a gift.",
+    affirmation42Text: "Thank you to myself for holding on. Few understand what it costs.",
+    affirmation43Text: "I thank those who believe in me. I won't let them down anymore.",
+    affirmation44Text: "My breath, my health, my lucidity — these are my true riches.",
+    affirmation45Text: "I'm grateful for the small victories. They make up my freedom.",
+    affirmation46Text: "Thank you to life for waking me before it was too late.",
+    affirmation47Text: "I see the blue of the sky, a child's smile — things no winnings can buy.",
+    affirmation48Text: "Today I say thank you for my streak. It's my finest conquest.",
+    affirmation49Text: "I'm grateful for this community walking with me.",
+    affirmation50Text: "Thank you for still being here, standing, trying. It's immense.",
+    affirmation51Text: "My strength comes from my endurance. Each day makes me more powerful.",
+    affirmation52Text: "I've overcome worse. This temptation is nothing before my will.",
+    affirmation53Text: "Willpower is a muscle. I train it by saying no today.",
+    affirmation54Text: "I'm a warrior. Warriors don't bend before an urge.",
+    affirmation55Text: "My courage outweighs my fear. My future deserves my strength.",
+    affirmation56Text: "When I fall, I rise greater. Always.",
+    affirmation57Text: "No bet can break what I'm becoming.",
+    affirmation58Text: "I'm tougher than life. Life pushes me, I push harder.",
+    affirmation59Text: "My strength comes from my roots, my blood, my ancestors. I honor them.",
+    affirmation60Text: "I'm invincible when I choose. Today, I choose freedom.",
+    // ---- Task 19-a: Relapse protocol steps (8 × 3 fields) ----
+    relapseStep1Title: "Breathe and recenter",
+    relapseStep1Desc: "You slipped. It's not the end. Breathe with me.",
+    relapseStep1Action: "Do 3 cycles of 4-7-8 breathing. Inhale 4s, hold 7s, exhale 8s.",
+    relapseStep2Title: "No shame",
+    relapseStep2Desc: "Shame will pull you back to gambling. Replace it with compassion.",
+    relapseStep2Action: "Tell yourself: 'I slipped, but I'm not a failure. I'm getting back up.'",
+    relapseStep3Title: "Identify the trigger",
+    relapseStep3Desc: "Understanding why you slipped will help you prevent the next time.",
+    relapseStep3Action: "Write down what happened just before: emotion, situation, thought.",
+    relapseStep4Title: "Call someone",
+    relapseStep4Desc: "You're not alone. Talking breaks the cycle.",
+    relapseStep4Action: "Contact a friend, a loved one, or a Zerobet community mentor.",
+    relapseStep5Title: "Move your body",
+    relapseStep5Desc: "Exercise releases healthy dopamine and reduces urges.",
+    relapseStep5Action: "Do 30 min of walking, running, or exercise. Move your body.",
+    relapseStep6Title: "Reactivate your blocker",
+    relapseStep6Desc: "If you bypassed the blocker, reactivate it now.",
+    relapseStep6Action: "Check that your blocker is active. Enable strict mode if possible.",
+    relapseStep7Title: "Write your lesson",
+    relapseStep7Desc: "Every relapse holds a lesson. What's yours?",
+    relapseStep7Action: "Write 3 things you learned and 1 thing you'll do differently.",
+    relapseStep8Title: "Restart your streak",
+    relapseStep8Desc: "Day 1. Not Day 0. You start over with experience.",
+    relapseStep8Action: "Reset your streak. You haven't lost what you learned.",
+    // ---- Task 19-a: Relapse quotes (4 × 2 fields) ----
+    relapseQuote1Text: "Falling isn't failing. Staying down is failing.",
+    relapseQuote1Author: "Proverb",
+    relapseQuote2Text: "Relapse is part of recovery. It's not back to zero.",
+    relapseQuote2Author: "Addiction Psychology",
+    relapseQuote3Text: "You haven't lost your progress. You've gained experience.",
+    relapseQuote3Author: "Zerobet",
+    relapseQuote4Text: "Every fall teaches you to rise stronger.",
+    relapseQuote4Author: "Wisdom",
+    // ---- Task 19-a: Relapse phase labels ----
+    relapsePhaseImmediate: "Immediate",
+    relapsePhaseHour1: "First hour",
+    relapsePhaseHour6: "6 hours",
+    relapsePhaseHour24: "24 hours",
+    // ---- Task 19-a: Symptom categories (5 labels + 30 symptoms) ----
+    symptomCatFinancialLabel: "Financial",
+    symptomCatMentalLabel: "Mental",
+    symptomCatSocialLabel: "Social",
+    symptomCatPhysicalLabel: "Physical",
+    symptomCatFamilyLabel: "Family",
+    symptomFinancial1: "Accumulated debts",
+    symptomFinancial2: "Unpaid loans",
+    symptomFinancial3: "Rent money used",
+    symptomFinancial4: "Selling items to gamble",
+    symptomFinancial5: "Lies about money",
+    symptomFinancial6: "Overdrawn account",
+    symptomMental1: "Insomnia",
+    symptomMental2: "Constant anxiety",
+    symptomMental3: "Obsessive thoughts",
+    symptomMental4: "Irritability",
+    symptomMental5: "Depression",
+    symptomMental6: "Loss of focus",
+    symptomSocial1: "Isolation",
+    symptomSocial2: "Lies to friends",
+    symptomSocial3: "Social avoidance",
+    symptomSocial4: "Loss of friends",
+    symptomSocial5: "Shame",
+    symptomSocial6: "Secretive behavior",
+    symptomPhysical1: "Palpitations",
+    symptomPhysical2: "Sweating",
+    symptomPhysical3: "Tremors",
+    symptomPhysical4: "Loss of appetite",
+    symptomPhysical5: "Chronic fatigue",
+    symptomPhysical6: "Headaches",
+    symptomFamily1: "Frequent arguments",
+    symptomFamily2: "Broken trust",
+    symptomFamily3: "Breakup threats",
+    symptomFamily4: "Children as witnesses",
+    symptomFamily5: "Violence",
+    symptomFamily6: "Divorce proceedings",
+    // ---- Task 19-a: Engagement goals (6 goals × 2 fields) ----
+    goalFamilyLabel: "Reunite with my family",
+    goalFamilyDesc: "Rebuild trust with my loved ones",
+    goalMoneyLabel: "Regain financial control",
+    goalMoneyDesc: "Get out of debt and save",
+    goalHealthLabel: "Save my mental health",
+    goalHealthDesc: "See life without anxiety",
+    goalDignityLabel: "Recover my dignity",
+    goalDignityDesc: "No more lying, no more shame",
+    goalFutureLabel: "Build my future",
+    goalFutureDesc: "Invest in a life project",
+    goalFreedomLabel: "Be free",
+    goalFreedomDesc: "Never again a slave to betting",
+    // ---- Task 19-c: ProgramScreen / SupportScreen / MentorshipScreen / ResourcesScreen ----
+    programTaskCheckinTitle: "Check in",
+    programTaskCheckinDesc: "Record your mood for today",
+    programTaskJournalTitle: "Write in your journal",
+    programTaskJournalDesc: "Note your thoughts and feelings",
+    programTaskBreathingTitle: "Practice 4-7-8 breathing",
+    programTaskBreathingDesc: "5 minutes of mindful breathing",
+    programTaskArticleTitle: "Read an educational article",
+    programTaskArticleDesc: "Learn more about addiction",
+    programTaskMeditateTitle: "Meditate for 5 minutes",
+    programTaskMeditateDesc: "A guided meditation session",
+    programTaskSavingsTitle: "Check your savings",
+    programTaskSavingsDesc: "Look at your financial progress",
+    programTaskShareTitle: "Share with the community",
+    programTaskShareDesc: "Connect with other members",
+    programTaskHelpTitle: "Help another member",
+    programTaskHelpDesc: "Support someone in difficulty",
+    programTaskMentorTitle: "Become a mentor",
+    programTaskMentorDesc: "Guide a new member",
+    programTaskTestimonyTitle: "Share your testimony",
+    programTaskTestimonyDesc: "Inspire other people",
+    programWeek1Title: "First steps",
+    programWeek1Focus: "Acceptance and commitment",
+    programWeek1Desc: "Acknowledge addiction and commit to change.",
+    programWeek2Title: "Understanding addiction",
+    programWeek2Focus: "Education",
+    programWeek2Desc: "Learn how the addicted brain works.",
+    programWeek3Title: "Identifying triggers",
+    programWeek3Focus: "Self-awareness",
+    programWeek3Desc: "Recognize the situations that trigger urges.",
+    programWeek4Title: "Coping strategies",
+    programWeek4Focus: "Tools",
+    programWeek4Desc: "Build your anti-craving toolkit.",
+    programWeek5Title: "Breathing and meditation",
+    programWeek5Focus: "Calm",
+    programWeek5Desc: "Master your nervous system.",
+    programWeek6Title: "Financial rebuilding",
+    programWeek6Focus: "Money management",
+    programWeek6Desc: "Take back control of your finances.",
+    programWeek7Title: "Family relationships",
+    programWeek7Focus: "Social repair",
+    programWeek7Desc: "Rebuild trust with loved ones.",
+    programWeek8Title: "Self-esteem",
+    programWeek8Focus: "Personal worth",
+    programWeek8Desc: "Rediscover and love yourself again.",
+    programWeek9Title: "Setting new goals",
+    programWeek9Focus: "Planning",
+    programWeek9Desc: "Build the future you deserve.",
+    programWeek10Title: "Helping others",
+    programWeek10Focus: "Community",
+    programWeek10Desc: "Turn your trial into a gift.",
+    programWeek11Title: "Healthy lifestyle",
+    programWeek11Focus: "Holistic health",
+    programWeek11Desc: "Body, mind and soul in harmony.",
+    programWeek12Title: "Consolidation",
+    programWeek12Focus: "Maintenance",
+    programWeek12Desc: "Anchor your new habits.",
+    programWeek13Title: "Celebration and beyond",
+    programWeek13Focus: "Long term",
+    programWeek13Desc: "Prepare for the rest of your journey.",
+    programMilestone1Label: "The first step",
+    programMilestone1Desc: "You dared to start. That's the hardest part.",
+    programMilestone7Label: "One week",
+    programMilestone7Desc: "7 days without betting. Your brain starts to heal.",
+    programMilestone14Label: "Two weeks",
+    programMilestone14Desc: "Cravings become rarer.",
+    programMilestone30Label: "One month",
+    programMilestone30Desc: "You're among the elite of recoverers.",
+    programMilestone45Label: "Halfway",
+    programMilestone45Desc: "You've passed the middle mark. Let's keep going.",
+    programMilestone60Label: "Two months",
+    programMilestone60Desc: "You're truly taking back control of your life.",
+    programMilestone90Label: "Program completed",
+    programMilestone90Desc: "You've transformed your life. Be proud.",
+    programPhase1Goal1: "Reach 7 days without betting",
+    programPhase1Goal2: "Identify your 3 main triggers",
+    programPhase1Goal3: "Write in your journal every day",
+    programPhase1Goal4: "Learn 4-7-8 breathing",
+    programPhase1Tip1: "Use the panic button as soon as an urge rises",
+    programPhase1Tip2: "Write at least 3 lines per day in your journal",
+    programPhase1Tip3: "Activate the site blocker to help yourself",
+    programPhase2Goal1: "Reach 45 days without betting",
+    programPhase2Goal2: "Create a monthly budget",
+    programPhase2Goal3: "Reconnect with a loved one",
+    programPhase2Goal4: "Set 3 six-month goals",
+    programPhase2Tip1: "Share your journey with the community",
+    programPhase2Tip2: "Check your savings every week",
+    programPhase2Tip3: "Help another member when you can",
+    programPhase3Goal1: "Complete the 90-day program",
+    programPhase3Goal2: "Become a mentor if you wish",
+    programPhase3Goal3: "Share your testimony",
+    programPhase3Goal4: "Adopt a sustainable healthy lifestyle",
+    programPhase3Tip1: "Become a mentor to help newcomers",
+    programPhase3Tip2: "Share your story to inspire",
+    programPhase3Tip3: "Maintain your healthy habits",
+    supportFaqTitle: "Frequently asked questions",
+    supportSearchFaqQuestion: "Search for a question...",
+    supportNoFaqResults: "No question matches your search.",
+    supportFaqDesc: "Frequently asked questions",
+    supportContactDesc: "Contact form",
+    supportBugDesc: "Technical issue",
+    supportSuggestionDesc: "Improvement ideas",
+    supportSubject: "Subject",
+    supportSubjectQuestion: "Question",
+    supportSubjectBug: "Bug",
+    supportSubjectSuggestion: "Suggestion",
+    supportSubjectOther: "Other",
+    supportEmailOptional: "Email (optional)",
+    supportEmailPlaceholder: "your@email.com (to receive a reply)",
+    supportMessageMin: "Minimum 10 characters ({n}/10)",
+    supportMessageValid: "Valid message",
+    supportMessageTooShort: "The message must contain at least 10 characters",
+    supportResponseTime: "Reply within 48h on average",
+    supportUsePanicBtn: "Use the panic button",
+    supportResolveBtn: "Resolve",
+    supportVideoPlaying: "Playing: \"{title}\"",
+    supportVideoDuration: "Duration: {duration}",
+    supportEmergencyTitle: "Immediate crisis?",
+    supportEmergencyDesc: "If you're having severe thoughts, contact immediately:",
+    supportCategoryAll: "All",
+    supportFaqQ1: "How do I get started?",
+    supportFaqA1: "Welcome to Zerobet! After onboarding, you access your dashboard. Start with your daily check-in, write in your journal, and explore the quick actions. The 90-day journey guides you step by step.",
+    supportFaqQ2: "How do I use the panic button?",
+    supportFaqA2: "The panic button is available on the dashboard and at the bottom of the screen. When you feel an urge to bet, press it: you'll be guided through a 4-7-8 breathing exercise and motivational messages. You can also journal the event afterwards.",
+    supportFaqQ3: "How does the journey work?",
+    supportFaqA3: "The Healing Journey has 13 ranks, from First Day to Legend. Each day without betting increases your streak. The longer your streak, the more badges, XP and multipliers you unlock. Go to the Journey screen to see your current rank.",
+    supportFaqQ4: "How do I change my plan?",
+    supportFaqA4: "Go to Settings > Plan. You can choose between Free, Premium, Mentor and Psychologist. Paid plans unlock advanced features like Atlas AI, the site blocker and access to psychologists.",
+    supportFaqQ5: "How do I reset my data?",
+    supportFaqA5: "In Settings > Data Management, you can export your data and then reset the app. Warning: this action is irreversible and erases your account, journal, progress and all your data.",
+    supportFaqQ6: "Is my data secure?",
+    supportFaqA6: "Yes. All your data is stored locally on your device (localStorage). We have no server that keeps your personal information. You can enable app lock and discrete mode in Settings > Privacy.",
+    supportFaqQ7: "How do I use Atlas AI?",
+    supportFaqA7: "Atlas AI is your personal coach. Press the Atlas AI icon in the quick actions. You can chat with it in 4 sections: Journal (analyzes your entries), Motivation (personalized messages), Progress (statistics), and Crisis (emergency). The more you write in your journal, the better Atlas knows you.",
+    supportFaqQ8: "How do I add a site to block?",
+    supportFaqA8: "Go to Blocker > Add a site. Enter the URL and name of the site. You can also activate strict mode which blocks all sites for 72 hours without the ability to disable. The blocker helps you create a physical barrier against temptation.",
+    supportFaqQ9: "How do I contact a mentor?",
+    supportFaqA9: "Go to Community > Mentors. You'll see the list of available mentors with their specialty, country and rating. You can contact them directly. Mentors are former bettors in recovery who support you for free.",
+    supportFaqQ10: "The app won't launch",
+    supportFaqA10: "1) Check your internet connection. 2) Force close and restart the app. 3) Clear your browser cache. 4) Disable extensions that might block JavaScript. If the problem persists, report a bug via the form below.",
+    supportFaqQ11: "How do I export my data?",
+    supportFaqA11: "Go to Settings > Data Management > Export. You'll receive a JSON file containing your journal, progress, contacts and settings. You can import it on another device so you don't lose your history.",
+    supportFaqQ12: "Can I use the app offline?",
+    supportFaqA12: "Yes, most features work offline: check-in, journal, meditation, journey. Only Atlas AI and notifications require a connection. Your data is stored locally, so you have nothing to fear.",
+    supportVideo1Title: "Getting started with Zerobet",
+    supportVideo2Title: "Mastering the panic button",
+    supportVideo3Title: "Using Atlas AI efficiently",
+    supportVideo4Title: "Leveraging the community",
+    supportTrouble1Issue: "The app is slow",
+    supportTrouble1Solution: "Clear your browser cache, or disable the starfield in Appearance.",
+    supportTrouble2Issue: "Sound doesn't work",
+    supportTrouble2Solution: "Check your device volume and enable sounds in Settings > Sound & Haptics.",
+    supportTrouble3Issue: "I'm not receiving notifications",
+    supportTrouble3Solution: "Enable notifications in Settings > Preferences and allow them in your browser.",
+    supportTrouble4Issue: "My data disappeared",
+    supportTrouble4Solution: "If you exported your data, use Import in Settings > Data Management.",
+    supportEmergency1Name: "Gambling helpline",
+    supportEmergency1Desc: "24/7 • Free • Confidential",
+    supportEmergency2Name: "SOS Friendship",
+    supportEmergency2Desc: "Friendly listening 24/7",
+    supportEmergency3Name: "Social Emergency",
+    supportEmergency3Desc: "Social emergency",
+    supportEmergency4Name: "Emergencies",
+    supportEmergency4Desc: "European emergency number",
+    mentorshipSpecYouth: "Youth 18-25",
+    mentorshipSpecFathers: "Fathers",
+    mentorshipSpecStudents: "Students",
+    mentorshipSpecAthletes: "Athletes",
+    mentorshipSpecWomen: "Female bettors",
+    mentorshipSpecDiaspora: "Diaspora",
+    mentorshipSpecGeneral: "General",
+    mentorshipCountryCI: "Côte d'Ivoire",
+    mentorshipCountrySN: "Senegal",
+    mentorshipCountryML: "Mali",
+    mentorshipCountryCM: "Cameroon",
+    mentorshipCountryGN: "Guinea",
+    mentorshipCountryTG: "Togo",
+    mentorshipCountryBJ: "Benin",
+    mentorshipCountryFR: "France",
+    mentorshipCountryBE: "Belgium",
+    mentorshipCountryCA: "Canada",
+    mentorshipCountryOther: "Other",
+    mentorshipLangFr: "French",
+    mentorshipLangWo: "Wolof",
+    mentorshipLangBm: "Bambara",
+    mentorshipLangLn: "Lingala",
+    mentorshipLangEn: "English",
+    mentorshipLangAr: "Arabic",
+    mentorshipLangPt: "Portuguese",
+    mentorshipLangEs: "Spanish",
+    mentorshipLangDyu: "Dioula",
+    mentorshipLangFon: "Fon",
+    mentorshipAvailFewHours: "A few hours/week",
+    mentorshipAvail12h: "1-2h/day",
+    mentorshipAvail247: "Available 24/7",
+    mentorshipCode1: "Absolute respect for all members",
+    mentorshipCode2: "Total confidentiality of exchanges",
+    mentorshipCode3: "No judgment, only support",
+    mentorshipCode4: "Recommend professionals for severe cases",
+    mentorshipCode5: "Share only your personal experience",
+    mentorshipCode6: "Never encourage 'moderate' gambling",
+    mentorshipCode7: "Respond within 24h",
+    mentorshipCode8: "Report any inappropriate behavior",
+    mentorshipRes1Title: "Mentor guide",
+    mentorshipRes1Desc: "The complete manual for supporting new members.",
+    mentorshipRes2Title: "Active listening techniques",
+    mentorshipRes2Desc: "Learn to truly listen, without interrupting or judging.",
+    mentorshipRes3Title: "Handling difficult situations",
+    mentorshipRes3Desc: "How to react to a member in crisis or relapse.",
+    mentorshipResTypePdf: "PDF",
+    mentorshipResTypeArticle: "Article",
+    mentorshipResTypeVideo: "Video",
+    mentorshipPsySpec1: "Addictology",
+    mentorshipPsySpec2: "Cognitive behavioral therapy",
+    mentorshipPsySpec3: "Clinical psychology",
+    mentorshipPsySpec4: "Family support",
+    mentorshipLastContact2hAgo: "2h ago",
+    mentorshipLastContactYesterday: "Yesterday",
+    mentorshipLastContact3DaysAgo: "3 days ago",
+    mentorshipLastContactToday: "Today",
+    mentorshipStatusActive: "active",
+    mentorshipStatusToContact: "to contact",
+    mentorshipSelectPlaceholder: "Select...",
+    mentorshipFormDisplayName: "Public name (your mentor name)",
+    mentorshipFormDisplayNamePlaceholder: "Ex: Awa the Courageous",
+    mentorshipFormBioLabel: "Bio — tell your story",
+    mentorshipFormBioHint: "{n} / 100 characters minimum",
+    mentorshipFormBioPlaceholder: "How you fell into gambling, how you got out, what helped you...",
+    mentorshipFormSpecialtyLabel: "Specialty",
+    mentorshipFormSpecialtyPlaceholder: "Choose your specialty",
+    mentorshipFormCountryLabel: "Country",
+    mentorshipFormCountryPlaceholder: "Choose your country",
+    mentorshipFormLanguagesLabel: "Languages spoken",
+    mentorshipFormLanguagesHint: "Select all that apply",
+    mentorshipFormAvailabilityLabel: "Availability",
+    mentorshipFormAvailabilityPlaceholder: "Choose your availability",
+    mentorshipFormMotivationLabel: "Motivation — why become a mentor?",
+    mentorshipFormMotivationHint: "{n} / 50 characters minimum",
+    mentorshipFormMotivationPlaceholder: "What drives you to support others?",
+    mentorshipAgreePrefix: "I accept the",
+    mentorshipCodeLink: "mentor code of conduct",
+    mentorshipCodeHeader: "Mentor code of conduct",
+    mentorshipResourcesTitle: "Mentor resources",
+    mentorshipResAccess: "Access",
+    mentorshipResSoon: "{title} — coming soon",
+    mentorshipSuccessContinue: "Continue",
+    mentorshipPsyBioPlaceholder: "Describe your therapeutic approach, your experience with addiction...",
+    resourcesCategoriesLabel: "Categories",
+    resourcesArticleCount: "{n} article(s)",
+    resourcesVideoCount: "{n} videos",
+    resourcesBooksAppsTitle: "Recommended Books & Apps",
+    resourcesFooter: "Knowledge is your first step toward healing. 🌱",
+    resourcesReadArticle: "Read article",
+    resourcesArticleRead: "Article read",
+    resourcesArticleExpanded: "This article explores psychological mechanisms in depth and offers concrete exercises. Take the time to read it carefully, ideally in a quiet moment.",
+    resourcesEmergencyTitle: "Need urgent help?",
+    resourcesEmergencySubtitle: "You are not alone. Call.",
+    resourcesCallBtn: "Call",
+    resourcesOpen: "Open",
+    resourcesTypeApp: "App",
+    resourcesTypeBook: "Book",
+    resourcesFeatured1Title: "Why your brain betrays you when you bet",
+    resourcesFeatured1Excerpt: "Understand the dopamine mechanism and why each bet reinforces the addictive cycle — even when you lose.",
+    resourcesFeatured2Title: "Overcome a sudden urge in 90 seconds",
+    resourcesFeatured2Excerpt: "The U.R.G.E. method to defuse a betting urge without giving in. A simple, proven technique accessible to everyone.",
+    resourcesFeatured3Title: "Moussa, 32: \"I lost everything, then rebuilt it all\"",
+    resourcesFeatured3Excerpt: "Authentic account of a former Dakar bettor who overcame 8 years of addiction and found his family again.",
+    resourcesFeatured4Title: "Rebuilding your finances after betting",
+    resourcesFeatured4Excerpt: "A concrete 4-step plan to repay your debts, take back control and save again.",
+    resourcesFeatured5Title: "4-7-8 breathing: your secret anti-craving weapon",
+    resourcesFeatured5Excerpt: "This breathing technique calms the nervous system in less than 2 minutes. Learn it once, use it for life.",
+    resourcesArticle1Title: "Dopamine and betting",
+    resourcesArticle1Excerpt: "How gambling hijacks your brain's natural reward system and creates a powerful addiction.",
+    resourcesArticle2Title: "How to handle a sudden urge",
+    resourcesArticle2Excerpt: "5 practical techniques to face an intense betting urge without giving in. Apply immediately.",
+    resourcesArticle3Title: "Rebuilding family trust",
+    resourcesArticle3Excerpt: "Addiction destroys relationships. Here are concrete steps to regain your loved ones' trust, day after day.",
+    resourcesArticle4Title: "The money you save",
+    resourcesArticle4Excerpt: "Calculate how much you really save each day without betting. The numbers will surprise and motivate you.",
+    resourcesArticle5Title: "Why you always lose",
+    resourcesArticle5Excerpt: "The mathematical truth behind sports betting: why the house always wins and why you can't.",
+    resourcesArticle6Title: "4-7-8 breathing explained",
+    resourcesArticle6Excerpt: "Inhale 4 seconds, hold 7, exhale 8. Discover the science behind this powerful anti-stress technique.",
+    resourcesArticle7Title: "Testimony: Moussa from Dakar",
+    resourcesArticle7Excerpt: "\"I started with 1000 FCFA, ended up losing my house.\" The true story of a rebirth.",
+    resourcesArticle8Title: "Recognizing triggers",
+    resourcesArticle8Excerpt: "Learn to identify the situations, emotions and people that trigger your urge to bet so you can avoid them.",
+    resourcesArticle9Title: "The role of sleep",
+    resourcesArticle9Excerpt: "Lack of sleep increases betting urges by 40%. Discover how to sleep better to resist better.",
+    resourcesArticle10Title: "Reclaiming your manhood",
+    resourcesArticle10Excerpt: "Betting addiction deeply affects self-confidence and masculinity. Here's how to rebuild.",
+    resourcesAuthorKone: "Dr. Aïssata Koné",
+    resourcesAuthorAllard: "Marc Allard, therapist",
+    resourcesAuthorNdiaye: "Moussa Ndiaye",
+    resourcesAuthorDiallo: "Awa Diallo, counselor",
+    resourcesAuthorZerobet: "Zerobet Finance",
+    resourcesAuthorYoga: "Yoga & Mindfulness",
+    resourcesVideo1Title: "10-min guided breathing",
+    resourcesVideo2Title: "Koffi's testimony",
+    resourcesVideo3Title: "Understanding dopamine",
+    resourcesVideo4Title: "Anti-craving meditation",
+    resourcesVideoCatMeditation: "Meditation",
+    resourcesVideoCatTestimony: "Testimony",
+    resourcesVideoCatScience: "Science",
+    resourcesHotline1Name: "National helpline",
+    resourcesHotline1Desc: "Free • 24/7",
+    resourcesHotline2Name: "Gambling Therapy (online)",
+    resourcesHotline2Desc: "Free international support",
+    resourcesHotline3Name: "Social Emergency",
+    resourcesHotline3Desc: "Social emergency • 24/7",
+    resourcesBook1Desc: "Betting recovery app with daily tracking",
+    resourcesBook2Desc: "James Clear — change your habits for good",
+    resourcesBook3Desc: "Allen Carr — classic method to quit",
+    // ---- Task 20-a: CalendarScreen ----
+    calendarMilestone1Label: "First Step",
+    calendarMilestone1Desc: "The first day is the hardest.",
+    calendarMilestone3Label: "Awakening",
+    calendarMilestone3Desc: "The fog begins to clear.",
+    calendarMilestone7Label: "Bronze",
+    calendarMilestone7Desc: "A full week without betting.",
+    calendarMilestone14Label: "Silver",
+    calendarMilestone14Desc: "Two weeks — your brain is healing.",
+    calendarMilestone30Label: "Gold",
+    calendarMilestone30Desc: "One month! You're part of the elite.",
+    calendarMilestone60Label: "Diamond",
+    calendarMilestone60Desc: "Two months — urges become rare.",
+    calendarMilestone90Label: "Triple XP",
+    calendarMilestone90Desc: "Three months — you're taking back control.",
+    calendarMilestone180Label: "Legend",
+    calendarMilestone180Desc: "Six months — an inspiration to others.",
+    calendarMilestone365Label: "One Year",
+    calendarMilestone365Desc: "A full year. You are free.",
+    calendarEmotionFrustrated: "Frustrated",
+    calendarEmotionAnxious: "Anxious",
+    calendarEmotionTempted: "Tempted",
+    calendarEmotionCalm: "Calm",
+    calendarEmotionProud: "Proud",
+    calendarEmotionStrong: "Strong",
+    calendarNoBetDaysMany: "{n} days this month without betting",
+    calendarNoBetDaysOne: "{n} day this month without betting",
+    calendarNoBetDaysNone: "No bet-free days this month",
+    calendarSavedThisMonth: "saved this month",
+    calendarLegendNoBet: "Bet-free",
+    calendarLegendCrisis: "Crisis",
+    calendarLegendNoData: "No data",
+    calendarLegendMilestone: "Milestone",
+    calendarStatsTitle: "Streak statistics",
+    calendarBestStreak: "Longest streak",
+    calendarCurrentStreak: "Current streak",
+    calendarTotalNoBetDays: "Total bet-free days",
+    calendarMonthlyAverage: "Monthly average",
+    calendarUnitDays: "days",
+    calendarUnitDaysPerMonth: "d/month",
+    calendarMilestonesTitle: "Milestones",
+    calendarDayNumber: "Day {n}",
+    calendarReached: "Reached",
+    calendarDaysBefore: "D-{n}",
+    calendarAchievedOn: "Reached on {date}",
+    calendarUpcoming: "Upcoming",
+    calendarDaysSinceStart: "{n} day(s) since the start",
+    calendarInsightsTitle: "Insights",
+    calendarInsightNoBetDays: "Bet-free days",
+    calendarInsightCrisesAvoided: "Crises avoided",
+    calendarInsightJournalEntries: "Journal entries",
+    calendarInsightFcfASaved: "FCFA saved",
+    calendarDailyActivity: "Daily activity",
+    calendarDayActivityTitle: "Day {n}{suffix}",
+    calendarMilestonesUnlocked: "{n} milestone(s) unlocked",
+    calendarDayWithCrisis: "Day with crisis",
+    calendarDayNoBet: "Bet-free day",
+    calendarNoData: "No data",
+    calendarMilestoneBadge: "Milestone D-{n}",
+    calendarStreakThatDay: "Streak that day",
+    calendarDaysCount: "{n} day(s)",
+    calendarEmotion: "Emotion",
+    calendarNoEntry: "No entry",
+    calendarMeditation: "Meditation",
+    calendarCompleted: "Completed",
+    calendarNotDone: "Not done",
+    calendarCrisisIntensity: "Crisis (intensity)",
+    calendarXpEarned: "XP earned that day",
+    calendarNotePlaceholder: "Write down what you want to remember about this day...",
+    // ---- Task 20-a: FinanceScreen ----
+    financeCategoryInvestment: "Investment",
+    financeCategoryPleasures: "Healthy pleasures",
+    financeSavingCatNecessitiesDesc: "Food, rent, bills — the essentials to live with dignity.",
+    financeSavingCatSavingsDesc: "Secure savings account for your projects and your emergency fund.",
+    financeSavingCatInvestmentDesc: "Business, education, training — make your money work for you.",
+    financeSavingCatPleasuresDesc: "Hobbies, healthy entertainment — treat yourself without betting.",
+    financeTip1Title: "The 50/30/20 rule",
+    financeTip1Short: "50% necessities, 30% pleasures, 20% savings",
+    financeTip1Details: "A simple rule to organize your budget: 50% of your income for necessities (rent, food, bills), 30% for healthy pleasures, and at least 20% for savings. This method keeps you out of precarity while still letting you treat yourself reasonably.",
+    financeTip2Title: "Emergency fund",
+    financeTip2Short: "Save 3 to 6 months of expenses",
+    financeTip2Details: "Build an emergency fund equal to 3-6 months of your current expenses. This reserve protects you from the unexpected (illness, job loss, breakdown) without having to borrow or return to betting. It's the first step toward financial independence.",
+    financeTip3Title: "The power of small amounts",
+    financeTip3Short: "1,000 FCFA/day = 365,000 FCFA/year",
+    financeTip3Details: "Never underestimate small sums. Saving just 1,000 FCFA a day gives you 365,000 FCFA in a year — enough for a phone, a business, or studies. Consistency matters more than the amount. It's the snowball effect.",
+    financeTip4Title: "Mobile Money",
+    financeTip4Short: "Use Orange Money to save automatically",
+    financeTip4Details: "With Orange Money, Wave, MTN MoMo or Moov Money, you can set up automatic savings: a fixed amount is transferred to your savings account as soon as you receive money. You save without thinking about it — it's the most effective way to build capital.",
+    financePresetPhone: "Phone",
+    financePresetMoto: "Motorcycle",
+    financePresetBusiness: "Business",
+    financePresetEducation: "Education",
+    financePresetEmergency: "Emergency fund",
+    financePresetLand: "Land",
+    financeMilestone10k: "10,000 FCFA saved",
+    financeMilestone50k: "50,000 FCFA saved",
+    financeMilestone100k: "100,000 FCFA saved",
+    financeMilestone500k: "500,000 FCFA saved",
+    financeMilestone1M: "1,000,000 FCFA saved",
+    financeSavedOverDays: "Over {n} days without betting",
+    financeFCFAperWeek: "FCFA/week",
+    financeSavedPerDay: "≈ {n} FCFA saved per day",
+    financeSavingsDistributionDesc: "Here's how to intelligently split your saved money.",
+    financeIncomeWeekly: "Weekly income",
+    financeBeforeZerobet: "Before Zerobet",
+    financeWithZerobet: "With Zerobet",
+    financeRemainingPerWeek: "FCFA remaining / week",
+    financeLostToBets: "FCFA lost to betting",
+    financeGained: "FCFA gained",
+    financeSaveForThisGoal: "Save for this goal",
+    financeDeleteGoal: "Delete goal",
+    financeRemainingAmount: "{n} FCFA to go",
+    financeQuickSuggestions: "Quick suggestions:",
+    financeXpBonus: "XP bonus",
+    financeSavingsWeeksConsecutive: "{n} consecutive savings week(s)",
+    financeLast8Weeks: "Last 8 weeks",
+    financeSavingsWeek: "Savings week",
+    financeNotYet: "Not yet",
+    finance8WeeksAgo: "8 wks ago",
+    financeSavingStreakMsg: "You've been saving for {n} week(s) without interruption!",
+    financeLast6Months: "Last 6 months",
+    financeBeforeLosses: "Before (losses)",
+    financeNowSavings: "Now (savings)",
+    financeNetGain6Months: "Net gain over 6 months",
+    financeSavingsLabel: "Savings",
+    financeLossesAvoidedLabel: "Losses avoided",
+    financeLearnMore: "Learn more",
+    financeTipNumber: "Tip {n}",
+    financeTipApplyRule: "Tip: apply this rule starting this week to see your savings take off.",
+    financeGoalNamePlaceholder: "e.g. Motorcycle, Studies, Emergency fund",
+    financeAmountPlaceholder: "e.g. 75000",
+    financeProjectionBarDesc: "Projection: if you keep saving, here's what you gain (and avoid losing) each month.",
+    // ---- Task 20-a: CommunityChatScreen (new keys) ----
+    chatRoomGeneralLabel: "General",
+    chatRoomGeneralDesc: "For everyone. Introduce yourself and chat freely.",
+    chatRoomCrisisLabel: "Crisis Support",
+    chatRoomCrisisDesc: "For difficult moments. Be kind.",
+    chatRoomVeteransLabel: "Veterans",
+    chatRoomVeteransDesc: "Reserved for members with 90+ days of abstinence.",
+    chatRule1: "Respect everyone, whatever their stage of recovery.",
+    chatRule2: "No promotion of gambling or betting.",
+    chatRule3: "No financial or medical advice.",
+    chatRule4: "If someone is in crisis, redirect them to SOS.",
+    chatRule5: "Your messages are visible to all members.",
+    chatOffline: "Offline",
+    chatYou: "You",
+    chatReactWith: "React with {emoji}",
+    chatPremiumReactions: "Premium Reactions",
+    chatNicknameError: "Nickname must be between {min} and {max} characters.",
+    chatChooseNickname: "Choose your nickname",
+    chatNicknameHelp: "Other members will see this name. Be yourself or stay anonymous.",
+    chatRandomNickname: "Random nickname",
+    chatNicknameRange: "Between {min} and {max} characters",
+    chatJoinBtn: "Join chat",
+    chatWelcome: "Welcome {nickname}! 🎉",
+    chatRoomLockedMsg: "The {label} room is reserved for members with {n}+ days of abstinence.",
+    chatOfflineRetry: "You are offline. Try again in a moment.",
+    chatReactionSent: "{emoji} reaction sent to {nickname}",
+    chatTypingOne: "is typing",
+    chatTypingMany: "are typing",
+    chatCrisisRoomBanner: "This room is for difficult moments. Be kind. In an emergency, call SOS.",
+    chatCallSos: "Call SOS",
+    chatConnectionLost: "Connection lost. Reconnecting…",
+    chatRetry: "Retry",
+    chatEmptyState: "Be the first to say hello 👋",
+    chatRulesTitle: "Community rules",
+    chatReportHint: "Use the report button on the relevant message.",
+    chatReportBtn: "Report content",
+    chatInputPlaceholder: "Write in {room}…",
+    chatMessage: "Message",
+    chatConnectedMembers: "Connected · {n} members",
+    chatConnectedMemberOne: "Connected · 1 member",
+    chatRateLimited: "Easy there 🙏 Too many messages in a row. Try again in {n}s.",
+    // ---- Task 20-a: MeditationScreen ----
+    meditationTech478Name: "4-7-8 Breathing",
+    meditationTech478Desc: "Soothing · Ideal for urges",
+    meditationTech478Duration: "3 cycles · ~1 min",
+    meditationTechSquareName: "Box 4-4-4-4",
+    meditationTechSquareDesc: "Focus · Concentration",
+    meditationTechSquareDuration: "4 cycles · ~1 min",
+    meditationTech246Name: "2-4-6 Breathing",
+    meditationTech246Desc: "Quick calm · Anti-stress",
+    meditationTech246Duration: "5 cycles · ~1 min",
+    meditationTech55Name: "Deep breathing 5-5",
+    meditationTech55Desc: "Relaxation · Before sleep",
+    meditationTech55Duration: "4 cycles · ~1 min",
+    meditationPhaseInspire: "Inhale",
+    meditationPhaseHold: "Hold",
+    meditationPhaseExhale: "Exhale",
+    meditationGuided1Title: "Calm an urge to gamble",
+    meditationGuided1Desc: "A short session to release pressure when the urge rises. Guided breathing + soothing visualization.",
+    meditationGuided2Title: "Self-confidence",
+    meditationGuided2Desc: "Reconnect with your inner strength. Positive affirmations to rebuild self-esteem.",
+    meditationGuided3Title: "Letting go",
+    meditationGuided3Desc: "Release physical and mental tension. An invitation to welcome the present moment without judgment.",
+    meditationGuided4Title: "Success visualization",
+    meditationGuided4Desc: "Imagine your future without gambling. Visualize the pride, the projects achieved, the loved ones reunited.",
+    meditationGuided5Title: "Anti-stress body scan",
+    meditationGuided5Desc: "Travel through your body from head to toe to release every tension. Ideal before sleep.",
+    meditationGuided6Title: "Morning meditation",
+    meditationGuided6Desc: "Start your day with intention. Activate your energy and set a clear direction for the next few hours.",
+    meditationDuration5min: "5 min",
+    meditationDuration7min: "7 min",
+    meditationDuration8min: "8 min",
+    meditationDuration10min: "10 min",
+    meditationDuration12min: "12 min",
+    meditationNarratorAissata: "Aïssata · Therapist",
+    meditationNarratorMarc: "Marc · Coach",
+    meditationNarratorLea: "Léa · Sophrologist",
+    meditationNarratorKarim: "Karim · Mentor",
+    meditationCatCrisis: "Crisis",
+    meditationCatMotivation: "Motivation",
+    meditationCatRelaxation: "Relaxation",
+    meditationCatEnergy: "Energy",
+    meditationBenefit1Title: "Reduces anxiety",
+    meditationBenefit1Value: "by 40%",
+    meditationBenefit2Title: "Impulse control",
+    meditationBenefit2Value: "strengthened",
+    meditationBenefit3Title: "Resilience to urges",
+    meditationBenefit3Value: "enhanced",
+    meditationBenefit4Title: "Sleep quality",
+    meditationBenefit4Value: "improved",
+    // ---- Task 20-a: ProgramScreen 93 daily quotes + share ----
+    programShareTitle: "Message of the day",
+    programShareTemplate: "Day {n}/90 on Zerobet",
+    programQuote1Text: "The first step is the hardest. You just took it.",
+    programQuote1Author: "Zerobet",
+    programQuote2Text: "The pain of discipline weighs ounces. The pain of regret weighs tons.",
+    programQuote2Author: "Jim Rohn",
+    programQuote3Text: "Every day without a bet is a victory over yourself.",
+    programQuote3Author: "Zerobet",
+    programQuote4Text: "You haven't failed as long as you haven't stopped trying.",
+    programQuote4Author: "Proverb",
+    programQuote5Text: "Courage is not the absence of fear, but the decision that something is more important.",
+    programQuote5Author: "Ambrose Redmoon",
+    programQuote6Text: "Money saved is money earned.",
+    programQuote6Author: "Benjamin Franklin",
+    programQuote7Text: "You are the hero of your own story.",
+    programQuote7Author: "Zerobet",
+    programQuote8Text: "Addiction lies. Recovery tells the truth.",
+    programQuote8Author: "Zerobet",
+    programQuote9Text: "A man's greatest honor is to keep his word.",
+    programQuote9Author: "African Proverb",
+    programQuote10Text: "A man who masters himself is worth more than a man who conquers a city.",
+    programQuote10Author: "Proverb",
+    programQuote11Text: "Your future is created by what you do today, not tomorrow.",
+    programQuote11Author: "Proverb",
+    programQuote12Text: "What does not kill you makes you stronger.",
+    programQuote12Author: "Friedrich Nietzsche",
+    programQuote13Text: "Freedom is not the absence of constraints, but self-mastery.",
+    programQuote13Author: "Zerobet",
+    programQuote14Text: "You cannot go back. But you can start now.",
+    programQuote14Author: "Zerobet",
+    programQuote15Text: "Success is the sum of small efforts repeated day after day.",
+    programQuote15Author: "Robert Collier",
+    programQuote16Text: "Falling is allowed. Rising is a duty.",
+    programQuote16Author: "Proverb",
+    programQuote17Text: "Change begins when you decide that staying the same hurts more than moving.",
+    programQuote17Author: "Zerobet",
+    programQuote18Text: "Your greatest strength hides in your greatest weakness overcome.",
+    programQuote18Author: "Zerobet",
+    programQuote19Text: "Patience is bitter, but its fruit is sweet.",
+    programQuote19Author: "Jean-Jacques Rousseau",
+    programQuote20Text: "Only the heart sees clearly. What is essential is invisible to the eyes.",
+    programQuote20Author: "Saint-Exupéry",
+    programQuote21Text: "He who wants to go far takes care of his mount.",
+    programQuote21Author: "French Proverb",
+    programQuote22Text: "Happiness is not a destination, it is a way of traveling.",
+    programQuote22Author: "Margaret Lee Runbeck",
+    programQuote23Text: "The secret of success is constancy of purpose.",
+    programQuote23Author: "Benjamin Disraeli",
+    programQuote24Text: "It is not the mountain we conquer, but ourselves.",
+    programQuote24Author: "Edmund Hillary",
+    programQuote25Text: "You become what you believe you are.",
+    programQuote25Author: "Proverb",
+    programQuote26Text: "The past does not define your future.",
+    programQuote26Author: "Zerobet",
+    programQuote27Text: "The only way to do great work is to love what you do.",
+    programQuote27Author: "Steve Jobs",
+    programQuote28Text: "Hope is the dream of the waking man.",
+    programQuote28Author: "Aristotle",
+    programQuote29Text: "A journey of a thousand miles always begins with a single step.",
+    programQuote29Author: "Lao Tzu",
+    programQuote30Text: "The most difficult victory is the one over yourself.",
+    programQuote30Author: "Plato",
+    programQuote31Text: "Your life is worth what you make of it. Make it a masterpiece.",
+    programQuote31Author: "Zerobet",
+    programQuote32Text: "Talent does what it can. Genius does what it must.",
+    programQuote32Author: "Proverb",
+    programQuote33Text: "Obstacles are those frightening things we see when we take our eyes off our goal.",
+    programQuote33Author: "Henry Ford",
+    programQuote34Text: "Where there's a will, there's a way. Where there's a way, there's a duty.",
+    programQuote34Author: "Proverb",
+    programQuote35Text: "Where there is a will, there is a way.",
+    programQuote35Author: "English Proverb",
+    programQuote36Text: "The best time to start was yesterday. The second best time is now.",
+    programQuote36Author: "Proverb",
+    programQuote37Text: "Be the change you wish to see in the world.",
+    programQuote37Author: "Gandhi",
+    programQuote38Text: "Success is falling seven times and rising eight.",
+    programQuote38Author: "Japanese Proverb",
+    programQuote39Text: "Nothing great was ever achieved without passion.",
+    programQuote39Author: "Hegel",
+    programQuote40Text: "Happiness is sometimes a form of courage.",
+    programQuote40Author: "Charles Péguy",
+    programQuote41Text: "Life is like a bicycle. You must keep moving to keep your balance.",
+    programQuote41Author: "Albert Einstein",
+    programQuote42Text: "Happiness is only real when shared.",
+    programQuote42Author: "Christopher McCandless",
+    programQuote43Text: "The most beautiful journey is the one you have not yet taken.",
+    programQuote43Author: "Loïck Peyron",
+    programQuote44Text: "When you stop dreaming, you stop living.",
+    programQuote44Author: "Malcolm Forbes",
+    programQuote45Text: "We do not inherit the earth from our ancestors, we borrow it from our children.",
+    programQuote45Author: "African Proverb",
+    programQuote46Text: "Time is the wisest of all counselors.",
+    programQuote46Author: "Pericles",
+    programQuote47Text: "A weed is just a plant whose virtue has not yet been discovered.",
+    programQuote47Author: "Ralph Waldo Emerson",
+    programQuote48Text: "Failure is simply the opportunity to begin again, this time more intelligently.",
+    programQuote48Author: "Henry Ford",
+    programQuote49Text: "Faith is the bird that feels the light and sings when the dawn is still dark.",
+    programQuote49Author: "Rabindranath Tagore",
+    programQuote50Text: "The best is the enemy of the good.",
+    programQuote50Author: "Voltaire",
+    programQuote51Text: "Whatever the mind can conceive and believe, it can achieve.",
+    programQuote51Author: "Napoleon Hill",
+    programQuote52Text: "You do not light others by blowing out their flame.",
+    programQuote52Author: "Proverb",
+    programQuote53Text: "Where there is discomfort, there is no pleasure.",
+    programQuote53Author: "Proverb",
+    programQuote54Text: "Little by little, the bird builds its nest.",
+    programQuote54Author: "Proverb",
+    programQuote55Text: "Better to do than to say.",
+    programQuote55Author: "Proverb",
+    programQuote56Text: "Help yourself, and heaven will help you.",
+    programQuote56Author: "Jean de La Fontaine",
+    programQuote57Text: "Knowledge is a weapon. Wisdom is its sheath.",
+    programQuote57Author: "Zerobet",
+    programQuote58Text: "Every morning is a new chance.",
+    programQuote58Author: "Zerobet",
+    programQuote59Text: "When one door of happiness closes, another opens.",
+    programQuote59Author: "Helen Keller",
+    programQuote60Text: "The happiness of your life depends on the quality of your thoughts.",
+    programQuote60Author: "Marcus Aurelius",
+    programQuote61Text: "True wealth is needing nothing.",
+    programQuote61Author: "Seneca",
+    programQuote62Text: "It is not because things are difficult that we do not dare.",
+    programQuote62Author: "Seneca",
+    programQuote63Text: "The depth of a heart is measured by the extent of its wounds.",
+    programQuote63Author: "Proverb",
+    programQuote64Text: "The fire that lights also warms.",
+    programQuote64Author: "Proverb",
+    programQuote65Text: "Our greatest glory is not in never falling, but in rising every time we fall.",
+    programQuote65Author: "Confucius",
+    programQuote66Text: "Happiness is the only thing that doubles when you share it.",
+    programQuote66Author: "Albert Schweitzer",
+    programQuote67Text: "You are free. Free as the air. Free as you have never been.",
+    programQuote67Author: "Zerobet",
+    programQuote68Text: "Today is the first day of the rest of your life.",
+    programQuote68Author: "Proverb",
+    programQuote69Text: "What matters is not the destination, but the journey.",
+    programQuote69Author: "Proverb",
+    programQuote70Text: "Success is not final, failure is not fatal. It is the courage to continue that counts.",
+    programQuote70Author: "Winston Churchill",
+    programQuote71Text: "You cannot see the end of the tunnel, but you know the light exists.",
+    programQuote71Author: "Zerobet",
+    programQuote72Text: "Your streak of days is your medal. Wear it with pride.",
+    programQuote72Author: "Zerobet",
+    programQuote73Text: "One step after another, you reach the summit.",
+    programQuote73Author: "Proverb",
+    programQuote74Text: "You are not alone. Thousands walk with you.",
+    programQuote74Author: "Zerobet",
+    programQuote75Text: "The word impossible is not in my vocabulary.",
+    programQuote75Author: "Napoleon Bonaparte",
+    programQuote76Text: "The heart has its reasons that reason knows not.",
+    programQuote76Author: "Blaise Pascal",
+    programQuote77Text: "When you love, you do not count.",
+    programQuote77Author: "Proverb",
+    programQuote78Text: "Earthly paradise is wherever you are.",
+    programQuote78Author: "Proverb",
+    programQuote79Text: "Perseverance is the mother of all success.",
+    programQuote79Author: "Proverb",
+    programQuote80Text: "You did the hardest part by starting. Now, keep going.",
+    programQuote80Author: "Zerobet",
+    programQuote81Text: "The future belongs to you. Seize it.",
+    programQuote81Author: "Zerobet",
+    programQuote82Text: "You are no longer the gambler you were. You are free.",
+    programQuote82Author: "Zerobet",
+    programQuote83Text: "Every day is a new page. Write it with pride.",
+    programQuote83Author: "Zerobet",
+    programQuote84Text: "The greatest journey begins with a single step. Today is day 90.",
+    programQuote84Author: "Zerobet",
+    programQuote85Text: "You have transformed your life. You are an inspiration.",
+    programQuote85Author: "Zerobet",
+    programQuote86Text: "The program is over, but your journey continues. Well done.",
+    programQuote86Author: "Zerobet",
+    programQuote87Text: "Be proud of yourself. You have accomplished something extraordinary.",
+    programQuote87Author: "Zerobet",
+    programQuote88Text: "You are now a mentor to others. Share your story.",
+    programQuote88Author: "Zerobet",
+    programQuote89Text: "Freedom is not a gift, it is a conquest. You have conquered yours.",
+    programQuote89Author: "Zerobet",
+    programQuote90Text: "You are living proof that change is possible.",
+    programQuote90Author: "Zerobet",
+    programQuote91Text: "Keep moving forward. The best is yet to come.",
+    programQuote91Author: "Zerobet",
+    programQuote92Text: "Your transformation inspires. Be proud of it.",
+    programQuote92Author: "Zerobet",
+    programQuote93Text: "You are a legend. Now, help others become one too.",
+    authSignInTitle: "Sign In",
+    authSignInSubtitle: "Take back control of your life",
+    authSignUpTitle: "Create Account",
+    authSignUpSubtitle: "Start your journey to freedom",
+    authGoogle: "Continue with Google",
+    authOr: "or",
+    authEmail: "Email address",
+    authPassword: "Password",
+    authName: "Name (optional)",
+    authSignIn: "Sign In",
+    authSignUp: "Sign Up",
+    authCreateAccount: "Create my account",
+    authNoAccount: "Don't have an account?",
+    authHaveAccount: "Already have an account?",
+    authPasswordTooShort: "Password must be at least 6 characters",
+    authErrorInvalid: "Invalid email or password",
+    authErrorGeneric: "An error occurred. Please try again.",
+    authErrorSignInAfter: "Account created but sign-in failed. Try signing in.",
+    authTermsNotice: "By continuing, you agree to our Terms of Service and Privacy Policy.",
+    authErrorTitle: "Oops, a problem",
+    authErrorConfig: "Configuration error. Contact support.",
+    authErrorDenied: "Access denied. You cancelled the sign-in.",
+    authErrorVerification: "Verification failed. Try again.",
+    authErrorOAuth: "Google connection error. Try again.",
+    authErrorOAuthCreate: "Could not create account. Try again.",
+    authErrorCallback: "Redirect error. Try again.",
+    authErrorDefault: "An error occurred during sign-in.",
+    authTryAgain: "Try Again",
+    programQuote93Author: "Zerobet"
+};
+/* ============================================================
+ * SPANISH
+ * ============================================================ */ const es = {
+    // ---- App & General ----
+    appName: "Zerobet",
+    tagline: "Recupera el control de tu vida",
+    continue: "Continuar",
+    back: "Volver",
+    skip: "Saltar",
+    next: "Siguiente",
+    finish: "Terminar",
+    save: "Guardar",
+    cancel: "Cancelar",
+    delete: "Eliminar",
+    edit: "Editar",
+    close: "Cerrar",
+    confirm: "Confirmar",
+    loading: "Cargando...",
+    retry: "Reintentar",
+    send: "Enviar",
+    publish: "Publicar",
+    reply: "Responder",
+    like: "Me gusta",
+    share: "Compartir",
+    unlock: "Desbloquear",
+    locked: "Bloqueado",
+    premium: "Premium",
+    free: "Gratis",
+    upgrade: "Pasar a Premium",
+    yes: "Sí",
+    no: "No",
+    or: "o",
+    search: "Buscar",
+    filter: "Filtrar",
+    all: "Todos",
+    none: "Ninguno",
+    select: "Seleccionar",
+    selected: "seleccionado(s)",
+    done: "Hecho",
+    today: "Hoy",
+    yesterday: "Ayer",
+    tomorrow: "Mañana",
+    days: "días",
+    day: "día",
+    hours: "horas",
+    hour: "hora",
+    minutes: "min",
+    minute: "min",
+    seconds: "seg",
+    second: "seg",
+    weeks: "semanas",
+    week: "semana",
+    months: "meses",
+    month: "mes",
+    years: "años",
+    year: "año",
+    seeAll: "Ver todo",
+    seeMore: "Ver más",
+    seeLess: "Ver menos",
+    add: "Añadir",
+    remove: "Quitar",
+    clear: "Borrar",
+    reset: "Reiniciar",
+    apply: "Aplicar",
+    view: "Ver",
+    hide: "Ocultar",
+    show: "Mostrar",
+    enable: "Activar",
+    disable: "Desactivar",
+    on: "Activado",
+    off: "Desactivado",
+    fcfa: "FCFA",
+    perWeek: "/semana",
+    perMonth: "/mes",
+    perYear: "/año",
+    backHome: "Volver al inicio",
+    refresh: "Actualizar",
+    justNow: "justo ahora",
+    minutesAgo: "hace {n} min",
+    hoursAgo: "hace {n}h",
+    daysAgo: "hace {n}d",
+    loadMore: "Cargar más",
+    thisWeek: "Esta semana",
+    thisMonth: "Este mes",
+    thisYear: "Este año",
+    lastWeek: "La semana pasada",
+    lastMonth: "El mes pasado",
+    comingSoon: "Próximamente",
+    beta: "Beta",
+    new: "Nuevo",
+    updated: "Actualizado",
+    optional: "opcional",
+    required: "requerido",
+    // ---- Splash ----
+    splashTitle: "Zerobet",
+    splashSubtitle: "Deja de apostar. Reconstrúyete.",
+    splashLoading: "Cargando...",
+    // ---- Gender ----
+    genderTitle: "Elige tu género",
+    genderSubtitle: "Para personalizar tu experiencia",
+    male: "Hombre",
+    female: "Mujer",
+    // ---- Language ----
+    languageTitle: "Elige tu idioma",
+    languageSubtitle: "La app se adaptará a tu elección",
+    // ---- Currency ----
+    currencyTitle: "Elige tu moneda",
+    currencySubtitle: "Para mostrar tus ahorros en tu moneda",
+    currencyPreview: "Vista previa",
+    // ---- Welcome ----
+    welcomeTitle: "Puedes dejarlo.",
+    welcomeSubtitle: "Miles lo han logrado antes que tú.",
+    welcomeCta: "Empezar mi evaluación",
+    welcomeHaveAccount: "Ya tengo una cuenta",
+    welcomeTagline: "Evaluación gratuita en 3 minutos",
+    welcomeTerms: "Al continuar, aceptas nuestros términos de uso y nuestra política de protección de datos. Tus datos quedan en tu dispositivo.",
+    // ---- Quiz ----
+    quizTitle: "Evaluación de adicción",
+    quizProgress: "Pregunta {n} de {total}",
+    quizAnswer: "Responde con honestidad",
+    quizCategoryBehavior: "Comportamiento",
+    quizCategoryFinance: "Finanzas",
+    quizCategoryEmotions: "Emociones",
+    quizCategorySocial: "Social",
+    quizPrivacy: "Tus respuestas son privadas y se guardan localmente",
+    quizStep: "Paso",
+    // ---- Results ----
+    resultsTitle: "Tu análisis",
+    resultsSubtitle: "Aquí está tu puntuación",
+    resultsScore: "Puntuación de adicción",
+    resultsLevelLow: "Baja",
+    resultsLevelModerate: "Moderada",
+    resultsLevelSevere: "Severa",
+    resultsLevelCritical: "Crítica",
+    resultsComparison: "Tu puntuación es más alta que la del {pct}% de los apostadores",
+    resultsCta: "Ver mis síntomas",
+    resultsGoodNews: "Buenas noticias",
+    resultsGoodNewsDesc: "La recuperación es posible. Tu cerebro puede repararse en 90 días de abstinencia. Miles lo han logrado antes que tú.",
+    resultsMessageLow: "Estás en la zona verde. No dejes que la adicción eche raíces. Actúa ahora.",
+    resultsMessageModerate: "Estás en pendiente resbaladiza. Es el momento de actuar antes de que empeore.",
+    resultsMessageSevere: "La adicción ha echado raíces. Pero la recuperación es posible. No estás solo.",
+    resultsMessageCritical: "Estás en zona crítica. Pero miles han salido de ella. Tú puedes lograrlo.",
+    // ---- Symptoms ----
+    symptomsTitle: "Verificador de síntomas",
+    symptomsSubtitle: "Selecciona lo que sientes. Esto nos ayudará a personalizar tu plan.",
+    symptomsFinancial: "Financiero",
+    symptomsMental: "Mental",
+    symptomsSocial: "Social",
+    symptomsPhysical: "Físico",
+    symptomsFamily: "Familiar",
+    symptomsSelected: "{n} síntoma(s) seleccionado(s)",
+    symptomsStep: "Paso {n} de {total}",
+    symptomsContinue: "Continuar",
+    // ---- Carousel ----
+    carouselTitle: "Entiende la adicción",
+    carouselSubtitle: "8 verdades que los operadores ocultan",
+    carouselSkip: "Saltar",
+    carouselEngage: "Quiero comprometerme",
+    carouselSlide: "Diapositiva {n}",
+    // ---- Carousel slides (Task 17-b) ----
+    carousel1Title: "Tu cerebro está pirateado",
+    carousel1Body: "Cada apuesta provoca una liberación de dopamina idéntica a la cocaína. El operador diseña sus productos para maximizar este efecto. No es una debilidad — es biología.",
+    carousel1Stat: "+200% dopamina",
+    carousel2Title: "El operador GANA SIEMPRE",
+    carousel2Body: "El margen de un operador = 5 a 12%. Sobre {weeklyBet} apostados cada semana durante un año, pierdes estadísticamente entre {minLoss} y {maxLoss} — garantizado. No hay sistema ganador.",
+    carousel2Stat: "-{amount}/año",
+    carousel3Title: "No tienes un sistema. Tienes un sesgo cognitivo.",
+    carousel3Body: "El cerebro humano detecta patrones incluso donde no los hay. Las cuotas cambian en tiempo real según los algoritmos. El 'tip' que analizas ya está contemplado por equipos enteros de data scientists pagados para hacerte perder.",
+    carousel3Stat: "0% de control",
+    carousel4Title: "Tu cerebro bajo adicción",
+    carousel4Body: "La resonancia magnética de un cerebro adicto muestra una alteración del córtex prefrontal — la zona que controla los impulsos. Cuanto más apuestas, menos controlas. Buena noticia: la neuroplasticidad permite repararlo todo en 90 días de abstinencia.",
+    carousel4Stat: "90 días para sanar",
+    carousel5Title: "Lo que realmente pierdes",
+    carousel5Body: "El dinero no es nada comparado con el tiempo perdido, las relaciones destruidas y la confianza rota. Un apostador promedio pierde 5 años de su vida entre apuestas, obsesión y recuperación. Tu vida vale más que eso.",
+    carousel5Stat: "5 años de vida perdidos",
+    carousel6Title: "La recuperación es posible",
+    carousel6Body: "Tu cerebro puede repararse. Los receptores de dopamina se reequilibran. El sueño vuelve. La ansiedad disminuye. La confianza en ti mismo regresa. Miles lo han logrado. Tú eres el siguiente.",
+    carousel6Stat: "Miles lo han logrado",
+    carousel7Title: "Historia real: {name}, {age} años, {city}",
+    carousel7Body: "« Perdí {amountLost} en 2 años. Mi esposa casi me deja. Descargué Zerobet. Hoy tengo {days} días sin jugar. Recuperé {achievement}. Mi esposa confía en mí de nuevo. Soy un hombre libre. »",
+    carousel7Stat: "{days} días",
+    carousel8Title: "Te toca a ti",
+    carousel8Body: "Ya lo entiendes. Ahora sabes que las apuestas están diseñadas para destruirte. Tienes el poder de decir no. Miles te esperan al otro lado. Da el primer paso. Ahora.",
+    carousel8Stat: "Tu turno",
+    // ---- Engagement ----
+    engagementTitle: "Tu compromiso",
+    engagementSubtitle: "Elige los objetivos que te importan. Podrás cambiarlos más tarde.",
+    engagementSignHere: "Firma aquí tu compromiso",
+    engagementSigned: "Compromiso firmado",
+    engagementCta: "Ver mi plan personalizado",
+    engagementStep: "Paso {n} de {total}",
+    engagementSelectedGoals: "{n} objetivo(s) seleccionado(s)",
+    engagementSignatureTitle: "Firma de compromiso",
+    engagementSignTitle: "Firma tu compromiso",
+    engagementPledge: "Me comprometo, con mi firma, a hacer todo lo posible por dejar de apostar y recuperar el control de mi vida.",
+    engagementSignHint: "Firma aquí con tu dedo",
+    engagementClearResign: "Borrar y firmar de nuevo",
+    engagementPlanTitle: "Tu plan personalizado",
+    engagementYourGoals: "Tus objetivos",
+    engagementWillDoTitle: "Lo que Zerobet hará por ti:",
+    engagementWillDo1: "Seguir tu racha de días sin apuestas",
+    engagementWillDo2: "Darte un botón de emergencia para los antojos",
+    engagementWillDo3: "Ayudarte a visualizar el dinero que ahorras",
+    engagementWillDo4: "Ofrecerte un coach de IA 24/7 (Premium)",
+    engagementWillDo5: "Bloquear sitios de apuestas (Premium)",
+    engagementWillDo6: "Conectarte con una comunidad de personas en recuperación",
+    // ---- Paywall ----
+    paywallTitle: "Elige tu plan",
+    paywallSubtitle: "Invierte en tu recuperación",
+    paywallHero: "Ya hiciste lo más difícil. Ahora elige la herramienta que te acompañará cada día hacia tu libertad.",
+    paywallMonthly: "Mensual",
+    paywallAnnual: "Anual",
+    paywallLastStep: "Último paso",
+    paywallPopular: "POPULAR",
+    paywallBestValue: "MEJOR OFERTA",
+    paywallOtherBenefits: "+ {n} beneficios más",
+    paywallDataProtected: "Datos protegidos • Almacenamiento local • Privacidad total",
+    paywallStartFree: "Empezar gratis",
+    paywallStartRecovery: "Iniciar mi recuperación",
+    paywallConsentTitle: "Protección de tus datos",
+    paywallConsentDesc: "Al pasar a un plan de pago, aceptas que Zerobet guarde tus datos de progreso (racha, diario, insignias) para brindarte el servicio. Tus datos siguen siendo confidenciales y nunca se venden.",
+    paywallConsentLabel: "Acepto que Zerobet almacene y procese mis datos",
+    paywallPerMonth: "FCFA/mes",
+    planFree: "Gratis",
+    planPremium: "Premium",
+    planMentor: "Mentor",
+    planPsychologist: "Psicólogo",
+    planPerMonth: "/mes",
+    // Plan taglines
+    planFreeTagline: "Para empezar tu camino",
+    planPremiumTagline: "El más popular — recuperación completa",
+    planMentorTagline: "Conviértete en guía para otros",
+    planPsychologistTagline: "Para profesionales certificados",
+    // Plan features — Free (8)
+    planFreeFeature1: "Cuestionario completo (15 preguntas)",
+    planFreeFeature2: "Puntuación y nivel de adicción",
+    planFreeFeature3: "Carrusel educativo (8 diapositivas)",
+    planFreeFeature4: "Verificador de síntomas",
+    planFreeFeature5: "3 testimonios por día",
+    planFreeFeature6: "Contador de racha básico",
+    planFreeFeature7: "Caja fuerte de recuperación (visualización)",
+    planFreeFeature8: "Notificaciones de recordatorio",
+    // Plan features — Premium (11)
+    planPremiumFeature1: "Todo el plan Gratis",
+    planPremiumFeature2: "Botón de Pánico completo (4-7-8)",
+    planPremiumFeature3: "Atlas AI Coach ilimitado",
+    planPremiumFeature4: "Diario ilimitado + análisis IA",
+    planPremiumFeature5: "Bloqueador de apuestas (50+ sitios)",
+    planPremiumFeature6: "Modo Fuerte 72h",
+    planPremiumFeature7: "Estadísticas detalladas (30/60/90 días)",
+    planPremiumFeature8: "Comunidad completa (foro, testimonios)",
+    planPremiumFeature9: "Contenido exclusivo Premium",
+    planPremiumFeature10: "Sin anuncios",
+    planPremiumFeature11: "Soporte prioritario",
+    // Plan features — Mentor (7)
+    planMentorFeature1: "Todo el plan Premium",
+    planMentorFeature2: "Insignia de Mentor verificado",
+    planMentorFeature3: "Responder como mentor",
+    planMentorFeature4: "Directorio de mentores",
+    planMentorFeature5: "Estadísticas de mentoría",
+    planMentorFeature6: "Herramientas de coaching",
+    planMentorFeature7: "Requisito: 90 días sin apuestas mínimo",
+    // Plan features — Psychologist (7)
+    planPsychologistFeature1: "Todo el plan Premium",
+    planPsychologistFeature2: "Perfil profesional certificado",
+    planPsychologistFeature3: "Chat con miembros",
+    planPsychologistFeature4: "Insignia profesional certificada",
+    planPsychologistFeature5: "Gestión de sesiones",
+    planPsychologistFeature6: "Tarifa de sesión personalizable",
+    planPsychologistFeature7: "Verificación en 48h",
+    choosePlan: "Elegir este plan",
+    currentPlan: "Plan actual",
+    bestValue: "Mejor oferta",
+    mostPopular: "Más popular",
+    // ---- Dashboard ----
+    dashboardHello: "Hola",
+    dashboardDay: "Día",
+    dashboardWithoutBetting: "sin apuestas",
+    homeSoberSince: "Llevas sin apostar desde:",
+    homePledge: "Compromiso",
+    homeMeditate: "Meditar",
+    homeReset: "Reset",
+    homeMore: "Más",
+    homeRewire: "Recableado mental",
+    homeSoberOn: "Sobrio desde el {date}",
+    homeBadgeDays: "d",
+    homePanicCta: "Botón de Pánico",
+    homePanicCtaDesc: "¿Antojo urgente? Respira con nosotros",
+    homeTodaySection: "Hoy",
+    homeStreakStable: "Tu racha está activa",
+    dashboardStreak: "Racha",
+    dashboardSaved: "Ahorrado",
+    dashboardDays: "días",
+    dashboardQuote: "Cita del día",
+    dashboardQuickActions: "Acciones rápidas",
+    dashboardBadges: "Mis insignias",
+    dashboardTodayProgress: "Progreso del día",
+    dashboardKeepGoing: "¡Sigue así!",
+    dashboardFirstDay: "Es tu primer día. ¡Bien hecho!",
+    dashboardResetStreak: "Reiniciar mi racha",
+    dashboardResetConfirm: "¿Estás seguro? Volverás a 0. No es un fracaso, es un nuevo comienzo.",
+    dashboardYouAreAt: "Estás en",
+    dashboardWithoutAnyBet: "sin ninguna apuesta",
+    dashboardCurrentRank: "Rango actual",
+    dashboardNextRank: "Próximo rango",
+    dashboardMoreDays: "Solo {n} día(s) hasta el rango {rank}",
+    dashboardMotivation: "Motivación",
+    dashboardDailyChallenge: "Reto del día",
+    dashboardTakeChallenge: "Aceptar el reto",
+    dashboardChallengeMarkDone: "Completé este desafío",
+    dashboardChallengeDoneTitle: "¡Desafío completado! +{n} XP",
+    dashboardChallengeStreak: "Racha: {n} día(s)",
+    dashboardChallengeComeBack: "¡Nuevo desafío mañana!",
+    dashboardChallengeGo: "Hacerlo ahora",
+    dashboardPanicButton: "Botón de emergencia",
+    dashboardPanicButtonDesc: "¿Antojo de apostar? Toca aquí. Respiramos juntos.",
+    dashboardSeeAll: "Ver todo",
+    dashboardSearch: "Buscar",
+    dashboardNotifications: "Notificaciones",
+    dashboardAdminPanel: "Panel admin",
+    dashboardAdminStreak: "Días de racha",
+    dashboardAdminPlan: "Plan",
+    dashboardAdminScore: "Puntuación de adicción",
+    dashboardAdminAddJournal: "+ Entrada de diario",
+    dashboardAdminSimulate: "Simular hito",
+    dashboardAdminResetAll: "Reiniciar todos los datos",
+    dashboardAdminResetConfirm: "¿Reiniciar TODOS los datos?",
+    dashboardAdminClose: "Cerrar",
+    dashboardChampion: "campeón",
+    dashboardCher: "Querido",
+    dashboardChere: "Querida",
+    dashboardActionUrgence: "Emergencia",
+    dashboardActionQuests: "Misiones",
+    dashboardActionJournal: "Diario",
+    dashboardActionSavings: "Ahorros",
+    dashboardActionStats: "Estadísticas",
+    dashboardActionMeditation: "Meditación",
+    dashboardActionAtlas: "Atlas AI",
+    dashboardActionBlocker: "Bloqueador",
+    dashboardActionCommunity: "Comunidad",
+    dashboardActionChat: "Chat en vivo",
+    dashboardActionTrophies: "Trofeos",
+    dashboardActionResources: "Recursos",
+    dashboardActionProfile: "Perfil",
+    dashboardActionSOS: "SOS",
+    dashboardActionCalendar: "Calendario",
+    dashboardActionHelp: "Ayuda",
+    dashboardActionProgram: "Programa",
+    dashboardActionMentor: "Mentor",
+    dashboardActionGoals: "Objetivos",
+    dashboardActionAffirmations: "Afirmaciones",
+    dashboardActionWithdrawal: "Abstinencia",
+    dashboardActionTriggers: "Desencadenantes",
+    dashboardActionRelapse: "Recaída",
+    dashboardActionNotifications: "Notificaciones",
+    dashboardStreakMultiplier: "Multiplicador de racha",
+    dashboardDaysSinceStart: "{n} días desde el inicio",
+    // ---- Bottom Nav ----
+    navHome: "Inicio",
+    navTools: "Herramientas",
+    navCoach: "Coach",
+    navCommunity: "Comunidad",
+    navProfile: "Perfil",
+    // ---- Panic ----
+    panicTitle: "Tú puedes lograrlo",
+    panicSubtitle: "Modo emergencia",
+    panicMode: "Modo emergencia",
+    panicBreathe: "Inhala",
+    panicHold: "Mantén",
+    panicExhale: "Exhala",
+    panicInhale: "Inhala",
+    panicKeepGoing: "No, sigo respirando",
+    panicDone: "El antojo ha pasado",
+    panicCravingPassed: "El antojo ha pasado",
+    panicContinueBreathing: "No, sigo respirando",
+    panicNeedSomethingElse: "Necesito otra cosa",
+    panicTriggerQuestion: "¿Qué quieres hacer?",
+    panicBackHome: "Volver al inicio",
+    panicEncouragement: "¡Lo lograste!",
+    panicStats: "Acabas de vencer un antojo. Cada victoria cuenta.",
+    panicMessage1: "Has resistido {days} día(s). No lo desperdicies.",
+    panicMessage2: "El 73% de los antojos pasan en menos de 10 minutos.",
+    panicMessage3: "Eres más fuerte que este antojo.",
+    panicCallFriend: "Llamar a un ser querido",
+    panicCallFriendDesc: "Alguien de confianza que pueda escucharte",
+    panicReadTestimony: "Leer un testimonio",
+    panicReadTestimonyDesc: "Historias de quienes lo superaron",
+    panicJournal: "Anotar en el diario",
+    panicJournalDesc: "Escribe lo que sientes",
+    panicNotedTrigger: "Anotar qué desencadenó el antojo",
+    panicStartBreathing: "Empezar a respirar",
+    panicBreatheTogether: "Respiremos juntos",
+    panicWaveDesc: "El antojo de apostar es como una ola. Sube y luego baja.",
+    panicStrongerThan: "No lo desperdicies. Este antojo pasará. Eres más fuerte que él.",
+    panicYouDidIt: "¡Lo lograste!",
+    panicVictoryCount: "Acabas de vencer un antojo. Cada victoria cuenta.",
+    panicStreakIntact: "Tu racha sigue intacta: {n} día(s) 🔥",
+    panicWhatDoYouWant: "¿Qué quieres hacer?",
+    panicFollowRhythm: "Sigue el ritmo. Concéntrate en tu respiración.",
+    panicCycle: "Ciclo {n} de {total}",
+    panicCyclesRemaining: "{n} ciclos restantes",
+    panicPercent73: "El 73% de los antojos pasan en menos de 10 minutos. Acabas de aguantar 1 minuto. Sigue.",
+    // ---- Journal ----
+    journalTitle: "Diario de pensamientos",
+    journalSubtitle: "¿Cómo te sientes hoy?",
+    journalNewEntry: "Nueva entrada",
+    journalEntryTitle: "Entrada",
+    journalContent: "Lo que sientes",
+    journalEmotion: "Emoción",
+    journalTrigger: "Desencadenante (opcional)",
+    journalIntensity: "Intensidad",
+    journalSave: "Guardar",
+    journalEmpty: "Sin entradas. Empieza a escribir tu historia.",
+    journalEmptyTitle: "Sin entradas",
+    journalEmptyDesc: "Empieza a escribir tu historia. Cada día, anota cómo te sientes — es el hábito que lo cambia todo.",
+    journalPrompts: "Sugerencias",
+    journalSuggestions: "Sugerencias",
+    journalWeeklyAnalysis: "Análisis semanal",
+    journal7Days: "Últimos 7 días",
+    journalEntryCount: "{n} entrada(s)",
+    journalTriggerLabel: "Desencadenante:",
+    journalFeelToday: "¿Cómo te sientes?",
+    journalWhatYouFeel: "Lo que sientes",
+    journalContentPlaceholder: "Hoy, yo...",
+    journalTriggerPlaceholder: "¿Qué provocó esta emoción?",
+    journalIntensityLabel: "Intensidad: {n}/5",
+    journalUpgradeToPremium: "Pasar a Premium",
+    journalAddedEntry: "Entrada de diario añadida",
+    journalBack: "Volver",
+    journalHowFeel: "¿Cómo te sientes hoy?",
+    journalAnalysis: "Análisis semanal",
+    journalPrompt1: "¿Cómo te sientes hoy?",
+    journalPrompt2: "¿Qué te ayudó más esta semana?",
+    journalPrompt3: "¿Cuál es tu mayor victoria reciente?",
+    // ---- Emotions ----
+    emotionFrustrated: "Frustrado",
+    emotionStrong: "Fuerte",
+    emotionTempted: "Tentado",
+    emotionCalm: "Calma",
+    emotionProud: "Orgulloso",
+    emotionAnxious: "Ansioso",
+    // ---- Finance ----
+    financeTitle: "Cofre de recuperación",
+    financeSubtitle: "Mira crecer tu dinero ahorrado",
+    financeTotalSaved: "Total ahorrado",
+    financeWeeklyBet: "Apuesta semanal promedio",
+    financeProjection: "Proyecciones",
+    financeMonth: "En 1 mes",
+    financeYear: "En 1 año",
+    financeThisWeek: "Esta semana",
+    financeGoal: "Meta de ahorro",
+    financeCouldBuy: "Con esto podrías",
+    financeCompareBefore: "Antes de Zerobet",
+    financeCompareAfter: "Con Zerobet",
+    financeGoals: "Metas",
+    financeAddGoal: "Añadir una meta",
+    financeGoalName: "Nombre de la meta",
+    financeGoalAmount: "Monto",
+    financeCategoryNecessities: "Necesidades",
+    financeCategorySavings: "Ahorro",
+    financeCategoryProjects: "Proyectos",
+    financeCategoryFood: "Comida",
+    financeCategoryTransport: "Transporte",
+    financeCategoryOther: "Otros",
+    financeBudget: "Presupuesto",
+    financeMilestones: "Hitos",
+    financeEducation: "Educación financiera",
+    financeSaved: "Total ahorrado",
+    financeProjectionDesc: "Proyecciones",
+    financeAddCategory: "Añadir una categoría",
+    financeNoGoals: "Sin metas. Añade una para visualizar tus proyectos.",
+    financeGoalReached: "¡Meta alcanzada! 🎉",
+    financeGoalProgress: "{pct}% de la meta",
+    // ---- Atlas AI ----
+    atlasTitle: "Atlas AI",
+    atlasSubtitle: "Tu coach personal 24/7",
+    atlasOnline: "En línea",
+    atlasOffline: "Sin conexión",
+    atlasTypeMessage: "Escribe tu mensaje...",
+    atlasSend: "Enviar",
+    atlasSectionJournal: "Diario",
+    atlasSectionMotivation: "Motivación",
+    atlasSectionProgress: "Progreso",
+    atlasSectionCrisis: "Crisis",
+    atlasAnalyzeJournal: "Analizar mi diario",
+    atlasAskMotivation: "Pedir motivación",
+    atlasSeeProgress: "Ver mis progresos",
+    atlasPanicButton: "Botón de pánico",
+    atlasLocked: "Desbloquea con Premium",
+    atlasLockedDesc: "Atlas AI es solo para miembros Premium",
+    atlasEmergency: "Si estás en crisis, contacta a un profesional.",
+    atlasClear: "Borrar conversación",
+    atlasContext: "Contexto",
+    atlasSuggested1: "¿Cómo manejo un antojo repentino?",
+    atlasSuggested2: "Analiza mi diario",
+    atlasSuggested3: "Dame motivación",
+    atlasSuggested4: "Explícame la dopamina",
+    atlasSuggested5: "¿Cómo hablo con mi familia?",
+    atlasSuggested6: "Me siento débil hoy",
+    atlasJournal: "Diario",
+    atlasMotivation: "Motivación",
+    atlasProgress: "Progreso",
+    atlasCrisis: "Crisis",
+    atlasThinking: "Atlas está pensando...",
+    atlasError: "Lo siento, no pude responder. Inténtalo de nuevo.",
+    // ---- Betting Blocker ----
+    blockerTitle: "Bloqueador de apuestas",
+    blockerSubtitle: "Protégete de la tentación",
+    blockerActive: "Activado",
+    blockerInactive: "Desactivado",
+    blockerSitesBlocked: "sitios bloqueados",
+    blockerStrictMode: "Modo fuerte (72h)",
+    blockerStrictDesc: "No se puede desactivar durante 72h",
+    blockerAddSite: "Añadir un sitio",
+    blockerCategoryAll: "Todos",
+    blockerCategoryIntl: "Internacional",
+    blockerCategoryAfrica: "África",
+    blockerCategoryCrypto: "Cripto",
+    blockerCategoryFrance: "Francia",
+    blockerCategoryOther: "Otros",
+    blockerBlockAll: "Bloquear todo",
+    blockerUnblockAll: "Desbloquear todo",
+    blockerLocked: "Desbloquea con Premium",
+    blockerStrictRemaining: "Modo fuerte activo: {n}h restantes",
+    blockerCustomSite: "Sitio personalizado",
+    blockerSiteName: "Nombre del sitio",
+    blockerSiteUrl: "URL del sitio",
+    // ---- Community ----
+    communityTitle: "Comunidad",
+    communitySubtitle: "No estás solo en este camino",
+    communityTestimonials: "Testimonios",
+    communityForum: "Foro",
+    communityMentors: "Mentores",
+    communityPsychologists: "Psicólogos",
+    communityWriteTestimonial: "Escribir mi testimonio",
+    communityVerified: "Verificado",
+    communityAnonymous: "Anónimo",
+    communityDaysClean: "días sin apuestas",
+    communityBecomeMentor: "Convertirse en mentor",
+    communityMentorRequirement: "90 días sin apuestas mínimo",
+    communityBookSession: "Reservar una sesión",
+    communitySessionPrice: "FCFA / sesión",
+    communityNewPost: "Nuevo tema",
+    communityCategorySuccess: "Éxito",
+    communityCategoryStruggle: "Dificultades",
+    communityCategoryMotivation: "Motivación",
+    communityCategoryQuestion: "Pregunta",
+    communityReply: "Responder",
+    communityLike: "Me gusta",
+    communityContact: "Contactar",
+    communityBook: "Reservar",
+    communityNoTestimonials: "Sin testimonios todavía. Sé el primero en compartir tu historia.",
+    communityNoPosts: "Sin temas. Sé el primero en iniciar una conversación. Tu historia puede inspirar a otros.",
+    communityStartDiscussion: "Iniciar una conversación",
+    communityWriteTestimonialTitle: "Comparte tu testimonio",
+    communityNewPostTitle: "Nuevo tema",
+    communityPostTitle: "Título",
+    communityPostContent: "Tu mensaje",
+    communityPostCategory: "Categoría",
+    communityPublish: "Publicar",
+    communityReplyTo: "Responder a {name}",
+    communityOnline: "En línea",
+    communityOffline: "Sin conexión",
+    communityResponseTime: "Responde en {n}",
+    // ---- Community extras (Task 18-b) ----
+    communityMembers: "miembros",
+    communityCumulativeDays: "días acumulados",
+    communityVerifiedTestimonials: "testimonios verificados",
+    communityFilterAll: "Todos",
+    communityFilterVerified: "Verificados",
+    communityFilter100Days: "100+ días",
+    communityFilter365Days: "365 días",
+    communitySortRecent: "Reciente",
+    communitySortPopular: "Popular",
+    communitySortUnanswered: "Sin respuesta",
+    communityJustNow: "justo ahora",
+    communityDayAgo: "hace 1 día",
+    communityQuickReplies: "Respuestas rápidas:",
+    communityMyTestimonial: "Mi testimonio",
+    communityTitleLabel: "Título",
+    communityTestimonialTitlePlaceholder: "Ej: « 90 días sin apuestas, estoy orgulloso »",
+    communityYourStory: "Tu historia",
+    communityYourStoryPlaceholder: "Cuenta tu camino, tus dificultades, tus victorias...",
+    communityPublishAnonymous: "Publicar anónimamente",
+    communityPublishAnonymousDesc: "Tu nombre no será visible públicamente",
+    communityAnonymousModeActive: "El modo anónimo está activo — tu testimonio se publicará como Anónimo.",
+    communityPublishMyTestimonial: "Publicar mi testimonio",
+    communityNewTopic: "Nuevo tema",
+    communityCategoryLabel: "Categoría",
+    communityForumTitlePlaceholder: "Título del tema",
+    communityMessageLabel: "Mensaje",
+    communityForumMessagePlaceholder: "Detalles, contexto, pregunta...",
+    communityPublishTopic: "Publicar tema",
+    communityReplyPlaceholder: "Escribe tu respuesta...",
+    communityForumReplyPlaceholder: "Comparte tu experiencia o consejos...",
+    communityUnlockWithPremium: "Desbloquear con Premium",
+    communityUnlockTestimonialsDesc: "Accede a todos los testimonios verificados de la comunidad.",
+    communityReplyPublishedToast: "Respuesta publicada",
+    communityTestimonialPublishedToast: "Testimonio publicado",
+    communityTestimonialPublishedToastDesc: "Gracias por compartir. La comunidad te lo agradece.",
+    communityForumPostedToast: "Tema publicado",
+    communityForumPostedToastDesc: "Tu tema ahora es visible para la comunidad.",
+    communityMentorRequestToast: "Solicitud enviada a {name}",
+    communityMentorRequestToastDesc: "Recibirás una respuesta en 24h.",
+    communitySessionReservedToast: "Sesión reservada con {name}",
+    communitySessionReservedToastDesc: "Precio: {price}. Confirmación enviada por email.",
+    communityReserveSession: "Reservar una sesión",
+    communityLicense: "Licencia",
+    communityCountry: "País",
+    communityDuration: "Duración",
+    communityDurationMinutes: "50 minutos",
+    communityFormat: "Formato",
+    communitySecureVideo: "Vídeo seguro",
+    communityPaymentInfo: "Pago seguro. Cancelación gratuita hasta 24h antes de la sesión.",
+    communityConfirm: "Confirmar",
+    communityRating: "Valoración",
+    communitySessionTariff: "Tarifa / sesión",
+    communityCertifiedSessions: "Sesiones certificadas",
+    communityPsychologistsDesc: "Psicólogos licenciados, especializados en adicciones comportamentales.",
+    communityNoTopicsTitle: "Sin temas aún",
+    communityNoTopicsDesc: "Sé el primero en iniciar una conversación. Tu historia puede inspirar a otros.",
+    communityBecomeMentorDesc: "Alcanza 90 días sin apuestas para acompañar a otros miembros.",
+    communityMentorObjective: "Objetivo",
+    communityMentorObjectiveDays: "90 días",
+    communityYourProgress: "Tu progreso",
+    communityEligibleMentor: "¡Eres elegible para ser mentor!",
+    communityApplyNow: "Postular ahora",
+    communityDaysUntilMentor: "Solo {days} días para poder ser mentor.",
+    communityVerifiedMentors: "Mentores verificados",
+    communityForumLockDesc: "El foro es para miembros Premium. Únete a la comunidad para hablar con otros en recuperación.",
+    communityMentorsLockDesc: "Los mentores son para miembros Premium. Pásate a Premium para hablar con personas que lograron dejarlo.",
+    communityPsychologistsLockDesc: "Los psicólogos son para miembros Premium. Pásate a Premium para reservar sesiones de terapia.",
+    communityMoreTestimonialsPremium: "+{count} testimonios más con Premium",
+    communityLoadMore: "Ver más testimonios ({n})",
+    // Testimonial seed content (Task 18-b)
+    testimonialKoffiTitle: "Volví a ser un hombre",
+    testimonialKoffiBody: "Perdí {amount} en 3 años en 1xBet. Mi novia se fue. Descargué Zerobet una noche en la que quería terminar con todo. Hoy, 234 días sin apuestas. Ella volvió. Abrí mi pequeño negocio. Zerobet me salvó.",
+    testimonialMoussaTitle: "187 días. Soy libre.",
+    testimonialMoussaBody: "Apostaba cada día en Betika. Le mentía a mi esposa. Ahora llevo 6 meses limpio. El botón de pánico me ayudó al menos 30 veces. Sin Zerobet, estaría endeudado de por vida.",
+    testimonialOmarTitle: "90 días. El punto de inflexión.",
+    testimonialOmarBody: "Pensaba que nunca podría parar. 90 días después, no tengo ningún deseo. Mi cerebro está reparado. Zerobet me mostró que la recuperación es posible.",
+    testimonialIbrahimTitle: "UN AÑO. Soy una leyenda.",
+    testimonialIbrahimBody: "Un año sin apuestas. Un año. Ahorré {amount}. Compré un terreno. Recuperé mi vida. Si yo lo hice, tú puedes. Empieza hoy.",
+    testimonialBoubacarTitle: "El camino de sanación me salvó",
+    testimonialBoubacarBody: "Las insignias, los niveles... se convirtió en un juego sano. En vez de apostar, quiero desbloquear el siguiente rango. 45 días. Nunca vuelvo atrás.",
+    testimonialAwaTitle: "Mujer y adicta también",
+    testimonialAwaBody: "Se habla poco de las mujeres que apuestan. Perdí {amount} en 2 años. Zerobet me acogió sin juicio. 156 días limpia. Gracias a la comunidad.",
+    testimonialDjimieTitle: "Los antojos de verdad pasan",
+    testimonialDjimieBody: "12 días. Las primeras noches fueron duras, pero cada antojo pasó en minutos. Zerobet me ayuda a ir hora por hora.",
+    testimonialPatriceTitle: "Pagué mis deudas",
+    testimonialPatriceBody: "En 78 días ahorré {amount}. Empecé a pagar lo que debía y vuelvo a dormir con normalidad.",
+    testimonialEssohanaTitle: "Una nueva página",
+    testimonialEssohanaBody: "210 días sin apostar. Retomé mis estudios a distancia. La vergüenza se convirtió en orgullo.",
+    testimonialCheikhNTitle: "A los 19 años lo dejé",
+    testimonialCheikhNBody: "Empecé a apostar a los 17 con el dinero del almuerzo. 30 días limpio gracias al botón de pánico y al grupo.",
+    testimonialYaoTitle: "Quinientos días",
+    testimonialYaoBody: "Quinientos días. {amount} ahorrados, una cuenta de ahorro abierta y mis hijos vuelven a reír. Si yo pude, tú puedes.",
+    testimonialMarcAimeTitle: "Una semana",
+    testimonialMarcAimeBody: "Solo siete días, pero ya es el periodo más largo en tres años. El quiz me abrió los ojos sobre mis síntomas.",
+    // Country names (ISO 3166-1 alpha-2 code lookup)
+    countryCI: "Costa de Marfil",
+    countrySN: "Senegal",
+    countryML: "Mali",
+    countryCM: "Camerún",
+    countryGN: "Guinea",
+    countryFR: "Francia",
+    countryBJ: "Benín",
+    countryCD: "RD del Congo",
+    countryTG: "Togo",
+    countryGA: "Gabón",
+    // Misc short labels used in community cards
+    dayShort: "d",
+    yearsOld: "años",
+    cleanShort: "limpio",
+    sessionsLabel: "sesiones",
+    certifiedBadge: "Certificado",
+    mentorBadge: "Mentor",
+    psyBadge: "Psicólogo",
+    me: "Yo",
+    // ---- Parcours (ranks) ----
+    parcoursTitle: "Camino de sanación",
+    parcoursSubtitle: "13 niveles hacia tu libertad",
+    parcoursCurrentRank: "Rango actual",
+    parcoursNextRank: "Próximo rango",
+    parcoursLocked: "Bloqueado",
+    parcoursUnlocked: "Desbloqueado",
+    parcoursCollection: "Colección",
+    parcoursEvolution: "Evolución",
+    parcoursAll: "Todos",
+    parcoursRanksUnlocked: "{n}/{total} rangos desbloqueados",
+    parcoursProgressToNext: "Progreso hacia {rank}",
+    parcoursMoreDays: "Solo {n} día(s) antes de {rank}",
+    parcoursLegend: "¡Leyenda!",
+    parcoursLegendDesc: "Has desbloqueado todos los rangos. Eres un maestro de ti mismo.",
+    parcoursFooterMotivation: "Cada día sin apuestas es un ladrillo más en tu nueva vida.",
+    parcoursFooterMotivation2: "Sigue adelante, estás construyendo algo grande.",
+    parcoursDaysShort: "{n}d",
+    parcoursUntilRank: "{n} día(s) antes",
+    // ---- Settings ----
+    settingsTitle: "Ajustes",
+    settingsAccount: "Cuenta",
+    settingsPlan: "Mi plan",
+    settingsPreferences: "Preferencias",
+    settingsLanguage: "Idioma",
+    settingsGender: "Género",
+    settingsName: "Nombre",
+    settingsPrivacy: "Privacidad y protección de datos",
+    settingsAnonymousMode: "Modo anónimo",
+    settingsAnonymousDesc: "Tus publicaciones aparecen como 'Anónimo'",
+    settingsDataConsent: "Consentimiento de datos",
+    settingsDataConsentDesc: "Acepto que se almacenen mis datos",
+    settingsDataProtected: "Datos protegidos",
+    settingsResetApp: "Reiniciar la app",
+    settingsResetConfirm: "Todos tus datos se borrarán. ¿Estás seguro?",
+    settingsAdmin: "Modo admin",
+    settingsAdminTitle: "Panel admin",
+    settingsAdminStreak: "Días de racha",
+    settingsAdminPlan: "Plan",
+    settingsAdminScore: "Puntuación de adicción",
+    settingsAdminLevel: "Nivel de adicción",
+    settingsAdminReset: "Reiniciar datos",
+    settingsAdminAddJournal: "Añadir entrada de diario",
+    settingsAdminMilestone: "Simular hito",
+    settingsAdminClose: "Cerrar",
+    settingsAbout: "Acerca de",
+    settingsVersion: "Versión",
+    settingsAppearance: "Apariencia",
+    settingsNotifications: "Notificaciones",
+    settingsData: "Datos",
+    settingsSound: "Sonidos",
+    settingsSoundDesc: "Efectos de sonido",
+    settingsHaptics: "Vibración",
+    settingsHapticsDesc: "Respuesta háptica",
+    settingsTheme: "Tema",
+    settingsThemeLight: "Claro",
+    settingsThemeDark: "Oscuro",
+    settingsThemeSystem: "Sistema",
+    settingsTerms: "Términos de uso",
+    settingsPolicy: "Política de privacidad",
+    settingsContact: "Contacto",
+    settingsExportData: "Exportar mis datos",
+    settingsImportData: "Importar datos",
+    settingsDeleteAccount: "Eliminar mi cuenta",
+    settingsPlanFree: "Gratis",
+    settingsPlanPremium: "Premium",
+    settingsPlanMentor: "Mentor",
+    settingsPlanPsychologist: "Psicólogo",
+    // ---- Meditation ----
+    meditationTitle: "Meditación",
+    meditationSubtitle: "Calma tu mente, fortalece tu voluntad",
+    meditationStart: "Empezar",
+    meditationPause: "Pausar",
+    meditationResume: "Reanudar",
+    meditationStop: "Detener",
+    meditationTechnique1: "Respiración 4-7-8",
+    meditationTechnique2: "Coherencia cardíaca",
+    meditationTechnique3: "Respiración alternada",
+    meditationTechnique4: "Respiración en caja",
+    meditationTechnique5: "Respiración profunda",
+    meditationDuration: "Duración",
+    meditationCycles: "Ciclos",
+    meditationDifficulty: "Dificultad",
+    meditationEasy: "Fácil",
+    meditationMedium: "Media",
+    meditationAdvanced: "Avanzada",
+    meditationCategoryCrisis: "Crisis",
+    meditationCategoryMotivation: "Motivación",
+    meditationCategoryRelaxation: "Relajación",
+    meditationCategoryEnergy: "Energía",
+    meditationGuided: "Meditaciones guiadas",
+    meditationBreathing: "Técnicas de respiración",
+    meditationSessionComplete: "¡Sesión completada!",
+    meditationSessionCompleteDesc: "Meditaste durante {n} minutos. ¡Sigue así!",
+    meditationInhale: "Inhala",
+    meditationExhale: "Exhala",
+    meditationHold: "Mantén",
+    // ---- Stats ----
+    statsTitle: "Estadísticas",
+    statsSubtitle: "Visualiza tu progreso",
+    statsStreak: "Racha",
+    statsSavings: "Ahorros",
+    statsJournal: "Diario",
+    statsCrises: "Crises",
+    statsMoodTrend: "Tendencia de ánimo",
+    statsSavingsGrowth: "Crecimiento de ahorros",
+    statsMoodDistribution: "Distribución de ánimo",
+    statsMoodTimeline: "Línea de tiempo de ánimo",
+    statsRegularity: "Regularidad",
+    statsDominantMood: "Ánimo dominante",
+    statsNoData: "Aún no hay datos. Sigue adelante y tus estadísticas aparecerán aquí.",
+    statsOverview: "Resumen",
+    statsProgress: "Progreso",
+    statsBestDay: "Mejor día",
+    statsWorstDay: "Día más difícil",
+    statsTotalEntries: "Entradas totales",
+    statsResolvedCravings: "Antojos superados",
+    statsMeditationStreak: "Racha de meditación",
+    statsNoDataShort: "Aún no hay datos",
+    statsViewDashboard: "Ver panel",
+    // ---- Resources ----
+    resourcesTitle: "Recursos",
+    resourcesSubtitle: "Artículos, vídeos y contactos útiles",
+    resourcesCategoryAll: "Todos",
+    resourcesCategoryAddiction: "Adicción",
+    resourcesCategoryTechniques: "Técnicas",
+    resourcesCategoryFinance: "Finanzas",
+    resourcesCategoryTestimonials: "Testimonios",
+    resourcesCategoryMeditation: "Meditación",
+    resourcesCategoryStories: "Historias",
+    resourcesReadMore: "Leer más",
+    resourcesReadingTime: "{n} min de lectura",
+    resourcesFeatured: "Destacado",
+    resourcesArticles: "Artículos",
+    resourcesVideos: "Vídeos",
+    resourcesHotlines: "Líneas de ayuda",
+    resourcesApps: "Apps",
+    resourcesBooks: "Libros",
+    resourcesNoArticles: "Sin artículos en esta categoría.",
+    // ---- SOS ----
+    sosTitle: "SOS",
+    sosSubtitle: "Números de emergencia y plan de seguridad",
+    sosEmergency: "Emergencia",
+    sosCallEmergency: "Llamar",
+    sosHotline1: "Línea de ayuda para ludópatas",
+    sosHotline1Desc: "24/7 • Gratis • Confidencial",
+    sosHotline2: "Gambling Therapy International",
+    sosHotline2Desc: "Apoyo en línea mundial",
+    sosHotline3: "SOS Amistad",
+    sosHotline3Desc: "Escucha amistosa 24/7",
+    sosHotline4: "Emergencia social",
+    sosHotline4Desc: "Emergencia social",
+    sosPanicButton: "Botón de pánico",
+    sosBreathing: "Ejercicio de respiración",
+    sosGrounding: "Anclaje",
+    sosSafetyPlan: "Plan de seguridad",
+    sosSafetyStep1: "Reconocer señales de alerta",
+    sosSafetyStep2: "Identificar tus desencadenantes",
+    sosSafetyStep3: "Distraer tu mente",
+    sosSafetyStep4: "Contactar a un ser querido",
+    sosSafetyStep5: "Buscar ayuda profesional",
+    sosPersonalContacts: "Contactos personales",
+    sosAddContact: "Añadir un contacto",
+    sosContactName: "Nombre",
+    sosContactPhone: "Teléfono",
+    sosContactRelation: "Relación",
+    sosNoContacts: "Sin contactos. Añade a alguien de confianza para llamar durante una crisis.",
+    // ---- Achievements ----
+    achievementsTitle: "Trofeos",
+    achievementsSubtitle: "Cada victoria merece celebrarse",
+    achievementsHeaderTitle: "Logros",
+    achievementsYourExploits: "Tus hazañas",
+    achievementsRecentUnlocks: "Desbloqueos recientes",
+    achievementsNoItems: "No hay logros en esta categoría por ahora.",
+    achievementsUnlocked: "Desbloqueados",
+    achievementsLocked: "Bloqueados",
+    achievementsProgress: "Progreso",
+    achievementsTier: "Nivel",
+    achievementsTierAll: "Todos",
+    achievementsTierBronze: "Bronce",
+    achievementsTierSilver: "Plata",
+    achievementsTierGold: "Oro",
+    achievementsTierDiamond: "Diamante",
+    achievementsTierLegendary: "Legendario",
+    achievementsSpecial: "Trofeos especiales",
+    achievementsRankBased: "Trofeos de rango",
+    achievementsUnlockedCount: "{n}/{total} desbloqueados",
+    achievementsOfTarget: "{current}/{target}",
+    // ---- Profile ----
+    profileTitle: "Perfil",
+    profileEdit: "Editar",
+    profileStats: "Estadísticas",
+    profileRecords: "Récords",
+    profileLongestStreak: "Racha más larga",
+    profileMonthlySavings: "Ahorros mensuales",
+    profileTotalSavings: "Ahorros totales",
+    profileHardestDay: "Día más difícil",
+    profileMember: "Miembro desde",
+    profilePlan: "Plan",
+    profileRank: "Rango",
+    profileLanguage: "Idioma",
+    profileGender: "Género",
+    profileName: "Nombre",
+    profileGoals: "Objetivos",
+    profileBadges: "Insignias",
+    profileJoined: "Registrado el",
+    profileEditName: "Editar tu nombre",
+    profileNamePlaceholder: "Tu nombre",
+    profileSave: "Guardar",
+    // ---- Gamification ----
+    gamificationTitle: "Misiones y retos",
+    gamificationSubtitle: "Gana XP y desbloquea recompensas",
+    gamificationLevel: "Nivel",
+    gamificationXP: "XP",
+    gamificationNextLevel: "Nivel siguiente",
+    gamificationDailyQuests: "Misiones diarias",
+    gamificationWeeklyQuests: "Misiones semanales",
+    gamificationClaimReward: "Reclamar",
+    gamificationClaimed: "Reclamado",
+    gamificationProgress: "Progreso",
+    gamificationChallenges: "Retos",
+    gamificationLeaderboard: "Clasificación",
+    gamificationHistory: "Historial",
+    gamificationStreakMultiplier: "Multiplicador de racha",
+    gamificationWeeklyChallenge: "Reto semanal",
+    gamificationReward: "+{n} XP",
+    gamificationLevelUp: "¡Subiste de nivel!",
+    gamificationLevelUpDesc: "Alcanzaste el nivel {n}",
+    gamificationRank: "Rango {n}",
+    // ---- Calendar ----
+    calendarTitle: "Calendario",
+    calendarSubtitle: "Tu camino día a día",
+    calendarToday: "Hoy",
+    calendarSelectDate: "Selecciona una fecha",
+    calendarMilestones: "Hitos",
+    calendarJournal: "Diario",
+    calendarMood: "Ánimo",
+    calendarNotes: "Notas",
+    calendarWeekDays: "Lun,Mar,Mié,Jue,Vie,Sáb,Dom",
+    calendarMonths: "Enero,Febrero,Marzo,Abril,Mayo,Junio,Julio,Agosto,Septiembre,Octubre,Noviembre,Diciembre",
+    calendarAddNote: "Añadir una nota",
+    calendarNoMilestone: "Sin hitos este día.",
+    calendarDay: "Día {n}",
+    calendarMoodFor: "Ánimo del {date}",
+    calendarNoteFor: "Nota del {date}",
+    calendarSaveNote: "Guardar nota",
+    // ---- Support ----
+    supportTitle: "Ayuda y soporte",
+    supportSubtitle: "Estamos aquí para ayudarte",
+    supportFaq: "FAQ",
+    supportContact: "Contacto",
+    supportBug: "Reportar un bug",
+    supportSuggestion: "Sugerencia",
+    supportVideos: "Tutoriales en vídeo",
+    supportTroubleshooting: "Solución de problemas",
+    supportEmergency: "Emergencia",
+    supportQuickHelp: "Ayuda rápida",
+    supportSend: "Enviar",
+    supportSent: "¡Mensaje enviado! Gracias.",
+    supportCategory: "Categoría",
+    supportCategoryStart: "Inicio",
+    supportCategoryAccount: "Cuenta",
+    supportCategoryFeatures: "Funciones",
+    supportCategoryTech: "Técnico",
+    supportSearchFaq: "Buscar en la FAQ...",
+    supportNoResults: "Sin resultados.",
+    supportMessage: "Tu mensaje",
+    supportMessagePlaceholder: "Describe tu problema...",
+    // ---- Program ----
+    programTitle: "Programa de 90 días",
+    programSubtitle: "Tu hoja de ruta hacia la sanación",
+    programDay: "Día {n}",
+    programPhase: "Fase {n}",
+    programTasks: "Tareas de hoy",
+    programClaimRewards: "Reclamar recompensas",
+    programWeeks: "Semanas",
+    programMilestones: "Hitos",
+    programInspiration: "Inspiración",
+    programPhase1: "Fase 1: Cimientos",
+    programPhase2: "Fase 2: Fortalecimiento",
+    programPhase3: "Fase 3: Transformación",
+    programDailyTasks: "Tareas diarias",
+    programWeeklyTheme: "Tema semanal",
+    programCompleted: "Completado",
+    programLocked: "Bloqueado",
+    programDayComplete: "¡Día {n} completado!",
+    programAllTasksDone: "¡Todas las tareas del día están completas!",
+    programKeepGoing: "¡Sigue así, lo estás logrando!",
+    programShareProgress: "Compartir mi progreso",
+    programPhase1Desc: "Los cimientos de tu recuperación",
+    programPhase2Desc: "Fortalece tus nuevos hábitos",
+    programPhase3Desc: "Transforma tu vida de forma duradera",
+    // ---- Mentorship ----
+    mentorshipTitle: "Mentoría",
+    mentorshipSubtitle: "Encuentra un mentor o conviértete en uno",
+    mentorshipBecomeMentor: "Convertirse en mentor",
+    mentorshipRequirements: "Requisitos",
+    mentorshipFindMentor: "Encontrar un mentor",
+    mentorshipSessions: "Sesiones",
+    mentorshipRating: "Valoración",
+    mentorshipSpecialties: "Especialidades",
+    mentorshipCountries: "Países",
+    mentorshipLanguages: "Idiomas",
+    mentorshipApply: "Postular",
+    mentorshipApplication: "Solicitud de mentor",
+    mentorshipBenefit1: "Insignia de Mentor verificado",
+    mentorshipBenefit2: "Impacto positivo en la comunidad",
+    mentorshipBenefit3: "Acceso a herramientas de coaching",
+    mentorshipBenefit4: "Reconocimiento de tu trayectoria",
+    mentorshipRequiredStreak: "90 días sin apuestas mínimo",
+    mentorshipChooseSpecialty: "Elige tu especialidad",
+    mentorshipChooseCountry: "Elige tu país",
+    mentorshipChooseLanguage: "Elige tus idiomas",
+    mentorshipBio: "Preséntate",
+    mentorshipBioPlaceholder: "Cuéntanos sobre tu trayectoria...",
+    mentorshipSubmit: "Enviar mi solicitud",
+    mentorshipSubmitted: "¡Solicitud enviada! Te contactaremos.",
+    mentorshipNotEligible: "Necesitas al menos 90 días sin apuestas para ser mentor.",
+    mentorshipBookSession: "Reservar una sesión",
+    mentorshipSessionWith: "Sesión con {name}",
+    mentorshipAvailable: "Disponible",
+    mentorshipNotAvailable: "No disponible",
+    // ---- Withdrawal ----
+    withdrawalTitle: "Seguimiento de abstinencia",
+    withdrawalSubtitle: "Comprende y atraviesa los síntomas",
+    withdrawalSymptoms: "Síntomas",
+    withdrawalTracker: "Seguimiento",
+    withdrawalTimeline: "Línea de tiempo",
+    withdrawalTips: "Consejos",
+    withdrawalExercises: "Ejercicios",
+    withdrawalPhysical: "Físico",
+    withdrawalMental: "Mental",
+    withdrawalDay: "Día {n}",
+    withdrawalIntensity: "Intensidad",
+    withdrawalAddSymptom: "Añadir un síntoma",
+    withdrawalNoData: "Sin síntomas registrados. Añade algunos para ver tu evolución.",
+    withdrawalSymptomHeadache: "Dolor de cabeza",
+    withdrawalSymptomInsomnia: "Insomnio",
+    withdrawalSymptomFatigue: "Fatiga",
+    withdrawalSymptomSweats: "Sudores",
+    withdrawalSymptomDigestive: "Problemas digestivos",
+    withdrawalSymptomPalpitations: "Palpitaciones",
+    withdrawalSymptomAnxiety: "Ansiedad",
+    withdrawalSymptomIrritability: "Irritabilidad",
+    withdrawalSymptomDepression: "Bajo ánimo",
+    withdrawalSymptomBrainFog: "Niebla mental",
+    withdrawalTip1: "Hidrátate con regularidad",
+    withdrawalTip2: "Evita la cafeína después de las 14h",
+    withdrawalTip3: "Camina 20 minutos al día",
+    withdrawalTip4: "Practica la respiración 4-7-8",
+    withdrawalTip5: "Habla con un ser querido sobre cómo te sientes",
+    withdrawalTimelinePeak: "El pico de abstinencia llega entre el día 3 y 7.",
+    withdrawalTimelineImprove: "Deberías sentir mejora después de 2 semanas.",
+    withdrawalTimelineFull: "La mayoría de los síntomas desaparecen en 90 días.",
+    // ---- Triggers ----
+    triggersTitle: "Desencadenantes",
+    triggersSubtitle: "Identifica qué provoca tus antojos",
+    triggersAdd: "Añadir un desencadenante",
+    triggersCategory: "Categoría",
+    triggersIntensity: "Intensidad",
+    triggersSituation: "Situación",
+    triggersCoping: "Estrategia de afrontamiento",
+    triggersResisted: "Resistido",
+    triggersHistory: "Historial",
+    triggersInsights: "Insights",
+    triggersHeatmap: "Mapa de calor",
+    triggersAIInsight: "Insight de IA",
+    triggersCategoryStress: "Estrés",
+    triggersCategoryLoneliness: "Soledad",
+    triggersCategoryPayday: "Día de paga",
+    triggersCategoryAlcohol: "Alcohol",
+    triggersCategoryBoredom: "Aburrimiento",
+    triggersCategorySocial: "Presión social",
+    triggersCategoryInsomnia: "Insomnio",
+    triggersCategoryOther: "Otro",
+    triggersSituationPlaceholder: "Describe la situación...",
+    triggersCopingPlaceholder: "¿Qué te ayudó?",
+    triggersNoTriggers: "Sin desencadenantes registrados. Identifícalos para gestionarlos mejor.",
+    triggersResistedCount: "{n} resistido(s)",
+    triggersSuccumbedCount: "{n} cedido(s)",
+    triggersAIInsightDesc: "Tu desencadenante más frecuente es: {category}",
+    triggersMostFrequentTime: "Eres más vulnerable: {time}",
+    triggersResistRate: "Tasa de resistencia: {pct}%",
+    // ---- Goals ----
+    goalsTitle: "Objetivos de vida",
+    goalsSubtitle: "Construye la vida que mereces",
+    goalsNew: "Nuevo objetivo",
+    goalsCategory: "Categoría",
+    goalsTargetDate: "Fecha objetivo",
+    goalsMilestones: "Hitos",
+    goalsProgress: "Progreso",
+    goalsDelete: "Eliminar",
+    goalsEdit: "Editar",
+    goalsCompleted: "Completado",
+    goalsSuggested: "Sugeridos",
+    goalsCategoryHealth: "Salud",
+    goalsCategoryFinance: "Dinero",
+    goalsCategoryRelationship: "Relaciones",
+    goalsCategoryCareer: "Carrera",
+    goalsCategoryPersonal: "Crecimiento personal",
+    goalsAddMilestone: "Añadir un hito",
+    goalsNoGoals: "Sin objetivos. Crea el primer paso hacia tu nueva vida.",
+    goalsTarget: "Meta: {n}",
+    goalsCurrent: "Actual: {n}",
+    goalsTitlePlaceholder: "Ej.: Correr una media maratón",
+    goalsTargetAmount: "Monto objetivo",
+    goalsCurrentAmount: "Monto actual",
+    goalsCompletedDate: "Completado el {date}",
+    goalsMilestoneReached: "¡Hito alcanzado! 🎉",
+    goalsSuggestedTitle: "Objetivos sugeridos",
+    // ---- Affirmations ----
+    affirmationsTitle: "Afirmaciones",
+    affirmationsSubtitle: "Reprograma tu mente a diario",
+    affirmationsDaily: "Afirmación del día",
+    affirmationsFavorites: "Favoritos",
+    affirmationsCreate: "Crear",
+    affirmationsCategory: "Categoría",
+    affirmationsShare: "Compartir",
+    affirmationsNew: "Nueva afirmación",
+    affirmationsTips: "Consejos",
+    affirmationsCategoryAll: "Todas",
+    affirmationsCategoryConfidence: "Confianza",
+    affirmationsCategoryMotivation: "Motivación",
+    affirmationsCategoryRecovery: "Recuperación",
+    affirmationsCategoryPeace: "Paz",
+    affirmationsCategoryStrength: "Fuerza",
+    affirmationsPlay: "Escuchar",
+    affirmationsStop: "Detener",
+    affirmationsNoFavorites: "Sin favoritos. Añade tus afirmaciones preferidas.",
+    affirmationsTextPlaceholder: "Escribe tu afirmación...",
+    affirmationsCreateTitle: "Crear una afirmación",
+    affirmationsSaved: "¡Afirmación guardada!",
+    affirmationsTip1: "Repite tus afirmaciones en voz alta cada mañana.",
+    affirmationsTip2: "Respira profundamente mientras las lees.",
+    affirmationsTip3: "Visualízate viviendo esa realidad.",
+    // ---- Relapse Recovery ----
+    relapseTitle: "Recuperación tras recaída",
+    relapseSubtitle: "No es un fracaso, es un desvío",
+    relapseAcknowledge: "Reconocer",
+    relapseStart: "Empezar",
+    relapseProtocol: "Protocolo",
+    relapseStep: "Paso {n}",
+    relapsePhase: "Fase",
+    relapseComplete: "Completar",
+    relapseAbandon: "Abandonar",
+    relapseHistory: "Historial",
+    relapseResilience: "Resiliencia",
+    relapseQuotes: "Citas",
+    relapseEmotion: "¿Cómo te sientes?",
+    relapseTrigger: "¿Qué desencadenó la recaída?",
+    relapseWhatHappened: "¿Qué pasó?",
+    relapseGetBackUp: "Levantarme",
+    relapseYouAreNotFailure: "No eres un fracaso. Una recaída es parte del camino.",
+    relapseBackHome: "Volver al inicio",
+    relapseContinue: "Continuar",
+    relapseProtocolComplete: "¡Protocolo completado!",
+    relapseProtocolCompleteDesc: "Te levantaste. Eso es lo que importa. Tu racha reinicia hoy.",
+    relapsePreviousStreak: "Tu racha anterior: {n} días",
+    relapseNewStreak: "Nueva racha: día 1",
+    relapseQuote1: "Caerse está permitido, levantarse es obligatorio.",
+    relapseQuote2: "Lo importante no es la caída, sino levantarse.",
+    relapseQuote3: "Cada recaída te enseña algo sobre ti.",
+    relapseNoHistory: "Sin recaídas registradas. ¡Sigue así!",
+    relapseAcknowledgeTitle: "Reconocer lo que pasó",
+    relapseAcknowledgeDesc: "Tómate un momento para entender. Sin juicios.",
+    // ---- Community Chat ----
+    chatTitle: "Chat comunitario",
+    chatSubtitle: "Chatea en tiempo real con la comunidad",
+    chatNickname: "Apodo",
+    chatJoin: "Unirse",
+    chatSend: "Enviar",
+    chatTyping: "{name} está escribiendo...",
+    chatOnline: "En línea",
+    chatRoomGeneral: "General",
+    chatRoomCrisis: "Apoyo en crisis",
+    chatRoomVeterans: "Veteranos (90d+)",
+    chatGuidelines: "Normas de la comunidad",
+    chatDisconnected: "Desconectado",
+    chatConnecting: "Conectando...",
+    chatReconnect: "Reconectar",
+    chatConnected: "Conectado",
+    chatPremiumOnly: "Chat Premium",
+    chatUpgrade: "Pasar a Premium",
+    chatPremiumOnlyDesc: "El chat en tiempo real es solo para miembros Premium.",
+    chatMessagePlaceholder: "Escribe tu mensaje...",
+    chatUsersOnline: "{n} en línea",
+    chatSendFailed: "Error al enviar. Inténtalo de nuevo.",
+    chatMessages: "Mensajes",
+    chatRules: "Normas",
+    chatRules1: "Respeta a cada miembro. Sin juicios.",
+    chatRules2: "No promover apuestas ni operadores.",
+    chatRules3: "Protege tu anonimato. Sin datos personales.",
+    chatRules4: "En caso de crisis, usa el botón SOS.",
+    chatFlag: "Reportar",
+    chatFlagged: "Mensaje reportado. Gracias.",
+    chatSystemWelcome: "¡Bienvenido al chat!",
+    chatNicknamePlaceholder: "Elige un apodo...",
+    chatNicknameSet: "Vamos",
+    chatRoomInfo: "Sala",
+    chatReconnecting: "Reconectando...",
+    // ---- Notifications ----
+    notificationsTitle: "Notificaciones",
+    notificationsSubtitle: "Elige qué puede enviarte Zerobet",
+    notificationsPermission: "Permiso",
+    notificationsAllow: "Permitir",
+    notificationsPrefs: "Preferencias",
+    notificationsDailyReminder: "Recordatorio diario",
+    notificationsDailyReminderDesc: "Recordatorio para tu check-in diario",
+    notificationsCravingCheckin: "Verificación de antojo",
+    notificationsCravingCheckinDesc: "Comprobamos cómo estás",
+    notificationsMilestones: "Alertas de hitos",
+    notificationsMilestonesDesc: "Celebra tus victorias",
+    notificationsCommunity: "Actividad de la comunidad",
+    notificationsCommunityDesc: "Respuestas, menciones, etc.",
+    notificationsWeekly: "Informe semanal",
+    notificationsWeeklyDesc: "Resumen de tu semana cada domingo",
+    notificationsQuotes: "Citas motivadoras",
+    notificationsQuotesDesc: "Una cita al día",
+    notificationsSilentHours: "Horas silenciosas",
+    notificationsSilentHoursDesc: "Sin notificaciones por la noche",
+    notificationsTest: "Probar",
+    notificationsSchedule: "Programar",
+    notificationsPWA: "Instalar app",
+    notificationsInstall: "Instalar",
+    notificationsEnabled: "Activadas",
+    notificationsDisabled: "Desactivadas",
+    notificationsTestSent: "¡Notificación enviada!",
+    notificationsInstallPrompt: "Instala Zerobet para notificaciones fiables",
+    notificationsInstallNow: "Instalar ahora",
+    notificationsNotSupported: "Notificaciones no soportadas en este dispositivo",
+    notificationsPermissionGranted: "Permiso concedido",
+    notificationsPermissionDenied: "Permiso denegado",
+    notificationsSilentStart: "Inicio",
+    notificationsSilentEnd: "Fin",
+    notificationsTimeFormat: "{h}:{m}",
+    // ---- Common feedback / toasts ----
+    successSaved: "¡Guardado!",
+    successDeleted: "¡Eliminado!",
+    successCreated: "¡Creado!",
+    successCompleted: "¡Completado!",
+    successUpdated: "¡Actualizado!",
+    successXp: "+{n} XP",
+    successCheckin: "Check-in del día completado",
+    successJournal: "Entrada de diario añadida",
+    errorRequired: "Este campo es obligatorio",
+    errorMinChars: "Mínimo {n} caracteres",
+    errorMaxChars: "Máximo {n} caracteres",
+    errorInvalid: "Valor inválido",
+    errorNetwork: "Error de red. Inténtalo de nuevo.",
+    errorPermission: "Permiso denegado",
+    confirmDelete: "¿Seguro que quieres eliminar?",
+    confirmReset: "¿Seguro que quieres reiniciar?",
+    confirmAbandon: "¿Seguro que quieres abandonar?",
+    confirmLogout: "¿Cerrar sesión?",
+    copied: "¡Copiado!",
+    shared: "¡Compartido!",
+    comingSoonDesc: "Esta función llegará pronto.",
+    betaDesc: "Esta función está en beta. Gracias por tu paciencia.",
+    // ---- Misc ----
+    symptomsSelectedCount: "{n} síntoma(s) seleccionado(s)",
+    goalsSelectedCount: "{n} objetivo(s) seleccionado(s)",
+    entriesCount: "{n} entrada(s)",
+    daysClean: "{n} días sin apuestas",
+    progressPercent: "{n}%",
+    ofTotal: "{current}/{total}",
+    fcfaAmount: "{n} FCFA",
+    fcfaPerMonth: "{n} FCFA/mes",
+    daysRemaining: "{n} día(s) restante(s)",
+    hoursRemaining: "{n}h restantes",
+    minutesRemaining: "{n} min restantes",
+    levelN: "Nivel {n}",
+    dayN: "Día {n}",
+    weekN: "Semana {n}",
+    monthN: "Mes {n}",
+    rankN: "Rango {n}",
+    stepN: "Paso {n}",
+    phaseN: "Fase {n}",
+    questionN: "Pregunta {n}",
+    challengeN: "Reto {n}",
+    sessionN: "Sesión {n}",
+    outOf: "{n} de {total}",
+    outOf100: "/ 100",
+    outOf5: "/ 5",
+    welcomeName: "{name}",
+    hiName: "Hola, {name}",
+    dearName: "Querido {name}",
+    dearNameF: "Querida {name}",
+    // ---- Task 14-c additional keys ----
+    welcomeTermsNotice: "Al continuar, aceptas nuestros Términos de servicio y Política de privacidad.",
+    resultsYourScore: "Tu puntuación",
+    resultsGoodNewsTitle: "Buena noticia",
+    resultsRecovery90: "El 90% de las personas que siguen un programa estructurado se recuperan definitivamente.",
+    symptomsCount: "{n} seleccionado(s)",
+    symptomsHelpPersonalize: "Esto nos ayuda a personalizar tu camino",
+    carouselCommit: "Me comprometo",
+    engagementChooseGoals: "Elige tus objetivos",
+    engagementGoalsCount: "{n} objetivo(s) seleccionado(s)",
+    engagementPlan1: "Tendrás un coach IA 24/7 en tu bolsillo",
+    engagementPlan2: "Bloquearás todos los sitios de juego",
+    engagementPlan3: "Seguirás tus ahorros hasta el último franco",
+    engagementPlan4: "Tendrás una comunidad que te apoya",
+    engagementPlan5: "Aprenderás a gestionar tus antojos",
+    engagementPlan6: "Construirás una vida que vale más que una apuesta",
+    engagementWhatZerobetDoes: "Lo que Zerobet hace por ti",
+    engagementStepSignature: "Firma tu compromiso",
+    engagementSignHereTitle: "Firma aquí",
+    engagementSignHereHint: "Traza tu firma con tu dedo",
+    paywallHero1: "Desbloquea todo lo que necesitas para recuperarte",
+    paywallBestValueBadge: "Mejor valor",
+    paywallPopularBadge: "Popular",
+    paywallMoreFeatures: "y mucho más...",
+    paywallDataProtection: "Tus datos están protegidos. Cancela cuando quieras.",
+    paywallSubscribeMonthly: "Suscribirse — {amount}/mes",
+    paywallSubscribeAnnual: "Suscribirse — {amount}/año",
+    // ---- Mobile Money payment (Zerobet 2.0.4) ----
+    paymentTitle: "Pago Mobile Money",
+    paymentSubtitle: "Elige tu operador para pagar tu suscripción",
+    paymentOperatorLabel: "Elegir un operador",
+    paymentPhoneTitle: "Tu número",
+    paymentPhoneLabel: "Número Mobile Money",
+    paymentPhoneHint: "Formato local (ej.: 07 00 00 00 00). Se enviará una solicitud de confirmación a este número.",
+    paymentPhoneInvalid: "Número inválido (8 a 15 dígitos)",
+    paymentContinue: "Continuar",
+    paymentConfirmTitle: "Confirmar el pago",
+    paymentSummaryPlan: "Plan",
+    paymentSummaryCycle: "Período",
+    paymentSummaryOperator: "Operador",
+    paymentSummaryPhone: "Número",
+    paymentTotal: "Total a pagar",
+    paymentPayNow: "Pagar ahora",
+    paymentCancelAnytime: "Sin compromiso. Cancela cuando quieras.",
+    paymentProcessingTitle: "En curso…",
+    paymentProcessingCheckPhone: "Mira tu teléfono",
+    paymentProcessingEnterCode: "Se envió una solicitud {operator}. Confirma la transacción con tu código secreto.",
+    paymentStepRequest: "Solicitud enviada",
+    paymentStepUssd: "Esperando tu confirmación",
+    paymentStepDebit: "Débito de la cuenta",
+    paymentSuccessTitle: "Pago exitoso",
+    paymentSuccessDesc: "¡Bienvenido a {plan}!",
+    paymentSuccessReceipt: "Recibo: {amount} pagados vía Mobile Money.",
+    paymentSuccessCta: "Empezar ahora",
+    paymentFailedTitle: "Pago fallido",
+    paymentFailedDesc: "El pago no se completó",
+    paymentFailedFunds: "Fondos insuficientes en la cuenta. Verifica tu saldo e inténtalo de nuevo.",
+    paymentFailedGeneric: "Ocurrió un error. Inténtalo de nuevo en unos momentos.",
+    paymentRetry: "Reintentar",
+    paymentBack: "Atrás",
+    paymentSecure: "Pago cifrado y seguro",
+    paymentCycleMonthly: "Mensual",
+    paymentCycleAnnual: "Anual",
+    atlasRateLimited: "Estás enviando mensajes muy rápido. Espera un momento, estoy aquí.",
+    dashboardYouAt: "Estás en",
+    dashboardDaysToRank: "Solo {days} días antes de {rank}",
+    dashboardDearMale: "Querido campeón,",
+    dashboardDearFemale: "Querida campeona,",
+    dashboardPanicDesc: "¿Ganas de jugar? Toca aquí. Respiremos juntos.",
+    dashboardViewAll: "Ver todo",
+    onboardingStep: "Paso",
+    onboardingOf: "de",
+    onboardingSkipTitle: "Puedes volver más tarde",
+    onboardingSkipDesc: "¿De verdad quieres saltar la introducción? Podrás retomarla en cualquier momento en los ajustes, pero tu plan será limitado al modo gratuito.",
+    onboardingContinue: "Continuar introducción",
+    onboardingGoDashboard: "Ir al panel",
+    // ---- DailyCheckIn ----
+    checkinTitle: "Check-in del día",
+    checkinMoodQuestion: "¿Cómo te sientes hoy?",
+    checkinMoodSuper: "Genial",
+    checkinMoodBien: "Bien",
+    checkinMoodNeutre: "Neutral",
+    checkinMoodDifficile: "Difícil",
+    checkinMoodCritique: "Crítico",
+    checkinCravingQuestion: "¿Sintiste ganas de jugar hoy?",
+    checkinResistanceQuestion: "¿Cómo resististe?",
+    checkinResistanceRespiration: "Respiración",
+    checkinResistanceJournal: "Diario",
+    checkinResistanceAtlas: "Atlas AI",
+    checkinResistanceAppel: "Llamé a alguien",
+    checkinResistanceAutre: "Otro",
+    checkinCompleted: "Check-in del día completado",
+    checkinMotivHard30: "Eres fuerte, ya has demostrado tu resiliencia. Este momento pasará.",
+    checkinMotivHard7: "Cada día sin juego es una victoria. No estás solo.",
+    checkinMotivHard0: "Es normal encontrarlo difícil. Respira, lo vas a lograr.",
+    checkinMotivNeutre30: "La constancia es tu mayor fuerza. Continúa.",
+    checkinMotivNeutre0: "Un día más, un paso más hacia la libertad.",
+    checkinMotivGood90: "Eres una leyenda viviente. Tu determinación inspira a todos.",
+    checkinMotivGood30: "¡Un mes y más! Eres parte de la élite.",
+    checkinMotivGood7: "¡Una semana y más! Vas por buen camino.",
+    checkinMotivGood0: "Cada día cuenta. Eres más fuerte que el antojo.",
+    // ---- TutorialTooltips ----
+    tutorialSkip: "Saltar",
+    tutorialNext: "Siguiente",
+    tutorialStart: "Empezar",
+    tutorialStep1Title: "Tu racha de días",
+    tutorialStep1Desc: "Es el corazón de tu recuperación. Cada día sin juego hace crecer esta llama. Cuanto más avanzas, más evoluciona tu rango.",
+    tutorialStep2Title: "Botón de emergencia",
+    tutorialStep2Desc: "¿Ganas de jugar? Toca aquí. Respiremos juntos con la técnica 4-7-8. Nunca estás solo.",
+    tutorialStep3Title: "Acciones rápidas",
+    tutorialStep3Desc: "Todas tus herramientas esenciales en un solo lugar: diario, meditación, ahorros, comunidad y mucho más.",
+    tutorialStep4Title: "Coach Atlas AI",
+    tutorialStep4Desc: "Tu coach personal disponible 24/7. Haz preguntas, comparte dudas, recibe consejos a medida.",
+    tutorialStep5Title: "Comunidad",
+    tutorialStep5Desc: "Miles de personas como tú. Testimonios, foro, mentores. Tu recuperación se construye con otros.",
+    tutorialStep6Title: "¡Vamos!",
+    tutorialStep6Desc: "Estás listo para empezar tu viaje. Vuelve cada día para tu check-in, y recuerda: un día a la vez.",
+    refreshing: "Actualizando...",
+    refreshingData: "Actualizando datos...",
+    achievementNewRank: "¡Nuevo rango desbloqueado!",
+    tapToClose: "Toca para cerrar",
+    // ---- Quick Actions ----
+    qaPanic: "Urgencia",
+    qaQuests: "Misiones",
+    qaJournal: "Diario",
+    qaSavings: "Ahorros",
+    qaStats: "Stats",
+    qaMeditation: "Meditación",
+    qaAtlas: "Atlas AI",
+    qaBlocker: "Bloqueador",
+    qaCommunity: "Comunidad",
+    qaChat: "Chat en vivo",
+    qaTrophies: "Trofeos",
+    qaResources: "Recursos",
+    qaProfile: "Perfil",
+    qaSOS: "SOS",
+    qaCalendar: "Calendario",
+    qaHelp: "Ayuda",
+    qaProgram: "Programa",
+    qaMentor: "Mentor",
+    qaGoals: "Objetivos",
+    qaAffirmations: "Afirmaciones",
+    qaWithdrawal: "Abstinencia",
+    qaTriggers: "Desencadenantes",
+    qaRelapse: "Recaída",
+    qaNotifications: "Notificaciones",
+    // ---- MoodTracker ----
+    moodFrustrated: "Frustrado",
+    moodAnxious: "Ansioso",
+    moodTempted: "Tentado",
+    moodCalm: "Tranquilo",
+    moodProud: "Orgulloso",
+    moodStrong: "Fuerte",
+    moodQuestion: "¿Cómo te sientes ahora?",
+    moodHint: "Toca una emoción para registrarla",
+    moodEntryPrefix: "Humor del día:",
+    moodSaved: "¡Gracias! Tu humor está guardado.",
+    moodNoneToday: "Sin humor registrado hoy",
+    moodCountToday: "{count} humor(es) hoy",
+    moodViewJournal: "Ver diario",
+    // ---- Motivational messages ----
+    motiv0: "Hoy es el primer día de tu nueva vida.",
+    motiv3: "Los primeros días son los más duros. Estás aguantando.",
+    motiv7: "Una semana sin juego ya es una victoria.",
+    motiv30: "Estás recuperando el control. Cada día cuenta.",
+    motiv90: "Tu cerebro se está reparando. No te rindas.",
+    motiv90plus: "Eres una inspiración para los demás.",
+    // ---- Daily challenges ----
+    challenge1: "Anota 3 cosas por las que estás agradecido",
+    challenge2: "Llama a un ser querido y dile que lo aprecias",
+    challenge3: "Haz 10 minutos de meditación",
+    challenge4: "Escribe en tu diario cómo te sientes",
+    challenge5: "Revisa tus ahorros y felicítate",
+    challenge6: "Comparte tu testimonio con la comunidad",
+    challenge7: "Lee un artículo sobre recuperación",
+    challenge8: "Haz actividad física durante 20 min",
+    challenge9: "Identifica tu mayor desencadenante hoy",
+    challenge10: "Practica respiración 4-7-8 durante 5 minutos",
+    challenge11: "Visualiza tu futuro sin juego durante 3 minutos",
+    challenge12: "Escribe una carta a tu yo del futuro",
+    dayLabel: "Día",
+    // ---- Task 15-c additional keys (ES) ----
+    backToDashboard: "Volver al panel",
+    guestName: "Invitado",
+    version: "Versión",
+    export: "Exportar",
+    import: "Importar",
+    genderMale: "Hombre",
+    genderFemale: "Mujer",
+    genderUndefined: "Sin definir",
+    planLabel: "Plan",
+    planFreeDesc: "Acceso a funciones básicas",
+    planPremiumDesc: "Recuperación completa desbloqueada",
+    planMentorDesc: "Guías a la comunidad",
+    planPsychologistDesc: "Perfil profesional certificado",
+    planDiscovery: "Descubrimiento",
+    upgradeToPremium: "Pasar a Premium",
+    manageSubscription: "Gestionar mi suscripción",
+    // Zerobet 2.0.5 — Subscription management
+    backToSettings: "Volver a los ajustes",
+    subscriptionTitle: "Mi suscripción",
+    subscriptionActiveBadge: "Activa",
+    subscriptionCycleMonthly: "Facturación mensual vía Mobile Money",
+    subscriptionCycleAnnual: "Facturación anual vía Mobile Money",
+    subscriptionCycleMonthlyShort: "al mes",
+    subscriptionCycleAnnualShort: "al año",
+    subscriptionActiveSince: "Suscrito desde el {date}",
+    subscriptionActiveSinceUnknown: "Suscripción activa",
+    subscriptionNextRenewal: "Próxima renovación: {date}",
+    subscriptionCancel: "Cancelar mi suscripción",
+    subscriptionCancelConfirmTitle: "¿Cancelar la suscripción?",
+    subscriptionCancelConfirmDesc: "Conservarás el acceso Premium hasta el final del período actual. Después tu cuenta volverá al plan gratuito y algunas funciones volverán a estar limitadas. Tu progreso y tu racha nunca se pierden.",
+    subscriptionCancelKeep: "Conservar mi suscripción",
+    subscriptionCancelYes: "Sí, cancelar",
+    subscriptionCancelledToast: "Suscripción cancelada. Tu progreso queda intacto 💚",
+    subscriptionHistoryTitle: "Historial de pagos",
+    subscriptionSuccessCount: "{n} pago(s) exitoso(s)",
+    subscriptionNoPayments: "Aún no hay pagos",
+    subscriptionNoPaymentsDesc: "Tus transacciones de Mobile Money aparecerán aquí tras tu primera suscripción.",
+    subscriptionLoadError: "No se pudo cargar el historial de pagos.",
+    subscriptionStatus_success: "Exitoso",
+    subscriptionStatus_failed: "Fallido",
+    subscriptionStatus_pending: "Pendiente",
+    subscriptionStatus_processing: "Procesando",
+    subscriptionFailReason: "Motivo: {reason}",
+    subscriptionFail_insufficient_funds: "Fondos insuficientes",
+    subscriptionFail_unknown: "Transacción rechazada por el operador",
+    subscriptionServerVerified: "Confirmado en el servidor",
+    subscriptionStatus_expired: "Expirado",
+    subscriptionSurveyTitle: "De acuerdo. Nos entristece verte partir 🥲",
+    subscriptionSurveyDesc: "Tus comentarios nos ayudan a hacer Zerobet más útil para ti y para los demás. Es opcional y anónimo.",
+    surveyReasonPrice: "Es demasiado caro",
+    surveyReasonUnused: "No uso lo suficiente las funciones Premium",
+    surveyReasonBreak: "Solo estoy tomando un descanso",
+    surveyReasonTechnical: "Problema técnico",
+    surveyReasonOther: "Otra razón",
+    surveyCommentPlaceholder: "¿Una palabra para nosotros? (opcional)",
+    surveySend: "Enviar",
+    surveySkip: "Omitir",
+    surveyThanksToast: "Gracias, tu opinión importa 🙏",
+    chatLoadOlder: "Mensajes más antiguos",
+    chatLoadingOlder: "Cargando…",
+    chatHistoryStart: "Inicio de la conversación",
+    subscriptionTrustNote: "Pagos seguros vía operadores de Mobile Money autorizados. Zerobet nunca almacena tu número completo.",
+    // Zerobet 2.0.9 — Mis datos (centro RGPD)
+    dataRightsTitle: "Mis datos",
+    dataRightsSubtitle: "Transparencia total: mira lo que Zerobet guarda, descárgalo o bórralo en segundos.",
+    dataRightsInventoryTitle: "Lo que conservamos",
+    dataRightsLocalTitle: "En tu dispositivo",
+    dataRightsLocalDesc: "Tu progreso vive primero en tu teléfono: racha, XP, diario. Nada se envía sin tu consentimiento.",
+    dataRightsChipStreak: "Racha de {n} día(s)",
+    dataRightsChipLevel: "Nivel {level}",
+    dataRightsChipJournal: "{n} entrada(s) de diario",
+    dataRightsChipPlan: "Plan: {plan}",
+    dataRightsCloudTitle: "Copia en la nube",
+    dataRightsCloudDesc: "Una copia de seguridad ligada a tu identificador anónimo, para restaurar tras una reinstalación.",
+    dataRightsSyncedAt: "Sincronizado: {date}",
+    dataRightsNoCloud: "Nunca sincronizado",
+    dataRightsPaymentsTitle: "Pagos",
+    dataRightsPaymentsDesc: "Historial de tus transacciones Mobile Money — número siempre enmascarado.",
+    dataRightsPaymentsCount: "{n} transacción(es)",
+    dataRightsSpentTotal: "{amount} FCFA gastados",
+    dataRightsExportTitle: "Exportar mis datos",
+    dataRightsExportDesc: "Derecho de acceso y portabilidad: un archivo JSON completo — progreso local, copia del servidor y pagos.",
+    dataRightsExportBtn: "Descargar mi archivo (JSON)",
+    dataRightsExporting: "Preparando tu archivo…",
+    dataRightsExportDone: "Archivo descargado 📥",
+    dataRightsExportError: "Error al exportar. Comprueba tu conexión e inténtalo de nuevo.",
+    dataRightsEraseTitle: "Derecho al borrado",
+    dataRightsEraseDesc: "Elimina la copia en la nube y el historial de pagos de nuestros servidores. Tu progreso local y tu racha se conservan.",
+    dataRightsEraseBtn: "Borrar datos de la nube",
+    dataRightsEraseConfirmTitle: "¿Borrar tus datos del servidor?",
+    dataRightsEraseConfirmDesc: "Esta acción es permanente: la copia en la nube y todo el historial de pagos se eliminarán de nuestros servidores. Siempre podrás crear una copia nueva desde este dispositivo.",
+    dataRightsEraseAck: "Entiendo que esta acción es permanente.",
+    dataRightsEraseConfirmBtn: "Sí, borrar todo",
+    dataRightsEraseCancel: "Cancelar",
+    dataRightsEraseDone: "Datos del servidor eliminados 🗑️",
+    dataRightsEraseError: "Error al eliminar. Inténtalo de nuevo.",
+    dataRightsLoadError: "No se pudo cargar el inventario de tus datos.",
+    dataRightsNote: "Zerobet es local-first: borrar tus datos del servidor nunca afectará a tu racha ni a tu diario en este dispositivo.",
+    settingsDataRightsRow: "Mis datos y RGPD",
+    settingsDataRightsRowDesc: "Inventario, exportación completa y derecho al borrado.",
+    // Zerobet 2.0.6 — Smart reminders (local notifications)
+    reminderCheckinTitle: "Tu check-in te espera 💚",
+    reminderCheckinBody: "Tómate 30 segundos para ti. Tu racha de {n} día(s) sigue contigo.",
+    reminderCravingTitle: "¿Cómo te sientes?",
+    reminderCravingBody: "Es la hora en que pueden aparecer los antojos. Respira — tú tienes el control.",
+    reminderQuoteTitle: "Tu frase del día ✨",
+    reminderWeeklyTitle: "Tu informe semanal está listo 📊",
+    reminderWeeklyBody: "Descubre tu balance: días limpios, entradas, antojos vencidos y XP ganado.",
+    // Zerobet 2.0.6 — Notification settings screen i18n
+    notifDaily: "Recordatorio diario",
+    notifDailyDesc: "Un recordatorio diario para tu check-in.",
+    notifCraving: "Check-in de antojos",
+    notifCravingDesc: "Comprueba cómo estás en las horas críticas.",
+    notifMilestones: "Alertas de hitos",
+    notifMilestonesDesc: "Celebra cada hito alcanzado (7, 14, 30 días…).",
+    notifCommunity: "Actividad de la comunidad",
+    notifCommunityDesc: "Respuestas, menciones y citas de la comunidad.",
+    notifWeekly: "Informe semanal",
+    notifWeeklyDesc: "Un resumen de tu semana cada domingo.",
+    notifQuotes: "Frases de motivación",
+    notifQuotesDesc: "Una frase motivante cada día a partir de las 18h.",
+    notifSilent: "Horas silenciosas",
+    notifSilentDesc: "Sin notificaciones durante tus horas de sueño.",
+    notifSchedCraving: "Check-in de antojos (si activado)",
+    notifSchedQuote: "Frase de motivación",
+    notifSchedTimeSunday: "Dom. 09:00",
+    notifSchedTimeAnytime: "En cualquier momento",
+    notifTimeHeading: "Hora del recordatorio diario",
+    notifTimeSub: "Cuándo recibirás tu check-in",
+    notifTimeAria: "Hora del recordatorio diario",
+    notifTimeNote: "Recibirás un recordatorio cada día a las {time}",
+    notifSilentHeading: "Horas silenciosas",
+    notifSilentSub: "Paz mientras duermes",
+    notifSilentStart: "Inicio",
+    notifSilentEnd: "Fin",
+    notifSilentStartAria: "Inicio de las horas silenciosas",
+    notifSilentEndAria: "Fin de las horas silenciosas",
+    notifSilentNote: "No se enviarán notificaciones entre {start} y {end} (excepto urgencias).",
+    notifTestHeading: "Probar las notificaciones",
+    notifTestSub: "Comprueba que todo funciona",
+    notifTestSend: "Enviar una notificación de prueba",
+    notifTestEnableFirst: "Activa las notificaciones primero",
+    notifTestTitle: "Zerobet",
+    notifTestBody: "Esta es una notificación de prueba. ¡Eres fuerte! 💪",
+    notifTestSentToast: "¡Notificación de prueba enviada! 👍",
+    notifLocalScopeNote: "Los recordatorios se envían mientras la app esté abierta en tu dispositivo.",
+    notifScheduleHeading: "Tu programa de notificaciones",
+    notifScheduleSub: "Vista previa de tu semana",
+    notifPrivacyHeading: "Tus notificaciones son privadas",
+    notifPrivacyDesc: "No tenemos acceso al contenido de tus notificaciones. Se generan localmente en tu dispositivo.",
+    notifFooterBadge: "Un recordatorio amable",
+    notifFooterText: "Las notificaciones te ayudan a seguir el camino de la recuperación. Pero recuerda: tú dominas tu teléfono, no al revés.",
+    notifStatusGranted: "Notificaciones activadas",
+    notifStatusBlocked: "Notificaciones bloqueadas",
+    notifStatusEnable: "Activa las notificaciones",
+    notifStatusDescGranted: "Recibirás los recordatorios importantes. Para desactivarlos, abre los ajustes de tu navegador.",
+    notifStatusDescBlocked: "Permite las notificaciones en los ajustes de tu navegador para recibir recordatorios.",
+    notifStatusDescEnable: "Recibe recordatorios amables para seguir el camino de la recuperación.",
+    notifAllowButton: "Permitir notificaciones",
+    notifGrantedTip: "Consejo: para desactivarlas más tarde, abre los ajustes del sitio en tu navegador.",
+    notifReenableTitle: "Cómo reactivarlas:",
+    notifReenableDesc: "Haz clic en el icono del candado en la barra de direcciones → Permite las notificaciones → Recarga la página.",
+    notifRecheckButton: "Ya las reactivé — comprobar de nuevo",
+    notifReloadHint: "Recarga la página después de cambiar el permiso.",
+    notifInstallHeading: "Instalar la aplicación",
+    notifInstallSub: "Acceso rápido + notificaciones nativas",
+    notifInstalledBadge: "Aplicación instalada ✓",
+    notifInstallDesc: "Instala Zerobet en tu teléfono para acceso rápido y notificaciones.",
+    notifInstallButton: "Instalar",
+    notifIosLabel: "iOS:",
+    notifIosSteps: "Safari → Compartir → « Añadir a inicio »",
+    notifAndroidLabel: "Android:",
+    notifAndroidSteps: "Chrome → menú ⋮ → « Instalar aplicación »",
+    notifPrefsHeading: "Mis preferencias",
+    notifPrefsSub: "Elige lo que te hable",
+    notifInstalledToast: "¡Zerobet está instalado! 🎉",
+    notifInstallHint: "Para instalar: abre el menú de tu navegador y elige « Instalar aplicación » o « Añadir a pantalla de inicio ».",
+    notifInstallStartedToast: "¡Instalación iniciada! 📲",
+    notifInstallCancelledToast: "Instalación cancelada. Podrás intentarlo más tarde.",
+    notifInstallErrorToast: "No se pudo instalar la aplicación en este momento.",
+    settingsLanguageLabel: "Idioma de la app",
+    chooseLanguage: "Elige un idioma",
+    chooseGender: "Elige un género",
+    chooseTheme: "Elige un tema",
+    settingsYourName: "Tu nombre",
+    settingsNamePlaceholder: "Introduce tu nombre...",
+    settingsDataProtectedDesc: "Tus datos son confidenciales y nunca se venden. Almacenamiento local seguro.",
+    // ---- Zerobet 2.0: copia de seguridad y exportación RGPD ----
+    settingsBackupTitle: "Copia de seguridad y Datos",
+    settingsBackupSync: "Copia automática",
+    settingsBackupSyncDesc: "Tu progreso (racha, XP, metas) se guarda de forma anónima en la nube. Nunca se envía el contenido del diario ni del chat.",
+    settingsBackupLastSync: "Última copia: {date}",
+    settingsBackupNever: "Aún sin copia de seguridad",
+    settingsBackupSyncNow: "Sincronizar",
+    settingsBackupSyncing: "Sincronizando…",
+    settingsBackupRetry: "Reintentar",
+    settingsBackupStarted: "Copia iniciada…",
+    settingsExportDesc: "Descarga todos tus datos en JSON (RGPD)",
+    settingsExportDone: "Exportación descargada",
+    settingsExportError: "Error al exportar",
+    settingsThemeAuto: "Automático",
+    themeLockNote: "El tema oscuro está bloqueado actualmente. El modo automático sigue al sistema.",
+    starfieldIntensity: "Intensidad del cielo estrellado",
+    glassEffect: "Efecto cristal",
+    glassEffectDesc: "Activa el desenfoque translúcido en las tarjetas",
+    notificationPrefs: "Preferencias de notificación",
+    streakReminders: "Recordatorios de racha",
+    streakRemindersDesc: "Recordatorio diario para preservar tu racha",
+    dailyMotivation: "Motivación diaria",
+    dailyMotivationDesc: "Recibe una cita motivadora cada día",
+    newMilestones: "Nuevos hitos",
+    newMilestonesDesc: "Recibe aviso al desbloquear un rango",
+    verification: "Check-in",
+    verificationDesc: "Recordatorio para tu check-in diario",
+    weeklySummary: "Resumen semanal",
+    weeklySummaryDesc: "Tus estadísticas semanales cada domingo",
+    preferredNotificationTime: "Hora preferida de notificación",
+    dataManagement: "Gestión de datos",
+    dataSize: "Tamaño de los datos",
+    clearCache: "Borrar caché",
+    exportImportDesc: "La exportación contiene todos tus datos locales (racha, diario, insignias, ajustes). La importación sustituye los datos existentes.",
+    privacySecurity: "Privacidad y Seguridad",
+    appLock: "Bloqueo de la app",
+    appLockDesc: "Protege el acceso con un código PIN",
+    discreteMode: "Modo discreto",
+    discreteModeDesc: "Oculta el nombre de la app en apps recientes",
+    autoLockSession: "Sesión automática",
+    autoLockDesc: "Bloquea automáticamente la app tras {n} minuto(s) de inactividad",
+    soundHaptics: "Sonido y Hápticos",
+    soundDescFull: "Sonidos de botones y logros",
+    hapticsDescFull: "Respuesta háptica en las interacciones",
+    appVersion: "Versión de la app",
+    contactUs: "Contáctanos",
+    aboutMission: "Zerobet ayuda a los apostantes africanos a liberarse de la adicción",
+    designedWithCare: "Hecho con cariño para nuestra comunidad",
+    resetDesc: "Esta acción borrará todos tus datos (racha, diario, insignias, ajustes...). Irreversible.",
+    resetAppConfirmTitle: "¿Restablecer la app?",
+    resetAppConfirmDesc: "Todos tus datos se borrarán definitivamente: días de racha, diario, insignias, testimonios, ajustes. Volverás a cero. Esta acción es irreversible.",
+    dataExportedToast: "Datos exportados con éxito 📤",
+    dataExportError: "Error al exportar",
+    dataImportedToast: "Datos importados. Reiniciando… 📥",
+    dataImportError: "Archivo inválido — importación cancelada",
+    fileReadError: "Lectura del archivo fallida",
+    cacheClearedToast: "Caché borrada 🧹",
+    cacheClearError: "Error al limpiar",
+    profileTitleMain: "Mi Perfil",
+    profileStatDaysClean: "Días sin juego",
+    profileStatSaved: "Ahorrado",
+    profileStatBadges: "Insignias",
+    profileStatCrises: "Crises gestionadas",
+    profileDaysCount: "{n} días",
+    profileNoCrisis: "Ninguna crisis",
+    profileMemberSince: "Miembro desde",
+    profileMyGoals: "Mis objetivos",
+    profileNoGoals: "Ningún objetivo seleccionado. Puedes añadir durante la incorporación.",
+    profileSignature: "Tu firma de compromiso",
+    profileSignatureAlt: "Firma de compromiso",
+    profileRecoveryStats: "Estadísticas de recuperación",
+    profileActivity: "Actividad ({n} semanas)",
+    profileActivitiesCount: "{n} actividad(es)",
+    profileHeatmapLess: "Menos",
+    profileHeatmapMore: "Más",
+    profileHeatmapDesc: "Cada celda representa un día. Cuanto más verde, más activo fuiste (diario, meditación, check-ins, crisis gestionadas).",
+    profileDataPrivate: "Tus datos son privados y se almacenan localmente en tu dispositivo.",
+    profileAccessSettings: "Ir a ajustes",
+    profileAvatarColor: "Color del avatar",
+    profilePhotoAdd: "Añadir foto de perfil",
+    profilePhotoChange: "Cambiar foto de perfil",
+    profilePhotoRemove: "Eliminar foto de perfil",
+    profilePhotoUpdated: "Foto de perfil actualizada",
+    profilePhotoRemoved: "Foto de perfil eliminada",
+    profilePhotoErrorType: "El archivo debe ser una imagen",
+    profilePhotoErrorSize: "La imagen supera 8 MB",
+    profilePhotoErrorRead: "No se pudo leer la imagen",
+    atlasContextSummary: "{days} días, plan {plan}",
+    atlasMessagesCount: "{n} mensaje(s)",
+    atlasContextPrefix: "Atlas conoce tu contexto:",
+    atlasAnalyzeJournalPrompt: "Analiza mi diario y dime qué patrones ves.",
+    atlasAskMotivationPrompt: "Necesito motivación para seguir.",
+    atlasSeeProgressPrompt: "Muéstrame mi progreso y lo que he logrado.",
+    atlasCrisisPrompt: "Tengo ganas de apostar, ayúdame.",
+    atlasCurrentStreak: "Tu racha actual",
+    atlasDays: "días",
+    atlasScore: "Puntación",
+    atlasCrisisDesc: "Si sientes un impulso fuerte de apostar, usa el botón de emergencia. Atlas también está aquí para ayudarte a verbalizarlo.",
+    atlasTalkToAtlas: "Hablar con Atlas",
+    atlasGreeting: "Hola, soy Atlas",
+    atlasGreetingDesc: "Tu coach personal. Elige una pregunta para empezar, o escribe tu propio mensaje.",
+    atlasClearConfirmDesc: "Todos los {n} mensajes se borrarán permanentemente. Esta acción es irreversible.",
+    atlasClearAction: "Borrar",
+    atlasFallbackMessage: "Estoy aquí para ti. Cuéntame qué pasa.",
+    atlasLockedTitle: "Atlas AI Coach",
+    atlasCanDo: "Atlas puede:",
+    atlasCanDo1: "Analizar tu diario e identificar tus patrones",
+    atlasCanDo2: "Darte motivación a medida",
+    atlasCanDo3: "Celebrar tus hitos con mensajes personalizados",
+    atlasCanDo4: "Ayudarte en una crisis con técnicas",
+    atlasUnlock: "Desbloquear Atlas AI",
+    // ---- Zerobet 2.0: cuotas freemium (Atlas AI + Diario) ----
+    atlasQuotaTitle: "Cuota gratuita alcanzada",
+    atlasQuotaDesc: "Has usado tus {n} mensajes gratuitos con Atlas hoy. Pásate a Premium para coaching ilimitado.",
+    atlasQuotaUsedToday: "Mensajes usados hoy",
+    atlasQuotaCount: "{used} / {total}",
+    atlasQuotaReset: "Tu cuota se reinicia a medianoche. ¡Vuelve mañana!",
+    atlasQuotaChip: "{n} restantes",
+    journalQuotaTitle: "Diario gratuito agotado",
+    journalQuotaDesc: "Has usado tus {n} entradas gratuitas de la semana. Pásate a Premium para escribir sin límites.",
+    journalQuotaUsedThisWeek: "Entradas usadas esta semana",
+    journalQuotaReset: "Tu cuota se reinicia el lunes. ¡Hasta pronto!",
+    journalQuotaChip: "{n} / 3 esta sem.",
+    // ---- Zerobet 2.0: chat en vivo + restauración en la nube ----
+    communityTabChat: "Chat en vivo",
+    chatQuotaRemaining: "{n} mensajes gratuitos restantes hoy",
+    chatQuotaEmpty: "Cuota diaria alcanzada — la lectura sigue libre",
+    chatQuotaToast: "Límite de {n} mensajes/día alcanzado. ¡Pásate a Premium para chatear sin límites!",
+    chatQuotaUpgrade: "Pásate a Premium",
+    settingsRestoreData: "Restaurar desde la nube",
+    settingsRestoreDesc: "Recupera tu progreso guardado (tras reinstalar)",
+    settingsRestoreDone: "¡Progreso restaurado con éxito!",
+    settingsRestoreNone: "No se encontró copia para este dispositivo",
+    settingsRestoreError: "Error al restaurar",
+    // ---- Zerobet 2.0: informe semanal ----
+    weeklyReportTitle: "Informe semanal",
+    weeklyReportPeriod: "Del {from} al {to}",
+    weeklyReportClean: "Días limpios",
+    weeklyReportJournal: "Entradas",
+    weeklyReportPanic: "Crisis manejadas",
+    weeklyReportXP: "XP ganados",
+    weeklyReportVerdictEmpty: "Descubrir",
+    weeklyReportVerdictStart: "Primeros pasos",
+    weeklyReportVerdictGreat: "Excelente",
+    weeklyReportVerdictGood: "Sólida",
+    weeklyReportVerdictTough: "Ánimo",
+    weeklyReportVerdictEmptyDesc: "Haz tu primer check-in y tus estadísticas semanales aparecerán aquí.",
+    weeklyReportVerdictStartDesc: "Tu primera semana está en marcha. Cada día sin apuestas construye el siguiente.",
+    weeklyReportVerdictGreatDesc: "¡Semana extraordinaria! Tu constancia demuestra que el cambio puede durar.",
+    weeklyReportVerdictGoodDesc: "Sigues adelante. La constancia importa más que la perfección — sigue así.",
+    weeklyReportVerdictToughDesc: "Esta semana fue dura, pero te quedaste. Así es exactamente como se sana.",
+    blockerProtection247: "Protección activa 24/7",
+    blockerProtectionActive: "Protección activa",
+    blockerAllSitesBlocked: "Todos los sitios peligrosos están bloqueados",
+    blockerHowItWorks: "Cómo funciona",
+    blockerHowItWorksDesc: "Activa el bloqueador para cortar el acceso a +50 sitios de apuestas. El Modo Fuerte bloquea todo durante 72h sin posibilidad de desactivar. Tu voluntad se convierte en tecnología.",
+    blockerStatus: "Estado del bloqueador",
+    blockerProtected: "Protegido",
+    blockerSitesBlockedStatus: "Los sitios están bloqueados",
+    blockerVulnerable: "Eres vulnerable",
+    blockerBlocked: "Bloqueados",
+    blockerStrictModeShort: "Modo Fuerte",
+    blockerStrict72h: "Bloqueo 72h",
+    blockerBypassAttempts: "Intentos bloqueados",
+    blockerBypassAttemptsDesc: "Desde el inicio de tu camino",
+    blockerStrictActiveBanner: "Modo Fuerte activo. No se puede desbloquear hasta que termine la cuenta atrás.",
+    blockerMostDangerous: "Sitios más peligrosos",
+    blockerSiteAdded: "Sitio añadido",
+    blockerSiteAddedDesc: "{name} ahora está bloqueado",
+    blockerSiteUrlPlaceholder: "Ej: misitio.com",
+    blockerAddButton: "Añadir",
+    blockerFooterReassurance: "Los sitios nuevos se añaden automáticamente a la lista. Puedes concentrarte en tu recuperación, del resto nos encargamos.",
+    blockerPremiumFeature: "Función Premium",
+    blockerPremiumDesc: "Corta el acceso a +50 sitios de apuestas, activa el Modo Fuerte 72h y recupera el control total de tus impulsos.",
+    blockerPremiumFeature1: "Bloqueo instantáneo de 50+ sitios",
+    blockerPremiumFeature2: "Modo Fuerte bloqueado 72h",
+    blockerPremiumFeature3: "Actualizaciones automáticas",
+    blockerPremiumFeature4: "Categorías: Internacional, África, Cripto, Francia",
+    blockerUnlockWithPremium: "Desbloquear con Premium",
+    blockerLater: "Más tarde",
+    meditationTitleFull: "Meditación y Respiración",
+    meditationDaysConsecutive: "días consecutivos",
+    meditationDay: "día",
+    meditationStreak0: "Empieza tu racha hoy 🌱",
+    meditationStreak7: "Sigue, cada día cuenta 💪",
+    meditationStreak30: "Tu rutina se asienta, bravo 🔥",
+    meditationStreak30plus: "Eres un ejemplo de constancia 🌟",
+    meditationSwipeHint: "Desliza para explorar →",
+    meditationSessions: "sesiones",
+    meditationSessionDone: "Sesión de meditación completada",
+    statsTitleMain: "Mis Estadísticas",
+    statsScoreLabel: "Puntuación",
+    // ---- Quiz questions (Task 16-b) ----
+    quizQ1: "¿Cuánto gastas en apuestas por semana?",
+    quizQ1Opt0: "< 2.000 FCFA",
+    quizQ1Opt1: "2.000 - 10.000 FCFA",
+    quizQ1Opt2: "10.000 - 50.000 FCFA",
+    quizQ1Opt3: "> 50.000 FCFA",
+    // Dynamic Q1 options that adapt to the user's selected currency (Task 17-a)
+    quizQ1LessThan: "Menos de {amount}",
+    quizQ1Range: "{min} - {max}",
+    quizQ1MoreThan: "Más de {amount}",
+    quizQ2: "¿Apuestas incluso cuando ya has perdido ese día?",
+    quizQ2Opt0: "Nunca",
+    quizQ2Opt1: "A veces",
+    quizQ2Opt2: "A menudo",
+    quizQ2Opt3: "Siempre",
+    quizQ3: "¿Alguna vez has mentido a un ser querido sobre tus apuestas o pérdidas?",
+    quizQ3Opt0: "No",
+    quizQ3Opt1: "Una vez",
+    quizQ3Opt2: "A veces",
+    quizQ3Opt3: "Regularmente",
+    quizQ4: "¿Apuestas para 'recuperar' tus pérdidas anteriores?",
+    quizQ4Opt0: "Nunca",
+    quizQ4Opt1: "A veces",
+    quizQ4Opt2: "A menudo",
+    quizQ4Opt3: "Casi siempre",
+    quizQ5: "¿Piensas en las apuestas durante el trabajo o los estudios?",
+    quizQ5Opt0: "Rara vez",
+    quizQ5Opt1: "A veces",
+    quizQ5Opt2: "A menudo",
+    quizQ5Opt3: "Muy a menudo",
+    quizQ6: "¿Has intentado dejarlo y no has podido?",
+    quizQ6Opt0: "No",
+    quizQ6Opt1: "1-2 veces",
+    quizQ6Opt2: "Varias veces",
+    quizQ6Opt3: "Imposible",
+    quizQ7: "¿Sientes ansiedad o irritabilidad cuando no apuestas?",
+    quizQ7Opt0: "Nunca",
+    quizQ7Opt1: "Ligeramente",
+    quizQ7Opt2: "A menudo",
+    quizQ7Opt3: "Siempre",
+    quizQ8: "¿Has usado dinero destinado a otra cosa para apostar?",
+    quizQ8Opt0: "No",
+    quizQ8Opt1: "Rara vez",
+    quizQ8Opt2: "A veces",
+    quizQ8Opt3: "Regularmente",
+    quizQ9: "¿Te han hablado seres queridos sobre tus apuestas?",
+    quizQ9Opt0: "No",
+    quizQ9Opt1: "Sí, una vez",
+    quizQ9Opt2: "Varias veces",
+    quizQ9Opt3: "Conflictos",
+    quizQ10: "¿Sientes una subida de adrenalina cuando haces una apuesta?",
+    quizQ10Opt0: "No",
+    quizQ10Opt1: "Un poco",
+    quizQ10Opt2: "Sí, mucho",
+    quizQ10Opt3: "Necesidad vital",
+    quizQ11: "¿Tienes deudas relacionadas con las apuestas?",
+    quizQ11Opt0: "No",
+    quizQ11Opt1: "Pequeñas deudas",
+    quizQ11Opt2: "Deudas importantes",
+    quizQ11Opt3: "Muy endeudado",
+    quizQ12: "¿Apuestas de noche o muy temprano por la mañana?",
+    quizQ12Opt0: "Nunca",
+    quizQ12Opt1: "Rara vez",
+    quizQ12Opt2: "A veces",
+    quizQ12Opt3: "A menudo",
+    quizQ13: "¿Has sacrificado una comida o necesidades básicas para apostar?",
+    quizQ13Opt0: "No",
+    quizQ13Opt1: "Rara vez",
+    quizQ13Opt2: "A veces",
+    quizQ13Opt3: "A menudo",
+    quizQ14: "¿Te has sentido avergonzado o culpable después de apostar?",
+    quizQ14Opt0: "Nunca",
+    quizQ14Opt1: "A veces",
+    quizQ14Opt2: "A menudo",
+    quizQ14Opt3: "Cada vez",
+    quizQ15: "¿Crees que tienes un problema con las apuestas?",
+    quizQ15Opt0: "No",
+    quizQ15Opt1: "Tal vez",
+    quizQ15Opt2: "Probablemente",
+    quizQ15Opt3: "Definitivamente",
+    // ---- Tutorial accessibility + Parcours artifacts (Task 16-d) ----
+    tutorialAriaLabel: "Tutorial interactivo",
+    artifactSectionLabel: "Historia",
+    artifact1Desc: "Depositado en tu camino al primer amanecer, este cristal brilla con la esperanza de los nuevos comienzos. Ilumina la salida de la sombra.",
+    artifact1Story: "Depositado en tu camino al primer amanecer, este cristal brilla con la esperanza de los nuevos comienzos.",
+    artifact2Desc: "Forjada en las nieblas del despertar, protege tu mente de las ilusiones del juego y disipa la niebla mental de la abstinencia temprana.",
+    artifact2Story: "Forjada en las nieblas del despertar, protege tu mente de las ilusiones del juego.",
+    artifact3Desc: "Tu primera verdadera defensa. Siete días de forja lo han hecho irrompible. Los impulsos ahora rebotan en su superficie.",
+    artifact3Story: "Tu primera verdadera defensa. Siete días de forja lo han hecho irrompible.",
+    artifact4Desc: "Grabadas por antiguos recuperadores, estas runas llevan su sabiduría y fortalecen las vías neuronales dañadas por el juego.",
+    artifact4Story: "Grabadas por antiguos recuperadores, estas runas llevan su sabiduría.",
+    artifact5Desc: "Un mes de conquista. Este cetro corona tu determinación y destierra la duda de tu mente. Reinas sobre tu propio reino.",
+    artifact5Story: "Un mes de conquista. Este cetro corona tu determinación.",
+    artifact6Desc: "Esfera de luz pura, absorbe las tensiones y devuelve la paz. Las tormentas emocionales se calman en su halo.",
+    artifact6Story: "Esfera de luz pura, absorbe las tensiones y devuelve la paz.",
+    artifact7Desc: "Dos meses de presión lo han cristalizado. Nada puede romperlo. Tu voluntad se ha convertido en un cristal indestructible en el centro de tu pecho.",
+    artifact7Story: "Dos meses de presión lo han cristalizado. Nada puede romperlo.",
+    artifact8Desc: "El hito de los 90 días. Tu cerebro ha renacido. Te has convertido en otra persona, forjada por tres meses de sanación neuronal.",
+    artifact8Story: "El hito de los 90 días. Tu cerebro ha renacido. Te has convertido en otra persona.",
+    artifact9Desc: "Cuatro meses de meditación han pulido esta piedra. Revela verdades ocultas y te permite ver los detonantes antes de que aparezcan.",
+    artifact9Story: "Cuatro meses de meditación han pulido esta piedra. Revela verdades ocultas.",
+    artifact10Desc: "Seis meses. El fuego que te destruía ahora te impulsa. El falso estímulo del juego se reemplaza por la verdadera pasión por la vida.",
+    artifact10Story: "Seis meses. El fuego que te destruía ahora te impulsa.",
+    artifact11Desc: "Nueve meses. Bailas con tus impulsos sin volver a temblar jamás. El dominio total de tus impulsos es finalmente tuyo.",
+    artifact11Story: "Nueve meses. Bailas con tus impulsos sin volver a temblar jamás.",
+    artifact12Desc: "UN AÑO. Has conquistado tu libertad. Las generaciones futuras cantarán tu nombre. Eres ahora una leyenda viviente de la recuperación.",
+    artifact12Story: "UN AÑO. Has conquistado tu libertad. Las generaciones futuras cantarán tu nombre.",
+    artifact13Desc: "Dos años. Ya no te estás recuperando. ERES la luz que guía a los demás. Más allá de la sanación, te conviertes en el faro de los buscadores por venir.",
+    artifact13Story: "Dos años. Ya no te estás recuperando. ERES la luz que guía a los demás.",
+    // ---- Parcours screen labels (Task 16-d) ----
+    parcoursQuestTitle: "La Búsqueda de Artefactos",
+    parcoursArtifactsCount: "Camino de Sanación · {n}/{total} artefactos",
+    parcoursEachArtifactCloser: "Cada artefacto te acerca a tu libertad.",
+    parcoursCurrentArtifact: "Artefacto actual",
+    parcoursNextArtifact: "Próximo artefacto: {name}",
+    parcoursNextArtifactLabel: "Próximo artefacto",
+    parcoursDaysUntilRank: "Solo {n} día(s) antes de",
+    parcoursUpcomingPower: "Poder venidero: {name}",
+    parcoursThreshold: "Umbral",
+    parcoursBackToArtifacts: "Volver a los artefactos",
+    parcoursContinueQuest: "Continúa tu búsqueda",
+    parcoursPowerLabel: "Poder · {name}",
+    parcoursPowerNameLabel: "Poder: {name}",
+    parcoursYourEvolution: "Tu evolución",
+    parcoursVoyage: "Viaje de los Artefactos",
+    parcoursTierLabel: "Artefacto {tier} / 13 · {type}",
+    parcoursCurrentBadge: "Actual",
+    parcoursConquered: "Conquistado",
+    parcoursUnknownArtifact: "Artefacto {tier}",
+    parcoursUnknownPower: "Poder misterioso · {type}",
+    parcoursLockedCardDesc: "Este artefacto aún duerme. Sigue tu camino para revelarlo.",
+    parcoursAllUnlockedDesc: "Has desbloqueado todos los artefactos. Eres un maestro de ti mismo.",
+    parcoursFooterMotivationNew1: "Cada día sin apuestas te acerca a un nuevo artefacto.",
+    parcoursFooterMotivationNew2: "Sigue, tu búsqueda es noble.",
+    parcoursMotivTier1: "El inicio siempre es lo más difícil. Pero estás aquí, y eso es lo que importa. Sigue.",
+    parcoursMotivTier3: "Estás encontrando el ritmo. Cada día te aleja un poco más de tu antiguo yo.",
+    parcoursMotivTier5: "Te estás volviendo fuerte. Los impulsos pasan como nubes — ya no te detienen.",
+    parcoursMotivTier7: "Eres parte de la élite. Tu cerebro se repara. Vuelves a ser tú mismo.",
+    parcoursMotivTier9: "Eres una inspiración. Los demás te miran y piensan: es posible.",
+    parcoursMotivTier12: "UN AÑO. Te has ganado tu vida. Eres una leyenda viviente.",
+    parcoursMotivTier13: "Eres un maestro de ti mismo. Libre para siempre. Esta libertad, nadie podrá arrebatártela.",
+    // ---- Daily Insights (Task 18-a) ----
+    dailyInsightTitle: "Perspicacia del día",
+    dailyInsightGenerated: "Generado a partir de tus datos",
+    dailyInsightViewMore: "Ver más",
+    dailyInsightAriaRefresh: "Nueva perspicacia",
+    dailyInsightAriaDot: "Perspicacia {n}",
+    dailyInsightEarly: "Estás en la fase más difícil. Cada día cuenta el doble.",
+    dailyInsightRepair: "Tu cerebro está empezando a sanar. Los impulsos disminuirán.",
+    dailyInsightControl: "Estás recuperando el control. La neuroplasticidad trabaja para ti.",
+    dailyInsightInspiration: "Eres una inspiración. Comparte tu historia con la comunidad.",
+    dailyInsightJournalPositive: "Tus entradas recientes muestran un estado de ánimo positivo. Este impulso es valioso — sigue alimentándolo.",
+    dailyInsightJournalTension: "Tus escritos revelan tensión. Identifica tus desencadenantes y usa el botón de emergencia antes de que el impulso aumente.",
+    dailyInsightJournalDefault: "Tu diario te da un espejo de tus emociones. Escribir regularmente acelera tu sanación.",
+    dailyInsightPanic: "Resististe {count} impulso(s) esta semana. Siéntete orgulloso de ti.",
+    dailyInsightDefault: "Continúa tu camino. Cada día te acerca más a la libertad.",
+    // ---- Heatmap Calendar (Task 18-a) ----
+    heatmapTitle: "Tu año de recuperación",
+    heatmapSubtitle: "{clean} días limpios de los últimos {total}",
+    heatmapCurrentStreak: "Racha actual",
+    heatmapLongestStreak: "Racha más larga",
+    heatmapCleanDays: "Días limpios",
+    heatmapRecoveryRate: "Tasa de recuperación",
+    heatmapLess: "Menos",
+    heatmapMore: "Más",
+    heatmapRelapse: "Recaída",
+    heatmapTapToRate: "Toca la casilla de hoy para calificar tu día",
+    heatmapDayUnitShort: "d",
+    heatmapCellFuture: "Día próximo",
+    heatmapCellNoData: "Sin datos",
+    heatmapCellRelapse: "Recaída",
+    heatmapCellDifficult: "Día difícil",
+    heatmapCellCorrect: "Día correcto",
+    heatmapCellExcellent: "Día excelente",
+    heatmapCellClean: "Día limpio",
+    heatmapCellUpcoming: "Próximo",
+    heatmapTodayAria: "Hoy — {tooltip}. Toca para calificar tu día.",
+    heatmapRatingTitle: "¿Cómo estuvo tu día?",
+    heatmapRatingDesc: "Sé honesto — cada día cuenta.",
+    heatmapDifficult: "Difícil",
+    heatmapDifficultDesc: "Día duro, pero no cediste",
+    heatmapCorrect: "Correcto",
+    heatmapCorrectDesc: "Algunos impulsos, pero aguantaste",
+    heatmapExcellent: "Excelente",
+    heatmapExcellentDesc: "Te sientes fuerte, sin impulsos",
+    heatmapCracked: "Cedí",
+    heatmapCrackedDesc: "No se acabó — empecemos el protocolo",
+    heatmapDayRecorded: "Día registrado",
+    heatmapDayRecordedDesc: "{label} • Gracias por compartir.",
+    heatmapRelapseTitle: "Estamos aquí para ti.",
+    heatmapRelapseDesc: "Protocolo de 24h activado. Respira, vamos juntos.",
+    heatmapClose: "Cerrar",
+    // ---- Daily Quotes (Task 18-a) ----
+    quote1Text: "El dolor de la disciplina pesa gramos. El dolor del arrepentimiento pesa toneladas.",
+    quote1Author: "Jim Rohn",
+    quote2Text: "No has fracasado mientras no hayas dejado de intentarlo.",
+    quote2Author: "Proverbio",
+    quote3Text: "El mayor honor de un hombre es cumplir su palabra.",
+    quote3Author: "Proverbio africano",
+    quote4Text: "Un hombre que se domina a sí mismo vale más que uno que conquista una ciudad.",
+    quote4Author: "Proverbio",
+    quote5Text: "Cada día sin apuestas es una victoria sobre ti mismo.",
+    quote5Author: "Zerobet",
+    quote6Text: "Lo que no te mata te hace más fuerte. Pero lo que te enriquece te hace libre.",
+    quote6Author: "Zerobet",
+    quote7Text: "El coraje no es la ausencia de miedo, sino la decisión de que algo es más importante.",
+    quote7Author: "Ambrose Redmoon",
+    quote8Text: "Eres el héroe de tu propia historia.",
+    quote8Author: "Zerobet",
+    quote9Text: "La adicción miente. La recuperación dice la verdad.",
+    quote9Author: "Zerobet",
+    quote10Text: "Tu futuro lo crea lo que haces hoy, no mañana.",
+    quote10Author: "Proverbio",
+    quote11Text: "El dinero ahorrado es dinero ganado.",
+    quote11Author: "Benjamin Franklin",
+    quote12Text: "No puedes volver atrás. Pero puedes empezar ahora.",
+    quote12Author: "Zerobet",
+    // ---- Task 18-b: Community + Journal i18n key aliases + seed forum posts ----
+    community100Days: "100+ días",
+    communityWriteTestimony: "Escribir mi testimonio",
+    community1DayAgo: "hace 1 día",
+    communityDaysAgo: "hace {n} días",
+    communityTabTestimonials: "Testimonios",
+    communityTabForum: "Foro",
+    communityTabMentors: "Mentores",
+    communityTabPsychologists: "Psicólogos",
+    journalEntries: "{n} entrada(s)",
+    journalLast7Days: "Últimos 7 días",
+    journalMoodFrustrated: "Frustrado",
+    journalMoodAnxious: "Ansioso",
+    journalMoodCalm: "Calma",
+    journalMoodProud: "Orgulloso",
+    journalMoodStrong: "Fuerte",
+    communityZerobetTeam: "Equipo Zerobet",
+    forumSeed0Title: "Otra semana más, ya no lo creía",
+    forumSeed0Content: "Día 7 sin apuestas. Pensé que era imposible. El botón de pánico me salvó dos veces esta semana. Gracias comunidad, aguantamos juntos.",
+    forumSeed0Reply0: "Sigue hermano, el hito de los 30 días llega rápido. Sé orgulloso de cada día.",
+    forumSeed1Title: "Difícil hoy, quiero recargar mi cuenta",
+    forumSeed1Content: "No lo hice pero el deseo es fuerte. Mantuve mi teléfono lejos de mí durante 1 hora. ¿Qué hacen cuando sube el deseo?",
+    forumSeed2Title: "Las matemáticas de las apuestas: por qué SIEMPRE pierdes",
+    forumSeed2Content: "1xBet toma un 7% de margen en cada apuesta. En 100 apuestas de 10 000 FCFA, pierdes en promedio 70 000 FCFA, sin importar tu «corazonada». La casa siempre gana. Recupera el control.",
+    // ---- Task 18-c: Goals, Affirmations, Triggers, Withdrawal, Mentorship, Program, Artifact names ----
+    // Goals screen — new full set
+    goalsTransformation: "Tu transformación",
+    goalsTotal: "TOTAL",
+    goalsInProgress: "EN CURSO",
+    goalsCompletedLabel: "COMPLETADOS",
+    goalsAll: "Todos",
+    goalCategoryHealth: "Salud",
+    goalCategoryFinance: "Dinero",
+    goalCategoryRelationship: "Relaciones",
+    goalCategoryCareer: "Carrera",
+    goalCategoryPersonal: "Personal",
+    goalCategorySpiritual: "Espiritual",
+    goalsNewLifeGoal: "Nuevo objetivo de vida",
+    goalsEmpty: "Sin objetivos",
+    goalsEmptyDesc: "Pon tu primera piedra. ¿Qué sueño quieres lograr?",
+    goalsCreate: "Crear un objetivo",
+    goalsSuggestedDesc: "Inspirados en los recorridos de recuperación más eficaces.",
+    goalsUse: "Usar",
+    goalsFooterQuote: "El juego te quitó algo. Ahora reconstruye algo más grande.",
+    goalsModalTitle: "¿Cuál es tu sueño?",
+    goalsFieldTitle: "Título",
+    goalsFieldDescription: "Descripción (opcional)",
+    goalsFieldCategory: "Categoría",
+    goalsFieldTargetDate: "Fecha objetivo",
+    goalsFieldMilestones: "Sub-pasos",
+    goalsCreateButton: "Crear objetivo",
+    goalsTitlePlaceholder2: "Ej: Pagar mis deudas",
+    goalsDescPlaceholder: "¿Por qué este objetivo es importante para ti?",
+    goalsMilestonePlaceholder: "Ej: Primer paso…",
+    goalsMilestoneAdd: "Añadir",
+    goalsMilestoneEmpty: "Añade al menos un sub-paso para estructurar tu objetivo.",
+    goalsDeleteTitle: "¿Eliminar este objetivo?",
+    goalsDeleteDesc: "«{title}» se eliminará definitivamente. Esta acción es irreversible.",
+    goalsToastCreated: "¡Objetivo creado! 🎯",
+    goalsToastCompleted: "¡Objetivo completado! 🎉",
+    goalsToastDeleted: "Objetivo «{title}» eliminado",
+    goalsToastUpdated: "Objetivo actualizado",
+    goalsErrTitleMin: "El título debe tener al menos 3 caracteres",
+    goalsErrMilestone: "Añade al menos un sub-paso",
+    goalsEditTitle: "Editar objetivo",
+    goalsEditButton: "Editar",
+    goalsSaveButton: "Guardar",
+    goalsDetailSteps: "pasos",
+    goalsDetailPast: "Plazo superado",
+    goalsDetailToday: "Hoy",
+    goalsDetailTomorrow: "Mañana",
+    goalsDetailMoreSteps: "+ {n} sub-pasos…",
+    goalsPremiumLocked: "Desbloquea objetivos personalizados y mucho más con Premium.",
+    goalsPremiumCta: "Desbloquear con Premium",
+    goalsSuggestion1Title: "Ahorrar {amount} en 6 meses",
+    goalsSuggestion1Desc: "Ahorra cada semana lo que habrías apostado. Verás crecer tu cuenta.",
+    goalsSuggestion1Milestone1: "Abrir una cuenta de ahorro separada",
+    goalsSuggestion1Milestone2: "Ahorrar los primeros {amount}",
+    goalsSuggestion1Milestone3: "Alcanzar {amount}",
+    goalsSuggestion1Milestone4: "Alcanzar {amount}",
+    goalsSuggestion2Title: "Correr 5 km sin parar",
+    goalsSuggestion2Desc: "Un cuerpo fuerte alberga una mente fuerte. Construye tu resistencia paso a paso.",
+    goalsSuggestion2Milestone1: "Caminar 30 min sin parar",
+    goalsSuggestion2Milestone2: "Alternar 1 min corriendo / 2 min caminando",
+    goalsSuggestion2Milestone3: "Correr 2 km seguidos",
+    goalsSuggestion2Milestone4: "Correr 5 km sin parar",
+    goalsSuggestion3Title: "Recontactar a un ser querido",
+    goalsSuggestion3Desc: "Los lazos rotos se reparan. A veces el primer paso lo cambia todo.",
+    goalsSuggestion3Milestone1: "Identificar a la persona a recontactar",
+    goalsSuggestion3Milestone2: "Enviar un primer mensaje",
+    goalsSuggestion3Milestone3: "Proponer una llamada o un encuentro",
+    goalsSuggestion3Milestone4: "Tener una verdadera conversación",
+    // Affirmations screen — visible strings
+    affirmationsHeroLabel: "AFIRMACIÓN DEL DÍA",
+    affirmationsFavorite: "Favorito",
+    affirmationsNewBtn: "Nueva",
+    affirmationsAll: "Todo",
+    affirmationsCreateMine: "Crear mi afirmación",
+    affirmationsEmptyTitle: "Sin afirmaciones",
+    affirmationsEmptyDesc: "No hay afirmaciones en esta categoría todavía. ¡Crea la tuya!",
+    affirmationsMyFavorites: "Mis favoritos",
+    affirmationsDailyReminder: "Recordatorio diario",
+    affirmationsReminderToggle: "Recibir la afirmación del día cada mañana a las 7h",
+    affirmationsReminderSoon: "Próximamente — notificaciones nativas",
+    affirmationsReminderTime: "Hora:",
+    affirmationsReminderDesc: "Comienza tu día con un pensamiento positivo. La afirmación del día te ayudará a mantener el enfoque en tus objetivos.",
+    affirmationsPremiumLock: "Desbloquea los recordatorios diarios de afirmaciones con Premium.",
+    affirmationsTipsTitle: "Cómo usar las afirmaciones",
+    affirmationsTipA: "Repítelas en voz alta, lentamente, 3 veces.",
+    affirmationsTipB: "Respira profundamente entre cada repetición.",
+    affirmationsTipC: "Visualízate viviendo esta afirmación.",
+    affirmationsFooterQuote: "Tus palabras se convierten en tus acciones. Tus acciones se convierten en tu destino.",
+    affirmationsModalTitle: "Tu afirmación personal",
+    affirmationsFieldText: "Tu afirmación",
+    affirmationsFieldCategory: "Categoría",
+    affirmationsPlaceholder: "Ej: Soy más fuerte que mis ansias, cada día un poco más.",
+    affirmationsCharMin: "Mínimo 10 caracteres ({n})",
+    affirmationsCustom: "✨ Personalizada",
+    affirmationsFavoriteLabel: "Favorito",
+    affirmationsAriaRemoveFav: "Quitar de favoritos",
+    affirmationsAriaAddFav: "Añadir a favoritos",
+    affirmationsAriaDelete: "Eliminar esta afirmación",
+    affirmationsConfirm: "Confirmar",
+    affirmationsDeleteBtn: "Eliminar",
+    affirmationsToastCopied: "Afirmación copiada al portapapeles",
+    affirmationsToastShareErr: "No se puede compartir en este momento",
+    affirmationsToastRemoved: "Quitada de favoritos",
+    affirmationsToastAdded: "Añadida a favoritos ❤️",
+    affirmationsToastErrLen: "La afirmación debe tener entre 10 y 200 caracteres",
+    affirmationsToastErrCat: "Elige una categoría",
+    affirmationsToastCreated: "¡Afirmación creada! ✨",
+    affirmationsToastDeleted: "Afirmación eliminada",
+    affirmationsSaveBtn: "Guardar",
+    affirmationsCatMorning: "Mañana",
+    affirmationsCatCrisis: "Crisis",
+    affirmationsCatSelfWorth: "Valor personal",
+    affirmationsCatFuture: "Futuro",
+    affirmationsCatGratitude: "Gratitud",
+    affirmationsCatStrength: "Fuerza",
+    // Triggers screen — visible strings
+    triggersMyTitle: "Mis Desencadenantes",
+    triggersReport: "Registrar un desencadenante",
+    triggersThisWeek: "Esta semana",
+    triggersTopCat: "Top cat.",
+    triggersResistance: "Resistencia",
+    triggersEmptyTitle: "Sin desencadenantes",
+    triggersEmptyDesc: "Registra tu primer desencadenante para empezar a identificar tus patrones. Cada desencadenante identificado es una victoria.",
+    triggersEmptyCta: "Registrar un desencadenante",
+    triggersNoPeriod: "Sin desencadenantes en este período.",
+    triggersNoPeriodHint: "Cambia el filtro para ver más.",
+    triggersSuccumbed: "Cedido",
+    triggersInsightsTitle: "Insights de la semana",
+    triggersInsightTopCat: "{cat}: {pct}% de tus desencadenantes",
+    triggersInsightTopTod: "Momento más vulnerable: {time}",
+    triggersInsightTopCoping: "{method}: {rate}% de éxito",
+    triggersInsightsEmpty: "Sigue registrando tus desencadenantes para desbloquear más insights.",
+    triggersHeatmapTitle: "Últimos 30 días",
+    triggersHeatmapLegendLess: "Menos",
+    triggersHeatmapLegendMore: "Más",
+    triggersAtlasTitle: "Insight Atlas AI",
+    triggersAtlasAsk: "Preguntar a Atlas",
+    triggersAtlasLocked: "Insight bloqueado",
+    triggersAtlasBlurb: "Eres particularmente vulnerable a ciertos desencadenantes en momentos específicos del día. Atlas puede ayudarte a entender estos patrones y proponerte estrategias adaptadas.",
+    triggersPremiumCta: "Desbloquear con Premium",
+    triggersFooterQuote: "Cada desencadenante identificado es una victoria. Estás aprendiendo a conocerte.",
+    triggersModalTitle: "¿Qué pasó?",
+    triggersFieldCategory: "Categoría",
+    triggersFieldIntensity: "Intensidad",
+    triggersIntensityLow: "Baja",
+    triggersIntensityHigh: "Muy alta",
+    triggersFieldSituation: "Describe la situación",
+    triggersFieldSituationPlaceholder: "Describe la situación...",
+    triggersFieldCoping: "Método de afrontamiento",
+    triggersResistedToggle: "Resistí el impulso",
+    triggersSaveBtn: "Guardar",
+    triggersSituationMin: "Mín 5 caracteres ({n})",
+    triggersCatStress: "Estrés",
+    triggersCatSolitude: "Soledad",
+    triggersCatPayday: "Día de paga",
+    triggersCatAlcohol: "Alcohol",
+    triggersCatBoredom: "Aburrimiento",
+    triggersCatSocial: "Presión social",
+    triggersCatInsomnia: "Insomnio",
+    triggersCatAnger: "Ira",
+    triggersCatAds: "Anuncios",
+    triggersCatOther: "Otro",
+    triggersFilter7d: "7 Días",
+    triggersFilter30d: "30 Días",
+    triggersFilterAll: "Todo",
+    triggersConfirmDelete: "Confirmar",
+    triggersAriaDeleteConfirm: "Confirmar eliminación",
+    triggersAriaDelete: "Eliminar el desencadenante",
+    triggersCopingBreathing: "Respiración 4-7-8",
+    triggersCopingCall: "Llamar a un ser querido",
+    triggersCopingJournal: "Diario",
+    triggersCopingExercise: "Ejercicio",
+    triggersCopingMeditation: "Meditación",
+    triggersCopingDistraction: "Distracción",
+    triggersCopingNone: "Ninguna",
+    triggersTimeJustNow: "justo ahora",
+    triggersTimeMinAgo: "hace {n} min",
+    triggersTimeHoursAgo: "hace {n}h",
+    triggersTimeYesterday: "ayer",
+    triggersTimeDaysAgo: "hace {n}d",
+    triggersTimeMorning: "Mañana (5h-12h)",
+    triggersTimeAfternoon: "Tarde (12h-18h)",
+    triggersTimeEvening: "Noche (18h-23h)",
+    triggersTimeNight: "Madrugada (0h-5h)",
+    // Withdrawal screen — visible strings
+    withdrawalBannerTitle: "La abstinencia es normal y temporal",
+    withdrawalBannerDesc: "Cuando dejas de apostar, tu cerebro tiene que readaptarse. Estos síntomas son señal de que te estás curando.",
+    withdrawalBannerInfo: "La mayoría de síntomas desaparecen en 4-6 semanas",
+    withdrawalSymptomsTitle: "Seguimiento de síntomas",
+    withdrawalSelectedCount: "{n} seleccionado(s)",
+    withdrawalActiveCount: "{n} activo(s)",
+    withdrawalNone: "Ninguno",
+    withdrawalSaveBtn: "Guardar mis síntomas",
+    withdrawalTimelineTitle: "Cronología de la abstinencia",
+    withdrawalYouAreHere: "ESTÁS AQUÍ",
+    withdrawalSymptomsLabel: "Síntomas:",
+    withdrawalCurveTitle: "Curva típica de intensidad (90 días)",
+    withdrawalCurrentDay: "Día actual:",
+    withdrawalCopingTitle: "Estrategias de afrontamiento",
+    withdrawalDoNow: "Hacerlo ahora",
+    withdrawalTodaySummaryTitle: "Resumen del día",
+    withdrawalTodayNone: "Sin síntomas registrados hoy",
+    withdrawalTodayNoneHint: "Marca tus síntomas arriba para seguir tu evolución.",
+    withdrawalTodayCount: "{n} síntoma(s) hoy",
+    withdrawalSavedToday: "Guardado hoy",
+    withdrawalWarningTitle: "Cuándo consultar a un profesional",
+    withdrawalWarningDesc: "Si sientes alguno de estos signos, no te quedes solo:",
+    withdrawalWarningContact: "Contactar un pro",
+    withdrawalWarningSos: "Llamar SOS",
+    withdrawalWarningSign1: "Pensamientos suicidas",
+    withdrawalWarningSign2: "Síntomas que empeoran después de 30 días",
+    withdrawalWarningSign3: "Incapacidad de funcionar con normalidad",
+    withdrawalWarningSign4: "Adicción de sustitución",
+    withdrawalPhaseAcuteTitle: "Fase aguda",
+    withdrawalPhaseAcuteRange: "Días 1-7",
+    withdrawalPhaseAcuteDesc: "Síntomas más intensos",
+    withdrawalPhaseAcuteSymptoms: "Ansias fuertes, irritabilidad, insomnio, ansiedad",
+    withdrawalPhaseAcuteTip: "💡 Usa el botón de pánico y respira. Lo estás logrando.",
+    withdrawalPhaseStabTitle: "Fase de estabilización",
+    withdrawalPhaseStabRange: "Días 8-30",
+    withdrawalPhaseStabDesc: "Mejora progresiva",
+    withdrawalPhaseStabSymptoms: "Ansias más raras, mejor sueño, humor variable",
+    withdrawalPhaseStabTip: "💡 Continúa el diario y la meditación para afianzar tus logros.",
+    withdrawalPhaseRecTitle: "Fase de recuperación",
+    withdrawalPhaseRecRange: "Días 31-90",
+    withdrawalPhaseRecDesc: "Síntomas residuales",
+    withdrawalPhaseRecSymptoms: "Picos emocionales a momentos, pero regreso de energía",
+    withdrawalPhaseRecTip: "💡 Comparte tu historia. Ayudar a otros refuerza tu sanación.",
+    withdrawalPhaseHealTitle: "Fase de curación",
+    withdrawalPhaseHealRange: "Días 90+",
+    withdrawalPhaseHealDesc: "Vuelta a la normalidad",
+    withdrawalPhaseHealSymptoms: "Pensamientos raros, confianza recuperada, proyectos de vida",
+    withdrawalPhaseHealTip: "💡 Mantén tus rutinas. Ya puedes convertirte en mentor.",
+    withdrawalSymptomConcentration: "Dificultad de concentración",
+    withdrawalSymptomCravings: "Ansias intensas",
+    withdrawalSymptomAgitation: "Agitación",
+    withdrawalCopingInsomnia: "Insomnio",
+    withdrawalCopingAnxiety: "Ansiedad",
+    withdrawalCopingCravings: "Ansias intensas",
+    withdrawalCopingIrritability: "Irritabilidad",
+    withdrawalCopingScreenMeditation: "Meditación",
+    withdrawalCopingScreenBreathing: "Respiración",
+    withdrawalCopingScreenJournal: "Diario",
+    withdrawalCopingScreenBouger: "Moverse",
+    withdrawalCopingScreenPanic: "Pánico",
+    withdrawalCopingScreenBlocker: "Bloqueador",
+    withdrawalCopingScreenMentor: "Mentor",
+    withdrawalCopingScreenSos: "Contactar",
+    withdrawalCopingScreenMeditate: "Meditar",
+    // Mentorship screen — visible strings
+    mentorshipHeroTitle: "Comparte tu experiencia",
+    mentorshipHeroDesc: "Los mentores son recuperadores con 90+ días sin apuestas que guían a los nuevos miembros.",
+    mentorshipBenefitBadge: "Insignia de Mentor verificado",
+    mentorshipBenefitImpact: "Impacto positivo en la comunidad",
+    mentorshipBenefitTools: "Acceso a herramientas de coaching",
+    mentorshipBenefitRecognition: "Reconocimiento de tu recorrido",
+    mentorshipJourneyTitle: "Tu recorrido: {current} / {target} días",
+    mentorshipEligible: "ELEGIBLE",
+    mentorshipDaysLeft: "{n}D RESTANTES",
+    mentorshipEligibleTitle: "¡Felicidades! Eres elegible para ser mentor.",
+    mentorshipEligibleDesc: "Rellena el formulario de abajo para postularte.",
+    mentorshipApplyBtn: "Postular",
+    mentorshipNotEligibleTitle: "Solo {n} días antes de poder ser mentor",
+    mentorshipNotEligibleDesc: "Continúa tu racha — cada día cuenta.",
+    mentorshipMenteesTitle: "Tus mentorizados",
+    mentorshipMenteesActive: "{n} activos",
+    mentorshipMenteesSessions: "18 sesiones",
+    mentorshipMenteesMessages: "Ver mensajes",
+    mentorshipFormTitle: "Candidatura de mentor",
+    mentorshipFormSubmit: "Enviar para verificación",
+    mentorshipPsyToggle: "Soy psicólogo",
+    mentorshipPsyToggleDesc: "Verificación de licencia y consultas",
+    mentorshipPsyTitle: "Verificación de psicólogo",
+    mentorshipPsyName: "Nombre completo con título",
+    mentorshipPsyNameHint: "Ej: Dr. Aminata Koné",
+    mentorshipPsyLicense: "Número de licencia",
+    mentorshipPsySpecialty: "Especialidad",
+    mentorshipPsyCountry: "País de ejercicio",
+    mentorshipPsyPrice: "Precio de una sesión (FCFA)",
+    mentorshipPsyDoc: "Documento de verificación (licencia o diploma)",
+    mentorshipPsyDocUploaded: "Subido (simulación)",
+    mentorshipPsyDocUpload: "Pulsa para subir",
+    mentorshipPsyDocHint: "PDF, JPG, PNG (5 MB máximo)",
+    mentorshipPsyBio: "Bio",
+    mentorshipPsyBioHint: "{n} / 50 caracteres mínimo",
+    mentorshipPsyAlert: "Verificación en 48h. Tu licencia será verificada con las autoridades competentes.",
+    mentorshipSuccessMentor: "¡Candidatura enviada!",
+    mentorshipSuccessPsy: "¡Verificación enviada!",
+    mentorshipSuccessMsgPsy: "Tu licencia será verificada con las autoridades competentes. Respuesta en 48h.",
+    mentorshipSuccessMsgMentor: "Verificación en 48h. Gracias por querer ayudar a la comunidad.",
+    mentorshipAriaMessages: "Ver los mensajes de {name}",
+    // Program screen — visible strings
+    programOverviewLabel: "Programa de recuperación",
+    programOverviewTitle: "90 días para cambiar tu vida",
+    programDayOn90: "Día de 90",
+    programDaysRemaining: "{n} días restantes",
+    programCompletedShort: "completado",
+    programPhase1Short: "Fundaciones",
+    programPhase2Short: "Consolidación",
+    programPhase3Short: "Transformación",
+    programPhaseComplete: "Fase completa",
+    programDaysLeftInPhase: "{n}d restantes",
+    programPhaseProgressLabel: "Progreso de la fase",
+    programPhaseGoalsLabel: "Objetivos de la fase",
+    programTipsLabel: "Consejos",
+    programTasksTitle: "Tareas del día",
+    programTaskDone: "Tarea marcada como hecha",
+    programClaimBtn: "Reclamar recompensas (+{n} XP)",
+    programClaimLocked: "Completa todas las tareas para reclamar",
+    programWeeklyTitle: "Temas semanales",
+    programMilestonesTitle: "Hitos clave",
+    programMilestoneNow: "Ahora",
+    programMilestoneReached: "Alcanzado",
+    programInspirationLabel: "Mensaje del día • Día {n}",
+    programShareBtn: "Compartir",
+    programCompletedTitle: "¡Programa completado!",
+    programCompletedDesc: "Has transformado tu vida. Sé orgulloso de ti. Sigue inspirando a otros.",
+    programWeekLabel: "SEMANA {n}",
+    programWeekCurrent: "En curso",
+    programPhase1Name: "Fase 1: Fundaciones",
+    programPhase1Subtitle: "Recuperar el control",
+    programPhase2Name: "Fase 2: Consolidación",
+    programPhase2Subtitle: "Anclar los nuevos hábitos",
+    programPhase3Name: "Fase 3: Transformación",
+    programPhase3Subtitle: "Convertirte en una nueva persona",
+    // Artifact names + subtitles (13 × 2)
+    artifact1Name: "El Cristal del Alba",
+    artifact1Subtitle: "Día 1",
+    artifact2Name: "El Amuleto de Niebla",
+    artifact2Subtitle: "Día 3",
+    artifact3Name: "El Escudo de Bronce",
+    artifact3Subtitle: "Día 7 — ¡Una semana!",
+    artifact4Name: "Las Runas de Plata",
+    artifact4Subtitle: "Día 14 — Dos semanas",
+    artifact5Name: "El Cetro de Oro",
+    artifact5Subtitle: "Día 30 — ¡Un mes!",
+    artifact6Name: "El Orbe de Platino",
+    artifact6Subtitle: "Día 45",
+    artifact7Name: "El Corazón de Diamante",
+    artifact7Subtitle: "Día 60",
+    artifact8Name: "La Esmeralda del Renacer",
+    artifact8Subtitle: "Día 90 — El hito crítico",
+    artifact9Name: "El Zafiro de Sabiduría",
+    artifact9Subtitle: "Día 120",
+    artifact10Name: "El Rubí de Pasión",
+    artifact10Subtitle: "Día 180 — Seis meses",
+    artifact11Name: "La Amatista de Maestría",
+    artifact11Subtitle: "Día 270",
+    artifact12Name: "La Corona de Leyenda",
+    artifact12Subtitle: "Día 365 — ¡UN AÑO!",
+    artifact13Name: "La Estrella de Maestría",
+    artifact13Subtitle: "Día 730 — Dos años",
+    // ---- Task 19-b: NotificationCenter ----
+    notifTitle: "Notificaciones",
+    notifMarkAllRead: "Marcar todo como leído",
+    notifCloseAria: "Cerrar notificaciones",
+    notifEmpty: "Sin notificaciones",
+    notifEmptyHint: "Tus recordatorios y mensajes aparecerán aquí",
+    notifFooter: "🔔 Recordatorios y ánimos para acompañarte",
+    notifStreakTitle: "Recordatorio de racha",
+    notifStreakMessage1: "¡Tu racha está en juego! Abre la app para mantenerla.",
+    notifStreakMessage2: "No olvides verificar tu racha hoy. ¡Cada día cuenta!",
+    notifMotivationTitle: "Motivación diaria",
+    notifMotivationMessage1: "Cada día sin apuesta es una victoria. Eres más fuerte de lo que crees.",
+    notifMotivationMessage2: "El coraje no es la ausencia de miedo, es la decisión de avanzar a pesar de todo.",
+    notifMilestoneTitle: "Hito desbloqueado",
+    notifMilestoneMessage: "¡Has desbloqueado el rango Nuevo Amanecer! 🌅",
+    notifWeeklyTitle: "Resumen semanal",
+    notifWeeklyMessage: "Esta semana: 5 días sin apostar, 7.143 FCFA ahorrados. ¡Sigue así!",
+    notifCheckinTitle: "Check-in",
+    notifCheckinMessage: "¿Cómo estás? Tu camino importa. Tómate un momento para reflexionar.",
+    notifTimeNow: "Justo ahora",
+    notifTimeMinAgo: "hace {n} min",
+    notifTimeHoursAgo: "hace {n}h",
+    notifTimeYesterday: "ayer",
+    notifTimeDaysAgo: "hace {n}d",
+    // ---- Task 19-b: MilestoneCelebration ----
+    milestoneReached: "Hito alcanzado",
+    milestoneDays: "días",
+    milestoneStatDays: "Días",
+    milestoneStatSaved: "Ahorrado",
+    milestoneStatBadges: "Insignias",
+    milestoneTrendMentor: "Ya puedes ayudar a otras personas convirtiéndote en mentor.",
+    milestoneTrendNext: "Solo {n} días hasta el próximo hito.",
+    milestoneShareBtn: "Compartir",
+    milestoneContinueBtn: "Continuar",
+    milestoneCloseAria: "Cerrar",
+    milestoneCelebrationAria: "Celebración: {n} días sin apostar",
+    milestoneShareText: "🔥 ¡Alcancé {n} días sin apostar con Zerobet! {emoji} #Recuperación #Zerobet",
+    milestoneShareTitle: "Zerobet — Hito alcanzado",
+    milestoneShareToast: "Compartido con éxito",
+    milestoneCopyToast: "Mensaje copiado al portapapeles",
+    milestoneShareUnavailable: "Compartir no disponible en este dispositivo",
+    // Zerobet 2.0.7 — pride card (canvas share)
+    milestoneCardBtn: "Generar una tarjeta para compartir",
+    milestoneCardToast: "¡Tarjeta compartida! 🎉",
+    milestoneCardCopiedToast: "Tarjeta copiada al portapapeles 📋",
+    milestoneCardSavedToast: "Tarjeta descargada en tus imágenes 🖼️",
+    milestoneCardError: "No se pudo generar la tarjeta.",
+    milestoneCardSavedLine: "≈ {n} ahorrados",
+    milestoneCardTagline: "30 segundos más lejos de las apuestas que ayer. Zerobet me acompaña.",
+    // Zerobet 2.0.8 — journey recap card (canvas share)
+    journeyCardHeader: "Mi camino con Zerobet",
+    journeyCardDaysLabel: "días sin apostar",
+    journeyCardSavedLine: "≈ {n} ahorrados",
+    journeyCardTagline: "Cada día cuenta. Zerobet me acompaña.",
+    journeyCardBtn: "Crear mi tarjeta de camino",
+    journeyStatRank: "Rango",
+    journeyStatLevel: "Nivel",
+    journeyStatLevelValue: "Nv. {level} · {xp} XP",
+    journeyStatJournal: "Diario",
+    journeyStatJournalValue: "{n} entradas",
+    journeyShareTitle: "Tu tarjeta de camino",
+    journeyShareSubtitle: "Todo tu camino en una imagen lista para compartir",
+    journeyShareShare: "Compartir",
+    journeyShareDownload: "Descargar",
+    journeyShareGenerating: "Creando tu tarjeta…",
+    journeyShareError: "No se pudo generar la tarjeta.",
+    journeyShareRetry: "Reintentar",
+    journeyShareClose: "Cerrar",
+    journeyShareSharedToast: "¡Tarjeta compartida! 🎉",
+    journeyShareCopiedToast: "Tarjeta copiada al portapapeles 📋",
+    journeyShareSavedToast: "Tarjeta descargada en tus imágenes 🖼️",
+    journeyBannerTitle: "¿Orgulloso de tu camino?",
+    journeyBannerSubtitle: "Convierte tu racha en una hermosa tarjeta para compartir con la comunidad.",
+    journeyBannerCta: "Crear mi tarjeta",
+    milestoneTitle7: "¡Una semana!",
+    milestoneMessage7: "La primera semana es la más difícil. Lo lograste. Tu cerebro ya empieza a repararse.",
+    milestoneTitle14: "¡Dos semanas!",
+    milestoneMessage14: "La niebla se disipa. Recuperas tu claridad. Sigue.",
+    milestoneTitle30: "¡Un mes!",
+    milestoneMessage30: "Un mes completo. Ya formas parte de la élite. Los antojos se vuelven raros.",
+    milestoneTitle60: "¡Dos meses!",
+    milestoneMessage60: "El diamante. Tu determinación brilla más que nunca.",
+    milestoneTitle90: "¡Tres meses!",
+    milestoneMessage90: "90 días. Has recuperado el control. Ya puedes ser mentor para otros.",
+    milestoneTitle180: "¡Seis meses!",
+    milestoneMessage180: "Una inspiración para los demás. Eres una leyenda viviente.",
+    milestoneTitle365: "¡Un año!",
+    milestoneMessage365: "Un año completo. Eres libre. Has transformado tu vida.",
+    // ---- Task 19-b: RelapseModal ----
+    relapseModalTitle: "No es un fracaso",
+    relapseModalSubtitle: "Es un nuevo comienzo",
+    relapseModalCompassionate: "Aguantaste {n} días antes. Puedes hacerlo de nuevo. Y esta vez, serás más fuerte.",
+    relapseModalCompassionateDays: "{n} día{s}",
+    relapseModalCompassionateRest: " antes. Puedes hacerlo de nuevo. Y esta vez, serás más fuerte.",
+    relapseModalTriggerLabel: "¿Qué te hizo caer?",
+    relapseModalTriggerOptional: "(opcional)",
+    relapseModalTriggerPlaceholder: "Ej: soledad, estrés después del trabajo, anuncios en redes…",
+    relapseModalLessonLabel: "¿Qué aprendes de esta experiencia?",
+    relapseModalLessonPlaceholder: "Ej: la próxima vez, llamaré a un amigo antes de actuar…",
+    relapseModalResumeTitle: "Quiero reanudar ahora",
+    relapseModalResumeDesc: "Reinicia tu racha hoy",
+    relapseModalConfirmBtn: "Reanudar mi camino",
+    relapseModalHelpBtn: "Necesito ayuda",
+    relapseModalLaterBtn: "Ahora no",
+    relapseModalFooter: "No estás solo/a. Cada día sin apuesta es una victoria, sin importar dónde estás.",
+    relapseModalReflectionStart: "🌿 Nuevo comienzo — reiniciando mi racha.",
+    relapseModalReflectionStreak: "Había aguantado {n} día(s) antes. Puedo hacerlo de nuevo.",
+    relapseModalReflectionTrigger: "Lo que me hizo caer: {text}",
+    relapseModalReflectionLesson: "Lo que aprendo: {text}",
+    // ---- Task 19-b: ErrorBoundary ----
+    errorBoundaryTitle: "Se produjo un error",
+    errorBoundarySubtitle: "No te preocupes, no es tu culpa. Ocurrió un error inesperado. Puedes intentarlo de nuevo o volver al inicio.",
+    errorBoundaryRetry: "Reintentar",
+    errorBoundaryHome: "Volver al inicio",
+    errorBoundaryHide: "Ocultar detalles técnicos",
+    errorBoundaryShow: "Mostrar detalles técnicos",
+    errorBoundaryErrorLabel: "Error",
+    errorBoundaryQuote: "«Caer siete veces, levantarse ocho.» — Proverbio japonés",
+    // ---- Task 19-b: DailyQuests ----
+    dailyQuestsTitle: "Misiones del día",
+    dailyQuestsProgress: "Progreso diario",
+    dailyQuestsClaimed: "Reclamado",
+    dailyQuestsMultiplierHint: "×{mult} multiplicador → +{xp} XP",
+    dailyQuestsToastDesc: "Misión «{title}» completada",
+    dailyQuestsCheckinTitle: "Check-in del día",
+    dailyQuestsCheckinDesc: "Completa tu check-in diario",
+    dailyQuestsJournalTitle: "Diario de 50 palabras",
+    dailyQuestsJournalDesc: "Escribe una entrada en tu diario",
+    dailyQuestsMeditationTitle: "5 min de meditación",
+    dailyQuestsMeditationDesc: "Termina una sesión de meditación",
+    dailyQuestsStreakTitle: "Mantente sin apostar",
+    dailyQuestsStreakDesc: "Mantén tu racha hoy",
+    dailyQuestsArticleTitle: "Lee un artículo",
+    dailyQuestsArticleDesc: "Lee un artículo del recurso",
+    // ---- Task 19-b: EmptyState ----
+    emptyStateJournalTitle: "Sin entradas",
+    emptyStateJournalDesc: "Empieza a escribir tu historia. Cada día, anota cómo te sientes — es el hábito que lo cambia todo.",
+    emptyStateJournalCta: "Nueva entrada",
+    emptyStateCommunityTitle: "Sin temas",
+    emptyStateCommunityDesc: "Sé el primero en iniciar una conversación. Tu historia puede inspirar a otros.",
+    emptyStateCommunityCta: "Iniciar una conversación",
+    emptyStateStatsTitle: "Aún sin datos",
+    emptyStateStatsDesc: "Sigue tu camino y tus estadísticas aparecerán aquí. Cada día cuenta.",
+    emptyStateStatsCta: "Ver el panel",
+    emptyStateDefaultTitle: "Nada que mostrar",
+    emptyStateDefaultDesc: "Vuelve más tarde, contenido próximamente.",
+    emptyStateDefaultCta: "Continuar",
+    // ---- Task 19-a: Affirmation data (60 seed affirmations) ----
+    affirmation1Text: "Hoy es una nueva oportunidad. Elijo la libertad.",
+    affirmation2Text: "Me despierto más fuerte que ayer, más libre que antes.",
+    affirmation3Text: "Cada mañana sin apuesta es una victoria que celebro.",
+    affirmation4Text: "Hoy construyo la persona que seré mañana.",
+    affirmation5Text: "Mi primera apuesta del día es creer en mí.",
+    affirmation6Text: "El sol sale sobre una nueva versión de mí. Ningún juego me posee.",
+    affirmation7Text: "Comienzo este día alineado con mis valores, no con mis antojos.",
+    affirmation8Text: "Esta mañana, elijo la paciencia. Elijo la vida.",
+    affirmation9Text: "Hoy, mi energía va a mi familia, mis sueños, mi libertad.",
+    affirmation10Text: "No necesito una apuesta para sentir mi sangre vivir. La mañana me basta.",
+    affirmation11Text: "Este antojo pasará. No es permanente. Resisto.",
+    affirmation12Text: "Soy más fuerte que mi antojo. Mi futuro vale más que una apuesta.",
+    affirmation13Text: "El antojo es solo una ola. Sé nadar. No me hundiré.",
+    affirmation14Text: "Respira. La apuesta puede esperar — yo no puedo perderme.",
+    affirmation15Text: "No necesito actuar según este antojo. Puedo simplemente verlo pasar.",
+    affirmation16Text: "Si resisto 10 minutos más, la crisis retrocede. Ya he ganado.",
+    affirmation17Text: "Mi cerebro me miente. La verdad es que esta apuesta me destruiría.",
+    affirmation18Text: "Estoy a 24h más en mi racha. Ninguna ganancia vale este orgullo.",
+    affirmation19Text: "Este antojo no soy yo. Soy quien lo observa.",
+    affirmation20Text: "Dejo mi teléfono. Respiro. Vuelvo a mí.",
+    affirmation21Text: "Valgo mucho más de lo que el juego intentó hacerme creer.",
+    affirmation22Text: "Mi dignidad no se apuesta en un golpe de suerte.",
+    affirmation23Text: "No soy mis errores. Soy la persona que se levanta.",
+    affirmation24Text: "Mis hijos, mi familia, mis amigos merecen la mejor versión de mí.",
+    affirmation25Text: "Merezco respeto — primero el mío.",
+    affirmation26Text: "Mis deudas no definen mi valor. Mi recuperación sí.",
+    affirmation27Text: "Soy entero, incluso roto. Me reconstruyo cada día.",
+    affirmation28Text: "Aunque nadie lo vea, mi transformación es real.",
+    affirmation29Text: "Ya no necesito demostrar mi valor con una ganancia. Ya valgo.",
+    affirmation30Text: "Quien veo en el espejo merece todo mi orgullo.",
+    affirmation31Text: "Mi futuro se construye hoy, en cada decisión que tomo.",
+    affirmation32Text: "En 6 meses, seré esa persona libre. Hoy pongo la primera piedra.",
+    affirmation33Text: "El yo de mañana me agradece por resistir hoy.",
+    affirmation34Text: "Veo una casa, una familia estable, una cuenta de ahorros. Los estoy construyendo.",
+    affirmation35Text: "Cada FCFA no apostado es un ladrillo de la vida que sueño.",
+    affirmation36Text: "Mi futuro lo decido yo. No una máquina tragamonedas.",
+    affirmation37Text: "Camino hacia un futuro donde el juego ya no tiene lugar en mi vida.",
+    affirmation38Text: "Pronto, contaré esta etapa como una batalla que gané.",
+    affirmation39Text: "Me veo riendo con mis seres queridos, sin deudas, sin vergüenza. Ese día llega.",
+    affirmation40Text: "Mañana estará orgulloso de hoy. Lo sé.",
+    affirmation41Text: "Estoy agradecido por cada día sin apuesta. Es un regalo.",
+    affirmation42Text: "Gracias a mí mismo por resistir. Pocos entienden lo que cuesta.",
+    affirmation43Text: "Agradezco a quienes creen en mí. No los defraudaré más.",
+    affirmation44Text: "Mi aliento, mi salud, mi lucidez — estas son mis verdaderas riquezas.",
+    affirmation45Text: "Estoy agradecido por las pequeñas victorias. Componen mi libertad.",
+    affirmation46Text: "Gracias a la vida por despertarme antes de que fuera demasiado tarde.",
+    affirmation47Text: "Veo el azul del cielo, la sonrisa de un niño — cosas que ninguna ganancia compra.",
+    affirmation48Text: "Hoy doy gracias por mi racha. Es mi conquista más hermosa.",
+    affirmation49Text: "Estoy agradecido por esta comunidad que camina conmigo.",
+    affirmation50Text: "Gracias por seguir aquí, de pie, intentándolo. Es inmenso.",
+    affirmation51Text: "Mi fuerza viene de mi resistencia. Cada día me hace más poderoso.",
+    affirmation52Text: "Ya he superado cosas peores. Esta tentación no es nada ante mi voluntad.",
+    affirmation53Text: "La voluntad es un músculo. La entreno diciendo no hoy.",
+    affirmation54Text: "Soy un guerrero. Los guerreros no se doblan ante un antojo.",
+    affirmation55Text: "Mi coraje supera mi miedo. Mi futuro merece mi fuerza.",
+    affirmation56Text: "Cuando caigo, me levanto más grande. Siempre.",
+    affirmation57Text: "Ninguna apuesta podrá romper lo que estoy llegando a ser.",
+    affirmation58Text: "Soy más duro que la vida. La vida me empuja, yo empujo más fuerte.",
+    affirmation59Text: "Mi fuerza viene de mis raíces, mi sangre, mis ancestros. Los honro.",
+    affirmation60Text: "Soy invencible cuando elijo. Hoy, elijo la libertad.",
+    // ---- Task 19-a: Relapse protocol steps (8 × 3 fields) ----
+    relapseStep1Title: "Respira y recéntrate",
+    relapseStep1Desc: "Has recaído. No es el final. Respira conmigo.",
+    relapseStep1Action: "Haz 3 ciclos de respiración 4-7-8. Inhala 4s, retén 7s, exhala 8s.",
+    relapseStep2Title: "Sin vergüenza",
+    relapseStep2Desc: "La vergüenza te llevará de vuelta al juego. Reemplázala con compasión.",
+    relapseStep2Action: "Dite a ti mismo: 'He recaído, pero no soy un fracaso. Me levanto.'",
+    relapseStep3Title: "Identifica el detonante",
+    relapseStep3Desc: "Entender por qué recaíste te ayudará a prevenir la próxima vez.",
+    relapseStep3Action: "Escribe lo que pasó justo antes: emoción, situación, pensamiento.",
+    relapseStep4Title: "Llama a alguien",
+    relapseStep4Desc: "No estás solo. Hablar rompe el ciclo.",
+    relapseStep4Action: "Contacta a un amigo, un ser querido, o un mentor de la comunidad Zerobet.",
+    relapseStep5Title: "Mueve tu cuerpo",
+    relapseStep5Desc: "El ejercicio libera dopamina sana y reduce los antojos.",
+    relapseStep5Action: "Haz 30 min de caminata, carrera o ejercicio. Mueve tu cuerpo.",
+    relapseStep6Title: "Reactiva tu bloqueador",
+    relapseStep6Desc: "Si evadiste el bloqueador, reactívalo ahora.",
+    relapseStep6Action: "Verifica que tu bloqueador esté activo. Activa el modo estricto si es posible.",
+    relapseStep7Title: "Escribe tu lección",
+    relapseStep7Desc: "Cada recaída contiene una lección. ¿Cuál es la tuya?",
+    relapseStep7Action: "Escribe 3 cosas que aprendiste y 1 cosa que harás diferente.",
+    relapseStep8Title: "Reinicia tu racha",
+    relapseStep8Desc: "Día 1. No Día 0. Empiezas de nuevo con experiencia.",
+    relapseStep8Action: "Reinicia tu racha. No has perdido lo que aprendiste.",
+    // ---- Task 19-a: Relapse quotes (4 × 2 fields) ----
+    relapseQuote1Text: "Caer no es fracasar. Quedarse en el suelo es fracasar.",
+    relapseQuote1Author: "Proverbio",
+    relapseQuote2Text: "La recaída es parte de la recuperación. No es volver a cero.",
+    relapseQuote2Author: "Psicología de la Adicción",
+    relapseQuote3Text: "No has perdido tu progreso. Has ganado experiencia.",
+    relapseQuote3Author: "Zerobet",
+    relapseQuote4Text: "Cada caída te enseña a levantarte más fuerte.",
+    relapseQuote4Author: "Sabiduría",
+    // ---- Task 19-a: Relapse phase labels ----
+    relapsePhaseImmediate: "Inmediato",
+    relapsePhaseHour1: "Primera hora",
+    relapsePhaseHour6: "6 horas",
+    relapsePhaseHour24: "24 horas",
+    // ---- Task 19-a: Symptom categories (5 labels + 30 symptoms) ----
+    symptomCatFinancialLabel: "Financiero",
+    symptomCatMentalLabel: "Mental",
+    symptomCatSocialLabel: "Social",
+    symptomCatPhysicalLabel: "Físico",
+    symptomCatFamilyLabel: "Familiar",
+    symptomFinancial1: "Deudas acumuladas",
+    symptomFinancial2: "Préstamos sin pagar",
+    symptomFinancial3: "Dinero del alquiler usado",
+    symptomFinancial4: "Venta de objetos para apostar",
+    symptomFinancial5: "Mentiras sobre el dinero",
+    symptomFinancial6: "Cuenta en descubierto",
+    symptomMental1: "Insomnio",
+    symptomMental2: "Ansiedad constante",
+    symptomMental3: "Pensamientos obsesivos",
+    symptomMental4: "Irritabilidad",
+    symptomMental5: "Depresión",
+    symptomMental6: "Pérdida de concentración",
+    symptomSocial1: "Aislamiento",
+    symptomSocial2: "Mentiras a los amigos",
+    symptomSocial3: "Evitación social",
+    symptomSocial4: "Pérdida de amigos",
+    symptomSocial5: "Vergüenza",
+    symptomSocial6: "Comportamiento secreto",
+    symptomPhysical1: "Palpitaciones",
+    symptomPhysical2: "Sudores",
+    symptomPhysical3: "Temblores",
+    symptomPhysical4: "Pérdida de apetito",
+    symptomPhysical5: "Fatiga crónica",
+    symptomPhysical6: "Dolores de cabeza",
+    symptomFamily1: "Discusiones frecuentes",
+    symptomFamily2: "Confianza rota",
+    symptomFamily3: "Amenazas de ruptura",
+    symptomFamily4: "Niños como testigos",
+    symptomFamily5: "Violencia",
+    symptomFamily6: "Trámites de divorcio",
+    // ---- Task 19-a: Engagement goals (6 goals × 2 fields) ----
+    goalFamilyLabel: "Reunir a mi familia",
+    goalFamilyDesc: "Reconstruir la confianza con los míos",
+    goalMoneyLabel: "Recuperar el control financiero",
+    goalMoneyDesc: "Salir de deudas y ahorrar",
+    goalHealthLabel: "Salvar mi salud mental",
+    goalHealthDesc: "Ver la vida sin ansiedad",
+    goalDignityLabel: "Recuperar mi dignidad",
+    goalDignityDesc: "No más mentiras, no más vergüenza",
+    goalFutureLabel: "Construir mi futuro",
+    goalFutureDesc: "Invertir en un proyecto de vida",
+    goalFreedomLabel: "Ser libre",
+    goalFreedomDesc: "Nunca más esclavo de la apuesta",
+    // ---- Task 19-c: ProgramScreen / SupportScreen / MentorshipScreen / ResourcesScreen ----
+    programTaskCheckinTitle: "Haz tu check-in",
+    programTaskCheckinDesc: "Registra tu estado de ánimo del día",
+    programTaskJournalTitle: "Escribe en tu diario",
+    programTaskJournalDesc: "Anota tus pensamientos y sentimientos",
+    programTaskBreathingTitle: "Practica la respiración 4-7-8",
+    programTaskBreathingDesc: "5 minutos de respiración consciente",
+    programTaskArticleTitle: "Lee un artículo educativo",
+    programTaskArticleDesc: "Aprende más sobre la adicción",
+    programTaskMeditateTitle: "Medita 5 minutos",
+    programTaskMeditateDesc: "Una sesión de meditación guiada",
+    programTaskSavingsTitle: "Revisa tus ahorros",
+    programTaskSavingsDesc: "Mira tu progreso financiero",
+    programTaskShareTitle: "Comparte con la comunidad",
+    programTaskShareDesc: "Intercambia con otros miembros",
+    programTaskHelpTitle: "Ayuda a otro miembro",
+    programTaskHelpDesc: "Apoya a alguien en dificultad",
+    programTaskMentorTitle: "Conviértete en mentor",
+    programTaskMentorDesc: "Acompaña a un nuevo miembro",
+    programTaskTestimonyTitle: "Comparte tu testimonio",
+    programTaskTestimonyDesc: "Inspira a otras personas",
+    programWeek1Title: "Primeros pasos",
+    programWeek1Focus: "Aceptación y compromiso",
+    programWeek1Desc: "Reconocer la adicción y comprometerse a cambiar.",
+    programWeek2Title: "Entender la adicción",
+    programWeek2Focus: "Educación",
+    programWeek2Desc: "Aprender cómo funciona el cerebro adicto.",
+    programWeek3Title: "Identificar los desencadenantes",
+    programWeek3Focus: "Autoconciencia",
+    programWeek3Desc: "Reconocer las situaciones que provocan el impulso.",
+    programWeek4Title: "Estrategias de afrontamiento",
+    programWeek4Focus: "Herramientas",
+    programWeek4Desc: "Construir tu kit anti-ansias.",
+    programWeek5Title: "Respiración y meditación",
+    programWeek5Focus: "Calma",
+    programWeek5Desc: "Dominar tu sistema nervioso.",
+    programWeek6Title: "Reconstrucción financiera",
+    programWeek6Focus: "Gestión del dinero",
+    programWeek6Desc: "Recuperar el control de tus finanzas.",
+    programWeek7Title: "Relaciones familiares",
+    programWeek7Focus: "Reparación social",
+    programWeek7Desc: "Reconstruir la confianza con tus seres queridos.",
+    programWeek8Title: "Autoestima",
+    programWeek8Focus: "Valor personal",
+    programWeek8Desc: "Redescubrirte y quererte de nuevo.",
+    programWeek9Title: "Fijar nuevos objetivos",
+    programWeek9Focus: "Planificación",
+    programWeek9Desc: "Construir el futuro que mereces.",
+    programWeek10Title: "Ayudar a los demás",
+    programWeek10Focus: "Comunidad",
+    programWeek10Desc: "Transformar tu prueba en un regalo.",
+    programWeek11Title: "Estilo de vida sano",
+    programWeek11Focus: "Salud global",
+    programWeek11Desc: "Cuerpo, mente y alma en armonía.",
+    programWeek12Title: "Consolidación",
+    programWeek12Focus: "Mantenimiento",
+    programWeek12Desc: "Anclar tus nuevos hábitos.",
+    programWeek13Title: "Celebración y más allá",
+    programWeek13Focus: "Largo plazo",
+    programWeek13Desc: "Preparar el resto de tu recorrido.",
+    programMilestone1Label: "El primer paso",
+    programMilestone1Desc: "Te atreviste a empezar. Es lo más difícil.",
+    programMilestone7Label: "Una semana",
+    programMilestone7Desc: "7 días sin apostar. Tu cerebro empieza a repararse.",
+    programMilestone14Label: "Dos semanas",
+    programMilestone14Desc: "Los impulsos se vuelven más raros.",
+    programMilestone30Label: "Un mes",
+    programMilestone30Desc: "Eres parte de la élite de los recuperadores.",
+    programMilestone45Label: "Mitad del camino",
+    programMilestone45Desc: "Has pasado la marca del medio. Sigamos.",
+    programMilestone60Label: "Dos meses",
+    programMilestone60Desc: "Realmente estás recuperando el control de tu vida.",
+    programMilestone90Label: "Programa completado",
+    programMilestone90Desc: "Has transformado tu vida. Sé orgulloso.",
+    programPhase1Goal1: "Alcanzar 7 días sin apostar",
+    programPhase1Goal2: "Identificar tus 3 principales desencadenantes",
+    programPhase1Goal3: "Escribir en tu diario cada día",
+    programPhase1Goal4: "Aprender la respiración 4-7-8",
+    programPhase1Tip1: "Usa el botón de pánico en cuanto suba el impulso",
+    programPhase1Tip2: "Escribe al menos 3 líneas por día en tu diario",
+    programPhase1Tip3: "Activa el bloqueador de sitios para ayudarte",
+    programPhase2Goal1: "Alcanzar 45 días sin apostar",
+    programPhase2Goal2: "Crear un presupuesto mensual",
+    programPhase2Goal3: "Volver a contactar a un ser querido",
+    programPhase2Goal4: "Fijar 3 objetivos a 6 meses",
+    programPhase2Tip1: "Comparte tu recorrido con la comunidad",
+    programPhase2Tip2: "Revisa tus ahorros cada semana",
+    programPhase2Tip3: "Ayuda a otro miembro cuando puedas",
+    programPhase3Goal1: "Completar el programa de 90 días",
+    programPhase3Goal2: "Convertirse en mentor si lo deseas",
+    programPhase3Goal3: "Compartir tu testimonio",
+    programPhase3Goal4: "Adoptar un estilo de vida sano y sostenible",
+    programPhase3Tip1: "Conviértete en mentor para ayudar a los nuevos",
+    programPhase3Tip2: "Comparte tu historia para inspirar",
+    programPhase3Tip3: "Mantén tus hábitos sanos",
+    supportFaqTitle: "Preguntas frecuentes",
+    supportSearchFaqQuestion: "Buscar una pregunta...",
+    supportNoFaqResults: "Ninguna pregunta coincide con tu búsqueda.",
+    supportFaqDesc: "Preguntas frecuentes",
+    supportContactDesc: "Formulario de contacto",
+    supportBugDesc: "Problema técnico",
+    supportSuggestionDesc: "Ideas de mejora",
+    supportSubject: "Asunto",
+    supportSubjectQuestion: "Pregunta",
+    supportSubjectBug: "Bug",
+    supportSubjectSuggestion: "Sugerencia",
+    supportSubjectOther: "Otro",
+    supportEmailOptional: "Email (opcional)",
+    supportEmailPlaceholder: "tu@email.com (para recibir respuesta)",
+    supportMessageMin: "Mínimo 10 caracteres ({n}/10)",
+    supportMessageValid: "Mensaje válido",
+    supportMessageTooShort: "El mensaje debe contener al menos 10 caracteres",
+    supportResponseTime: "Respuesta en 48h por término medio",
+    supportUsePanicBtn: "Usar el botón de pánico",
+    supportResolveBtn: "Resolver",
+    supportVideoPlaying: "Reproduciendo: «{title}»",
+    supportVideoDuration: "Duración: {duration}",
+    supportEmergencyTitle: "¿Crisis inmediata?",
+    supportEmergencyDesc: "Si tienes pensamientos graves, contacta inmediatamente:",
+    supportCategoryAll: "Todas",
+    supportFaqQ1: "¿Cómo empezar?",
+    supportFaqA1: "¡Bienvenido a Zerobet! Tras el onboarding, accedes a tu panel. Empieza con tu check-in diario, escribe en tu diario y explora las acciones rápidas. El recorrido de 90 días te guía paso a paso.",
+    supportFaqQ2: "¿Cómo usar el botón de pánico?",
+    supportFaqA2: "El botón de pánico está disponible en el panel y en la parte inferior de la pantalla. Cuando sientas ganas de apostar, presiónalo: serás guiado a través de un ejercicio de respiración 4-7-8 y mensajes de motivación. También puedes registrar el evento en el diario después.",
+    supportFaqQ3: "¿Cómo funciona el recorrido?",
+    supportFaqA3: "El Recorrido de Sanación tiene 13 rangos, del Primer Día a la Leyenda. Cada día sin apostar aumenta tu racha. Cuanto más larga sea tu racha, más insignias, XP y multiplicadores desbloqueas. Ve a la pantalla Recorrido para ver tu rango actual.",
+    supportFaqQ4: "¿Cómo cambio mi plan?",
+    supportFaqA4: "Ve a Configuración > Plan. Puedes elegir entre Gratis, Premium, Mentor y Psicólogo. Los planes de pago desbloquean funciones avanzadas como Atlas AI, el bloqueador de sitios y el acceso a psicólogos.",
+    supportFaqQ5: "¿Cómo reinicio mis datos?",
+    supportFaqA5: "En Configuración > Gestión de datos, puedes exportar tus datos y luego reiniciar la app. Atención: esta acción es irreversible y borra tu cuenta, tu diario, tu progreso y todos tus datos.",
+    supportFaqQ6: "¿Mis datos están seguros?",
+    supportFaqA6: "Sí. Todos tus datos se almacenan localmente en tu dispositivo (localStorage). No tenemos ningún servidor que guarde tu información personal. Puedes activar el bloqueo de la app y el modo discreto en Configuración > Privacidad.",
+    supportFaqQ7: "¿Cómo uso Atlas AI?",
+    supportFaqA7: "Atlas AI es tu coach personal. Pulsa el icono de Atlas AI en las acciones rápidas. Puedes chatear con él en 4 secciones: Diario (analiza tus entradas), Motivación (mensajes personalizados), Progreso (estadísticas) y Crisis (emergencia). Cuanto más escribes en tu diario, mejor te conoce Atlas.",
+    supportFaqQ8: "¿Cómo añado un sitio para bloquear?",
+    supportFaqA8: "Ve a Bloqueador > Añadir un sitio. Introduce la URL y el nombre del sitio. También puedes activar el modo estricto que bloquea todos los sitios durante 72 horas sin posibilidad de desactivarlo. El bloqueador te ayuda a crear una barrera física contra la tentación.",
+    supportFaqQ9: "¿Cómo contacto con un mentor?",
+    supportFaqA9: "Ve a Comunidad > Mentores. Verás la lista de mentores disponibles con su especialidad, país y valoración. Puedes contactarlos directamente. Los mentores son ex-apostadores en recuperación que te acompañan gratis.",
+    supportFaqQ10: "La app no se abre",
+    supportFaqA10: "1) Comprueba tu conexión a internet. 2) Fuerza el cierre y reinicia la app. 3) Vacía la caché de tu navegador. 4) Desactiva las extensiones que puedan bloquear JavaScript. Si el problema persiste, reporta un bug mediante el formulario de abajo.",
+    supportFaqQ11: "¿Cómo exporto mis datos?",
+    supportFaqA11: "Ve a Configuración > Gestión de datos > Exportar. Recibirás un archivo JSON que contiene tu diario, tu progreso, tus contactos y tus ajustes. Puedes importarlo en otro dispositivo para no perder tu historial.",
+    supportFaqQ12: "¿Puedo usar la app sin conexión?",
+    supportFaqA12: "Sí, la mayoría de funciones funcionan sin conexión: check-in, diario, meditación, recorrido. Solo Atlas AI y las notificaciones requieren conexión. Tus datos se almacenan localmente, así que no tienes nada que temer.",
+    supportVideo1Title: "Empezar con Zerobet",
+    supportVideo2Title: "Dominar el botón de pánico",
+    supportVideo3Title: "Usar Atlas AI eficientemente",
+    supportVideo4Title: "Aprovechar la comunidad",
+    supportTrouble1Issue: "La app va lenta",
+    supportTrouble1Solution: "Vacía la caché en los ajustes de tu navegador, o desactiva el starfield en Apariencia.",
+    supportTrouble2Issue: "El sonido no funciona",
+    supportTrouble2Solution: "Comprueba el volumen de tu dispositivo y activa los sonidos en Configuración > Sonido y Háptica.",
+    supportTrouble3Issue: "No recibo notificaciones",
+    supportTrouble3Solution: "Activa las notificaciones en Configuración > Preferencias y autorizalas en tu navegador.",
+    supportTrouble4Issue: "Mis datos han desaparecido",
+    supportTrouble4Solution: "Si exportaste tus datos, usa Importar en Configuración > Gestión de datos.",
+    supportEmergency1Name: "Línea de escucha del juego",
+    supportEmergency1Desc: "24/7 • Gratis • Confidencial",
+    supportEmergency2Name: "SOS Amistad",
+    supportEmergency2Desc: "Escucha amistosa 24/7",
+    supportEmergency3Name: "Samu Social",
+    supportEmergency3Desc: "Urgencia social",
+    supportEmergency4Name: "Emergencias",
+    supportEmergency4Desc: "Número de emergencia europeo",
+    mentorshipSpecYouth: "Jóvenes 18-25",
+    mentorshipSpecFathers: "Padres de familia",
+    mentorshipSpecStudents: "Estudiantes",
+    mentorshipSpecAthletes: "Deportistas",
+    mentorshipSpecWomen: "Mujeres apostadoras",
+    mentorshipSpecDiaspora: "Diáspora",
+    mentorshipSpecGeneral: "General",
+    mentorshipCountryCI: "Costa de Marfil",
+    mentorshipCountrySN: "Senegal",
+    mentorshipCountryML: "Malí",
+    mentorshipCountryCM: "Camerún",
+    mentorshipCountryGN: "Guinea",
+    mentorshipCountryTG: "Togo",
+    mentorshipCountryBJ: "Benín",
+    mentorshipCountryFR: "Francia",
+    mentorshipCountryBE: "Bélgica",
+    mentorshipCountryCA: "Canadá",
+    mentorshipCountryOther: "Otro",
+    mentorshipLangFr: "Francés",
+    mentorshipLangWo: "Wolof",
+    mentorshipLangBm: "Bambara",
+    mentorshipLangLn: "Lingala",
+    mentorshipLangEn: "Inglés",
+    mentorshipLangAr: "Árabe",
+    mentorshipLangPt: "Portugués",
+    mentorshipLangEs: "Español",
+    mentorshipLangDyu: "Diula",
+    mentorshipLangFon: "Fon",
+    mentorshipAvailFewHours: "Algunas horas/semana",
+    mentorshipAvail12h: "1-2h/día",
+    mentorshipAvail247: "Disponible 24/7",
+    mentorshipCode1: "Respeto absoluto a todos los miembros",
+    mentorshipCode2: "Confidencialidad total de los intercambios",
+    mentorshipCode3: "Sin juicio, solo apoyo",
+    mentorshipCode4: "Recomendar profesionales para casos graves",
+    mentorshipCode5: "Compartir solo tu experiencia personal",
+    mentorshipCode6: "Nunca fomentar el juego 'moderado'",
+    mentorshipCode7: "Responder en 24h",
+    mentorshipCode8: "Reportar cualquier comportamiento inapropiado",
+    mentorshipRes1Title: "Guía del mentor",
+    mentorshipRes1Desc: "El manual completo para acompañar a los nuevos miembros.",
+    mentorshipRes2Title: "Técnicas de escucha activa",
+    mentorshipRes2Desc: "Aprende a escuchar de verdad, sin interrumpir ni juzgar.",
+    mentorshipRes3Title: "Gestionar situaciones difíciles",
+    mentorshipRes3Desc: "Cómo reaccionar ante un miembro en crisis o recaída.",
+    mentorshipResTypePdf: "PDF",
+    mentorshipResTypeArticle: "Artículo",
+    mentorshipResTypeVideo: "Vídeo",
+    mentorshipPsySpec1: "Adictología",
+    mentorshipPsySpec2: "Terapia cognitivo-conductual",
+    mentorshipPsySpec3: "Psicología clínica",
+    mentorshipPsySpec4: "Apoyo familiar",
+    mentorshipLastContact2hAgo: "Hace 2h",
+    mentorshipLastContactYesterday: "Ayer",
+    mentorshipLastContact3DaysAgo: "Hace 3 días",
+    mentorshipLastContactToday: "Hoy",
+    mentorshipStatusActive: "activo",
+    mentorshipStatusToContact: "por contactar",
+    mentorshipSelectPlaceholder: "Seleccionar...",
+    mentorshipFormDisplayName: "Nombre público (tu nombre de mentor)",
+    mentorshipFormDisplayNamePlaceholder: "Ej: Awa la Valiente",
+    mentorshipFormBioLabel: "Bio — cuenta tu historia",
+    mentorshipFormBioHint: "{n} / 100 caracteres mínimo",
+    mentorshipFormBioPlaceholder: "Cómo caíste en el juego, cómo saliste, qué te ayudó...",
+    mentorshipFormSpecialtyLabel: "Especialidad",
+    mentorshipFormSpecialtyPlaceholder: "Elige tu especialidad",
+    mentorshipFormCountryLabel: "País",
+    mentorshipFormCountryPlaceholder: "Elige tu país",
+    mentorshipFormLanguagesLabel: "Idiomas hablados",
+    mentorshipFormLanguagesHint: "Selecciona todos los que apliquen",
+    mentorshipFormAvailabilityLabel: "Disponibilidad",
+    mentorshipFormAvailabilityPlaceholder: "Elige tu disponibilidad",
+    mentorshipFormMotivationLabel: "Motivación — ¿por qué ser mentor?",
+    mentorshipFormMotivationHint: "{n} / 50 caracteres mínimo",
+    mentorshipFormMotivationPlaceholder: "¿Qué te impulsa a acompañar a los demás?",
+    mentorshipAgreePrefix: "Acepto el",
+    mentorshipCodeLink: "código de conducta de los mentores",
+    mentorshipCodeHeader: "Código de conducta de los mentores",
+    mentorshipResourcesTitle: "Recursos del mentor",
+    mentorshipResAccess: "Acceder",
+    mentorshipResSoon: "{title} — pronto disponible",
+    mentorshipSuccessContinue: "Continuar",
+    mentorshipPsyBioPlaceholder: "Presenta tu enfoque terapéutico, tu experiencia con la adicción...",
+    resourcesCategoriesLabel: "Categorías",
+    resourcesArticleCount: "{n} artículo(s)",
+    resourcesVideoCount: "{n} vídeos",
+    resourcesBooksAppsTitle: "Libros y Apps recomendados",
+    resourcesFooter: "El conocimiento es tu primer paso hacia la sanación. 🌱",
+    resourcesReadArticle: "Leer artículo",
+    resourcesArticleRead: "Artículo leído",
+    resourcesArticleExpanded: "Este artículo explora en profundidad los mecanismos psicológicos y propone ejercicios concretos. Tómate el tiempo de leerlo con atención, idealmente en un momento tranquilo.",
+    resourcesEmergencyTitle: "¿Necesitas ayuda urgente?",
+    resourcesEmergencySubtitle: "No estás solo. Llama.",
+    resourcesCallBtn: "Llamar",
+    resourcesOpen: "Abrir",
+    resourcesTypeApp: "App",
+    resourcesTypeBook: "Libro",
+    resourcesFeatured1Title: "Por qué tu cerebro te traiciona cuando apuestas",
+    resourcesFeatured1Excerpt: "Entiende el mecanismo de la dopamina y por qué cada apuesta refuerza el ciclo adictivo — incluso cuando pierdes.",
+    resourcesFeatured2Title: "Superar un impulso repentino en 90 segundos",
+    resourcesFeatured2Excerpt: "El método U.R.G.E. para desactivar un impulso de apostar sin ceder. Una técnica simple, probada y accesible para todos.",
+    resourcesFeatured3Title: "Moussa, 32 años: « Lo perdí todo, luego lo reconstruí »",
+    resourcesFeatured3Excerpt: "Relato auténtico de un ex-apostador de Dakar que superó 8 años de adicción y recuperó a su familia.",
+    resourcesFeatured4Title: "Reconstruir tus finanzas tras las apuestas",
+    resourcesFeatured4Excerpt: "Un plan concreto en 4 pasos para pagar tus deudas, recuperar el control y ahorrar de nuevo.",
+    resourcesFeatured5Title: "La respiración 4-7-8: tu arma secreta anti-impulso",
+    resourcesFeatured5Excerpt: "Esta técnica de respiración calma el sistema nervioso en menos de 2 minutos. Aprende una vez, úsala para toda la vida.",
+    resourcesArticle1Title: "La dopamina y las apuestas",
+    resourcesArticle1Excerpt: "Cómo los juegos de azar secuestran el sistema de recompensa natural de tu cerebro y crean una adicción poderosa.",
+    resourcesArticle2Title: "Cómo gestionar un impulso repentino",
+    resourcesArticle2Excerpt: "5 técnicas prácticas para enfrentarte a un impulso intenso de apostar sin ceder. Aplicar inmediatamente.",
+    resourcesArticle3Title: "Reconstruir la confianza familiar",
+    resourcesArticle3Excerpt: "La adicción destruye las relaciones. Aquí están los pasos concretos para recuperar la confianza de tus seres queridos, día tras día.",
+    resourcesArticle4Title: "El dinero que ahorras",
+    resourcesArticle4Excerpt: "Calcula cuánto ahorras realmente cada día sin apostar. Las cifras te sorprenderán y te motivarán.",
+    resourcesArticle5Title: "Por qué siempre pierdes",
+    resourcesArticle5Excerpt: "La verdad matemática detrás de las apuestas deportivas: por qué la casa siempre gana y por qué tú no puedes.",
+    resourcesArticle6Title: "La respiración 4-7-8 explicada",
+    resourcesArticle6Excerpt: "Inhala 4 segundos, retén 7, exhala 8. Descubre la ciencia detrás de esta poderosa técnica anti-estrés.",
+    resourcesArticle7Title: "Testimonio: Moussa de Dakar",
+    resourcesArticle7Excerpt: "« Empecé con 1000 FCFA, acabé perdiendo mi casa. » La historia verdadera de un renacimiento.",
+    resourcesArticle8Title: "Reconocer los desencadenantes",
+    resourcesArticle8Excerpt: "Aprende a identificar las situaciones, emociones y personas que provocan tu impulso de apostar para evitarlas mejor.",
+    resourcesArticle9Title: "El papel del sueño",
+    resourcesArticle9Excerpt: "La falta de sueño aumenta los impulsos de apostar un 40%. Descubre cómo dormir mejor para resistir mejor.",
+    resourcesArticle10Title: "Recuperar tu masculinidad",
+    resourcesArticle10Excerpt: "La adicción a las apuestas afecta profundamente la confianza en uno mismo y la masculinidad. Así es como reconstruirse.",
+    resourcesAuthorKone: "Dr. Aïssata Koné",
+    resourcesAuthorAllard: "Marc Allard, terapeuta",
+    resourcesAuthorNdiaye: "Moussa Ndiaye",
+    resourcesAuthorDiallo: "Awa Diallo, consejera",
+    resourcesAuthorZerobet: "Finanzas Zerobet",
+    resourcesAuthorYoga: "Yoga y Mindfulness",
+    resourcesVideo1Title: "Respiración guiada 10 min",
+    resourcesVideo2Title: "Testimonio de Koffi",
+    resourcesVideo3Title: "Entender la dopamina",
+    resourcesVideo4Title: "Meditación anti-impulso",
+    resourcesVideoCatMeditation: "Meditación",
+    resourcesVideoCatTestimony: "Testimonio",
+    resourcesVideoCatScience: "Ciencia",
+    resourcesHotline1Name: "Línea de escucha nacional",
+    resourcesHotline1Desc: "Gratis • 24/7",
+    resourcesHotline2Name: "Gambling Therapy (en línea)",
+    resourcesHotline2Desc: "Apoyo internacional gratuito",
+    resourcesHotline3Name: "Samu social",
+    resourcesHotline3Desc: "Urgencia social • 24/7",
+    resourcesBook1Desc: "App de retirada de apuestas con seguimiento diario",
+    resourcesBook2Desc: "James Clear — cambiar tus hábitos para siempre",
+    resourcesBook3Desc: "Allen Carr — método clásico para dejarlo",
+    // ---- Task 20-a: CalendarScreen ----
+    calendarMilestone1Label: "Primer Paso",
+    calendarMilestone1Desc: "El primer día es el más difícil.",
+    calendarMilestone3Label: "El Despertar",
+    calendarMilestone3Desc: "La niebla empieza a disiparse.",
+    calendarMilestone7Label: "Bronce",
+    calendarMilestone7Desc: "Una semana completa sin apuestas.",
+    calendarMilestone14Label: "Plata",
+    calendarMilestone14Desc: "Dos semanas — tu cerebro se repara.",
+    calendarMilestone30Label: "Oro",
+    calendarMilestone30Desc: "¡Un mes! Eres parte de la élite.",
+    calendarMilestone60Label: "Diamante",
+    calendarMilestone60Desc: "Dos meses — los antojos se vuelven raros.",
+    calendarMilestone90Label: "Triple XP",
+    calendarMilestone90Desc: "Tres meses — recuperas el control.",
+    calendarMilestone180Label: "Leyenda",
+    calendarMilestone180Desc: "Seis meses — una inspiración para los demás.",
+    calendarMilestone365Label: "Un Año",
+    calendarMilestone365Desc: "Un año completo. Eres libre.",
+    calendarEmotionFrustrated: "Frustrado",
+    calendarEmotionAnxious: "Ansioso",
+    calendarEmotionTempted: "Tentado",
+    calendarEmotionCalm: "Calma",
+    calendarEmotionProud: "Orgulloso",
+    calendarEmotionStrong: "Fuerte",
+    calendarNoBetDaysMany: "{n} días este mes sin apuestas",
+    calendarNoBetDaysOne: "{n} día este mes sin apuestas",
+    calendarNoBetDaysNone: "Ningún día sin apuestas este mes",
+    calendarSavedThisMonth: "ahorrados este mes",
+    calendarLegendNoBet: "Sin apuesta",
+    calendarLegendCrisis: "Crisis",
+    calendarLegendNoData: "Sin datos",
+    calendarLegendMilestone: "Hito",
+    calendarStatsTitle: "Estadísticas de racha",
+    calendarBestStreak: "Racha más larga",
+    calendarCurrentStreak: "Racha actual",
+    calendarTotalNoBetDays: "Total de días sin apuesta",
+    calendarMonthlyAverage: "Media mensual",
+    calendarUnitDays: "días",
+    calendarUnitDaysPerMonth: "d/mes",
+    calendarMilestonesTitle: "Hitos del recorrido",
+    calendarDayNumber: "Día {n}",
+    calendarReached: "Alcanzado",
+    calendarDaysBefore: "D-{n}",
+    calendarAchievedOn: "Alcanzado el {date}",
+    calendarUpcoming: "Próximamente",
+    calendarDaysSinceStart: "{n} día(s) desde el inicio",
+    calendarInsightsTitle: "Resumen",
+    calendarInsightNoBetDays: "Días sin apuesta",
+    calendarInsightCrisesAvoided: "Crisis evitadas",
+    calendarInsightJournalEntries: "Entradas de diario",
+    calendarInsightFcfASaved: "FCFA ahorrados",
+    calendarDailyActivity: "Actividad diaria",
+    calendarDayActivityTitle: "Día {n}{suffix}",
+    calendarMilestonesUnlocked: "{n} hito(s) desbloqueado(s)",
+    calendarDayWithCrisis: "Día con crisis",
+    calendarDayNoBet: "Día sin apuesta",
+    calendarNoData: "Sin datos",
+    calendarMilestoneBadge: "Hito D-{n}",
+    calendarStreakThatDay: "Racha ese día",
+    calendarDaysCount: "{n} día(s)",
+    calendarEmotion: "Emoción",
+    calendarNoEntry: "Sin entrada",
+    calendarMeditation: "Meditación",
+    calendarCompleted: "Completada",
+    calendarNotDone: "No hecha",
+    calendarCrisisIntensity: "Crisis (intensidad)",
+    calendarXpEarned: "XP ganado ese día",
+    calendarNotePlaceholder: "Escribe lo que quieres recordar de este día...",
+    // ---- Task 20-a: FinanceScreen ----
+    financeCategoryInvestment: "Inversión",
+    financeCategoryPleasures: "Placeres sanos",
+    financeSavingCatNecessitiesDesc: "Comida, alquiler, facturas — lo esencial para vivir con dignidad.",
+    financeSavingCatSavingsDesc: "Cuenta de ahorro segura para tus proyectos y tu fondo de emergencia.",
+    financeSavingCatInvestmentDesc: "Negocio, educación, formación — haz que tu dinero trabaje para ti.",
+    financeSavingCatPleasuresDesc: "Aficiones, entretenimiento sano — disfrutar sin apostar.",
+    financeTip1Title: "La regla 50/30/20",
+    financeTip1Short: "50% necesidades, 30% placeres, 20% ahorro",
+    financeTip1Details: "Una regla sencilla para organizar tu presupuesto: 50% de tus ingresos para necesidades (alquiler, comida, facturas), 30% para placeres sanos y al menos 20% para ahorro. Este método te evita caer en la precariedad permitiéndote disfrutar razonablemente.",
+    financeTip2Title: "Fondo de emergencia",
+    financeTip2Short: "Ahorra de 3 a 6 meses de gastos",
+    financeTip2Details: "Construye un fondo de emergencia igual a 3-6 meses de tus gastos corrientes. Esta reserva te protege de los imprevistos (enfermedad, pérdida de empleo, avería) sin tener que pedir prestado ni volver a apostar. Es el primer paso hacia la independencia financiera.",
+    financeTip3Title: "El efecto de las pequeñas cantidades",
+    financeTip3Short: "1.000 FCFA/día = 365.000 FCFA/año",
+    financeTip3Details: "Nunca subestimes las pequeñas sumas. Ahorrar solo 1.000 FCFA al día te da 365.000 FCFA en un año — suficiente para un teléfono, un negocio o estudios. La regularidad importa más que la cantidad. Es el efecto bola de nieve.",
+    financeTip4Title: "Mobile Money",
+    financeTip4Short: "Usa Orange Money para ahorrar automáticamente",
+    financeTip4Details: "Con Orange Money, Wave, MTN MoMo o Moov Money, puedes configurar el ahorro automático: una cantidad fija se transfiere a tu cuenta de ahorro en cuanto recibes dinero. Ahorras sin pensar en ello — es la forma más eficaz de construir capital.",
+    financePresetPhone: "Teléfono",
+    financePresetMoto: "Moto",
+    financePresetBusiness: "Negocio",
+    financePresetEducation: "Educación",
+    financePresetEmergency: "Fondo de emergencia",
+    financePresetLand: "Terreno",
+    financeMilestone10k: "10.000 FCFA ahorrados",
+    financeMilestone50k: "50.000 FCFA ahorrados",
+    financeMilestone100k: "100.000 FCFA ahorrados",
+    financeMilestone500k: "500.000 FCFA ahorrados",
+    financeMilestone1M: "1.000.000 FCFA ahorrados",
+    financeSavedOverDays: "En {n} días sin apuesta",
+    financeFCFAperWeek: "FCFA/semana",
+    financeSavedPerDay: "≈ {n} FCFA ahorrados por día",
+    financeSavingsDistributionDesc: "Aquí tienes cómo repartir inteligentemente tu dinero ahorrado.",
+    financeIncomeWeekly: "Ingreso semanal",
+    financeBeforeZerobet: "Antes de Zerobet",
+    financeWithZerobet: "Con Zerobet",
+    financeRemainingPerWeek: "FCFA restantes / semana",
+    financeLostToBets: "FCFA perdidos en apuestas",
+    financeGained: "FCFA ganados",
+    financeSaveForThisGoal: "Ahorrar para este objetivo",
+    financeDeleteGoal: "Eliminar objetivo",
+    financeRemainingAmount: "Faltan {n} FCFA",
+    financeQuickSuggestions: "Sugerencias rápidas:",
+    financeXpBonus: "XP bonus",
+    financeSavingsWeeksConsecutive: "{n} semana(s) consecutiva(s) ahorrando",
+    financeLast8Weeks: "Últimas 8 semanas",
+    financeSavingsWeek: "Semana de ahorro",
+    financeNotYet: "Aún no",
+    finance8WeeksAgo: "Hace 8 sem.",
+    financeSavingStreakMsg: "¡Llevas {n} semana(s) ahorrando sin interrupción!",
+    financeLast6Months: "Últimos 6 meses",
+    financeBeforeLosses: "Antes (pérdidas)",
+    financeNowSavings: "Ahora (ahorro)",
+    financeNetGain6Months: "Ganancia neta en 6 meses",
+    financeSavingsLabel: "Ahorro",
+    financeLossesAvoidedLabel: "Pérdidas evitadas",
+    financeLearnMore: "Saber más",
+    financeTipNumber: "Consejo {n}",
+    financeTipApplyRule: "Consejo: aplica esta regla desde esta semana para que tus ahorros despeguen.",
+    financeGoalNamePlaceholder: "Ej: Moto, Estudios, Fondo de emergencia",
+    financeAmountPlaceholder: "Ej: 75000",
+    financeProjectionBarDesc: "Proyección: si sigues ahorrando, esto es lo que ganas (y evitas perder) cada mes.",
+    // ---- Task 20-a: CommunityChatScreen (new keys) ----
+    chatRoomGeneralLabel: "General",
+    chatRoomGeneralDesc: "Para todos. Preséntate e intercambia libremente.",
+    chatRoomCrisisLabel: "Apoyo en Crisis",
+    chatRoomCrisisDesc: "Para los momentos difíciles. Sé amable.",
+    chatRoomVeteransLabel: "Veteranos",
+    chatRoomVeteransDesc: "Reservado a miembros con 90+ días de abstinencia.",
+    chatRule1: "Respeta a cada uno, sea cual sea su etapa de recuperación.",
+    chatRule2: "No promociones juegos de azar ni apuestas.",
+    chatRule3: "No des consejos financieros ni médicos.",
+    chatRule4: "Si alguien está en crisis, redirígelo al SOS.",
+    chatRule5: "Tus mensajes son visibles para todos los miembros.",
+    chatOffline: "Sin conexión",
+    chatYou: "Tú",
+    chatReactWith: "Reaccionar con {emoji}",
+    chatPremiumReactions: "Reacciones Premium",
+    chatNicknameError: "El apodo debe tener entre {min} y {max} caracteres.",
+    chatChooseNickname: "Elige tu apodo",
+    chatNicknameHelp: "Los demás miembros verán este nombre. Sé tú mismo o permanece anónimo.",
+    chatRandomNickname: "Apodo aleatorio",
+    chatNicknameRange: "Entre {min} y {max} caracteres",
+    chatJoinBtn: "Unirse al chat",
+    chatWelcome: "¡Bienvenido {nickname}! 🎉",
+    chatRoomLockedMsg: "El salón {label} está reservado a miembros con {n}+ días de abstinencia.",
+    chatOfflineRetry: "Estás sin conexión. Inténtalo de nuevo en un momento.",
+    chatReactionSent: "{emoji} reacción enviada a {nickname}",
+    chatTypingOne: "escribe",
+    chatTypingMany: "escriben",
+    chatCrisisRoomBanner: "Este salón es para los momentos difíciles. Sé amable. En caso de urgencia, llama al SOS.",
+    chatCallSos: "Llamar al SOS",
+    chatConnectionLost: "Conexión perdida. Reconectando…",
+    chatRetry: "Reintentar",
+    chatEmptyState: "Sé el primero en decir hola 👋",
+    chatRulesTitle: "Reglas de la comunidad",
+    chatReportHint: "Usa el botón de denuncia en el mensaje correspondiente.",
+    chatReportBtn: "Denunciar contenido",
+    chatInputPlaceholder: "Escribir en {room}…",
+    chatMessage: "Mensaje",
+    chatConnectedMembers: "Conectado · {n} miembros",
+    chatConnectedMemberOne: "Conectado · 1 miembro",
+    chatRateLimited: "Tranquilo 🙏 Demasiados mensajes seguidos. Reintenta en {n}s.",
+    // ---- Task 20-a: MeditationScreen ----
+    meditationTech478Name: "Respiración 4-7-8",
+    meditationTech478Desc: "Calma · Ideal ante antojos",
+    meditationTech478Duration: "3 ciclos · ~1 min",
+    meditationTechSquareName: "Cuadrado 4-4-4-4",
+    meditationTechSquareDesc: "Enfoque · Concentración",
+    meditationTechSquareDuration: "4 ciclos · ~1 min",
+    meditationTech246Name: "Respiración 2-4-6",
+    meditationTech246Desc: "Calma rápida · Anti-estrés",
+    meditationTech246Duration: "5 ciclos · ~1 min",
+    meditationTech55Name: "Respiración profunda 5-5",
+    meditationTech55Desc: "Relajación · Antes de dormir",
+    meditationTech55Duration: "4 ciclos · ~1 min",
+    meditationPhaseInspire: "Inhala",
+    meditationPhaseHold: "Mantén",
+    meditationPhaseExhale: "Exhala",
+    meditationGuided1Title: "Calmar un antojo de apostar",
+    meditationGuided1Desc: "Una sesión corta para bajar la presión cuando sube el antojo. Respiración guiada + visualización calmante.",
+    meditationGuided2Title: "Confianza en ti mismo",
+    meditationGuided2Desc: "Reconéctate con tu fuerza interior. Afirmaciones positivas para reconstruir la autoestima.",
+    meditationGuided3Title: "Soltar",
+    meditationGuided3Desc: "Libera las tensiones del cuerpo y la mente. Una invitación a acoger el momento presente sin juicio.",
+    meditationGuided4Title: "Visualización del éxito",
+    meditationGuided4Desc: "Imagina tu futuro sin apuestas. Visualiza el orgullo, los proyectos realizados, los seres queridos reencontrados.",
+    meditationGuided5Title: "Escaneo corporal anti-estrés",
+    meditationGuided5Desc: "Recorre tu cuerpo de la cabeza a los pies para liberar cada tensión. Ideal antes de dormir.",
+    meditationGuided6Title: "Meditación matinal",
+    meditationGuided6Desc: "Comienza tu día con intención. Activa tu energía y fíjate un rumbo claro para las próximas horas.",
+    meditationDuration5min: "5 min",
+    meditationDuration7min: "7 min",
+    meditationDuration8min: "8 min",
+    meditationDuration10min: "10 min",
+    meditationDuration12min: "12 min",
+    meditationNarratorAissata: "Aïssata · Terapeuta",
+    meditationNarratorMarc: "Marc · Coach",
+    meditationNarratorLea: "Léa · Sofróloga",
+    meditationNarratorKarim: "Karim · Mentor",
+    meditationCatCrisis: "Crisis",
+    meditationCatMotivation: "Motivación",
+    meditationCatRelaxation: "Relajación",
+    meditationCatEnergy: "Energía",
+    meditationBenefit1Title: "Reduce la ansiedad",
+    meditationBenefit1Value: "en 40%",
+    meditationBenefit2Title: "Control de impulsos",
+    meditationBenefit2Value: "reforzado",
+    meditationBenefit3Title: "Resiliencia ante antojos",
+    meditationBenefit3Value: "aumentada",
+    meditationBenefit4Title: "Calidad del sueño",
+    meditationBenefit4Value: "mejorada",
+    // ---- Task 20-a: ProgramScreen 93 daily quotes + share ----
+    programShareTitle: "Mensaje del día",
+    programShareTemplate: "Día {n}/90 en Zerobet",
+    programQuote1Text: "El primer paso es el más difícil. Acabas de darlo.",
+    programQuote1Author: "Zerobet",
+    programQuote2Text: "El dolor de la disciplina pesa gramos. El del arrepentimiento pesa toneladas.",
+    programQuote2Author: "Jim Rohn",
+    programQuote3Text: "Cada día sin apuesta es una victoria sobre ti mismo.",
+    programQuote3Author: "Zerobet",
+    programQuote4Text: "No has fracasado mientras no dejes de intentarlo.",
+    programQuote4Author: "Proverbio",
+    programQuote5Text: "El coraje no es la ausencia de miedo, sino la decisión de que algo es más importante.",
+    programQuote5Author: "Ambrose Redmoon",
+    programQuote6Text: "El dinero ahorrado es dinero ganado.",
+    programQuote6Author: "Benjamin Franklin",
+    programQuote7Text: "Eres el héroe de tu propia historia.",
+    programQuote7Author: "Zerobet",
+    programQuote8Text: "La adicción miente. La recuperación dice la verdad.",
+    programQuote8Author: "Zerobet",
+    programQuote9Text: "El mayor honor de un hombre es cumplir su palabra.",
+    programQuote9Author: "Proverbio africano",
+    programQuote10Text: "Un hombre que se domina a sí mismo vale más que uno que conquista una ciudad.",
+    programQuote10Author: "Proverbio",
+    programQuote11Text: "Tu futuro lo crea lo que haces hoy, no mañana.",
+    programQuote11Author: "Proverbio",
+    programQuote12Text: "Lo que no te mata te hace más fuerte.",
+    programQuote12Author: "Friedrich Nietzsche",
+    programQuote13Text: "La libertad no es la ausencia de restricciones, sino el dominio de uno mismo.",
+    programQuote13Author: "Zerobet",
+    programQuote14Text: "No puedes volver atrás. Pero puedes empezar ahora.",
+    programQuote14Author: "Zerobet",
+    programQuote15Text: "El éxito es la suma de pequeños esfuerzos repetidos día tras día.",
+    programQuote15Author: "Robert Collier",
+    programQuote16Text: "Caer está permitido. Levantarse es un deber.",
+    programQuote16Author: "Proverbio",
+    programQuote17Text: "El cambio comienza cuando decides que quedarte igual duele más que moverte.",
+    programQuote17Author: "Zerobet",
+    programQuote18Text: "Tu mayor fuerza se esconde en tu mayor debilidad vencida.",
+    programQuote18Author: "Zerobet",
+    programQuote19Text: "La paciencia es amarga, pero su fruto es dulce.",
+    programQuote19Author: "Jean-Jacques Rousseau",
+    programQuote20Text: "Solo se ve bien con el corazón. Lo esencial es invisible a los ojos.",
+    programQuote20Author: "Saint-Exupéry",
+    programQuote21Text: "Quien quiere llegar lejos cuida su montura.",
+    programQuote21Author: "Proverbio francés",
+    programQuote22Text: "La felicidad no es un destino, es una forma de viajar.",
+    programQuote22Author: "Margaret Lee Runbeck",
+    programQuote23Text: "El secreto del éxito es la constancia en el propósito.",
+    programQuote23Author: "Benjamin Disraeli",
+    programQuote24Text: "No es la montaña lo que conquistamos, sino a nosotros mismos.",
+    programQuote24Author: "Edmund Hillary",
+    programQuote25Text: "Te conviertes en lo que crees ser.",
+    programQuote25Author: "Proverbio",
+    programQuote26Text: "El pasado no define tu futuro.",
+    programQuote26Author: "Zerobet",
+    programQuote27Text: "La única forma de hacer un buen trabajo es amar lo que haces.",
+    programQuote27Author: "Steve Jobs",
+    programQuote28Text: "La esperanza es el sueño del hombre despierto.",
+    programQuote28Author: "Aristóteles",
+    programQuote29Text: "Un viaje de mil leguas siempre comienza con un primer paso.",
+    programQuote29Author: "Lao Tse",
+    programQuote30Text: "La victoria más difícil es la victoria sobre uno mismo.",
+    programQuote30Author: "Platón",
+    programQuote31Text: "Tu vida vale lo que tú hagas de ella. Haz de ella una obra maestra.",
+    programQuote31Author: "Zerobet",
+    programQuote32Text: "El talento hace lo que puede. El genio hace lo que debe.",
+    programQuote32Author: "Proverbio",
+    programQuote33Text: "Los obstáculos son esas cosas aterradoras que vemos cuando apartamos los ojos de nuestra meta.",
+    programQuote33Author: "Henry Ford",
+    programQuote34Text: "Cuando se quiere, se puede. Cuando se puede, se debe.",
+    programQuote34Author: "Proverbio",
+    programQuote35Text: "Donde hay voluntad, hay un camino.",
+    programQuote35Author: "Proverbio inglés",
+    programQuote36Text: "El mejor momento para empezar fue ayer. El segundo mejor momento es ahora.",
+    programQuote36Author: "Proverbio",
+    programQuote37Text: "Sé el cambio que quieres ver en el mundo.",
+    programQuote37Author: "Gandhi",
+    programQuote38Text: "El éxito es caer siete veces y levantarse ocho.",
+    programQuote38Author: "Proverbio japonés",
+    programQuote39Text: "Nada grande se ha hecho sin pasión.",
+    programQuote39Author: "Hegel",
+    programQuote40Text: "La felicidad es a veces una forma de coraje.",
+    programQuote40Author: "Charles Péguy",
+    programQuote41Text: "La vida es como una bicicleta. Hay que avanzar para no perder el equilibrio.",
+    programQuote41Author: "Albert Einstein",
+    programQuote42Text: "La felicidad solo es real cuando se comparte.",
+    programQuote42Author: "Christopher McCandless",
+    programQuote43Text: "El viaje más hermoso es el que aún no has hecho.",
+    programQuote43Author: "Loïck Peyron",
+    programQuote44Text: "Cuando dejas de soñar, dejas de vivir.",
+    programQuote44Author: "Malcolm Forbes",
+    programQuote45Text: "No heredamos la tierra de nuestros antepasados, se la pedimos prestada a nuestros hijos.",
+    programQuote45Author: "Proverbio africano",
+    programQuote46Text: "El tiempo es el más sabio de todos los consejeros.",
+    programQuote46Author: "Pericles",
+    programQuote47Text: "Una mala hierba es solo una planta cuya virtud aún no se ha descubierto.",
+    programQuote47Author: "Ralph Waldo Emerson",
+    programQuote48Text: "El fracaso es simplemente la oportunidad de empezar de nuevo, esta vez con más inteligencia.",
+    programQuote48Author: "Henry Ford",
+    programQuote49Text: "La fe es el pájaro que siente la luz y canta cuando el alba aún está oscura.",
+    programQuote49Author: "Rabindranath Tagore",
+    programQuote50Text: "Lo mejor es enemigo de lo bueno.",
+    programQuote50Author: "Voltaire",
+    programQuote51Text: "Todo lo que la mente pueda concebir y creer, puede lograrlo.",
+    programQuote51Author: "Napoleon Hill",
+    programQuote52Text: "No se ilumina a los demás soplando su luz.",
+    programQuote52Author: "Proverbio",
+    programQuote53Text: "Donde hay incomodidad, no hay placer.",
+    programQuote53Author: "Proverbio",
+    programQuote54Text: "Poco a poco, el pájaro hace su nido.",
+    programQuote54Author: "Proverbio",
+    programQuote55Text: "Mejor hacer que decir.",
+    programQuote55Author: "Proverbio",
+    programQuote56Text: "Ayúdate y el cielo te ayudará.",
+    programQuote56Author: "Jean de La Fontaine",
+    programQuote57Text: "El saber es un arma. La sabiduría es su vaina.",
+    programQuote57Author: "Zerobet",
+    programQuote58Text: "Cada mañana es una nueva oportunidad.",
+    programQuote58Author: "Zerobet",
+    programQuote59Text: "Cuando se cierra una puerta de la felicidad, se abre otra.",
+    programQuote59Author: "Helen Keller",
+    programQuote60Text: "La felicidad de tu vida depende de la calidad de tus pensamientos.",
+    programQuote60Author: "Marco Aurelio",
+    programQuote61Text: "La verdadera riqueza es no necesitar nada.",
+    programQuote61Author: "Séneca",
+    programQuote62Text: "No es porque las cosas son difíciles que no nos atrevemos.",
+    programQuote62Author: "Séneca",
+    programQuote63Text: "La profundidad de un corazón se mide por la extensión de sus heridas.",
+    programQuote63Author: "Proverbio",
+    programQuote64Text: "El fuego que ilumina también calienta.",
+    programQuote64Author: "Proverbio",
+    programQuote65Text: "Nuestra mayor gloria no está en no caer nunca, sino en levantarnos cada vez que caemos.",
+    programQuote65Author: "Confucio",
+    programQuote66Text: "La felicidad es lo único que se duplica cuando se comparte.",
+    programQuote66Author: "Albert Schweitzer",
+    programQuote67Text: "Eres libre. Libre como el aire. Libre como nunca lo habías sido.",
+    programQuote67Author: "Zerobet",
+    programQuote68Text: "Hoy es el primer día del resto de tu vida.",
+    programQuote68Author: "Proverbio",
+    programQuote69Text: "Lo importante no es el destino, es el viaje.",
+    programQuote69Author: "Proverbio",
+    programQuote70Text: "El éxito no es final, el fracaso no es fatal. Es el coraje de continuar lo que cuenta.",
+    programQuote70Author: "Winston Churchill",
+    programQuote71Text: "No se ve el final del túnel, pero se sabe que la luz existe.",
+    programQuote71Author: "Zerobet",
+    programQuote72Text: "Tu racha de días es tu medalla. Llévala con orgullo.",
+    programQuote72Author: "Zerobet",
+    programQuote73Text: "Un paso tras otro, se llega a la cima.",
+    programQuote73Author: "Proverbio",
+    programQuote74Text: "No estás solo. Miles caminan contigo.",
+    programQuote74Author: "Zerobet",
+    programQuote75Text: "La palabra imposible no existe para mí.",
+    programQuote75Author: "Napoleón Bonaparte",
+    programQuote76Text: "El corazón tiene sus razones que la razón no conoce.",
+    programQuote76Author: "Blaise Pascal",
+    programQuote77Text: "Cuando se ama, no se cuenta.",
+    programQuote77Author: "Proverbio",
+    programQuote78Text: "El paraíso terrenal está donde tú estás.",
+    programQuote78Author: "Proverbio",
+    programQuote79Text: "La perseverancia es la madre de todos los éxitos.",
+    programQuote79Author: "Proverbio",
+    programQuote80Text: "Ya hiciste lo más difícil al empezar. Ahora, continúa.",
+    programQuote80Author: "Zerobet",
+    programQuote81Text: "El futuro te pertenece. Atrápalo.",
+    programQuote81Author: "Zerobet",
+    programQuote82Text: "Ya no eres el jugador que eras. Eres libre.",
+    programQuote82Author: "Zerobet",
+    programQuote83Text: "Cada día es una página nueva. Escríbela con orgullo.",
+    programQuote83Author: "Zerobet",
+    programQuote84Text: "El viaje más grande comienza con un solo paso. Hoy es el día 90.",
+    programQuote84Author: "Zerobet",
+    programQuote85Text: "Has transformado tu vida. Eres una inspiración.",
+    programQuote85Author: "Zerobet",
+    programQuote86Text: "El programa ha terminado, pero tu camino continúa. Bien hecho.",
+    programQuote86Author: "Zerobet",
+    programQuote87Text: "Siéntete orgulloso de ti. Has logrado algo extraordinario.",
+    programQuote87Author: "Zerobet",
+    programQuote88Text: "Ahora eres un mentor para los demás. Comparte tu historia.",
+    programQuote88Author: "Zerobet",
+    programQuote89Text: "La libertad no es un regalo, es una conquista. Has conquistado la tuya.",
+    programQuote89Author: "Zerobet",
+    programQuote90Text: "Eres la prueba viviente de que el cambio es posible.",
+    programQuote90Author: "Zerobet",
+    programQuote91Text: "Sigue adelante. Lo mejor está por venir.",
+    programQuote91Author: "Zerobet",
+    programQuote92Text: "Tu transformación inspira. Siéntete orgulloso de ella.",
+    programQuote92Author: "Zerobet",
+    authSignInTitle: "Iniciar sesión",
+    authSignInSubtitle: "Recupera el control de tu vida",
+    authSignUpTitle: "Crear cuenta",
+    authSignUpSubtitle: "Comienza tu viaje hacia la libertad",
+    authGoogle: "Continuar con Google",
+    authOr: "o",
+    authEmail: "Correo electrónico",
+    authPassword: "Contraseña",
+    authName: "Nombre (opcional)",
+    authSignIn: "Iniciar sesión",
+    authSignUp: "Registrarse",
+    authCreateAccount: "Crear mi cuenta",
+    authNoAccount: "¿No tienes cuenta?",
+    authHaveAccount: "¿Ya tienes cuenta?",
+    authPasswordTooShort: "La contraseña debe tener al menos 6 caracteres",
+    authErrorInvalid: "Email o contraseña incorrectos",
+    authErrorGeneric: "Ocurrió un error. Inténtalo de nuevo.",
+    authErrorSignInAfter: "Cuenta creada pero inicio de sesión falló. Intenta iniciar sesión.",
+    authTermsNotice: "Al continuar, aceptas nuestros Términos de servicio y Política de privacidad.",
+    authErrorTitle: "Vaya, un problema",
+    authErrorConfig: "Error de configuración. Contacta con soporte.",
+    authErrorDenied: "Acceso denegado. Cancelaste el inicio de sesión.",
+    authErrorVerification: "Verificación fallida. Inténtalo de nuevo.",
+    authErrorOAuth: "Error de conexión de Google. Inténtalo de nuevo.",
+    authErrorOAuthCreate: "No se pudo crear la cuenta. Inténtalo de nuevo.",
+    authErrorCallback: "Error de redirección. Inténtalo de nuevo.",
+    authErrorDefault: "Ocurrió un error durante el inicio de sesión.",
+    authTryAgain: "Intentar de nuevo",
+    programQuote93Text: "Eres una leyenda. Ahora, ayuda a otros a serlo también.",
+    programQuote93Author: "Zerobet"
+};
+const dictionaries = {
+    fr,
+    en,
+    es
+};
+function t(lang, key, params) {
+    let str = dictionaries[lang]?.[key] ?? dictionaries.fr[key] ?? key;
+    if (params) {
+        Object.entries(params).forEach(([k, v])=>{
+            str = str.replace(new RegExp(`\\{${k}\\}`, "g"), String(v));
+        });
+    }
+    return str;
+}
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/lib/reminders.ts [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "computeDueReminders",
+    ()=>computeDueReminders,
+    "isInSilentHours",
+    ()=>isInSilentHours,
+    "markReminderSent",
+    ()=>markReminderSent,
+    "runReminderCheck",
+    ()=>runReminderCheck,
+    "wasReminderSent",
+    ()=>wasReminderSent
+]);
+/**
+ * Zerobet 2.0.6 — Smart reminders engine (local notifications).
+ *
+ * Local-first reminder scheduler: evaluates which well-being reminders are
+ * DUE right now based on the user's notification preferences, the local
+ * clock, and their recovery state, then fires them as real Web
+ * notifications via the service worker (see lib/pwa.showLocalNotification).
+ *
+ * Honest scope (no push server / VAPID yet): reminders fire while the app
+ * is open or foregrounded — the hook re-checks on mount, every minute, and
+ * on visibilitychange. Everything is deduplicated per-day in localStorage
+ * so a reminder never repeats in the same day even across reloads.
+ *
+ * Channels honoured (NotificationPreferences, Task 13-c):
+ *   - dailyReminder      → check-in nudge after dailyReminderTime if not done
+ *   - cravingCheckin     → evening craving-hours check (20:00-23:00)
+ *   - motivationalQuotes → one daily quote (reuses the 90 translated quotes)
+ *   - weeklyReport       → Sunday morning weekly report nudge
+ *   - silentHours        → suppresses everything during sleep hours
+ */ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$pwa$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/pwa.ts [app-client] (ecmascript)");
+;
+const LOG_KEY = "zerobet-reminders-sent";
+// ---------- localStorage dedup log ----------
+function readLog() {
+    if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+    ;
+    try {
+        const raw = localStorage.getItem(LOG_KEY);
+        if (!raw) return {};
+        const parsed = JSON.parse(raw);
+        return parsed && typeof parsed === "object" ? parsed : {};
+    } catch  {
+        return {};
+    }
+}
+function markSent(id) {
+    if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+    ;
+    try {
+        const log = readLog();
+        log[id] = true;
+        // Keep the log small: drop entries older than 8 days
+        const cutoff = Date.now() - 8 * 86400000;
+        const cleaned = {};
+        for (const [k] of Object.entries(log)){
+            const m = k.match(/(\d{4}-\d{2}-\d{2})/);
+            if (!m || new Date(`${m[1]}T12:00:00`).getTime() >= cutoff) cleaned[k] = true;
+        }
+        cleaned[id] = true;
+        localStorage.setItem(LOG_KEY, JSON.stringify(cleaned));
+    } catch  {
+    /* private mode — reminders will re-fire, acceptable */ }
+}
+function wasSent(id) {
+    return Boolean(readLog()[id]);
+}
+function markReminderSent(id) {
+    markSent(id);
+}
+function wasReminderSent(id) {
+    return wasSent(id);
+}
+// ---------- time helpers ----------
+function parseHM(time) {
+    const m = /^(\d{1,2}):(\d{2})$/.exec(time?.trim() ?? "");
+    if (!m) return null;
+    const h = Number(m[1]);
+    const min = Number(m[2]);
+    if (h > 23 || min > 59) return null;
+    return h * 60 + min;
+}
+function isInSilentHours(prefs, now) {
+    if (!prefs.silentHours) return false;
+    const start = parseHM(prefs.silentHoursStart);
+    const end = parseHM(prefs.silentHoursEnd);
+    if (start === null || end === null) return false;
+    const cur = now.getHours() * 60 + now.getMinutes();
+    if (start === end) return false; // zero-length window = disabled
+    if (start < end) return cur >= start && cur < end;
+    // Overnight window (e.g. 22:00 → 07:00)
+    return cur >= start || cur < end;
+}
+function dayKey(now) {
+    const p = (n)=>String(n).padStart(2, "0");
+    return `${now.getFullYear()}-${p(now.getMonth() + 1)}-${p(now.getDate())}`;
+}
+function weekKey(now) {
+    // ISO-ish week id — good enough for a once-per-Sunday dedup
+    const d = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const dayNum = (d.getDay() + 6) % 7; // Monday = 0
+    d.setDate(d.getDate() - dayNum + 3); // nearest Thursday
+    const firstThursday = new Date(d.getFullYear(), 0, 4);
+    const week = 1 + Math.round(((d.getTime() - firstThursday.getTime()) / 86400000 - 3 + (firstThursday.getDay() + 6) % 7) / 7);
+    return `${d.getFullYear()}-W${String(week).padStart(2, "0")}`;
+}
+/** Stable pseudo-random quote of the day (1-90) — same quote all day. */ function quoteOfTheDay(now) {
+    const seed = Number(dayKey(now).replace(/-/g, ""));
+    return seed % 90 + 1;
+}
+function computeDueReminders(ctx, now = new Date()) {
+    const due = [];
+    const { prefs, t } = ctx;
+    if (isInSilentHours(prefs, now)) return due;
+    const today = dayKey(now);
+    const minutes = now.getHours() * 60 + now.getMinutes();
+    const checkedInToday = ctx.lastCheckInDate === now.toDateString();
+    // 1. Daily check-in reminder (after the configured time, if not done today)
+    if (prefs.dailyReminder && !checkedInToday) {
+        const at = parseHM(prefs.dailyReminderTime);
+        if (at !== null && minutes >= at) {
+            const id = `checkin-${today}`;
+            if (!wasSent(id)) {
+                due.push({
+                    id,
+                    title: t("reminderCheckinTitle"),
+                    body: t("reminderCheckinBody", {
+                        n: Math.max(ctx.streakDays, 0)
+                    }),
+                    url: "dashboard"
+                });
+            }
+        }
+    }
+    // 2. Evening craving-hours check (20:00 - 23:00), if not checked in today
+    if (prefs.cravingCheckin && !checkedInToday && minutes >= 20 * 60 && minutes <= 23 * 60) {
+        const id = `craving-${today}`;
+        if (!wasSent(id)) {
+            due.push({
+                id,
+                title: t("reminderCravingTitle"),
+                body: t("reminderCravingBody"),
+                url: "panic"
+            });
+        }
+    }
+    // 3. Daily motivational quote (after 18:00, for users who checked in)
+    if (prefs.motivationalQuotes && checkedInToday && minutes >= 18 * 60) {
+        const id = `quote-${today}`;
+        if (!wasSent(id)) {
+            const n = quoteOfTheDay(now);
+            due.push({
+                id,
+                title: t("reminderQuoteTitle"),
+                body: `« ${t(`programQuote${n}Text`)} » — ${t(`programQuote${n}Author`)}`,
+                url: "program"
+            });
+        }
+    }
+    // 4. Weekly report nudge (Sunday from 09:00)
+    if (prefs.weeklyReport && now.getDay() === 0 && minutes >= 9 * 60) {
+        const id = `weekly-${weekKey(now)}`;
+        if (!wasSent(id)) {
+            due.push({
+                id,
+                title: t("reminderWeeklyTitle"),
+                body: t("reminderWeeklyBody"),
+                url: "stats"
+            });
+        }
+    }
+    return due;
+}
+async function runReminderCheck(ctx, now = new Date()) {
+    let sent = 0;
+    try {
+        const due = computeDueReminders(ctx, now);
+        for (const r of due){
+            await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$pwa$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["showLocalNotification"])(r.title, r.body, r.url);
+            markSent(r.id);
+            sent += 1;
+        }
+    } catch  {
+        return 0;
+    }
+    return sent;
+}
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/hooks/useReminders.ts [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "useReminders",
+    ()=>useReminders
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$store$2f$zerobet$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/store/zerobet-store.ts [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$i18n$2f$dictionary$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/i18n/dictionary.ts [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$reminders$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/reminders.ts [app-client] (ecmascript)");
+var _s = __turbopack_context__.k.signature();
+"use client";
+;
+;
+;
+;
+function useReminders() {
+    _s();
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "useReminders.useEffect": ()=>{
+            if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+            ;
+            const navigateToScreen = {
+                "useReminders.useEffect.navigateToScreen": (screen)=>{
+                    const state = __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$store$2f$zerobet$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useStore"].getState();
+                    if (!state.hasCompletedOnboarding) return;
+                    // Only navigate to known screens — the value crosses the SW boundary.
+                    const known = [
+                        "dashboard",
+                        "panic",
+                        "journal",
+                        "finance",
+                        "atlas",
+                        "blocker",
+                        "community",
+                        "community-chat",
+                        "parcours",
+                        "settings",
+                        "subscription",
+                        "stats",
+                        "resources",
+                        "sos",
+                        "meditation",
+                        "achievements",
+                        "profile",
+                        "calendar",
+                        "support",
+                        "program",
+                        "mentorship",
+                        "withdrawal",
+                        "triggers",
+                        "goals",
+                        "relapse-recovery",
+                        "affirmations",
+                        "notifications"
+                    ];
+                    if (!known.includes(screen)) return;
+                    state.navigate(screen);
+                }
+            }["useReminders.useEffect.navigateToScreen"];
+            const tick = {
+                "useReminders.useEffect.tick": ()=>{
+                    const state = __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$store$2f$zerobet$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useStore"].getState();
+                    if (!state.hasCompletedOnboarding) return;
+                    if (!state.notificationPreferences.dailyReminder && !state.notificationPreferences.cravingCheckin && !state.notificationPreferences.motivationalQuotes && !state.notificationPreferences.weeklyReport) {
+                        return; // every channel disabled — nothing to do
+                    }
+                    (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$reminders$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["runReminderCheck"])({
+                        prefs: state.notificationPreferences,
+                        streakDays: state.streakDays,
+                        lastCheckInDate: state.lastCheckInDate,
+                        t: {
+                            "useReminders.useEffect.tick": (key, params)=>(0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$i18n$2f$dictionary$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["t"])(state.language, key, params)
+                        }["useReminders.useEffect.tick"]
+                    });
+                }
+            }["useReminders.useEffect.tick"];
+            // Deep-link from a notification click while the app is already open
+            const onSWMessage = {
+                "useReminders.useEffect.onSWMessage": (event)=>{
+                    const data = event.data;
+                    if (data?.type === "NOTIFICATION_CLICK" && data.url) {
+                        navigateToScreen(data.url);
+                    }
+                }
+            }["useReminders.useEffect.onSWMessage"];
+            navigator.serviceWorker?.addEventListener("message", onSWMessage);
+            // Deep-link from a cold start via ?deeplink=<screen>
+            try {
+                const params = new URLSearchParams(window.location.search);
+                const link = params.get("deeplink");
+                if (link) {
+                    params.delete("deeplink");
+                    const rest = params.toString();
+                    window.history.replaceState(null, "", window.location.pathname + (rest ? `?${rest}` : ""));
+                    setTimeout({
+                        "useReminders.useEffect": ()=>navigateToScreen(link)
+                    }["useReminders.useEffect"], 2500);
+                }
+            } catch  {
+            /* ignore */ }
+            const initialDelay = setTimeout(tick, 8000);
+            const interval = setInterval(tick, 60000);
+            const onVisible = {
+                "useReminders.useEffect.onVisible": ()=>{
+                    if (document.visibilityState === "visible") tick();
+                }
+            }["useReminders.useEffect.onVisible"];
+            document.addEventListener("visibilitychange", onVisible);
+            return ({
+                "useReminders.useEffect": ()=>{
+                    clearTimeout(initialDelay);
+                    clearInterval(interval);
+                    document.removeEventListener("visibilitychange", onVisible);
+                    navigator.serviceWorker?.removeEventListener("message", onSWMessage);
+                }
+            })["useReminders.useEffect"];
+        }
+    }["useReminders.useEffect"], []);
+}
+_s(useReminders, "OD7bBpZva5O2jO+Puf00hKivP7c=");
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/lib/i18n/useT.ts [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__,
+    "useLanguage",
+    ()=>useLanguage,
+    "useT",
+    ()=>useT
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$store$2f$zerobet$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/store/zerobet-store.ts [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$i18n$2f$dictionary$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/i18n/dictionary.ts [app-client] (ecmascript)");
+var _s = __turbopack_context__.k.signature(), _s1 = __turbopack_context__.k.signature();
+"use client";
+;
+;
+;
+function useT() {
+    _s();
+    const language = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$store$2f$zerobet$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useStore"])({
+        "useT.useStore[language]": (s)=>s.language
+    }["useT.useStore[language]"]);
+    const translate = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "useT.useCallback[translate]": (key, params)=>(0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$i18n$2f$dictionary$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["t"])(language, key, params)
+    }["useT.useCallback[translate]"], [
+        language
+    ]);
+    return translate;
+}
+_s(useT, "jTmSyb3jUl8UkxzfRYghR9AoYRE=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$store$2f$zerobet$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useStore"]
+    ];
+});
+function useLanguage() {
+    _s1();
+    const language = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$store$2f$zerobet$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useStore"])({
+        "useLanguage.useStore[language]": (s)=>s.language
+    }["useLanguage.useStore[language]"]);
+    return language;
+}
+_s1(useLanguage, "LHWgIBQ3XAaE1JZraGoIavs379M=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$store$2f$zerobet$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useStore"]
+    ];
+});
+const __TURBOPACK__default__export__ = useT;
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/components/zerobet/components/BottomNav.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "BottomNav",
+    ()=>BottomNav
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/render/components/motion/proxy.mjs [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$house$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Home$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/house.js [app-client] (ecmascript) <export default as Home>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$wrench$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Wrench$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/wrench.js [app-client] (ecmascript) <export default as Wrench>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$bot$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Bot$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/bot.js [app-client] (ecmascript) <export default as Bot>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/users.js [app-client] (ecmascript) <export default as Users>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$user$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__User$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/user.js [app-client] (ecmascript) <export default as User>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$store$2f$zerobet$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/store/zerobet-store.ts [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$sound$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/sound.ts [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$haptics$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/haptics.ts [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$i18n$2f$useT$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/i18n/useT.ts [app-client] (ecmascript)");
+;
+var _s = __turbopack_context__.k.signature();
+"use client";
+;
+;
+;
+;
+;
+;
+const TABS = [
+    {
+        id: "dashboard",
+        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$house$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Home$3e$__["Home"],
+        labelKey: "navHome"
+    },
+    {
+        id: "journal",
+        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$wrench$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Wrench$3e$__["Wrench"],
+        labelKey: "navTools"
+    },
+    {
+        id: "atlas",
+        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$bot$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Bot$3e$__["Bot"],
+        labelKey: "navCoach"
+    },
+    {
+        id: "community",
+        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__["Users"],
+        labelKey: "navCommunity"
+    },
+    {
+        id: "profile",
+        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$user$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__User$3e$__["User"],
+        labelKey: "navProfile"
+    }
+];
+function BottomNav() {
+    _s();
+    const { currentScreen, navigate } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$store$2f$zerobet$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useStore"])();
+    const t = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$i18n$2f$useT$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useT"])();
+    // Don't show nav on onboarding screens
+    const onboardingScreens = [
+        "splash",
+        "gender",
+        "language",
+        "welcome",
+        "quiz",
+        "results",
+        "symptoms",
+        "carousel",
+        "engagement",
+        "paywall"
+    ];
+    if (onboardingScreens.includes(currentScreen)) return null;
+    // Don't show on full-screen tools
+    if (currentScreen === "panic" || currentScreen === "parcours-evolution") return null;
+    const handleTabClick = (screen)=>{
+        __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$sound$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["sound"].playClick();
+        __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$haptics$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["haptics"].selection();
+        navigate(screen);
+    };
+    // Map journal tab to a tools hub - if user is on a tool screen, highlight tools
+    const toolScreens = [
+        "journal",
+        "finance",
+        "blocker",
+        "parcours",
+        "stats",
+        "meditation",
+        "resources",
+        "sos",
+        "achievements",
+        "triggers",
+        "goals",
+        "relapse-recovery",
+        "affirmations",
+        "notifications",
+        "community-chat"
+    ];
+    // Settings & profile both fall under the Profil tab
+    const profileScreens = [
+        "profile",
+        "settings"
+    ];
+    let activeTab = currentScreen;
+    if (toolScreens.includes(currentScreen)) activeTab = "journal";
+    else if (profileScreens.includes(currentScreen)) activeTab = "profile";
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "fixed min-[500px]:absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] z-40 safe-bottom",
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "mx-3 mb-3",
+            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
+                className: "glass-card-strong flex items-center justify-around px-2 py-2 rounded-3xl",
+                children: TABS.map((tab)=>{
+                    const Icon = tab.icon;
+                    const isActive = activeTab === tab.id;
+                    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                        onClick: ()=>handleTabClick(tab.id),
+                        className: `relative flex flex-col items-center justify-center px-3 py-1.5 rounded-2xl transition-colors min-w-[56px] min-h-[44px] active:scale-90 ${isActive ? "" : "hover:bg-white/5"}`,
+                        "aria-label": t(tab.labelKey),
+                        children: [
+                            isActive && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                                layoutId: "activeIndicator",
+                                className: "absolute -top-1 left-1/2 -translate-x-1/2 h-1 w-8 rounded-full gradient-primary glow-blue",
+                                style: {
+                                    boxShadow: "0 0 8px rgba(16, 185, 129, 0.8), 0 0 16px rgba(45, 212, 191, 0.5)"
+                                },
+                                transition: {
+                                    type: "spring",
+                                    stiffness: 400,
+                                    damping: 30
+                                }
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/zerobet/components/BottomNav.tsx",
+                                lineNumber: 60,
+                                columnNumber: 19
+                            }, this),
+                            isActive && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                                        layoutId: "activeTabOuter",
+                                        className: "absolute inset-0 rounded-2xl bg-gradient-to-br from-[#10B981]/30 to-[#2DD4BF]/30",
+                                        transition: {
+                                            type: "spring",
+                                            stiffness: 400,
+                                            damping: 30
+                                        }
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/zerobet/components/BottomNav.tsx",
+                                        lineNumber: 75,
+                                        columnNumber: 21
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                                        layoutId: "activeTabInner",
+                                        className: "absolute inset-0 rounded-2xl bg-gradient-to-br from-[#10B981]/15 to-[#2DD4BF]/15 ring-1 ring-[#2DD4BF]/40",
+                                        transition: {
+                                            type: "spring",
+                                            stiffness: 400,
+                                            damping: 30
+                                        }
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/zerobet/components/BottomNav.tsx",
+                                        lineNumber: 81,
+                                        columnNumber: 21
+                                    }, this)
+                                ]
+                            }, void 0, true),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                                animate: isActive ? {
+                                    scale: 1.15
+                                } : {
+                                    scale: 1
+                                },
+                                transition: {
+                                    type: "spring",
+                                    stiffness: 500,
+                                    damping: 20
+                                },
+                                className: "relative z-10",
+                                style: isActive ? {
+                                    filter: "drop-shadow(0 0 8px rgba(45, 212, 191, 0.6))"
+                                } : undefined,
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Icon, {
+                                    size: 22,
+                                    className: isActive ? "text-[#10B981]" : "text-white/50",
+                                    strokeWidth: isActive ? 2.5 : 2
+                                }, void 0, false, {
+                                    fileName: "[project]/src/components/zerobet/components/BottomNav.tsx",
+                                    lineNumber: 102,
+                                    columnNumber: 19
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/zerobet/components/BottomNav.tsx",
+                                lineNumber: 89,
+                                columnNumber: 17
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                className: `text-[10px] mt-0.5 relative z-10 font-medium transition-colors ${isActive ? "text-[#10B981]" : "text-white/40"}`,
+                                style: isActive ? {
+                                    textShadow: "0 0 8px rgba(45, 212, 191, 0.5)"
+                                } : undefined,
+                                children: t(tab.labelKey)
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/zerobet/components/BottomNav.tsx",
+                                lineNumber: 108,
+                                columnNumber: 17
+                            }, this)
+                        ]
+                    }, tab.id, true, {
+                        fileName: "[project]/src/components/zerobet/components/BottomNav.tsx",
+                        lineNumber: 50,
+                        columnNumber: 15
+                    }, this);
+                })
+            }, void 0, false, {
+                fileName: "[project]/src/components/zerobet/components/BottomNav.tsx",
+                lineNumber: 45,
+                columnNumber: 9
+            }, this)
+        }, void 0, false, {
+            fileName: "[project]/src/components/zerobet/components/BottomNav.tsx",
+            lineNumber: 44,
+            columnNumber: 7
+        }, this)
+    }, void 0, false, {
+        fileName: "[project]/src/components/zerobet/components/BottomNav.tsx",
+        lineNumber: 43,
+        columnNumber: 5
+    }, this);
+}
+_s(BottomNav, "5O/ytXMTsMp8exdETtEwfsrnNDs=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$store$2f$zerobet$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useStore"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$i18n$2f$useT$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useT"]
+    ];
+});
+_c = BottomNav;
+var _c;
+__turbopack_context__.k.register(_c, "BottomNav");
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/components/zerobet/components/ErrorBoundary.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "ErrorBoundary",
+    ()=>ErrorBoundary
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/render/components/motion/proxy.mjs [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/components/AnimatePresence/index.mjs [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$triangle$2d$alert$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__AlertTriangle$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/triangle-alert.js [app-client] (ecmascript) <export default as AlertTriangle>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$refresh$2d$cw$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__RefreshCw$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/refresh-cw.js [app-client] (ecmascript) <export default as RefreshCw>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$house$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Home$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/house.js [app-client] (ecmascript) <export default as Home>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$down$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronDown$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/chevron-down.js [app-client] (ecmascript) <export default as ChevronDown>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$up$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronUp$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/chevron-up.js [app-client] (ecmascript) <export default as ChevronUp>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$bug$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Bug$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/bug.js [app-client] (ecmascript) <export default as Bug>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$i18n$2f$useT$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/i18n/useT.ts [app-client] (ecmascript)");
+;
+var _s = __turbopack_context__.k.signature();
+"use client";
+;
+;
+;
+;
+/**
+ * Inner functional component that renders the error UI. It can use the `useT()`
+ * hook (class components can't use hooks), so all visible strings are localized.
+ */ function ErrorFallbackUI({ error, showDetails, onToggleDetails, onRetry, onGoHome }) {
+    _s();
+    const t = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$i18n$2f$useT$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useT"])();
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "app-container relative min-h-screen flex items-center justify-center px-6 py-10",
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                "aria-hidden": true,
+                className: "absolute inset-0 pointer-events-none",
+                style: {
+                    background: "radial-gradient(ellipse at 50% 30%, rgba(255,59,48,0.15) 0%, transparent 55%), radial-gradient(ellipse at 80% 80%, rgba(245, 158, 11,0.1) 0%, transparent 50%)"
+                }
+            }, void 0, false, {
+                fileName: "[project]/src/components/zerobet/components/ErrorBoundary.tsx",
+                lineNumber: 43,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                initial: {
+                    opacity: 0,
+                    y: 24,
+                    scale: 0.96
+                },
+                animate: {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1
+                },
+                transition: {
+                    type: "spring",
+                    stiffness: 260,
+                    damping: 24
+                },
+                className: "relative glass-card-strong p-7 max-w-md w-full text-center",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                        initial: {
+                            scale: 0,
+                            rotate: -20
+                        },
+                        animate: {
+                            scale: 1,
+                            rotate: 0
+                        },
+                        transition: {
+                            type: "spring",
+                            stiffness: 200,
+                            damping: 12,
+                            delay: 0.05
+                        },
+                        className: "w-20 h-20 mx-auto mb-5 rounded-3xl flex items-center justify-center relative",
+                        style: {
+                            background: "linear-gradient(135deg, rgba(255,59,48,0.22) 0%, rgba(245, 158, 11,0.18) 100%)",
+                            border: "1px solid rgba(255,59,48,0.35)",
+                            boxShadow: "0 0 40px rgba(255,59,48,0.35), 0 0 80px rgba(255,59,48,0.15)"
+                        },
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                            animate: {
+                                y: [
+                                    0,
+                                    -3,
+                                    0
+                                ]
+                            },
+                            transition: {
+                                duration: 1.6,
+                                repeat: Infinity,
+                                ease: "easeInOut"
+                            },
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$triangle$2d$alert$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__AlertTriangle$3e$__["AlertTriangle"], {
+                                size: 36,
+                                className: "text-[#FF3B30]",
+                                strokeWidth: 2.2
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/zerobet/components/ErrorBoundary.tsx",
+                                lineNumber: 76,
+                                columnNumber: 13
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "[project]/src/components/zerobet/components/ErrorBoundary.tsx",
+                            lineNumber: 72,
+                            columnNumber: 11
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/zerobet/components/ErrorBoundary.tsx",
+                        lineNumber: 59,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
+                        className: "text-2xl font-bold text-white font-[family-name:var(--font-poppins)] mb-2",
+                        children: t("errorBoundaryTitle")
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/zerobet/components/ErrorBoundary.tsx",
+                        lineNumber: 80,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                        className: "text-white/60 text-sm leading-relaxed mb-6",
+                        children: t("errorBoundarySubtitle")
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/zerobet/components/ErrorBoundary.tsx",
+                        lineNumber: 83,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "flex flex-col gap-2.5 mb-5",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                onClick: onRetry,
+                                className: "w-full py-3.5 rounded-2xl gradient-primary text-white font-[family-name:var(--font-poppins)] font-semibold text-sm flex items-center justify-center gap-2 glow-green active:scale-[0.98] transition-transform",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$refresh$2d$cw$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__RefreshCw$3e$__["RefreshCw"], {
+                                        size: 16
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/zerobet/components/ErrorBoundary.tsx",
+                                        lineNumber: 93,
+                                        columnNumber: 13
+                                    }, this),
+                                    t("errorBoundaryRetry")
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/components/zerobet/components/ErrorBoundary.tsx",
+                                lineNumber: 89,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                onClick: onGoHome,
+                                className: "w-full py-3.5 rounded-2xl glass-card text-white/85 font-medium text-sm flex items-center justify-center gap-2 active:scale-[0.98] transition-transform",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$house$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Home$3e$__["Home"], {
+                                        size: 16
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/zerobet/components/ErrorBoundary.tsx",
+                                        lineNumber: 100,
+                                        columnNumber: 13
+                                    }, this),
+                                    t("errorBoundaryHome")
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/components/zerobet/components/ErrorBoundary.tsx",
+                                lineNumber: 96,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/components/zerobet/components/ErrorBoundary.tsx",
+                        lineNumber: 88,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                        onClick: onToggleDetails,
+                        className: "w-full flex items-center justify-center gap-1.5 text-white/40 text-xs hover:text-white/60 transition-colors py-1",
+                        "aria-expanded": showDetails,
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$bug$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Bug$3e$__["Bug"], {
+                                size: 12
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/zerobet/components/ErrorBoundary.tsx",
+                                lineNumber: 111,
+                                columnNumber: 11
+                            }, this),
+                            showDetails ? t("errorBoundaryHide") : t("errorBoundaryShow"),
+                            showDetails ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$up$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronUp$3e$__["ChevronUp"], {
+                                size: 12
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/zerobet/components/ErrorBoundary.tsx",
+                                lineNumber: 116,
+                                columnNumber: 13
+                            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$down$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronDown$3e$__["ChevronDown"], {
+                                size: 12
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/zerobet/components/ErrorBoundary.tsx",
+                                lineNumber: 118,
+                                columnNumber: 13
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/components/zerobet/components/ErrorBoundary.tsx",
+                        lineNumber: 106,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AnimatePresence"], {
+                        initial: false,
+                        children: showDetails && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                            initial: {
+                                height: 0,
+                                opacity: 0
+                            },
+                            animate: {
+                                height: "auto",
+                                opacity: 1
+                            },
+                            exit: {
+                                height: 0,
+                                opacity: 0
+                            },
+                            transition: {
+                                duration: 0.25,
+                                ease: "easeInOut"
+                            },
+                            className: "overflow-hidden",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "mt-3 p-3 rounded-xl bg-black/40 border border-white/5 text-left",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "text-[10px] uppercase tracking-wider text-[#F59E0B] font-bold mb-1",
+                                        children: error.name || t("errorBoundaryErrorLabel")
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/zerobet/components/ErrorBoundary.tsx",
+                                        lineNumber: 132,
+                                        columnNumber: 17
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        className: "text-white/70 text-[11px] font-mono break-words leading-relaxed mb-2",
+                                        children: error.message || "Unknown error"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/zerobet/components/ErrorBoundary.tsx",
+                                        lineNumber: 135,
+                                        columnNumber: 17
+                                    }, this),
+                                    error.stack && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("pre", {
+                                        className: "text-white/40 text-[9px] font-mono whitespace-pre-wrap break-words max-h-40 overflow-y-auto custom-scroll leading-relaxed",
+                                        children: error.stack
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/zerobet/components/ErrorBoundary.tsx",
+                                        lineNumber: 139,
+                                        columnNumber: 19
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/components/zerobet/components/ErrorBoundary.tsx",
+                                lineNumber: 131,
+                                columnNumber: 15
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "[project]/src/components/zerobet/components/ErrorBoundary.tsx",
+                            lineNumber: 124,
+                            columnNumber: 13
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/zerobet/components/ErrorBoundary.tsx",
+                        lineNumber: 122,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                        className: "text-white/30 text-[10px] mt-4 italic",
+                        children: t("errorBoundaryQuote")
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/zerobet/components/ErrorBoundary.tsx",
+                        lineNumber: 148,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/src/components/zerobet/components/ErrorBoundary.tsx",
+                lineNumber: 52,
+                columnNumber: 7
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "[project]/src/components/zerobet/components/ErrorBoundary.tsx",
+        lineNumber: 41,
+        columnNumber: 5
+    }, this);
+}
+_s(ErrorFallbackUI, "uZyfTDL5l50aWwhHvO0Py2n2h8Y=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$i18n$2f$useT$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useT"]
+    ];
+});
+_c = ErrorFallbackUI;
+class ErrorBoundary extends __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            hasError: false,
+            error: null,
+            showDetails: false
+        };
+    }
+    static getDerivedStateFromError(error) {
+        return {
+            hasError: true,
+            error
+        };
+    }
+    componentDidCatch(error, info) {
+        // Log to console for debugging (no external telemetry in this sandbox).
+        console.error("[ErrorBoundary] Caught error:", error, info.componentStack);
+    }
+    reset = ()=>{
+        this.setState({
+            hasError: false,
+            error: null,
+            showDetails: false
+        });
+    };
+    goHome = ()=>{
+        this.reset();
+        // Use store-independent navigation: direct window history / hash reset.
+        if ("TURBOPACK compile-time truthy", 1) {
+            // Reset persisted store + reload to dashboard.
+            try {
+                localStorage.removeItem("zerobet-store");
+            } catch  {
+            /* no-op */ }
+            window.location.href = window.location.pathname;
+        }
+        this.props.onGoHome?.();
+    };
+    toggleDetails = ()=>{
+        this.setState((s)=>({
+                showDetails: !s.showDetails
+            }));
+    };
+    render() {
+        const { hasError, error, showDetails } = this.state;
+        const { fallback, children } = this.props;
+        if (!hasError) return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+            children: children
+        }, void 0, false);
+        if (fallback && error) {
+            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+                children: fallback(error, this.reset)
+            }, void 0, false);
+        }
+        if (!error) {
+            // Defensive: hasError is true but no error captured — render nothing.
+            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+                children: children
+            }, void 0, false);
+        }
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ErrorFallbackUI, {
+            error: error,
+            showDetails: showDetails,
+            onToggleDetails: this.toggleDetails,
+            onRetry: this.reset,
+            onGoHome: this.goHome
+        }, void 0, false, {
+            fileName: "[project]/src/components/zerobet/components/ErrorBoundary.tsx",
+            lineNumber: 217,
+            columnNumber: 7
+        }, this);
+    }
+}
+var _c;
+__turbopack_context__.k.register(_c, "ErrorFallbackUI");
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/components/ui/sonner.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "Toaster",
+    ()=>Toaster
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2d$themes$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next-themes/dist/index.mjs [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/sonner/dist/index.mjs [app-client] (ecmascript)");
+;
+var _s = __turbopack_context__.k.signature();
+"use client";
+;
+;
+const Toaster = ({ ...props })=>{
+    _s();
+    const { theme = "system" } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2d$themes$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTheme"])();
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Toaster"], {
+        theme: theme,
+        className: "toaster group",
+        style: {
+            "--normal-bg": "var(--popover)",
+            "--normal-text": "var(--popover-foreground)",
+            "--normal-border": "var(--border)"
+        },
+        ...props
+    }, void 0, false, {
+        fileName: "[project]/src/components/ui/sonner.tsx",
+        lineNumber: 10,
+        columnNumber: 5
+    }, ("TURBOPACK compile-time value", void 0));
+};
+_s(Toaster, "EriOrahfenYKDCErPq+L6926Dw4=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2d$themes$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTheme"]
+    ];
+});
+_c = Toaster;
+;
+var _c;
+__turbopack_context__.k.register(_c, "Toaster");
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/components/zerobet/components/PhoneShell.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "PhoneShell",
+    ()=>PhoneShell
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$signal$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Signal$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/signal.js [app-client] (ecmascript) <export default as Signal>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$wifi$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Wifi$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/wifi.js [app-client] (ecmascript) <export default as Wifi>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$battery$2d$full$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__BatteryFull$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/battery-full.js [app-client] (ecmascript) <export default as BatteryFull>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$sonner$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ui/sonner.tsx [app-client] (ecmascript)");
+;
+var _s = __turbopack_context__.k.signature(), _s1 = __turbopack_context__.k.signature();
+"use client";
+;
+;
+;
+/**
+ * PhoneShell — Zerobet 3.0 "Native App" shell (QUITTR-style).
+ *
+ * MOBILE (<500px): renders as a full-bleed app — the browser/PWA chrome
+ * provides the real status bar, so nothing fake is drawn.
+ *
+ * DESKTOP (>=500px): the app is staged inside a photorealistic phone frame
+ * (bezel, Dynamic Island, live status bar, home indicator) floating on an
+ * ambient emerald aurora. `transform` on `.zb-phone` turns it into the
+ * containing block for every `position: fixed` descendant, so modals,
+ * sheets and toasts stay confined inside the device screen — exactly like
+ * a native app screenshot.
+ */ /** Live clock for the fake status bar (starts at Apple's classic 9:41). */ function useClock() {
+    _s();
+    const [time, setTime] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("9:41");
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "useClock.useEffect": ()=>{
+            const update = {
+                "useClock.useEffect.update": ()=>setTime(new Date().toLocaleTimeString([], {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        hour12: false
+                    }))
+            }["useClock.useEffect.update"];
+            update();
+            const id = setInterval(update, 10_000);
+            return ({
+                "useClock.useEffect": ()=>clearInterval(id)
+            })["useClock.useEffect"];
+        }
+    }["useClock.useEffect"], []);
+    return time;
+}
+_s(useClock, "nX6BVrKZBRY492+U1P0pi2+WemQ=");
+function StatusBar() {
+    _s1();
+    const time = useClock();
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "zb-statusbar",
+        "aria-hidden": true,
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                className: "zb-statusbar-time tabular-nums",
+                children: time
+            }, void 0, false, {
+                fileName: "[project]/src/components/zerobet/components/PhoneShell.tsx",
+                lineNumber: 46,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "zb-statusbar-icons",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$signal$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Signal$3e$__["Signal"], {
+                        size: 17,
+                        strokeWidth: 2.6
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/zerobet/components/PhoneShell.tsx",
+                        lineNumber: 48,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$wifi$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Wifi$3e$__["Wifi"], {
+                        size: 16,
+                        strokeWidth: 2.6
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/zerobet/components/PhoneShell.tsx",
+                        lineNumber: 49,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$battery$2d$full$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__BatteryFull$3e$__["BatteryFull"], {
+                        size: 28,
+                        strokeWidth: 1.8
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/zerobet/components/PhoneShell.tsx",
+                        lineNumber: 50,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/src/components/zerobet/components/PhoneShell.tsx",
+                lineNumber: 47,
+                columnNumber: 7
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "[project]/src/components/zerobet/components/PhoneShell.tsx",
+        lineNumber: 45,
+        columnNumber: 5
+    }, this);
+}
+_s1(StatusBar, "R+PESSTxWxrvs4b8p2D6glLz8eQ=", false, function() {
+    return [
+        useClock
+    ];
+});
+_c = StatusBar;
+function PhoneShell({ children }) {
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "zb-stage",
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "zb-ambient",
+                "aria-hidden": true,
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "zb-orb zb-orb-1"
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/zerobet/components/PhoneShell.tsx",
+                        lineNumber: 61,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "zb-orb zb-orb-2"
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/zerobet/components/PhoneShell.tsx",
+                        lineNumber: 62,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "zb-wordmark",
+                        children: "Zerobet"
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/zerobet/components/PhoneShell.tsx",
+                        lineNumber: 63,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/src/components/zerobet/components/PhoneShell.tsx",
+                lineNumber: 60,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "zb-phone",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(StatusBar, {}, void 0, false, {
+                        fileName: "[project]/src/components/zerobet/components/PhoneShell.tsx",
+                        lineNumber: 68,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "zb-island",
+                        "aria-hidden": true
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/zerobet/components/PhoneShell.tsx",
+                        lineNumber: 69,
+                        columnNumber: 9
+                    }, this),
+                    children,
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "zb-home-indicator",
+                        "aria-hidden": true
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/zerobet/components/PhoneShell.tsx",
+                        lineNumber: 71,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$sonner$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Toaster"], {
+                        position: "top-center",
+                        theme: "dark",
+                        toastOptions: {
+                            style: {
+                                background: "rgba(11, 19, 43, 0.95)",
+                                border: "1px solid rgba(255, 255, 255, 0.1)",
+                                color: "#fff",
+                                backdropFilter: "blur(20px)"
+                            }
+                        }
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/zerobet/components/PhoneShell.tsx",
+                        lineNumber: 74,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/src/components/zerobet/components/PhoneShell.tsx",
+                lineNumber: 67,
+                columnNumber: 7
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "[project]/src/components/zerobet/components/PhoneShell.tsx",
+        lineNumber: 58,
+        columnNumber: 5
+    }, this);
+}
+_c1 = PhoneShell;
+var _c, _c1;
+__turbopack_context__.k.register(_c, "StatusBar");
+__turbopack_context__.k.register(_c1, "PhoneShell");
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/components/zerobet/components/ZerobetLogo.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "ZerobetLogo",
+    ()=>ZerobetLogo
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/render/components/motion/proxy.mjs [app-client] (ecmascript)");
+"use client";
+;
+;
+function ZerobetLogo({ size = 80, animated = true, className = "" }) {
+    const MotionGroup = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].g;
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+        width: size,
+        height: size,
+        viewBox: "0 0 120 120",
+        fill: "none",
+        xmlns: "http://www.w3.org/2000/svg",
+        className: className,
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("defs", {
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("linearGradient", {
+                        id: "zb-gradient",
+                        x1: "0%",
+                        y1: "0%",
+                        x2: "100%",
+                        y2: "100%",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                offset: "0%",
+                                stopColor: "#10B981"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                                lineNumber: 24,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                offset: "50%",
+                                stopColor: "#14C9A8"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                                lineNumber: 25,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                offset: "100%",
+                                stopColor: "#2DD4BF"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                                lineNumber: 26,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                        lineNumber: 23,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("linearGradient", {
+                        id: "zb-shield-grad",
+                        x1: "0%",
+                        y1: "0%",
+                        x2: "100%",
+                        y2: "100%",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                offset: "0%",
+                                stopColor: "#10B981"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                                lineNumber: 29,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                offset: "100%",
+                                stopColor: "#065F46"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                                lineNumber: 30,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                        lineNumber: 28,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("linearGradient", {
+                        id: "zb-shine",
+                        x1: "0%",
+                        y1: "0%",
+                        x2: "100%",
+                        y2: "0%",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                offset: "0%",
+                                stopColor: "#FFFFFF",
+                                stopOpacity: "0"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                                lineNumber: 33,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                offset: "45%",
+                                stopColor: "#FFFFFF",
+                                stopOpacity: "0"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                                lineNumber: 34,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                offset: "50%",
+                                stopColor: "#FFFFFF",
+                                stopOpacity: "0.55"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                                lineNumber: 35,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                offset: "55%",
+                                stopColor: "#FFFFFF",
+                                stopOpacity: "0"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                                lineNumber: 36,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                offset: "100%",
+                                stopColor: "#FFFFFF",
+                                stopOpacity: "0"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                                lineNumber: 37,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                        lineNumber: 32,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("radialGradient", {
+                        id: "zb-glow",
+                        cx: "50%",
+                        cy: "50%",
+                        r: "50%",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                offset: "0%",
+                                stopColor: "#2DD4BF",
+                                stopOpacity: "0.6"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                                lineNumber: 40,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                offset: "100%",
+                                stopColor: "#10B981",
+                                stopOpacity: "0"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                                lineNumber: 41,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                        lineNumber: 39,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("filter", {
+                        id: "zb-shadow",
+                        x: "-50%",
+                        y: "-50%",
+                        width: "200%",
+                        height: "200%",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("feGaussianBlur", {
+                                stdDeviation: "3",
+                                result: "blur"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                                lineNumber: 44,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("feOffset", {
+                                dx: "0",
+                                dy: "2",
+                                result: "offset"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                                lineNumber: 45,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("feFlood", {
+                                floodColor: "#10B981",
+                                floodOpacity: "0.5"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                                lineNumber: 46,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("feComposite", {
+                                in2: "offset",
+                                operator: "in"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                                lineNumber: 47,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("feMerge", {
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("feMergeNode", {}, void 0, false, {
+                                        fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                                        lineNumber: 49,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("feMergeNode", {
+                                        in: "SourceGraphic"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                                        lineNumber: 50,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                                lineNumber: 48,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                        lineNumber: 43,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("clipPath", {
+                        id: "zb-shield-clip",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                            d: "M60 18 L92 28 V58 C92 78 78 92 60 100 C42 92 28 78 28 58 V28 Z"
+                        }, void 0, false, {
+                            fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                            lineNumber: 54,
+                            columnNumber: 11
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                        lineNumber: 53,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                lineNumber: 22,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].circle, {
+                cx: "60",
+                cy: "60",
+                r: "55",
+                fill: "url(#zb-glow)",
+                animate: animated ? {
+                    opacity: [
+                        0.55,
+                        0.85,
+                        0.55
+                    ],
+                    scale: [
+                        1,
+                        1.04,
+                        1
+                    ]
+                } : {},
+                transition: {
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                },
+                style: {
+                    transformOrigin: "60px 60px"
+                }
+            }, void 0, false, {
+                fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                lineNumber: 59,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(MotionGroup, {
+                initial: animated ? {
+                    scale: 0,
+                    rotate: -30
+                } : false,
+                animate: animated ? {
+                    scale: 1,
+                    rotate: 0
+                } : {},
+                transition: {
+                    type: "spring",
+                    stiffness: 120,
+                    damping: 12,
+                    delay: 0.1
+                },
+                filter: "url(#zb-shadow)",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                        d: "M60 18 L92 28 V58 C92 78 78 92 60 100 C42 92 28 78 28 58 V28 Z",
+                        fill: "url(#zb-shield-grad)",
+                        stroke: "#FBBF24",
+                        strokeWidth: "2"
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                        lineNumber: 76,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                        d: "M60 24 L86 32 V58 C86 74 74 86 60 93 C46 86 34 74 34 58 V32 Z",
+                        fill: "rgba(11, 19, 43, 0.4)"
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                        lineNumber: 82,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].g, {
+                        clipPath: "url(#zb-shield-clip)",
+                        initial: animated ? {
+                            x: -100
+                        } : false,
+                        animate: animated ? {
+                            x: 220
+                        } : {},
+                        transition: {
+                            duration: 2.4,
+                            repeat: Infinity,
+                            repeatDelay: 3.5,
+                            ease: "easeInOut",
+                            delay: 1.4
+                        },
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("rect", {
+                            x: "0",
+                            y: "10",
+                            width: "40",
+                            height: "100",
+                            fill: "url(#zb-shine)"
+                        }, void 0, false, {
+                            fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                            lineNumber: 99,
+                            columnNumber: 11
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                        lineNumber: 87,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                lineNumber: 70,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(MotionGroup, {
+                initial: animated ? {
+                    opacity: 0,
+                    x: -10
+                } : false,
+                animate: animated ? {
+                    opacity: 1,
+                    x: 0
+                } : {},
+                transition: {
+                    delay: 0.5,
+                    duration: 0.4
+                },
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                        d: "M18 50 C16 46 18 42 22 42 L26 42 L26 48 L24 48 L24 50 L18 50 Z",
+                        fill: "#FBBF24",
+                        opacity: "0.8"
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                        lineNumber: 110,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("rect", {
+                        x: "14",
+                        y: "54",
+                        width: "6",
+                        height: "3",
+                        rx: "1",
+                        fill: "#FBBF24",
+                        opacity: "0.6"
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                        lineNumber: 115,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                        d: "M102 50 C104 46 102 42 98 42 L94 42 L94 48 L96 48 L96 50 L102 50 Z",
+                        fill: "#FBBF24",
+                        opacity: "0.8"
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                        lineNumber: 117,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("rect", {
+                        x: "100",
+                        y: "54",
+                        width: "6",
+                        height: "3",
+                        rx: "1",
+                        fill: "#FBBF24",
+                        opacity: "0.6"
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                        lineNumber: 122,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                lineNumber: 104,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(MotionGroup, {
+                initial: animated ? {
+                    opacity: 0,
+                    scale: 0.5
+                } : false,
+                animate: animated ? {
+                    opacity: 1,
+                    scale: 1
+                } : {},
+                transition: {
+                    delay: 0.7,
+                    type: "spring",
+                    stiffness: 200,
+                    damping: 10
+                },
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                    d: "M48 42 H72 V48 L56 72 H72 V78 H48 V72 L64 48 H48 Z",
+                    fill: "white",
+                    stroke: "white",
+                    strokeWidth: "1"
+                }, void 0, false, {
+                    fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                    lineNumber: 131,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                lineNumber: 126,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(MotionGroup, {
+                initial: animated ? {
+                    opacity: 0,
+                    scale: 0
+                } : false,
+                animate: animated ? {
+                    opacity: 1,
+                    scale: 1
+                } : {},
+                transition: {
+                    delay: 0.9,
+                    duration: 0.5
+                },
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].path, {
+                        d: "M88 30 L90 34 L94 36 L90 38 L88 42 L86 38 L82 36 L86 34 Z",
+                        fill: "#FBBF24",
+                        animate: animated ? {
+                            opacity: [
+                                1,
+                                0.3,
+                                1
+                            ],
+                            scale: [
+                                1,
+                                0.85,
+                                1
+                            ]
+                        } : {},
+                        transition: {
+                            duration: 2.6,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            delay: 1.2
+                        },
+                        style: {
+                            transformOrigin: "88px 36px"
+                        }
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                        lineNumber: 145,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].path, {
+                        d: "M30 78 L31 80 L33 81 L31 82 L30 84 L29 82 L27 81 L29 80 Z",
+                        fill: "#FBBF24",
+                        animate: animated ? {
+                            opacity: [
+                                0.4,
+                                1,
+                                0.4
+                            ],
+                            scale: [
+                                0.9,
+                                1.1,
+                                0.9
+                            ]
+                        } : {},
+                        transition: {
+                            duration: 3.1,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            delay: 0.6
+                        },
+                        style: {
+                            transformOrigin: "30px 81px"
+                        }
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                        lineNumber: 152,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+                lineNumber: 140,
+                columnNumber: 7
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "[project]/src/components/zerobet/components/ZerobetLogo.tsx",
+        lineNumber: 14,
+        columnNumber: 5
+    }, this);
+}
+_c = ZerobetLogo;
+var _c;
+__turbopack_context__.k.register(_c, "ZerobetLogo");
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/components/zerobet/components/ScreenLoader.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "ScreenLoader",
+    ()=>ScreenLoader,
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/render/components/motion/proxy.mjs [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ZerobetLogo$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/zerobet/components/ZerobetLogo.tsx [app-client] (ecmascript)");
+"use client";
+;
+;
+;
+function ScreenLoader() {
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "flex flex-col items-center justify-center w-full min-h-[60vh] py-16",
+        role: "status",
+        "aria-live": "polite",
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                initial: {
+                    opacity: 0,
+                    scale: 0.85
+                },
+                animate: {
+                    opacity: 1,
+                    scale: 1
+                },
+                transition: {
+                    duration: 0.3,
+                    ease: "easeOut"
+                },
+                className: "relative mb-5",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                        "aria-hidden": true,
+                        className: "absolute inset-0 rounded-full pointer-events-none",
+                        style: {
+                            background: "radial-gradient(circle, rgba(255,59,48,0.55) 0%, rgba(245, 158, 11,0.30) 38%, transparent 70%)"
+                        },
+                        animate: {
+                            opacity: [
+                                0,
+                                0.6,
+                                0
+                            ],
+                            scale: [
+                                0.85,
+                                1.5,
+                                0.85
+                            ]
+                        },
+                        transition: {
+                            duration: 2.4,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                        }
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/zerobet/components/ScreenLoader.tsx",
+                        lineNumber: 33,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                        "aria-hidden": true,
+                        className: "absolute inset-0 rounded-full pointer-events-none",
+                        style: {
+                            background: "radial-gradient(circle, rgba(245, 158, 11,0.40) 0%, transparent 70%)"
+                        },
+                        animate: {
+                            opacity: [
+                                0,
+                                0.4,
+                                0
+                            ],
+                            scale: [
+                                1,
+                                1.9,
+                                1
+                            ]
+                        },
+                        transition: {
+                            duration: 3.1,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            delay: 0.4
+                        }
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/zerobet/components/ScreenLoader.tsx",
+                        lineNumber: 43,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "animate-glow-pulse",
+                        style: {
+                            filter: "drop-shadow(0 0 18px rgba(255,59,48,0.45)) drop-shadow(0 0 36px rgba(245, 158, 11,0.25))"
+                        },
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ZerobetLogo$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZerobetLogo"], {
+                            size: 96,
+                            animated: true
+                        }, void 0, false, {
+                            fileName: "[project]/src/components/zerobet/components/ScreenLoader.tsx",
+                            lineNumber: 65,
+                            columnNumber: 11
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/zerobet/components/ScreenLoader.tsx",
+                        lineNumber: 58,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/src/components/zerobet/components/ScreenLoader.tsx",
+                lineNumber: 26,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                initial: {
+                    opacity: 0,
+                    y: 6
+                },
+                animate: {
+                    opacity: 1,
+                    y: 0
+                },
+                transition: {
+                    delay: 0.2,
+                    duration: 0.4
+                },
+                className: "relative h-[3px] w-32 overflow-hidden rounded-full bg-white/10",
+                "aria-hidden": true,
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                    className: "absolute inset-y-0 left-0 rounded-full",
+                    style: {
+                        background: "linear-gradient(90deg, #FF3B30 0%, #FF6B35 45%, #F59E0B 75%, #FFD700 100%)",
+                        boxShadow: "0 0 12px rgba(255,107,53,0.6)"
+                    },
+                    animate: {
+                        width: [
+                            "0%",
+                            "100%"
+                        ]
+                    },
+                    transition: {
+                        duration: 1.1,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                    }
+                }, void 0, false, {
+                    fileName: "[project]/src/components/zerobet/components/ScreenLoader.tsx",
+                    lineNumber: 77,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/src/components/zerobet/components/ScreenLoader.tsx",
+                lineNumber: 70,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                className: "sr-only",
+                children: "Chargement…"
+            }, void 0, false, {
+                fileName: "[project]/src/components/zerobet/components/ScreenLoader.tsx",
+                lineNumber: 89,
+                columnNumber: 7
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "[project]/src/components/zerobet/components/ScreenLoader.tsx",
+        lineNumber: 21,
+        columnNumber: 5
+    }, this);
+}
+_c = ScreenLoader;
+const __TURBOPACK__default__export__ = ScreenLoader;
+var _c;
+__turbopack_context__.k.register(_c, "ScreenLoader");
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/components/zerobet/components/PremiumLoader.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "PremiumLoader",
+    ()=>PremiumLoader,
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/render/components/motion/proxy.mjs [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/components/AnimatePresence/index.mjs [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ZerobetLogo$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/zerobet/components/ZerobetLogo.tsx [app-client] (ecmascript)");
+;
+var _s = __turbopack_context__.k.signature();
+"use client";
+;
+;
+;
+function PremiumLoader({ show = true, fullscreen = false, subtitle = "Arrête les paris. Reconstruis-toi.", autoProgress = true, duration = 2200, onComplete, className = "" }) {
+    _s();
+    const [progress, setProgress] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(0);
+    const [leaving, setLeaving] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    // Drive the progress bar smoothly to 100%.
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "PremiumLoader.useEffect": ()=>{
+            if (!show || !autoProgress) return;
+            const start = performance.now();
+            let raf = 0;
+            const tick = {
+                "PremiumLoader.useEffect.tick": (now)=>{
+                    const elapsed = now - start;
+                    // easeOutCubic for a more premium deceleration curve
+                    const raw = Math.min(1, elapsed / duration);
+                    const eased = 1 - Math.pow(1 - raw, 3);
+                    const pct = eased * 100;
+                    setProgress(pct);
+                    if (raw < 1) {
+                        raf = requestAnimationFrame(tick);
+                    } else {
+                        setLeaving(true);
+                        const t = setTimeout({
+                            "PremiumLoader.useEffect.tick.t": ()=>{
+                                onComplete?.();
+                            }
+                        }["PremiumLoader.useEffect.tick.t"], 420);
+                        return ({
+                            "PremiumLoader.useEffect.tick": ()=>clearTimeout(t)
+                        })["PremiumLoader.useEffect.tick"];
+                    }
+                }
+            }["PremiumLoader.useEffect.tick"];
+            raf = requestAnimationFrame(tick);
+            return ({
+                "PremiumLoader.useEffect": ()=>cancelAnimationFrame(raf)
+            })["PremiumLoader.useEffect"];
+        }
+    }["PremiumLoader.useEffect"], [
+        show,
+        autoProgress,
+        duration,
+        onComplete
+    ]);
+    // Deterministic particle field — three depth layers for a parallax feel.
+    const particles = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMemo"])({
+        "PremiumLoader.useMemo[particles]": ()=>{
+            const layers = [
+                // Far layer — tiny, slow, dim
+                Array.from({
+                    length: 14
+                }).map({
+                    "PremiumLoader.useMemo[particles]": (_, i)=>({
+                            id: `f-${i}`,
+                            left: i * 67 % 100,
+                            top: (i * 41 + 11) % 100,
+                            size: 1 + i * 3 % 2,
+                            delay: i % 7 * 0.5,
+                            duration: 6 + i * 13 % 5,
+                            opacity: 0.35,
+                            blur: 1.5,
+                            color: i % 3 === 0 ? "rgba(245, 158, 11,0.85)" : i % 3 === 1 ? "rgba(45, 212, 191,0.85)" : "rgba(255,255,255,0.85)",
+                            drift: 28
+                        })
+                }["PremiumLoader.useMemo[particles]"]),
+                // Mid layer — slightly larger, medium speed
+                Array.from({
+                    length: 9
+                }).map({
+                    "PremiumLoader.useMemo[particles]": (_, i)=>({
+                            id: `m-${i}`,
+                            left: (i * 79 + 7) % 100,
+                            top: (i * 53 + 23) % 100,
+                            size: 2 + i * 5 % 3,
+                            delay: i % 5 * 0.7,
+                            duration: 5 + i * 11 % 4,
+                            opacity: 0.6,
+                            blur: 0.8,
+                            color: i % 2 === 0 ? "rgba(255,107,53,0.9)" : "rgba(192, 132, 252,0.9)",
+                            drift: 40
+                        })
+                }["PremiumLoader.useMemo[particles]"]),
+                // Near layer — biggest, fastest, brightest
+                Array.from({
+                    length: 5
+                }).map({
+                    "PremiumLoader.useMemo[particles]": (_, i)=>({
+                            id: `n-${i}`,
+                            left: (i * 83 + 17) % 100,
+                            top: (i * 37 + 5) % 100,
+                            size: 3 + i * 7 % 3,
+                            delay: i * 0.9,
+                            duration: 4 + i % 3,
+                            opacity: 0.9,
+                            blur: 0.4,
+                            color: i % 2 === 0 ? "rgba(255,215,0,0.95)" : "rgba(255,255,255,0.95)",
+                            drift: 56
+                        })
+                }["PremiumLoader.useMemo[particles]"])
+            ];
+            return layers.flat();
+        }
+    }["PremiumLoader.useMemo[particles]"], []);
+    const content = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+        initial: {
+            opacity: 0
+        },
+        animate: {
+            opacity: leaving ? 0 : 1
+        },
+        transition: {
+            duration: 0.4,
+            ease: "easeOut"
+        },
+        className: `relative w-full h-full flex flex-col items-center justify-center px-8 ${className}`,
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "absolute inset-0 -z-20 premium-mesh-bg",
+                "aria-hidden": true
+            }, void 0, false, {
+                fileName: "[project]/src/components/zerobet/components/PremiumLoader.tsx",
+                lineNumber: 138,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "absolute inset-0 -z-10 premium-aurora-band",
+                "aria-hidden": true
+            }, void 0, false, {
+                fileName: "[project]/src/components/zerobet/components/PremiumLoader.tsx",
+                lineNumber: 140,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "absolute inset-0 -z-10 overflow-hidden pointer-events-none",
+                children: particles.map((p)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                        className: "premium-particle",
+                        style: {
+                            left: `${p.left}%`,
+                            top: `${p.top}%`,
+                            width: p.size,
+                            height: p.size,
+                            opacity: p.opacity,
+                            filter: p.blur ? `blur(${p.blur}px)` : undefined,
+                            background: p.color,
+                            animationDuration: `${p.duration}s`,
+                            animationDelay: `${p.delay}s`,
+                            "--particle-drift": `${p.drift}px`
+                        }
+                    }, p.id, false, {
+                        fileName: "[project]/src/components/zerobet/components/PremiumLoader.tsx",
+                        lineNumber: 148,
+                        columnNumber: 11
+                    }, this))
+            }, void 0, false, {
+                fileName: "[project]/src/components/zerobet/components/PremiumLoader.tsx",
+                lineNumber: 146,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                initial: {
+                    scale: 0.7,
+                    opacity: 0
+                },
+                animate: {
+                    scale: 1,
+                    opacity: 1
+                },
+                transition: {
+                    type: "spring",
+                    stiffness: 140,
+                    damping: 14
+                },
+                className: "relative mb-7",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                        "aria-hidden": true,
+                        initial: {
+                            opacity: 0,
+                            scale: 0.85
+                        },
+                        animate: {
+                            opacity: [
+                                0,
+                                0.55,
+                                0
+                            ],
+                            scale: [
+                                0.85,
+                                1.45,
+                                0.85
+                            ]
+                        },
+                        transition: {
+                            duration: 2.6,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                        },
+                        className: "absolute inset-0 rounded-full pointer-events-none",
+                        style: {
+                            background: "radial-gradient(circle, rgba(255,59,48,0.55) 0%, rgba(245, 158, 11,0.30) 38%, transparent 70%)"
+                        }
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/zerobet/components/PremiumLoader.tsx",
+                        lineNumber: 177,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                        "aria-hidden": true,
+                        initial: {
+                            opacity: 0,
+                            scale: 1
+                        },
+                        animate: {
+                            opacity: [
+                                0,
+                                0.4,
+                                0
+                            ],
+                            scale: [
+                                1,
+                                1.85,
+                                1
+                            ]
+                        },
+                        transition: {
+                            duration: 3.4,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            delay: 0.4
+                        },
+                        className: "absolute inset-0 rounded-full pointer-events-none",
+                        style: {
+                            background: "radial-gradient(circle, rgba(45, 212, 191,0.40) 0%, transparent 70%)"
+                        }
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/zerobet/components/PremiumLoader.tsx",
+                        lineNumber: 188,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                        "aria-hidden": true,
+                        initial: {
+                            opacity: 0,
+                            scale: 1.1
+                        },
+                        animate: {
+                            opacity: [
+                                0,
+                                0.3,
+                                0
+                            ],
+                            scale: [
+                                1.1,
+                                2.1,
+                                1.1
+                            ]
+                        },
+                        transition: {
+                            duration: 4.2,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            delay: 0.9
+                        },
+                        className: "absolute inset-0 rounded-full pointer-events-none",
+                        style: {
+                            background: "radial-gradient(circle, rgba(192, 132, 252,0.32) 0%, transparent 70%)"
+                        }
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/zerobet/components/PremiumLoader.tsx",
+                        lineNumber: 199,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "animate-glow-pulse premium-logo-shake",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ZerobetLogo$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ZerobetLogo"], {
+                            size: 136,
+                            animated: true
+                        }, void 0, false, {
+                            fileName: "[project]/src/components/zerobet/components/PremiumLoader.tsx",
+                            lineNumber: 211,
+                            columnNumber: 11
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/zerobet/components/PremiumLoader.tsx",
+                        lineNumber: 210,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/src/components/zerobet/components/PremiumLoader.tsx",
+                lineNumber: 170,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                initial: {
+                    opacity: 0,
+                    y: 10
+                },
+                animate: {
+                    opacity: 1,
+                    y: 0
+                },
+                transition: {
+                    delay: 0.3,
+                    duration: 0.6,
+                    ease: "easeOut"
+                },
+                className: "relative",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
+                    className: "font-[family-name:var(--font-poppins)] text-5xl font-extrabold tracking-tight mb-2 premium-wordmark",
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                        className: "premium-wordmark-text",
+                        children: "Zerobet"
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/zerobet/components/PremiumLoader.tsx",
+                        lineNumber: 223,
+                        columnNumber: 11
+                    }, this)
+                }, void 0, false, {
+                    fileName: "[project]/src/components/zerobet/components/PremiumLoader.tsx",
+                    lineNumber: 222,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/src/components/zerobet/components/PremiumLoader.tsx",
+                lineNumber: 216,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].p, {
+                initial: {
+                    opacity: 0,
+                    y: 8
+                },
+                animate: {
+                    opacity: 1,
+                    y: 0
+                },
+                transition: {
+                    delay: 0.85,
+                    duration: 0.6
+                },
+                className: "text-white/65 text-[11px] font-medium tracking-[0.28em] uppercase text-center",
+                children: subtitle
+            }, void 0, false, {
+                fileName: "[project]/src/components/zerobet/components/PremiumLoader.tsx",
+                lineNumber: 228,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                initial: {
+                    opacity: 0,
+                    y: 14
+                },
+                animate: {
+                    opacity: 1,
+                    y: 0
+                },
+                transition: {
+                    delay: 0.55,
+                    duration: 0.6
+                },
+                className: "mt-10 w-60",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "relative h-[3px] rounded-full bg-white/8 overflow-hidden",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "absolute inset-y-0 left-0 rounded-full premium-progress-fill",
+                                style: {
+                                    width: `${progress}%`
+                                }
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/zerobet/components/PremiumLoader.tsx",
+                                lineNumber: 246,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "absolute inset-y-0 premium-progress-shimmer",
+                                style: {
+                                    width: `${progress}%`
+                                }
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/zerobet/components/PremiumLoader.tsx",
+                                lineNumber: 251,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "absolute top-1/2 -translate-y-1/2 premium-progress-glow",
+                                style: {
+                                    left: `${progress}%`
+                                }
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/zerobet/components/PremiumLoader.tsx",
+                                lineNumber: 256,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/components/zerobet/components/PremiumLoader.tsx",
+                        lineNumber: 244,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "mt-3 flex items-center justify-between",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                className: "text-white/35 text-[10px] font-mono tracking-[0.25em] uppercase",
+                                children: "Loading"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/zerobet/components/PremiumLoader.tsx",
+                                lineNumber: 262,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                className: "text-white/65 text-[11px] font-mono tracking-widest font-semibold",
+                                children: [
+                                    Math.round(progress).toString().padStart(2, "0"),
+                                    "%"
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/components/zerobet/components/PremiumLoader.tsx",
+                                lineNumber: 265,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/components/zerobet/components/PremiumLoader.tsx",
+                        lineNumber: 261,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/src/components/zerobet/components/PremiumLoader.tsx",
+                lineNumber: 238,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("style", {
+                children: `
+        .premium-mesh-bg {
+          background:
+            radial-gradient(ellipse at 25% 20%, rgba(255,59,48,0.18) 0%, transparent 45%),
+            radial-gradient(ellipse at 75% 30%, rgba(192, 132, 252,0.18) 0%, transparent 50%),
+            radial-gradient(ellipse at 50% 85%, rgba(245, 158, 11,0.18) 0%, transparent 55%),
+            radial-gradient(ellipse at 80% 75%, rgba(45, 212, 191,0.14) 0%, transparent 50%);
+          background-size: 200% 200%, 200% 200%, 200% 200%, 200% 200%;
+          animation: premium-mesh-shift 14s ease-in-out infinite;
+        }
+        @keyframes premium-mesh-shift {
+          0%, 100% { background-position: 0% 0%, 100% 0%, 50% 100%, 100% 100%; }
+          50% { background-position: 30% 30%, 70% 30%, 30% 70%, 70% 70%; }
+        }
+        .premium-aurora-band {
+          background: linear-gradient(
+            115deg,
+            transparent 0%,
+            transparent 35%,
+            rgba(255,107,53,0.10) 50%,
+            transparent 65%,
+            transparent 100%
+          );
+          background-size: 250% 250%;
+          animation: premium-aurora-sweep 9s ease-in-out infinite;
+          mix-blend-mode: screen;
+        }
+        @keyframes premium-aurora-sweep {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        .premium-particle {
+          position: absolute;
+          border-radius: 9999px;
+          display: block;
+          animation-name: premium-particle-float;
+          animation-timing-function: ease-in-out;
+          animation-iteration-count: infinite;
+          will-change: transform, opacity;
+        }
+        @keyframes premium-particle-float {
+          0% { transform: translate(0, 0) scale(0.6); opacity: 0; }
+          20% { opacity: 1; }
+          80% { opacity: 1; }
+          100% { transform: translate(var(--particle-drift, 30px), -48px) scale(1); opacity: 0; }
+        }
+        .premium-wordmark {
+          position: relative;
+          isolation: isolate;
+        }
+        .premium-wordmark-text {
+          background: linear-gradient(
+            100deg,
+            #FF3B30 0%,
+            #FF6B35 22%,
+            #F59E0B 42%,
+            #FFD700 60%,
+            #FF6B35 78%,
+            #FF3B30 100%
+          );
+          background-size: 250% 100%;
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          color: transparent;
+          animation: premium-text-flow 6s ease-in-out infinite;
+          display: inline-block;
+        }
+        @keyframes premium-text-flow {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
+        .premium-progress-fill {
+          background: linear-gradient(
+            90deg,
+            #FF3B30 0%,
+            #FF6B35 45%,
+            #F59E0B 75%,
+            #FFD700 100%
+          );
+          transition: width 0.08s linear;
+          box-shadow: 0 0 12px rgba(255,107,53,0.6);
+        }
+        .premium-progress-shimmer {
+          background: linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(255,255,255,0.0) 60%,
+            rgba(255,255,255,0.55) 75%,
+            rgba(255,255,255,0.0) 90%,
+            transparent 100%
+          );
+          background-size: 200% 100%;
+          animation: premium-progress-shimmer-anim 1.6s linear infinite;
+          pointer-events: none;
+          mix-blend-mode: screen;
+        }
+        @keyframes premium-progress-shimmer-anim {
+          0% { background-position: -50% 0; }
+          100% { background-position: 150% 0; }
+        }
+        .premium-progress-glow {
+          width: 14px;
+          height: 14px;
+          margin-left: -7px;
+          border-radius: 9999px;
+          background: radial-gradient(circle, rgba(255,215,0,0.95) 0%, rgba(255,107,53,0.5) 40%, transparent 70%);
+          filter: blur(1px);
+          pointer-events: none;
+          transition: left 0.08s linear;
+        }
+        .premium-logo-shake {
+          filter: drop-shadow(0 0 24px rgba(255,59,48,0.45))
+                  drop-shadow(0 0 48px rgba(245, 158, 11,0.25));
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .premium-mesh-bg,
+          .premium-aurora-band,
+          .premium-particle,
+          .premium-wordmark-text,
+          .premium-progress-shimmer {
+            animation: none !important;
+          }
+        }
+      `
+            }, void 0, false, {
+                fileName: "[project]/src/components/zerobet/components/PremiumLoader.tsx",
+                lineNumber: 275,
+                columnNumber: 7
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "[project]/src/components/zerobet/components/PremiumLoader.tsx",
+        lineNumber: 131,
+        columnNumber: 5
+    }, this);
+    if (fullscreen) {
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AnimatePresence"], {
+            children: show && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                initial: {
+                    opacity: 0
+                },
+                animate: {
+                    opacity: 1
+                },
+                exit: {
+                    opacity: 0
+                },
+                transition: {
+                    duration: 0.4,
+                    ease: "easeOut"
+                },
+                className: "fixed inset-0 z-[100] bg-[#070B0E] flex items-center justify-center",
+                children: content
+            }, void 0, false, {
+                fileName: "[project]/src/components/zerobet/components/PremiumLoader.tsx",
+                lineNumber: 408,
+                columnNumber: 11
+            }, this)
+        }, void 0, false, {
+            fileName: "[project]/src/components/zerobet/components/PremiumLoader.tsx",
+            lineNumber: 406,
+            columnNumber: 7
+        }, this);
+    }
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AnimatePresence"], {
+        children: show && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+            initial: {
+                opacity: 0
+            },
+            animate: {
+                opacity: 1
+            },
+            exit: {
+                opacity: 0
+            },
+            transition: {
+                duration: 0.4,
+                ease: "easeOut"
+            },
+            className: className,
+            children: content
+        }, void 0, false, {
+            fileName: "[project]/src/components/zerobet/components/PremiumLoader.tsx",
+            lineNumber: 425,
+            columnNumber: 9
+        }, this)
+    }, void 0, false, {
+        fileName: "[project]/src/components/zerobet/components/PremiumLoader.tsx",
+        lineNumber: 423,
+        columnNumber: 5
+    }, this);
+}
+_s(PremiumLoader, "cxzxdPXW28IKFMfL2CYgA2Aa/kQ=");
+_c = PremiumLoader;
+const __TURBOPACK__default__export__ = PremiumLoader;
+var _c;
+__turbopack_context__.k.register(_c, "PremiumLoader");
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/components/zerobet/screens/SplashScreen.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "SplashScreen",
+    ()=>SplashScreen
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/render/components/motion/proxy.mjs [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$PremiumLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/zerobet/components/PremiumLoader.tsx [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$store$2f$zerobet$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/store/zerobet-store.ts [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$i18n$2f$useT$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/i18n/useT.ts [app-client] (ecmascript)");
+;
+var _s = __turbopack_context__.k.signature();
+"use client";
+;
+;
+;
+;
+;
+function SplashScreen() {
+    _s();
+    const { navigate, hasStartedOnboarding, hasCompletedOnboarding, setStartedOnboarding } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$store$2f$zerobet$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useStore"])();
+    const t = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$i18n$2f$useT$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useT"])();
+    const [loaderVisible, setLoaderVisible] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
+    const handleComplete = ()=>{
+        setLoaderVisible(false);
+        if (hasCompletedOnboarding) {
+            navigate("dashboard");
+        } else if (hasStartedOnboarding) {
+            navigate("welcome");
+        } else {
+            setStartedOnboarding(true);
+            navigate("language");
+        }
+    };
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "min-h-screen relative flex items-center justify-center overflow-hidden splash-cinematic-root",
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                "aria-hidden": true,
+                initial: {
+                    opacity: 0
+                },
+                animate: {
+                    opacity: 1
+                },
+                transition: {
+                    duration: 0.7,
+                    ease: "easeOut"
+                },
+                className: "absolute inset-0 -z-20 splash-mesh-bg"
+            }, void 0, false, {
+                fileName: "[project]/src/components/zerobet/screens/SplashScreen.tsx",
+                lineNumber: 35,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                "aria-hidden": true,
+                initial: {
+                    opacity: 0
+                },
+                animate: {
+                    opacity: 1
+                },
+                transition: {
+                    duration: 0.9,
+                    delay: 0.2
+                },
+                className: "absolute inset-0 -z-10",
+                style: {
+                    background: "radial-gradient(ellipse at 30% 80%, rgba(192, 132, 252,0.18) 0%, transparent 55%), radial-gradient(ellipse at 70% 20%, rgba(74,222,128,0.10) 0%, transparent 50%)"
+                }
+            }, void 0, false, {
+                fileName: "[project]/src/components/zerobet/screens/SplashScreen.tsx",
+                lineNumber: 44,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                "aria-hidden": true,
+                className: "absolute inset-0 -z-10 splash-vignette"
+            }, void 0, false, {
+                fileName: "[project]/src/components/zerobet/screens/SplashScreen.tsx",
+                lineNumber: 57,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                "aria-hidden": true,
+                initial: {
+                    y: "-100%"
+                },
+                animate: {
+                    y: 0
+                },
+                transition: {
+                    duration: 0.8,
+                    ease: "easeInOut"
+                },
+                className: "absolute top-0 left-0 right-0 h-[6vh] bg-[#070B0E] z-30 pointer-events-none splash-letterbox-top"
+            }, void 0, false, {
+                fileName: "[project]/src/components/zerobet/screens/SplashScreen.tsx",
+                lineNumber: 63,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                "aria-hidden": true,
+                initial: {
+                    y: "100%"
+                },
+                animate: {
+                    y: 0
+                },
+                transition: {
+                    duration: 0.8,
+                    ease: "easeInOut"
+                },
+                className: "absolute bottom-0 left-0 right-0 h-[6vh] bg-[#070B0E] z-30 pointer-events-none splash-letterbox-bottom"
+            }, void 0, false, {
+                fileName: "[project]/src/components/zerobet/screens/SplashScreen.tsx",
+                lineNumber: 70,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$PremiumLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["PremiumLoader"], {
+                show: loaderVisible,
+                fullscreen: false,
+                duration: 1800,
+                subtitle: t("splashSubtitle"),
+                onComplete: handleComplete
+            }, void 0, false, {
+                fileName: "[project]/src/components/zerobet/screens/SplashScreen.tsx",
+                lineNumber: 78,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("style", {
+                children: `
+        .splash-cinematic-root {
+          background: #070B0E;
+        }
+        .splash-mesh-bg {
+          background:
+            radial-gradient(ellipse at 22% 18%, rgba(255,59,48,0.22) 0%, transparent 45%),
+            radial-gradient(ellipse at 78% 28%, rgba(192, 132, 252,0.22) 0%, transparent 50%),
+            radial-gradient(ellipse at 50% 85%, rgba(245, 158, 11,0.22) 0%, transparent 55%),
+            radial-gradient(ellipse at 80% 75%, rgba(45, 212, 191,0.16) 0%, transparent 50%);
+          background-size: 220% 220%, 220% 220%, 220% 220%, 220% 220%;
+          animation: splash-mesh-shift 16s ease-in-out infinite;
+        }
+        @keyframes splash-mesh-shift {
+          0%, 100% { background-position: 0% 0%, 100% 0%, 50% 100%, 100% 100%; }
+          50% { background-position: 35% 35%, 65% 35%, 35% 65%, 65% 65%; }
+        }
+        .splash-vignette {
+          background: radial-gradient(ellipse at center, transparent 30%, rgba(10,10,15,0.55) 75%, rgba(10,10,15,0.85) 100%);
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .splash-mesh-bg {
+            animation: none !important;
+          }
+        }
+      `
+            }, void 0, false, {
+                fileName: "[project]/src/components/zerobet/screens/SplashScreen.tsx",
+                lineNumber: 86,
+                columnNumber: 7
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "[project]/src/components/zerobet/screens/SplashScreen.tsx",
+        lineNumber: 32,
+        columnNumber: 5
+    }, this);
+}
+_s(SplashScreen, "gXucqrO/V2aH293m/wmvx4GCYwo=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$store$2f$zerobet$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useStore"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$i18n$2f$useT$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useT"]
+    ];
+});
+_c = SplashScreen;
+var _c;
+__turbopack_context__.k.register(_c, "SplashScreen");
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/app/page.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>Home
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/render/components/motion/proxy.mjs [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/components/AnimatePresence/index.mjs [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/shared/lib/app-dynamic.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$store$2f$zerobet$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/store/zerobet-store.ts [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useCloudSync$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/hooks/useCloudSync.ts [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useReminders$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/hooks/useReminders.ts [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$BottomNav$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/zerobet/components/BottomNav.tsx [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ErrorBoundary$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/zerobet/components/ErrorBoundary.tsx [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$PhoneShell$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/zerobet/components/PhoneShell.tsx [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/zerobet/components/ScreenLoader.tsx [app-client] (ecmascript)");
+// Splash screen stays eagerly loaded — it's the very first thing users see
+// and we don't want a flash of a loader before the splash paints.
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$screens$2f$SplashScreen$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/zerobet/screens/SplashScreen.tsx [app-client] (ecmascript)");
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+var _s = __turbopack_context__.k.signature();
+"use client";
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+// ---------------------------------------------------------------------
+// Dynamic (code-split) screen imports.
+// Each screen becomes its own chunk and is fetched on demand.
+// The ScreenLoader renders while the chunk downloads.
+// ---------------------------------------------------------------------
+const GenderScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/zerobet/screens/GenderScreen.tsx [app-client] (ecmascript, next/dynamic entry, async loader)").then((m)=>({
+            default: m.GenderScreen
+        })), {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/components/zerobet/screens/GenderScreen.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScreenLoader"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 28,
+            columnNumber: 20
+        }, ("TURBOPACK compile-time value", void 0))
+});
+_c = GenderScreen;
+const LanguageScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/zerobet/screens/LanguageScreen.tsx [app-client] (ecmascript, next/dynamic entry, async loader)").then((m)=>({
+            default: m.LanguageScreen
+        })), {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/components/zerobet/screens/LanguageScreen.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScreenLoader"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 35,
+            columnNumber: 20
+        }, ("TURBOPACK compile-time value", void 0))
+});
+_c1 = LanguageScreen;
+const CurrencyScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/zerobet/screens/CurrencyScreen.tsx [app-client] (ecmascript, next/dynamic entry, async loader)").then((m)=>({
+            default: m.CurrencyScreen
+        })), {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/components/zerobet/screens/CurrencyScreen.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScreenLoader"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 42,
+            columnNumber: 20
+        }, ("TURBOPACK compile-time value", void 0))
+});
+_c2 = CurrencyScreen;
+const WelcomeScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/zerobet/screens/WelcomeScreen.tsx [app-client] (ecmascript, next/dynamic entry, async loader)").then((m)=>({
+            default: m.WelcomeScreen
+        })), {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/components/zerobet/screens/WelcomeScreen.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScreenLoader"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 49,
+            columnNumber: 20
+        }, ("TURBOPACK compile-time value", void 0))
+});
+_c3 = WelcomeScreen;
+const QuizScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/zerobet/screens/QuizScreen.tsx [app-client] (ecmascript, next/dynamic entry, async loader)").then((m)=>({
+            default: m.QuizScreen
+        })), {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/components/zerobet/screens/QuizScreen.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScreenLoader"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 56,
+            columnNumber: 20
+        }, ("TURBOPACK compile-time value", void 0))
+});
+_c4 = QuizScreen;
+const ResultsScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/zerobet/screens/ResultsScreen.tsx [app-client] (ecmascript, next/dynamic entry, async loader)").then((m)=>({
+            default: m.ResultsScreen
+        })), {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/components/zerobet/screens/ResultsScreen.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScreenLoader"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 63,
+            columnNumber: 20
+        }, ("TURBOPACK compile-time value", void 0))
+});
+_c5 = ResultsScreen;
+const SymptomsScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/zerobet/screens/SymptomsScreen.tsx [app-client] (ecmascript, next/dynamic entry, async loader)").then((m)=>({
+            default: m.SymptomsScreen
+        })), {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/components/zerobet/screens/SymptomsScreen.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScreenLoader"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 70,
+            columnNumber: 20
+        }, ("TURBOPACK compile-time value", void 0))
+});
+_c6 = SymptomsScreen;
+const CarouselScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/zerobet/screens/CarouselScreen.tsx [app-client] (ecmascript, next/dynamic entry, async loader)").then((m)=>({
+            default: m.CarouselScreen
+        })), {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/components/zerobet/screens/CarouselScreen.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScreenLoader"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 77,
+            columnNumber: 20
+        }, ("TURBOPACK compile-time value", void 0))
+});
+_c7 = CarouselScreen;
+const EngagementScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/zerobet/screens/EngagementScreen.tsx [app-client] (ecmascript, next/dynamic entry, async loader)").then((m)=>({
+            default: m.EngagementScreen
+        })), {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/components/zerobet/screens/EngagementScreen.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScreenLoader"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 84,
+            columnNumber: 20
+        }, ("TURBOPACK compile-time value", void 0))
+});
+_c8 = EngagementScreen;
+const PaywallScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/zerobet/screens/PaywallScreen.tsx [app-client] (ecmascript, next/dynamic entry, async loader)").then((m)=>({
+            default: m.PaywallScreen
+        })), {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/components/zerobet/screens/PaywallScreen.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScreenLoader"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 91,
+            columnNumber: 20
+        }, ("TURBOPACK compile-time value", void 0))
+});
+_c9 = PaywallScreen;
+const DashboardScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/zerobet/screens/DashboardScreen.tsx [app-client] (ecmascript, next/dynamic entry, async loader)").then((m)=>({
+            default: m.DashboardScreen
+        })), {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/components/zerobet/screens/DashboardScreen.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScreenLoader"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 98,
+            columnNumber: 20
+        }, ("TURBOPACK compile-time value", void 0))
+});
+_c10 = DashboardScreen;
+const PanicScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/zerobet/screens/PanicScreen.tsx [app-client] (ecmascript, next/dynamic entry, async loader)").then((m)=>({
+            default: m.PanicScreen
+        })), {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/components/zerobet/screens/PanicScreen.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScreenLoader"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 105,
+            columnNumber: 20
+        }, ("TURBOPACK compile-time value", void 0))
+});
+_c11 = PanicScreen;
+const JournalScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/zerobet/screens/JournalScreen.tsx [app-client] (ecmascript, next/dynamic entry, async loader)").then((m)=>({
+            default: m.JournalScreen
+        })), {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/components/zerobet/screens/JournalScreen.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScreenLoader"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 112,
+            columnNumber: 20
+        }, ("TURBOPACK compile-time value", void 0))
+});
+_c12 = JournalScreen;
+const FinanceScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/zerobet/screens/FinanceScreen.tsx [app-client] (ecmascript, next/dynamic entry, async loader)").then((m)=>({
+            default: m.FinanceScreen
+        })), {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/components/zerobet/screens/FinanceScreen.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScreenLoader"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 119,
+            columnNumber: 20
+        }, ("TURBOPACK compile-time value", void 0))
+});
+_c13 = FinanceScreen;
+const AtlasScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/zerobet/screens/AtlasScreen.tsx [app-client] (ecmascript, next/dynamic entry, async loader)").then((m)=>({
+            default: m.AtlasScreen
+        })), {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/components/zerobet/screens/AtlasScreen.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScreenLoader"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 126,
+            columnNumber: 20
+        }, ("TURBOPACK compile-time value", void 0))
+});
+_c14 = AtlasScreen;
+const BlockerScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/zerobet/screens/BlockerScreen.tsx [app-client] (ecmascript, next/dynamic entry, async loader)").then((m)=>({
+            default: m.BlockerScreen
+        })), {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/components/zerobet/screens/BlockerScreen.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScreenLoader"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 133,
+            columnNumber: 20
+        }, ("TURBOPACK compile-time value", void 0))
+});
+_c15 = BlockerScreen;
+const CommunityScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/zerobet/screens/CommunityScreen.tsx [app-client] (ecmascript, next/dynamic entry, async loader)").then((m)=>({
+            default: m.CommunityScreen
+        })), {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/components/zerobet/screens/CommunityScreen.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScreenLoader"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 140,
+            columnNumber: 20
+        }, ("TURBOPACK compile-time value", void 0))
+});
+_c16 = CommunityScreen;
+const ParcoursScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/zerobet/screens/ParcoursScreen.tsx [app-client] (ecmascript, next/dynamic entry, async loader)").then((m)=>({
+            default: m.ParcoursScreen
+        })), {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/components/zerobet/screens/ParcoursScreen.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScreenLoader"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 147,
+            columnNumber: 20
+        }, ("TURBOPACK compile-time value", void 0))
+});
+_c17 = ParcoursScreen;
+const SettingsScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/zerobet/screens/SettingsScreen.tsx [app-client] (ecmascript, next/dynamic entry, async loader)").then((m)=>({
+            default: m.SettingsScreen
+        })), {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/components/zerobet/screens/SettingsScreen.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScreenLoader"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 154,
+            columnNumber: 20
+        }, ("TURBOPACK compile-time value", void 0))
+});
+_c18 = SettingsScreen;
+const SubscriptionScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/zerobet/screens/SubscriptionScreen.tsx [app-client] (ecmascript, next/dynamic entry, async loader)").then((m)=>({
+            default: m.SubscriptionScreen
+        })), {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/components/zerobet/screens/SubscriptionScreen.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScreenLoader"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 161,
+            columnNumber: 20
+        }, ("TURBOPACK compile-time value", void 0))
+});
+_c19 = SubscriptionScreen;
+const DataRightsScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/zerobet/screens/DataRightsScreen.tsx [app-client] (ecmascript, next/dynamic entry, async loader)").then((m)=>({
+            default: m.DataRightsScreen
+        })), {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/components/zerobet/screens/DataRightsScreen.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScreenLoader"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 168,
+            columnNumber: 20
+        }, ("TURBOPACK compile-time value", void 0))
+});
+_c20 = DataRightsScreen;
+const ParcoursEvolutionScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/zerobet/screens/ParcoursEvolutionScreen.tsx [app-client] (ecmascript, next/dynamic entry, async loader)").then((m)=>({
+            default: m.ParcoursEvolutionScreen
+        })), {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/components/zerobet/screens/ParcoursEvolutionScreen.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScreenLoader"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 175,
+            columnNumber: 20
+        }, ("TURBOPACK compile-time value", void 0))
+});
+_c21 = ParcoursEvolutionScreen;
+const StatsScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/zerobet/screens/StatsScreen.tsx [app-client] (ecmascript, next/dynamic entry, async loader)").then((m)=>({
+            default: m.StatsScreen
+        })), {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/components/zerobet/screens/StatsScreen.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScreenLoader"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 182,
+            columnNumber: 20
+        }, ("TURBOPACK compile-time value", void 0))
+});
+_c22 = StatsScreen;
+const ResourcesScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/zerobet/screens/ResourcesScreen.tsx [app-client] (ecmascript, next/dynamic entry, async loader)").then((m)=>({
+            default: m.ResourcesScreen
+        })), {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/components/zerobet/screens/ResourcesScreen.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScreenLoader"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 189,
+            columnNumber: 20
+        }, ("TURBOPACK compile-time value", void 0))
+});
+_c23 = ResourcesScreen;
+const SOSScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/zerobet/screens/SOSScreen.tsx [app-client] (ecmascript, next/dynamic entry, async loader)").then((m)=>({
+            default: m.SOSScreen
+        })), {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/components/zerobet/screens/SOSScreen.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScreenLoader"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 196,
+            columnNumber: 20
+        }, ("TURBOPACK compile-time value", void 0))
+});
+_c24 = SOSScreen;
+const MeditationScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/zerobet/screens/MeditationScreen.tsx [app-client] (ecmascript, next/dynamic entry, async loader)").then((m)=>({
+            default: m.MeditationScreen
+        })), {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/components/zerobet/screens/MeditationScreen.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScreenLoader"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 203,
+            columnNumber: 20
+        }, ("TURBOPACK compile-time value", void 0))
+});
+_c25 = MeditationScreen;
+const GamificationScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/zerobet/screens/GamificationScreen.tsx [app-client] (ecmascript, next/dynamic entry, async loader)").then((m)=>({
+            default: m.GamificationScreen
+        })), {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/components/zerobet/screens/GamificationScreen.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScreenLoader"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 210,
+            columnNumber: 20
+        }, ("TURBOPACK compile-time value", void 0))
+});
+_c26 = GamificationScreen;
+const AchievementsScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/zerobet/screens/AchievementsScreen.tsx [app-client] (ecmascript, next/dynamic entry, async loader)").then((m)=>({
+            default: m.AchievementsScreen
+        })), {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/components/zerobet/screens/AchievementsScreen.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScreenLoader"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 217,
+            columnNumber: 20
+        }, ("TURBOPACK compile-time value", void 0))
+});
+_c27 = AchievementsScreen;
+const ProfileScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/zerobet/screens/ProfileScreen.tsx [app-client] (ecmascript, next/dynamic entry, async loader)").then((m)=>({
+            default: m.ProfileScreen
+        })), {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/components/zerobet/screens/ProfileScreen.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScreenLoader"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 224,
+            columnNumber: 20
+        }, ("TURBOPACK compile-time value", void 0))
+});
+_c28 = ProfileScreen;
+const CalendarScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/zerobet/screens/CalendarScreen.tsx [app-client] (ecmascript, next/dynamic entry, async loader)").then((m)=>({
+            default: m.CalendarScreen
+        })), {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/components/zerobet/screens/CalendarScreen.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScreenLoader"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 231,
+            columnNumber: 20
+        }, ("TURBOPACK compile-time value", void 0))
+});
+_c29 = CalendarScreen;
+const SupportScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/zerobet/screens/SupportScreen.tsx [app-client] (ecmascript, next/dynamic entry, async loader)").then((m)=>({
+            default: m.SupportScreen
+        })), {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/components/zerobet/screens/SupportScreen.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScreenLoader"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 238,
+            columnNumber: 20
+        }, ("TURBOPACK compile-time value", void 0))
+});
+_c30 = SupportScreen;
+const ProgramScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/zerobet/screens/ProgramScreen.tsx [app-client] (ecmascript, next/dynamic entry, async loader)").then((m)=>({
+            default: m.ProgramScreen
+        })), {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/components/zerobet/screens/ProgramScreen.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScreenLoader"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 245,
+            columnNumber: 20
+        }, ("TURBOPACK compile-time value", void 0))
+});
+_c31 = ProgramScreen;
+const MentorshipScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/zerobet/screens/MentorshipScreen.tsx [app-client] (ecmascript, next/dynamic entry, async loader)").then((m)=>({
+            default: m.MentorshipScreen
+        })), {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/components/zerobet/screens/MentorshipScreen.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScreenLoader"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 252,
+            columnNumber: 20
+        }, ("TURBOPACK compile-time value", void 0))
+});
+_c32 = MentorshipScreen;
+const WithdrawalScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/zerobet/screens/WithdrawalScreen.tsx [app-client] (ecmascript, next/dynamic entry, async loader)").then((m)=>({
+            default: m.WithdrawalScreen
+        })), {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/components/zerobet/screens/WithdrawalScreen.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScreenLoader"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 259,
+            columnNumber: 20
+        }, ("TURBOPACK compile-time value", void 0))
+});
+_c33 = WithdrawalScreen;
+const GoalsScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/zerobet/screens/GoalsScreen.tsx [app-client] (ecmascript, next/dynamic entry, async loader)").then((m)=>({
+            default: m.GoalsScreen
+        })), {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/components/zerobet/screens/GoalsScreen.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScreenLoader"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 266,
+            columnNumber: 20
+        }, ("TURBOPACK compile-time value", void 0))
+});
+_c34 = GoalsScreen;
+const TriggersScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/zerobet/screens/TriggersScreen.tsx [app-client] (ecmascript, next/dynamic entry, async loader)").then((m)=>({
+            default: m.TriggersScreen
+        })), {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/components/zerobet/screens/TriggersScreen.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScreenLoader"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 273,
+            columnNumber: 20
+        }, ("TURBOPACK compile-time value", void 0))
+});
+_c35 = TriggersScreen;
+const RelapseRecoveryScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/zerobet/screens/RelapseRecoveryScreen.tsx [app-client] (ecmascript, next/dynamic entry, async loader)").then((m)=>({
+            default: m.RelapseRecoveryScreen
+        })), {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/components/zerobet/screens/RelapseRecoveryScreen.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScreenLoader"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 280,
+            columnNumber: 20
+        }, ("TURBOPACK compile-time value", void 0))
+});
+_c36 = RelapseRecoveryScreen;
+const AffirmationsScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/zerobet/screens/AffirmationsScreen.tsx [app-client] (ecmascript, next/dynamic entry, async loader)").then((m)=>({
+            default: m.AffirmationsScreen
+        })), {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/components/zerobet/screens/AffirmationsScreen.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScreenLoader"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 287,
+            columnNumber: 20
+        }, ("TURBOPACK compile-time value", void 0))
+});
+_c37 = AffirmationsScreen;
+const NotificationSettingsScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/zerobet/screens/NotificationSettingsScreen.tsx [app-client] (ecmascript, next/dynamic entry, async loader)").then((m)=>({
+            default: m.NotificationSettingsScreen
+        })), {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/components/zerobet/screens/NotificationSettingsScreen.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScreenLoader"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 294,
+            columnNumber: 20
+        }, ("TURBOPACK compile-time value", void 0))
+});
+_c38 = NotificationSettingsScreen;
+const CommunityChatScreen = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/zerobet/screens/CommunityChatScreen.tsx [app-client] (ecmascript, next/dynamic entry, async loader)").then((m)=>({
+            default: m.CommunityChatScreen
+        })), {
+    loadableGenerated: {
+        modules: [
+            "[project]/src/components/zerobet/screens/CommunityChatScreen.tsx [app-client] (ecmascript, next/dynamic entry)"
+        ]
+    },
+    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ScreenLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScreenLoader"], {}, void 0, false, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 301,
+            columnNumber: 20
+        }, ("TURBOPACK compile-time value", void 0))
+});
+_c39 = CommunityChatScreen;
+// ---------------------------------------------------------------------
+// Native-style navigation: every screen lives at a fixed position on a
+// conceptual "map" of the app. Navigating forward (higher position)
+// pushes the next screen in from the right; navigating back slides the
+// previous screen in from the left — like an iOS navigation stack.
+// ---------------------------------------------------------------------
+const SCREEN_ORDER = [
+    // Onboarding flow (top to bottom)
+    "splash",
+    "gender",
+    "language",
+    "currency",
+    "welcome",
+    "quiz",
+    "results",
+    "symptoms",
+    "carousel",
+    "engagement",
+    "paywall",
+    // Main tab (home) and its details
+    "dashboard",
+    "stats",
+    "finance",
+    "calendar",
+    "gamification",
+    // Tools tab and its details
+    "journal",
+    "meditation",
+    "affirmations",
+    "triggers",
+    "goals",
+    "withdrawal",
+    "relapse-recovery",
+    "parcours",
+    "blocker",
+    "notifications",
+    // Coach tab and its details
+    "atlas",
+    "program",
+    "mentorship",
+    "resources",
+    // Community tab and its details
+    "community",
+    "community-chat",
+    // Profile tab and its details
+    "profile",
+    "settings",
+    "subscription",
+    "data-rights",
+    "support",
+    // Immersive full-screen tools (deepest layer)
+    "sos",
+    "panic",
+    "achievements",
+    "parcours-evolution"
+];
+function orderOf(screen) {
+    const index = SCREEN_ORDER.indexOf(screen);
+    return index === -1 ? SCREEN_ORDER.length : index;
+}
+function Home() {
+    _s();
+    const { currentScreen, hasCompletedOnboarding, navigate, incrementStreak, lastQuestReset, resetDailyQuests, streakDays, dailyQuests, completeQuest } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$store$2f$zerobet$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useStore"])();
+    // Zerobet 2.0 — anonymous cloud backup of core recovery progress
+    // (auto-syncs on streak/check-in/journal/XP changes; status lives in the store)
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useCloudSync$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCloudSync"])();
+    // Zerobet 2.0.6 — smart local reminders (check-in, craving hours, quote, weekly)
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useReminders$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useReminders"])();
+    // Auto-increment streak once per day when app opens (after onboarding)
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "Home.useEffect": ()=>{
+            if (hasCompletedOnboarding) {
+                incrementStreak();
+            }
+        }
+    }["Home.useEffect"], [
+        hasCompletedOnboarding,
+        incrementStreak
+    ]);
+    // Auto-reset daily quests when a new day begins
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "Home.useEffect": ()=>{
+            if (!hasCompletedOnboarding) return;
+            const today = new Date().toDateString();
+            if (lastQuestReset !== today && lastQuestReset !== null) {
+                resetDailyQuests();
+            }
+        }
+    }["Home.useEffect"], [
+        hasCompletedOnboarding,
+        lastQuestReset,
+        resetDailyQuests
+    ]);
+    // Auto-complete the "streak" daily quest once a streak is active today
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "Home.useEffect": ()=>{
+            if (!hasCompletedOnboarding) return;
+            if (streakDays >= 1 && !dailyQuests.streak) {
+                completeQuest("streak");
+            }
+        }
+    }["Home.useEffect"], [
+        hasCompletedOnboarding,
+        streakDays,
+        dailyQuests.streak,
+        completeQuest
+    ]);
+    // Scroll to top on screen change
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "Home.useEffect": ()=>{
+            const container = document.querySelector(".app-container");
+            if (container) container.scrollTop = 0;
+            window.scrollTo(0, 0);
+        }
+    }["Home.useEffect"], [
+        currentScreen
+    ]);
+    // Direction of the horizontal push/pop transition. Derived during render
+    // (React's "adjust state when a prop changes" pattern) so the entering
+    // screen animates from the correct side on the very first commit.
+    const [nav, setNav] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({
+        last: currentScreen,
+        dir: 1
+    });
+    if (nav.last !== currentScreen) {
+        setNav({
+            last: currentScreen,
+            dir: orderOf(currentScreen) >= orderOf(nav.last) ? 1 : -1
+        });
+    }
+    const dir = nav.dir;
+    const renderScreen = ()=>{
+        switch(currentScreen){
+            case "splash":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$screens$2f$SplashScreen$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SplashScreen"], {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 402,
+                    columnNumber: 29
+                }, this);
+            case "gender":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(GenderScreen, {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 403,
+                    columnNumber: 29
+                }, this);
+            case "language":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(LanguageScreen, {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 404,
+                    columnNumber: 31
+                }, this);
+            case "currency":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(CurrencyScreen, {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 405,
+                    columnNumber: 31
+                }, this);
+            case "welcome":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(WelcomeScreen, {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 406,
+                    columnNumber: 30
+                }, this);
+            case "quiz":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(QuizScreen, {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 407,
+                    columnNumber: 27
+                }, this);
+            case "results":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ResultsScreen, {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 408,
+                    columnNumber: 30
+                }, this);
+            case "symptoms":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(SymptomsScreen, {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 409,
+                    columnNumber: 31
+                }, this);
+            case "carousel":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(CarouselScreen, {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 410,
+                    columnNumber: 31
+                }, this);
+            case "engagement":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(EngagementScreen, {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 411,
+                    columnNumber: 33
+                }, this);
+            case "paywall":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(PaywallScreen, {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 412,
+                    columnNumber: 30
+                }, this);
+            case "dashboard":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(DashboardScreen, {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 413,
+                    columnNumber: 32
+                }, this);
+            case "panic":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(PanicScreen, {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 414,
+                    columnNumber: 28
+                }, this);
+            case "journal":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(JournalScreen, {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 415,
+                    columnNumber: 30
+                }, this);
+            case "finance":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(FinanceScreen, {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 416,
+                    columnNumber: 30
+                }, this);
+            case "atlas":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(AtlasScreen, {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 417,
+                    columnNumber: 28
+                }, this);
+            case "blocker":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(BlockerScreen, {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 418,
+                    columnNumber: 30
+                }, this);
+            case "community":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(CommunityScreen, {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 419,
+                    columnNumber: 32
+                }, this);
+            case "parcours":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ParcoursScreen, {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 420,
+                    columnNumber: 31
+                }, this);
+            case "settings":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(SettingsScreen, {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 421,
+                    columnNumber: 31
+                }, this);
+            case "subscription":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(SubscriptionScreen, {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 422,
+                    columnNumber: 35
+                }, this);
+            case "data-rights":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(DataRightsScreen, {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 423,
+                    columnNumber: 34
+                }, this);
+            case "parcours-evolution":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ParcoursEvolutionScreen, {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 424,
+                    columnNumber: 41
+                }, this);
+            case "stats":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(StatsScreen, {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 425,
+                    columnNumber: 28
+                }, this);
+            case "resources":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ResourcesScreen, {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 426,
+                    columnNumber: 32
+                }, this);
+            case "sos":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(SOSScreen, {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 427,
+                    columnNumber: 26
+                }, this);
+            case "meditation":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(MeditationScreen, {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 428,
+                    columnNumber: 33
+                }, this);
+            case "gamification":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(GamificationScreen, {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 429,
+                    columnNumber: 35
+                }, this);
+            case "achievements":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(AchievementsScreen, {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 430,
+                    columnNumber: 35
+                }, this);
+            case "profile":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ProfileScreen, {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 431,
+                    columnNumber: 30
+                }, this);
+            case "calendar":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(CalendarScreen, {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 432,
+                    columnNumber: 31
+                }, this);
+            case "support":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(SupportScreen, {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 433,
+                    columnNumber: 30
+                }, this);
+            case "program":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ProgramScreen, {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 434,
+                    columnNumber: 30
+                }, this);
+            case "mentorship":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(MentorshipScreen, {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 435,
+                    columnNumber: 33
+                }, this);
+            case "withdrawal":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(WithdrawalScreen, {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 436,
+                    columnNumber: 33
+                }, this);
+            case "goals":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(GoalsScreen, {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 437,
+                    columnNumber: 28
+                }, this);
+            case "triggers":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(TriggersScreen, {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 438,
+                    columnNumber: 31
+                }, this);
+            case "relapse-recovery":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(RelapseRecoveryScreen, {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 439,
+                    columnNumber: 39
+                }, this);
+            case "affirmations":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(AffirmationsScreen, {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 440,
+                    columnNumber: 35
+                }, this);
+            case "notifications":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(NotificationSettingsScreen, {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 441,
+                    columnNumber: 36
+                }, this);
+            case "community-chat":
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(CommunityChatScreen, {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 442,
+                    columnNumber: 37
+                }, this);
+            default:
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$screens$2f$SplashScreen$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SplashScreen"], {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 443,
+                    columnNumber: 23
+                }, this);
+        }
+    };
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$ErrorBoundary$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ErrorBoundary"], {
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$PhoneShell$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["PhoneShell"], {
+            children: [
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
+                    className: "app-container relative",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AnimatePresence"], {
+                            mode: "wait",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                                initial: {
+                                    opacity: 0,
+                                    x: 56 * dir
+                                },
+                                animate: {
+                                    opacity: 1,
+                                    x: 0
+                                },
+                                exit: {
+                                    opacity: 0,
+                                    x: -56 * dir
+                                },
+                                transition: {
+                                    duration: 0.28,
+                                    ease: [
+                                        0.32,
+                                        0.72,
+                                        0,
+                                        1
+                                    ]
+                                },
+                                children: renderScreen()
+                            }, currentScreen, false, {
+                                fileName: "[project]/src/app/page.tsx",
+                                lineNumber: 452,
+                                columnNumber: 13
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "[project]/src/app/page.tsx",
+                            lineNumber: 451,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "h-24",
+                            "aria-hidden": true
+                        }, void 0, false, {
+                            fileName: "[project]/src/app/page.tsx",
+                            lineNumber: 462,
+                            columnNumber: 11
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 450,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$zerobet$2f$components$2f$BottomNav$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["BottomNav"], {}, void 0, false, {
+                    fileName: "[project]/src/app/page.tsx",
+                    lineNumber: 464,
+                    columnNumber: 9
+                }, this)
+            ]
+        }, void 0, true, {
+            fileName: "[project]/src/app/page.tsx",
+            lineNumber: 449,
+            columnNumber: 7
+        }, this)
+    }, void 0, false, {
+        fileName: "[project]/src/app/page.tsx",
+        lineNumber: 448,
+        columnNumber: 5
+    }, this);
+}
+_s(Home, "nZQKWFVRB4gtYpY9/7pz1NwECw0=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$store$2f$zerobet$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useStore"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useCloudSync$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCloudSync"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useReminders$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useReminders"]
+    ];
+});
+_c40 = Home;
+var _c, _c1, _c2, _c3, _c4, _c5, _c6, _c7, _c8, _c9, _c10, _c11, _c12, _c13, _c14, _c15, _c16, _c17, _c18, _c19, _c20, _c21, _c22, _c23, _c24, _c25, _c26, _c27, _c28, _c29, _c30, _c31, _c32, _c33, _c34, _c35, _c36, _c37, _c38, _c39, _c40;
+__turbopack_context__.k.register(_c, "GenderScreen");
+__turbopack_context__.k.register(_c1, "LanguageScreen");
+__turbopack_context__.k.register(_c2, "CurrencyScreen");
+__turbopack_context__.k.register(_c3, "WelcomeScreen");
+__turbopack_context__.k.register(_c4, "QuizScreen");
+__turbopack_context__.k.register(_c5, "ResultsScreen");
+__turbopack_context__.k.register(_c6, "SymptomsScreen");
+__turbopack_context__.k.register(_c7, "CarouselScreen");
+__turbopack_context__.k.register(_c8, "EngagementScreen");
+__turbopack_context__.k.register(_c9, "PaywallScreen");
+__turbopack_context__.k.register(_c10, "DashboardScreen");
+__turbopack_context__.k.register(_c11, "PanicScreen");
+__turbopack_context__.k.register(_c12, "JournalScreen");
+__turbopack_context__.k.register(_c13, "FinanceScreen");
+__turbopack_context__.k.register(_c14, "AtlasScreen");
+__turbopack_context__.k.register(_c15, "BlockerScreen");
+__turbopack_context__.k.register(_c16, "CommunityScreen");
+__turbopack_context__.k.register(_c17, "ParcoursScreen");
+__turbopack_context__.k.register(_c18, "SettingsScreen");
+__turbopack_context__.k.register(_c19, "SubscriptionScreen");
+__turbopack_context__.k.register(_c20, "DataRightsScreen");
+__turbopack_context__.k.register(_c21, "ParcoursEvolutionScreen");
+__turbopack_context__.k.register(_c22, "StatsScreen");
+__turbopack_context__.k.register(_c23, "ResourcesScreen");
+__turbopack_context__.k.register(_c24, "SOSScreen");
+__turbopack_context__.k.register(_c25, "MeditationScreen");
+__turbopack_context__.k.register(_c26, "GamificationScreen");
+__turbopack_context__.k.register(_c27, "AchievementsScreen");
+__turbopack_context__.k.register(_c28, "ProfileScreen");
+__turbopack_context__.k.register(_c29, "CalendarScreen");
+__turbopack_context__.k.register(_c30, "SupportScreen");
+__turbopack_context__.k.register(_c31, "ProgramScreen");
+__turbopack_context__.k.register(_c32, "MentorshipScreen");
+__turbopack_context__.k.register(_c33, "WithdrawalScreen");
+__turbopack_context__.k.register(_c34, "GoalsScreen");
+__turbopack_context__.k.register(_c35, "TriggersScreen");
+__turbopack_context__.k.register(_c36, "RelapseRecoveryScreen");
+__turbopack_context__.k.register(_c37, "AffirmationsScreen");
+__turbopack_context__.k.register(_c38, "NotificationSettingsScreen");
+__turbopack_context__.k.register(_c39, "CommunityChatScreen");
+__turbopack_context__.k.register(_c40, "Home");
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+]);
+
+//# sourceMappingURL=src_a5e66fb9._.js.map

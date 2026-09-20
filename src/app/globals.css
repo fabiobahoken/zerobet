@@ -358,35 +358,26 @@
   background: transparent;
 }
 .custom-scroll::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #FF3B3055, #F59E0B55);
+  background: linear-gradient(180deg, #10B98155, #2DD4BF55);
   border-radius: 3px;
 }
 .custom-scroll::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #FF3B30aa, #F59E0Baa);
+  background: linear-gradient(180deg, #10B981aa, #2DD4BFaa);
 }
 /* Firefox */
 .custom-scroll {
   scrollbar-width: thin;
-  scrollbar-color: #F59E0B55 transparent;
+  scrollbar-color: #10B98155 transparent;
 }
 
-/* Global app scrollbar (premium red→orange gradient) */
+/* Global app scrollbar — hidden for a native app feel */
 body::-webkit-scrollbar {
-  width: 8px;
-}
-body::-webkit-scrollbar-track {
-  background: #0A0A0F;
-}
-body::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #FF3B30, #F59E0B);
-  border-radius: 4px;
-}
-body::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #F59E0B, #FF3B30);
+  width: 0;
+  height: 0;
 }
 body {
-  scrollbar-width: thin;
-  scrollbar-color: #F59E0B #0A0A0F;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 /* Hide scrollbar */
@@ -414,7 +405,7 @@ body {
 }
 
 /* Safe area */
-.safe-top { padding-top: env(safe-area-inset-top); }
+.safe-top { padding-top: max(20px, env(safe-area-inset-top)); }
 .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
 
 /* ========================================
@@ -425,7 +416,7 @@ body {
 
 .gradient-border {
   position: relative;
-  background: rgba(11, 19, 43, 0.55);
+  background: rgba(13, 25, 28, 0.55);
   border-radius: 24px;
 }
 .gradient-border::before {
@@ -434,7 +425,7 @@ body {
   inset: 0;
   border-radius: 24px;
   padding: 1px;
-  background: linear-gradient(135deg, rgba(255,59,48,0.6), rgba(245, 158, 11,0.6));
+  background: linear-gradient(135deg, rgba(16,185,129,0.6), rgba(45,212,191,0.6));
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
@@ -460,7 +451,7 @@ body {
 
 /* Premium focus ring */
 .focus-ring:focus-visible {
-  outline: 2px solid #FF3B30;
+  outline: 2px solid #10B981;
   outline-offset: 2px;
 }
 
@@ -526,8 +517,8 @@ body {
 }
 .card-hover:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 59, 48, 0.1);
-  border-color: rgba(255, 59, 48, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(16, 185, 129, 0.12);
+  border-color: rgba(45, 212, 191, 0.3);
 }
 
 /* Glass shimmer on hover */
@@ -1408,4 +1399,298 @@ body {
    safe and keeps the isolation benefits. */
 .app-container {
   contain: style;
+}
+
+/* ========================================
+   AURORA ORB — Zerobet 3.0 signature centerpiece
+   Iridescent CSS sphere (conic swirl + color pools
+   + glass rim + specular highlight). HD at any size.
+   ======================================== */
+.orb-glow {
+  background: conic-gradient(
+    from 90deg,
+    rgba(167, 139, 250, 0.45),
+    rgba(244, 114, 182, 0.35),
+    rgba(34, 211, 238, 0.35),
+    rgba(52, 211, 153, 0.3),
+    rgba(167, 139, 250, 0.45)
+  );
+  filter: blur(36px);
+  opacity: 0.6;
+  animation: orb-spin 16s linear infinite;
+}
+
+.orb-sphere {
+  background: #1b1035;
+  box-shadow:
+    inset -18px -24px 48px rgba(10, 5, 30, 0.65),
+    inset 12px 16px 36px rgba(255, 255, 255, 0.10),
+    0 24px 70px rgba(124, 58, 237, 0.28);
+}
+
+.orb-sphere-spin {
+  background: conic-gradient(
+    from 0deg,
+    #8b5cf6,
+    #ec4899,
+    #22d3ee,
+    #34d399,
+    #f59e0b,
+    #8b5cf6
+  );
+  filter: blur(16px) saturate(1.3);
+  animation: orb-spin 12s linear infinite;
+}
+
+.orb-sphere-pool1 {
+  background: radial-gradient(circle at 30% 30%, rgba(244, 114, 182, 0.8), transparent 55%);
+  filter: blur(12px);
+  animation: orb-spin-rev 18s linear infinite;
+}
+
+.orb-sphere-pool2 {
+  background: radial-gradient(circle at 70% 65%, rgba(52, 211, 153, 0.75), transparent 52%);
+  filter: blur(12px);
+  animation: orb-spin 22s linear infinite;
+}
+
+.orb-sphere-pool3 {
+  background: radial-gradient(circle at 55% 20%, rgba(34, 211, 238, 0.55), transparent 45%);
+  filter: blur(10px);
+  animation: orb-spin-rev 26s linear infinite;
+}
+
+.orb-rim {
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.16),
+    inset 10px 14px 30px rgba(255, 255, 255, 0.12);
+  background: radial-gradient(
+    circle at 32% 24%,
+    rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 0.06) 28%,
+    transparent 46%
+  );
+  pointer-events: none;
+}
+
+@keyframes orb-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes orb-spin-rev {
+  to { transform: rotate(-360deg); }
+}
+
+/* ========================================
+   NATIVE APP SHELL — Zerobet 3.0 "device" stage
+   Mobile  (<500px) : full-bleed application.
+   Desktop (>=500px): the app lives inside a phone
+   frame (bezel + Dynamic Island + status bar + home
+   indicator) floating on an ambient emerald aurora.
+   ======================================== */
+
+/* App-like global behaviors */
+html,
+body {
+  overscroll-behavior-y: none;
+}
+html {
+  -webkit-touch-callout: none;
+}
+/* UI chrome is not selectable — real text inputs still are */
+body {
+  user-select: none;
+  -webkit-user-select: none;
+}
+input,
+textarea,
+select,
+[contenteditable="true"],
+[data-selectable="true"] {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+.zb-stage { position: relative; }
+.zb-phone { position: relative; }
+.zb-ambient,
+.zb-island,
+.zb-home-indicator,
+.zb-statusbar { display: none; }
+
+@media (min-width: 500px) {
+  html,
+  body {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .zb-stage {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Ambient scenery behind the device */
+  .zb-ambient {
+    display: block;
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(55% 45% at 16% 10%, rgba(16, 185, 129, 0.10) 0%, transparent 62%),
+      radial-gradient(45% 40% at 86% 88%, rgba(45, 212, 191, 0.09) 0%, transparent 62%);
+  }
+  .zb-orb {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(90px);
+  }
+  .zb-orb-1 {
+    width: 430px;
+    height: 430px;
+    left: 7%;
+    top: 10%;
+    background: rgba(16, 185, 129, 0.13);
+    animation: float 9s ease-in-out infinite;
+  }
+  .zb-orb-2 {
+    width: 360px;
+    height: 360px;
+    right: 8%;
+    bottom: 9%;
+    background: rgba(45, 212, 191, 0.11);
+    animation: float 12s ease-in-out infinite reverse;
+  }
+  .zb-wordmark {
+    position: absolute;
+    left: 50%;
+    bottom: 4%;
+    transform: translateX(-50%);
+    font-family: var(--font-poppins), sans-serif;
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: 0.6em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.09);
+    white-space: nowrap;
+  }
+
+  /* The device */
+  .zb-phone {
+    flex: none;
+    width: 393px;
+    height: min(852px, 94vh);
+    height: min(852px, 94svh);
+    border-radius: 54px;
+    background: rgba(4, 8, 10, 0.72);
+    border: 11px solid #0b0f12;
+    outline: 1px solid rgba(255, 255, 255, 0.10);
+    box-shadow:
+      0 80px 140px -30px rgba(0, 0, 0, 0.85),
+      0 30px 60px -18px rgba(0, 0, 0, 0.7),
+      0 0 100px rgba(16, 185, 129, 0.10),
+      inset 0 0 0 1.5px rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    /* Turns the frame into the containing block for every
+       position: fixed descendant (modals, sheets, toasts) —
+       they stay confined to the device screen. */
+    transform: translateZ(0);
+  }
+
+  /* Status bar (live clock rendered by PhoneShell) */
+  .zb-statusbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: none;
+    height: 52px;
+    padding: 12px 30px 0 36px;
+    color: #fff;
+    position: relative;
+    /* Above modals/drawers (z-50) — like a real device status bar */
+    z-index: 70;
+  }
+  .zb-statusbar-time {
+    font-family: var(--font-inter), sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .zb-statusbar-icons {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* Dynamic Island */
+  .zb-island {
+    display: block;
+    position: absolute;
+    top: 11px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 118px;
+    height: 34px;
+    border-radius: 20px;
+    background: #000;
+    box-shadow:
+      inset 0 0 14px rgba(255, 255, 255, 0.05),
+      0 1px 3px rgba(0, 0, 0, 0.6);
+    /* Hardware — always on top */
+    z-index: 80;
+    pointer-events: none;
+  }
+
+  /* The scrollable app screen */
+  .app-container {
+    flex: 1 1 auto;
+    min-height: 0;
+    /* Allow the flex item to shrink below the min-content width of
+       wide inner elements (heatmap grid, tables…) — they scroll
+       horizontally on their own instead of stretching the device. */
+    min-width: 0;
+    /* Explicit cross size: the auto-margin centering of the base rule
+       plus fit-content sizing would otherwise let wide inner content
+       (heatmap grid) stretch the screen beyond the device frame. */
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    border-left: none;
+    border-right: none;
+    box-shadow: none;
+  }
+  .app-container::-webkit-scrollbar { display: none; }
+  /* Screens sized for the real viewport must size to the device screen */
+  .app-container .min-h-screen,
+  .app-container.min-h-screen { min-height: 100%; }
+
+  /* iOS home indicator */
+  .zb-home-indicator {
+    display: block;
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 134px;
+    height: 5px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.32);
+    z-index: 55;
+    pointer-events: none;
+  }
+
+  /* The nav floats above the home indicator inside the device */
+  .zb-phone .safe-bottom { padding-bottom: 0; }
+
+  /* Sheets/drawers inside the device start below the fake status bar
+     (mirrors the safe-area inset a real device would inject) */
+  .zb-phone .safe-top { padding-top: 52px; }
 }

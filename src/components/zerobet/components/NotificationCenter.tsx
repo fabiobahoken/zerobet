@@ -162,7 +162,7 @@ export function NotificationCenter({ isOpen, onClose }: NotificationCenterProps)
             style={{ borderRight: "none" }}
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-5 border-b border-white/10">
+            <div className="safe-top flex items-center justify-between border-b border-white/10 px-5 pb-5">
               <div className="flex items-center gap-2.5">
                 <Bell size={20} className="text-[#F59E0B]" />
                 <h2 className="text-lg font-bold text-white font-[family-name:var(--font-poppins)]">
