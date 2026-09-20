@@ -497,4 +497,9 @@ prisma:query SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`p
  GET /api/progress?deviceId=97f82741a7e1485d8ca34b11b1bab43f 200 in 21ms (compile: 5ms, proxy.ts: 4ms, render: 13ms)
 prisma:query INSERT INTO `main`.`ProgressSnapshot` (`id`, `deviceId`, `payload`, `streakDays`, `xp`, `plan`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?) ON CONFLICT  (`deviceId`) DO UPDATE SET `payload` = ?, `streakDays` = ?, `xp` = ?, `plan` = ?, `updatedAt` = ? WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) RETURNING `id` AS `id`, `deviceId` AS `deviceId`, `payload` AS `payload`, `streakDays` AS `streakDays`, `xp` AS `xp`, `plan` AS `plan`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`
  POST /api/progress 200 in 35ms (compile: 5ms, proxy.ts: 11ms, render: 20ms)
-e: 5ms, proxy.ts: 11ms, render: 20ms)
+ GET / 200 in 94ms (compile: 6ms, render: 89ms)
+prisma:query SELECT 1
+prisma:query SELECT `main`.`Payment`.`id`, `main`.`Payment`.`plan`, `main`.`Payment`.`billingCycle`, `main`.`Payment`.`operator`, `main`.`Payment`.`phone`, `main`.`Payment`.`amount`, `main`.`Payment`.`currency`, `main`.`Payment`.`status`, `main`.`Payment`.`failReason`, `main`.`Payment`.`createdAt`, `main`.`Payment`.`updatedAt` FROM `main`.`Payment` WHERE `main`.`Payment`.`deviceId` = ? ORDER BY `main`.`Payment`.`createdAt` DESC LIMIT ? OFFSET ?
+ GET /api/payment/history?deviceId=23e51c6ee42b4015af2d848c54415f96 200 in 475ms (compile: 435ms, proxy.ts: 4ms, render: 35ms)
+prisma:query SELECT `main`.`ProgressSnapshot`.`id`, `main`.`ProgressSnapshot`.`plan`, `main`.`ProgressSnapshot`.`payload` FROM `main`.`ProgressSnapshot` WHERE (`main`.`ProgressSnapshot`.`deviceId` = ? AND 1=1) LIMIT ? OFFSET ?
+viceId` = ? AND 1=1) LIMIT ? OFFSET ?
